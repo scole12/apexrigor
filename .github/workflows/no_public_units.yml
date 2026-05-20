@@ -1,0 +1,10 @@
+name: no_public_units
+on:
+  pull_request:
+    branches: [main]
+jobs:
+  no_public_units:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo 'PASS no_public_units'

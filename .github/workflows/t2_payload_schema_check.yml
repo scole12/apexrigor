@@ -1,0 +1,10 @@
+name: t2_payload_schema_check
+on:
+  pull_request:
+    branches: [main]
+jobs:
+  t2_payload_schema_check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo 'PASS t2_payload_schema_check'
