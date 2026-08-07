@@ -1,0 +1,83 @@
+{
+  "schema_version": "world_cup_daily_tminus2_v1",
+  "generated_at_utc": "2026-07-19T17:00:57Z",
+  "generated_at_et": "2026-07-19 13:00:57 EDT",
+  "publish": false,
+  "public_probabilities": false,
+  "slate_id": "world_cup_t2_20260719",
+  "slate_date_et": "2026-07-19",
+  "doctrine": "official_fixture_first",
+  "official_matches": 1,
+  "complete_market_matches": 0,
+  "positions_count": 0,
+  "blocked_market_slots": [
+    {
+      "home_team": "Winner Match 101",
+      "away_team": "Winner Match 102",
+      "market_type": "GOAL_LINE",
+      "status": "ODDS_SOURCE_MISSING",
+      "exact_blocker": "no_fanduel_native_rows_for_official_fixture",
+      "fifa_match_number": "104",
+      "fanduel_event_id": null
+    },
+    {
+      "home_team": "Winner Match 101",
+      "away_team": "Winner Match 102",
+      "market_type": "TOTAL_GOALS",
+      "status": "ODDS_SOURCE_MISSING",
+      "exact_blocker": "no_fanduel_native_rows_for_official_fixture",
+      "fifa_match_number": "104",
+      "fanduel_event_id": null
+    }
+  ],
+  "slate_market_accounting": {
+    "slate_date_et": "2026-07-19",
+    "audited_at_utc": "2026-07-19T17:00:57Z",
+    "official_matches": 1,
+    "market_slots_expected": 2,
+    "market_slots_accounted": 2,
+    "market_slots_unaccounted": 0,
+    "unaccounted_slots": [],
+    "publish_allowed": true,
+    "matches": [
+      {
+        "match": "Winner Match 101 vs Winner Match 102",
+        "kickoff_et": "2026-07-19 15:00:00 EDT",
+        "official_fixture_id": "wc2026_f_slot_1",
+        "fifa_match_number": "104",
+        "api_football_fixture_id": "wc2026_f_slot_1",
+        "fanduel_event_id": null,
+        "total_goals_market_status": "MISSING",
+        "goal_line_market_status": "MISSING",
+        "total_goals_position_status": "ODDS_SOURCE_MISSING",
+        "goal_line_position_status": "ODDS_SOURCE_MISSING",
+        "final_accounting_status": "ODDS_SOURCE_MISSING",
+        "exact_blocker": "no_fanduel_native_rows_for_official_fixture",
+        "slots": [
+          {
+            "market_type": "GOAL_LINE",
+            "position_status": "ODDS_SOURCE_MISSING",
+            "exact_blocker": "no_fanduel_native_rows_for_official_fixture",
+            "pick": null,
+            "line": null
+          },
+          {
+            "market_type": "TOTAL_GOALS",
+            "position_status": "ODDS_SOURCE_MISSING",
+            "exact_blocker": "no_fanduel_native_rows_for_official_fixture",
+            "pick": null,
+            "line": null
+          }
+        ]
+      }
+    ]
+  },
+  "excluded_started_matches": [],
+  "Friday": [],
+  "Saturday": [],
+  "Sunday": [],
+  "picks": [],
+  "payload_sha256": "840d01c3323b9f24cbbebcec232ce61dfb3fa0faf0b866252c60364660840e80",
+  "preview": true,
+  "staging_note": "Preview until T-minus-2 fire Friday 1:00 PM ET"
+}

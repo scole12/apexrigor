@@ -1,0 +1,162 @@
+{
+  "graded_date": "2026-07-02",
+  "header_text": "6 GAMES \u00b7 12 POSITIONS GRADED",
+  "game_count": 6,
+  "position_count": 12,
+  "settled_record": "7W-5L",
+  "daily_record": "7W-5L",
+  "f5_spread": "3W-3L",
+  "f5_total": "4W-2L",
+  "position_rows": [
+    {
+      "game_num": "G01",
+      "matchup": "Chicago White Sox @ Cleveland Guardians",
+      "first_pitch_et": "2026-07-02T18:41:00-04:00",
+      "market": "F5_ATS",
+      "pick": "CWS -0.5",
+      "line": "-0.5",
+      "tier": "ELITE",
+      "outcome": "W",
+      "void_reason": "",
+      "pending_reason": ""
+    },
+    {
+      "game_num": "G01",
+      "matchup": "Chicago White Sox @ Cleveland Guardians",
+      "first_pitch_et": "2026-07-02T18:41:00-04:00",
+      "market": "F5_TOT",
+      "pick": "OVER 4.5",
+      "line": "4.5",
+      "tier": "STRONG",
+      "outcome": "W",
+      "void_reason": "",
+      "pending_reason": ""
+    },
+    {
+      "game_num": "G02",
+      "matchup": "St. Louis Cardinals @ Atlanta Braves",
+      "first_pitch_et": "2026-07-02T19:16:00-04:00",
+      "market": "F5_ATS",
+      "pick": "ATL +0.5",
+      "line": "+0.5",
+      "tier": "STRONG",
+      "outcome": "W",
+      "void_reason": "",
+      "pending_reason": ""
+    },
+    {
+      "game_num": "G02",
+      "matchup": "St. Louis Cardinals @ Atlanta Braves",
+      "first_pitch_et": "2026-07-02T19:16:00-04:00",
+      "market": "F5_TOT",
+      "pick": "OVER 4.5",
+      "line": "4.5",
+      "tier": "ELITE",
+      "outcome": "W",
+      "void_reason": "",
+      "pending_reason": ""
+    },
+    {
+      "game_num": "G03",
+      "matchup": "Tampa Bay Rays @ Kansas City Royals",
+      "first_pitch_et": "2026-07-02T19:41:00-04:00",
+      "market": "F5_ATS",
+      "pick": "KC +0.5",
+      "line": "+0.5",
+      "tier": "ELITE",
+      "outcome": "L",
+      "void_reason": "",
+      "pending_reason": ""
+    },
+    {
+      "game_num": "G03",
+      "matchup": "Tampa Bay Rays @ Kansas City Royals",
+      "first_pitch_et": "2026-07-02T19:41:00-04:00",
+      "market": "F5_TOT",
+      "pick": "UNDER 5.5",
+      "line": "5.5",
+      "tier": "ELITE",
+      "outcome": "L",
+      "void_reason": "",
+      "pending_reason": ""
+    },
+    {
+      "game_num": "G04",
+      "matchup": "Detroit Tigers @ Texas Rangers",
+      "first_pitch_et": "2026-07-02T20:06:00-04:00",
+      "market": "F5_ATS",
+      "pick": "DET +0.5",
+      "line": "+0.5",
+      "tier": "MODERATE",
+      "outcome": "L",
+      "void_reason": "",
+      "pending_reason": ""
+    },
+    {
+      "game_num": "G04",
+      "matchup": "Detroit Tigers @ Texas Rangers",
+      "first_pitch_et": "2026-07-02T20:06:00-04:00",
+      "market": "F5_TOT",
+      "pick": "OVER 3.5",
+      "line": "3.5",
+      "tier": "ELITE",
+      "outcome": "W",
+      "void_reason": "",
+      "pending_reason": ""
+    },
+    {
+      "game_num": "G05",
+      "matchup": "Los Angeles Angels @ Seattle Mariners",
+      "first_pitch_et": "2026-07-02T21:41:00-04:00",
+      "market": "F5_ATS",
+      "pick": "LAA +0.5",
+      "line": "+0.5",
+      "tier": "WEAK",
+      "outcome": "W",
+      "void_reason": "",
+      "pending_reason": ""
+    },
+    {
+      "game_num": "G05",
+      "matchup": "Los Angeles Angels @ Seattle Mariners",
+      "first_pitch_et": "2026-07-02T21:41:00-04:00",
+      "market": "F5_TOT",
+      "pick": "UNDER 4.5",
+      "line": "4.5",
+      "tier": "ELITE",
+      "outcome": "W",
+      "void_reason": "",
+      "pending_reason": ""
+    },
+    {
+      "game_num": "G06",
+      "matchup": "San Diego Padres @ Los Angeles Dodgers",
+      "first_pitch_et": "2026-07-02T22:11:00-04:00",
+      "market": "F5_ATS",
+      "pick": "SD +0.5",
+      "line": "+0.5",
+      "tier": "ELITE",
+      "outcome": "L",
+      "void_reason": "",
+      "pending_reason": ""
+    },
+    {
+      "game_num": "G06",
+      "matchup": "San Diego Padres @ Los Angeles Dodgers",
+      "first_pitch_et": "2026-07-02T22:11:00-04:00",
+      "market": "F5_TOT",
+      "pick": "UNDER 5.5",
+      "line": "5.5",
+      "tier": "ELITE",
+      "outcome": "L",
+      "void_reason": "",
+      "pending_reason": ""
+    }
+  ],
+  "built_at_et": "2026-07-03T07:00:45.080355-04:00",
+  "_internal": {
+    "void": 0,
+    "pending": 0,
+    "archived_non_settled": 0
+  }
+}

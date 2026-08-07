@@ -1,0 +1,2870 @@
+{
+  "season": {
+    "record": "1,064 W \u2014 919 L \u2014 19P",
+    "win_rate": "53.7%",
+    "positions": "1,986 positions",
+    "slates": "111 slates",
+    "active_sports": "4 active sports",
+    "updated_through": "August 05, 2026"
+  },
+  "latest": {
+    "date": "August 05, 2026",
+    "record": "15W-15L",
+    "win_rate": "50.0%",
+    "summary": "MLB 15-15",
+    "has_summary": true,
+    "_apex_raw": {
+      "w": 15,
+      "l": 15,
+      "push": 0,
+      "settled_rows": 30,
+      "rows": 30,
+      "by_market": {
+        "F5_ATS": {
+          "L": 9,
+          "W": 6
+        },
+        "F5_TOT": {
+          "L": 6,
+          "W": 9
+        }
+      },
+      "date_iso": "2026-08-05",
+      "source": "apex_results_archive_publish",
+      "canonical_only": true,
+      "canonical_positions": 30,
+      "canonical_source_sha256": "86f9de9c62888219aef621bfb7b08e9d90b48dc3953d5c14cc3e3f412681522c",
+      "_internal": {
+        "void": 0,
+        "pending": 0,
+        "issued_rows": 30
+      }
+    }
+  },
+  "archive": [
+    {
+      "date": "August 05, 2026",
+      "date_iso": "2026-08-05",
+      "record": "15W-15L",
+      "win_rate": "50.0%",
+      "summary": "MLB 15-15",
+      "has_summary": true,
+      "_apex_raw": {
+        "w": 15,
+        "l": 15,
+        "push": 0,
+        "settled_rows": 30,
+        "rows": 30,
+        "by_market": {
+          "F5_ATS": {
+            "L": 9,
+            "W": 6
+          },
+          "F5_TOT": {
+            "L": 6,
+            "W": 9
+          }
+        },
+        "date_iso": "2026-08-05",
+        "source": "apex_results_archive_publish",
+        "canonical_only": true,
+        "canonical_positions": 30,
+        "canonical_source_sha256": "86f9de9c62888219aef621bfb7b08e9d90b48dc3953d5c14cc3e3f412681522c",
+        "_internal": {
+          "void": 0,
+          "pending": 0,
+          "issued_rows": 30
+        }
+      }
+    },
+    {
+      "date": "August 04, 2026",
+      "date_iso": "2026-08-04",
+      "record": "17W-13L",
+      "win_rate": "56.7%",
+      "summary": "MLB 17-13",
+      "has_summary": true,
+      "_apex_raw": {
+        "w": 17,
+        "l": 13,
+        "push": 0,
+        "settled_rows": 30,
+        "rows": 30,
+        "by_market": {
+          "F5_ATS": {
+            "L": 8,
+            "W": 7
+          },
+          "F5_TOT": {
+            "W": 10,
+            "L": 5
+          }
+        },
+        "date_iso": "2026-08-04",
+        "source": "apex_results_archive_publish",
+        "canonical_only": true,
+        "canonical_positions": 30,
+        "canonical_source_sha256": "9a0c2fb0dac827483cc36f0e0fb0f61368d4788764dfa5ffa09147b9d2c82c6a",
+        "_internal": {
+          "void": 0,
+          "pending": 0,
+          "issued_rows": 30
+        }
+      }
+    },
+    {
+      "date": "August 03, 2026",
+      "date_iso": "2026-08-03",
+      "record": "8W-8L",
+      "win_rate": "50.0%",
+      "summary": "MLB 8-8",
+      "has_summary": true,
+      "_apex_raw": {
+        "w": 8,
+        "l": 8,
+        "push": 0,
+        "settled_rows": 16,
+        "rows": 16,
+        "by_market": {
+          "F5_ATS": {
+            "W": 6,
+            "L": 2
+          },
+          "F5_TOT": {
+            "L": 6,
+            "W": 2
+          }
+        },
+        "date_iso": "2026-08-03",
+        "source": "apex_results_archive_publish",
+        "canonical_only": true,
+        "canonical_positions": 16,
+        "canonical_source_sha256": "96763b92ebdbb0727657f91664188b6b0f061f531076eda3c5a77e6c9e3eeeb3",
+        "_internal": {
+          "void": 0,
+          "pending": 0,
+          "issued_rows": 16
+        }
+      }
+    },
+    {
+      "date": "August 02, 2026",
+      "date_iso": "2026-08-02",
+      "record": "10W-20L",
+      "win_rate": "33.3%",
+      "summary": "MLB 10-20",
+      "has_summary": true,
+      "_apex_raw": {
+        "w": 10,
+        "l": 20,
+        "push": 0,
+        "settled_rows": 30,
+        "rows": 30,
+        "by_market": {
+          "F5_ATS": {
+            "W": 7,
+            "L": 8
+          },
+          "F5_TOT": {
+            "L": 12,
+            "W": 3
+          }
+        },
+        "date_iso": "2026-08-02",
+        "source": "apex_results_archive_publish",
+        "canonical_only": true,
+        "canonical_positions": 30,
+        "canonical_source_sha256": "2bed15eda53c8a87e25633b1d37031d46a81b71276dee4e191cd615093a850ee",
+        "_internal": {
+          "void": 0,
+          "pending": 0,
+          "issued_rows": 30
+        }
+      }
+    },
+    {
+      "date": "August 01, 2026",
+      "date_iso": "2026-08-01",
+      "record": "15W-15L",
+      "win_rate": "50.0%",
+      "summary": "MLB 15-15",
+      "has_summary": true,
+      "_apex_raw": {
+        "w": 15,
+        "l": 15,
+        "push": 0,
+        "settled_rows": 30,
+        "rows": 30,
+        "by_market": {
+          "F5_ATS": {
+            "L": 8,
+            "W": 7
+          },
+          "F5_TOT": {
+            "W": 8,
+            "L": 7
+          }
+        },
+        "date_iso": "2026-08-01",
+        "source": "apex_results_archive_publish",
+        "canonical_only": true,
+        "canonical_positions": 30,
+        "canonical_source_sha256": "f050985a441beaa404c698dff3a3a05aaaf6d15d9cc4571e5af1058e3d4c79ed",
+        "_internal": {
+          "void": 0,
+          "pending": 0,
+          "issued_rows": 30
+        }
+      }
+    },
+    {
+      "date": "July 31, 2026",
+      "date_iso": "2026-07-31",
+      "record": "14W-12L",
+      "win_rate": "53.8%",
+      "summary": "MLB 14-12",
+      "has_summary": true,
+      "_apex_raw": {
+        "w": 14,
+        "l": 12,
+        "push": 0,
+        "settled_rows": 26,
+        "rows": 26,
+        "by_market": {
+          "F5_ATS": {
+            "W": 6,
+            "L": 7
+          },
+          "F5_TOT": {
+            "L": 5,
+            "W": 8
+          }
+        },
+        "date_iso": "2026-07-31",
+        "source": "apex_results_archive_publish",
+        "canonical_only": true,
+        "canonical_positions": 26,
+        "canonical_source_sha256": "5995a5c087b3c851e836115eaec0bf301f070fc830de1a3d0a1dbca0db3dcce5",
+        "_internal": {
+          "void": 0,
+          "pending": 0,
+          "issued_rows": 26
+        }
+      }
+    },
+    {
+      "date": "July 30, 2026",
+      "date_iso": "2026-07-30",
+      "record": "9W-11L",
+      "win_rate": "45.0%",
+      "summary": "MLB 9-11",
+      "has_summary": true,
+      "_apex_raw": {
+        "w": 9,
+        "l": 11,
+        "push": 0,
+        "settled_rows": 20,
+        "rows": 20,
+        "by_market": {
+          "F5_ATS": {
+            "L": 4,
+            "W": 6
+          },
+          "F5_TOT": {
+            "L": 7,
+            "W": 3
+          }
+        },
+        "date_iso": "2026-07-30",
+        "source": "apex_results_archive_publish",
+        "canonical_only": true,
+        "canonical_positions": 20,
+        "canonical_source_sha256": "f6b6c41af8c2cd9f5d17f64f608a48fab678fd412daa43253038297db882b7a6",
+        "_internal": {
+          "void": 0,
+          "pending": 0,
+          "issued_rows": 20
+        }
+      }
+    },
+    {
+      "date": "July 29, 2026",
+      "date_iso": "2026-07-29",
+      "record": "18W-14L",
+      "win_rate": "56.2%",
+      "summary": "MLB 18-14",
+      "has_summary": true,
+      "_apex_raw": {
+        "w": 18,
+        "l": 14,
+        "push": 0,
+        "settled_rows": 32,
+        "rows": 32,
+        "by_market": {
+          "F5_ATS": {
+            "W": 7,
+            "L": 9
+          },
+          "F5_TOT": {
+            "W": 11,
+            "L": 5
+          }
+        },
+        "date_iso": "2026-07-29",
+        "source": "apex_results_archive_publish",
+        "canonical_only": true,
+        "canonical_positions": 32,
+        "canonical_source_sha256": "e5f3eeeab6af1130ac7ee7e9418b8c301fe082006121b44f798105eb8b318bb5",
+        "_internal": {
+          "void": 0,
+          "pending": 0,
+          "issued_rows": 32
+        }
+      }
+    },
+    {
+      "date": "July 28, 2026",
+      "date_iso": "2026-07-28",
+      "record": "14W-16L",
+      "win_rate": "46.7%",
+      "summary": "MLB 14-16",
+      "has_summary": true,
+      "_apex_raw": {
+        "w": 14,
+        "l": 16,
+        "push": 0,
+        "settled_rows": 30,
+        "rows": 32,
+        "by_market": {
+          "F5_ATS": {
+            "W": 7,
+            "L": 8
+          },
+          "F5_TOT": {
+            "W": 7,
+            "L": 8
+          }
+        },
+        "date_iso": "2026-07-28",
+        "source": "apex_results_archive_publish",
+        "canonical_only": true,
+        "canonical_positions": 32,
+        "canonical_source_sha256": "548cb64c63e796a6dccba7cef05d7b86ac05e2086e0b4a2cd8acf20e21af94df",
+        "_internal": {
+          "void": 2,
+          "pending": 0,
+          "issued_rows": 32
+        }
+      }
+    },
+    {
+      "date": "July 27, 2026",
+      "date_iso": "2026-07-27",
+      "record": "12W-10L",
+      "win_rate": "54.5%",
+      "summary": "MLB 12-10",
+      "has_summary": true,
+      "_apex_raw": {
+        "w": 12,
+        "l": 10,
+        "push": 0,
+        "settled_rows": 22,
+        "rows": 24,
+        "by_market": {
+          "F5_ATS": {
+            "W": 7,
+            "L": 4
+          },
+          "F5_TOT": {
+            "W": 5,
+            "L": 6
+          }
+        },
+        "date_iso": "2026-07-27",
+        "source": "apex_results_archive_publish",
+        "canonical_only": true,
+        "canonical_positions": 24,
+        "canonical_source_sha256": "85507886c8676f8e5701ea34e80603480d5cd1b61e20de6d6fa3df8a2606d630",
+        "_internal": {
+          "void": 2,
+          "pending": 0,
+          "issued_rows": 24
+        }
+      }
+    },
+    {
+      "date": "July 26, 2026",
+      "date_iso": "2026-07-26",
+      "record": "16W-13L-1P",
+      "win_rate": "55.2%",
+      "summary": "MLB 16-13",
+      "has_summary": true,
+      "_apex_raw": {
+        "w": 16,
+        "l": 13,
+        "push": 1,
+        "settled_rows": 30,
+        "rows": 30,
+        "by_market": {
+          "F5_ATS": {
+            "W": 7,
+            "L": 8
+          },
+          "F5_TOT": {
+            "L": 5,
+            "W": 9,
+            "PUSH": 1
+          }
+        },
+        "date_iso": "2026-07-26",
+        "source": "apex_results_archive_publish",
+        "canonical_only": true,
+        "canonical_positions": 30,
+        "canonical_source_sha256": "6bc228dbf56bea99e55c0007a5788b85688995ffb2b8bcf808ca02acb0eddfdd",
+        "_internal": {
+          "void": 0,
+          "pending": 0,
+          "issued_rows": 30
+        }
+      }
+    },
+    {
+      "date": "July 25, 2026",
+      "date_iso": "2026-07-25",
+      "record": "19W-11L",
+      "win_rate": "63.3%",
+      "summary": "MLB 19-11",
+      "has_summary": true,
+      "_apex_raw": {
+        "w": 19,
+        "l": 11,
+        "push": 0,
+        "settled_rows": 30,
+        "rows": 30,
+        "by_market": {
+          "F5_ATS": {
+            "W": 10,
+            "L": 5
+          },
+          "F5_TOT": {
+            "L": 6,
+            "W": 9
+          }
+        },
+        "date_iso": "2026-07-25",
+        "source": "apex_results_archive_publish",
+        "canonical_only": true,
+        "canonical_positions": 30,
+        "canonical_source_sha256": "8de8f989db2b01be971836f8c8a5da492fe170274083d3fa2cad3c92e28b7ccb",
+        "_internal": {
+          "void": 0,
+          "pending": 0,
+          "issued_rows": 30
+        }
+      }
+    },
+    {
+      "date": "July 24, 2026",
+      "date_iso": "2026-07-24",
+      "record": "15W-15L",
+      "win_rate": "50.0%",
+      "summary": "MLB 15-15",
+      "has_summary": true,
+      "_apex_raw": {
+        "w": 15,
+        "l": 15,
+        "push": 0,
+        "settled_rows": 30,
+        "rows": 30,
+        "by_market": {
+          "F5_ATS": {
+            "W": 8,
+            "L": 7
+          },
+          "F5_TOT": {
+            "L": 8,
+            "W": 7
+          }
+        },
+        "date_iso": "2026-07-24",
+        "source": "apex_results_archive_publish",
+        "canonical_only": true,
+        "canonical_positions": 30,
+        "canonical_source_sha256": "e6936b032bbc7585de1fbdf5453ae0131c697757ebe026b055ae3bcead8a064f",
+        "_internal": {
+          "void": 0,
+          "pending": 0,
+          "issued_rows": 30
+        }
+      }
+    },
+    {
+      "date": "July 23, 2026",
+      "date_iso": "2026-07-23",
+      "record": "5W-5L",
+      "win_rate": "50.0%",
+      "summary": "MLB 5-5",
+      "has_summary": true,
+      "_apex_raw": {
+        "w": 5,
+        "l": 5,
+        "push": 0,
+        "settled_rows": 10,
+        "rows": 10,
+        "by_market": {
+          "F5_ATS": {
+            "W": 3,
+            "L": 2
+          },
+          "F5_TOT": {
+            "L": 3,
+            "W": 2
+          }
+        },
+        "date_iso": "2026-07-23",
+        "source": "apex_results_archive_publish",
+        "canonical_only": true,
+        "canonical_positions": 10,
+        "canonical_source_sha256": "4dbaf77e7df5ed31fcee0a5f2b7b0d04f36fdd1564470470218893962cc6c7cf",
+        "_internal": {
+          "void": 0,
+          "pending": 0,
+          "issued_rows": 10
+        }
+      }
+    },
+    {
+      "date": "July 22, 2026",
+      "date_iso": "2026-07-22",
+      "record": "18W-16L",
+      "win_rate": "52.9%",
+      "summary": "MLB 18-16",
+      "has_summary": true,
+      "_apex_raw": {
+        "w": 18,
+        "l": 16,
+        "push": 0,
+        "settled_rows": 34,
+        "rows": 34,
+        "by_market": {
+          "F5_ATS": {
+            "W": 11,
+            "L": 6
+          },
+          "F5_TOT": {
+            "L": 10,
+            "W": 7
+          }
+        },
+        "date_iso": "2026-07-22",
+        "source": "apex_results_archive_publish",
+        "canonical_only": true,
+        "canonical_positions": 34,
+        "canonical_source_sha256": "bef8b78167cbfb66a2157457178962dbff60f819f011a602eab6cb012c8309d5",
+        "_internal": {
+          "void": 0,
+          "pending": 0,
+          "issued_rows": 34
+        }
+      }
+    },
+    {
+      "date": "July 20, 2026",
+      "date_iso": "2026-07-20",
+      "record": "17W-13L",
+      "win_rate": "56.7%",
+      "summary": "MLB 17-13",
+      "has_summary": true,
+      "_apex_raw": {
+        "w": 17,
+        "l": 13,
+        "push": 0,
+        "settled_rows": 30,
+        "rows": 30,
+        "by_market": {
+          "F5_ATS": {
+            "W": 8,
+            "L": 7
+          },
+          "F5_TOT": {
+            "L": 6,
+            "W": 9
+          }
+        },
+        "date_iso": "2026-07-20",
+        "source": "apex_results_archive_publish",
+        "canonical_only": true,
+        "canonical_positions": 30,
+        "canonical_source_sha256": "ec939c5bf7553fd84b73ae613f71538a49e841f8448093d32f75559d44b7d7b5",
+        "_internal": {
+          "void": 0,
+          "pending": 0,
+          "issued_rows": 30
+        }
+      }
+    },
+    {
+      "date": "July 19, 2026",
+      "date_iso": "2026-07-19",
+      "record": "16W-16L",
+      "win_rate": "50.0%",
+      "summary": "MLB 16-16",
+      "has_summary": true,
+      "_apex_raw": {
+        "w": 16,
+        "l": 16,
+        "push": 0,
+        "settled_rows": 32,
+        "rows": 32,
+        "by_market": {
+          "F5_ATS": {
+            "L": 8,
+            "W": 8
+          },
+          "F5_TOT": {
+            "L": 8,
+            "W": 8
+          }
+        },
+        "date_iso": "2026-07-19",
+        "source": "apex_results_archive_publish",
+        "canonical_only": true,
+        "canonical_positions": 32,
+        "canonical_source_sha256": "83f527943b58ec746d1d99b98144809da506e122c8deafec490bb791ad4fa099",
+        "_internal": {
+          "void": 0,
+          "pending": 0,
+          "issued_rows": 32
+        }
+      }
+    },
+    {
+      "date": "July 18, 2026",
+      "date_iso": "2026-07-18",
+      "record": "14W-16L",
+      "win_rate": "46.7%",
+      "summary": "MLB 14-16",
+      "has_summary": true,
+      "_apex_raw": {
+        "w": 14,
+        "l": 16,
+        "push": 0,
+        "settled_rows": 30,
+        "rows": 32,
+        "by_market": {
+          "F5_ATS": {
+            "L": 10,
+            "W": 5
+          },
+          "F5_TOT": {
+            "W": 9,
+            "L": 6
+          }
+        },
+        "date_iso": "2026-07-18",
+        "source": "apex_results_archive_publish",
+        "canonical_only": true,
+        "canonical_positions": 32,
+        "canonical_source_sha256": "e6c59f8c635f329313be879721a5f4824ada0d5a4b841fad1fb591bf40d0a5e9",
+        "_internal": {
+          "void": 0,
+          "pending": 2,
+          "issued_rows": 32
+        }
+      }
+    },
+    {
+      "date": "July 12, 2026",
+      "date_iso": "2026-07-12",
+      "record": "17W-12L-1P",
+      "win_rate": "58.6%",
+      "summary": "MLB 17-12",
+      "has_summary": true,
+      "_apex_raw": {
+        "w": 17,
+        "l": 12,
+        "push": 1,
+        "settled_rows": 30,
+        "rows": 30,
+        "by_market": {
+          "F5_ATS": {
+            "W": 8,
+            "L": 7
+          },
+          "F5_TOT": {
+            "L": 5,
+            "W": 9,
+            "PUSH": 1
+          }
+        },
+        "date_iso": "2026-07-12",
+        "source": "apex_results_archive_publish",
+        "canonical_only": true,
+        "canonical_positions": 30,
+        "canonical_source_sha256": "cacb146c32db7993b0fe0c195712a9088d2e20e4e8b4aacb7801273648ef5f0c",
+        "_internal": {
+          "void": 0,
+          "pending": 0,
+          "issued_rows": 30
+        }
+      }
+    },
+    {
+      "date": "July 11, 2026",
+      "date_iso": "2026-07-11",
+      "record": "10W-6L",
+      "win_rate": "62.5%",
+      "summary": "MLB 10-6",
+      "has_summary": true,
+      "_apex_raw": {
+        "w": 10,
+        "l": 6,
+        "push": 0,
+        "settled_rows": 16,
+        "rows": 16,
+        "by_market": {
+          "F5_ATS": {
+            "W": 5,
+            "L": 3
+          },
+          "F5_TOT": {
+            "W": 5,
+            "L": 3
+          }
+        },
+        "date_iso": "2026-07-11",
+        "source": "apex_results_archive_publish",
+        "canonical_only": true,
+        "canonical_positions": 16,
+        "canonical_source_sha256": "71da58e27180ee9082236fb581383b6cf783134dc77d978d00904dc0850f213b",
+        "_internal": {
+          "void": 0,
+          "pending": 0,
+          "issued_rows": 16
+        }
+      }
+    },
+    {
+      "date": "July 10, 2026",
+      "date_iso": "2026-07-10",
+      "record": "18W-10L",
+      "win_rate": "64.3%",
+      "summary": "MLB 18-10",
+      "has_summary": true,
+      "_apex_raw": {
+        "w": 18,
+        "l": 10,
+        "push": 0,
+        "settled_rows": 28,
+        "rows": 30,
+        "by_market": {
+          "F5_ATS": {
+            "W": 9,
+            "L": 5
+          },
+          "F5_TOT": {
+            "W": 9,
+            "L": 5
+          }
+        },
+        "date_iso": "2026-07-10",
+        "source": "apex_results_archive_publish",
+        "canonical_only": true,
+        "canonical_positions": 30,
+        "canonical_source_sha256": "d3fa55163e482f126d469c546a347c5f222fe8889ea10122cf9565a1c4d8372e",
+        "_internal": {
+          "void": 0,
+          "pending": 2,
+          "issued_rows": 30
+        }
+      }
+    },
+    {
+      "date": "July 09, 2026",
+      "date_iso": "2026-07-09",
+      "record": "10W-16L",
+      "win_rate": "38.5%",
+      "summary": "MLB 10-16",
+      "has_summary": true,
+      "_apex_raw": {
+        "w": 10,
+        "l": 16,
+        "push": 0,
+        "settled_rows": 26,
+        "rows": 26,
+        "by_market": {
+          "F5_ATS": {
+            "W": 4,
+            "L": 9
+          },
+          "F5_TOT": {
+            "L": 7,
+            "W": 6
+          }
+        },
+        "date_iso": "2026-07-09",
+        "source": "apex_results_archive_publish",
+        "canonical_only": true,
+        "canonical_positions": 26,
+        "canonical_source_sha256": "895e6594a52a4ae0833f2fe382b69f0ba65f17e8b0155418de4e64795b9143eb",
+        "_internal": {
+          "void": 0,
+          "pending": 0,
+          "issued_rows": 26
+        }
+      }
+    },
+    {
+      "date": "July 08, 2026",
+      "date_iso": "2026-07-08",
+      "record": "11W-17L",
+      "win_rate": "39.3%",
+      "summary": "MLB 11-17",
+      "has_summary": true,
+      "_apex_raw": {
+        "w": 11,
+        "l": 17,
+        "push": 0,
+        "settled_rows": 28,
+        "rows": 28,
+        "by_market": {
+          "F5_ATS": {
+            "W": 4,
+            "L": 10
+          },
+          "F5_TOT": {
+            "L": 7,
+            "W": 7
+          }
+        },
+        "date_iso": "2026-07-08",
+        "source": "apex_results_archive_publish",
+        "canonical_only": true,
+        "canonical_positions": 28,
+        "canonical_source_sha256": "4b2175b1838419487d4bb653bf27bffc47906e9097e7a02dcc9e7af201a2ffa3",
+        "_internal": {
+          "void": 0,
+          "pending": 0,
+          "issued_rows": 28
+        }
+      }
+    },
+    {
+      "date": "July 07, 2026",
+      "date_iso": "2026-07-07",
+      "record": "16W-14L",
+      "win_rate": "53.3%",
+      "summary": "MLB 16-14",
+      "has_summary": true,
+      "_apex_raw": {
+        "w": 16,
+        "l": 14,
+        "push": 0,
+        "settled_rows": 30,
+        "rows": 30,
+        "by_market": {
+          "F5_ATS": {
+            "W": 9,
+            "L": 6
+          },
+          "F5_TOT": {
+            "W": 7,
+            "L": 8
+          }
+        },
+        "date_iso": "2026-07-07",
+        "source": "apex_results_archive_publish",
+        "canonical_only": true,
+        "canonical_positions": 30,
+        "canonical_source_sha256": "3bdaf9e3f1217945ea8297e3bfd1d3dbc9b92c1f8dc5214ef78b405834a73b08",
+        "_internal": {
+          "void": 0,
+          "pending": 0,
+          "issued_rows": 30
+        }
+      }
+    },
+    {
+      "date": "July 06, 2026",
+      "date_iso": "2026-07-06",
+      "record": "7W-9L",
+      "win_rate": "43.8%",
+      "summary": "MLB 7-9",
+      "has_summary": true,
+      "_apex_raw": {
+        "w": 7,
+        "l": 9,
+        "push": 0,
+        "settled_rows": 16,
+        "rows": 16,
+        "by_market": {
+          "F5_ATS": {
+            "L": 6,
+            "W": 2
+          },
+          "F5_TOT": {
+            "W": 5,
+            "L": 3
+          }
+        },
+        "date_iso": "2026-07-06",
+        "source": "apex_results_archive_publish",
+        "canonical_only": true,
+        "canonical_positions": 16,
+        "canonical_source_sha256": "4a6dbf82b3e65a07d98cceeb5b3fae47b335530f343ab748a6292947aefdef35",
+        "_internal": {
+          "void": 0,
+          "pending": 0,
+          "issued_rows": 16
+        }
+      }
+    },
+    {
+      "date": "July 05, 2026",
+      "date_iso": "2026-07-05",
+      "record": "16W-14L",
+      "win_rate": "53.3%",
+      "summary": "MLB 16-14",
+      "has_summary": true,
+      "_apex_raw": {
+        "w": 16,
+        "l": 14,
+        "push": 0,
+        "settled_rows": 30,
+        "rows": 30,
+        "by_market": {
+          "F5_ATS": {
+            "W": 8,
+            "L": 7
+          },
+          "F5_TOT": {
+            "L": 7,
+            "W": 8
+          }
+        },
+        "date_iso": "2026-07-05",
+        "source": "apex_results_archive_publish",
+        "canonical_only": true,
+        "canonical_positions": 30,
+        "canonical_source_sha256": "9000401bd99a6d671dd897f80b44ed5e85556d8196f020017778f9a46224f94c",
+        "_internal": {
+          "void": 0,
+          "pending": 0,
+          "issued_rows": 30
+        }
+      }
+    },
+    {
+      "date": "July 04, 2026",
+      "date_iso": "2026-07-04",
+      "record": "16W-14L",
+      "win_rate": "53.3%",
+      "summary": "MLB 16-14",
+      "has_summary": true,
+      "_apex_raw": {
+        "w": 16,
+        "l": 14,
+        "push": 0,
+        "settled_rows": 30,
+        "rows": 30,
+        "by_market": {
+          "F5_ATS": {
+            "W": 9,
+            "L": 6
+          },
+          "F5_TOT": {
+            "L": 8,
+            "W": 7
+          }
+        },
+        "date_iso": "2026-07-04",
+        "source": "apex_results_archive_publish",
+        "canonical_only": true,
+        "canonical_positions": 30,
+        "canonical_source_sha256": "86597b6c4503e21cfa96542b116d9ce52c1ef752c0bf328d4868f3131bc5c43a",
+        "_internal": {
+          "void": 0,
+          "pending": 0,
+          "issued_rows": 30
+        }
+      }
+    },
+    {
+      "date": "July 03, 2026",
+      "date_iso": "2026-07-03",
+      "record": "8W-14L",
+      "win_rate": "36.4%",
+      "summary": "MLB 8-14",
+      "has_summary": true,
+      "_apex_raw": {
+        "w": 8,
+        "l": 14,
+        "push": 0,
+        "settled_rows": 22,
+        "rows": 22,
+        "by_market": {
+          "F5_ATS": {
+            "W": 5,
+            "L": 6
+          },
+          "F5_TOT": {
+            "L": 8,
+            "W": 3
+          }
+        },
+        "date_iso": "2026-07-03",
+        "source": "apex_results_archive_publish",
+        "canonical_only": true,
+        "canonical_positions": 22,
+        "canonical_source_sha256": "52c947eb11a46e2407bf7057dbd34781d88228615663cc8ca9ad3c6344f27842",
+        "_internal": {
+          "void": 0,
+          "pending": 0,
+          "issued_rows": 22
+        }
+      }
+    },
+    {
+      "date": "July 02, 2026",
+      "date_iso": "2026-07-02",
+      "record": "7W-5L",
+      "win_rate": "58.3%",
+      "summary": "MLB 7-5",
+      "has_summary": true,
+      "_apex_raw": {
+        "w": 7,
+        "l": 5,
+        "push": 0,
+        "settled_rows": 12,
+        "rows": 12,
+        "by_market": {
+          "F5_ATS": {
+            "W": 3,
+            "L": 3
+          },
+          "F5_TOT": {
+            "W": 4,
+            "L": 2
+          }
+        },
+        "date_iso": "2026-07-02",
+        "source": "apex_results_archive_publish",
+        "canonical_only": true,
+        "canonical_positions": 12,
+        "canonical_source_sha256": "5387671f93423a52af7788768ec3f8c7b4f24b9241c3d15db312296b8d02df06",
+        "_internal": {
+          "void": 0,
+          "pending": 0,
+          "issued_rows": 12
+        }
+      }
+    },
+    {
+      "date": "July 01, 2026",
+      "date_iso": "2026-07-01",
+      "record": "12W-16L",
+      "win_rate": "42.9%",
+      "summary": "MLB 12-16",
+      "has_summary": true,
+      "_apex_raw": {
+        "w": 12,
+        "l": 16,
+        "push": 0,
+        "settled_rows": 28,
+        "rows": 28,
+        "by_market": {
+          "F5_ATS": {
+            "L": 11,
+            "W": 3
+          },
+          "F5_TOT": {
+            "W": 9,
+            "L": 5
+          }
+        },
+        "date_iso": "2026-07-01",
+        "source": "apex_results_archive_publish",
+        "canonical_only": true,
+        "canonical_positions": 28,
+        "canonical_source_sha256": "d14f34e6507a049f0bb1978275c2816a327888fc1e093703e264c499edec360b",
+        "_internal": {
+          "void": 0,
+          "pending": 0,
+          "issued_rows": 28
+        }
+      }
+    },
+    {
+      "date": "June 30, 2026",
+      "date_iso": "2026-06-30",
+      "record": "14W-16L",
+      "win_rate": "46.7%",
+      "summary": "MLB 14-16",
+      "has_summary": true,
+      "_apex_raw": {
+        "w": 14,
+        "l": 16,
+        "push": 0,
+        "settled_rows": 30,
+        "rows": 30,
+        "by_market": {
+          "F5_ATS": {
+            "W": 5,
+            "L": 10
+          },
+          "F5_TOT": {
+            "W": 9,
+            "L": 6
+          }
+        },
+        "date_iso": "2026-06-30",
+        "source": "apex_results_archive_publish",
+        "canonical_only": true,
+        "canonical_positions": 30,
+        "canonical_source_sha256": "9fa2b4e8c6b7aeb35282a3ba26ae5ad4f4c049943c91fade716153b1783c7e3a",
+        "_internal": {
+          "void": 0,
+          "pending": 0,
+          "issued_rows": 30
+        }
+      }
+    },
+    {
+      "date": "June 29, 2026",
+      "date_iso": "2026-06-29",
+      "record": "11W-15L",
+      "win_rate": "42.3%",
+      "summary": "MLB 11-15",
+      "has_summary": true,
+      "_apex_raw": {
+        "w": 11,
+        "l": 15,
+        "push": 0,
+        "settled_rows": 26,
+        "rows": 26,
+        "by_market": {
+          "F5_ATS": {
+            "W": 7,
+            "L": 6
+          },
+          "F5_TOT": {
+            "L": 9,
+            "W": 4
+          }
+        },
+        "date_iso": "2026-06-29",
+        "source": "apex_results_archive_publish",
+        "canonical_only": true,
+        "canonical_positions": 26,
+        "canonical_source_sha256": "b464ce20e05d697019be1edcc980be866dae8dcf14db7ab1233b0ff25a2b0197",
+        "_internal": {
+          "void": 0,
+          "pending": 0,
+          "issued_rows": 26
+        }
+      }
+    },
+    {
+      "date": "June 28, 2026",
+      "date_iso": "2026-06-28",
+      "record": "20W-10L",
+      "win_rate": "66.7%",
+      "summary": "MLB 20-10",
+      "has_summary": true,
+      "_apex_raw": {
+        "w": 20,
+        "l": 10,
+        "push": 0,
+        "settled_rows": 30,
+        "rows": 30,
+        "by_market": {
+          "F5_ATS": {
+            "L": 5,
+            "W": 10
+          },
+          "F5_TOT": {
+            "L": 5,
+            "W": 10
+          }
+        },
+        "date_iso": "2026-06-28",
+        "source": "apex_results_archive_publish",
+        "canonical_only": true,
+        "canonical_positions": 30,
+        "canonical_source_sha256": "bebe6bb5b34d818ea88ca1976188430b71b7f6e951c11eea9e3eb8cdb623e2bd",
+        "_internal": {
+          "void": 0,
+          "pending": 0,
+          "issued_rows": 30
+        }
+      }
+    },
+    {
+      "date": "June 27, 2026",
+      "date_iso": "2026-06-27",
+      "record": "18W-12L",
+      "win_rate": "60.0%",
+      "summary": "MLB 18-12",
+      "has_summary": true,
+      "_apex_raw": {
+        "w": 18,
+        "l": 12,
+        "push": 0,
+        "settled_rows": 30,
+        "rows": 30,
+        "by_market": {
+          "F5_ATS": {
+            "L": 7,
+            "W": 8
+          },
+          "F5_TOT": {
+            "L": 5,
+            "W": 10
+          }
+        },
+        "date_iso": "2026-06-27",
+        "source": "apex_results_archive_publish",
+        "canonical_only": true,
+        "canonical_positions": 30,
+        "canonical_source_sha256": "ee70c95835c3997890ea822421dffff77799bf57ad99a688a291fc8dadf80c51",
+        "_internal": {
+          "void": 0,
+          "pending": 0,
+          "issued_rows": 30
+        }
+      }
+    },
+    {
+      "date": "June 26, 2026",
+      "date_iso": "2026-06-26",
+      "record": "14W-16L",
+      "win_rate": "46.7%",
+      "summary": "MLB 14-16",
+      "has_summary": true,
+      "_apex_raw": {
+        "w": 14,
+        "l": 16,
+        "push": 0,
+        "settled_rows": 30,
+        "rows": 30,
+        "by_market": {
+          "F5_ATS": {
+            "W": 7,
+            "L": 8
+          },
+          "F5_TOT": {
+            "L": 8,
+            "W": 7
+          }
+        },
+        "date_iso": "2026-06-26",
+        "source": "apex_results_archive_publish",
+        "canonical_only": true,
+        "canonical_positions": 30,
+        "canonical_source_sha256": "3fe9d06ed14c9d32d8a185e916b744958cace7ae94b6b1c064cf3f881ed9bfde",
+        "_internal": {
+          "void": 0,
+          "pending": 0,
+          "issued_rows": 30
+        }
+      }
+    },
+    {
+      "date": "June 25, 2026",
+      "date_iso": "2026-06-25",
+      "record": "11W-5L",
+      "win_rate": "68.8%",
+      "summary": "MLB 11-5",
+      "has_summary": true,
+      "_apex_raw": {
+        "w": 11,
+        "l": 5,
+        "push": 0,
+        "settled_rows": 16,
+        "rows": 16,
+        "by_market": {
+          "F5_ATS": {
+            "L": 3,
+            "W": 5
+          },
+          "F5_TOT": {
+            "W": 6,
+            "L": 2
+          }
+        },
+        "date_iso": "2026-06-25",
+        "source": "apex_results_archive_publish",
+        "canonical_only": true,
+        "canonical_positions": 18,
+        "canonical_source_sha256": "382a7c99a9b2db5884c728d2322533ca803dcee741d89e2992544e5e44ec620f",
+        "_internal": {
+          "void": 0,
+          "pending": 2,
+          "issued_rows": 18
+        }
+      }
+    },
+    {
+      "date": "June 24, 2026",
+      "date_iso": "2026-06-24",
+      "record": "13W-19L",
+      "win_rate": "40.6%",
+      "summary": "MLB 13-19",
+      "has_summary": true,
+      "_apex_raw": {
+        "w": 13,
+        "l": 19,
+        "push": 0,
+        "settled_rows": 32,
+        "rows": 32,
+        "by_market": {
+          "F5_TOT": {
+            "L": 8,
+            "W": 8
+          },
+          "F5_ATS": {
+            "W": 5,
+            "L": 11
+          }
+        },
+        "date_iso": "2026-06-24",
+        "source": "apex_results_archive_publish",
+        "canonical_only": true,
+        "canonical_positions": 32,
+        "canonical_source_sha256": "499bd392419b44b9cb0916aa0adeafba6fb82663e51ccba40ce8bb0557060b8e",
+        "_internal": {
+          "void": 0,
+          "pending": 0,
+          "issued_rows": 32
+        }
+      }
+    },
+    {
+      "date": "June 23, 2026",
+      "date_iso": "2026-06-23",
+      "record": "13W-16L-1P",
+      "win_rate": "44.8%",
+      "summary": "MLB 13-16",
+      "has_summary": true,
+      "_apex_raw": {
+        "w": 13,
+        "l": 16,
+        "push": 1,
+        "settled_rows": 30,
+        "rows": 30,
+        "by_market": {
+          "F5_TOT": {
+            "L": 8,
+            "W": 6,
+            "PUSH": 1
+          },
+          "F5_ATS": {
+            "W": 7,
+            "L": 8
+          }
+        },
+        "date_iso": "2026-06-23",
+        "source": "apex_results_archive_publish",
+        "canonical_only": true,
+        "canonical_positions": 30,
+        "canonical_source_sha256": "d83d6ea031eb54f86767416498640f3c4e1bff6f19720594024af70419b42492",
+        "_internal": {
+          "void": 0,
+          "pending": 0,
+          "issued_rows": 30
+        }
+      }
+    },
+    {
+      "date": "June 22, 2026",
+      "date_iso": "2026-06-22",
+      "record": "17W-6L-1P",
+      "win_rate": "73.9%",
+      "summary": "MLB 17-6",
+      "has_summary": true,
+      "_apex_raw": {
+        "w": 17,
+        "l": 6,
+        "push": 1,
+        "settled_rows": 24,
+        "rows": 24,
+        "by_market": {
+          "F5_TOT": {
+            "L": 2,
+            "W": 9,
+            "PUSH": 1
+          },
+          "F5_ATS": {
+            "L": 4,
+            "W": 8
+          }
+        },
+        "date_iso": "2026-06-22",
+        "source": "apex_results_archive_publish",
+        "canonical_only": true,
+        "canonical_positions": 26,
+        "canonical_source_sha256": "4f9fe91de06e065cc39daf0128360563a2c25a9e92a5361a9b618fac3f73a71d",
+        "_internal": {
+          "void": 0,
+          "pending": 2,
+          "issued_rows": 26
+        }
+      }
+    },
+    {
+      "date": "June 21, 2026",
+      "date_iso": "2026-06-21",
+      "record": "18W-10L",
+      "win_rate": "64.3%",
+      "summary": "MLB 18-10",
+      "has_summary": true,
+      "_apex_raw": {
+        "w": 18,
+        "l": 10,
+        "push": 0,
+        "settled_rows": 28,
+        "rows": 28,
+        "by_market": {
+          "F5_TOT": {
+            "L": 6,
+            "W": 8
+          },
+          "F5_ATS": {
+            "W": 10,
+            "L": 4
+          }
+        },
+        "date_iso": "2026-06-21",
+        "source": "apex_results_archive_publish",
+        "canonical_only": true,
+        "canonical_positions": 30,
+        "canonical_source_sha256": "ee41caa6b7702fd511c3e7d4fdb80451e849710dd45c98c0d113df9224e8ed5c",
+        "_internal": {
+          "void": 0,
+          "pending": 2,
+          "issued_rows": 30
+        }
+      }
+    },
+    {
+      "date": "June 20, 2026",
+      "date_iso": "2026-06-20",
+      "record": "16W-12L",
+      "win_rate": "57.1%",
+      "summary": "MLB 16-12",
+      "has_summary": true,
+      "_apex_raw": {
+        "w": 16,
+        "l": 12,
+        "push": 0,
+        "settled_rows": 28,
+        "rows": 28,
+        "by_market": {
+          "F5_TOT": {
+            "W": 8,
+            "L": 6
+          },
+          "F5_ATS": {
+            "L": 6,
+            "W": 8
+          }
+        },
+        "date_iso": "2026-06-20",
+        "source": "apex_results_archive_publish",
+        "canonical_only": true,
+        "canonical_positions": 28,
+        "canonical_source_sha256": "c91b016ab949e694d14a7289607c4327b7c3e5237ee5b8878b4262e9c6421866",
+        "_internal": {
+          "void": 0,
+          "pending": 0,
+          "issued_rows": 28
+        }
+      }
+    },
+    {
+      "date": "June 19, 2026",
+      "date_iso": "2026-06-19",
+      "record": "16W-12L",
+      "win_rate": "57.1%",
+      "summary": "MLB 16-12 \u00b7 World Cup 2-5",
+      "has_summary": true,
+      "_apex_raw": {
+        "w": 16,
+        "l": 12,
+        "push": 0,
+        "settled_rows": 28,
+        "rows": 28,
+        "by_market": {
+          "F5_TOT": {
+            "W": 10,
+            "L": 4
+          },
+          "F5_ATS": {
+            "W": 6,
+            "L": 8
+          }
+        },
+        "date_iso": "2026-06-19",
+        "source": "apex_results_archive_publish",
+        "canonical_only": true,
+        "canonical_positions": 28,
+        "canonical_source_sha256": "f55624fa1066ae1fd7e80c6e5e9e9cd10785a991cb1ef9e070f27df6b35eee76",
+        "_internal": {
+          "void": 0,
+          "pending": 0,
+          "issued_rows": 28
+        }
+      }
+    },
+    {
+      "date": "June 18, 2026",
+      "date_iso": "2026-06-18",
+      "record": "10W-6L",
+      "win_rate": "62.5%",
+      "summary": "MLB 10-6",
+      "has_summary": true,
+      "_apex_raw": {
+        "w": 10,
+        "l": 6,
+        "push": 0,
+        "settled_rows": 16,
+        "rows": 16,
+        "by_market": {
+          "F5_TOT": {
+            "W": 7,
+            "L": 1
+          },
+          "F5_ATS": {
+            "L": 5,
+            "W": 3
+          }
+        },
+        "date_iso": "2026-06-18",
+        "source": "apex_results_archive_publish",
+        "canonical_only": true,
+        "canonical_positions": 18,
+        "canonical_source_sha256": "f56bb5ad97e4797f4644a61ff69ff589b5002261dae63d17e3f68920ca70f6c3",
+        "_internal": {
+          "void": 0,
+          "pending": 2,
+          "issued_rows": 18
+        }
+      }
+    },
+    {
+      "date": "June 17, 2026",
+      "date_iso": "2026-06-17",
+      "record": "13W-13L",
+      "win_rate": "50.0%",
+      "summary": "MLB 13-13 \u00b7 World Cup 3-5",
+      "has_summary": true,
+      "_apex_raw": {
+        "w": 13,
+        "l": 13,
+        "push": 0,
+        "settled_rows": 26,
+        "rows": 26,
+        "by_market": {
+          "F5_TOT": {
+            "L": 8,
+            "W": 5
+          },
+          "F5_ATS": {
+            "L": 5,
+            "W": 8
+          }
+        },
+        "date_iso": "2026-06-17",
+        "source": "apex_results_archive_publish",
+        "canonical_only": true,
+        "canonical_positions": 26,
+        "canonical_source_sha256": "61a750fd53958e14a1b46b99abae646f3898c70c31b86498f0a926f5865b33dc",
+        "_internal": {
+          "void": 0,
+          "pending": 0,
+          "issued_rows": 26
+        }
+      }
+    },
+    {
+      "date": "June 16, 2026",
+      "date_iso": "2026-06-16",
+      "record": "19W-9L",
+      "win_rate": "67.9%",
+      "summary": "MLB 19-9",
+      "has_summary": true,
+      "_apex_raw": {
+        "w": 19,
+        "l": 9,
+        "push": 0,
+        "settled_rows": 28,
+        "rows": 28,
+        "by_market": {
+          "F5_TOT": {
+            "W": 11,
+            "L": 3
+          },
+          "F5_ATS": {
+            "L": 6,
+            "W": 8
+          }
+        },
+        "date_iso": "2026-06-16",
+        "source": "apex_results_archive_publish",
+        "canonical_only": true,
+        "canonical_positions": 30,
+        "canonical_source_sha256": "3ed99b53235bc39ebb44e2bda709453d6461d00cf477e42f8aca63f1e6968232",
+        "_internal": {
+          "void": 2,
+          "pending": 0,
+          "issued_rows": 30
+        }
+      }
+    },
+    {
+      "date": "June 15, 2026",
+      "date_iso": "2026-06-15",
+      "record": "10W-10L",
+      "win_rate": "50.0%",
+      "summary": "MLB 10-10",
+      "has_summary": true,
+      "_apex_raw": {
+        "w": 10,
+        "l": 10,
+        "push": 0,
+        "settled_rows": 20,
+        "rows": 20,
+        "by_market": {
+          "F5_TOT": {
+            "L": 6,
+            "W": 4
+          },
+          "F5_ATS": {
+            "L": 4,
+            "W": 6
+          }
+        },
+        "date_iso": "2026-06-15",
+        "source": "apex_results_archive_publish",
+        "canonical_only": true,
+        "canonical_positions": 20,
+        "canonical_source_sha256": "9a466ad85377718b9cf109c10513d2c0b282988c12b3a91431913c8f09e95d7f",
+        "_internal": {
+          "void": 0,
+          "pending": 0,
+          "issued_rows": 20
+        }
+      }
+    },
+    {
+      "date": "June 14, 2026",
+      "date_iso": "2026-06-14",
+      "record": "18W-10L",
+      "win_rate": "64.3%",
+      "summary": "MLB 18-10 \u00b7 World Cup 4-6",
+      "has_summary": true,
+      "_apex_raw": {
+        "w": 18,
+        "l": 10,
+        "push": 0,
+        "settled_rows": 28,
+        "rows": 28,
+        "by_market": {
+          "F5_TOT": {
+            "L": 5,
+            "W": 9
+          },
+          "F5_ATS": {
+            "W": 9,
+            "L": 5
+          }
+        },
+        "date_iso": "2026-06-14",
+        "source": "apex_results_archive_publish",
+        "canonical_only": true,
+        "canonical_positions": 30,
+        "canonical_source_sha256": "dceeda6fa18aaf5a10c9ad99863f10b40fbd5d40034143233216ed3a9ce1bfa8",
+        "_internal": {
+          "void": 0,
+          "pending": 2,
+          "issued_rows": 30
+        }
+      }
+    },
+    {
+      "date": "June 13, 2026",
+      "date_iso": "2026-06-13",
+      "record": "13W-14L-3P",
+      "win_rate": "48.1%",
+      "summary": "MLB 13-14 \u00b7 World Cup 2-4",
+      "has_summary": true,
+      "_apex_raw": {
+        "w": 13,
+        "l": 14,
+        "push": 3,
+        "settled_rows": 30,
+        "rows": 30,
+        "by_market": {
+          "F5_TOT": {
+            "L": 7,
+            "W": 5,
+            "PUSH": 3
+          },
+          "F5_ATS": {
+            "L": 7,
+            "W": 8
+          }
+        },
+        "date_iso": "2026-06-13",
+        "source": "apex_results_archive_publish",
+        "canonical_only": true,
+        "canonical_positions": 30,
+        "canonical_source_sha256": "e8ed8ddc7dd3aea60bbdc1a0551fed3550d8e2ef1b858131ddfa23f391b67646",
+        "_internal": {
+          "void": 0,
+          "pending": 0,
+          "issued_rows": 30
+        }
+      }
+    },
+    {
+      "date": "June 12, 2026",
+      "date_iso": "2026-06-12",
+      "record": "13W-15L",
+      "win_rate": "46.4%",
+      "summary": "MLB 13-15 \u00b7 World Cup 2-2",
+      "has_summary": true,
+      "_apex_raw": {
+        "w": 13,
+        "l": 15,
+        "push": 0,
+        "settled_rows": 28,
+        "rows": 28,
+        "by_market": {
+          "F5_TOT": {
+            "L": 11,
+            "W": 3
+          },
+          "F5_ATS": {
+            "L": 4,
+            "W": 10
+          }
+        },
+        "date_iso": "2026-06-12",
+        "source": "apex_results_archive_publish",
+        "canonical_only": true,
+        "canonical_positions": 28,
+        "canonical_source_sha256": "a45ddb3a0688a5823f55c3bbe3af29bbb63ee0b1854ac5e272fe442bfa830657",
+        "_internal": {
+          "void": 0,
+          "pending": 0,
+          "issued_rows": 28
+        }
+      }
+    },
+    {
+      "date": "June 11, 2026",
+      "date_iso": "2026-06-11",
+      "record": "5W-8L-1P",
+      "win_rate": "38.5%",
+      "summary": "MLB 5-8",
+      "has_summary": true,
+      "_apex_raw": {
+        "w": 5,
+        "l": 8,
+        "push": 1,
+        "void": 0,
+        "pending": 2,
+        "rows": 16,
+        "by_market": {
+          "F5_TOT": {
+            "W": 3,
+            "PUSH": 1,
+            "L": 3,
+            "PENDING": 1
+          },
+          "F5_ATS": {
+            "W": 2,
+            "L": 5,
+            "PENDING": 1
+          }
+        },
+        "date_iso": "2026-06-11",
+        "source": "apex_results_archive_publish",
+        "canonical_only": true,
+        "canonical_positions": 16,
+        "canonical_source_sha256": "6c926d6b3f1254ec5b22de7a98a00ca940b135acb934b3e3719da0c9b284b3a5"
+      }
+    },
+    {
+      "date": "June 10, 2026",
+      "date_iso": "2026-06-10",
+      "record": "19W-9L-2P",
+      "win_rate": "67.9%",
+      "summary": "MLB 19-9",
+      "has_summary": true,
+      "_apex_raw": {
+        "w": 19,
+        "l": 9,
+        "push": 2,
+        "void": 0,
+        "rows": 30,
+        "by_market": {
+          "F5_TOT": {
+            "L": 3,
+            "PUSH": 2,
+            "W": 10
+          },
+          "F5_ATS": {
+            "W": 9,
+            "L": 6
+          }
+        },
+        "date_iso": "2026-06-10",
+        "source": "apex_results_archive_publish",
+        "canonical_only": true,
+        "canonical_positions": 30,
+        "canonical_source_sha256": "87ba1aa75fb1743ea0eb861986f944c8b5a274777cdabc6f8a15fad348ee464a"
+      }
+    },
+    {
+      "date": "June 09, 2026",
+      "date_iso": "2026-06-09",
+      "record": "14W-14L-2P",
+      "win_rate": "50.0%",
+      "summary": "MLB 14-14",
+      "has_summary": true,
+      "_apex_raw": {
+        "w": 14,
+        "l": 14,
+        "push": 2,
+        "void": 0,
+        "rows": 30,
+        "by_market": {
+          "F5_ATS": {
+            "L": 5,
+            "W": 10
+          },
+          "F5_TOT": {
+            "PUSH": 2,
+            "L": 9,
+            "W": 4
+          }
+        },
+        "date_iso": "2026-06-09",
+        "source": "apex_results_archive_publish",
+        "canonical_only": true,
+        "canonical_positions": 30,
+        "canonical_source_sha256": "659ade27a2826fd4c7cd3cd9d9b7ab69b8aaf7ae33ab1025e1aefdba2da89e15"
+      }
+    },
+    {
+      "date": "June 08, 2026",
+      "date_iso": "2026-06-08",
+      "record": "10W-6L",
+      "win_rate": "62.5%",
+      "summary": "MLB 10-6",
+      "has_summary": true,
+      "_apex_raw": {
+        "w": 10,
+        "l": 6,
+        "push": 0,
+        "void": 0,
+        "rows": 16,
+        "by_market": {
+          "F5_ATS": {
+            "W": 5,
+            "L": 3
+          },
+          "F5_TOT": {
+            "L": 3,
+            "W": 5
+          }
+        },
+        "date_iso": "2026-06-08",
+        "source": "apex_results_archive_publish",
+        "canonical_only": true,
+        "canonical_positions": 16,
+        "canonical_source_sha256": "b423370f7659a3257ea9e1da7ba615c011e5ef276a16ed7e8f5706103fc204ff"
+      }
+    },
+    {
+      "date": "June 07, 2026",
+      "date_iso": "2026-06-07",
+      "record": "16W-14L",
+      "win_rate": "53.3%",
+      "summary": "MLB 16-14",
+      "has_summary": true,
+      "_apex_raw": {
+        "w": 16,
+        "l": 14,
+        "push": 0,
+        "void": 0,
+        "rows": 30,
+        "by_market": {
+          "F5_ATS": {
+            "W": 8,
+            "L": 7
+          },
+          "F5_TOT": {
+            "W": 8,
+            "L": 7
+          }
+        },
+        "date_iso": "2026-06-07",
+        "source": "apex_results_archive_publish",
+        "canonical_only": true,
+        "canonical_positions": 30,
+        "canonical_source_sha256": "812567ab7534d45d2eabee420f5fb2cdc5fa4b5f347cbccb9487abc15c4f086a"
+      }
+    },
+    {
+      "date": "June 06, 2026",
+      "date_iso": "2026-06-06",
+      "record": "15W-13L",
+      "win_rate": "53.6%",
+      "summary": "MLB 15-13",
+      "has_summary": true,
+      "_apex_raw": {
+        "w": 15,
+        "l": 13,
+        "push": 0,
+        "void": 2,
+        "rows": 30,
+        "by_market": {
+          "F5_ATS": {
+            "W": 7,
+            "L": 7,
+            "VOID": 1
+          },
+          "F5_TOT": {
+            "L": 6,
+            "W": 8,
+            "VOID": 1
+          }
+        },
+        "date_iso": "2026-06-06",
+        "source": "apex_results_archive_publish",
+        "canonical_only": true,
+        "canonical_positions": 30,
+        "canonical_source_sha256": "8245798f495535f4b8466554ee191e3f2163690e764db4fc0d2cbf9cfdf3ff8b"
+      }
+    },
+    {
+      "date": "June 05, 2026",
+      "date_iso": "2026-06-05",
+      "record": "13W-14L-3P",
+      "win_rate": "48.1%",
+      "summary": "MLB 13-14",
+      "has_summary": true,
+      "_apex_raw": {
+        "w": 13,
+        "l": 14,
+        "push": 3,
+        "void": 0,
+        "rows": 30,
+        "by_market": {
+          "F5_ATS": {
+            "W": 8,
+            "L": 7
+          },
+          "F5_TOT": {
+            "L": 7,
+            "W": 5,
+            "PUSH": 3
+          }
+        },
+        "date_iso": "2026-06-05",
+        "source": "apex_results_archive_publish",
+        "canonical_only": true,
+        "canonical_positions": 30,
+        "canonical_source_sha256": "32d866c01d58dd22a658c3cc2f627b0e2200fc6c219703c6fa48f89e967c26bd"
+      }
+    },
+    {
+      "date": "June 04, 2026",
+      "date_iso": "2026-06-04",
+      "record": "8W-9L-1P",
+      "win_rate": "47.1%",
+      "summary": "MLB 8-9",
+      "has_summary": true,
+      "_apex_raw": {
+        "w": 8,
+        "l": 9,
+        "push": 1,
+        "void": 0,
+        "rows": 18,
+        "by_market": {
+          "F5_ATS": {
+            "L": 5,
+            "W": 4
+          },
+          "F5_TOT": {
+            "L": 4,
+            "W": 4,
+            "PUSH": 1
+          }
+        },
+        "date_iso": "2026-06-04",
+        "source": "apex_results_archive_publish",
+        "canonical_only": true,
+        "canonical_positions": 18,
+        "canonical_source_sha256": "401a9cffa912a510b28d7c20ed22b60d48a6f0cfafaa29c1f198318920434311"
+      }
+    },
+    {
+      "date": "June 03, 2026",
+      "date_iso": "2026-06-03",
+      "record": "18W-11L-1P",
+      "win_rate": "62.1%",
+      "summary": "MLB 18-11",
+      "has_summary": true,
+      "_apex_raw": {
+        "w": 18,
+        "l": 11,
+        "push": 1,
+        "void": 0,
+        "rows": 30,
+        "by_market": {
+          "F5_ATS": {
+            "L": 6,
+            "W": 9
+          },
+          "F5_TOT": {
+            "W": 9,
+            "L": 5,
+            "PUSH": 1
+          }
+        },
+        "date_iso": "2026-06-03",
+        "source": "apex_results_archive_publish",
+        "canonical_only": true,
+        "canonical_positions": 30,
+        "canonical_source_sha256": "8c2704e80427536f37c64100e03d65d2d9b80881d02b004e59f449f83b0a4376"
+      }
+    },
+    {
+      "date": "June 02, 2026",
+      "date_iso": "2026-06-02",
+      "record": "17W-13L",
+      "win_rate": "56.7%",
+      "summary": "MLB 17-13",
+      "has_summary": true,
+      "_apex_raw": {
+        "w": 17,
+        "l": 13,
+        "push": 0,
+        "void": 0,
+        "rows": 30,
+        "by_market": {
+          "F5_ATS": {
+            "W": 9,
+            "L": 6
+          },
+          "F5_TOT": {
+            "L": 7,
+            "W": 8
+          }
+        },
+        "date_iso": "2026-06-02",
+        "source": "apex_results_archive_publish",
+        "canonical_only": true,
+        "canonical_positions": 30,
+        "canonical_source_sha256": "19541d6703d3ef5322fcb09930397c907cb9cc00f3c1b3596ba86eb735732ef5"
+      }
+    },
+    {
+      "date": "June 01, 2026",
+      "date_iso": "2026-06-01",
+      "record": "9W-9L",
+      "win_rate": "50.0%",
+      "summary": "MLB 9-9",
+      "has_summary": true,
+      "_apex_raw": {
+        "w": 9,
+        "l": 9,
+        "push": 0,
+        "void": 0,
+        "rows": 18,
+        "by_market": {
+          "F5_ATS": {
+            "W": 4,
+            "L": 5
+          },
+          "F5_TOT": {
+            "L": 4,
+            "W": 5
+          }
+        },
+        "date_iso": "2026-06-01",
+        "source": "apex_results_archive_publish",
+        "canonical_only": true,
+        "canonical_positions": 18,
+        "canonical_source_sha256": "bd12e93f71c2434b66531ec90af01e2e4f7b7390bd409d6d04d1794da04fb873"
+      }
+    },
+    {
+      "date": "May 31, 2026",
+      "date_iso": "2026-05-31",
+      "record": "17W-13L",
+      "win_rate": "56.7%",
+      "summary": "MLB 17-13",
+      "has_summary": true,
+      "_apex_raw": {
+        "w": 17,
+        "l": 13,
+        "push": 0,
+        "void": 0,
+        "rows": 30,
+        "by_market": {
+          "F5_ATS": {
+            "L": 8,
+            "W": 7
+          },
+          "F5_TOT": {
+            "W": 10,
+            "L": 5
+          }
+        },
+        "date_iso": "2026-05-31",
+        "source": "apex_results_archive_publish",
+        "canonical_only": true,
+        "canonical_positions": 30,
+        "canonical_source_sha256": "1c036e8ee07e86937d5f813f6055020e28db912fc9bace33ac1831eaf7fa3586"
+      }
+    },
+    {
+      "date": "May 30, 2026",
+      "date_iso": "2026-05-30",
+      "record": "16W-14L",
+      "win_rate": "53.3%",
+      "summary": "MLB 16-14",
+      "has_summary": true,
+      "_apex_raw": {
+        "w": 16,
+        "l": 14,
+        "push": 0,
+        "void": 0,
+        "rows": 30,
+        "by_market": {
+          "F5_ATS": {
+            "L": 9,
+            "W": 6
+          },
+          "F5_TOT": {
+            "W": 10,
+            "L": 5
+          }
+        },
+        "date_iso": "2026-05-30",
+        "source": "apex_results_archive_publish",
+        "canonical_only": true,
+        "canonical_positions": 30,
+        "canonical_source_sha256": "5f8833bf9d1d7e3b66c8726bb3213a117d8fb532846c07d16db3fd8ef6a349e4"
+      }
+    },
+    {
+      "date": "May 29, 2026",
+      "date_iso": "2026-05-29",
+      "record": "14W-15L-1P",
+      "win_rate": "48.3%",
+      "summary": "MLB 14-15",
+      "has_summary": true,
+      "_apex_raw": {
+        "w": 14,
+        "l": 15,
+        "push": 1,
+        "void": 0,
+        "rows": 30,
+        "by_market": {
+          "F5_ATS": {
+            "W": 7,
+            "L": 8
+          },
+          "F5_TOT": {
+            "W": 7,
+            "L": 7,
+            "PUSH": 1
+          }
+        },
+        "date_iso": "2026-05-29",
+        "source": "apex_results_archive_publish",
+        "canonical_only": true,
+        "canonical_positions": 30,
+        "canonical_source_sha256": "3ca67495a2baa263fdf66bd92688a38321975f94e302496bc5bbfd6f4aec5587"
+      }
+    },
+    {
+      "date": "May 28, 2026",
+      "date_iso": "2026-05-28",
+      "record": "8W-4L",
+      "win_rate": "66.7%",
+      "summary": "MLB 8-4",
+      "has_summary": true,
+      "_apex_raw": {
+        "w": 8,
+        "l": 4,
+        "push": 0,
+        "void": 0,
+        "rows": 12,
+        "by_market": {
+          "F5_ATS": {
+            "W": 5,
+            "L": 1
+          },
+          "F5_TOT": {
+            "W": 3,
+            "L": 3
+          }
+        },
+        "date_iso": "2026-05-28",
+        "source": "apex_results_archive_publish",
+        "canonical_only": true,
+        "canonical_positions": 12,
+        "canonical_source_sha256": "b57459aacb0c17b19fb02af6645e924486e28f9970e9835233975d000b182e94"
+      }
+    },
+    {
+      "date": "May 27, 2026",
+      "date_iso": "2026-05-27",
+      "record": "15W-15L",
+      "win_rate": "50.0%",
+      "summary": "MLB 15-15",
+      "has_summary": true,
+      "_apex_raw": {
+        "w": 15,
+        "l": 15,
+        "push": 0,
+        "void": 0,
+        "rows": 30,
+        "by_market": {
+          "F5_ATS": {
+            "W": 6,
+            "L": 9
+          },
+          "F5_TOT": {
+            "W": 9,
+            "L": 6
+          }
+        },
+        "date_iso": "2026-05-27",
+        "source": "apex_results_archive_publish",
+        "canonical_only": true,
+        "canonical_positions": 30,
+        "canonical_source_sha256": "be4de14623edbaca778205541b14e175a4c9a85a491fe1597152d7274e2a418a"
+      }
+    },
+    {
+      "date": "May 26, 2026",
+      "date_iso": "2026-05-26",
+      "record": "18W-12L",
+      "win_rate": "60.0%",
+      "summary": "MLB 18-12",
+      "has_summary": true,
+      "_apex_raw": {
+        "w": 18,
+        "l": 12,
+        "push": 0,
+        "void": 0,
+        "rows": 30,
+        "by_market": {
+          "F5_ATS": {
+            "L": 8,
+            "W": 7
+          },
+          "F5_TOT": {
+            "W": 11,
+            "L": 4
+          }
+        },
+        "date_iso": "2026-05-26",
+        "source": "apex_results_archive_publish",
+        "canonical_only": true,
+        "canonical_positions": 30,
+        "canonical_source_sha256": "b6cf6198dd783d9a8ad4f96cdf757086ca020fd010ddb405aebe4a0f8f152b8f"
+      }
+    },
+    {
+      "date": "May 25, 2026",
+      "date_iso": "2026-05-25",
+      "record": "15W-11L",
+      "win_rate": "57.7%",
+      "summary": "MLB 15-11",
+      "has_summary": true,
+      "_apex_raw": {
+        "w": 15,
+        "l": 11,
+        "push": 0,
+        "void": 0,
+        "rows": 26,
+        "by_market": {
+          "F5_ATS": {
+            "L": 5,
+            "W": 8
+          },
+          "F5_TOT": {
+            "W": 7,
+            "L": 6
+          }
+        },
+        "date_iso": "2026-05-25",
+        "source": "apex_results_archive_publish",
+        "canonical_only": true,
+        "canonical_positions": 26,
+        "canonical_source_sha256": "5481c4ffe776bc0941f228a7021da8f3b35a5f030433412a089b1b522e3f5330"
+      }
+    },
+    {
+      "date": "May 24, 2026",
+      "date_iso": "2026-05-24",
+      "record": "17W-11L",
+      "win_rate": "60.7%",
+      "summary": "MLB 17-11",
+      "has_summary": true,
+      "_apex_raw": {
+        "w": 17,
+        "l": 11,
+        "push": 0,
+        "void": 2,
+        "rows": 30,
+        "by_market": {
+          "F5_ATS": {
+            "W": 9,
+            "L": 5,
+            "VOID": 1
+          },
+          "F5_TOT": {
+            "W": 8,
+            "L": 6,
+            "VOID": 1
+          }
+        },
+        "date_iso": "2026-05-24",
+        "source": "apex_results_archive_publish",
+        "canonical_only": true,
+        "canonical_positions": 30,
+        "canonical_source_sha256": "b7db004af29ef71405599da959efdf6bca959865ed6cd6c81a3fce546d9de964"
+      }
+    },
+    {
+      "date": "May 23, 2026",
+      "date_iso": "2026-05-23",
+      "record": "11W-17L",
+      "win_rate": "39.3%",
+      "summary": "MLB 11-17",
+      "has_summary": true,
+      "_apex_raw": {
+        "w": 11,
+        "l": 17,
+        "push": 0,
+        "void": 0,
+        "rows": 28,
+        "by_market": {
+          "F5_ATS": {
+            "W": 6,
+            "L": 8
+          },
+          "F5_TOT": {
+            "L": 9,
+            "W": 5
+          }
+        },
+        "date_iso": "2026-05-23",
+        "source": "apex_results_archive_publish",
+        "canonical_only": true,
+        "canonical_positions": 28,
+        "canonical_source_sha256": "b3dc2f411e9f4160425b2b051205e957a07acd3450f6854d9998f91c22d6ea77"
+      }
+    },
+    {
+      "date": "May 22, 2026",
+      "date_iso": "2026-05-22",
+      "record": "13W-15L",
+      "win_rate": "46.4%",
+      "summary": "MLB 13-15",
+      "has_summary": true,
+      "_apex_raw": {
+        "w": 13,
+        "l": 15,
+        "push": 0,
+        "void": 2,
+        "rows": 30,
+        "by_market": {
+          "F5_ATS": {
+            "W": 5,
+            "VOID": 1,
+            "L": 9
+          },
+          "F5_TOT": {
+            "L": 6,
+            "VOID": 1,
+            "W": 8
+          }
+        },
+        "date_iso": "2026-05-22",
+        "source": "apex_results_archive_publish",
+        "canonical_only": true,
+        "canonical_positions": 30,
+        "canonical_source_sha256": "643c47d4b559a26d2d8ebfbf022cbfea0f45483c2b894ec5a687bf172f221859"
+      }
+    },
+    {
+      "date": "May 21, 2026",
+      "date_iso": "2026-05-21",
+      "record": "7W-7L",
+      "win_rate": "50.0%",
+      "summary": "MLB 7-7",
+      "has_summary": true,
+      "_apex_raw": {
+        "w": 7,
+        "l": 7,
+        "push": 0,
+        "void": 0,
+        "rows": 14,
+        "by_market": {
+          "F5_ATS": {
+            "W": 5,
+            "L": 2
+          },
+          "F5_TOT": {
+            "L": 5,
+            "W": 2
+          }
+        },
+        "date_iso": "2026-05-21",
+        "source": "apex_results_archive_publish",
+        "canonical_only": true,
+        "canonical_positions": 14,
+        "canonical_source_sha256": "abc3390b83218e7ec8afe879a7d8cc54fdff54e2b12f7379a53d9ec97fd2be16"
+      }
+    },
+    {
+      "date": "May 20, 2026",
+      "date_iso": "2026-05-20",
+      "record": "12W-18L",
+      "win_rate": "40.0%",
+      "summary": "MLB 12-18",
+      "has_summary": true,
+      "_apex_raw": {
+        "w": 12,
+        "l": 18,
+        "push": 0,
+        "void": 0,
+        "rows": 30,
+        "by_market": {
+          "F5_ATS": {
+            "W": 9,
+            "L": 6
+          },
+          "F5_TOT": {
+            "L": 12,
+            "W": 3
+          }
+        },
+        "date_iso": "2026-05-20",
+        "source": "apex_results_archive_publish",
+        "canonical_only": true,
+        "canonical_positions": 30,
+        "canonical_source_sha256": "118dc436ea22eb936a3e90c87929f66bc1eba08fc5f3d6cd4628ee0f273968c8"
+      }
+    },
+    {
+      "date": "May 19, 2026",
+      "date_iso": "2026-05-19",
+      "record": "17W-13L",
+      "win_rate": "56.7%",
+      "summary": "MLB 17-13",
+      "has_summary": true,
+      "_apex_raw": {
+        "w": 17,
+        "l": 13,
+        "push": 0,
+        "void": 0,
+        "rows": 30,
+        "by_market": {
+          "F5_ATS": {
+            "L": 5,
+            "W": 10
+          },
+          "F5_TOT": {
+            "W": 7,
+            "L": 8
+          }
+        },
+        "date_iso": "2026-05-19",
+        "source": "apex_emergency_may19_results_publish",
+        "canonical_only": true,
+        "canonical_positions": 30,
+        "canonical_source_sha256": "e3693371bb962c5ee8cbcc7aefd7b95781ed03c887d8855c00c278aefe8a2328"
+      }
+    },
+    {
+      "date": "May 18, 2026",
+      "date_iso": "2026-05-18",
+      "record": "12W-16L",
+      "win_rate": "42.9%",
+      "summary": "MLB 12-16",
+      "has_summary": true,
+      "_apex_raw": {
+        "w": 12,
+        "l": 16,
+        "push": 0,
+        "void": 0,
+        "rows": 28,
+        "by_market": {
+          "F5_ATS": {
+            "W": 4,
+            "L": 10
+          },
+          "F5_TOT": {
+            "L": 6,
+            "W": 8
+          }
+        },
+        "date_iso": "2026-05-18",
+        "source": "apex_emergency_may18_results_publish",
+        "canonical_only": true,
+        "canonical_positions": 28,
+        "canonical_source_sha256": "d0b3227c0e096ca8a8dc6f407342816ba8d808342030db29470b7cac102bb63e"
+      }
+    },
+    {
+      "date": "May 14, 2026",
+      "record": "16W-7L",
+      "win_rate": "69.6%",
+      "summary": "MLB 16-7",
+      "has_summary": true,
+      "_apex_raw": {
+        "w": 16,
+        "l": 7,
+        "push": 0,
+        "void": 1,
+        "rows": 24,
+        "by_market": {
+          "F5_ATS": {
+            "L": 5,
+            "VOID": 1,
+            "W": 6
+          },
+          "F5_TOT": {
+            "L": 2,
+            "W": 10
+          }
+        },
+        "date_iso": "2026-05-14",
+        "source": "apex_step2b_results_archive_safe_merge_v1_1"
+      }
+    },
+    {
+      "date": "May 13, 2026",
+      "record": "14W-16L",
+      "win_rate": "46.7%",
+      "summary": "MLB 14-16",
+      "has_summary": true,
+      "_apex_raw": {
+        "w": 14,
+        "l": 16,
+        "push": 0,
+        "void": 0,
+        "rows": 30,
+        "by_market": {
+          "F5_ATS": {
+            "L": 8,
+            "W": 7
+          },
+          "F5_TOT": {
+            "L": 8,
+            "W": 7
+          }
+        },
+        "date_iso": "2026-05-13",
+        "source": "apex_step2b_results_archive_safe_merge_v1_1"
+      }
+    },
+    {
+      "date": "May 9, 2026",
+      "record": "17W-11L",
+      "win_rate": "60.7%",
+      "summary": "MLB 17-11",
+      "has_summary": true,
+      "_apex_raw": {
+        "w": 17,
+        "l": 11,
+        "push": 0,
+        "void": 2,
+        "rows": 30,
+        "by_market": {
+          "F5_ATS": {
+            "L": 7,
+            "VOID": 1,
+            "W": 7
+          },
+          "F5_TOT": {
+            "L": 4,
+            "VOID": 1,
+            "W": 10
+          }
+        },
+        "date_iso": "2026-05-09",
+        "source": "apex_step2b_results_archive_safe_merge_v1_1"
+      }
+    },
+    {
+      "date": "April 25, 2026",
+      "record": "31W-27L-0P",
+      "win_rate": "53.4%",
+      "summary": "NHL 5-1, MLB 14-14, MLS 12-12",
+      "has_summary": true
+    },
+    {
+      "date": "April 24, 2026",
+      "record": "20W-14L-0P",
+      "win_rate": "58.8%",
+      "summary": "NHL 5-0, MLB 15-13, Liga MX 0-1",
+      "has_summary": false
+    },
+    {
+      "date": "April 23, 2026",
+      "record": "8W-12L",
+      "win_rate": "40.0%",
+      "summary": "NHL 3-3, MLB 5-9",
+      "has_summary": false
+    },
+    {
+      "date": "April 22, 2026",
+      "record": "29W-24L-4P",
+      "win_rate": "54.7%",
+      "summary": "NHL 2-3, MLB 17-11-2P, MLS 10-10-2P",
+      "has_summary": false
+    },
+    {
+      "date": "April 21, 2026",
+      "record": "16W-18L-2P",
+      "win_rate": "47.1%",
+      "summary": "NHL 4-0 / MLB 12-18-2P",
+      "has_summary": true
+    },
+    {
+      "date": "April 20, 2026",
+      "record": "12W-13L-2P",
+      "win_rate": "48.0%",
+      "summary": "NHL 3-4, MLB 9-9-2P",
+      "has_summary": false
+    },
+    {
+      "date": "April 19, 2026",
+      "record": "16W-21L",
+      "win_rate": "43.2%",
+      "summary": "NHL 2-3, MLS 2-0, MLB 12-18",
+      "has_summary": false
+    },
+    {
+      "date": "April 18, 2026",
+      "record": "42W-33L",
+      "win_rate": "56.0%",
+      "summary": "NHL 2-4, MLS 22-17, MLB 18-12",
+      "has_summary": false
+    },
+    {
+      "date": "April 17, 2026",
+      "record": "15W-17L-1P",
+      "win_rate": "46.9%",
+      "summary": "MLB 13-16-1P \u00b7 MLS 2-1",
+      "has_summary": false
+    },
+    {
+      "date": "April 16, 2026",
+      "record": "11W-17L",
+      "win_rate": "39.3%",
+      "summary": "NHL 5-3, MLB 6-14",
+      "has_summary": false
+    },
+    {
+      "date": "April 15, 2026",
+      "record": "19W-19L-1P",
+      "win_rate": "50.0%",
+      "summary": "NHL 7-2, MLB 12-17-1P",
+      "has_summary": false
+    },
+    {
+      "date": "April 14, 2026",
+      "record": "28W-16L",
+      "win_rate": "63.6%",
+      "summary": "NHL 9-5, MLB 19-11",
+      "has_summary": false
+    },
+    {
+      "date": "April 13, 2026",
+      "record": "15W-19L",
+      "win_rate": "44.1%",
+      "summary": "",
+      "has_summary": false
+    },
+    {
+      "date": "April 12, 2026",
+      "record": "23W-20L",
+      "win_rate": "53.5%",
+      "summary": "",
+      "has_summary": false
+    },
+    {
+      "date": "April 11, 2026",
+      "record": "58W-31L-3P",
+      "win_rate": "65.2%",
+      "summary": "",
+      "has_summary": false
+    },
+    {
+      "date": "April 10, 2026",
+      "record": "28W-32L",
+      "win_rate": "46.7%",
+      "summary": "",
+      "has_summary": false
+    },
+    {
+      "date": "April 9, 2026",
+      "record": "22W-21L",
+      "win_rate": "51.2%",
+      "summary": "",
+      "has_summary": false
+    },
+    {
+      "date": "April 8, 2026",
+      "record": "20W-29L",
+      "win_rate": "40.8%",
+      "summary": "",
+      "has_summary": false
+    },
+    {
+      "date": "April 7, 2026",
+      "record": "38W-28L",
+      "win_rate": "57.6%",
+      "summary": "",
+      "has_summary": false
+    },
+    {
+      "date": "April 6, 2026",
+      "record": "23W-21L",
+      "win_rate": "52.3%",
+      "summary": "",
+      "has_summary": false
+    },
+    {
+      "date": "April 5, 2026",
+      "record": "33W-34L",
+      "win_rate": "49.3%",
+      "summary": "",
+      "has_summary": false
+    },
+    {
+      "date": "April 4, 2026",
+      "record": "36W-27L",
+      "win_rate": "57.1%",
+      "summary": "",
+      "has_summary": false
+    },
+    {
+      "date": "April 3, 2026",
+      "record": "25W-24L",
+      "win_rate": "51.0%",
+      "summary": "",
+      "has_summary": false
+    },
+    {
+      "date": "April 2, 2026",
+      "record": "21W-27L",
+      "win_rate": "43.8%",
+      "summary": "",
+      "has_summary": true
+    },
+    {
+      "date": "April 1, 2026",
+      "record": "31W-20L-1P",
+      "win_rate": "60.8%",
+      "summary": "",
+      "has_summary": true
+    },
+    {
+      "date": "March 31, 2026",
+      "record": "35W-22L",
+      "win_rate": "61.4%",
+      "summary": "",
+      "has_summary": true
+    },
+    {
+      "date": "March 30, 2026",
+      "record": "37W-17L",
+      "win_rate": "68.5%",
+      "summary": "",
+      "has_summary": true
+    },
+    {
+      "date": "March 29, 2026",
+      "record": "34W-27L-5P",
+      "win_rate": "55.7%",
+      "summary": "",
+      "has_summary": true
+    },
+    {
+      "date": "March 28, 2026",
+      "record": "40W-51L-4P",
+      "win_rate": "44.0%",
+      "summary": "",
+      "has_summary": true
+    },
+    {
+      "date": "March 27, 2026",
+      "record": "13W-10L",
+      "win_rate": "56.5%",
+      "summary": "",
+      "has_summary": true
+    },
+    {
+      "date": "March 26, 2026",
+      "record": "26W-24L-1P",
+      "win_rate": "52.0%",
+      "summary": "",
+      "has_summary": true
+    },
+    {
+      "date": "March 25, 2026",
+      "record": "3W-6L",
+      "win_rate": "33.3%",
+      "summary": "",
+      "has_summary": true
+    },
+    {
+      "date": "March 24, 2026",
+      "record": "19W-13L",
+      "win_rate": "59.4%",
+      "summary": "",
+      "has_summary": true
+    }
+  ],
+  "baseline": {
+    "overall": {
+      "W": 1017,
+      "L": 885,
+      "PUSH": 19,
+      "VOID": 0
+    },
+    "f5_spread": {
+      "W": 142,
+      "L": 122,
+      "PUSH": 4,
+      "VOID": 0
+    },
+    "f5_total": {
+      "W": 130,
+      "L": 131,
+      "PUSH": 4,
+      "VOID": 0
+    },
+    "rows": 1902,
+    "source": "replit_baseline_locked_2026_04_25"
+  },
+  "_apex_public_excluded_dates": [
+    "2026-05-17"
+  ],
+  "_apex_public_excluded_note": "PUBLIC_EXCLUDED_DUE_TO_CANONICAL_RESULTS_RESET"
+}

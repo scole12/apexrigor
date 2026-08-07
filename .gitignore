@@ -1,20 +1,35 @@
-# APEX Rigor website vault
+# Provider linkage and credentials are local-only.
+.vercel/
 .env
 .env.*
+!.env.example
 secrets/
 **/credentials*
 *.pem
+
+# Runtime/build by-products.
+__pycache__/
+*.py[cod]
+node_modules/
+.DS_Store
+*.log
 *.pkl
 *.db
 *.sqlite
 *.parquet
-data/
-.backups/
-.vercel/
-node_modules/
-.next/
-dist/
-build/
 proof/
 quarantine/
-*.log
+dist/
+build/
+public/
+.next/
+
+# Historical droplet copies are preserved by the C06 mirror/archive, not in the
+# canonical deploy branch. Current public JSON under data/ remains tracked.
+.backups/
+*.bak
+*.bak_*
+*.disabled_*
+data/*STALE*
+data/*.v*_stage
+data/_wc_qa_screenshots.py

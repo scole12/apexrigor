@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>APEX — About</title>
+<meta name="description" content="APEX Quantitative Forecasting — walk-forward validated multi-sport models.">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg?v=apex-20260518">
+<link rel="icon" type="image/x-icon" href="/favicon.ico?v=apex-20260518" sizes="32x32">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=apex-20260518">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=apex-20260518">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=apex-20260518">
+<link rel="manifest" href="/site.webmanifest?v=apex-20260518">
+<meta name="theme-color" content="#000000">
+<meta name="apple-mobile-web-app-title" content="APEX">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="APEX">
+<meta property="og:title" content="APEX — About">
+<meta property="og:description" content="APEX Quantitative Forecasting — walk-forward validated multi-sport models.">
+<meta property="og:url" content="https://apexrigor.com/about/">
+<meta property="og:image" content="https://apexrigor.com/og-image.png?v=apex-20260518">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="APEX — Quantitative Forecasting">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="APEX — About">
+<meta name="twitter:description" content="APEX Quantitative Forecasting — walk-forward validated multi-sport models.">
+<meta name="twitter:image" content="https://apexrigor.com/og-image.png?v=apex-20260518">
+<link rel="stylesheet" href="/assets/apex.css">
+</head>
+<body>
+<div class="shell">
+  <div class="hero">
+    <div class="hero-mark">
+      <svg viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg"><polygon points="22,6 38,36 6,36"/></svg>
+    </div>
+    <div class="hero-wordmark">APEX</div>
+    <div class="hero-rule"></div>
+    <div class="hero-tag">QUANTITATIVE FORECASTING</div>
+    <div class="hero-math">The Math Speaks.</div>
+  </div>
+  <nav class="nav">
+    <a href="/">PICKS</a>
+    <a href="/results">RESULTS</a>
+    <a href="/about" class="active">ABOUT</a>
+  </nav>
+
+  <main class="about-page">
+    <div class="about-container">
+
+      <header class="about-section about-intro">
+        <h1 class="about-section-title">The Operation</h1>
+        <p class="about-lede">APEX is a multi-sport quantitative forecasting program built around disciplined market coverage, flat-unit staking, and transparent model scope. The published product is a daily slate of positions across major North American and global sports markets, generated from internally tested statistical models and released through a consistent operating framework.</p>
+        <p class="about-copy">APEX is not a pick-and-choose tout sheet. Where a market is designated as bet-all, every eligible game is modeled, published, and graded. Where a market is designated as filtered, the filter is part of the model design and is disclosed directly. The objective is consistency: clear model boundaries, repeatable output, and a record that can be evaluated without hidden selectivity.</p>
+      </header>
+
+      <hr class="about-divider" aria-hidden="true">
+
+      <section class="about-section about-module about-module--production">
+        <h2 class="about-section-title">MLB — F5 Run Line · F5 Totals</h2>
+
+        <h3 class="about-module-title">F5 Run Line — Bet-All</h3>
+        <p class="about-copy">The MLB engine is V2.7, the seventh major release of the APEX baseball model. The model focuses exclusively on first-five-innings markets. Full-game outcomes are not part of the MLB publication scope.</p>
+        <p class="about-copy">The F5 structure is intentional. The opening five innings isolate the starting-pitcher matchup, early offensive environment, park context, and game-day run conditions while reducing the late-game variance created by bullpen sequencing, pinch-hit decisions, and leverage-based managerial moves. Every MLB game on the slate receives one F5 run-line position at the posted ±0.5 spread. No moneylines. No selective skipping. Every eligible game is computed.</p>
+
+        <h3 class="about-module-title">F5 Totals — Bet-All</h3>
+        <p class="about-copy">Every MLB game also receives one F5 total position. The model evaluates the posted first-five total and publishes either an over or under position based on the same core run-environment framework that supports the run-line market.</p>
+        <p class="about-copy">Park factors, weather, starting-pitcher profile, offensive quality, and schedule context are treated as matchup-specific inputs, not generic adjustments. The model is designed to produce one disciplined view of the first-five scoring environment and then translate that view into the published F5 market positions.</p>
+
+        <h3 class="about-module-title">Model Framework</h3>
+        <p class="about-copy">The MLB production engine (APEX MLB F5 symmetric package, 2026-06-09) uses a <code>SimpleImputer</code> → <code>StandardScaler</code> → <code>LogisticRegression</code> pipeline trained on chronologically ordered data with time-series cross-validation. This is a linear probabilistic classifier, not a gradient-boosted tree model.</p>
+        <p class="about-copy">F5 ATS probabilities receive symmetric slope-only post-calibration (zero intercept). F5 totals are published from raw model outputs at fire time; runtime Platt scaling is documented in the model package but is not the active totals calibration path in production. Model development and evaluation preserve chronological ordering to reduce future-information leakage.</p>
+        <p class="about-copy">The MLB feature stack is built around starting-pitcher quality, offensive matchup strength, run environment, bullpen context where relevant, and schedule factors such as rest, travel, series position, and day-after-night dynamics. Pitch-quality indicators, run-prevention metrics, offensive production measures, park effects, and weather conditions are incorporated as part of a controlled pre-game forecasting process.</p>
+
+        <h3 class="about-module-title">Market Philosophy</h3>
+        <p class="about-copy">The MLB model does not use sharp-money tracking, public betting percentages, steam moves, or reverse line movement as predictive inputs. Those signals describe market behavior. APEX is designed to produce an independent matchup forecast first.</p>
+        <p class="about-copy">Closing-line value and market movement can still be used for post-publication evaluation, but they are not treated as inputs that generate the original position. The model is intended to measure the underlying matchup, not simply follow the market.</p>
+      </section>
+
+      <hr class="about-divider" aria-hidden="true">
+
+      <section class="about-section about-module about-module--future">
+        <h2 class="about-section-title">NHL — Puckline · Totals</h2>
+
+        <h3 class="about-module-title">Puckline — Filtered</h3>
+        <p class="about-copy">The NHL puckline model focuses on underdogs at +1.5 goals. During development, the favorite -1.5 side did not meet APEX deployment standards for consistency or reliability. As a result, the published puckline model is intentionally filtered.</p>
+        <p class="about-copy">A puckline position is published only when the model's underdog +1.5 framework meets the required signal threshold. Games that do not meet that threshold are skipped. This is a selective model by design, and that distinction is disclosed directly.</p>
+
+        <h3 class="about-module-title">Totals — Bet-All</h3>
+        <p class="about-copy">The NHL totals model is a bet-all system. Every eligible game on the slate receives an over or under position. The model evaluates team scoring profile, goaltending environment, defensive context, and market total to determine the published side. Every eligible game is graded.</p>
+      </section>
+
+      <hr class="about-divider" aria-hidden="true">
+
+      <section class="about-section about-module about-module--future">
+        <h2 class="about-section-title">Soccer — Goal Line · Totals</h2>
+        <p class="about-copy">APEX runs a unified soccer model across Major League Soccer and La Liga under a single SOCCER framework. The soccer model publishes two market types: Goal Line and Totals.</p>
+
+        <h3 class="about-module-title">Goal Line — Bet-All</h3>
+        <p class="about-copy">Every eligible match receives an Asian handicap position. The model projects scoreline probabilities and evaluates those probabilities against the posted handicap market. The published position is always a spread position — favorite or underdog at the posted line. No moneylines. No three-way markets. Every eligible match is computed.</p>
+
+        <h3 class="about-module-title">Totals — Bet-All</h3>
+        <p class="about-copy">Every eligible match also receives an over or under position. The total is evaluated through the same scoreline-probability framework used for the goal-line market. The posted number varies by matchup, and each match is modeled directly against its actual market price.</p>
+
+        <h3 class="about-module-title">Soccer Model Philosophy</h3>
+        <p class="about-copy">Soccer markets require a different forecasting structure than North American spread markets. Low scoring, draw probability, home-field effects, travel, rotation, fixture congestion, and league-specific scoring profiles all matter. APEX uses a league-calibrated probability framework designed to account for those structural differences while keeping the public output simple: one goal-line position and one total position per eligible match.</p>
+      </section>
+
+      <hr class="about-divider" aria-hidden="true">
+
+      <section class="about-section about-module about-module--future">
+        <h2 class="about-section-title">NBA — Against the Spread · Totals</h2>
+
+        <h3 class="about-module-title">Against the Spread — Bet-All</h3>
+        <p class="about-copy">Every NBA game on the slate receives an against-the-spread position. The model blends independent rating sources into a projected margin and compares that projection to the posted spread. The published position is always a full-game spread position. No moneylines. No selective skipping.</p>
+
+        <h3 class="about-module-title">Totals — Bet-All</h3>
+        <p class="about-copy">Every NBA game also receives a full-game total position. The model evaluates team efficiency, scoring environment, pace, rest, and matchup context to determine the published over or under. Every eligible game is computed and graded.</p>
+      </section>
+
+      <hr class="about-divider" aria-hidden="true">
+
+      <section class="about-section about-module about-module--future">
+        <h2 class="about-section-title">NCAA Basketball — Against the Spread · Totals</h2>
+
+        <h3 class="about-module-title">Against the Spread — Bet-All</h3>
+        <p class="about-copy">Every eligible NCAA basketball game receives an against-the-spread position. The model projects margin using efficiency-based inputs and compares that projection to the posted spread. Coverage includes the regular season, conference tournaments, the NCAA Tournament, the NIT, and other postseason events when lines are available.</p>
+        <p class="about-copy">Neutral-site games are handled separately from true home-court games. Every eligible game is computed.</p>
+
+        <h3 class="about-module-title">Totals — Bet-All</h3>
+        <p class="about-copy">Every eligible NCAA basketball game receives an over or under position. The model evaluates offensive efficiency, defensive efficiency, tempo, matchup structure, and posted total. No selective skipping. Every eligible game is graded.</p>
+      </section>
+
+      <hr class="about-divider" aria-hidden="true">
+
+      <section class="about-section about-module">
+        <h2 class="about-section-title">Conviction Framework</h2>
+        <p class="about-copy">APEX uses four public conviction tiers:</p>
+        <div class="about-tier-grid">
+          <div class="t">Weak</div><div class="m">Marginal model edge, published for completeness within bet-all systems.</div>
+          <div class="t">Moderate</div><div class="m">Standard model conviction.</div>
+          <div class="t">Strong</div><div class="m">Elevated conviction based on stronger model-line divergence or higher-quality agreement across inputs.</div>
+          <div class="t">Elite</div><div class="m">Highest conviction tier, reserved for the rarest model classifications.</div>
+        </div>
+        <p class="about-copy">Stake sizing does not change across tiers. Public conviction describes model strength, not a recommendation to increase bet size.</p>
+      </section>
+
+      <hr class="about-divider" aria-hidden="true">
+
+      <section class="about-section about-module">
+        <h2 class="about-section-title">Operating Principles</h2>
+        <p class="about-copy">APEX is built around five operating principles:</p>
+        <div class="about-principles">
+          <div class="about-principle"><div class="num">01</div><div class="txt">Every published market must have a defined scope.</div></div>
+          <div class="about-principle"><div class="num">02</div><div class="txt">Every eligible bet-all market must be published consistently.</div></div>
+          <div class="about-principle"><div class="num">03</div><div class="txt">Filtered markets must disclose that they are filtered.</div></div>
+          <div class="about-principle"><div class="num">04</div><div class="txt">Model outputs must be graded against the same rules used at publication.</div></div>
+          <div class="about-principle"><div class="num">05</div><div class="txt">Public presentation should remain clear, restrained, and auditable.</div></div>
+        </div>
+        <p class="about-copy">The goal is not to make every position look equally strong. The goal is to publish the model honestly, preserve the record, and let the results compound over time.</p>
+      </section>
+
+      <hr class="about-divider" aria-hidden="true">
+
+      <section class="about-section">
+        <h2 class="about-section-title">Responsible Use</h2>
+        <p class="about-copy about-responsible">APEX publishes quantitative sports forecasts for informational and research purposes. No model guarantees outcomes, and all betting involves risk. The published slate should be evaluated as a disciplined forecasting product, not as a promise of profit.</p>
+      </section>
+
+      <footer class="about-closing">
+        <div class="math">The Math Speaks.</div>
+        <div class="credit">APEX RESEARCH · WALK-FORWARD TESTED · MULTI-SPORT FORECASTING</div>
+      </footer>
+
+    </div>
+  </main>
+</div>
+</body>
+</html>

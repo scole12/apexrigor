@@ -1,0 +1,23 @@
+name: Public site integrity
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Audit source routes, icons, manifest, and analytics cardinality
+        run: python3 bin/audit_public_site.py
+      - name: Build and audit the Vercel output
+        run: python3 bin/build_vercel_output.py

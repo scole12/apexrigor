@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>APEX — Soccer</title>
+<meta name="description" content="APEX Soccer placeholder — no active model, matches, or positions.">
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg?v=apex-wc-20260611">
+<link rel="stylesheet" href="/assets/apex.css?v=apex-wc-20260611">
+<style>
+.sport-switcher{display:flex;gap:0;border-bottom:1px solid var(--border,#1f1f1f);margin-bottom:0}
+.sport-tab{flex:1;text-align:center;padding:14px 16px;min-height:44px;font-size:11px;letter-spacing:0.24em;text-transform:uppercase;color:var(--muted,#888);border-bottom:2px solid transparent}
+.sport-tab:hover,.sport-tab:focus{color:var(--text,#f5f5f5);outline:2px solid var(--text);outline-offset:-2px}
+.sport-tab.active{color:var(--text,#f5f5f5);border-bottom-color:var(--text,#f5f5f5)}
+.wc-model-notes{margin:32px 0 0;border-top:1px solid var(--border,#1f1f1f)}
+.wc-model-notes summary{cursor:pointer;list-style:none;min-height:44px;padding:16px 0;font-size:11px;letter-spacing:0.28em;text-transform:uppercase;color:var(--muted,#888);display:flex;align-items:center;gap:8px}
+.wc-model-notes summary::-webkit-details-marker{display:none}
+.wc-model-notes summary::before{content:'+';font-family:"JetBrains Mono",monospace;width:16px}
+.wc-model-notes[open] summary::before{content:'−'}
+.wc-model-notes-body{padding:0 0 24px 24px;max-width:780px}
+.wc-model-notes-body ul{margin:0;padding:0 0 0 18px;color:var(--muted,#888);font-size:13px;line-height:1.7}
+.wc-hidden{display:none!important}
+</style>
+</head>
+<body>
+<div class="shell">
+  <div class="hero">
+    <div class="hero-mark">
+      <svg viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg"><polygon points="22,6 38,36 6,36"/></svg>
+    </div>
+    <div class="hero-wordmark">APEX</div>
+    <div class="hero-rule"></div>
+    <div class="hero-tag">QUANTITATIVE FORECASTING</div>
+    <div class="hero-math">The Math Speaks.</div>
+  </div>
+  <nav class="nav">
+    <a href="/picks/worldcup" class="active">PICKS</a>
+    <a href="/results">RESULTS</a>
+    <a href="/about">ABOUT</a>
+  </nav>
+  <div class="sport-switcher" role="tablist" aria-label="Sport selection">
+    <a href="/picks" class="sport-tab" role="tab" aria-selected="false">MLB</a>
+    <a href="/picks/worldcup" class="sport-tab active" role="tab" aria-selected="true">SOCCER</a>
+  </div>
+  <div class="section-head picks-board-head">
+    <div class="title">TODAY&#x27;S CARD</div>
+    <div class="meta mono">2026-08-06, AUGUST 6, 2026 · 0 MATCHES · 0 POSITIONS · MODEL: NOT ACTIVE</div>
+  </div>
+  <main class="picks-page" id="wc-main">
+    <div id="wc-board" class="picks-board" aria-live="polite">
+    
+    </div>
+    <details class="wc-model-notes">
+      <summary>SOCCER MODEL NOTES</summary>
+      <div class="wc-model-notes-body">
+        <ul>
+        <li>Soccer is not active. No matches or positions are currently displayed.</li>
+        </ul>
+      </div>
+    </details>
+  </main>
+  <footer class="foot">APEX · SOCCER · NO PUBLIC PROBABILITIES DISPLAYED</footer>
+</div>
+<script id="wc-picks-data" type="application/json">[]</script>
+</body>
+</html>

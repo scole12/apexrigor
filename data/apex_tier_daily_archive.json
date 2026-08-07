@@ -1,0 +1,7230 @@
+{
+  "contract": "apex_tier_daily_archive_v1",
+  "sport": "mlb",
+  "generated_at_et": "2026-08-06T09:01:56.946686-04:00",
+  "tier_order": [
+    "WEAK",
+    "MODERATE",
+    "STRONG",
+    "ELITE"
+  ],
+  "tier_ledger_era_start": "2026-06-09",
+  "tier_era_start": "2026-06-09",
+  "tier_era_end": "2026-08-05",
+  "tier_dates": [
+    "2026-06-09",
+    "2026-06-11",
+    "2026-06-12",
+    "2026-06-13",
+    "2026-06-14",
+    "2026-06-15",
+    "2026-06-16",
+    "2026-06-17",
+    "2026-06-18",
+    "2026-06-19",
+    "2026-06-20",
+    "2026-06-21",
+    "2026-06-22",
+    "2026-06-23",
+    "2026-06-24",
+    "2026-06-25",
+    "2026-06-26",
+    "2026-06-27",
+    "2026-06-28",
+    "2026-06-29",
+    "2026-06-30",
+    "2026-07-01",
+    "2026-07-02",
+    "2026-07-03",
+    "2026-07-04",
+    "2026-07-05",
+    "2026-07-06",
+    "2026-07-07",
+    "2026-07-08",
+    "2026-07-09",
+    "2026-07-10",
+    "2026-07-11",
+    "2026-07-12",
+    "2026-07-18",
+    "2026-07-18_superseded_20260718T121630",
+    "2026-07-18_superseded_20260718T130950",
+    "2026-07-18_superseded_20260718T133246",
+    "2026-07-18_superseded_20260718T141752",
+    "2026-07-18_superseded_20260718T161320",
+    "2026-07-18_superseded_20260718T161711",
+    "2026-07-19",
+    "2026-07-20",
+    "2026-07-21",
+    "2026-07-22",
+    "2026-07-23",
+    "2026-07-23_superseded_20260723T120903",
+    "2026-07-24",
+    "2026-07-24_superseded_20260724T144259",
+    "2026-07-25",
+    "2026-07-25_superseded_20260725T140739",
+    "2026-07-26",
+    "2026-07-26_superseded_20260726T135443",
+    "2026-07-27",
+    "2026-07-27_pre_part7_20260728T170335Z",
+    "2026-07-27_superseded_20260727T181141",
+    "2026-07-28",
+    "2026-07-29",
+    "2026-07-30",
+    "2026-07-31",
+    "2026-08-01",
+    "2026-08-02",
+    "2026-08-02_superseded_20260802T121242",
+    "2026-08-03",
+    "2026-08-03_superseded_20260803T185028",
+    "2026-08-03_superseded_20260803T194516",
+    "2026-08-03_superseded_20260803T194609",
+    "2026-08-03_superseded_20260803T194950",
+    "2026-08-03_superseded_20260803T195258",
+    "2026-08-04",
+    "2026-08-05"
+  ],
+  "tier_dates_count": 70,
+  "days": {
+    "2026-06-09": {
+      "ats_by_tier": {
+        "WEAK": {
+          "wins": 3,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 4,
+          "total_positions": 4,
+          "win_percentage": 0.75,
+          "win_percentage_display": "75.0%",
+          "record": "3-1"
+        },
+        "MODERATE": {
+          "wins": 3,
+          "losses": 3,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 6,
+          "total_positions": 6,
+          "win_percentage": 0.5,
+          "win_percentage_display": "50.0%",
+          "record": "3-3"
+        },
+        "STRONG": {
+          "wins": 2,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 2,
+          "total_positions": 2,
+          "win_percentage": 1.0,
+          "win_percentage_display": "100.0%",
+          "record": "2-0"
+        },
+        "ELITE": {
+          "wins": 2,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 3,
+          "total_positions": 3,
+          "win_percentage": 0.6667,
+          "win_percentage_display": "66.7%",
+          "record": "2-1"
+        }
+      },
+      "totals_by_tier": {
+        "WEAK": {
+          "wins": 1,
+          "losses": 3,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 4,
+          "total_positions": 4,
+          "win_percentage": 0.25,
+          "win_percentage_display": "25.0%",
+          "record": "1-3"
+        },
+        "MODERATE": {
+          "wins": 1,
+          "losses": 4,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 5,
+          "total_positions": 5,
+          "win_percentage": 0.2,
+          "win_percentage_display": "20.0%",
+          "record": "1-4"
+        },
+        "STRONG": {
+          "wins": 0,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 1,
+          "total_positions": 1,
+          "win_percentage": 0.0,
+          "win_percentage_display": "0.0%",
+          "record": "0-1"
+        },
+        "ELITE": {
+          "wins": 3,
+          "losses": 2,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 5,
+          "total_positions": 5,
+          "win_percentage": 0.6,
+          "win_percentage_display": "60.0%",
+          "record": "3-2"
+        }
+      }
+    },
+    "2026-06-11": {
+      "ats_by_tier": {
+        "WEAK": {
+          "wins": 1,
+          "losses": 2,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 1,
+          "decided_positions": 3,
+          "total_positions": 4,
+          "win_percentage": 0.3333,
+          "win_percentage_display": "33.3%",
+          "record": "1-2"
+        },
+        "MODERATE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 0,
+          "total_positions": 0,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "STRONG": {
+          "wins": 1,
+          "losses": 3,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 4,
+          "total_positions": 4,
+          "win_percentage": 0.25,
+          "win_percentage_display": "25.0%",
+          "record": "1-3"
+        },
+        "ELITE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 0,
+          "total_positions": 0,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        }
+      },
+      "totals_by_tier": {
+        "WEAK": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 0,
+          "total_positions": 0,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "MODERATE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 1,
+          "decided_positions": 0,
+          "total_positions": 1,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "STRONG": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 0,
+          "total_positions": 0,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "ELITE": {
+          "wins": 2,
+          "losses": 4,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 1,
+          "decided_positions": 6,
+          "total_positions": 7,
+          "win_percentage": 0.3333,
+          "win_percentage_display": "33.3%",
+          "record": "2-4"
+        }
+      }
+    },
+    "2026-06-12": {
+      "ats_by_tier": {
+        "WEAK": {
+          "wins": 4,
+          "losses": 2,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 6,
+          "total_positions": 6,
+          "win_percentage": 0.6667,
+          "win_percentage_display": "66.7%",
+          "record": "4-2"
+        },
+        "MODERATE": {
+          "wins": 2,
+          "losses": 2,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 4,
+          "total_positions": 4,
+          "win_percentage": 0.5,
+          "win_percentage_display": "50.0%",
+          "record": "2-2"
+        },
+        "STRONG": {
+          "wins": 2,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 2,
+          "total_positions": 2,
+          "win_percentage": 1.0,
+          "win_percentage_display": "100.0%",
+          "record": "2-0"
+        },
+        "ELITE": {
+          "wins": 2,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 2,
+          "total_positions": 2,
+          "win_percentage": 1.0,
+          "win_percentage_display": "100.0%",
+          "record": "2-0"
+        }
+      },
+      "totals_by_tier": {
+        "WEAK": {
+          "wins": 1,
+          "losses": 7,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 8,
+          "total_positions": 8,
+          "win_percentage": 0.125,
+          "win_percentage_display": "12.5%",
+          "record": "1-7"
+        },
+        "MODERATE": {
+          "wins": 1,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 2,
+          "total_positions": 2,
+          "win_percentage": 0.5,
+          "win_percentage_display": "50.0%",
+          "record": "1-1"
+        },
+        "STRONG": {
+          "wins": 0,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 1,
+          "total_positions": 1,
+          "win_percentage": 0.0,
+          "win_percentage_display": "0.0%",
+          "record": "0-1"
+        },
+        "ELITE": {
+          "wins": 0,
+          "losses": 3,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 3,
+          "total_positions": 3,
+          "win_percentage": 0.0,
+          "win_percentage_display": "0.0%",
+          "record": "0-3"
+        }
+      }
+    },
+    "2026-06-13": {
+      "ats_by_tier": {
+        "WEAK": {
+          "wins": 2,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 2,
+          "total_positions": 2,
+          "win_percentage": 1.0,
+          "win_percentage_display": "100.0%",
+          "record": "2-0"
+        },
+        "MODERATE": {
+          "wins": 4,
+          "losses": 3,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 7,
+          "total_positions": 7,
+          "win_percentage": 0.5714,
+          "win_percentage_display": "57.1%",
+          "record": "4-3"
+        },
+        "STRONG": {
+          "wins": 2,
+          "losses": 3,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 5,
+          "total_positions": 5,
+          "win_percentage": 0.4,
+          "win_percentage_display": "40.0%",
+          "record": "2-3"
+        },
+        "ELITE": {
+          "wins": 0,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 1,
+          "total_positions": 1,
+          "win_percentage": 0.0,
+          "win_percentage_display": "0.0%",
+          "record": "0-1"
+        }
+      },
+      "totals_by_tier": {
+        "WEAK": {
+          "wins": 0,
+          "losses": 3,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 3,
+          "total_positions": 3,
+          "win_percentage": 0.0,
+          "win_percentage_display": "0.0%",
+          "record": "0-3"
+        },
+        "MODERATE": {
+          "wins": 2,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 3,
+          "total_positions": 3,
+          "win_percentage": 0.6667,
+          "win_percentage_display": "66.7%",
+          "record": "2-1"
+        },
+        "STRONG": {
+          "wins": 0,
+          "losses": 4,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 4,
+          "total_positions": 4,
+          "win_percentage": 0.0,
+          "win_percentage_display": "0.0%",
+          "record": "0-4"
+        },
+        "ELITE": {
+          "wins": 0,
+          "losses": 5,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 5,
+          "total_positions": 5,
+          "win_percentage": 0.0,
+          "win_percentage_display": "0.0%",
+          "record": "0-5"
+        }
+      }
+    },
+    "2026-06-14": {
+      "ats_by_tier": {
+        "WEAK": {
+          "wins": 4,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 4,
+          "total_positions": 4,
+          "win_percentage": 1.0,
+          "win_percentage_display": "100.0%",
+          "record": "4-0"
+        },
+        "MODERATE": {
+          "wins": 3,
+          "losses": 2,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 5,
+          "total_positions": 5,
+          "win_percentage": 0.6,
+          "win_percentage_display": "60.0%",
+          "record": "3-2"
+        },
+        "STRONG": {
+          "wins": 2,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 3,
+          "total_positions": 3,
+          "win_percentage": 0.6667,
+          "win_percentage_display": "66.7%",
+          "record": "2-1"
+        },
+        "ELITE": {
+          "wins": 0,
+          "losses": 2,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 1,
+          "decided_positions": 2,
+          "total_positions": 3,
+          "win_percentage": 0.0,
+          "win_percentage_display": "0.0%",
+          "record": "0-2"
+        }
+      },
+      "totals_by_tier": {
+        "WEAK": {
+          "wins": 1,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 1,
+          "total_positions": 1,
+          "win_percentage": 1.0,
+          "win_percentage_display": "100.0%",
+          "record": "1-0"
+        },
+        "MODERATE": {
+          "wins": 1,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 1,
+          "total_positions": 1,
+          "win_percentage": 1.0,
+          "win_percentage_display": "100.0%",
+          "record": "1-0"
+        },
+        "STRONG": {
+          "wins": 3,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 1,
+          "decided_positions": 3,
+          "total_positions": 4,
+          "win_percentage": 1.0,
+          "win_percentage_display": "100.0%",
+          "record": "3-0"
+        },
+        "ELITE": {
+          "wins": 2,
+          "losses": 6,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 1,
+          "decided_positions": 8,
+          "total_positions": 9,
+          "win_percentage": 0.25,
+          "win_percentage_display": "25.0%",
+          "record": "2-6"
+        }
+      }
+    },
+    "2026-06-15": {
+      "ats_by_tier": {
+        "WEAK": {
+          "wins": 1,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 1,
+          "total_positions": 1,
+          "win_percentage": 1.0,
+          "win_percentage_display": "100.0%",
+          "record": "1-0"
+        },
+        "MODERATE": {
+          "wins": 0,
+          "losses": 2,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 2,
+          "total_positions": 2,
+          "win_percentage": 0.0,
+          "win_percentage_display": "0.0%",
+          "record": "0-2"
+        },
+        "STRONG": {
+          "wins": 4,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 5,
+          "total_positions": 5,
+          "win_percentage": 0.8,
+          "win_percentage_display": "80.0%",
+          "record": "4-1"
+        },
+        "ELITE": {
+          "wins": 1,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 2,
+          "total_positions": 2,
+          "win_percentage": 0.5,
+          "win_percentage_display": "50.0%",
+          "record": "1-1"
+        }
+      },
+      "totals_by_tier": {
+        "WEAK": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 0,
+          "total_positions": 0,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "MODERATE": {
+          "wins": 0,
+          "losses": 4,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 4,
+          "total_positions": 4,
+          "win_percentage": 0.0,
+          "win_percentage_display": "0.0%",
+          "record": "0-4"
+        },
+        "STRONG": {
+          "wins": 0,
+          "losses": 2,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 2,
+          "total_positions": 2,
+          "win_percentage": 0.0,
+          "win_percentage_display": "0.0%",
+          "record": "0-2"
+        },
+        "ELITE": {
+          "wins": 0,
+          "losses": 4,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 4,
+          "total_positions": 4,
+          "win_percentage": 0.0,
+          "win_percentage_display": "0.0%",
+          "record": "0-4"
+        }
+      }
+    },
+    "2026-06-16": {
+      "ats_by_tier": {
+        "WEAK": {
+          "wins": 1,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 2,
+          "total_positions": 2,
+          "win_percentage": 0.5,
+          "win_percentage_display": "50.0%",
+          "record": "1-1"
+        },
+        "MODERATE": {
+          "wins": 2,
+          "losses": 3,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 5,
+          "total_positions": 5,
+          "win_percentage": 0.4,
+          "win_percentage_display": "40.0%",
+          "record": "2-3"
+        },
+        "STRONG": {
+          "wins": 5,
+          "losses": 2,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 7,
+          "total_positions": 7,
+          "win_percentage": 0.7143,
+          "win_percentage_display": "71.4%",
+          "record": "5-2"
+        },
+        "ELITE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 1,
+          "pending": 0,
+          "decided_positions": 0,
+          "total_positions": 1,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        }
+      },
+      "totals_by_tier": {
+        "WEAK": {
+          "wins": 4,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 4,
+          "total_positions": 4,
+          "win_percentage": 1.0,
+          "win_percentage_display": "100.0%",
+          "record": "4-0"
+        },
+        "MODERATE": {
+          "wins": 0,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 1,
+          "total_positions": 1,
+          "win_percentage": 0.0,
+          "win_percentage_display": "0.0%",
+          "record": "0-1"
+        },
+        "STRONG": {
+          "wins": 2,
+          "losses": 2,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 4,
+          "total_positions": 4,
+          "win_percentage": 0.5,
+          "win_percentage_display": "50.0%",
+          "record": "2-2"
+        },
+        "ELITE": {
+          "wins": 4,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 1,
+          "pending": 0,
+          "decided_positions": 5,
+          "total_positions": 6,
+          "win_percentage": 0.8,
+          "win_percentage_display": "80.0%",
+          "record": "4-1"
+        }
+      }
+    },
+    "2026-06-17": {
+      "ats_by_tier": {
+        "WEAK": {
+          "wins": 2,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 2,
+          "total_positions": 2,
+          "win_percentage": 1.0,
+          "win_percentage_display": "100.0%",
+          "record": "2-0"
+        },
+        "MODERATE": {
+          "wins": 2,
+          "losses": 2,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 4,
+          "total_positions": 4,
+          "win_percentage": 0.5,
+          "win_percentage_display": "50.0%",
+          "record": "2-2"
+        },
+        "STRONG": {
+          "wins": 3,
+          "losses": 3,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 6,
+          "total_positions": 6,
+          "win_percentage": 0.5,
+          "win_percentage_display": "50.0%",
+          "record": "3-3"
+        },
+        "ELITE": {
+          "wins": 1,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 1,
+          "total_positions": 1,
+          "win_percentage": 1.0,
+          "win_percentage_display": "100.0%",
+          "record": "1-0"
+        }
+      },
+      "totals_by_tier": {
+        "WEAK": {
+          "wins": 0,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 1,
+          "total_positions": 1,
+          "win_percentage": 0.0,
+          "win_percentage_display": "0.0%",
+          "record": "0-1"
+        },
+        "MODERATE": {
+          "wins": 1,
+          "losses": 3,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 4,
+          "total_positions": 4,
+          "win_percentage": 0.25,
+          "win_percentage_display": "25.0%",
+          "record": "1-3"
+        },
+        "STRONG": {
+          "wins": 0,
+          "losses": 3,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 3,
+          "total_positions": 3,
+          "win_percentage": 0.0,
+          "win_percentage_display": "0.0%",
+          "record": "0-3"
+        },
+        "ELITE": {
+          "wins": 0,
+          "losses": 5,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 5,
+          "total_positions": 5,
+          "win_percentage": 0.0,
+          "win_percentage_display": "0.0%",
+          "record": "0-5"
+        }
+      }
+    },
+    "2026-06-18": {
+      "ats_by_tier": {
+        "WEAK": {
+          "wins": 2,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 3,
+          "total_positions": 3,
+          "win_percentage": 0.6667,
+          "win_percentage_display": "66.7%",
+          "record": "2-1"
+        },
+        "MODERATE": {
+          "wins": 0,
+          "losses": 3,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 3,
+          "total_positions": 3,
+          "win_percentage": 0.0,
+          "win_percentage_display": "0.0%",
+          "record": "0-3"
+        },
+        "STRONG": {
+          "wins": 1,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 1,
+          "decided_positions": 1,
+          "total_positions": 2,
+          "win_percentage": 1.0,
+          "win_percentage_display": "100.0%",
+          "record": "1-0"
+        },
+        "ELITE": {
+          "wins": 0,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 1,
+          "total_positions": 1,
+          "win_percentage": 0.0,
+          "win_percentage_display": "0.0%",
+          "record": "0-1"
+        }
+      },
+      "totals_by_tier": {
+        "WEAK": {
+          "wins": 2,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 1,
+          "decided_positions": 3,
+          "total_positions": 4,
+          "win_percentage": 0.6667,
+          "win_percentage_display": "66.7%",
+          "record": "2-1"
+        },
+        "MODERATE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 0,
+          "total_positions": 0,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "STRONG": {
+          "wins": 1,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 2,
+          "decided_positions": 1,
+          "total_positions": 3,
+          "win_percentage": 1.0,
+          "win_percentage_display": "100.0%",
+          "record": "1-0"
+        },
+        "ELITE": {
+          "wins": 2,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 2,
+          "total_positions": 2,
+          "win_percentage": 1.0,
+          "win_percentage_display": "100.0%",
+          "record": "2-0"
+        }
+      }
+    },
+    "2026-06-19": {
+      "ats_by_tier": {
+        "WEAK": {
+          "wins": 3,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 4,
+          "total_positions": 4,
+          "win_percentage": 0.75,
+          "win_percentage_display": "75.0%",
+          "record": "3-1"
+        },
+        "MODERATE": {
+          "wins": 2,
+          "losses": 4,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 6,
+          "total_positions": 6,
+          "win_percentage": 0.3333,
+          "win_percentage_display": "33.3%",
+          "record": "2-4"
+        },
+        "STRONG": {
+          "wins": 0,
+          "losses": 2,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 2,
+          "total_positions": 2,
+          "win_percentage": 0.0,
+          "win_percentage_display": "0.0%",
+          "record": "0-2"
+        },
+        "ELITE": {
+          "wins": 1,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 2,
+          "total_positions": 2,
+          "win_percentage": 0.5,
+          "win_percentage_display": "50.0%",
+          "record": "1-1"
+        }
+      },
+      "totals_by_tier": {
+        "WEAK": {
+          "wins": 1,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 1,
+          "total_positions": 1,
+          "win_percentage": 1.0,
+          "win_percentage_display": "100.0%",
+          "record": "1-0"
+        },
+        "MODERATE": {
+          "wins": 1,
+          "losses": 3,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 4,
+          "total_positions": 4,
+          "win_percentage": 0.25,
+          "win_percentage_display": "25.0%",
+          "record": "1-3"
+        },
+        "STRONG": {
+          "wins": 2,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 3,
+          "total_positions": 3,
+          "win_percentage": 0.6667,
+          "win_percentage_display": "66.7%",
+          "record": "2-1"
+        },
+        "ELITE": {
+          "wins": 3,
+          "losses": 3,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 6,
+          "total_positions": 6,
+          "win_percentage": 0.5,
+          "win_percentage_display": "50.0%",
+          "record": "3-3"
+        }
+      }
+    },
+    "2026-06-20": {
+      "ats_by_tier": {
+        "WEAK": {
+          "wins": 2,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 3,
+          "total_positions": 3,
+          "win_percentage": 0.6667,
+          "win_percentage_display": "66.7%",
+          "record": "2-1"
+        },
+        "MODERATE": {
+          "wins": 5,
+          "losses": 3,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 8,
+          "total_positions": 8,
+          "win_percentage": 0.625,
+          "win_percentage_display": "62.5%",
+          "record": "5-3"
+        },
+        "STRONG": {
+          "wins": 1,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 2,
+          "total_positions": 2,
+          "win_percentage": 0.5,
+          "win_percentage_display": "50.0%",
+          "record": "1-1"
+        },
+        "ELITE": {
+          "wins": 0,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 1,
+          "total_positions": 1,
+          "win_percentage": 0.0,
+          "win_percentage_display": "0.0%",
+          "record": "0-1"
+        }
+      },
+      "totals_by_tier": {
+        "WEAK": {
+          "wins": 2,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 2,
+          "total_positions": 2,
+          "win_percentage": 1.0,
+          "win_percentage_display": "100.0%",
+          "record": "2-0"
+        },
+        "MODERATE": {
+          "wins": 1,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 1,
+          "total_positions": 1,
+          "win_percentage": 1.0,
+          "win_percentage_display": "100.0%",
+          "record": "1-0"
+        },
+        "STRONG": {
+          "wins": 4,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 4,
+          "total_positions": 4,
+          "win_percentage": 1.0,
+          "win_percentage_display": "100.0%",
+          "record": "4-0"
+        },
+        "ELITE": {
+          "wins": 6,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 7,
+          "total_positions": 7,
+          "win_percentage": 0.8571,
+          "win_percentage_display": "85.7%",
+          "record": "6-1"
+        }
+      }
+    },
+    "2026-06-21": {
+      "ats_by_tier": {
+        "WEAK": {
+          "wins": 3,
+          "losses": 3,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 1,
+          "decided_positions": 6,
+          "total_positions": 7,
+          "win_percentage": 0.5,
+          "win_percentage_display": "50.0%",
+          "record": "3-3"
+        },
+        "MODERATE": {
+          "wins": 6,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 7,
+          "total_positions": 7,
+          "win_percentage": 0.8571,
+          "win_percentage_display": "85.7%",
+          "record": "6-1"
+        },
+        "STRONG": {
+          "wins": 1,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 1,
+          "total_positions": 1,
+          "win_percentage": 1.0,
+          "win_percentage_display": "100.0%",
+          "record": "1-0"
+        },
+        "ELITE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 0,
+          "total_positions": 0,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        }
+      },
+      "totals_by_tier": {
+        "WEAK": {
+          "wins": 4,
+          "losses": 2,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 6,
+          "total_positions": 6,
+          "win_percentage": 0.6667,
+          "win_percentage_display": "66.7%",
+          "record": "4-2"
+        },
+        "MODERATE": {
+          "wins": 1,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 2,
+          "total_positions": 2,
+          "win_percentage": 0.5,
+          "win_percentage_display": "50.0%",
+          "record": "1-1"
+        },
+        "STRONG": {
+          "wins": 1,
+          "losses": 2,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 3,
+          "total_positions": 3,
+          "win_percentage": 0.3333,
+          "win_percentage_display": "33.3%",
+          "record": "1-2"
+        },
+        "ELITE": {
+          "wins": 3,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 4,
+          "total_positions": 4,
+          "win_percentage": 0.75,
+          "win_percentage_display": "75.0%",
+          "record": "3-1"
+        }
+      }
+    },
+    "2026-06-22": {
+      "ats_by_tier": {
+        "WEAK": {
+          "wins": 7,
+          "losses": 2,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 1,
+          "decided_positions": 9,
+          "total_positions": 10,
+          "win_percentage": 0.7778,
+          "win_percentage_display": "77.8%",
+          "record": "7-2"
+        },
+        "MODERATE": {
+          "wins": 1,
+          "losses": 2,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 3,
+          "total_positions": 3,
+          "win_percentage": 0.3333,
+          "win_percentage_display": "33.3%",
+          "record": "1-2"
+        },
+        "STRONG": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 0,
+          "total_positions": 0,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "ELITE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 0,
+          "total_positions": 0,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        }
+      },
+      "totals_by_tier": {
+        "WEAK": {
+          "wins": 2,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 2,
+          "total_positions": 2,
+          "win_percentage": 1.0,
+          "win_percentage_display": "100.0%",
+          "record": "2-0"
+        },
+        "MODERATE": {
+          "wins": 3,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 4,
+          "total_positions": 4,
+          "win_percentage": 0.75,
+          "win_percentage_display": "75.0%",
+          "record": "3-1"
+        },
+        "STRONG": {
+          "wins": 1,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 1,
+          "total_positions": 1,
+          "win_percentage": 1.0,
+          "win_percentage_display": "100.0%",
+          "record": "1-0"
+        },
+        "ELITE": {
+          "wins": 4,
+          "losses": 0,
+          "pushes": 2,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 4,
+          "total_positions": 6,
+          "win_percentage": 1.0,
+          "win_percentage_display": "100.0%",
+          "record": "4-0-2P"
+        }
+      }
+    },
+    "2026-06-23": {
+      "ats_by_tier": {
+        "WEAK": {
+          "wins": 4,
+          "losses": 5,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 9,
+          "total_positions": 9,
+          "win_percentage": 0.4444,
+          "win_percentage_display": "44.4%",
+          "record": "4-5"
+        },
+        "MODERATE": {
+          "wins": 1,
+          "losses": 3,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 4,
+          "total_positions": 4,
+          "win_percentage": 0.25,
+          "win_percentage_display": "25.0%",
+          "record": "1-3"
+        },
+        "STRONG": {
+          "wins": 1,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 1,
+          "total_positions": 1,
+          "win_percentage": 1.0,
+          "win_percentage_display": "100.0%",
+          "record": "1-0"
+        },
+        "ELITE": {
+          "wins": 1,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 1,
+          "total_positions": 1,
+          "win_percentage": 1.0,
+          "win_percentage_display": "100.0%",
+          "record": "1-0"
+        }
+      },
+      "totals_by_tier": {
+        "WEAK": {
+          "wins": 0,
+          "losses": 4,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 4,
+          "total_positions": 4,
+          "win_percentage": 0.0,
+          "win_percentage_display": "0.0%",
+          "record": "0-4"
+        },
+        "MODERATE": {
+          "wins": 0,
+          "losses": 2,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 2,
+          "total_positions": 2,
+          "win_percentage": 0.0,
+          "win_percentage_display": "0.0%",
+          "record": "0-2"
+        },
+        "STRONG": {
+          "wins": 1,
+          "losses": 2,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 3,
+          "total_positions": 3,
+          "win_percentage": 0.3333,
+          "win_percentage_display": "33.3%",
+          "record": "1-2"
+        },
+        "ELITE": {
+          "wins": 5,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 6,
+          "total_positions": 6,
+          "win_percentage": 0.8333,
+          "win_percentage_display": "83.3%",
+          "record": "5-1"
+        }
+      }
+    },
+    "2026-06-24": {
+      "ats_by_tier": {
+        "WEAK": {
+          "wins": 4,
+          "losses": 7,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 11,
+          "total_positions": 11,
+          "win_percentage": 0.3636,
+          "win_percentage_display": "36.4%",
+          "record": "4-7"
+        },
+        "MODERATE": {
+          "wins": 1,
+          "losses": 3,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 4,
+          "total_positions": 4,
+          "win_percentage": 0.25,
+          "win_percentage_display": "25.0%",
+          "record": "1-3"
+        },
+        "STRONG": {
+          "wins": 0,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 1,
+          "total_positions": 1,
+          "win_percentage": 0.0,
+          "win_percentage_display": "0.0%",
+          "record": "0-1"
+        },
+        "ELITE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 0,
+          "total_positions": 0,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        }
+      },
+      "totals_by_tier": {
+        "WEAK": {
+          "wins": 1,
+          "losses": 3,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 4,
+          "total_positions": 4,
+          "win_percentage": 0.25,
+          "win_percentage_display": "25.0%",
+          "record": "1-3"
+        },
+        "MODERATE": {
+          "wins": 0,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 1,
+          "total_positions": 1,
+          "win_percentage": 0.0,
+          "win_percentage_display": "0.0%",
+          "record": "0-1"
+        },
+        "STRONG": {
+          "wins": 1,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 2,
+          "total_positions": 2,
+          "win_percentage": 0.5,
+          "win_percentage_display": "50.0%",
+          "record": "1-1"
+        },
+        "ELITE": {
+          "wins": 8,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 9,
+          "total_positions": 9,
+          "win_percentage": 0.8889,
+          "win_percentage_display": "88.9%",
+          "record": "8-1"
+        }
+      }
+    },
+    "2026-06-25": {
+      "ats_by_tier": {
+        "WEAK": {
+          "wins": 5,
+          "losses": 2,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 1,
+          "decided_positions": 7,
+          "total_positions": 8,
+          "win_percentage": 0.7143,
+          "win_percentage_display": "71.4%",
+          "record": "5-2"
+        },
+        "MODERATE": {
+          "wins": 0,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 1,
+          "total_positions": 1,
+          "win_percentage": 0.0,
+          "win_percentage_display": "0.0%",
+          "record": "0-1"
+        },
+        "STRONG": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 0,
+          "total_positions": 0,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "ELITE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 0,
+          "total_positions": 0,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        }
+      },
+      "totals_by_tier": {
+        "WEAK": {
+          "wins": 2,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 3,
+          "total_positions": 3,
+          "win_percentage": 0.6667,
+          "win_percentage_display": "66.7%",
+          "record": "2-1"
+        },
+        "MODERATE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 0,
+          "total_positions": 0,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "STRONG": {
+          "wins": 2,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 3,
+          "total_positions": 3,
+          "win_percentage": 0.6667,
+          "win_percentage_display": "66.7%",
+          "record": "2-1"
+        },
+        "ELITE": {
+          "wins": 0,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 2,
+          "decided_positions": 1,
+          "total_positions": 3,
+          "win_percentage": 0.0,
+          "win_percentage_display": "0.0%",
+          "record": "0-1"
+        }
+      }
+    },
+    "2026-06-26": {
+      "ats_by_tier": {
+        "WEAK": {
+          "wins": 4,
+          "losses": 3,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 7,
+          "total_positions": 7,
+          "win_percentage": 0.5714,
+          "win_percentage_display": "57.1%",
+          "record": "4-3"
+        },
+        "MODERATE": {
+          "wins": 2,
+          "losses": 5,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 7,
+          "total_positions": 7,
+          "win_percentage": 0.2857,
+          "win_percentage_display": "28.6%",
+          "record": "2-5"
+        },
+        "STRONG": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 0,
+          "total_positions": 0,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "ELITE": {
+          "wins": 1,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 1,
+          "total_positions": 1,
+          "win_percentage": 1.0,
+          "win_percentage_display": "100.0%",
+          "record": "1-0"
+        }
+      },
+      "totals_by_tier": {
+        "WEAK": {
+          "wins": 2,
+          "losses": 2,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 4,
+          "total_positions": 4,
+          "win_percentage": 0.5,
+          "win_percentage_display": "50.0%",
+          "record": "2-2"
+        },
+        "MODERATE": {
+          "wins": 5,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 6,
+          "total_positions": 6,
+          "win_percentage": 0.8333,
+          "win_percentage_display": "83.3%",
+          "record": "5-1"
+        },
+        "STRONG": {
+          "wins": 2,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 2,
+          "total_positions": 2,
+          "win_percentage": 1.0,
+          "win_percentage_display": "100.0%",
+          "record": "2-0"
+        },
+        "ELITE": {
+          "wins": 2,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 3,
+          "total_positions": 3,
+          "win_percentage": 0.6667,
+          "win_percentage_display": "66.7%",
+          "record": "2-1"
+        }
+      }
+    },
+    "2026-06-27": {
+      "ats_by_tier": {
+        "WEAK": {
+          "wins": 4,
+          "losses": 2,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 6,
+          "total_positions": 6,
+          "win_percentage": 0.6667,
+          "win_percentage_display": "66.7%",
+          "record": "4-2"
+        },
+        "MODERATE": {
+          "wins": 0,
+          "losses": 3,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 3,
+          "total_positions": 3,
+          "win_percentage": 0.0,
+          "win_percentage_display": "0.0%",
+          "record": "0-3"
+        },
+        "STRONG": {
+          "wins": 2,
+          "losses": 2,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 4,
+          "total_positions": 4,
+          "win_percentage": 0.5,
+          "win_percentage_display": "50.0%",
+          "record": "2-2"
+        },
+        "ELITE": {
+          "wins": 2,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 2,
+          "total_positions": 2,
+          "win_percentage": 1.0,
+          "win_percentage_display": "100.0%",
+          "record": "2-0"
+        }
+      },
+      "totals_by_tier": {
+        "WEAK": {
+          "wins": 2,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 2,
+          "total_positions": 2,
+          "win_percentage": 1.0,
+          "win_percentage_display": "100.0%",
+          "record": "2-0"
+        },
+        "MODERATE": {
+          "wins": 5,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 5,
+          "total_positions": 5,
+          "win_percentage": 1.0,
+          "win_percentage_display": "100.0%",
+          "record": "5-0"
+        },
+        "STRONG": {
+          "wins": 2,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 2,
+          "total_positions": 2,
+          "win_percentage": 1.0,
+          "win_percentage_display": "100.0%",
+          "record": "2-0"
+        },
+        "ELITE": {
+          "wins": 6,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 6,
+          "total_positions": 6,
+          "win_percentage": 1.0,
+          "win_percentage_display": "100.0%",
+          "record": "6-0"
+        }
+      }
+    },
+    "2026-06-28": {
+      "ats_by_tier": {
+        "WEAK": {
+          "wins": 4,
+          "losses": 3,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 7,
+          "total_positions": 7,
+          "win_percentage": 0.5714,
+          "win_percentage_display": "57.1%",
+          "record": "4-3"
+        },
+        "MODERATE": {
+          "wins": 5,
+          "losses": 2,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 7,
+          "total_positions": 7,
+          "win_percentage": 0.7143,
+          "win_percentage_display": "71.4%",
+          "record": "5-2"
+        },
+        "STRONG": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 0,
+          "total_positions": 0,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "ELITE": {
+          "wins": 1,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 1,
+          "total_positions": 1,
+          "win_percentage": 1.0,
+          "win_percentage_display": "100.0%",
+          "record": "1-0"
+        }
+      },
+      "totals_by_tier": {
+        "WEAK": {
+          "wins": 5,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 6,
+          "total_positions": 6,
+          "win_percentage": 0.8333,
+          "win_percentage_display": "83.3%",
+          "record": "5-1"
+        },
+        "MODERATE": {
+          "wins": 3,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 3,
+          "total_positions": 3,
+          "win_percentage": 1.0,
+          "win_percentage_display": "100.0%",
+          "record": "3-0"
+        },
+        "STRONG": {
+          "wins": 3,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 3,
+          "total_positions": 3,
+          "win_percentage": 1.0,
+          "win_percentage_display": "100.0%",
+          "record": "3-0"
+        },
+        "ELITE": {
+          "wins": 3,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 3,
+          "total_positions": 3,
+          "win_percentage": 1.0,
+          "win_percentage_display": "100.0%",
+          "record": "3-0"
+        }
+      }
+    },
+    "2026-06-29": {
+      "ats_by_tier": {
+        "WEAK": {
+          "wins": 1,
+          "losses": 2,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 3,
+          "total_positions": 3,
+          "win_percentage": 0.3333,
+          "win_percentage_display": "33.3%",
+          "record": "1-2"
+        },
+        "MODERATE": {
+          "wins": 3,
+          "losses": 2,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 5,
+          "total_positions": 5,
+          "win_percentage": 0.6,
+          "win_percentage_display": "60.0%",
+          "record": "3-2"
+        },
+        "STRONG": {
+          "wins": 0,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 1,
+          "total_positions": 1,
+          "win_percentage": 0.0,
+          "win_percentage_display": "0.0%",
+          "record": "0-1"
+        },
+        "ELITE": {
+          "wins": 3,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 4,
+          "total_positions": 4,
+          "win_percentage": 0.75,
+          "win_percentage_display": "75.0%",
+          "record": "3-1"
+        }
+      },
+      "totals_by_tier": {
+        "WEAK": {
+          "wins": 1,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 2,
+          "total_positions": 2,
+          "win_percentage": 0.5,
+          "win_percentage_display": "50.0%",
+          "record": "1-1"
+        },
+        "MODERATE": {
+          "wins": 2,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 2,
+          "total_positions": 2,
+          "win_percentage": 1.0,
+          "win_percentage_display": "100.0%",
+          "record": "2-0"
+        },
+        "STRONG": {
+          "wins": 3,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 4,
+          "total_positions": 4,
+          "win_percentage": 0.75,
+          "win_percentage_display": "75.0%",
+          "record": "3-1"
+        },
+        "ELITE": {
+          "wins": 2,
+          "losses": 3,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 5,
+          "total_positions": 5,
+          "win_percentage": 0.4,
+          "win_percentage_display": "40.0%",
+          "record": "2-3"
+        }
+      }
+    },
+    "2026-06-30": {
+      "ats_by_tier": {
+        "WEAK": {
+          "wins": 1,
+          "losses": 2,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 3,
+          "total_positions": 3,
+          "win_percentage": 0.3333,
+          "win_percentage_display": "33.3%",
+          "record": "1-2"
+        },
+        "MODERATE": {
+          "wins": 1,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 2,
+          "total_positions": 2,
+          "win_percentage": 0.5,
+          "win_percentage_display": "50.0%",
+          "record": "1-1"
+        },
+        "STRONG": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 0,
+          "total_positions": 0,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "ELITE": {
+          "wins": 3,
+          "losses": 7,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 10,
+          "total_positions": 10,
+          "win_percentage": 0.3,
+          "win_percentage_display": "30.0%",
+          "record": "3-7"
+        }
+      },
+      "totals_by_tier": {
+        "WEAK": {
+          "wins": 2,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 2,
+          "total_positions": 2,
+          "win_percentage": 1.0,
+          "win_percentage_display": "100.0%",
+          "record": "2-0"
+        },
+        "MODERATE": {
+          "wins": 2,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 2,
+          "total_positions": 2,
+          "win_percentage": 1.0,
+          "win_percentage_display": "100.0%",
+          "record": "2-0"
+        },
+        "STRONG": {
+          "wins": 1,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 2,
+          "total_positions": 2,
+          "win_percentage": 0.5,
+          "win_percentage_display": "50.0%",
+          "record": "1-1"
+        },
+        "ELITE": {
+          "wins": 5,
+          "losses": 4,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 9,
+          "total_positions": 9,
+          "win_percentage": 0.5556,
+          "win_percentage_display": "55.6%",
+          "record": "5-4"
+        }
+      }
+    },
+    "2026-07-01": {
+      "ats_by_tier": {
+        "WEAK": {
+          "wins": 1,
+          "losses": 2,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 3,
+          "total_positions": 3,
+          "win_percentage": 0.3333,
+          "win_percentage_display": "33.3%",
+          "record": "1-2"
+        },
+        "MODERATE": {
+          "wins": 0,
+          "losses": 3,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 3,
+          "total_positions": 3,
+          "win_percentage": 0.0,
+          "win_percentage_display": "0.0%",
+          "record": "0-3"
+        },
+        "STRONG": {
+          "wins": 0,
+          "losses": 2,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 2,
+          "total_positions": 2,
+          "win_percentage": 0.0,
+          "win_percentage_display": "0.0%",
+          "record": "0-2"
+        },
+        "ELITE": {
+          "wins": 2,
+          "losses": 4,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 6,
+          "total_positions": 6,
+          "win_percentage": 0.3333,
+          "win_percentage_display": "33.3%",
+          "record": "2-4"
+        }
+      },
+      "totals_by_tier": {
+        "WEAK": {
+          "wins": 0,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 1,
+          "total_positions": 1,
+          "win_percentage": 0.0,
+          "win_percentage_display": "0.0%",
+          "record": "0-1"
+        },
+        "MODERATE": {
+          "wins": 2,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 2,
+          "total_positions": 2,
+          "win_percentage": 1.0,
+          "win_percentage_display": "100.0%",
+          "record": "2-0"
+        },
+        "STRONG": {
+          "wins": 1,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 2,
+          "total_positions": 2,
+          "win_percentage": 0.5,
+          "win_percentage_display": "50.0%",
+          "record": "1-1"
+        },
+        "ELITE": {
+          "wins": 6,
+          "losses": 3,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 9,
+          "total_positions": 9,
+          "win_percentage": 0.6667,
+          "win_percentage_display": "66.7%",
+          "record": "6-3"
+        }
+      }
+    },
+    "2026-07-02": {
+      "ats_by_tier": {
+        "WEAK": {
+          "wins": 1,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 1,
+          "total_positions": 1,
+          "win_percentage": 1.0,
+          "win_percentage_display": "100.0%",
+          "record": "1-0"
+        },
+        "MODERATE": {
+          "wins": 0,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 1,
+          "total_positions": 1,
+          "win_percentage": 0.0,
+          "win_percentage_display": "0.0%",
+          "record": "0-1"
+        },
+        "STRONG": {
+          "wins": 1,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 1,
+          "total_positions": 1,
+          "win_percentage": 1.0,
+          "win_percentage_display": "100.0%",
+          "record": "1-0"
+        },
+        "ELITE": {
+          "wins": 1,
+          "losses": 2,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 3,
+          "total_positions": 3,
+          "win_percentage": 0.3333,
+          "win_percentage_display": "33.3%",
+          "record": "1-2"
+        }
+      },
+      "totals_by_tier": {
+        "WEAK": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 0,
+          "total_positions": 0,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "MODERATE": {
+          "wins": 1,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 1,
+          "total_positions": 1,
+          "win_percentage": 1.0,
+          "win_percentage_display": "100.0%",
+          "record": "1-0"
+        },
+        "STRONG": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 0,
+          "total_positions": 0,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "ELITE": {
+          "wins": 3,
+          "losses": 2,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 5,
+          "total_positions": 5,
+          "win_percentage": 0.6,
+          "win_percentage_display": "60.0%",
+          "record": "3-2"
+        }
+      }
+    },
+    "2026-07-03": {
+      "ats_by_tier": {
+        "WEAK": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 0,
+          "total_positions": 0,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "MODERATE": {
+          "wins": 1,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 1,
+          "total_positions": 1,
+          "win_percentage": 1.0,
+          "win_percentage_display": "100.0%",
+          "record": "1-0"
+        },
+        "STRONG": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 0,
+          "total_positions": 0,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "ELITE": {
+          "wins": 4,
+          "losses": 6,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 10,
+          "total_positions": 10,
+          "win_percentage": 0.4,
+          "win_percentage_display": "40.0%",
+          "record": "4-6"
+        }
+      },
+      "totals_by_tier": {
+        "WEAK": {
+          "wins": 2,
+          "losses": 2,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 4,
+          "total_positions": 4,
+          "win_percentage": 0.5,
+          "win_percentage_display": "50.0%",
+          "record": "2-2"
+        },
+        "MODERATE": {
+          "wins": 1,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 1,
+          "total_positions": 1,
+          "win_percentage": 1.0,
+          "win_percentage_display": "100.0%",
+          "record": "1-0"
+        },
+        "STRONG": {
+          "wins": 0,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 1,
+          "total_positions": 1,
+          "win_percentage": 0.0,
+          "win_percentage_display": "0.0%",
+          "record": "0-1"
+        },
+        "ELITE": {
+          "wins": 2,
+          "losses": 3,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 5,
+          "total_positions": 5,
+          "win_percentage": 0.4,
+          "win_percentage_display": "40.0%",
+          "record": "2-3"
+        }
+      }
+    },
+    "2026-07-04": {
+      "ats_by_tier": {
+        "WEAK": {
+          "wins": 1,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 2,
+          "total_positions": 2,
+          "win_percentage": 0.5,
+          "win_percentage_display": "50.0%",
+          "record": "1-1"
+        },
+        "MODERATE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 0,
+          "total_positions": 0,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "STRONG": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 0,
+          "total_positions": 0,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "ELITE": {
+          "wins": 8,
+          "losses": 5,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 13,
+          "total_positions": 13,
+          "win_percentage": 0.6154,
+          "win_percentage_display": "61.5%",
+          "record": "8-5"
+        }
+      },
+      "totals_by_tier": {
+        "WEAK": {
+          "wins": 0,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 1,
+          "total_positions": 1,
+          "win_percentage": 0.0,
+          "win_percentage_display": "0.0%",
+          "record": "0-1"
+        },
+        "MODERATE": {
+          "wins": 1,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 1,
+          "total_positions": 1,
+          "win_percentage": 1.0,
+          "win_percentage_display": "100.0%",
+          "record": "1-0"
+        },
+        "STRONG": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 0,
+          "total_positions": 0,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "ELITE": {
+          "wins": 9,
+          "losses": 4,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 13,
+          "total_positions": 13,
+          "win_percentage": 0.6923,
+          "win_percentage_display": "69.2%",
+          "record": "9-4"
+        }
+      }
+    },
+    "2026-07-05": {
+      "ats_by_tier": {
+        "WEAK": {
+          "wins": 1,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 1,
+          "total_positions": 1,
+          "win_percentage": 1.0,
+          "win_percentage_display": "100.0%",
+          "record": "1-0"
+        },
+        "MODERATE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 0,
+          "total_positions": 0,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "STRONG": {
+          "wins": 1,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 1,
+          "total_positions": 1,
+          "win_percentage": 1.0,
+          "win_percentage_display": "100.0%",
+          "record": "1-0"
+        },
+        "ELITE": {
+          "wins": 6,
+          "losses": 7,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 13,
+          "total_positions": 13,
+          "win_percentage": 0.4615,
+          "win_percentage_display": "46.2%",
+          "record": "6-7"
+        }
+      },
+      "totals_by_tier": {
+        "WEAK": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 0,
+          "total_positions": 0,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "MODERATE": {
+          "wins": 0,
+          "losses": 2,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 2,
+          "total_positions": 2,
+          "win_percentage": 0.0,
+          "win_percentage_display": "0.0%",
+          "record": "0-2"
+        },
+        "STRONG": {
+          "wins": 1,
+          "losses": 3,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 4,
+          "total_positions": 4,
+          "win_percentage": 0.25,
+          "win_percentage_display": "25.0%",
+          "record": "1-3"
+        },
+        "ELITE": {
+          "wins": 3,
+          "losses": 6,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 9,
+          "total_positions": 9,
+          "win_percentage": 0.3333,
+          "win_percentage_display": "33.3%",
+          "record": "3-6"
+        }
+      }
+    },
+    "2026-07-06": {
+      "ats_by_tier": {
+        "WEAK": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 0,
+          "total_positions": 0,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "MODERATE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 0,
+          "total_positions": 0,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "STRONG": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 0,
+          "total_positions": 0,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "ELITE": {
+          "wins": 2,
+          "losses": 6,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 8,
+          "total_positions": 8,
+          "win_percentage": 0.25,
+          "win_percentage_display": "25.0%",
+          "record": "2-6"
+        }
+      },
+      "totals_by_tier": {
+        "WEAK": {
+          "wins": 3,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 3,
+          "total_positions": 3,
+          "win_percentage": 1.0,
+          "win_percentage_display": "100.0%",
+          "record": "3-0"
+        },
+        "MODERATE": {
+          "wins": 2,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 2,
+          "total_positions": 2,
+          "win_percentage": 1.0,
+          "win_percentage_display": "100.0%",
+          "record": "2-0"
+        },
+        "STRONG": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 0,
+          "total_positions": 0,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "ELITE": {
+          "wins": 2,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 3,
+          "total_positions": 3,
+          "win_percentage": 0.6667,
+          "win_percentage_display": "66.7%",
+          "record": "2-1"
+        }
+      }
+    },
+    "2026-07-07": {
+      "ats_by_tier": {
+        "WEAK": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 0,
+          "total_positions": 0,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "MODERATE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 0,
+          "total_positions": 0,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "STRONG": {
+          "wins": 0,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 1,
+          "total_positions": 1,
+          "win_percentage": 0.0,
+          "win_percentage_display": "0.0%",
+          "record": "0-1"
+        },
+        "ELITE": {
+          "wins": 9,
+          "losses": 5,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 14,
+          "total_positions": 14,
+          "win_percentage": 0.6429,
+          "win_percentage_display": "64.3%",
+          "record": "9-5"
+        }
+      },
+      "totals_by_tier": {
+        "WEAK": {
+          "wins": 0,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 1,
+          "total_positions": 1,
+          "win_percentage": 0.0,
+          "win_percentage_display": "0.0%",
+          "record": "0-1"
+        },
+        "MODERATE": {
+          "wins": 0,
+          "losses": 5,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 5,
+          "total_positions": 5,
+          "win_percentage": 0.0,
+          "win_percentage_display": "0.0%",
+          "record": "0-5"
+        },
+        "STRONG": {
+          "wins": 0,
+          "losses": 2,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 2,
+          "total_positions": 2,
+          "win_percentage": 0.0,
+          "win_percentage_display": "0.0%",
+          "record": "0-2"
+        },
+        "ELITE": {
+          "wins": 0,
+          "losses": 7,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 7,
+          "total_positions": 7,
+          "win_percentage": 0.0,
+          "win_percentage_display": "0.0%",
+          "record": "0-7"
+        }
+      }
+    },
+    "2026-07-08": {
+      "ats_by_tier": {
+        "WEAK": {
+          "wins": 1,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 2,
+          "total_positions": 2,
+          "win_percentage": 0.5,
+          "win_percentage_display": "50.0%",
+          "record": "1-1"
+        },
+        "MODERATE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 0,
+          "total_positions": 0,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "STRONG": {
+          "wins": 0,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 1,
+          "total_positions": 1,
+          "win_percentage": 0.0,
+          "win_percentage_display": "0.0%",
+          "record": "0-1"
+        },
+        "ELITE": {
+          "wins": 3,
+          "losses": 8,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 11,
+          "total_positions": 11,
+          "win_percentage": 0.2727,
+          "win_percentage_display": "27.3%",
+          "record": "3-8"
+        }
+      },
+      "totals_by_tier": {
+        "WEAK": {
+          "wins": 0,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 1,
+          "total_positions": 1,
+          "win_percentage": 0.0,
+          "win_percentage_display": "0.0%",
+          "record": "0-1"
+        },
+        "MODERATE": {
+          "wins": 1,
+          "losses": 2,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 3,
+          "total_positions": 3,
+          "win_percentage": 0.3333,
+          "win_percentage_display": "33.3%",
+          "record": "1-2"
+        },
+        "STRONG": {
+          "wins": 0,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 1,
+          "total_positions": 1,
+          "win_percentage": 0.0,
+          "win_percentage_display": "0.0%",
+          "record": "0-1"
+        },
+        "ELITE": {
+          "wins": 7,
+          "losses": 2,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 9,
+          "total_positions": 9,
+          "win_percentage": 0.7778,
+          "win_percentage_display": "77.8%",
+          "record": "7-2"
+        }
+      }
+    },
+    "2026-07-09": {
+      "ats_by_tier": {
+        "WEAK": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 0,
+          "total_positions": 0,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "MODERATE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 0,
+          "total_positions": 0,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "STRONG": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 0,
+          "total_positions": 0,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "ELITE": {
+          "wins": 3,
+          "losses": 7,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 10,
+          "total_positions": 10,
+          "win_percentage": 0.3,
+          "win_percentage_display": "30.0%",
+          "record": "3-7"
+        }
+      },
+      "totals_by_tier": {
+        "WEAK": {
+          "wins": 1,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 2,
+          "total_positions": 2,
+          "win_percentage": 0.5,
+          "win_percentage_display": "50.0%",
+          "record": "1-1"
+        },
+        "MODERATE": {
+          "wins": 1,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 1,
+          "total_positions": 1,
+          "win_percentage": 1.0,
+          "win_percentage_display": "100.0%",
+          "record": "1-0"
+        },
+        "STRONG": {
+          "wins": 0,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 1,
+          "total_positions": 1,
+          "win_percentage": 0.0,
+          "win_percentage_display": "0.0%",
+          "record": "0-1"
+        },
+        "ELITE": {
+          "wins": 3,
+          "losses": 3,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 6,
+          "total_positions": 6,
+          "win_percentage": 0.5,
+          "win_percentage_display": "50.0%",
+          "record": "3-3"
+        }
+      }
+    },
+    "2026-07-10": {
+      "ats_by_tier": {
+        "WEAK": {
+          "wins": 1,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 1,
+          "total_positions": 1,
+          "win_percentage": 1.0,
+          "win_percentage_display": "100.0%",
+          "record": "1-0"
+        },
+        "MODERATE": {
+          "wins": 2,
+          "losses": 2,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 4,
+          "total_positions": 4,
+          "win_percentage": 0.5,
+          "win_percentage_display": "50.0%",
+          "record": "2-2"
+        },
+        "STRONG": {
+          "wins": 2,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 1,
+          "decided_positions": 3,
+          "total_positions": 4,
+          "win_percentage": 0.6667,
+          "win_percentage_display": "66.7%",
+          "record": "2-1"
+        },
+        "ELITE": {
+          "wins": 4,
+          "losses": 2,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 6,
+          "total_positions": 6,
+          "win_percentage": 0.6667,
+          "win_percentage_display": "66.7%",
+          "record": "4-2"
+        }
+      },
+      "totals_by_tier": {
+        "WEAK": {
+          "wins": 3,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 3,
+          "total_positions": 3,
+          "win_percentage": 1.0,
+          "win_percentage_display": "100.0%",
+          "record": "3-0"
+        },
+        "MODERATE": {
+          "wins": 3,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 3,
+          "total_positions": 3,
+          "win_percentage": 1.0,
+          "win_percentage_display": "100.0%",
+          "record": "3-0"
+        },
+        "STRONG": {
+          "wins": 3,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 3,
+          "total_positions": 3,
+          "win_percentage": 1.0,
+          "win_percentage_display": "100.0%",
+          "record": "3-0"
+        },
+        "ELITE": {
+          "wins": 5,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 6,
+          "total_positions": 6,
+          "win_percentage": 0.8333,
+          "win_percentage_display": "83.3%",
+          "record": "5-1"
+        }
+      }
+    },
+    "2026-07-11": {
+      "ats_by_tier": {
+        "WEAK": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 0,
+          "total_positions": 0,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "MODERATE": {
+          "wins": 0,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 1,
+          "total_positions": 1,
+          "win_percentage": 0.0,
+          "win_percentage_display": "0.0%",
+          "record": "0-1"
+        },
+        "STRONG": {
+          "wins": 3,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 4,
+          "total_positions": 4,
+          "win_percentage": 0.75,
+          "win_percentage_display": "75.0%",
+          "record": "3-1"
+        },
+        "ELITE": {
+          "wins": 2,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 3,
+          "total_positions": 3,
+          "win_percentage": 0.6667,
+          "win_percentage_display": "66.7%",
+          "record": "2-1"
+        }
+      },
+      "totals_by_tier": {
+        "WEAK": {
+          "wins": 1,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 1,
+          "total_positions": 1,
+          "win_percentage": 1.0,
+          "win_percentage_display": "100.0%",
+          "record": "1-0"
+        },
+        "MODERATE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 0,
+          "total_positions": 0,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "STRONG": {
+          "wins": 1,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 1,
+          "total_positions": 1,
+          "win_percentage": 1.0,
+          "win_percentage_display": "100.0%",
+          "record": "1-0"
+        },
+        "ELITE": {
+          "wins": 6,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 6,
+          "total_positions": 6,
+          "win_percentage": 1.0,
+          "win_percentage_display": "100.0%",
+          "record": "6-0"
+        }
+      }
+    },
+    "2026-07-12": {
+      "ats_by_tier": {
+        "WEAK": {
+          "wins": 1,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 2,
+          "total_positions": 2,
+          "win_percentage": 0.5,
+          "win_percentage_display": "50.0%",
+          "record": "1-1"
+        },
+        "MODERATE": {
+          "wins": 2,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 3,
+          "total_positions": 3,
+          "win_percentage": 0.6667,
+          "win_percentage_display": "66.7%",
+          "record": "2-1"
+        },
+        "STRONG": {
+          "wins": 2,
+          "losses": 3,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 5,
+          "total_positions": 5,
+          "win_percentage": 0.4,
+          "win_percentage_display": "40.0%",
+          "record": "2-3"
+        },
+        "ELITE": {
+          "wins": 3,
+          "losses": 2,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 5,
+          "total_positions": 5,
+          "win_percentage": 0.6,
+          "win_percentage_display": "60.0%",
+          "record": "3-2"
+        }
+      },
+      "totals_by_tier": {
+        "WEAK": {
+          "wins": 2,
+          "losses": 5,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 7,
+          "total_positions": 7,
+          "win_percentage": 0.2857,
+          "win_percentage_display": "28.6%",
+          "record": "2-5"
+        },
+        "MODERATE": {
+          "wins": 0,
+          "losses": 2,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 2,
+          "total_positions": 2,
+          "win_percentage": 0.0,
+          "win_percentage_display": "0.0%",
+          "record": "0-2"
+        },
+        "STRONG": {
+          "wins": 1,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 2,
+          "total_positions": 2,
+          "win_percentage": 0.5,
+          "win_percentage_display": "50.0%",
+          "record": "1-1"
+        },
+        "ELITE": {
+          "wins": 2,
+          "losses": 1,
+          "pushes": 1,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 3,
+          "total_positions": 4,
+          "win_percentage": 0.6667,
+          "win_percentage_display": "66.7%",
+          "record": "2-1-1P"
+        }
+      }
+    },
+    "2026-07-18": {
+      "ats_by_tier": {
+        "WEAK": {
+          "wins": 1,
+          "losses": 6,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 7,
+          "total_positions": 7,
+          "win_percentage": 0.1429,
+          "win_percentage_display": "14.3%",
+          "record": "1-6"
+        },
+        "MODERATE": {
+          "wins": 0,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 1,
+          "total_positions": 1,
+          "win_percentage": 0.0,
+          "win_percentage_display": "0.0%",
+          "record": "0-1"
+        },
+        "STRONG": {
+          "wins": 1,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 2,
+          "total_positions": 2,
+          "win_percentage": 0.5,
+          "win_percentage_display": "50.0%",
+          "record": "1-1"
+        },
+        "ELITE": {
+          "wins": 3,
+          "losses": 2,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 1,
+          "decided_positions": 5,
+          "total_positions": 6,
+          "win_percentage": 0.6,
+          "win_percentage_display": "60.0%",
+          "record": "3-2"
+        }
+      },
+      "totals_by_tier": {
+        "WEAK": {
+          "wins": 2,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 2,
+          "total_positions": 2,
+          "win_percentage": 1.0,
+          "win_percentage_display": "100.0%",
+          "record": "2-0"
+        },
+        "MODERATE": {
+          "wins": 1,
+          "losses": 2,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 1,
+          "decided_positions": 3,
+          "total_positions": 4,
+          "win_percentage": 0.3333,
+          "win_percentage_display": "33.3%",
+          "record": "1-2"
+        },
+        "STRONG": {
+          "wins": 2,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 3,
+          "total_positions": 3,
+          "win_percentage": 0.6667,
+          "win_percentage_display": "66.7%",
+          "record": "2-1"
+        },
+        "ELITE": {
+          "wins": 3,
+          "losses": 3,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 1,
+          "decided_positions": 6,
+          "total_positions": 7,
+          "win_percentage": 0.5,
+          "win_percentage_display": "50.0%",
+          "record": "3-3"
+        }
+      }
+    },
+    "2026-07-18_superseded_20260718T121630": {
+      "ats_by_tier": {
+        "WEAK": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 2,
+          "decided_positions": 0,
+          "total_positions": 2,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "MODERATE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 0,
+          "total_positions": 0,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "STRONG": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 0,
+          "total_positions": 0,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "ELITE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 0,
+          "total_positions": 0,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        }
+      },
+      "totals_by_tier": {
+        "WEAK": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 0,
+          "total_positions": 0,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "MODERATE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 0,
+          "total_positions": 0,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "STRONG": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 1,
+          "decided_positions": 0,
+          "total_positions": 1,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "ELITE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 1,
+          "decided_positions": 0,
+          "total_positions": 1,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        }
+      }
+    },
+    "2026-07-18_superseded_20260718T130950": {
+      "ats_by_tier": {
+        "WEAK": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 2,
+          "decided_positions": 0,
+          "total_positions": 2,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "MODERATE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 0,
+          "total_positions": 0,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "STRONG": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 0,
+          "total_positions": 0,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "ELITE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 0,
+          "total_positions": 0,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        }
+      },
+      "totals_by_tier": {
+        "WEAK": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 0,
+          "total_positions": 0,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "MODERATE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 0,
+          "total_positions": 0,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "STRONG": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 1,
+          "decided_positions": 0,
+          "total_positions": 1,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "ELITE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 1,
+          "decided_positions": 0,
+          "total_positions": 1,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        }
+      }
+    },
+    "2026-07-18_superseded_20260718T133246": {
+      "ats_by_tier": {
+        "WEAK": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 2,
+          "decided_positions": 0,
+          "total_positions": 2,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "MODERATE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 1,
+          "decided_positions": 0,
+          "total_positions": 1,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "STRONG": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 0,
+          "total_positions": 0,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "ELITE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 0,
+          "total_positions": 0,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        }
+      },
+      "totals_by_tier": {
+        "WEAK": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 0,
+          "total_positions": 0,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "MODERATE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 1,
+          "decided_positions": 0,
+          "total_positions": 1,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "STRONG": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 1,
+          "decided_positions": 0,
+          "total_positions": 1,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "ELITE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 1,
+          "decided_positions": 0,
+          "total_positions": 1,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        }
+      }
+    },
+    "2026-07-18_superseded_20260718T141752": {
+      "ats_by_tier": {
+        "WEAK": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 5,
+          "decided_positions": 0,
+          "total_positions": 5,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "MODERATE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 1,
+          "decided_positions": 0,
+          "total_positions": 1,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "STRONG": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 1,
+          "decided_positions": 0,
+          "total_positions": 1,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "ELITE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 3,
+          "decided_positions": 0,
+          "total_positions": 3,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        }
+      },
+      "totals_by_tier": {
+        "WEAK": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 1,
+          "decided_positions": 0,
+          "total_positions": 1,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "MODERATE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 2,
+          "decided_positions": 0,
+          "total_positions": 2,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "STRONG": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 2,
+          "decided_positions": 0,
+          "total_positions": 2,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "ELITE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 5,
+          "decided_positions": 0,
+          "total_positions": 5,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        }
+      }
+    },
+    "2026-07-18_superseded_20260718T161320": {
+      "ats_by_tier": {
+        "WEAK": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 5,
+          "decided_positions": 0,
+          "total_positions": 5,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "MODERATE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 1,
+          "decided_positions": 0,
+          "total_positions": 1,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "STRONG": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 1,
+          "decided_positions": 0,
+          "total_positions": 1,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "ELITE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 4,
+          "decided_positions": 0,
+          "total_positions": 4,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        }
+      },
+      "totals_by_tier": {
+        "WEAK": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 1,
+          "decided_positions": 0,
+          "total_positions": 1,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "MODERATE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 2,
+          "decided_positions": 0,
+          "total_positions": 2,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "STRONG": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 2,
+          "decided_positions": 0,
+          "total_positions": 2,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "ELITE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 6,
+          "decided_positions": 0,
+          "total_positions": 6,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        }
+      }
+    },
+    "2026-07-18_superseded_20260718T161711": {
+      "ats_by_tier": {
+        "WEAK": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 7,
+          "decided_positions": 0,
+          "total_positions": 7,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "MODERATE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 1,
+          "decided_positions": 0,
+          "total_positions": 1,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "STRONG": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 2,
+          "decided_positions": 0,
+          "total_positions": 2,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "ELITE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 6,
+          "decided_positions": 0,
+          "total_positions": 6,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        }
+      },
+      "totals_by_tier": {
+        "WEAK": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 2,
+          "decided_positions": 0,
+          "total_positions": 2,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "MODERATE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 4,
+          "decided_positions": 0,
+          "total_positions": 4,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "STRONG": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 3,
+          "decided_positions": 0,
+          "total_positions": 3,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "ELITE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 7,
+          "decided_positions": 0,
+          "total_positions": 7,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        }
+      }
+    },
+    "2026-07-19": {
+      "ats_by_tier": {
+        "WEAK": {
+          "wins": 2,
+          "losses": 2,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 4,
+          "total_positions": 4,
+          "win_percentage": 0.5,
+          "win_percentage_display": "50.0%",
+          "record": "2-2"
+        },
+        "MODERATE": {
+          "wins": 1,
+          "losses": 3,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 4,
+          "total_positions": 4,
+          "win_percentage": 0.25,
+          "win_percentage_display": "25.0%",
+          "record": "1-3"
+        },
+        "STRONG": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 0,
+          "total_positions": 0,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "ELITE": {
+          "wins": 5,
+          "losses": 3,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 8,
+          "total_positions": 8,
+          "win_percentage": 0.625,
+          "win_percentage_display": "62.5%",
+          "record": "5-3"
+        }
+      },
+      "totals_by_tier": {
+        "WEAK": {
+          "wins": 3,
+          "losses": 2,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 5,
+          "total_positions": 5,
+          "win_percentage": 0.6,
+          "win_percentage_display": "60.0%",
+          "record": "3-2"
+        },
+        "MODERATE": {
+          "wins": 2,
+          "losses": 3,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 5,
+          "total_positions": 5,
+          "win_percentage": 0.4,
+          "win_percentage_display": "40.0%",
+          "record": "2-3"
+        },
+        "STRONG": {
+          "wins": 2,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 3,
+          "total_positions": 3,
+          "win_percentage": 0.6667,
+          "win_percentage_display": "66.7%",
+          "record": "2-1"
+        },
+        "ELITE": {
+          "wins": 1,
+          "losses": 2,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 3,
+          "total_positions": 3,
+          "win_percentage": 0.3333,
+          "win_percentage_display": "33.3%",
+          "record": "1-2"
+        }
+      }
+    },
+    "2026-07-20": {
+      "ats_by_tier": {
+        "WEAK": {
+          "wins": 0,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 1,
+          "total_positions": 1,
+          "win_percentage": 0.0,
+          "win_percentage_display": "0.0%",
+          "record": "0-1"
+        },
+        "MODERATE": {
+          "wins": 3,
+          "losses": 2,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 5,
+          "total_positions": 5,
+          "win_percentage": 0.6,
+          "win_percentage_display": "60.0%",
+          "record": "3-2"
+        },
+        "STRONG": {
+          "wins": 2,
+          "losses": 2,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 4,
+          "total_positions": 4,
+          "win_percentage": 0.5,
+          "win_percentage_display": "50.0%",
+          "record": "2-2"
+        },
+        "ELITE": {
+          "wins": 3,
+          "losses": 2,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 5,
+          "total_positions": 5,
+          "win_percentage": 0.6,
+          "win_percentage_display": "60.0%",
+          "record": "3-2"
+        }
+      },
+      "totals_by_tier": {
+        "WEAK": {
+          "wins": 2,
+          "losses": 2,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 4,
+          "total_positions": 4,
+          "win_percentage": 0.5,
+          "win_percentage_display": "50.0%",
+          "record": "2-2"
+        },
+        "MODERATE": {
+          "wins": 2,
+          "losses": 2,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 4,
+          "total_positions": 4,
+          "win_percentage": 0.5,
+          "win_percentage_display": "50.0%",
+          "record": "2-2"
+        },
+        "STRONG": {
+          "wins": 5,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 5,
+          "total_positions": 5,
+          "win_percentage": 1.0,
+          "win_percentage_display": "100.0%",
+          "record": "5-0"
+        },
+        "ELITE": {
+          "wins": 0,
+          "losses": 2,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 2,
+          "total_positions": 2,
+          "win_percentage": 0.0,
+          "win_percentage_display": "0.0%",
+          "record": "0-2"
+        }
+      }
+    },
+    "2026-07-21": {
+      "ats_by_tier": {
+        "WEAK": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 3,
+          "decided_positions": 0,
+          "total_positions": 3,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "MODERATE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 3,
+          "decided_positions": 0,
+          "total_positions": 3,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "STRONG": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 3,
+          "decided_positions": 0,
+          "total_positions": 3,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "ELITE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 4,
+          "decided_positions": 0,
+          "total_positions": 4,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        }
+      },
+      "totals_by_tier": {
+        "WEAK": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 3,
+          "decided_positions": 0,
+          "total_positions": 3,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "MODERATE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 3,
+          "decided_positions": 0,
+          "total_positions": 3,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "STRONG": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 4,
+          "decided_positions": 0,
+          "total_positions": 4,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "ELITE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 3,
+          "decided_positions": 0,
+          "total_positions": 3,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        }
+      }
+    },
+    "2026-07-22": {
+      "ats_by_tier": {
+        "WEAK": {
+          "wins": 2,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 2,
+          "total_positions": 2,
+          "win_percentage": 1.0,
+          "win_percentage_display": "100.0%",
+          "record": "2-0"
+        },
+        "MODERATE": {
+          "wins": 1,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 2,
+          "total_positions": 2,
+          "win_percentage": 0.5,
+          "win_percentage_display": "50.0%",
+          "record": "1-1"
+        },
+        "STRONG": {
+          "wins": 6,
+          "losses": 3,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 9,
+          "total_positions": 9,
+          "win_percentage": 0.6667,
+          "win_percentage_display": "66.7%",
+          "record": "6-3"
+        },
+        "ELITE": {
+          "wins": 2,
+          "losses": 2,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 4,
+          "total_positions": 4,
+          "win_percentage": 0.5,
+          "win_percentage_display": "50.0%",
+          "record": "2-2"
+        }
+      },
+      "totals_by_tier": {
+        "WEAK": {
+          "wins": 2,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 3,
+          "total_positions": 3,
+          "win_percentage": 0.6667,
+          "win_percentage_display": "66.7%",
+          "record": "2-1"
+        },
+        "MODERATE": {
+          "wins": 3,
+          "losses": 3,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 6,
+          "total_positions": 6,
+          "win_percentage": 0.5,
+          "win_percentage_display": "50.0%",
+          "record": "3-3"
+        },
+        "STRONG": {
+          "wins": 2,
+          "losses": 6,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 8,
+          "total_positions": 8,
+          "win_percentage": 0.25,
+          "win_percentage_display": "25.0%",
+          "record": "2-6"
+        },
+        "ELITE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 0,
+          "total_positions": 0,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        }
+      }
+    },
+    "2026-07-23": {
+      "ats_by_tier": {
+        "WEAK": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 0,
+          "total_positions": 0,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "MODERATE": {
+          "wins": 3,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 4,
+          "total_positions": 4,
+          "win_percentage": 0.75,
+          "win_percentage_display": "75.0%",
+          "record": "3-1"
+        },
+        "STRONG": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 0,
+          "total_positions": 0,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "ELITE": {
+          "wins": 0,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 1,
+          "total_positions": 1,
+          "win_percentage": 0.0,
+          "win_percentage_display": "0.0%",
+          "record": "0-1"
+        }
+      },
+      "totals_by_tier": {
+        "WEAK": {
+          "wins": 1,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 2,
+          "total_positions": 2,
+          "win_percentage": 0.5,
+          "win_percentage_display": "50.0%",
+          "record": "1-1"
+        },
+        "MODERATE": {
+          "wins": 0,
+          "losses": 2,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 2,
+          "total_positions": 2,
+          "win_percentage": 0.0,
+          "win_percentage_display": "0.0%",
+          "record": "0-2"
+        },
+        "STRONG": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 0,
+          "total_positions": 0,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "ELITE": {
+          "wins": 1,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 1,
+          "total_positions": 1,
+          "win_percentage": 1.0,
+          "win_percentage_display": "100.0%",
+          "record": "1-0"
+        }
+      }
+    },
+    "2026-07-23_superseded_20260723T120903": {
+      "ats_by_tier": {
+        "WEAK": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 1,
+          "decided_positions": 0,
+          "total_positions": 1,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "MODERATE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 3,
+          "decided_positions": 0,
+          "total_positions": 3,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "STRONG": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 0,
+          "total_positions": 0,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "ELITE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 1,
+          "decided_positions": 0,
+          "total_positions": 1,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        }
+      },
+      "totals_by_tier": {
+        "WEAK": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 1,
+          "decided_positions": 0,
+          "total_positions": 1,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "MODERATE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 2,
+          "decided_positions": 0,
+          "total_positions": 2,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "STRONG": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 1,
+          "decided_positions": 0,
+          "total_positions": 1,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "ELITE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 1,
+          "decided_positions": 0,
+          "total_positions": 1,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        }
+      }
+    },
+    "2026-07-24": {
+      "ats_by_tier": {
+        "WEAK": {
+          "wins": 0,
+          "losses": 2,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 2,
+          "total_positions": 2,
+          "win_percentage": 0.0,
+          "win_percentage_display": "0.0%",
+          "record": "0-2"
+        },
+        "MODERATE": {
+          "wins": 1,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 1,
+          "total_positions": 1,
+          "win_percentage": 1.0,
+          "win_percentage_display": "100.0%",
+          "record": "1-0"
+        },
+        "STRONG": {
+          "wins": 3,
+          "losses": 3,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 6,
+          "total_positions": 6,
+          "win_percentage": 0.5,
+          "win_percentage_display": "50.0%",
+          "record": "3-3"
+        },
+        "ELITE": {
+          "wins": 4,
+          "losses": 2,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 6,
+          "total_positions": 6,
+          "win_percentage": 0.6667,
+          "win_percentage_display": "66.7%",
+          "record": "4-2"
+        }
+      },
+      "totals_by_tier": {
+        "WEAK": {
+          "wins": 2,
+          "losses": 2,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 4,
+          "total_positions": 4,
+          "win_percentage": 0.5,
+          "win_percentage_display": "50.0%",
+          "record": "2-2"
+        },
+        "MODERATE": {
+          "wins": 2,
+          "losses": 2,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 4,
+          "total_positions": 4,
+          "win_percentage": 0.5,
+          "win_percentage_display": "50.0%",
+          "record": "2-2"
+        },
+        "STRONG": {
+          "wins": 3,
+          "losses": 2,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 5,
+          "total_positions": 5,
+          "win_percentage": 0.6,
+          "win_percentage_display": "60.0%",
+          "record": "3-2"
+        },
+        "ELITE": {
+          "wins": 0,
+          "losses": 2,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 2,
+          "total_positions": 2,
+          "win_percentage": 0.0,
+          "win_percentage_display": "0.0%",
+          "record": "0-2"
+        }
+      }
+    },
+    "2026-07-24_superseded_20260724T144259": {
+      "ats_by_tier": {
+        "WEAK": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 2,
+          "decided_positions": 0,
+          "total_positions": 2,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "MODERATE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 1,
+          "decided_positions": 0,
+          "total_positions": 1,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "STRONG": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 6,
+          "decided_positions": 0,
+          "total_positions": 6,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "ELITE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 6,
+          "decided_positions": 0,
+          "total_positions": 6,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        }
+      },
+      "totals_by_tier": {
+        "WEAK": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 4,
+          "decided_positions": 0,
+          "total_positions": 4,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "MODERATE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 4,
+          "decided_positions": 0,
+          "total_positions": 4,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "STRONG": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 5,
+          "decided_positions": 0,
+          "total_positions": 5,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "ELITE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 2,
+          "decided_positions": 0,
+          "total_positions": 2,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        }
+      }
+    },
+    "2026-07-25": {
+      "ats_by_tier": {
+        "WEAK": {
+          "wins": 5,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 6,
+          "total_positions": 6,
+          "win_percentage": 0.8333,
+          "win_percentage_display": "83.3%",
+          "record": "5-1"
+        },
+        "MODERATE": {
+          "wins": 2,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 3,
+          "total_positions": 3,
+          "win_percentage": 0.6667,
+          "win_percentage_display": "66.7%",
+          "record": "2-1"
+        },
+        "STRONG": {
+          "wins": 2,
+          "losses": 2,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 4,
+          "total_positions": 4,
+          "win_percentage": 0.5,
+          "win_percentage_display": "50.0%",
+          "record": "2-2"
+        },
+        "ELITE": {
+          "wins": 1,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 2,
+          "total_positions": 2,
+          "win_percentage": 0.5,
+          "win_percentage_display": "50.0%",
+          "record": "1-1"
+        }
+      },
+      "totals_by_tier": {
+        "WEAK": {
+          "wins": 4,
+          "losses": 3,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 7,
+          "total_positions": 7,
+          "win_percentage": 0.5714,
+          "win_percentage_display": "57.1%",
+          "record": "4-3"
+        },
+        "MODERATE": {
+          "wins": 2,
+          "losses": 2,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 4,
+          "total_positions": 4,
+          "win_percentage": 0.5,
+          "win_percentage_display": "50.0%",
+          "record": "2-2"
+        },
+        "STRONG": {
+          "wins": 2,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 3,
+          "total_positions": 3,
+          "win_percentage": 0.6667,
+          "win_percentage_display": "66.7%",
+          "record": "2-1"
+        },
+        "ELITE": {
+          "wins": 1,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 1,
+          "total_positions": 1,
+          "win_percentage": 1.0,
+          "win_percentage_display": "100.0%",
+          "record": "1-0"
+        }
+      }
+    },
+    "2026-07-25_superseded_20260725T140739": {
+      "ats_by_tier": {
+        "WEAK": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 6,
+          "decided_positions": 0,
+          "total_positions": 6,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "MODERATE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 3,
+          "decided_positions": 0,
+          "total_positions": 3,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "STRONG": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 4,
+          "decided_positions": 0,
+          "total_positions": 4,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "ELITE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 2,
+          "decided_positions": 0,
+          "total_positions": 2,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        }
+      },
+      "totals_by_tier": {
+        "WEAK": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 7,
+          "decided_positions": 0,
+          "total_positions": 7,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "MODERATE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 4,
+          "decided_positions": 0,
+          "total_positions": 4,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "STRONG": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 3,
+          "decided_positions": 0,
+          "total_positions": 3,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "ELITE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 1,
+          "decided_positions": 0,
+          "total_positions": 1,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        }
+      }
+    },
+    "2026-07-26": {
+      "ats_by_tier": {
+        "WEAK": {
+          "wins": 2,
+          "losses": 2,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 4,
+          "total_positions": 4,
+          "win_percentage": 0.5,
+          "win_percentage_display": "50.0%",
+          "record": "2-2"
+        },
+        "MODERATE": {
+          "wins": 1,
+          "losses": 4,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 5,
+          "total_positions": 5,
+          "win_percentage": 0.2,
+          "win_percentage_display": "20.0%",
+          "record": "1-4"
+        },
+        "STRONG": {
+          "wins": 3,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 4,
+          "total_positions": 4,
+          "win_percentage": 0.75,
+          "win_percentage_display": "75.0%",
+          "record": "3-1"
+        },
+        "ELITE": {
+          "wins": 1,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 2,
+          "total_positions": 2,
+          "win_percentage": 0.5,
+          "win_percentage_display": "50.0%",
+          "record": "1-1"
+        }
+      },
+      "totals_by_tier": {
+        "WEAK": {
+          "wins": 4,
+          "losses": 3,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 7,
+          "total_positions": 7,
+          "win_percentage": 0.5714,
+          "win_percentage_display": "57.1%",
+          "record": "4-3"
+        },
+        "MODERATE": {
+          "wins": 2,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 3,
+          "total_positions": 3,
+          "win_percentage": 0.6667,
+          "win_percentage_display": "66.7%",
+          "record": "2-1"
+        },
+        "STRONG": {
+          "wins": 3,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 3,
+          "total_positions": 3,
+          "win_percentage": 1.0,
+          "win_percentage_display": "100.0%",
+          "record": "3-0"
+        },
+        "ELITE": {
+          "wins": 0,
+          "losses": 1,
+          "pushes": 1,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 1,
+          "total_positions": 2,
+          "win_percentage": 0.0,
+          "win_percentage_display": "0.0%",
+          "record": "0-1-1P"
+        }
+      }
+    },
+    "2026-07-26_superseded_20260726T135443": {
+      "ats_by_tier": {
+        "WEAK": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 4,
+          "decided_positions": 0,
+          "total_positions": 4,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "MODERATE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 5,
+          "decided_positions": 0,
+          "total_positions": 5,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "STRONG": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 4,
+          "decided_positions": 0,
+          "total_positions": 4,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "ELITE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 1,
+          "decided_positions": 0,
+          "total_positions": 1,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        }
+      },
+      "totals_by_tier": {
+        "WEAK": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 7,
+          "decided_positions": 0,
+          "total_positions": 7,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "MODERATE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 3,
+          "decided_positions": 0,
+          "total_positions": 3,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "STRONG": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 3,
+          "decided_positions": 0,
+          "total_positions": 3,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "ELITE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 1,
+          "decided_positions": 0,
+          "total_positions": 1,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        }
+      }
+    },
+    "2026-07-27": {
+      "ats_by_tier": {
+        "WEAK": {
+          "wins": 3,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 1,
+          "pending": 0,
+          "decided_positions": 3,
+          "total_positions": 4,
+          "win_percentage": 1.0,
+          "win_percentage_display": "100.0%",
+          "record": "3-0"
+        },
+        "MODERATE": {
+          "wins": 1,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 2,
+          "total_positions": 2,
+          "win_percentage": 0.5,
+          "win_percentage_display": "50.0%",
+          "record": "1-1"
+        },
+        "STRONG": {
+          "wins": 1,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 2,
+          "total_positions": 2,
+          "win_percentage": 0.5,
+          "win_percentage_display": "50.0%",
+          "record": "1-1"
+        },
+        "ELITE": {
+          "wins": 2,
+          "losses": 2,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 4,
+          "total_positions": 4,
+          "win_percentage": 0.5,
+          "win_percentage_display": "50.0%",
+          "record": "2-2"
+        }
+      },
+      "totals_by_tier": {
+        "WEAK": {
+          "wins": 2,
+          "losses": 3,
+          "pushes": 0,
+          "voids": 1,
+          "pending": 0,
+          "decided_positions": 5,
+          "total_positions": 6,
+          "win_percentage": 0.4,
+          "win_percentage_display": "40.0%",
+          "record": "2-3"
+        },
+        "MODERATE": {
+          "wins": 1,
+          "losses": 2,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 3,
+          "total_positions": 3,
+          "win_percentage": 0.3333,
+          "win_percentage_display": "33.3%",
+          "record": "1-2"
+        },
+        "STRONG": {
+          "wins": 1,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 2,
+          "total_positions": 2,
+          "win_percentage": 0.5,
+          "win_percentage_display": "50.0%",
+          "record": "1-1"
+        },
+        "ELITE": {
+          "wins": 1,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 1,
+          "total_positions": 1,
+          "win_percentage": 1.0,
+          "win_percentage_display": "100.0%",
+          "record": "1-0"
+        }
+      }
+    },
+    "2026-07-27_pre_part7_20260728T170335Z": {
+      "ats_by_tier": {
+        "WEAK": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 4,
+          "decided_positions": 0,
+          "total_positions": 4,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "MODERATE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 2,
+          "decided_positions": 0,
+          "total_positions": 2,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "STRONG": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 2,
+          "decided_positions": 0,
+          "total_positions": 2,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "ELITE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 4,
+          "decided_positions": 0,
+          "total_positions": 4,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        }
+      },
+      "totals_by_tier": {
+        "WEAK": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 6,
+          "decided_positions": 0,
+          "total_positions": 6,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "MODERATE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 3,
+          "decided_positions": 0,
+          "total_positions": 3,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "STRONG": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 2,
+          "decided_positions": 0,
+          "total_positions": 2,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "ELITE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 1,
+          "decided_positions": 0,
+          "total_positions": 1,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        }
+      }
+    },
+    "2026-07-27_superseded_20260727T181141": {
+      "ats_by_tier": {
+        "WEAK": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 4,
+          "decided_positions": 0,
+          "total_positions": 4,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "MODERATE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 2,
+          "decided_positions": 0,
+          "total_positions": 2,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "STRONG": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 2,
+          "decided_positions": 0,
+          "total_positions": 2,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "ELITE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 4,
+          "decided_positions": 0,
+          "total_positions": 4,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        }
+      },
+      "totals_by_tier": {
+        "WEAK": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 6,
+          "decided_positions": 0,
+          "total_positions": 6,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "MODERATE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 3,
+          "decided_positions": 0,
+          "total_positions": 3,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "STRONG": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 2,
+          "decided_positions": 0,
+          "total_positions": 2,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "ELITE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 1,
+          "decided_positions": 0,
+          "total_positions": 1,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        }
+      }
+    },
+    "2026-07-28": {
+      "ats_by_tier": {
+        "WEAK": {
+          "wins": 2,
+          "losses": 5,
+          "pushes": 0,
+          "voids": 1,
+          "pending": 0,
+          "decided_positions": 7,
+          "total_positions": 8,
+          "win_percentage": 0.2857,
+          "win_percentage_display": "28.6%",
+          "record": "2-5"
+        },
+        "MODERATE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 0,
+          "total_positions": 0,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "STRONG": {
+          "wins": 2,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 3,
+          "total_positions": 3,
+          "win_percentage": 0.6667,
+          "win_percentage_display": "66.7%",
+          "record": "2-1"
+        },
+        "ELITE": {
+          "wins": 3,
+          "losses": 2,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 5,
+          "total_positions": 5,
+          "win_percentage": 0.6,
+          "win_percentage_display": "60.0%",
+          "record": "3-2"
+        }
+      },
+      "totals_by_tier": {
+        "WEAK": {
+          "wins": 2,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 1,
+          "pending": 0,
+          "decided_positions": 2,
+          "total_positions": 3,
+          "win_percentage": 1.0,
+          "win_percentage_display": "100.0%",
+          "record": "2-0"
+        },
+        "MODERATE": {
+          "wins": 3,
+          "losses": 2,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 5,
+          "total_positions": 5,
+          "win_percentage": 0.6,
+          "win_percentage_display": "60.0%",
+          "record": "3-2"
+        },
+        "STRONG": {
+          "wins": 1,
+          "losses": 4,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 5,
+          "total_positions": 5,
+          "win_percentage": 0.2,
+          "win_percentage_display": "20.0%",
+          "record": "1-4"
+        },
+        "ELITE": {
+          "wins": 1,
+          "losses": 2,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 3,
+          "total_positions": 3,
+          "win_percentage": 0.3333,
+          "win_percentage_display": "33.3%",
+          "record": "1-2"
+        }
+      }
+    },
+    "2026-07-29": {
+      "ats_by_tier": {
+        "WEAK": {
+          "wins": 0,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 1,
+          "total_positions": 1,
+          "win_percentage": 0.0,
+          "win_percentage_display": "0.0%",
+          "record": "0-1"
+        },
+        "MODERATE": {
+          "wins": 2,
+          "losses": 2,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 4,
+          "total_positions": 4,
+          "win_percentage": 0.5,
+          "win_percentage_display": "50.0%",
+          "record": "2-2"
+        },
+        "STRONG": {
+          "wins": 2,
+          "losses": 3,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 5,
+          "total_positions": 5,
+          "win_percentage": 0.4,
+          "win_percentage_display": "40.0%",
+          "record": "2-3"
+        },
+        "ELITE": {
+          "wins": 3,
+          "losses": 3,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 6,
+          "total_positions": 6,
+          "win_percentage": 0.5,
+          "win_percentage_display": "50.0%",
+          "record": "3-3"
+        }
+      },
+      "totals_by_tier": {
+        "WEAK": {
+          "wins": 0,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 1,
+          "total_positions": 1,
+          "win_percentage": 0.0,
+          "win_percentage_display": "0.0%",
+          "record": "0-1"
+        },
+        "MODERATE": {
+          "wins": 4,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 5,
+          "total_positions": 5,
+          "win_percentage": 0.8,
+          "win_percentage_display": "80.0%",
+          "record": "4-1"
+        },
+        "STRONG": {
+          "wins": 4,
+          "losses": 3,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 7,
+          "total_positions": 7,
+          "win_percentage": 0.5714,
+          "win_percentage_display": "57.1%",
+          "record": "4-3"
+        },
+        "ELITE": {
+          "wins": 3,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 3,
+          "total_positions": 3,
+          "win_percentage": 1.0,
+          "win_percentage_display": "100.0%",
+          "record": "3-0"
+        }
+      }
+    },
+    "2026-07-30": {
+      "ats_by_tier": {
+        "WEAK": {
+          "wins": 1,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 1,
+          "total_positions": 1,
+          "win_percentage": 1.0,
+          "win_percentage_display": "100.0%",
+          "record": "1-0"
+        },
+        "MODERATE": {
+          "wins": 0,
+          "losses": 2,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 2,
+          "total_positions": 2,
+          "win_percentage": 0.0,
+          "win_percentage_display": "0.0%",
+          "record": "0-2"
+        },
+        "STRONG": {
+          "wins": 3,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 4,
+          "total_positions": 4,
+          "win_percentage": 0.75,
+          "win_percentage_display": "75.0%",
+          "record": "3-1"
+        },
+        "ELITE": {
+          "wins": 2,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 3,
+          "total_positions": 3,
+          "win_percentage": 0.6667,
+          "win_percentage_display": "66.7%",
+          "record": "2-1"
+        }
+      },
+      "totals_by_tier": {
+        "WEAK": {
+          "wins": 1,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 2,
+          "total_positions": 2,
+          "win_percentage": 0.5,
+          "win_percentage_display": "50.0%",
+          "record": "1-1"
+        },
+        "MODERATE": {
+          "wins": 0,
+          "losses": 2,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 2,
+          "total_positions": 2,
+          "win_percentage": 0.0,
+          "win_percentage_display": "0.0%",
+          "record": "0-2"
+        },
+        "STRONG": {
+          "wins": 1,
+          "losses": 3,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 4,
+          "total_positions": 4,
+          "win_percentage": 0.25,
+          "win_percentage_display": "25.0%",
+          "record": "1-3"
+        },
+        "ELITE": {
+          "wins": 1,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 2,
+          "total_positions": 2,
+          "win_percentage": 0.5,
+          "win_percentage_display": "50.0%",
+          "record": "1-1"
+        }
+      }
+    },
+    "2026-07-31": {
+      "ats_by_tier": {
+        "WEAK": {
+          "wins": 1,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 1,
+          "total_positions": 1,
+          "win_percentage": 1.0,
+          "win_percentage_display": "100.0%",
+          "record": "1-0"
+        },
+        "MODERATE": {
+          "wins": 2,
+          "losses": 3,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 5,
+          "total_positions": 5,
+          "win_percentage": 0.4,
+          "win_percentage_display": "40.0%",
+          "record": "2-3"
+        },
+        "STRONG": {
+          "wins": 1,
+          "losses": 3,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 4,
+          "total_positions": 4,
+          "win_percentage": 0.25,
+          "win_percentage_display": "25.0%",
+          "record": "1-3"
+        },
+        "ELITE": {
+          "wins": 2,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 3,
+          "total_positions": 3,
+          "win_percentage": 0.6667,
+          "win_percentage_display": "66.7%",
+          "record": "2-1"
+        }
+      },
+      "totals_by_tier": {
+        "WEAK": {
+          "wins": 2,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 2,
+          "total_positions": 2,
+          "win_percentage": 1.0,
+          "win_percentage_display": "100.0%",
+          "record": "2-0"
+        },
+        "MODERATE": {
+          "wins": 0,
+          "losses": 2,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 2,
+          "total_positions": 2,
+          "win_percentage": 0.0,
+          "win_percentage_display": "0.0%",
+          "record": "0-2"
+        },
+        "STRONG": {
+          "wins": 3,
+          "losses": 3,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 6,
+          "total_positions": 6,
+          "win_percentage": 0.5,
+          "win_percentage_display": "50.0%",
+          "record": "3-3"
+        },
+        "ELITE": {
+          "wins": 3,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 3,
+          "total_positions": 3,
+          "win_percentage": 1.0,
+          "win_percentage_display": "100.0%",
+          "record": "3-0"
+        }
+      }
+    },
+    "2026-08-01": {
+      "ats_by_tier": {
+        "WEAK": {
+          "wins": 2,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 3,
+          "total_positions": 3,
+          "win_percentage": 0.6667,
+          "win_percentage_display": "66.7%",
+          "record": "2-1"
+        },
+        "MODERATE": {
+          "wins": 1,
+          "losses": 5,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 6,
+          "total_positions": 6,
+          "win_percentage": 0.1667,
+          "win_percentage_display": "16.7%",
+          "record": "1-5"
+        },
+        "STRONG": {
+          "wins": 4,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 4,
+          "total_positions": 4,
+          "win_percentage": 1.0,
+          "win_percentage_display": "100.0%",
+          "record": "4-0"
+        },
+        "ELITE": {
+          "wins": 0,
+          "losses": 2,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 2,
+          "total_positions": 2,
+          "win_percentage": 0.0,
+          "win_percentage_display": "0.0%",
+          "record": "0-2"
+        }
+      },
+      "totals_by_tier": {
+        "WEAK": {
+          "wins": 2,
+          "losses": 2,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 4,
+          "total_positions": 4,
+          "win_percentage": 0.5,
+          "win_percentage_display": "50.0%",
+          "record": "2-2"
+        },
+        "MODERATE": {
+          "wins": 2,
+          "losses": 3,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 5,
+          "total_positions": 5,
+          "win_percentage": 0.4,
+          "win_percentage_display": "40.0%",
+          "record": "2-3"
+        },
+        "STRONG": {
+          "wins": 4,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 5,
+          "total_positions": 5,
+          "win_percentage": 0.8,
+          "win_percentage_display": "80.0%",
+          "record": "4-1"
+        },
+        "ELITE": {
+          "wins": 0,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 1,
+          "total_positions": 1,
+          "win_percentage": 0.0,
+          "win_percentage_display": "0.0%",
+          "record": "0-1"
+        }
+      }
+    },
+    "2026-08-02": {
+      "ats_by_tier": {
+        "WEAK": {
+          "wins": 2,
+          "losses": 2,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 4,
+          "total_positions": 4,
+          "win_percentage": 0.5,
+          "win_percentage_display": "50.0%",
+          "record": "2-2"
+        },
+        "MODERATE": {
+          "wins": 1,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 2,
+          "total_positions": 2,
+          "win_percentage": 0.5,
+          "win_percentage_display": "50.0%",
+          "record": "1-1"
+        },
+        "STRONG": {
+          "wins": 2,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 3,
+          "total_positions": 3,
+          "win_percentage": 0.6667,
+          "win_percentage_display": "66.7%",
+          "record": "2-1"
+        },
+        "ELITE": {
+          "wins": 2,
+          "losses": 4,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 6,
+          "total_positions": 6,
+          "win_percentage": 0.3333,
+          "win_percentage_display": "33.3%",
+          "record": "2-4"
+        }
+      },
+      "totals_by_tier": {
+        "WEAK": {
+          "wins": 1,
+          "losses": 2,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 3,
+          "total_positions": 3,
+          "win_percentage": 0.3333,
+          "win_percentage_display": "33.3%",
+          "record": "1-2"
+        },
+        "MODERATE": {
+          "wins": 1,
+          "losses": 4,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 5,
+          "total_positions": 5,
+          "win_percentage": 0.2,
+          "win_percentage_display": "20.0%",
+          "record": "1-4"
+        },
+        "STRONG": {
+          "wins": 1,
+          "losses": 3,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 4,
+          "total_positions": 4,
+          "win_percentage": 0.25,
+          "win_percentage_display": "25.0%",
+          "record": "1-3"
+        },
+        "ELITE": {
+          "wins": 0,
+          "losses": 3,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 3,
+          "total_positions": 3,
+          "win_percentage": 0.0,
+          "win_percentage_display": "0.0%",
+          "record": "0-3"
+        }
+      }
+    },
+    "2026-08-02_superseded_20260802T121242": {
+      "ats_by_tier": {
+        "WEAK": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 4,
+          "decided_positions": 0,
+          "total_positions": 4,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "MODERATE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 2,
+          "decided_positions": 0,
+          "total_positions": 2,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "STRONG": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 3,
+          "decided_positions": 0,
+          "total_positions": 3,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "ELITE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 6,
+          "decided_positions": 0,
+          "total_positions": 6,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        }
+      },
+      "totals_by_tier": {
+        "WEAK": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 3,
+          "decided_positions": 0,
+          "total_positions": 3,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "MODERATE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 5,
+          "decided_positions": 0,
+          "total_positions": 5,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "STRONG": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 4,
+          "decided_positions": 0,
+          "total_positions": 4,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "ELITE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 3,
+          "decided_positions": 0,
+          "total_positions": 3,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        }
+      }
+    },
+    "2026-08-03": {
+      "ats_by_tier": {
+        "WEAK": {
+          "wins": 2,
+          "losses": 2,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 4,
+          "total_positions": 4,
+          "win_percentage": 0.5,
+          "win_percentage_display": "50.0%",
+          "record": "2-2"
+        },
+        "MODERATE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 0,
+          "total_positions": 0,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "STRONG": {
+          "wins": 2,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 2,
+          "total_positions": 2,
+          "win_percentage": 1.0,
+          "win_percentage_display": "100.0%",
+          "record": "2-0"
+        },
+        "ELITE": {
+          "wins": 2,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 2,
+          "total_positions": 2,
+          "win_percentage": 1.0,
+          "win_percentage_display": "100.0%",
+          "record": "2-0"
+        }
+      },
+      "totals_by_tier": {
+        "WEAK": {
+          "wins": 0,
+          "losses": 2,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 2,
+          "total_positions": 2,
+          "win_percentage": 0.0,
+          "win_percentage_display": "0.0%",
+          "record": "0-2"
+        },
+        "MODERATE": {
+          "wins": 0,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 1,
+          "total_positions": 1,
+          "win_percentage": 0.0,
+          "win_percentage_display": "0.0%",
+          "record": "0-1"
+        },
+        "STRONG": {
+          "wins": 1,
+          "losses": 3,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 4,
+          "total_positions": 4,
+          "win_percentage": 0.25,
+          "win_percentage_display": "25.0%",
+          "record": "1-3"
+        },
+        "ELITE": {
+          "wins": 1,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 1,
+          "total_positions": 1,
+          "win_percentage": 1.0,
+          "win_percentage_display": "100.0%",
+          "record": "1-0"
+        }
+      }
+    },
+    "2026-08-03_superseded_20260803T185028": {
+      "ats_by_tier": {
+        "WEAK": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 4,
+          "decided_positions": 0,
+          "total_positions": 4,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "MODERATE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 0,
+          "total_positions": 0,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "STRONG": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 2,
+          "decided_positions": 0,
+          "total_positions": 2,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "ELITE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 1,
+          "decided_positions": 0,
+          "total_positions": 1,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        }
+      },
+      "totals_by_tier": {
+        "WEAK": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 0,
+          "total_positions": 0,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "MODERATE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 0,
+          "total_positions": 0,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "STRONG": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 0,
+          "total_positions": 0,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "ELITE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 0,
+          "total_positions": 0,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        }
+      }
+    },
+    "2026-08-03_superseded_20260803T194516": {
+      "ats_by_tier": {
+        "WEAK": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 4,
+          "decided_positions": 0,
+          "total_positions": 4,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "MODERATE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 0,
+          "total_positions": 0,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "STRONG": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 2,
+          "decided_positions": 0,
+          "total_positions": 2,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "ELITE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 1,
+          "decided_positions": 0,
+          "total_positions": 1,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        }
+      },
+      "totals_by_tier": {
+        "WEAK": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 0,
+          "total_positions": 0,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "MODERATE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 0,
+          "total_positions": 0,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "STRONG": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 0,
+          "total_positions": 0,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "ELITE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 0,
+          "total_positions": 0,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        }
+      }
+    },
+    "2026-08-03_superseded_20260803T194609": {
+      "ats_by_tier": {
+        "WEAK": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 4,
+          "decided_positions": 0,
+          "total_positions": 4,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "MODERATE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 0,
+          "total_positions": 0,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "STRONG": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 2,
+          "decided_positions": 0,
+          "total_positions": 2,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "ELITE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 2,
+          "decided_positions": 0,
+          "total_positions": 2,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        }
+      },
+      "totals_by_tier": {
+        "WEAK": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 2,
+          "decided_positions": 0,
+          "total_positions": 2,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "MODERATE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 1,
+          "decided_positions": 0,
+          "total_positions": 1,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "STRONG": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 4,
+          "decided_positions": 0,
+          "total_positions": 4,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "ELITE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 1,
+          "decided_positions": 0,
+          "total_positions": 1,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        }
+      }
+    },
+    "2026-08-03_superseded_20260803T194950": {
+      "ats_by_tier": {
+        "WEAK": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 4,
+          "decided_positions": 0,
+          "total_positions": 4,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "MODERATE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 0,
+          "total_positions": 0,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "STRONG": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 2,
+          "decided_positions": 0,
+          "total_positions": 2,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "ELITE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 2,
+          "decided_positions": 0,
+          "total_positions": 2,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        }
+      },
+      "totals_by_tier": {
+        "WEAK": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 2,
+          "decided_positions": 0,
+          "total_positions": 2,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "MODERATE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 1,
+          "decided_positions": 0,
+          "total_positions": 1,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "STRONG": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 4,
+          "decided_positions": 0,
+          "total_positions": 4,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "ELITE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 1,
+          "decided_positions": 0,
+          "total_positions": 1,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        }
+      }
+    },
+    "2026-08-03_superseded_20260803T195258": {
+      "ats_by_tier": {
+        "WEAK": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 4,
+          "decided_positions": 0,
+          "total_positions": 4,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "MODERATE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 0,
+          "total_positions": 0,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "STRONG": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 2,
+          "decided_positions": 0,
+          "total_positions": 2,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "ELITE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 2,
+          "decided_positions": 0,
+          "total_positions": 2,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        }
+      },
+      "totals_by_tier": {
+        "WEAK": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 2,
+          "decided_positions": 0,
+          "total_positions": 2,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "MODERATE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 1,
+          "decided_positions": 0,
+          "total_positions": 1,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "STRONG": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 4,
+          "decided_positions": 0,
+          "total_positions": 4,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "ELITE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 1,
+          "decided_positions": 0,
+          "total_positions": 1,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        }
+      }
+    },
+    "2026-08-04": {
+      "ats_by_tier": {
+        "WEAK": {
+          "wins": 2,
+          "losses": 2,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 4,
+          "total_positions": 4,
+          "win_percentage": 0.5,
+          "win_percentage_display": "50.0%",
+          "record": "2-2"
+        },
+        "MODERATE": {
+          "wins": 1,
+          "losses": 3,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 4,
+          "total_positions": 4,
+          "win_percentage": 0.25,
+          "win_percentage_display": "25.0%",
+          "record": "1-3"
+        },
+        "STRONG": {
+          "wins": 3,
+          "losses": 2,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 5,
+          "total_positions": 5,
+          "win_percentage": 0.6,
+          "win_percentage_display": "60.0%",
+          "record": "3-2"
+        },
+        "ELITE": {
+          "wins": 1,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 2,
+          "total_positions": 2,
+          "win_percentage": 0.5,
+          "win_percentage_display": "50.0%",
+          "record": "1-1"
+        }
+      },
+      "totals_by_tier": {
+        "WEAK": {
+          "wins": 1,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 2,
+          "total_positions": 2,
+          "win_percentage": 0.5,
+          "win_percentage_display": "50.0%",
+          "record": "1-1"
+        },
+        "MODERATE": {
+          "wins": 3,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 4,
+          "total_positions": 4,
+          "win_percentage": 0.75,
+          "win_percentage_display": "75.0%",
+          "record": "3-1"
+        },
+        "STRONG": {
+          "wins": 3,
+          "losses": 2,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 5,
+          "total_positions": 5,
+          "win_percentage": 0.6,
+          "win_percentage_display": "60.0%",
+          "record": "3-2"
+        },
+        "ELITE": {
+          "wins": 3,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 4,
+          "total_positions": 4,
+          "win_percentage": 0.75,
+          "win_percentage_display": "75.0%",
+          "record": "3-1"
+        }
+      }
+    },
+    "2026-08-05": {
+      "ats_by_tier": {
+        "WEAK": {
+          "wins": 2,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 3,
+          "total_positions": 3,
+          "win_percentage": 0.6667,
+          "win_percentage_display": "66.7%",
+          "record": "2-1"
+        },
+        "MODERATE": {
+          "wins": 1,
+          "losses": 2,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 3,
+          "total_positions": 3,
+          "win_percentage": 0.3333,
+          "win_percentage_display": "33.3%",
+          "record": "1-2"
+        },
+        "STRONG": {
+          "wins": 1,
+          "losses": 3,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 4,
+          "total_positions": 4,
+          "win_percentage": 0.25,
+          "win_percentage_display": "25.0%",
+          "record": "1-3"
+        },
+        "ELITE": {
+          "wins": 2,
+          "losses": 3,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 5,
+          "total_positions": 5,
+          "win_percentage": 0.4,
+          "win_percentage_display": "40.0%",
+          "record": "2-3"
+        }
+      },
+      "totals_by_tier": {
+        "WEAK": {
+          "wins": 1,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 1,
+          "total_positions": 1,
+          "win_percentage": 1.0,
+          "win_percentage_display": "100.0%",
+          "record": "1-0"
+        },
+        "MODERATE": {
+          "wins": 2,
+          "losses": 2,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 4,
+          "total_positions": 4,
+          "win_percentage": 0.5,
+          "win_percentage_display": "50.0%",
+          "record": "2-2"
+        },
+        "STRONG": {
+          "wins": 4,
+          "losses": 3,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 7,
+          "total_positions": 7,
+          "win_percentage": 0.5714,
+          "win_percentage_display": "57.1%",
+          "record": "4-3"
+        },
+        "ELITE": {
+          "wins": 2,
+          "losses": 1,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 3,
+          "total_positions": 3,
+          "win_percentage": 0.6667,
+          "win_percentage_display": "66.7%",
+          "record": "2-1"
+        }
+      }
+    }
+  },
+  "content_hash": "0d85c89b2f63a03312f58d7c2464bd7d839e9b5a700ad3702b739bd29b60dc26"
+}
