@@ -63,20 +63,40 @@
         <h2 class="about-section-title">MLB — F5 Run Line · F5 Totals</h2>
 
         <h3 class="about-module-title">F5 Run Line — Bet-All</h3>
-        <p class="about-copy">The current F5 spread engine is <code>ATS_DYNAMIC_LOGIT_FILTER_V1__CAL_IDENTITY</code>. The current F5 totals engine is <code>TOTALS_SPARSE_PMF_STACK_V1</code>. Full-game outcomes and moneylines are not part of the MLB publication scope.</p>
-        <p class="about-copy">The F5 structure is intentional. The opening five innings isolate the starting-pitcher matchup, early offensive environment, park context, and game-day run conditions while reducing the late-game variance created by bullpen sequencing, pinch-hit decisions, and leverage-based managerial moves. Every MLB game on the slate receives one F5 run-line position at the posted ±0.5 spread. No moneylines. No selective skipping. Every eligible game is computed.</p>
+        <p class="about-copy">APEX publishes one first-five-inning run-line position for every eligible MLB game using the current production spread engine, <code>ATS_DYNAMIC_LOGIT_FILTER_V1__CAL_IDENTITY</code>.</p>
+        <p class="about-copy">The engine evaluates the actual posted FanDuel first-five spread and the corresponding price available on each side of that market. The published position is therefore based on the exact F5 spread being offered rather than a moneyline proxy or a generic favorite/underdog classification.</p>
+        <p class="about-copy">Every eligible MLB game receives one F5 run-line position. The system does not selectively remove games after scoring and does not publish MLB moneyline positions.</p>
+        <p class="about-copy">The model combines current starting-pitcher state, offensive and lineup information, handedness and matchup context, park and game-environment information, and the authentic pregame market available at issuance. Its final output is a calibrated probability for the posted F5 spread.</p>
 
         <h3 class="about-module-title">F5 Totals — Bet-All</h3>
-        <p class="about-copy">Every MLB game also receives one F5 total position. The model evaluates the posted first-five total and publishes either an over or under position based on the same core run-environment framework that supports the run-line market.</p>
-        <p class="about-copy">Park factors, weather, starting-pitcher profile, offensive quality, and schedule context are treated as matchup-specific inputs, not generic adjustments. The model is designed to produce one disciplined view of the first-five scoring environment and then translate that view into the published F5 market positions.</p>
+        <p class="about-copy">APEX also publishes one first-five total position for every eligible MLB game using the current production totals engine, <code>TOTALS_SPARSE_PMF_STACK_V1</code>.</p>
+        <p class="about-copy">The totals engine is a complete probability-distribution model rather than a simple over/under classifier. It produces an exact discrete probability distribution across possible first-five run totals before the sportsbook line is applied.</p>
+        <p class="about-copy">That structure preserves the probability of every relevant scoring outcome, including exact push probability when FanDuel posts an integer F5 total. Half-run totals are evaluated directly from the same complete run distribution.</p>
+        <p class="about-copy">The final over or under position is selected only after the model's full first-five scoring distribution has been produced.</p>
+        <p class="about-copy">The engine incorporates the current starting-pitcher matchup, offensive environment, lineup and platoon context, park characteristics, roof and weather information where relevant, schedule and game context, and the authentic FanDuel F5 total and prices available at issuance.</p>
 
         <h3 class="about-module-title">Model Framework</h3>
-        <p class="about-copy">The spread engine produces a calibrated probability for the actual posted FanDuel F5 spread and evaluates both offered side prices. The totals engine preserves a complete exact-run probability distribution, including integer-line push probability, before selecting the published over or under position.</p>
-        <p class="about-copy">Model development and evaluation preserve chronological ordering. Published inputs are pregame factual snapshots drawn through the controlled MLB data and issuance process.</p>
+        <p class="about-copy">APEX MLB is a two-engine pregame forecasting system built specifically for first-five-inning markets.</p>
+        <p class="about-copy">The two production engines are intentionally separate:</p>
+        <p class="about-copy">Run Line: <code>ATS_DYNAMIC_LOGIT_FILTER_V1__CAL_IDENTITY</code></p>
+        <p class="about-copy">Totals: <code>TOTALS_SPARSE_PMF_STACK_V1</code></p>
+        <p class="about-copy">The run-line engine estimates the probability of covering the actual posted F5 spread.</p>
+        <p class="about-copy">The totals engine estimates the complete probability distribution of first-five runs and then evaluates the posted F5 total from that distribution.</p>
+        <p class="about-copy">Both engines use point-in-time pregame information. Player, team, lineup, market and contextual information must be available before the relevant game begins. Later information is not substituted into historical model inputs.</p>
+        <p class="about-copy">Model development and comparison preserve chronological ordering. Candidate methods are evaluated against the existing production engine on the same historical games using probability-based scoring, calibration, season stability and reproducibility. A production engine is not replaced merely because another method is newer or more complex.</p>
+        <p class="about-copy">The current engines remain the production models unless a future challenger is separately tested, independently reproduced, demonstrates measurable improvement, and is manually approved for adoption.</p>
+
+        <h3 class="about-module-title">Production Process</h3>
+        <p class="about-copy">The public MLB forecast is produced through one daily production process.</p>
+        <p class="about-copy">Current factual player information, team and lineup information, historical outcomes and authentic market information feed the daily MLB process. The system refreshes the game state before scoring, captures the current FanDuel first-five markets, runs both production engines, and publishes one final slate.</p>
+        <p class="about-copy">Every published position is preserved with its market, line and price so that the following day's grader evaluates the exact position that was originally issued.</p>
+        <p class="about-copy">Research and experimental model testing are maintained separately from daily production. Experimental signals or mathematical methods cannot automatically replace either production engine.</p>
 
         <h3 class="about-module-title">Market Philosophy</h3>
-        <p class="about-copy">The MLB model does not use sharp-money tracking, public betting percentages, steam moves, or reverse line movement as predictive inputs. Those signals describe market behavior. APEX is designed to produce an independent matchup forecast first.</p>
-        <p class="about-copy">Closing-line value and market movement can still be used for post-publication evaluation, but they are not treated as inputs that generate the original position. The model is intended to measure the underlying matchup, not simply follow the market.</p>
+        <p class="about-copy">APEX does not use public betting percentages, sharp-money labels, steam-chasing signals or reverse-line-movement narratives as substitutes for matchup forecasting.</p>
+        <p class="about-copy">The FanDuel market is used where it is mathematically relevant to the actual wagering decision: the real posted F5 line and the authentic prices available on both sides of that market.</p>
+        <p class="about-copy">APEX therefore does not attempt to ignore the market, nor does it simply follow it. The objective is to combine an independently modeled view of the baseball matchup with the exact market that must ultimately be evaluated.</p>
+        <p class="about-copy">Closing-line movement and subsequent market behavior may be studied after publication, but they do not retroactively alter the original APEX position.</p>
       </section>
 
       <hr class="about-divider" aria-hidden="true">
