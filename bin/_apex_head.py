@@ -24,9 +24,9 @@ REQUIRED_MARKERS = [
 CACHE_VER = "apex-20260629-tier-perf"
 
 META_DESC_DEFAULT = (
-    "APEX is a quantitative forecasting platform for multi-sport model-driven picks, results, and research."
+    "APEX publishes MLB first-five quantitative forecasts, picks, and public results."
 )
-OG_DESC_DEFAULT = "Quantitative forecasting for model-driven sports markets."
+OG_DESC_DEFAULT = "MLB first-five quantitative forecasting with public results."
 
 
 def get_head_block(

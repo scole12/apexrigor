@@ -8,15 +8,12 @@ import subprocess
 import sys
 from pathlib import Path
 
-
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / "public"
 FILES = (
     "index.html",
     "picks.html",
     "results.html",
-    "about.html",
-    "mlb.html",
     "favicon.svg",
     "favicon.ico",
     "favicon-16x16.png",

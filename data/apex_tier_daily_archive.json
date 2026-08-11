@@ -1,7 +1,7 @@
 {
   "contract": "apex_tier_daily_archive_v1",
   "sport": "mlb",
-  "generated_at_et": "2026-08-06T09:01:56.946686-04:00",
+  "generated_at_et": "2026-08-10T07:01:22.723724-04:00",
   "tier_order": [
     "WEAK",
     "MODERATE",
@@ -10,7 +10,7 @@
   ],
   "tier_ledger_era_start": "2026-06-09",
   "tier_era_start": "2026-06-09",
-  "tier_era_end": "2026-08-05",
+  "tier_era_end": "2026-08-06",
   "tier_dates": [
     "2026-06-09",
     "2026-06-11",
@@ -81,9 +81,10 @@
     "2026-08-03_superseded_20260803T194950",
     "2026-08-03_superseded_20260803T195258",
     "2026-08-04",
-    "2026-08-05"
+    "2026-08-05",
+    "2026-08-06"
   ],
-  "tier_dates_count": 70,
+  "tier_dates_count": 71,
   "days": {
     "2026-06-09": {
       "ats_by_tier": {
@@ -7224,7 +7225,109 @@
           "record": "2-1"
         }
       }
+    },
+    "2026-08-06": {
+      "ats_by_tier": {
+        "WEAK": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 5,
+          "decided_positions": 0,
+          "total_positions": 5,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "MODERATE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 2,
+          "decided_positions": 0,
+          "total_positions": 2,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "STRONG": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 2,
+          "decided_positions": 0,
+          "total_positions": 2,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "ELITE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 2,
+          "decided_positions": 0,
+          "total_positions": 2,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        }
+      },
+      "totals_by_tier": {
+        "WEAK": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 0,
+          "decided_positions": 0,
+          "total_positions": 0,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "MODERATE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 4,
+          "decided_positions": 0,
+          "total_positions": 4,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "STRONG": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 4,
+          "decided_positions": 0,
+          "total_positions": 4,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        },
+        "ELITE": {
+          "wins": 0,
+          "losses": 0,
+          "pushes": 0,
+          "voids": 0,
+          "pending": 3,
+          "decided_positions": 0,
+          "total_positions": 3,
+          "win_percentage": null,
+          "win_percentage_display": "\u2014",
+          "record": "0-0"
+        }
+      }
     }
   },
-  "content_hash": "0d85c89b2f63a03312f58d7c2464bd7d839e9b5a700ad3702b739bd29b60dc26"
+  "content_hash": "805fdb1ec4ff1fd8a8635ac314b5977c9684b54c531141d69a8d372a09fcad39"
 }

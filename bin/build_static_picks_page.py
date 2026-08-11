@@ -5,7 +5,6 @@ from __future__ import annotations
 import json
 import os
 import re
-import shutil
 import sys
 from datetime import datetime
 from html import escape
@@ -15,11 +14,10 @@ JSON_PATH = Path("/opt/apex_site/data/mlb_today.json")
 INDEX_OUT = Path("/opt/apex_site/index.html")
 PICKS_OUT = Path("/opt/apex_site/picks/index.html")
 PICKS_HTML_ALT = Path("/opt/apex_site/picks.html")
-QUARANTINE = Path("/opt/apex_mlb/quarantine")
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-sys.path.insert(0, "/opt/apex_mlb/bin")
-sys.path.insert(0, "/opt/apex_mlb/pipeline/ops")
 sys.path.insert(0, "/opt/apex_mlb/current/bin")
+sys.path.insert(0, "/opt/apex_mlb/current/lib/pipeline")
+sys.path.insert(0, "/opt/apex_mlb/current/site_bin")
 from _apex_head import get_head_block, verify_branding  # noqa: E402
 from apex_active_model_display import (  # noqa: E402
     labels_from_model_identity,
@@ -37,20 +35,6 @@ SHELL_HERO = """  <div class="hero">
     <div class="hero-tag">QUANTITATIVE FORECASTING</div>
     <div class="hero-math">The Math Speaks.</div>
   </div>"""
-
-SPORT_SWITCHER_CSS = """<style>
-.sport-switcher{display:flex;gap:0;border-bottom:1px solid var(--border,#1f1f1f);margin-bottom:0}
-.sport-tab{flex:1;text-align:center;padding:14px 16px;min-height:44px;font-size:11px;letter-spacing:0.24em;text-transform:uppercase;color:var(--muted,#888);border-bottom:2px solid transparent;text-decoration:none;display:block}
-.sport-tab:hover,.sport-tab:focus{color:var(--text,#f5f5f5);outline:2px solid var(--text);outline-offset:-2px}
-.sport-tab.active{color:var(--text,#f5f5f5);border-bottom-color:var(--text,#f5f5f5)}
-</style>"""
-
-SPORT_SWITCHER_MLB = """
-  <div class="sport-switcher" role="tablist" aria-label="Sport selection">
-    <a href="{mlb_href}" class="sport-tab active" role="tab" aria-selected="true">MLB</a>
-    <a href="/picks/worldcup" class="sport-tab" role="tab" aria-selected="false">SOCCER</a>
-  </div>"""
-
 
 def et_to_min(et: str) -> int:
     try:
@@ -133,7 +117,14 @@ def build_panel(
         f"          <p>{escape(s)}</p>"
         for s in split_sentences(raw)
     )
-    tier_html = "" if no_tier else f'\n          <span class="tier-badge tier-badge--{tc}">{tier}</span>'
+    tier_html = (
+        ""
+        if no_tier
+        else (
+            '\n          <span class="rating-label">APEX WIN PROBABILITY RATING</span>'
+            f'\n          <span class="tier-badge tier-badge--{tc}">{tier}</span>'
+        )
+    )
     source_key = str(p.get("odds_source") or "").lower()
     sportsbook = (
         "FanDuel"
@@ -248,14 +239,6 @@ def build_games_html(games: list[dict], factual: dict | None = None) -> str:
 
 
 def main() -> int:
-    ts = datetime.now().strftime("%Y%m%d_%H%M%S")
-    QUARANTINE.mkdir(parents=True, exist_ok=True)
-    for src in (INDEX_OUT, PICKS_OUT, PICKS_HTML_ALT):
-        if src.is_file():
-            bak = QUARANTINE / f"{src.stem}_BEFORE_PICKS_POLISH_{ts}.html.bak"
-            shutil.copy2(src, bak)
-            print(f"BACKUP: {src} -> {bak}")
-
     d = json.loads(JSON_PATH.read_text(encoding="utf-8"))
     if not d.get("grading_banner"):
         auth_path = Path(
@@ -341,7 +324,6 @@ def main() -> int:
     <a href="/results">RESULTS</a>
     <a href="/about">ABOUT</a>
   </nav>
-{SPORT_SWITCHER_MLB.format(mlb_href="/picks")}
   <div class="section-head picks-board-head">
     <div class="title">{board_title}</div>
     <div class="meta mono">{meta_line}</div>
@@ -355,25 +337,19 @@ def main() -> int:
   <div class="foot mono">APEX RESEARCH · WALK-FORWARD VALIDATED · F5 MARKETS ONLY</div>
 </div>"""
 
-    def wrap_page(head: str, mlb_href: str) -> str:
-        page_body = body.replace(
-            SPORT_SWITCHER_MLB.format(mlb_href="/picks"),
-            SPORT_SWITCHER_MLB.format(mlb_href=mlb_href),
-            1,
-        )
+    def wrap_page(head: str) -> str:
         return f"""<!doctype html>
 <html lang="en">
 <head>
 {head}
-{SPORT_SWITCHER_CSS}
 </head>
 <body>
-{page_body}
+{body}
 </body>
 </html>"""
 
-    html_root = wrap_page(head_root, "/")
-    html_picks = wrap_page(head_picks, "/picks")
+    html_root = wrap_page(head_root)
+    html_picks = wrap_page(head_picks)
 
     for label, html in (("root", html_root), ("picks", html_picks)):
         ok, missing = verify_branding(html)

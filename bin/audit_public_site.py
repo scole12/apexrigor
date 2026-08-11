@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
-"""Fail closed on public-route, icon, manifest, and RUM cardinality drift."""
+"""Fail closed on the MLB-only public boundary, assets, and RUM drift."""
 
 from __future__ import annotations
 
 import argparse
 import hashlib
 import json
+import re
 import struct
 import sys
 from pathlib import Path
-
 
 DEFAULT_ROOT = Path(__file__).resolve().parents[1]
 BEACON_URL = "https://static.cloudflareinsights.com/beacon.min.js"
@@ -40,6 +40,7 @@ def main() -> int:
         "/": root / "index.html",
         "/picks": root / "picks" / "index.html",
         "/results": root / "results" / "index.html",
+        "/about": root / "about" / "index.html",
     }
     icon_pairs = (
         (root / "favicon.svg", root / "assets" / "favicon.svg"),
@@ -58,6 +59,7 @@ def main() -> int:
     )
     errors: list[str] = []
     route_beacons: dict[str, int] = {}
+    route_text: dict[str, str] = {}
     required_markup = (
         'rel="icon"',
         'rel="apple-touch-icon"',
@@ -69,6 +71,7 @@ def main() -> int:
             errors.append(f"missing route output {route}: {path}")
             continue
         text = path.read_text(encoding="utf-8")
+        route_text[route] = text
         for marker in required_markup:
             if marker not in text:
                 errors.append(f"{route} missing {marker}")
@@ -77,6 +80,58 @@ def main() -> int:
     counts = set(route_beacons.values())
     if counts not in ({0}, {1}):
         errors.append(f"mixed or duplicate public RUM beacon counts: {route_beacons}")
+
+    switcher_re = re.compile(r'<div class="sport-switcher".*?</div>', re.DOTALL)
+    public_world_cup_label_count = 0
+    public_soccer_label_count = 0
+    for route, text in route_text.items():
+        if switcher_re.search(text):
+            errors.append(f"{route} exposes an unneeded sport switcher before launch")
+        public_world_cup_label_count += len(
+            re.findall(r"(?:href=\"[^\"]*worldcup|>\s*WORLD CUP\s*<)", text, re.IGNORECASE)
+        )
+        public_soccer_label_count += len(
+            re.findall(r"(?:href=\"[^\"]*soccer|>\s*SOCCER\s*<)", text, re.IGNORECASE)
+        )
+    if public_world_cup_label_count or public_soccer_label_count:
+        errors.append(
+            "inactive sport leaked into a current public route: "
+            f"soccer={public_soccer_label_count}, "
+            f"world_cup={public_world_cup_label_count}"
+        )
+
+    hidden_route_paths = tuple(
+        root / section / route_name
+        for section in ("picks", "results")
+        for route_name in ("soccer", "worldcup")
+    )
+    for path in hidden_route_paths:
+        if path.exists():
+            errors.append(f"unlaunched sport route present in output: {path}")
+
+    about = route_text.get("/about", "")
+    for model_id in (
+        "ATS_DYNAMIC_LOGIT_FILTER_V1__CAL_IDENTITY",
+        "TOTALS_SPARSE_PMF_STACK_V1",
+    ):
+        if model_id not in about:
+            errors.append(f"/about missing current MLB model identity: {model_id}")
+
+    config_root = root if (root / "vercel.json").is_file() else root.parent
+    try:
+        vercel = json.loads((config_root / "vercel.json").read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        errors.append(f"invalid vercel.json: {exc}")
+        vercel = {}
+    for item in vercel.get("redirects", []):
+        source = str(item.get("source", ""))
+        destination = str(item.get("destination", ""))
+        if any(
+            name in value.lower()
+            for name in ("soccer", "worldcup")
+            for value in (source, destination)
+        ):
+            errors.append(f"unlaunched sport redirect present: {source} -> {destination}")
 
     icon_hashes: dict[str, str] = {}
     for root_icon, asset_icon in icon_pairs:
@@ -121,8 +176,13 @@ def main() -> int:
         "rum_state": "ACTIVE" if counts == {1} else "OWNER_ACTION_REQUIRED",
         "icon_sha256": icon_hashes,
         "errors": errors,
+        "public_soccer_label_count": public_soccer_label_count,
+        "public_sport_label_soccer": "HIDDEN",
+        "public_world_cup_label_count": public_world_cup_label_count,
     }
     print(json.dumps(result, indent=2, sort_keys=True))
+    print("PUBLIC_SPORT_LABEL_SOCCER=HIDDEN")
+    print(f"PUBLIC_WORLD_CUP_LABEL_COUNT={public_world_cup_label_count}")
     return 0 if not errors else 1
 
 

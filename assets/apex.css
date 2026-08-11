@@ -37,7 +37,6 @@ a{color:var(--text);text-decoration:none}
 .rationale p{margin:6px 0}
 .banner{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin:18px 0 28px}
 .banner.banner-mlb{margin-bottom:0}
-.banner.banner-worldcup{margin-top:0}
 .banner .cell{background:var(--bg);padding:18px 22px}
 .banner .label{font-family:Helvetica,Arial,sans-serif;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
 .banner .val{font-family:"JetBrains Mono",monospace;font-size:22px;color:var(--text);letter-spacing:0.02em}
