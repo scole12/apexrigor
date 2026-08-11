@@ -70,6 +70,13 @@ def main() -> int:
         ],
         [
             sys.executable,
+            str(ROOT / "bin" / "apply_vercel_web_analytics.py"),
+            "--root",
+            str(OUTPUT),
+            "--allow-missing",
+        ],
+        [
+            sys.executable,
             str(ROOT / "bin" / "audit_public_site.py"),
             "--root",
             str(OUTPUT),

@@ -13,6 +13,7 @@ from pathlib import Path
 
 DEFAULT_ROOT = Path(__file__).resolve().parents[1]
 BEACON_URL = "https://static.cloudflareinsights.com/beacon.min.js"
+VERCEL_INSIGHTS_SCRIPT = "/_vercel/insights/script.js"
 
 
 def sha256(path: Path) -> str:
@@ -59,6 +60,7 @@ def main() -> int:
     )
     errors: list[str] = []
     route_beacons: dict[str, int] = {}
+    route_vercel_scripts: dict[str, int] = {}
     route_text: dict[str, str] = {}
     required_markup = (
         'rel="icon"',
@@ -76,10 +78,18 @@ def main() -> int:
             if marker not in text:
                 errors.append(f"{route} missing {marker}")
         route_beacons[route] = text.count(BEACON_URL)
+        route_vercel_scripts[route] = text.count(VERCEL_INSIGHTS_SCRIPT)
+        if "window.va" not in text:
+            errors.append(f"{route} missing official Vercel Analytics queue")
 
     counts = set(route_beacons.values())
     if counts not in ({0}, {1}):
         errors.append(f"mixed or duplicate public RUM beacon counts: {route_beacons}")
+    vercel_counts = set(route_vercel_scripts.values())
+    if vercel_counts != {1}:
+        errors.append(
+            f"Vercel Analytics script must appear once per public route: {route_vercel_scripts}"
+        )
 
     switcher_re = re.compile(r'<div class="sport-switcher".*?</div>', re.DOTALL)
     public_world_cup_label_count = 0
@@ -174,6 +184,8 @@ def main() -> int:
         "routes": {route: str(path.relative_to(root)) for route, path in routes.items()},
         "rum_beacons_per_route": route_beacons,
         "rum_state": "ACTIVE" if counts == {1} else "OWNER_ACTION_REQUIRED",
+        "vercel_insights_scripts_per_route": route_vercel_scripts,
+        "vercel_web_analytics": "ACTIVE" if vercel_counts == {1} else "MISSING",
         "icon_sha256": icon_hashes,
         "errors": errors,
         "public_soccer_label_count": public_soccer_label_count,
