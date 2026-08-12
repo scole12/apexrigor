@@ -92,22 +92,58 @@ def main() -> int:
         )
 
     switcher_re = re.compile(r'<div class="sport-switcher".*?</div>', re.DOTALL)
+    public_sport_switcher_count = 0
     public_world_cup_label_count = 0
     public_soccer_label_count = 0
+    public_other_sport_label_counts = {
+        "nhl": 0,
+        "nba": 0,
+        "ncaa": 0,
+        "mls": 0,
+        "liga_mx": 0,
+    }
     for route, text in route_text.items():
-        if switcher_re.search(text):
+        switcher_count = len(switcher_re.findall(text))
+        public_sport_switcher_count += switcher_count
+        if switcher_count:
             errors.append(f"{route} exposes an unneeded sport switcher before launch")
         public_world_cup_label_count += len(
             re.findall(r"(?:href=\"[^\"]*worldcup|>\s*WORLD CUP\s*<)", text, re.IGNORECASE)
         )
         public_soccer_label_count += len(
-            re.findall(r"(?:href=\"[^\"]*soccer|>\s*SOCCER\s*<)", text, re.IGNORECASE)
+            re.findall(r"(?:href=\"[^\"]*soccer|\bsoccer\b)", text, re.IGNORECASE)
+        )
+        public_other_sport_label_counts["nhl"] += len(
+            re.findall(r"\bNHL\b", text, re.IGNORECASE)
+        )
+        public_other_sport_label_counts["nba"] += len(
+            re.findall(r"\bNBA\b", text, re.IGNORECASE)
+        )
+        public_other_sport_label_counts["ncaa"] += len(
+            re.findall(r"\bNCAA\b", text, re.IGNORECASE)
+        )
+        public_other_sport_label_counts["mls"] += len(
+            re.findall(r"\bMLS\b", text, re.IGNORECASE)
+        )
+        public_other_sport_label_counts["liga_mx"] += len(
+            re.findall(r"\bLiga\s+(?:MX|Mexico)\b", text, re.IGNORECASE)
         )
     if public_world_cup_label_count or public_soccer_label_count:
         errors.append(
             "inactive sport leaked into a current public route: "
             f"soccer={public_soccer_label_count}, "
             f"world_cup={public_world_cup_label_count}"
+        )
+    public_other_sport_label_count = sum(
+        public_other_sport_label_counts.values()
+    )
+    if public_other_sport_label_count:
+        errors.append(
+            "non-MLB sport leaked into a current public route: "
+            + ", ".join(
+                f"{sport}={count}"
+                for sport, count in public_other_sport_label_counts.items()
+            )
         )
 
     hidden_route_paths = tuple(
@@ -188,9 +224,12 @@ def main() -> int:
         "vercel_web_analytics": "ACTIVE" if vercel_counts == {1} else "MISSING",
         "icon_sha256": icon_hashes,
         "errors": errors,
+        "public_sport_switcher_count": public_sport_switcher_count,
         "public_soccer_label_count": public_soccer_label_count,
         "public_sport_label_soccer": "HIDDEN",
         "public_world_cup_label_count": public_world_cup_label_count,
+        "public_other_sport_label_count": public_other_sport_label_count,
+        "public_other_sport_label_counts": public_other_sport_label_counts,
     }
     print(json.dumps(result, indent=2, sort_keys=True))
     print("PUBLIC_SPORT_LABEL_SOCCER=HIDDEN")

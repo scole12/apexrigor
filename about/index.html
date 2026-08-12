@@ -101,60 +101,6 @@
 
       <hr class="about-divider" aria-hidden="true">
 
-      <section class="about-section about-module about-module--future">
-        <h2 class="about-section-title">NHL — Puckline · Totals</h2>
-
-        <h3 class="about-module-title">Puckline — Filtered</h3>
-        <p class="about-copy">The NHL puckline model focuses on underdogs at +1.5 goals. During development, the favorite -1.5 side did not meet APEX deployment standards for consistency or reliability. As a result, the published puckline model is intentionally filtered.</p>
-        <p class="about-copy">A puckline position is published only when the model's underdog +1.5 framework meets the required signal threshold. Games that do not meet that threshold are skipped. This is a selective model by design, and that distinction is disclosed directly.</p>
-
-        <h3 class="about-module-title">Totals — Bet-All</h3>
-        <p class="about-copy">The NHL totals model is a bet-all system. Every eligible game on the slate receives an over or under position. The model evaluates team scoring profile, goaltending environment, defensive context, and market total to determine the published side. Every eligible game is graded.</p>
-      </section>
-
-      <hr class="about-divider" aria-hidden="true">
-
-      <section class="about-section about-module about-module--future">
-        <h2 class="about-section-title">Soccer — Goal Line · Totals</h2>
-        <p class="about-copy">APEX runs a unified soccer model across Major League Soccer and La Liga under a single SOCCER framework. The soccer model publishes two market types: Goal Line and Totals.</p>
-
-        <h3 class="about-module-title">Goal Line — Bet-All</h3>
-        <p class="about-copy">Every eligible match receives an Asian handicap position. The model projects scoreline probabilities and evaluates those probabilities against the posted handicap market. The published position is always a spread position — favorite or underdog at the posted line. No moneylines. No three-way markets. Every eligible match is computed.</p>
-
-        <h3 class="about-module-title">Totals — Bet-All</h3>
-        <p class="about-copy">Every eligible match also receives an over or under position. The total is evaluated through the same scoreline-probability framework used for the goal-line market. The posted number varies by matchup, and each match is modeled directly against its actual market price.</p>
-
-        <h3 class="about-module-title">Soccer Model Philosophy</h3>
-        <p class="about-copy">Soccer markets require a different forecasting structure than North American spread markets. Low scoring, draw probability, home-field effects, travel, rotation, fixture congestion, and league-specific scoring profiles all matter. APEX uses a league-calibrated probability framework designed to account for those structural differences while keeping the public output simple: one goal-line position and one total position per eligible match.</p>
-      </section>
-
-      <hr class="about-divider" aria-hidden="true">
-
-      <section class="about-section about-module about-module--future">
-        <h2 class="about-section-title">NBA — Against the Spread · Totals</h2>
-
-        <h3 class="about-module-title">Against the Spread — Bet-All</h3>
-        <p class="about-copy">Every NBA game on the slate receives an against-the-spread position. The model blends independent rating sources into a projected margin and compares that projection to the posted spread. The published position is always a full-game spread position. No moneylines. No selective skipping.</p>
-
-        <h3 class="about-module-title">Totals — Bet-All</h3>
-        <p class="about-copy">Every NBA game also receives a full-game total position. The model evaluates team efficiency, scoring environment, pace, rest, and matchup context to determine the published over or under. Every eligible game is computed and graded.</p>
-      </section>
-
-      <hr class="about-divider" aria-hidden="true">
-
-      <section class="about-section about-module about-module--future">
-        <h2 class="about-section-title">NCAA Basketball — Against the Spread · Totals</h2>
-
-        <h3 class="about-module-title">Against the Spread — Bet-All</h3>
-        <p class="about-copy">Every eligible NCAA basketball game receives an against-the-spread position. The model projects margin using efficiency-based inputs and compares that projection to the posted spread. Coverage includes the regular season, conference tournaments, the NCAA Tournament, the NIT, and other postseason events when lines are available.</p>
-        <p class="about-copy">Neutral-site games are handled separately from true home-court games. Every eligible game is computed.</p>
-
-        <h3 class="about-module-title">Totals — Bet-All</h3>
-        <p class="about-copy">Every eligible NCAA basketball game receives an over or under position. The model evaluates offensive efficiency, defensive efficiency, tempo, matchup structure, and posted total. No selective skipping. Every eligible game is graded.</p>
-      </section>
-
-      <hr class="about-divider" aria-hidden="true">
-
       <section class="about-section about-module">
         <h2 class="about-section-title">Conviction Framework</h2>
         <p class="about-copy">APEX uses four public conviction tiers:</p>

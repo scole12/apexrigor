@@ -1687,7 +1687,7 @@
       "date_iso": "2026-06-19",
       "record": "16W-12L",
       "win_rate": "57.1%",
-      "summary": "MLB 16-12 \u00b7 World Cup 2-5",
+      "summary": "MLB 16-12",
       "has_summary": true,
       "_apex_raw": {
         "w": 16,
@@ -1757,7 +1757,7 @@
       "date_iso": "2026-06-17",
       "record": "13W-13L",
       "win_rate": "50.0%",
-      "summary": "MLB 13-13 \u00b7 World Cup 3-5",
+      "summary": "MLB 13-13",
       "has_summary": true,
       "_apex_raw": {
         "w": 13,
@@ -1862,7 +1862,7 @@
       "date_iso": "2026-06-14",
       "record": "18W-10L",
       "win_rate": "64.3%",
-      "summary": "MLB 18-10 \u00b7 World Cup 4-6",
+      "summary": "MLB 18-10",
       "has_summary": true,
       "_apex_raw": {
         "w": 18,
@@ -1897,7 +1897,7 @@
       "date_iso": "2026-06-13",
       "record": "13W-14L-3P",
       "win_rate": "48.1%",
-      "summary": "MLB 13-14 \u00b7 World Cup 2-4",
+      "summary": "MLB 13-14",
       "has_summary": true,
       "_apex_raw": {
         "w": 13,
@@ -1933,7 +1933,7 @@
       "date_iso": "2026-06-12",
       "record": "13W-15L",
       "win_rate": "46.4%",
-      "summary": "MLB 13-15 \u00b7 World Cup 2-2",
+      "summary": "MLB 13-15",
       "has_summary": true,
       "_apex_raw": {
         "w": 13,
@@ -2812,87 +2812,87 @@
     },
     {
       "date": "April 25, 2026",
-      "record": "31W-27L-0P",
-      "win_rate": "53.4%",
-      "summary": "NHL 5-1, MLB 14-14, MLS 12-12",
+      "record": "14W-14L",
+      "win_rate": "50.0%",
+      "summary": "MLB 14-14",
       "has_summary": true
     },
     {
       "date": "April 24, 2026",
-      "record": "20W-14L-0P",
-      "win_rate": "58.8%",
-      "summary": "NHL 5-0, MLB 15-13, Liga MX 0-1",
-      "has_summary": false
+      "record": "15W-13L",
+      "win_rate": "53.6%",
+      "summary": "MLB 15-13",
+      "has_summary": true
     },
     {
       "date": "April 23, 2026",
-      "record": "8W-12L",
-      "win_rate": "40.0%",
-      "summary": "NHL 3-3, MLB 5-9",
-      "has_summary": false
+      "record": "5W-9L",
+      "win_rate": "35.7%",
+      "summary": "MLB 5-9",
+      "has_summary": true
     },
     {
       "date": "April 22, 2026",
-      "record": "29W-24L-4P",
-      "win_rate": "54.7%",
-      "summary": "NHL 2-3, MLB 17-11-2P, MLS 10-10-2P",
-      "has_summary": false
+      "record": "17W-11L-2P",
+      "win_rate": "60.7%",
+      "summary": "MLB 17-11-2P",
+      "has_summary": true
     },
     {
       "date": "April 21, 2026",
-      "record": "16W-18L-2P",
-      "win_rate": "47.1%",
-      "summary": "NHL 4-0 / MLB 12-18-2P",
+      "record": "12W-18L-2P",
+      "win_rate": "40.0%",
+      "summary": "MLB 12-18-2P",
       "has_summary": true
     },
     {
       "date": "April 20, 2026",
-      "record": "12W-13L-2P",
-      "win_rate": "48.0%",
-      "summary": "NHL 3-4, MLB 9-9-2P",
-      "has_summary": false
+      "record": "9W-9L-2P",
+      "win_rate": "50.0%",
+      "summary": "MLB 9-9-2P",
+      "has_summary": true
     },
     {
       "date": "April 19, 2026",
-      "record": "16W-21L",
-      "win_rate": "43.2%",
-      "summary": "NHL 2-3, MLS 2-0, MLB 12-18",
-      "has_summary": false
+      "record": "12W-18L",
+      "win_rate": "40.0%",
+      "summary": "MLB 12-18",
+      "has_summary": true
     },
     {
       "date": "April 18, 2026",
-      "record": "42W-33L",
-      "win_rate": "56.0%",
-      "summary": "NHL 2-4, MLS 22-17, MLB 18-12",
-      "has_summary": false
+      "record": "18W-12L",
+      "win_rate": "60.0%",
+      "summary": "MLB 18-12",
+      "has_summary": true
     },
     {
       "date": "April 17, 2026",
-      "record": "15W-17L-1P",
-      "win_rate": "46.9%",
-      "summary": "MLB 13-16-1P \u00b7 MLS 2-1",
-      "has_summary": false
+      "record": "13W-16L-1P",
+      "win_rate": "44.8%",
+      "summary": "MLB 13-16-1P",
+      "has_summary": true
     },
     {
       "date": "April 16, 2026",
-      "record": "11W-17L",
-      "win_rate": "39.3%",
-      "summary": "NHL 5-3, MLB 6-14",
-      "has_summary": false
+      "record": "6W-14L",
+      "win_rate": "30.0%",
+      "summary": "MLB 6-14",
+      "has_summary": true
     },
     {
       "date": "April 15, 2026",
-      "record": "19W-19L-1P",
-      "win_rate": "50.0%",
-      "summary": "NHL 7-2, MLB 12-17-1P",
-      "has_summary": false
+      "record": "12W-17L-1P",
+      "win_rate": "41.4%",
+      "summary": "MLB 12-17-1P",
+      "has_summary": true
     },
     {
       "date": "April 14, 2026",
-      "record": "28W-16L",
-      "win_rate": "63.6%",
-      "summary": "NHL 9-5, MLB 19-11",
-      "has_summary": false
+      "record": "19W-11L",
+      "win_rate": "63.3%",
+      "summary": "MLB 19-11",
+      "has_summary": true
     },
     {
       "date": "April 13, 2026",
