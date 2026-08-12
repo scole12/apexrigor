@@ -5,43 +5,104 @@
     "positions": "1,986 positions",
     "slates": "111 slates",
     "active_sports": "4 active sports",
-    "updated_through": "August 09, 2026"
+    "updated_through": "August 10, 2026"
   },
   "latest": {
-    "date": "August 09, 2026",
-    "record": "19W-11L",
-    "win_rate": "63.3%",
-    "summary": "MLB 19-11",
+    "date": "August 10, 2026",
+    "record": "6W-14L",
+    "win_rate": "30.0%",
+    "summary": "MLB 6-14",
     "has_summary": true,
     "_apex_raw": {
-      "w": 19,
-      "l": 11,
+      "w": 6,
+      "l": 14,
       "push": 0,
-      "settled_rows": 30,
-      "rows": 30,
+      "void": 0,
+      "pending": 0,
+      "other": 0,
+      "settled_rows": 20,
+      "rows": 20,
       "by_market": {
         "F5_ATS": {
-          "W": 11,
-          "L": 4
+          "W": 3,
+          "L": 7,
+          "PUSH": 0,
+          "VOID": 0,
+          "PENDING": 0,
+          "OTHER": 0
         },
         "F5_TOT": {
+          "W": 3,
           "L": 7,
-          "W": 8
+          "PUSH": 0,
+          "VOID": 0,
+          "PENDING": 0,
+          "OTHER": 0
         }
       },
-      "date_iso": "2026-08-09",
-      "source": "apex_results_archive_publish",
+      "date_iso": "2026-08-10",
+      "source": "apex_canonical_grader_receipt_v1",
       "canonical_only": true,
-      "canonical_positions": 30,
-      "canonical_source_sha256": "857c1729d87a31b01788519fadc8683b5a97b980d07fe4a5bd899f79ae6a4679",
+      "canonical_positions": 20,
+      "canonical_source_sha256": "36548a8c266856faf577cf6e7b5af1686ae927d5de9b42da12f152da03d5be02",
+      "canonical_receipt_sha256": "7069e62303cb68ec7259f840dd8efeb817573320ed05f42fc2f17b39367d222c",
       "_internal": {
         "void": 0,
         "pending": 0,
-        "issued_rows": 30
+        "other": 0,
+        "issued_rows": 20
       }
     }
   },
   "archive": [
+    {
+      "date": "August 10, 2026",
+      "date_iso": "2026-08-10",
+      "record": "6W-14L",
+      "win_rate": "30.0%",
+      "summary": "MLB 6-14",
+      "has_summary": true,
+      "_apex_raw": {
+        "w": 6,
+        "l": 14,
+        "push": 0,
+        "void": 0,
+        "pending": 0,
+        "other": 0,
+        "settled_rows": 20,
+        "rows": 20,
+        "by_market": {
+          "F5_ATS": {
+            "W": 3,
+            "L": 7,
+            "PUSH": 0,
+            "VOID": 0,
+            "PENDING": 0,
+            "OTHER": 0
+          },
+          "F5_TOT": {
+            "W": 3,
+            "L": 7,
+            "PUSH": 0,
+            "VOID": 0,
+            "PENDING": 0,
+            "OTHER": 0
+          }
+        },
+        "date_iso": "2026-08-10",
+        "source": "apex_canonical_grader_receipt_v1",
+        "canonical_only": true,
+        "canonical_positions": 20,
+        "canonical_source_sha256": "36548a8c266856faf577cf6e7b5af1686ae927d5de9b42da12f152da03d5be02",
+        "canonical_receipt_sha256": "7069e62303cb68ec7259f840dd8efeb817573320ed05f42fc2f17b39367d222c",
+        "_internal": {
+          "void": 0,
+          "pending": 0,
+          "other": 0,
+          "issued_rows": 20
+        }
+      }
+    },
     {
       "date": "August 09, 2026",
       "date_iso": "2026-08-09",
@@ -3006,5 +3067,99 @@
   "_apex_public_excluded_dates": [
     "2026-05-17"
   ],
-  "_apex_public_excluded_note": "PUBLIC_EXCLUDED_DUE_TO_CANONICAL_RESULTS_RESET"
+  "_apex_public_excluded_note": "PUBLIC_EXCLUDED_DUE_TO_CANONICAL_RESULTS_RESET",
+  "_canonical_grader_receipt_projection": {
+    "contract_version": "apex_results_summary_from_grader_receipt_v1",
+    "generated_at_et": "2026-08-11T15:55:55.880506-04:00",
+    "sports_included": [
+      "mlb"
+    ],
+    "latest_graded_date": "2026-08-10",
+    "latest_graded_date_display": "August 10, 2026",
+    "daily_archive_count": 82,
+    "overall_wins": 1393,
+    "overall_losses": 1271,
+    "overall_pushes": 26,
+    "overall_win_rate": 52.3,
+    "overall_win_rate_display": "52.3%",
+    "positions_graded": 2709,
+    "overall": {
+      "wins": 1393,
+      "losses": 1271,
+      "pushes": 26,
+      "voids": 13,
+      "pending": 6,
+      "other": 0,
+      "win_rate": 52.3,
+      "win_rate_display": "52.3%",
+      "positions_tracked": 2709,
+      "positions_settled": 2690,
+      "positions_graded": 2709,
+      "decided_n": 2664,
+      "settled_n": 2690,
+      "tracked_n": 2709,
+      "slates_graded": 82,
+      "f5_spread": "696-646-4P",
+      "f5_total": "697-625-22P",
+      "f5_spread_raw": {
+        "W": 696,
+        "L": 646,
+        "PUSH": 4,
+        "VOID": 7,
+        "PENDING": 3
+      },
+      "f5_total_raw": {
+        "W": 697,
+        "L": 625,
+        "PUSH": 22,
+        "VOID": 6,
+        "PENDING": 3
+      },
+      "latest_graded_date": "2026-08-10",
+      "latest_graded_date_display": "August 10, 2026"
+    },
+    "sports": {
+      "mlb": {
+        "wins": 1393,
+        "losses": 1271,
+        "pushes": 26,
+        "voids": 13,
+        "pending": 6,
+        "other": 0,
+        "win_rate": 52.3,
+        "win_rate_display": "52.3%",
+        "positions_tracked": 2709,
+        "positions_settled": 2690,
+        "positions_graded": 2709,
+        "decided_n": 2664,
+        "settled_n": 2690,
+        "tracked_n": 2709,
+        "slates_graded": 82,
+        "f5_spread": "696-646-4P",
+        "f5_total": "697-625-22P",
+        "f5_spread_raw": {
+          "W": 696,
+          "L": 646,
+          "PUSH": 4,
+          "VOID": 7,
+          "PENDING": 3
+        },
+        "f5_total_raw": {
+          "W": 697,
+          "L": 625,
+          "PUSH": 22,
+          "VOID": 6,
+          "PENDING": 3
+        },
+        "latest_graded_date": "2026-08-10",
+        "latest_graded_date_display": "August 10, 2026"
+      }
+    },
+    "mlb_wins": 1393,
+    "mlb_losses": 1271,
+    "mlb_pushes": 26,
+    "mlb_positions_graded": 2709,
+    "note": "MLB-only receipt projection. Settled=W+L+P; tracked=settled+VOID+PENDING+OTHER. No all-sport claim.",
+    "canonical_receipt_sha256": "7069e62303cb68ec7259f840dd8efeb817573320ed05f42fc2f17b39367d222c"
+  }
 }
