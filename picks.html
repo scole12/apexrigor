@@ -29,6 +29,12 @@
 <meta name="twitter:description" content="Quantitative forecasting for model-driven sports markets.">
 <meta name="twitter:image" content="https://apexrigor.com/og-image.png?v=apex-20260629-tier-perf">
 <link rel="stylesheet" href="/assets/apex.css?v=apex-20260629-tier-perf">
+<style>
+.sport-switcher{display:flex;gap:0;border-bottom:1px solid var(--border,#1f1f1f);margin-bottom:0}
+.sport-tab{flex:1;text-align:center;padding:14px 16px;min-height:44px;font-size:11px;letter-spacing:0.24em;text-transform:uppercase;color:var(--muted,#888);border-bottom:2px solid transparent;text-decoration:none;display:block}
+.sport-tab:hover,.sport-tab:focus{color:var(--text,#f5f5f5);outline:2px solid var(--text);outline-offset:-2px}
+.sport-tab.active{color:var(--text,#f5f5f5);border-bottom-color:var(--text,#f5f5f5)}
+</style>
 </head>
 <body>
 <div class="shell">
@@ -46,9 +52,14 @@
     <a href="/results">RESULTS</a>
     <a href="/about">ABOUT</a>
   </nav>
+
+  <div class="sport-switcher" role="tablist" aria-label="Sport selection">
+    <a href="/picks" class="sport-tab active" role="tab" aria-selected="true">MLB</a>
+    <a href="/picks/worldcup" class="sport-tab" role="tab" aria-selected="false">World Cup</a>
+  </div>
   <div class="section-head picks-board-head">
     <div class="title">TODAY'S CARD</div>
-    <div class="meta mono">WEDNESDAY, AUGUST 12, 2026 · 15 GAMES · 30 POSITIONS · ATS MODEL ATS_DYNAMIC_LOGIT_FILTER_V1__CAL_IDENTITY · TOT MODEL TOTALS_SPARSE_PMF_STACK_V1</div>
+    <div class="meta mono">THURSDAY, AUGUST 13, 2026 · 9 GAMES · 18 POSITIONS · ATS MODEL ATS_DYNAMIC_LOGIT_FILTER_V1__CAL_IDENTITY · TOT MODEL TOTALS_SPARSE_PMF_STACK_V1</div>
   </div>
   <main class="picks-page">
     <div class="picks-board">
@@ -56,26 +67,26 @@
       <header class="game-header">
         <div class="game-num mono">G01</div>
         <div class="game-meta">
-          <h2 class="game-matchup">Baltimore Orioles @ Minnesota Twins</h2>
-          <p class="game-pitchers mono">Shane Baz vs Zebby Matthews</p>
+          <h2 class="game-matchup">Pittsburgh Pirates @ Miami Marlins</h2>
+          <p class="game-pitchers mono">Braxton Ashcraft vs Tyler Phillips</p>
         </div>
-        <div class="game-time mono">1:40 PM ET</div>
+        <div class="game-time mono">1:10 PM ET</div>
       </header>
       <div class="market-grid">
       <div class="market-panel">
         <div class="market-label">F5 ATS</div>
         <div class="market-panel-head">
-          <span class="pick-headline">BAL -0.5</span>
+          <span class="pick-headline">MIA +0.5</span>
           <span class="rating-label">APEX WIN PROBABILITY RATING</span>
-          <span class="tier-badge tier-badge--weak">WEAK</span>
+          <span class="tier-badge tier-badge--strong">STRONG</span>
         </div>
         <div class="meta mono">Sportsbook: FanDuel</div>
         <div class="rationale-copy">
-          <p>At the FanDuel capture on August 12, 2026 at 12:45:59 PM ET, with Shane Baz facing Zebby Matthews, APEX estimates BAL -0.5 has a 48.8% first-five win probability at +112.</p>
-          <p>In the August 12, 2026 ATS snapshot, the starter K-rate, BB-rate, and K-minus-BB deltas were 0.0038, 0.0015, and 0.0023.</p>
-          <p>In the August 12, 2026 ATS snapshot, the starter xwOBA-luck, xFIP, FIP, and Stuff+ deltas were 0.0120, -0.1051, -1.6821, and 3.7167.</p>
-          <p>In the August 12, 2026 ATS snapshot, expected starter innings delta was 0.0000, second-pass TTO delta was 0.0000, and the FanDuel market offset was -0.2297 for Baltimore Orioles.</p>
-          <p>The full per-scenario numeric ATS input set, including the values summarized by those ranges, is dated August 12, 2026 for Baltimore Orioles at Minnesota Twins, with both Shane Baz and Zebby Matthews identified in the saved pregame record.</p>
+          <p>At the FanDuel capture on August 13, 2026 at 12:04:23 PM ET, with Braxton Ashcraft facing Tyler Phillips, APEX estimates MIA +0.5 has a 56.3% first-five win probability at -128.</p>
+          <p>In the August 13, 2026 ATS snapshot, the starter K-rate, BB-rate, and K-minus-BB deltas were 0.0746, -0.0321, and 0.1067.</p>
+          <p>In the August 13, 2026 ATS snapshot, the starter xwOBA-luck, xFIP, FIP, and Stuff+ deltas were -0.0370, -1.2945, -0.9622, and 10.1432.</p>
+          <p>In the August 13, 2026 ATS snapshot, expected starter innings delta was 0.0000, second-pass TTO delta was 0.0000, and the FanDuel market offset was -0.1060 for Miami Marlins.</p>
+          <p>The full per-scenario numeric ATS input set, including the values summarized by those ranges, is dated August 13, 2026 for Pittsburgh Pirates at Miami Marlins, with both Braxton Ashcraft and Tyler Phillips identified in the saved pregame record.</p>
         </div>
       </div>
       <div class="market-panel">
@@ -83,15 +94,15 @@
         <div class="market-panel-head">
           <span class="pick-headline">OVER 4.5</span>
           <span class="rating-label">APEX WIN PROBABILITY RATING</span>
-          <span class="tier-badge tier-badge--strong">STRONG</span>
+          <span class="tier-badge tier-badge--moderate">MODERATE</span>
         </div>
         <div class="meta mono">Sportsbook: FanDuel</div>
         <div class="rationale-copy">
-          <p>At the FanDuel capture on August 12, 2026 at 12:45:59 PM ET, with Shane Baz facing Zebby Matthews, APEX estimates OVER 4.5 has a 58.1% first-five win probability at -132.</p>
-          <p>From the August 12, 2026 starter inputs, Shane Baz&#x27;s K-minus-BB and FIP values were 0.1296 and 3.3537, while Zebby Matthews&#x27;s were 0.1274 and 5.0358.</p>
-          <p>At the August 12, 2026 lineup capture, the Baltimore Orioles and Minnesota Twins lineup wRC+ inputs were 99.31 and 102.46; through August 11, 2026, their rolling ISO inputs were 0.167 and 0.201 and rolling F5 runs were 2.49 and 3.11.</p>
-          <p>At the weather observation on August 12, 2026 at 12:45:49 PM ET, forecast temperature was 88.4 degrees and wind was 3.2 mph; in the committed PMF generated on August 12, 2026 at 12:49:38 PM ET, mean F5 runs were 5.791, mode was 4, and central 80% mass spanned 2 through 11 runs.</p>
-          <p>For the 2025 season, the park run-factor input was 1.0718; every other consumed totals value is paired with its saved as-of date in the card record.</p>
+          <p>At the FanDuel capture on August 13, 2026 at 12:04:23 PM ET, with Braxton Ashcraft facing Tyler Phillips, APEX estimates OVER 4.5 has a 52.7% first-five win probability at +104.</p>
+          <p>From the August 13, 2026 starter inputs, Braxton Ashcraft&#x27;s K-minus-BB and FIP values were 0.1966 and 3.6385, while Tyler Phillips&#x27;s were 0.0899 and 4.6007.</p>
+          <p>At the August 13, 2026 lineup capture, the Pittsburgh Pirates and Miami Marlins lineup wRC+ inputs were 116.53 and 103.94; through August 12, 2026, their rolling ISO inputs were 0.196 and 0.195 and rolling F5 runs were 2.95 and 2.58.</p>
+          <p>At the weather observation on August 13, 2026 at 12:02:40 PM ET, forecast temperature was 90.3 degrees and wind was 2.9 mph; in the committed PMF generated on August 13, 2026 at 12:06:01 PM ET, mean F5 runs were 5.294, mode was 4, and central 80% mass spanned 1 through 10 runs.</p>
+          <p>For the 2025 season, the park run-factor input was 0.9641; every other consumed totals value is paired with its saved as-of date in the card record.</p>
         </div>
       </div>
       </div>
@@ -100,26 +111,26 @@
       <header class="game-header">
         <div class="game-num mono">G02</div>
         <div class="game-meta">
-          <h2 class="game-matchup">Philadelphia Phillies @ St. Louis Cardinals</h2>
-          <p class="game-pitchers mono">Zack Wheeler vs Kyle Leahy</p>
+          <h2 class="game-matchup">Cleveland Guardians @ Detroit Tigers</h2>
+          <p class="game-pitchers mono">Parker Messick vs Keider Montero</p>
         </div>
-        <div class="game-time mono">2:15 PM ET</div>
+        <div class="game-time mono">1:10 PM ET</div>
       </header>
       <div class="market-grid">
       <div class="market-panel">
         <div class="market-label">F5 ATS</div>
         <div class="market-panel-head">
-          <span class="pick-headline">STL +0.5</span>
+          <span class="pick-headline">DET +0.5</span>
           <span class="rating-label">APEX WIN PROBABILITY RATING</span>
-          <span class="tier-badge tier-badge--moderate">MODERATE</span>
+          <span class="tier-badge tier-badge--elite">ELITE</span>
         </div>
         <div class="meta mono">Sportsbook: FanDuel</div>
         <div class="rationale-copy">
-          <p>At the FanDuel capture on August 12, 2026 at 12:45:59 PM ET, with Zack Wheeler facing Kyle Leahy, APEX estimates STL +0.5 has a 51.7% first-five win probability at -108.</p>
-          <p>In the August 12, 2026 ATS snapshot, the starter K-rate, BB-rate, and K-minus-BB deltas were 0.0803, -0.0064, and 0.0867.</p>
-          <p>In the August 12, 2026 ATS snapshot, the starter xwOBA-luck, xFIP, FIP, and Stuff+ deltas were -0.0200, -0.9940, -0.6219, and 12.5458.</p>
-          <p>In the August 12, 2026 ATS snapshot, expected starter innings delta was 0.0000, second-pass TTO delta was 0.0000, and the FanDuel market offset was 0.0493 for St. Louis Cardinals.</p>
-          <p>The full per-scenario numeric ATS input set, including the values summarized by those ranges, is dated August 12, 2026 for Philadelphia Phillies at St. Louis Cardinals, with both Zack Wheeler and Kyle Leahy identified in the saved pregame record.</p>
+          <p>At the FanDuel capture on August 13, 2026 at 12:04:22 PM ET, with Parker Messick facing Keider Montero, APEX estimates DET +0.5 has a 60.9% first-five win probability at -138.</p>
+          <p>In the August 13, 2026 ATS snapshot, the starter K-rate, BB-rate, and K-minus-BB deltas were 0.0631, 0.0106, and 0.0525.</p>
+          <p>In the August 13, 2026 ATS snapshot, the starter xwOBA-luck, xFIP, FIP, and Stuff+ deltas were -0.0250, -1.1341, -0.6823, and 1.8468.</p>
+          <p>In the August 13, 2026 ATS snapshot, expected starter innings delta was 0.0000, second-pass TTO delta was 0.0000, and the FanDuel market offset was -0.1777 for Detroit Tigers.</p>
+          <p>The full per-scenario numeric ATS input set, including the values summarized by those ranges, is dated August 13, 2026 for Cleveland Guardians at Detroit Tigers, with both Parker Messick and Keider Montero identified in the saved pregame record.</p>
         </div>
       </div>
       <div class="market-panel">
@@ -127,15 +138,15 @@
         <div class="market-panel-head">
           <span class="pick-headline">OVER 4.5</span>
           <span class="rating-label">APEX WIN PROBABILITY RATING</span>
-          <span class="tier-badge tier-badge--weak">WEAK</span>
+          <span class="tier-badge tier-badge--moderate">MODERATE</span>
         </div>
         <div class="meta mono">Sportsbook: FanDuel</div>
         <div class="rationale-copy">
-          <p>At the FanDuel capture on August 12, 2026 at 12:45:59 PM ET, with Zack Wheeler facing Kyle Leahy, APEX estimates OVER 4.5 has a 46.9% first-five win probability at +108.</p>
-          <p>From the August 12, 2026 starter inputs, Zack Wheeler&#x27;s K-minus-BB and FIP values were 0.2217 and 3.1548, while Kyle Leahy&#x27;s were 0.1350 and 3.7767.</p>
-          <p>At the August 12, 2026 lineup capture, the Philadelphia Phillies and St. Louis Cardinals lineup wRC+ inputs were 107.38 and 107.11; through August 11, 2026, their rolling ISO inputs were 0.159 and 0.145 and rolling F5 runs were 2.41 and 2.52.</p>
-          <p>At the weather observation on August 12, 2026 at 12:45:50 PM ET, forecast temperature was 99.2 degrees and wind was 9.6 mph; in the committed PMF generated on August 12, 2026 at 12:49:38 PM ET, mean F5 runs were 4.797, mode was 3, and central 80% mass spanned 1 through 9 runs.</p>
-          <p>For the 2025 season, the park run-factor input was 0.9486; every other consumed totals value is paired with its saved as-of date in the card record.</p>
+          <p>At the FanDuel capture on August 13, 2026 at 12:04:22 PM ET, with Parker Messick facing Keider Montero, APEX estimates OVER 4.5 has a 50.1% first-five win probability at +102.</p>
+          <p>From the August 13, 2026 starter inputs, Parker Messick&#x27;s K-minus-BB and FIP values were 0.1743 and 3.1817, while Keider Montero&#x27;s were 0.1218 and 3.8640.</p>
+          <p>At the August 13, 2026 lineup capture, the Cleveland Guardians and Detroit Tigers lineup wRC+ inputs were 105.84 and 118.59; through August 12, 2026, their rolling ISO inputs were 0.133 and 0.195 and rolling F5 runs were 2.23 and 2.55.</p>
+          <p>At the weather observation on August 13, 2026 at 12:02:39 PM ET, forecast temperature was 81.8 degrees and wind was 6.8 mph; in the committed PMF generated on August 13, 2026 at 12:06:01 PM ET, mean F5 runs were 5.062, mode was 3, and central 80% mass spanned 1 through 9 runs.</p>
+          <p>For the 2025 season, the park run-factor input was 1.0455; every other consumed totals value is paired with its saved as-of date in the card record.</p>
         </div>
       </div>
       </div>
@@ -144,26 +155,26 @@
       <header class="game-header">
         <div class="game-num mono">G03</div>
         <div class="game-meta">
-          <h2 class="game-matchup">Tampa Bay Rays @ Athletics</h2>
-          <p class="game-pitchers mono">Drew Rasmussen vs Jack Perkins</p>
+          <h2 class="game-matchup">Cincinnati Reds @ Chicago White Sox</h2>
+          <p class="game-pitchers mono">Andrew Abbott vs Davis Martin</p>
         </div>
-        <div class="game-time mono">3:05 PM ET</div>
+        <div class="game-time mono">1:10 PM ET</div>
       </header>
       <div class="market-grid">
       <div class="market-panel">
         <div class="market-label">F5 ATS</div>
         <div class="market-panel-head">
-          <span class="pick-headline">TB -0.5</span>
+          <span class="pick-headline">CWS -0.5</span>
           <span class="rating-label">APEX WIN PROBABILITY RATING</span>
-          <span class="tier-badge tier-badge--elite">ELITE</span>
+          <span class="tier-badge tier-badge--weak">WEAK</span>
         </div>
         <div class="meta mono">Sportsbook: FanDuel</div>
         <div class="rationale-copy">
-          <p>At the FanDuel capture on August 12, 2026 at 12:46:00 PM ET, with Drew Rasmussen facing Jack Perkins, APEX estimates TB -0.5 has a 67.6% first-five win probability at -146.</p>
-          <p>In the August 12, 2026 ATS snapshot, the starter K-rate, BB-rate, and K-minus-BB deltas were 0.0062, -0.0358, and 0.0421.</p>
-          <p>In the August 12, 2026 ATS snapshot, the starter xwOBA-luck, xFIP, FIP, and Stuff+ deltas were 0.0460, -1.1327, -1.8304, and 10.3783.</p>
-          <p>In the August 12, 2026 ATS snapshot, expected starter innings delta was 0.0000, second-pass TTO delta was 0.0000, and the FanDuel market offset was 0.2297 for Tampa Bay Rays.</p>
-          <p>The full per-scenario numeric ATS input set, including the values summarized by those ranges, is dated August 12, 2026 for Tampa Bay Rays at Athletics, with both Drew Rasmussen and Jack Perkins identified in the saved pregame record.</p>
+          <p>At the FanDuel capture on August 13, 2026 at 12:04:22 PM ET, with Andrew Abbott facing Davis Martin, APEX estimates CWS -0.5 has a 46.9% first-five win probability at +108.</p>
+          <p>In the August 13, 2026 ATS snapshot, the starter K-rate, BB-rate, and K-minus-BB deltas were 0.0252, -0.0309, and 0.0562.</p>
+          <p>In the August 13, 2026 ATS snapshot, the starter xwOBA-luck, xFIP, FIP, and Stuff+ deltas were 0.0010, -0.9119, -1.2027, and -4.6930.</p>
+          <p>In the August 13, 2026 ATS snapshot, expected starter innings delta was 0.0000, second-pass TTO delta was 0.0000, and the FanDuel market offset was -0.1934 for Chicago White Sox.</p>
+          <p>The full per-scenario numeric ATS input set, including the values summarized by those ranges, is dated August 13, 2026 for Cincinnati Reds at Chicago White Sox, with both Andrew Abbott and Davis Martin identified in the saved pregame record.</p>
         </div>
       </div>
       <div class="market-panel">
@@ -175,11 +186,11 @@
         </div>
         <div class="meta mono">Sportsbook: FanDuel</div>
         <div class="rationale-copy">
-          <p>At the FanDuel capture on August 12, 2026 at 12:46:00 PM ET, with Drew Rasmussen facing Jack Perkins, APEX estimates OVER 4.5 has a 53.5% first-five win probability at -132.</p>
-          <p>From the August 12, 2026 starter inputs, Drew Rasmussen&#x27;s K-minus-BB and FIP values were 0.2087 and 2.9214, while Jack Perkins&#x27;s were 0.1666 and 4.7519.</p>
-          <p>At the August 12, 2026 lineup capture, the Tampa Bay Rays and Athletics lineup wRC+ inputs were 109.26 and 105.55; through August 11, 2026, their rolling ISO inputs were 0.171 and 0.156 and rolling F5 runs were 2.49 and 2.52.</p>
-          <p>At the weather observation on August 12, 2026 at 12:45:50 PM ET, forecast temperature was 84.3 degrees and wind was 6.7 mph; in the committed PMF generated on August 12, 2026 at 12:49:38 PM ET, mean F5 runs were 5.375, mode was 4, and central 80% mass spanned 1 through 10 runs.</p>
-          <p>For the 2025 season, the park run-factor input was 1.1294; every other consumed totals value is paired with its saved as-of date in the card record.</p>
+          <p>At the FanDuel capture on August 13, 2026 at 12:04:22 PM ET, with Andrew Abbott facing Davis Martin, APEX estimates OVER 4.5 has a 50.2% first-five win probability at -114.</p>
+          <p>From the August 13, 2026 starter inputs, Andrew Abbott&#x27;s K-minus-BB and FIP values were 0.0795 and 4.6803, while Davis Martin&#x27;s were 0.1357 and 3.4777.</p>
+          <p>At the August 13, 2026 lineup capture, the Cincinnati Reds and Chicago White Sox lineup wRC+ inputs were 101.20 and 104.67; through August 12, 2026, their rolling ISO inputs were 0.160 and 0.166 and rolling F5 runs were 2.52 and 2.89.</p>
+          <p>At the weather observation on August 13, 2026 at 12:02:39 PM ET, forecast temperature was 75.8 degrees and wind was 5.7 mph; in the committed PMF generated on August 13, 2026 at 12:06:01 PM ET, mean F5 runs were 5.074, mode was 3, and central 80% mass spanned 1 through 10 runs.</p>
+          <p>For the 2025 season, the park run-factor input was 0.9586; every other consumed totals value is paired with its saved as-of date in the card record.</p>
         </div>
       </div>
       </div>
@@ -188,42 +199,42 @@
       <header class="game-header">
         <div class="game-num mono">G04</div>
         <div class="game-meta">
-          <h2 class="game-matchup">Colorado Rockies @ Arizona Diamondbacks</h2>
-          <p class="game-pitchers mono">Ryan Feltner vs Merrill Kelly</p>
+          <h2 class="game-matchup">Seattle Mariners @ New York Yankees</h2>
+          <p class="game-pitchers mono">Logan Gilbert vs Max Fried</p>
         </div>
-        <div class="game-time mono">3:40 PM ET</div>
+        <div class="game-time mono">1:35 PM ET</div>
       </header>
       <div class="market-grid">
       <div class="market-panel">
         <div class="market-label">F5 ATS</div>
         <div class="market-panel-head">
-          <span class="pick-headline">AZ -0.5</span>
+          <span class="pick-headline">SEA +0.5</span>
           <span class="rating-label">APEX WIN PROBABILITY RATING</span>
           <span class="tier-badge tier-badge--moderate">MODERATE</span>
         </div>
         <div class="meta mono">Sportsbook: FanDuel</div>
         <div class="rationale-copy">
-          <p>At the FanDuel capture on August 12, 2026 at 12:46:00 PM ET, with Ryan Feltner facing Merrill Kelly, APEX estimates AZ -0.5 has a 52.3% first-five win probability at -114.</p>
-          <p>In the August 12, 2026 ATS snapshot, the starter K-rate, BB-rate, and K-minus-BB deltas were -0.0134, 0.0040, and -0.0174.</p>
-          <p>In the August 12, 2026 ATS snapshot, the starter xwOBA-luck, xFIP, FIP, and Stuff+ deltas were 0.0320, 0.0344, -0.1752, and -3.3624.</p>
-          <p>In the August 12, 2026 ATS snapshot, expected starter innings delta was 0.0000, second-pass TTO delta was 0.0000, and the FanDuel market offset was 0.0000 for Arizona Diamondbacks.</p>
-          <p>The full per-scenario numeric ATS input set, including the values summarized by those ranges, is dated August 12, 2026 for Colorado Rockies at Arizona Diamondbacks, with both Ryan Feltner and Merrill Kelly identified in the saved pregame record.</p>
+          <p>At the FanDuel capture on August 13, 2026 at 12:04:23 PM ET, with Logan Gilbert facing Max Fried, APEX estimates SEA +0.5 has a 54.2% first-five win probability at -120.</p>
+          <p>In the August 13, 2026 ATS snapshot, the starter K-rate, BB-rate, and K-minus-BB deltas were -0.0243, 0.0197, and -0.0440.</p>
+          <p>In the August 13, 2026 ATS snapshot, the starter xwOBA-luck, xFIP, FIP, and Stuff+ deltas were -0.0090, 0.0476, -1.1766, and -2.9800.</p>
+          <p>In the August 13, 2026 ATS snapshot, expected starter innings delta was 0.0000, second-pass TTO delta was 0.0000, and the FanDuel market offset was -0.0493 for Seattle Mariners.</p>
+          <p>The full per-scenario numeric ATS input set, including the values summarized by those ranges, is dated August 13, 2026 for Seattle Mariners at New York Yankees, with both Logan Gilbert and Max Fried identified in the saved pregame record.</p>
         </div>
       </div>
       <div class="market-panel">
         <div class="market-label">F5 TOT</div>
         <div class="market-panel-head">
-          <span class="pick-headline">OVER 5.5</span>
+          <span class="pick-headline">OVER 3.5</span>
           <span class="rating-label">APEX WIN PROBABILITY RATING</span>
-          <span class="tier-badge tier-badge--moderate">MODERATE</span>
+          <span class="tier-badge tier-badge--elite">ELITE</span>
         </div>
         <div class="meta mono">Sportsbook: FanDuel</div>
         <div class="rationale-copy">
-          <p>At the FanDuel capture on August 12, 2026 at 12:46:00 PM ET, with Ryan Feltner facing Merrill Kelly, APEX estimates OVER 5.5 has a 50.5% first-five win probability at +104.</p>
-          <p>From the August 12, 2026 starter inputs, Ryan Feltner&#x27;s K-minus-BB and FIP values were 0.0893 and 5.7408, while Merrill Kelly&#x27;s were 0.0719 and 5.5656.</p>
-          <p>At the August 12, 2026 lineup capture, the Colorado Rockies and Arizona Diamondbacks lineup wRC+ inputs were 79.25 and 96.43; through August 11, 2026, their rolling ISO inputs were 0.200 and 0.139 and rolling F5 runs were 2.69 and 2.44.</p>
-          <p>At the weather observation on August 12, 2026 at 12:45:50 PM ET, forecast temperature was 97.2 degrees and wind was 5.1 mph; in the committed PMF generated on August 12, 2026 at 12:49:38 PM ET, mean F5 runs were 6.201, mode was 4, and central 80% mass spanned 2 through 11 runs.</p>
-          <p>For the 2025 season, the park run-factor input was 1.1003; every other consumed totals value is paired with its saved as-of date in the card record.</p>
+          <p>At the FanDuel capture on August 13, 2026 at 12:04:23 PM ET, with Logan Gilbert facing Max Fried, APEX estimates OVER 3.5 has a 60.3% first-five win probability at -140.</p>
+          <p>From the August 13, 2026 starter inputs, Logan Gilbert&#x27;s K-minus-BB and FIP values were 0.1953 and 3.5673, while Max Fried&#x27;s were 0.1513 and 2.3908.</p>
+          <p>At the August 13, 2026 lineup capture, the Seattle Mariners and New York Yankees lineup wRC+ inputs were 110.31 and 112.35; through August 12, 2026, their rolling ISO inputs were 0.119 and 0.175 and rolling F5 runs were 2.27 and 2.51.</p>
+          <p>At the weather observation on August 13, 2026 at 12:02:41 PM ET, forecast temperature was 84.8 degrees and wind was 10.0 mph; in the committed PMF generated on August 13, 2026 at 12:06:01 PM ET, mean F5 runs were 4.787, mode was 3, and central 80% mass spanned 1 through 9 runs.</p>
+          <p>For the 2025 season, the park run-factor input was 1.0127; every other consumed totals value is paired with its saved as-of date in the card record.</p>
         </div>
       </div>
       </div>
@@ -232,26 +243,26 @@
       <header class="game-header">
         <div class="game-num mono">G05</div>
         <div class="game-meta">
-          <h2 class="game-matchup">Houston Astros @ San Francisco Giants</h2>
-          <p class="game-pitchers mono">Bryan King vs Adrian Houser</p>
+          <h2 class="game-matchup">Boston Red Sox @ Toronto Blue Jays</h2>
+          <p class="game-pitchers mono">Payton Tolle vs Max Scherzer</p>
         </div>
-        <div class="game-time mono">3:45 PM ET</div>
+        <div class="game-time mono">3:07 PM ET</div>
       </header>
       <div class="market-grid">
       <div class="market-panel">
         <div class="market-label">F5 ATS</div>
         <div class="market-panel-head">
-          <span class="pick-headline">HOU -0.5</span>
+          <span class="pick-headline">BOS -0.5</span>
           <span class="rating-label">APEX WIN PROBABILITY RATING</span>
-          <span class="tier-badge tier-badge--weak">WEAK</span>
+          <span class="tier-badge tier-badge--elite">ELITE</span>
         </div>
         <div class="meta mono">Sportsbook: FanDuel</div>
         <div class="rationale-copy">
-          <p>At the FanDuel capture on August 12, 2026 at 12:46:00 PM ET, with Bryan King facing Adrian Houser, APEX estimates HOU -0.5 has a 48.2% first-five win probability at +100.</p>
-          <p>In the August 12, 2026 ATS snapshot, the starter K-rate, BB-rate, and K-minus-BB deltas were 0.0364, 0.0062, and 0.0302.</p>
-          <p>In the August 12, 2026 ATS snapshot, the starter xwOBA-luck, xFIP, FIP, and Stuff+ deltas were 0.0180, -0.3352, -0.1918, and 9.0310.</p>
-          <p>In the August 12, 2026 ATS snapshot, expected starter innings delta was 0.0000, second-pass TTO delta was 0.0000, and the FanDuel market offset was -0.1226 for Houston Astros.</p>
-          <p>The full per-scenario numeric ATS input set, including the values summarized by those ranges, is dated August 12, 2026 for Houston Astros at San Francisco Giants, with both Bryan King and Adrian Houser identified in the saved pregame record.</p>
+          <p>At the FanDuel capture on August 13, 2026 at 12:04:23 PM ET, with Payton Tolle facing Max Scherzer, APEX estimates BOS -0.5 has a 67.8% first-five win probability at -113.</p>
+          <p>In the August 13, 2026 ATS snapshot, the starter K-rate, BB-rate, and K-minus-BB deltas were 0.0801, -0.0193, and 0.0993.</p>
+          <p>In the August 13, 2026 ATS snapshot, the starter xwOBA-luck, xFIP, FIP, and Stuff+ deltas were 0.0510, -1.8698, -3.6467, and 21.3053.</p>
+          <p>In the August 13, 2026 ATS snapshot, expected starter innings delta was 0.0000, second-pass TTO delta was 0.0000, and the FanDuel market offset was -0.0082 for Boston Red Sox.</p>
+          <p>The full per-scenario numeric ATS input set, including the values summarized by those ranges, is dated August 13, 2026 for Boston Red Sox at Toronto Blue Jays, with both Payton Tolle and Max Scherzer identified in the saved pregame record.</p>
         </div>
       </div>
       <div class="market-panel">
@@ -263,11 +274,11 @@
         </div>
         <div class="meta mono">Sportsbook: FanDuel</div>
         <div class="rationale-copy">
-          <p>At the FanDuel capture on August 12, 2026 at 12:46:00 PM ET, with Bryan King facing Adrian Houser, APEX estimates OVER 4.5 has a 51.4% first-five win probability at -120.</p>
-          <p>From the August 12, 2026 starter inputs, Bryan King&#x27;s K-minus-BB and FIP values were 0.1214 and 4.6431, while Adrian Houser&#x27;s were 0.0912 and 4.8349.</p>
-          <p>At the August 12, 2026 lineup capture, the Houston Astros and San Francisco Giants lineup wRC+ inputs were 90.84 and 106.71; through August 11, 2026, their rolling ISO inputs were 0.176 and 0.177 and rolling F5 runs were 2.73 and 2.12.</p>
-          <p>At the weather observation on August 12, 2026 at 12:45:51 PM ET, forecast temperature was 65.8 degrees and wind was 12.7 mph; in the committed PMF generated on August 12, 2026 at 12:49:38 PM ET, mean F5 runs were 5.175, mode was 3, and central 80% mass spanned 1 through 10 runs.</p>
-          <p>For the 2025 season, the park run-factor input was 0.9502; every other consumed totals value is paired with its saved as-of date in the card record.</p>
+          <p>At the FanDuel capture on August 13, 2026 at 12:04:23 PM ET, with Payton Tolle facing Max Scherzer, APEX estimates OVER 4.5 has a 53.6% first-five win probability at +106.</p>
+          <p>From the August 13, 2026 starter inputs, Payton Tolle&#x27;s K-minus-BB and FIP values were 0.2029 and 3.2382, while Max Scherzer&#x27;s were 0.1036 and 6.8848.</p>
+          <p>At the August 13, 2026 lineup capture, the Boston Red Sox and Toronto Blue Jays lineup wRC+ inputs were 104.29 and 97.48; through August 12, 2026, their rolling ISO inputs were 0.172 and 0.144 and rolling F5 runs were 2.42 and 1.92.</p>
+          <p>At the weather observation on August 13, 2026 at 12:02:41 PM ET, forecast temperature was 79.0 degrees and wind was 3.5 mph; in the committed PMF generated on August 13, 2026 at 12:06:01 PM ET, mean F5 runs were 5.383, mode was 4, and central 80% mass spanned 1 through 10 runs.</p>
+          <p>For the 2025 season, the park run-factor input was 1.0669; every other consumed totals value is paired with its saved as-of date in the card record.</p>
         </div>
       </div>
       </div>
@@ -276,142 +287,10 @@
       <header class="game-header">
         <div class="game-num mono">G06</div>
         <div class="game-meta">
-          <h2 class="game-matchup">Milwaukee Brewers @ San Diego Padres</h2>
-          <p class="game-pitchers mono">Dustin May vs Robbie Ray</p>
-        </div>
-        <div class="game-time mono">4:10 PM ET</div>
-      </header>
-      <div class="market-grid">
-      <div class="market-panel">
-        <div class="market-label">F5 ATS</div>
-        <div class="market-panel-head">
-          <span class="pick-headline">SD +0.5</span>
-          <span class="rating-label">APEX WIN PROBABILITY RATING</span>
-          <span class="tier-badge tier-badge--strong">STRONG</span>
-        </div>
-        <div class="meta mono">Sportsbook: FanDuel</div>
-        <div class="rationale-copy">
-          <p>At the FanDuel capture on August 12, 2026 at 12:46:01 PM ET, with Dustin May facing Robbie Ray, APEX estimates SD +0.5 has a 56.8% first-five win probability at -138.</p>
-          <p>In the August 12, 2026 ATS snapshot, the starter K-rate, BB-rate, and K-minus-BB deltas were 0.0228, -0.0306, and 0.0535.</p>
-          <p>In the August 12, 2026 ATS snapshot, the starter xwOBA-luck, xFIP, FIP, and Stuff+ deltas were -0.0310, -0.8956, -1.2282, and 7.0036.</p>
-          <p>In the August 12, 2026 ATS snapshot, expected starter innings delta was 0.0000, second-pass TTO delta was 0.0000, and the FanDuel market offset was -0.1777 for San Diego Padres.</p>
-          <p>The full per-scenario numeric ATS input set, including the values summarized by those ranges, is dated August 12, 2026 for Milwaukee Brewers at San Diego Padres, with both Dustin May and Robbie Ray identified in the saved pregame record.</p>
-        </div>
-      </div>
-      <div class="market-panel">
-        <div class="market-label">F5 TOT</div>
-        <div class="market-panel-head">
-          <span class="pick-headline">UNDER 4.5</span>
-          <span class="rating-label">APEX WIN PROBABILITY RATING</span>
-          <span class="tier-badge tier-badge--moderate">MODERATE</span>
-        </div>
-        <div class="meta mono">Sportsbook: FanDuel</div>
-        <div class="rationale-copy">
-          <p>At the FanDuel capture on August 12, 2026 at 12:46:01 PM ET, with Dustin May facing Robbie Ray, APEX estimates UNDER 4.5 has a 54.2% first-five win probability at -120.</p>
-          <p>From the August 12, 2026 starter inputs, Dustin May&#x27;s K-minus-BB and FIP values were 0.1494 and 3.2562, while Robbie Ray&#x27;s were 0.0959 and 4.4844.</p>
-          <p>At the August 12, 2026 lineup capture, the Milwaukee Brewers and San Diego Padres lineup wRC+ inputs were 106.45 and 93.61; through August 11, 2026, their rolling ISO inputs were 0.164 and 0.147 and rolling F5 runs were 2.64 and 2.09.</p>
-          <p>At the weather observation on August 12, 2026 at 12:45:51 PM ET, forecast temperature was 78.2 degrees and wind was 7.9 mph; in the committed PMF generated on August 12, 2026 at 12:49:38 PM ET, mean F5 runs were 4.715, mode was 3, and central 80% mass spanned 1 through 9 runs.</p>
-          <p>For the 2025 season, the park run-factor input was 0.8877; every other consumed totals value is paired with its saved as-of date in the card record.</p>
-        </div>
-      </div>
-      </div>
-    </article>
-    <article class="game-module" data-game="G07">
-      <header class="game-header">
-        <div class="game-num mono">G07</div>
-        <div class="game-meta">
-          <h2 class="game-matchup">Cleveland Guardians @ Detroit Tigers</h2>
-          <p class="game-pitchers mono">Foster Griffin vs Framber Valdez</p>
-        </div>
-        <div class="game-time mono">6:40 PM ET</div>
-      </header>
-      <div class="market-grid">
-      <div class="market-panel">
-        <div class="market-label">F5 ATS</div>
-        <div class="market-panel-head">
-          <span class="pick-headline">CLE +0.5</span>
-          <span class="rating-label">APEX WIN PROBABILITY RATING</span>
-          <span class="tier-badge tier-badge--elite">ELITE</span>
-        </div>
-        <div class="meta mono">Sportsbook: FanDuel</div>
-        <div class="rationale-copy">
-          <p>At the FanDuel capture on August 12, 2026 at 12:46:01 PM ET, with Foster Griffin facing Framber Valdez, APEX estimates CLE +0.5 has a 60.4% first-five win probability at -144.</p>
-          <p>In the August 12, 2026 ATS snapshot, the starter K-rate, BB-rate, and K-minus-BB deltas were -0.0334, 0.0186, and -0.0520.</p>
-          <p>In the August 12, 2026 ATS snapshot, the starter xwOBA-luck, xFIP, FIP, and Stuff+ deltas were -0.0120, 0.4079, -0.1672, and 4.7554.</p>
-          <p>In the August 12, 2026 ATS snapshot, expected starter innings delta was 0.0000, second-pass TTO delta was 0.0000, and the FanDuel market offset was -0.2146 for Cleveland Guardians.</p>
-          <p>The full per-scenario numeric ATS input set, including the values summarized by those ranges, is dated August 12, 2026 for Cleveland Guardians at Detroit Tigers, with both Foster Griffin and Framber Valdez identified in the saved pregame record.</p>
-        </div>
-      </div>
-      <div class="market-panel">
-        <div class="market-label">F5 TOT</div>
-        <div class="market-panel-head">
-          <span class="pick-headline">UNDER 4.5</span>
-          <span class="rating-label">APEX WIN PROBABILITY RATING</span>
-          <span class="tier-badge tier-badge--moderate">MODERATE</span>
-        </div>
-        <div class="meta mono">Sportsbook: FanDuel</div>
-        <div class="rationale-copy">
-          <p>At the FanDuel capture on August 12, 2026 at 12:46:01 PM ET, with Foster Griffin facing Framber Valdez, APEX estimates UNDER 4.5 has a 53.3% first-five win probability at -120.</p>
-          <p>From the August 12, 2026 starter inputs, Foster Griffin&#x27;s K-minus-BB and FIP values were 0.1613 and 4.1998, while Framber Valdez&#x27;s were 0.1093 and 4.0326.</p>
-          <p>At the August 12, 2026 lineup capture, the Cleveland Guardians and Detroit Tigers lineup wRC+ inputs were 89.61 and 79.14; through August 11, 2026, their rolling ISO inputs were 0.133 and 0.195 and rolling F5 runs were 2.23 and 2.55.</p>
-          <p>At the weather observation on August 12, 2026 at 12:45:52 PM ET, forecast temperature was 78.0 degrees and wind was 11.3 mph; in the committed PMF generated on August 12, 2026 at 12:49:38 PM ET, mean F5 runs were 4.790, mode was 3, and central 80% mass spanned 1 through 9 runs.</p>
-          <p>For the 2025 season, the park run-factor input was 1.0455; every other consumed totals value is paired with its saved as-of date in the card record.</p>
-        </div>
-      </div>
-      </div>
-    </article>
-    <article class="game-module" data-game="G08">
-      <header class="game-header">
-        <div class="game-num mono">G08</div>
-        <div class="game-meta">
-          <h2 class="game-matchup">Pittsburgh Pirates @ Miami Marlins</h2>
-          <p class="game-pitchers mono">Carmen Mlodzinski vs Janson Junk</p>
-        </div>
-        <div class="game-time mono">6:40 PM ET</div>
-      </header>
-      <div class="market-grid">
-      <div class="market-panel">
-        <div class="market-label">F5 ATS</div>
-        <div class="market-panel-head">
-          <span class="pick-headline">PIT +0.5</span>
-          <span class="rating-label">APEX WIN PROBABILITY RATING</span>
-          <span class="tier-badge tier-badge--elite">ELITE</span>
-        </div>
-        <div class="meta mono">Sportsbook: FanDuel</div>
-        <div class="rationale-copy">
-          <p>At the FanDuel capture on August 12, 2026 at 12:46:01 PM ET, with Carmen Mlodzinski facing Janson Junk, APEX estimates PIT +0.5 has a 67.1% first-five win probability at -160.</p>
-          <p>In the August 12, 2026 ATS snapshot, the starter K-rate, BB-rate, and K-minus-BB deltas were -0.0040, -0.0081, and 0.0041.</p>
-          <p>In the August 12, 2026 ATS snapshot, the starter xwOBA-luck, xFIP, FIP, and Stuff+ deltas were -0.0370, -0.0001, 0.7392, and 8.6551.</p>
-          <p>In the August 12, 2026 ATS snapshot, expected starter innings delta was 0.0000, second-pass TTO delta was 0.0000, and the FanDuel market offset was -0.3120 for Pittsburgh Pirates.</p>
-          <p>The full per-scenario numeric ATS input set, including the values summarized by those ranges, is dated August 12, 2026 for Pittsburgh Pirates at Miami Marlins, with both Carmen Mlodzinski and Janson Junk identified in the saved pregame record.</p>
-        </div>
-      </div>
-      <div class="market-panel">
-        <div class="market-label">F5 TOT</div>
-        <div class="market-panel-head">
-          <span class="pick-headline">OVER 4.5</span>
-          <span class="rating-label">APEX WIN PROBABILITY RATING</span>
-          <span class="tier-badge tier-badge--moderate">MODERATE</span>
-        </div>
-        <div class="meta mono">Sportsbook: FanDuel</div>
-        <div class="rationale-copy">
-          <p>At the FanDuel capture on August 12, 2026 at 12:46:01 PM ET, with Carmen Mlodzinski facing Janson Junk, APEX estimates OVER 4.5 has a 50.7% first-five win probability at -106.</p>
-          <p>From the August 12, 2026 starter inputs, Carmen Mlodzinski&#x27;s K-minus-BB and FIP values were 0.1139 and 3.6165, while Janson Junk&#x27;s were 0.1180 and 4.3558.</p>
-          <p>At the August 12, 2026 lineup capture, the Pittsburgh Pirates and Miami Marlins lineup wRC+ inputs were 88.40 and 101.81; through August 11, 2026, their rolling ISO inputs were 0.196 and 0.195 and rolling F5 runs were 2.95 and 2.58.</p>
-          <p>At the weather observation on August 12, 2026 at 12:45:52 PM ET, forecast temperature was 81.9 degrees and wind was 3.6 mph; in the committed PMF generated on August 12, 2026 at 12:49:38 PM ET, mean F5 runs were 5.119, mode was 3, and central 80% mass spanned 1 through 10 runs.</p>
-          <p>For the 2025 season, the park run-factor input was 0.9641; every other consumed totals value is paired with its saved as-of date in the card record.</p>
-        </div>
-      </div>
-      </div>
-    </article>
-    <article class="game-module" data-game="G09">
-      <header class="game-header">
-        <div class="game-num mono">G09</div>
-        <div class="game-meta">
           <h2 class="game-matchup">Chicago Cubs @ Washington Nationals</h2>
-          <p class="game-pitchers mono">David Peterson vs Jackson Kent</p>
+          <p class="game-pitchers mono">Kevin Gausman vs Cade Cavalli</p>
         </div>
-        <div class="game-time mono">6:45 PM ET</div>
+        <div class="game-time mono">4:05 PM ET</div>
       </header>
       <div class="market-grid">
       <div class="market-panel">
@@ -423,11 +302,11 @@
         </div>
         <div class="meta mono">Sportsbook: FanDuel</div>
         <div class="rationale-copy">
-          <p>At the FanDuel capture on August 12, 2026 at 12:46:01 PM ET, with David Peterson facing Jackson Kent, APEX estimates WSH +0.5 has a 56.5% first-five win probability at -115.</p>
-          <p>In the August 12, 2026 ATS snapshot, the starter K-rate, BB-rate, and K-minus-BB deltas were -0.0587 to 0.0566, -0.0293 to 0.0365, and -0.0751 to 0.0360.</p>
-          <p>In the August 12, 2026 ATS snapshot, the starter xwOBA-luck, xFIP, FIP, and Stuff+ deltas were -0.0630 to 0.0310, -1.1286 to 0.7809, -1.6818 to 0.9761, and -18.2983 to 5.7084.</p>
-          <p>In the August 12, 2026 ATS snapshot, expected starter innings delta was 0.0000, second-pass TTO delta was 0.0000, and the FanDuel market offset was -0.0082 for Washington Nationals.</p>
-          <p>The full per-scenario numeric ATS input set, including the values summarized by those ranges, is dated August 12, 2026 for Chicago Cubs at Washington Nationals, with both David Peterson and Jackson Kent identified in the saved pregame record.</p>
+          <p>At the FanDuel capture on August 13, 2026 at 12:04:23 PM ET, with Kevin Gausman facing Cade Cavalli, APEX estimates WSH +0.5 has a 57.0% first-five win probability at -140.</p>
+          <p>In the August 13, 2026 ATS snapshot, the starter K-rate, BB-rate, and K-minus-BB deltas were -0.0200, -0.0046, and -0.0154.</p>
+          <p>In the August 13, 2026 ATS snapshot, the starter xwOBA-luck, xFIP, FIP, and Stuff+ deltas were -0.0000, 0.4562, -0.0663, and -3.8873.</p>
+          <p>In the August 13, 2026 ATS snapshot, expected starter innings delta was 0.0000, second-pass TTO delta was 0.0000, and the FanDuel market offset was -0.1934 for Washington Nationals.</p>
+          <p>The full per-scenario numeric ATS input set, including the values summarized by those ranges, is dated August 13, 2026 for Chicago Cubs at Washington Nationals, with both Kevin Gausman and Cade Cavalli identified in the saved pregame record.</p>
         </div>
       </div>
       <div class="market-panel">
@@ -439,83 +318,83 @@
         </div>
         <div class="meta mono">Sportsbook: FanDuel</div>
         <div class="rationale-copy">
-          <p>At the FanDuel capture on August 12, 2026 at 12:46:01 PM ET, with David Peterson facing Jackson Kent, APEX estimates OVER 4.5 has a 58.6% first-five win probability at -144.</p>
-          <p>From the August 12, 2026 starter inputs, David Peterson&#x27;s K-minus-BB and FIP values were 0.1024 and 4.0729, while Jackson Kent&#x27;s were 0.0584 to 0.1794 and 2.3105 to 6.1930.</p>
-          <p>At the August 12, 2026 lineup capture, the Chicago Cubs and Washington Nationals lineup wRC+ inputs were 106.76 and 111.51; through August 11, 2026, their rolling ISO inputs were 0.200 and 0.211 and rolling F5 runs were 2.70 and 3.10.</p>
-          <p>At the weather observation on August 12, 2026 at 12:45:52 PM ET, forecast temperature was 85.7 degrees and wind was 7.6 mph; in the committed PMF generated on August 12, 2026 at 12:49:38 PM ET, mean F5 runs were 5.850, mode was 4, and central 80% mass spanned 2 through 11 runs.</p>
+          <p>At the FanDuel capture on August 13, 2026 at 12:04:23 PM ET, with Kevin Gausman facing Cade Cavalli, APEX estimates OVER 4.5 has a 57.2% first-five win probability at -108.</p>
+          <p>From the August 13, 2026 starter inputs, Kevin Gausman&#x27;s K-minus-BB and FIP values were 0.1621 and 3.5259, while Cade Cavalli&#x27;s were 0.1775 and 3.5922.</p>
+          <p>At the August 13, 2026 lineup capture, the Chicago Cubs and Washington Nationals lineup wRC+ inputs were 106.76 and 111.51; through August 12, 2026, their rolling ISO inputs were 0.200 and 0.211 and rolling F5 runs were 2.70 and 3.10.</p>
+          <p>At the weather observation on August 13, 2026 at 12:02:42 PM ET, forecast temperature was 92.7 degrees and wind was 6.5 mph; in the committed PMF generated on August 13, 2026 at 12:06:01 PM ET, mean F5 runs were 5.694, mode was 4, and central 80% mass spanned 2 through 11 runs.</p>
           <p>For the 2025 season, the park run-factor input was 1.0820; every other consumed totals value is paired with its saved as-of date in the card record.</p>
         </div>
       </div>
       </div>
     </article>
-    <article class="game-module" data-game="G10">
+    <article class="game-module" data-game="G07">
       <header class="game-header">
-        <div class="game-num mono">G10</div>
+        <div class="game-num mono">G07</div>
         <div class="game-meta">
-          <h2 class="game-matchup">Seattle Mariners @ New York Yankees</h2>
-          <p class="game-pitchers mono">Bryce Miller vs Will Warren</p>
+          <h2 class="game-matchup">Philadelphia Phillies @ Minnesota Twins</h2>
+          <p class="game-pitchers mono">Aaron Nola vs Taj Bradley</p>
         </div>
-        <div class="game-time mono">7:05 PM ET</div>
+        <div class="game-time mono">7:30 PM ET</div>
       </header>
       <div class="market-grid">
       <div class="market-panel">
         <div class="market-label">F5 ATS</div>
         <div class="market-panel-head">
-          <span class="pick-headline">SEA +0.5</span>
-          <span class="rating-label">APEX WIN PROBABILITY RATING</span>
-          <span class="tier-badge tier-badge--strong">STRONG</span>
-        </div>
-        <div class="meta mono">Sportsbook: FanDuel</div>
-        <div class="rationale-copy">
-          <p>At the FanDuel capture on August 12, 2026 at 12:46:02 PM ET, with Bryce Miller facing Will Warren, APEX estimates SEA +0.5 has a 57.5% first-five win probability at -140.</p>
-          <p>In the August 12, 2026 ATS snapshot, the starter K-rate, BB-rate, and K-minus-BB deltas were -0.0192, 0.0165, and -0.0357.</p>
-          <p>In the August 12, 2026 ATS snapshot, the starter xwOBA-luck, xFIP, FIP, and Stuff+ deltas were 0.0120, 0.1141, 0.0163, and -3.8180.</p>
-          <p>In the August 12, 2026 ATS snapshot, expected starter innings delta was 0.0000, second-pass TTO delta was 0.0000, and the FanDuel market offset was -0.1934 for Seattle Mariners.</p>
-          <p>The full per-scenario numeric ATS input set, including the values summarized by those ranges, is dated August 12, 2026 for Seattle Mariners at New York Yankees, with both Bryce Miller and Will Warren identified in the saved pregame record.</p>
-        </div>
-      </div>
-      <div class="market-panel">
-        <div class="market-label">F5 TOT</div>
-        <div class="market-panel-head">
-          <span class="pick-headline">UNDER 4.5</span>
+          <span class="pick-headline">MIN -0.5</span>
           <span class="rating-label">APEX WIN PROBABILITY RATING</span>
           <span class="tier-badge tier-badge--moderate">MODERATE</span>
         </div>
         <div class="meta mono">Sportsbook: FanDuel</div>
         <div class="rationale-copy">
-          <p>At the FanDuel capture on August 12, 2026 at 12:46:02 PM ET, with Bryce Miller facing Will Warren, APEX estimates UNDER 4.5 has a 50.1% first-five win probability at -110.</p>
-          <p>From the August 12, 2026 starter inputs, Bryce Miller&#x27;s K-minus-BB and FIP values were 0.1884 and 3.8291, while Will Warren&#x27;s were 0.1528 and 3.8455.</p>
-          <p>At the August 12, 2026 lineup capture, the Seattle Mariners and New York Yankees lineup wRC+ inputs were 100.64 and 115.01; through August 11, 2026, their rolling ISO inputs were 0.119 and 0.175 and rolling F5 runs were 2.27 and 2.51.</p>
-          <p>At the weather observation on August 12, 2026 at 12:45:53 PM ET, forecast temperature was 85.8 degrees and wind was 2.1 mph; in the committed PMF generated on August 12, 2026 at 12:49:38 PM ET, mean F5 runs were 5.044, mode was 3, and central 80% mass spanned 1 through 9 runs.</p>
-          <p>For the 2025 season, the park run-factor input was 1.0127; every other consumed totals value is paired with its saved as-of date in the card record.</p>
+          <p>At the FanDuel capture on August 13, 2026 at 12:04:24 PM ET, with Aaron Nola facing Taj Bradley, APEX estimates MIN -0.5 has a 52.2% first-five win probability at +110.</p>
+          <p>In the August 13, 2026 ATS snapshot, the starter K-rate, BB-rate, and K-minus-BB deltas were 0.0242, 0.0166, and 0.0076.</p>
+          <p>In the August 13, 2026 ATS snapshot, the starter xwOBA-luck, xFIP, FIP, and Stuff+ deltas were 0.0410, -0.0473, -1.2561, and 5.3525.</p>
+          <p>In the August 13, 2026 ATS snapshot, expected starter innings delta was 0.0000, second-pass TTO delta was 0.0000, and the FanDuel market offset was -0.2146 for Minnesota Twins.</p>
+          <p>The full per-scenario numeric ATS input set, including the values summarized by those ranges, is dated August 13, 2026 for Philadelphia Phillies at Minnesota Twins, with both Aaron Nola and Taj Bradley identified in the saved pregame record.</p>
+        </div>
+      </div>
+      <div class="market-panel">
+        <div class="market-label">F5 TOT</div>
+        <div class="market-panel-head">
+          <span class="pick-headline">OVER 4.5</span>
+          <span class="rating-label">APEX WIN PROBABILITY RATING</span>
+          <span class="tier-badge tier-badge--moderate">MODERATE</span>
+        </div>
+        <div class="meta mono">Sportsbook: FanDuel</div>
+        <div class="rationale-copy">
+          <p>At the FanDuel capture on August 13, 2026 at 12:04:24 PM ET, with Aaron Nola facing Taj Bradley, APEX estimates OVER 4.5 has a 52.8% first-five win probability at -120.</p>
+          <p>From the August 13, 2026 starter inputs, Aaron Nola&#x27;s K-minus-BB and FIP values were 0.1551 and 5.0873, while Taj Bradley&#x27;s were 0.1628 and 3.8312.</p>
+          <p>At the August 13, 2026 lineup capture, the Philadelphia Phillies and Minnesota Twins lineup wRC+ inputs were 101.04 and 101.26; through August 12, 2026, their rolling ISO inputs were 0.159 and 0.201 and rolling F5 runs were 2.41 and 3.11.</p>
+          <p>At the weather observation on August 13, 2026 at 12:02:42 PM ET, forecast temperature was 70.1 degrees and wind was 9.1 mph; in the committed PMF generated on August 13, 2026 at 12:06:01 PM ET, mean F5 runs were 5.310, mode was 4, and central 80% mass spanned 1 through 10 runs.</p>
+          <p>For the 2025 season, the park run-factor input was 1.0718; every other consumed totals value is paired with its saved as-of date in the card record.</p>
         </div>
       </div>
       </div>
     </article>
-    <article class="game-module" data-game="G11">
+    <article class="game-module" data-game="G08">
       <header class="game-header">
-        <div class="game-num mono">G11</div>
+        <div class="game-num mono">G08</div>
         <div class="game-meta">
-          <h2 class="game-matchup">Boston Red Sox @ Toronto Blue Jays</h2>
-          <p class="game-pitchers mono">Ranger Suarez vs José Soriano</p>
+          <h2 class="game-matchup">Texas Rangers @ Los Angeles Angels</h2>
+          <p class="game-pitchers mono">Jacob deGrom vs Walbert Ureña</p>
         </div>
-        <div class="game-time mono">7:07 PM ET</div>
+        <div class="game-time mono">10:07 PM ET</div>
       </header>
       <div class="market-grid">
       <div class="market-panel">
         <div class="market-label">F5 ATS</div>
         <div class="market-panel-head">
-          <span class="pick-headline">TOR +0.5</span>
+          <span class="pick-headline">TEX -0.5</span>
           <span class="rating-label">APEX WIN PROBABILITY RATING</span>
           <span class="tier-badge tier-badge--strong">STRONG</span>
         </div>
         <div class="meta mono">Sportsbook: FanDuel</div>
         <div class="rationale-copy">
-          <p>At the FanDuel capture on August 12, 2026 at 12:46:02 PM ET, with Ranger Suarez facing José Soriano, APEX estimates TOR +0.5 has a 56.0% first-five win probability at -140.</p>
-          <p>In the August 12, 2026 ATS snapshot, the starter K-rate, BB-rate, and K-minus-BB deltas were 0.0077, -0.0355, and 0.0432.</p>
-          <p>In the August 12, 2026 ATS snapshot, the starter xwOBA-luck, xFIP, FIP, and Stuff+ deltas were -0.0200, -0.4569, -1.0679, and -3.0969.</p>
-          <p>In the August 12, 2026 ATS snapshot, expected starter innings delta was 0.0000, second-pass TTO delta was 0.0000, and the FanDuel market offset was -0.1934 for Toronto Blue Jays.</p>
-          <p>The full per-scenario numeric ATS input set, including the values summarized by those ranges, is dated August 12, 2026 for Boston Red Sox at Toronto Blue Jays, with both Ranger Suarez and José Soriano identified in the saved pregame record.</p>
+          <p>At the FanDuel capture on August 13, 2026 at 12:04:24 PM ET, with Jacob deGrom facing Walbert Ureña, APEX estimates TEX -0.5 has a 55.0% first-five win probability at -110.</p>
+          <p>In the August 13, 2026 ATS snapshot, the starter K-rate, BB-rate, and K-minus-BB deltas were 0.0608, -0.0423, and 0.1031.</p>
+          <p>In the August 13, 2026 ATS snapshot, the starter xwOBA-luck, xFIP, FIP, and Stuff+ deltas were 0.0220, -1.1207, -0.5242, and 9.1346.</p>
+          <p>In the August 13, 2026 ATS snapshot, expected starter innings delta was 0.0000, second-pass TTO delta was 0.0000, and the FanDuel market offset was -0.0328 for Texas Rangers.</p>
+          <p>The full per-scenario numeric ATS input set, including the values summarized by those ranges, is dated August 13, 2026 for Texas Rangers at Los Angeles Angels, with both Jacob deGrom and Walbert Ureña identified in the saved pregame record.</p>
         </div>
       </div>
       <div class="market-panel">
@@ -527,39 +406,39 @@
         </div>
         <div class="meta mono">Sportsbook: FanDuel</div>
         <div class="rationale-copy">
-          <p>At the FanDuel capture on August 12, 2026 at 12:46:02 PM ET, with Ranger Suarez facing José Soriano, APEX estimates OVER 3.5 has a 56.7% first-five win probability at -140.</p>
-          <p>From the August 12, 2026 starter inputs, Ranger Suarez&#x27;s K-minus-BB and FIP values were 0.1762 and 2.7037, while José Soriano&#x27;s were 0.1331 and 3.7716.</p>
-          <p>At the August 12, 2026 lineup capture, the Boston Red Sox and Toronto Blue Jays lineup wRC+ inputs were 92.70 and 92.69; through August 11, 2026, their rolling ISO inputs were 0.172 and 0.144 and rolling F5 runs were 2.42 and 1.92.</p>
-          <p>At the weather observation on August 12, 2026 at 12:45:53 PM ET, forecast temperature was 71.9 degrees and wind was 1.5 mph; in the committed PMF generated on August 12, 2026 at 12:49:38 PM ET, mean F5 runs were 4.486, mode was 3, and central 80% mass spanned 1 through 9 runs.</p>
-          <p>For the 2025 season, the park run-factor input was 1.0669; every other consumed totals value is paired with its saved as-of date in the card record.</p>
+          <p>At the FanDuel capture on August 13, 2026 at 12:04:24 PM ET, with Jacob deGrom facing Walbert Ureña, APEX estimates OVER 3.5 has a 58.9% first-five win probability at -146.</p>
+          <p>From the August 13, 2026 starter inputs, Jacob deGrom&#x27;s K-minus-BB and FIP values were 0.2188 and 3.2731, while Walbert Ureña&#x27;s were 0.1157 and 3.7973.</p>
+          <p>At the August 13, 2026 lineup capture, the Texas Rangers and Los Angeles Angels lineup wRC+ inputs were 99.42 and 91.78; through August 12, 2026, their rolling ISO inputs were 0.171 and 0.145 and rolling F5 runs were 2.47 and 2.59.</p>
+          <p>At the weather observation on August 13, 2026 at 12:02:43 PM ET, forecast temperature was 71.8 degrees and wind was 7.1 mph; in the committed PMF generated on August 13, 2026 at 12:06:01 PM ET, mean F5 runs were 4.679, mode was 3, and central 80% mass spanned 1 through 9 runs.</p>
+          <p>For the 2025 season, the park run-factor input was 1.0641; every other consumed totals value is paired with its saved as-of date in the card record.</p>
         </div>
       </div>
       </div>
     </article>
-    <article class="game-module" data-game="G12">
+    <article class="game-module" data-game="G09">
       <header class="game-header">
-        <div class="game-num mono">G12</div>
+        <div class="game-num mono">G09</div>
         <div class="game-meta">
-          <h2 class="game-matchup">New York Mets @ Atlanta Braves</h2>
-          <p class="game-pitchers mono">Zac Thornton vs Tyler Mahle</p>
+          <h2 class="game-matchup">Milwaukee Brewers @ Los Angeles Dodgers</h2>
+          <p class="game-pitchers mono">Shane Drohan vs Roki Sasaki</p>
         </div>
-        <div class="game-time mono">7:15 PM ET</div>
+        <div class="game-time mono">10:10 PM ET</div>
       </header>
       <div class="market-grid">
       <div class="market-panel">
         <div class="market-label">F5 ATS</div>
         <div class="market-panel-head">
-          <span class="pick-headline">NYM +0.5</span>
+          <span class="pick-headline">MIL +0.5</span>
           <span class="rating-label">APEX WIN PROBABILITY RATING</span>
           <span class="tier-badge tier-badge--elite">ELITE</span>
         </div>
         <div class="meta mono">Sportsbook: FanDuel</div>
         <div class="rationale-copy">
-          <p>At the FanDuel capture on August 12, 2026 at 12:46:02 PM ET, with Zac Thornton facing Tyler Mahle, APEX estimates NYM +0.5 has a 69.3% first-five win probability at -110.</p>
-          <p>In the August 12, 2026 ATS snapshot, the starter K-rate, BB-rate, and K-minus-BB deltas were 0.0305, 0.0087, and 0.0219.</p>
-          <p>In the August 12, 2026 ATS snapshot, the starter xwOBA-luck, xFIP, FIP, and Stuff+ deltas were -0.0910, -0.2288, 0.4726, and -8.9606.</p>
-          <p>In the August 12, 2026 ATS snapshot, expected starter innings delta was 0.0000, second-pass TTO delta was 0.0000, and the FanDuel market offset was 0.0405 for New York Mets.</p>
-          <p>The full per-scenario numeric ATS input set, including the values summarized by those ranges, is dated August 12, 2026 for New York Mets at Atlanta Braves, with both Zac Thornton and Tyler Mahle identified in the saved pregame record.</p>
+          <p>At the FanDuel capture on August 13, 2026 at 12:04:24 PM ET, with Shane Drohan facing Roki Sasaki, APEX estimates MIL +0.5 has a 61.9% first-five win probability at -122.</p>
+          <p>In the August 13, 2026 ATS snapshot, the starter K-rate, BB-rate, and K-minus-BB deltas were -0.0000, 0.0140, and -0.0140.</p>
+          <p>In the August 13, 2026 ATS snapshot, the starter xwOBA-luck, xFIP, FIP, and Stuff+ deltas were -0.0190, 0.2317, 1.6086, and 11.9523.</p>
+          <p>In the August 13, 2026 ATS snapshot, expected starter innings delta was 0.0000, second-pass TTO delta was 0.0000, and the FanDuel market offset was -0.0658 for Milwaukee Brewers.</p>
+          <p>The full per-scenario numeric ATS input set, including the values summarized by those ranges, is dated August 13, 2026 for Milwaukee Brewers at Los Angeles Dodgers, with both Shane Drohan and Roki Sasaki identified in the saved pregame record.</p>
         </div>
       </div>
       <div class="market-panel">
@@ -571,143 +450,11 @@
         </div>
         <div class="meta mono">Sportsbook: FanDuel</div>
         <div class="rationale-copy">
-          <p>At the FanDuel capture on August 12, 2026 at 12:46:02 PM ET, with Zac Thornton facing Tyler Mahle, APEX estimates OVER 4.5 has a 53.1% first-five win probability at -120.</p>
-          <p>From the August 12, 2026 starter inputs, Zac Thornton&#x27;s K-minus-BB and FIP values were 0.1167 and 3.6925, while Tyler Mahle&#x27;s were 0.1385 and 4.1651.</p>
-          <p>At the August 12, 2026 lineup capture, the New York Mets and Atlanta Braves lineup wRC+ inputs were 108.89 and 110.20; through August 11, 2026, their rolling ISO inputs were 0.171 and 0.133 and rolling F5 runs were 2.22 and 2.72.</p>
-          <p>At the weather observation on August 12, 2026 at 12:45:54 PM ET, forecast temperature was 89.9 degrees and wind was 7.9 mph; in the committed PMF generated on August 12, 2026 at 12:49:38 PM ET, mean F5 runs were 5.329, mode was 4, and central 80% mass spanned 1 through 10 runs.</p>
-          <p>For the 2025 season, the park run-factor input was 1.0057; every other consumed totals value is paired with its saved as-of date in the card record.</p>
-        </div>
-      </div>
-      </div>
-    </article>
-    <article class="game-module" data-game="G13">
-      <header class="game-header">
-        <div class="game-num mono">G13</div>
-        <div class="game-meta">
-          <h2 class="game-matchup">Cincinnati Reds @ Chicago White Sox</h2>
-          <p class="game-pitchers mono">Rhett Lowder vs Luis Castillo</p>
-        </div>
-        <div class="game-time mono">7:40 PM ET</div>
-      </header>
-      <div class="market-grid">
-      <div class="market-panel">
-        <div class="market-label">F5 ATS</div>
-        <div class="market-panel-head">
-          <span class="pick-headline">CIN +0.5</span>
-          <span class="rating-label">APEX WIN PROBABILITY RATING</span>
-          <span class="tier-badge tier-badge--strong">STRONG</span>
-        </div>
-        <div class="meta mono">Sportsbook: FanDuel</div>
-        <div class="rationale-copy">
-          <p>At the FanDuel capture on August 12, 2026 at 12:46:02 PM ET, with Rhett Lowder facing Luis Castillo, APEX estimates CIN +0.5 has a 55.8% first-five win probability at -122.</p>
-          <p>In the August 12, 2026 ATS snapshot, the starter K-rate, BB-rate, and K-minus-BB deltas were 0.0111, -0.0209, and 0.0321.</p>
-          <p>In the August 12, 2026 ATS snapshot, the starter xwOBA-luck, xFIP, FIP, and Stuff+ deltas were -0.0210, -0.3009, 0.0602, and 11.0462.</p>
-          <p>In the August 12, 2026 ATS snapshot, expected starter innings delta was 0.0000, second-pass TTO delta was 0.0000, and the FanDuel market offset was -0.0658 for Cincinnati Reds.</p>
-          <p>The full per-scenario numeric ATS input set, including the values summarized by those ranges, is dated August 12, 2026 for Cincinnati Reds at Chicago White Sox, with both Rhett Lowder and Luis Castillo identified in the saved pregame record.</p>
-        </div>
-      </div>
-      <div class="market-panel">
-        <div class="market-label">F5 TOT</div>
-        <div class="market-panel-head">
-          <span class="pick-headline">UNDER 4.5</span>
-          <span class="rating-label">APEX WIN PROBABILITY RATING</span>
-          <span class="tier-badge tier-badge--moderate">MODERATE</span>
-        </div>
-        <div class="meta mono">Sportsbook: FanDuel</div>
-        <div class="rationale-copy">
-          <p>At the FanDuel capture on August 12, 2026 at 12:46:02 PM ET, with Rhett Lowder facing Luis Castillo, APEX estimates UNDER 4.5 has a 51.3% first-five win probability at +100.</p>
-          <p>From the August 12, 2026 starter inputs, Rhett Lowder&#x27;s K-minus-BB and FIP values were 0.0963 and 4.4980, while Luis Castillo&#x27;s were 0.1284 and 4.5582.</p>
-          <p>At the August 12, 2026 lineup capture, the Cincinnati Reds and Chicago White Sox lineup wRC+ inputs were 90.75 and 98.52; through August 11, 2026, their rolling ISO inputs were 0.160 and 0.166 and rolling F5 runs were 2.52 and 2.89.</p>
-          <p>At the weather observation on August 12, 2026 at 12:45:54 PM ET, forecast temperature was 75.5 degrees and wind was 7.7 mph; in the committed PMF generated on August 12, 2026 at 12:49:38 PM ET, mean F5 runs were 4.947, mode was 3, and central 80% mass spanned 1 through 9 runs.</p>
-          <p>For the 2025 season, the park run-factor input was 0.9586; every other consumed totals value is paired with its saved as-of date in the card record.</p>
-        </div>
-      </div>
-      </div>
-    </article>
-    <article class="game-module" data-game="G14">
-      <header class="game-header">
-        <div class="game-num mono">G14</div>
-        <div class="game-meta">
-          <h2 class="game-matchup">Kansas City Royals @ Los Angeles Dodgers</h2>
-          <p class="game-pitchers mono">Daniel Lynch IV vs Eric Lauer</p>
-        </div>
-        <div class="game-time mono">10:10 PM ET</div>
-      </header>
-      <div class="market-grid">
-      <div class="market-panel">
-        <div class="market-label">F5 ATS</div>
-        <div class="market-panel-head">
-          <span class="pick-headline">KC +0.5</span>
-          <span class="rating-label">APEX WIN PROBABILITY RATING</span>
-          <span class="tier-badge tier-badge--elite">ELITE</span>
-        </div>
-        <div class="meta mono">Sportsbook: FanDuel</div>
-        <div class="rationale-copy">
-          <p>At the FanDuel capture on August 12, 2026 at 12:46:03 PM ET, with Daniel Lynch IV facing Eric Lauer, APEX estimates KC +0.5 has a 64.7% first-five win probability at +102.</p>
-          <p>In the August 12, 2026 ATS snapshot, the starter K-rate, BB-rate, and K-minus-BB deltas were -0.0445, -0.0015, and -0.0430.</p>
-          <p>In the August 12, 2026 ATS snapshot, the starter xwOBA-luck, xFIP, FIP, and Stuff+ deltas were -0.0380, 1.2028, 2.9130, and -17.6025.</p>
-          <p>In the August 12, 2026 ATS snapshot, expected starter innings delta was 0.0000, second-pass TTO delta was 0.0000, and the FanDuel market offset was 0.1392 for Kansas City Royals.</p>
-          <p>The full per-scenario numeric ATS input set, including the values summarized by those ranges, is dated August 12, 2026 for Kansas City Royals at Los Angeles Dodgers, with both Daniel Lynch IV and Eric Lauer identified in the saved pregame record.</p>
-        </div>
-      </div>
-      <div class="market-panel">
-        <div class="market-label">F5 TOT</div>
-        <div class="market-panel-head">
-          <span class="pick-headline">UNDER 5.5</span>
-          <span class="rating-label">APEX WIN PROBABILITY RATING</span>
-          <span class="tier-badge tier-badge--strong">STRONG</span>
-        </div>
-        <div class="meta mono">Sportsbook: FanDuel</div>
-        <div class="rationale-copy">
-          <p>At the FanDuel capture on August 12, 2026 at 12:46:03 PM ET, with Daniel Lynch IV facing Eric Lauer, APEX estimates UNDER 5.5 has a 58.8% first-five win probability at -140.</p>
-          <p>From the August 12, 2026 starter inputs, Daniel Lynch IV&#x27;s K-minus-BB and FIP values were 0.1284 and 3.0823, while Eric Lauer&#x27;s were 0.0854 and 5.9953.</p>
-          <p>At the August 12, 2026 lineup capture, the Kansas City Royals and Los Angeles Dodgers lineup wRC+ inputs were 91.79 and 112.95; through August 11, 2026, their rolling ISO inputs were 0.163 and 0.152 and rolling F5 runs were 2.24 and 2.84.</p>
-          <p>At the weather observation on August 12, 2026 at 12:45:54 PM ET, forecast temperature was 71.3 degrees and wind was 7.4 mph; in the committed PMF generated on August 12, 2026 at 12:49:38 PM ET, mean F5 runs were 5.319, mode was 4, and central 80% mass spanned 1 through 10 runs.</p>
+          <p>At the FanDuel capture on August 13, 2026 at 12:04:24 PM ET, with Shane Drohan facing Roki Sasaki, APEX estimates OVER 4.5 has a 53.9% first-five win probability at -115.</p>
+          <p>From the August 13, 2026 starter inputs, Shane Drohan&#x27;s K-minus-BB and FIP values were 0.1605 and 3.3374, while Roki Sasaki&#x27;s were 0.1465 and 4.9460.</p>
+          <p>At the August 13, 2026 lineup capture, the Milwaukee Brewers and Los Angeles Dodgers lineup wRC+ inputs were 106.45 and 112.95; through August 12, 2026, their rolling ISO inputs were 0.164 and 0.152 and rolling F5 runs were 2.64 and 2.84.</p>
+          <p>At the weather observation on August 13, 2026 at 12:02:43 PM ET, forecast temperature was 72.0 degrees and wind was 7.2 mph; in the committed PMF generated on August 13, 2026 at 12:06:01 PM ET, mean F5 runs were 5.392, mode was 4, and central 80% mass spanned 1 through 10 runs.</p>
           <p>For the 2025 season, the park run-factor input was 1.1114; every other consumed totals value is paired with its saved as-of date in the card record.</p>
-        </div>
-      </div>
-      </div>
-    </article>
-    <article class="game-module" data-game="G15">
-      <header class="game-header">
-        <div class="game-num mono">G15</div>
-        <div class="game-meta">
-          <h2 class="game-matchup">Texas Rangers @ Los Angeles Angels</h2>
-          <p class="game-pitchers mono">Cal Quantrill vs George Klassen</p>
-        </div>
-        <div class="game-time mono">10:10 PM ET</div>
-      </header>
-      <div class="market-grid">
-      <div class="market-panel">
-        <div class="market-label">F5 ATS</div>
-        <div class="market-panel-head">
-          <span class="pick-headline">TEX -0.5</span>
-          <span class="rating-label">APEX WIN PROBABILITY RATING</span>
-          <span class="tier-badge tier-badge--elite">ELITE</span>
-        </div>
-        <div class="meta mono">Sportsbook: FanDuel</div>
-        <div class="rationale-copy">
-          <p>At the FanDuel capture on August 12, 2026 at 12:46:03 PM ET, with Cal Quantrill facing George Klassen, APEX estimates TEX -0.5 has a 61.6% first-five win probability at +108.</p>
-          <p>In the August 12, 2026 ATS snapshot, the starter K-rate, BB-rate, and K-minus-BB deltas were -0.0182, -0.1133, and 0.0951.</p>
-          <p>In the August 12, 2026 ATS snapshot, the starter xwOBA-luck, xFIP, FIP, and Stuff+ deltas were 0.0450, -2.4091, -2.7007, and -7.0461.</p>
-          <p>In the August 12, 2026 ATS snapshot, expected starter innings delta was 0.0000, second-pass TTO delta was 0.0000, and the FanDuel market offset was -0.1934 for Texas Rangers.</p>
-          <p>The full per-scenario numeric ATS input set, including the values summarized by those ranges, is dated August 12, 2026 for Texas Rangers at Los Angeles Angels, with both Cal Quantrill and George Klassen identified in the saved pregame record.</p>
-        </div>
-      </div>
-      <div class="market-panel">
-        <div class="market-label">F5 TOT</div>
-        <div class="market-panel-head">
-          <span class="pick-headline">OVER 5.5</span>
-          <span class="rating-label">APEX WIN PROBABILITY RATING</span>
-          <span class="tier-badge tier-badge--weak">WEAK</span>
-        </div>
-        <div class="meta mono">Sportsbook: FanDuel</div>
-        <div class="rationale-copy">
-          <p>At the FanDuel capture on August 12, 2026 at 12:46:03 PM ET, with Cal Quantrill facing George Klassen, APEX estimates OVER 5.5 has a 49.3% first-five win probability at +112.</p>
-          <p>From the August 12, 2026 starter inputs, Cal Quantrill&#x27;s K-minus-BB and FIP values were 0.1039 and 4.6508, while George Klassen&#x27;s were 0.0088 and 7.3515.</p>
-          <p>At the August 12, 2026 lineup capture, the Texas Rangers and Los Angeles Angels lineup wRC+ inputs were 99.42 and 91.78; through August 11, 2026, their rolling ISO inputs were 0.171 and 0.145 and rolling F5 runs were 2.47 and 2.59.</p>
-          <p>At the weather observation on August 12, 2026 at 12:45:55 PM ET, forecast temperature was 72.8 degrees and wind was 8.1 mph; in the committed PMF generated on August 12, 2026 at 12:49:38 PM ET, mean F5 runs were 6.077, mode was 4, and central 80% mass spanned 2 through 11 runs.</p>
-          <p>For the 2025 season, the park run-factor input was 1.0641; every other consumed totals value is paired with its saved as-of date in the card record.</p>
         </div>
       </div>
       </div>
