@@ -1,0 +1,1 @@
+Emergency production redeploy trigger for the complete canonical August 20, 2026 MLB picks site. Source content is already present on main; this file exists only to force the connected Vercel production deployment.
