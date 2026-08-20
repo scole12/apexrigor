@@ -1,0 +1,4 @@
+APEX MLB T-2 production deployment trigger
+Date: 2026-08-20
+Expected public card: 9 games / 18 positions
+Source: canonical August 20, 2026 T-2 issuance
