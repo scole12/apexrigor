@@ -24,7 +24,7 @@ FILES = (
     "og-image.png",
     "site.webmanifest",
 )
-DIRECTORIES = ("assets", "data", "picks", "results", "about")
+DIRECTORIES = ("assets", "data", "picks", "results", "about", "ncaaf")
 
 
 def ignore_data_backups(_directory: str, names: list[str]) -> set[str]:
