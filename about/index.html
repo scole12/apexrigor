@@ -63,13 +63,13 @@
         <h2 class="about-section-title">MLB — F5 Run Line · F5 Totals</h2>
 
         <h3 class="about-module-title">F5 Run Line — Bet-All</h3>
-        <p class="about-copy">APEX publishes one first-five-inning run-line position for every eligible MLB game using the current production spread engine, <code>ATS_DYNAMIC_LOGIT_FILTER_V1__CAL_IDENTITY</code>.</p>
+        <p class="about-copy">APEX publishes one first-five-inning run-line position for every eligible MLB game using the current production spread engine, <code>ATS-ELITE-C1-CONDITIONAL-DISTRIBUTION-RESIDUAL</code>.</p>
         <p class="about-copy">The engine evaluates the actual posted FanDuel first-five spread and the corresponding price available on each side of that market. The published position is therefore based on the exact F5 spread being offered rather than a moneyline proxy or a generic favorite/underdog classification.</p>
         <p class="about-copy">Every eligible MLB game receives one F5 run-line position. The system does not selectively remove games after scoring and does not publish MLB moneyline positions.</p>
         <p class="about-copy">The model combines current starting-pitcher state, offensive and lineup information, handedness and matchup context, park and game-environment information, and the authentic pregame market available at issuance. Its final output is a calibrated probability for the posted F5 spread.</p>
 
         <h3 class="about-module-title">F5 Totals — Bet-All</h3>
-        <p class="about-copy">APEX also publishes one first-five total position for every eligible MLB game using the current production totals engine, <code>TOTALS_SPARSE_PMF_STACK_V1</code>.</p>
+        <p class="about-copy">APEX also publishes one first-five total position for every eligible MLB game using the current production totals engine, <code>TOTALS_FINAL_NESTED_JOINT_R4_V1_20260825</code>.</p>
         <p class="about-copy">The totals engine is a complete probability-distribution model rather than a simple over/under classifier. It produces an exact discrete probability distribution across possible first-five run totals before the sportsbook line is applied.</p>
         <p class="about-copy">That structure preserves the probability of every relevant scoring outcome, including exact push probability when FanDuel posts an integer F5 total. Half-run totals are evaluated directly from the same complete run distribution.</p>
         <p class="about-copy">The final over or under position is selected only after the model's full first-five scoring distribution has been produced.</p>
@@ -78,8 +78,8 @@
         <h3 class="about-module-title">Model Framework</h3>
         <p class="about-copy">APEX MLB is a two-engine pregame forecasting system built specifically for first-five-inning markets.</p>
         <p class="about-copy">The two production engines are intentionally separate:</p>
-        <p class="about-copy">Run Line: <code>ATS_DYNAMIC_LOGIT_FILTER_V1__CAL_IDENTITY</code></p>
-        <p class="about-copy">Totals: <code>TOTALS_SPARSE_PMF_STACK_V1</code></p>
+        <p class="about-copy">Run Line: <code>ATS-ELITE-C1-CONDITIONAL-DISTRIBUTION-RESIDUAL</code></p>
+        <p class="about-copy">Totals: <code>TOTALS_FINAL_NESTED_JOINT_R4_V1_20260825</code></p>
         <p class="about-copy">The run-line engine estimates the probability of covering the actual posted F5 spread.</p>
         <p class="about-copy">The totals engine estimates the complete probability distribution of first-five runs and then evaluates the posted F5 total from that distribution.</p>
         <p class="about-copy">Both engines use point-in-time pregame information. Player, team, lineup, market and contextual information must be available before the relevant game begins. Later information is not substituted into historical model inputs.</p>

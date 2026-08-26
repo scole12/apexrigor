@@ -151,22 +151,21 @@
           "tier": "WEAK",
           "canonical_tier": "WEAK",
           "internal_value_strength": "WEAK",
-          "rationale": "At the FanDuel capture on August 25, 2026, C1 estimates BOS -0.5 has a 49.8% first-five cover probability at -113. The live C1 state contains all 21 registered dimensions from the four R1 through R4 residuals, both R3 and R4 margin-distribution summaries, disagreement, market, starter-exit, feature-presence, and lineup-missingness states. The frozen earlier-only selection used 688 eligible prior rows through 2026-08-23 and selected the FANDUEL_IDENTITY branch. The sealed current state records 9 away and 9 home batting-order identifiers with registered fallback behavior where a lineup remained unavailable. No August 25 outcome was read, and the stale production ATS scorer was not invoked.",
-          "rationale_full": "At the FanDuel capture on August 25, 2026, C1 estimates BOS -0.5 has a 49.8% first-five cover probability at -113. The live C1 state contains all 21 registered dimensions from the four R1 through R4 residuals, both R3 and R4 margin-distribution summaries, disagreement, market, starter-exit, feature-presence, and lineup-missingness states. The frozen earlier-only selection used 688 eligible prior rows through 2026-08-23 and selected the FANDUEL_IDENTITY branch. The sealed current state records 9 away and 9 home batting-order identifiers with registered fallback behavior where a lineup remained unavailable. No August 25 outcome was read, and the stale production ATS scorer was not invoked.",
-          "canonical_rationale": "At the FanDuel capture on August 25, 2026, C1 estimates BOS -0.5 has a 49.8% first-five cover probability at -113. The live C1 state contains all 21 registered dimensions from the four R1 through R4 residuals, both R3 and R4 margin-distribution summaries, disagreement, market, starter-exit, feature-presence, and lineup-missingness states. The frozen earlier-only selection used 688 eligible prior rows through 2026-08-23 and selected the FANDUEL_IDENTITY branch. The sealed current state records 9 away and 9 home batting-order identifiers with registered fallback behavior where a lineup remained unavailable. No August 25 outcome was read, and the stale production ATS scorer was not invoked.",
+          "rationale": "APEX does not see enough independent matchup evidence to move materially away from the current FanDuel baseline on this side. It gives BOS -0.5 a 49.8% first-five cover probability and a WEAK rating.",
+          "rationale_full": "APEX does not see enough independent matchup evidence to move materially away from the current FanDuel baseline on this side. It gives BOS -0.5 a 49.8% first-five cover probability and a WEAK rating.",
+          "canonical_rationale": "APEX does not see enough independent matchup evidence to move materially away from the current FanDuel baseline on this side. It gives BOS -0.5 a 49.8% first-five cover probability and a WEAK rating.",
           "rationale_sentences": [
-            "At the FanDuel capture on August 25, 2026, C1 estimates BOS -0.5 has a 49.8% first-five cover probability at -113.",
-            "The live C1 state contains all 21 registered dimensions from the four R1 through R4 residuals, both R3 and R4 margin-distribution summaries, disagreement, market, starter-exit, feature-presence, and lineup-missingness states.",
-            "The frozen earlier-only selection used 688 eligible prior rows through 2026-08-23 and selected the FANDUEL_IDENTITY branch.",
-            "The sealed current state records 9 away and 9 home batting-order identifiers with registered fallback behavior where a lineup remained unavailable.",
-            "No August 25 outcome was read, and the stale production ATS scorer was not invoked."
+            "APEX does not see enough independent matchup evidence to move materially away from the current FanDuel baseline on this side.",
+            "It gives BOS -0.5 a 49.8% first-five cover probability and a WEAK rating."
           ],
           "artifact_sha256": "8f6f0118bb251a855adeb4bab52e464e745ca973ee1d9756bf0d859ddb2d5179",
           "implementation_sha256": "0514c410f8247f5dc8d6628de4fd9b310096263424c7069e1e4067d2fc17602c",
           "feature_contract_sha256": "5520eef9b748c0318589725cd89a78ce620cb8bc7c14148f2859422b74692f3c",
           "odds_source": "fanduel",
           "odds_captured_at_utc": "2026-08-25T22:14:49.881983Z",
-          "prediction_generated_at_utc": "2026-08-25T22:35:00.693307+00:00"
+          "prediction_generated_at_utc": "2026-08-25T22:35:00.693307+00:00",
+          "PRESENTATION_ONLY_RATIONALE": true,
+          "PUBLIC_RATIONALE_CONTRACT_VERSION": "APEX_PUBLIC_RATIONALE_HUMAN_V1"
         },
         {
           "market": "F5 TOT",
@@ -187,21 +186,21 @@
           "tier": "MODERATE",
           "canonical_tier": "MODERATE",
           "internal_value_strength": "MODERATE",
-          "rationale": "At the FanDuel capture on August 25, 2026, R4 estimates OVER 3.5 has a 53.5% unconditional first-five probability at -132. The exact live Totals authority generated a finite nonnegative normalized 62 by 62 away-home joint score distribution for this game. The R4 state used starter identifiers 801139 and 663969, current batting-order identifiers, the embedded starter-exit lookup, and frozen batter and pitcher transition counts. The total distribution was derived from the same joint cells and has expected first-five runs 4.431 with push probability 0.0000. No August 25 outcome was read, and the legacy Sparse PMF scorer was not invoked.",
-          "rationale_full": "At the FanDuel capture on August 25, 2026, R4 estimates OVER 3.5 has a 53.5% unconditional first-five probability at -132. The exact live Totals authority generated a finite nonnegative normalized 62 by 62 away-home joint score distribution for this game. The R4 state used starter identifiers 801139 and 663969, current batting-order identifiers, the embedded starter-exit lookup, and frozen batter and pitcher transition counts. The total distribution was derived from the same joint cells and has expected first-five runs 4.431 with push probability 0.0000. No August 25 outcome was read, and the legacy Sparse PMF scorer was not invoked.",
-          "canonical_rationale": "At the FanDuel capture on August 25, 2026, R4 estimates OVER 3.5 has a 53.5% unconditional first-five probability at -132. The exact live Totals authority generated a finite nonnegative normalized 62 by 62 away-home joint score distribution for this game. The R4 state used starter identifiers 801139 and 663969, current batting-order identifiers, the embedded starter-exit lookup, and frozen batter and pitcher transition counts. The total distribution was derived from the same joint cells and has expected first-five runs 4.431 with push probability 0.0000. No August 25 outcome was read, and the legacy Sparse PMF scorer was not invoked.",
+          "rationale": "APEX projects approximately 4.4 combined runs through five innings against a FanDuel total of 3.5. Current starter and lineup availability are included in that forecast. The model gives OVER a 53.5% win probability and a MODERATE rating.",
+          "rationale_full": "APEX projects approximately 4.4 combined runs through five innings against a FanDuel total of 3.5. Current starter and lineup availability are included in that forecast. The model gives OVER a 53.5% win probability and a MODERATE rating.",
+          "canonical_rationale": "APEX projects approximately 4.4 combined runs through five innings against a FanDuel total of 3.5. Current starter and lineup availability are included in that forecast. The model gives OVER a 53.5% win probability and a MODERATE rating.",
           "rationale_sentences": [
-            "At the FanDuel capture on August 25, 2026, R4 estimates OVER 3.5 has a 53.5% unconditional first-five probability at -132.",
-            "The exact live Totals authority generated a finite nonnegative normalized 62 by 62 away-home joint score distribution for this game.",
-            "The R4 state used starter identifiers 801139 and 663969, current batting-order identifiers, the embedded starter-exit lookup, and frozen batter and pitcher transition counts.",
-            "The total distribution was derived from the same joint cells and has expected first-five runs 4.431 with push probability 0.0000.",
-            "No August 25 outcome was read, and the legacy Sparse PMF scorer was not invoked."
+            "APEX projects approximately 4.4 combined runs through five innings against a FanDuel total of 3.5.",
+            "Current starter and lineup availability are included in that forecast.",
+            "The model gives OVER a 53.5% win probability and a MODERATE rating."
           ],
           "artifact_sha256": "925913220be06339e6d3fa5201c485fe74fbd510a4c636879f29057ed821b1a4",
           "feature_contract_sha256": "0ea42ae8c6e6845fe0190824f8ab08d8a8fbbdf65416e862e97de81f0497a71b",
           "odds_source": "fanduel",
           "odds_captured_at_utc": "2026-08-25T22:14:49.881983Z",
-          "prediction_generated_at_utc": "2026-08-25T22:35:00.693307+00:00"
+          "prediction_generated_at_utc": "2026-08-25T22:35:00.693307+00:00",
+          "PRESENTATION_ONLY_RATIONALE": true,
+          "PUBLIC_RATIONALE_CONTRACT_VERSION": "APEX_PUBLIC_RATIONALE_HUMAN_V1"
         }
       ]
     },
@@ -346,22 +345,21 @@
           "tier": "WEAK",
           "canonical_tier": "WEAK",
           "internal_value_strength": "WEAK",
-          "rationale": "At the FanDuel capture on August 25, 2026, C1 estimates TB -0.5 has a 44.7% first-five cover probability at +110. The live C1 state contains all 21 registered dimensions from the four R1 through R4 residuals, both R3 and R4 margin-distribution summaries, disagreement, market, starter-exit, feature-presence, and lineup-missingness states. The frozen earlier-only selection used 688 eligible prior rows through 2026-08-23 and selected the FANDUEL_IDENTITY branch. The sealed current state records 9 away and 9 home batting-order identifiers with registered fallback behavior where a lineup remained unavailable. No August 25 outcome was read, and the stale production ATS scorer was not invoked.",
-          "rationale_full": "At the FanDuel capture on August 25, 2026, C1 estimates TB -0.5 has a 44.7% first-five cover probability at +110. The live C1 state contains all 21 registered dimensions from the four R1 through R4 residuals, both R3 and R4 margin-distribution summaries, disagreement, market, starter-exit, feature-presence, and lineup-missingness states. The frozen earlier-only selection used 688 eligible prior rows through 2026-08-23 and selected the FANDUEL_IDENTITY branch. The sealed current state records 9 away and 9 home batting-order identifiers with registered fallback behavior where a lineup remained unavailable. No August 25 outcome was read, and the stale production ATS scorer was not invoked.",
-          "canonical_rationale": "At the FanDuel capture on August 25, 2026, C1 estimates TB -0.5 has a 44.7% first-five cover probability at +110. The live C1 state contains all 21 registered dimensions from the four R1 through R4 residuals, both R3 and R4 margin-distribution summaries, disagreement, market, starter-exit, feature-presence, and lineup-missingness states. The frozen earlier-only selection used 688 eligible prior rows through 2026-08-23 and selected the FANDUEL_IDENTITY branch. The sealed current state records 9 away and 9 home batting-order identifiers with registered fallback behavior where a lineup remained unavailable. No August 25 outcome was read, and the stale production ATS scorer was not invoked.",
+          "rationale": "APEX does not see enough independent matchup evidence to move materially away from the current FanDuel baseline on this side. It gives TB -0.5 a 44.7% first-five cover probability and a WEAK rating.",
+          "rationale_full": "APEX does not see enough independent matchup evidence to move materially away from the current FanDuel baseline on this side. It gives TB -0.5 a 44.7% first-five cover probability and a WEAK rating.",
+          "canonical_rationale": "APEX does not see enough independent matchup evidence to move materially away from the current FanDuel baseline on this side. It gives TB -0.5 a 44.7% first-five cover probability and a WEAK rating.",
           "rationale_sentences": [
-            "At the FanDuel capture on August 25, 2026, C1 estimates TB -0.5 has a 44.7% first-five cover probability at +110.",
-            "The live C1 state contains all 21 registered dimensions from the four R1 through R4 residuals, both R3 and R4 margin-distribution summaries, disagreement, market, starter-exit, feature-presence, and lineup-missingness states.",
-            "The frozen earlier-only selection used 688 eligible prior rows through 2026-08-23 and selected the FANDUEL_IDENTITY branch.",
-            "The sealed current state records 9 away and 9 home batting-order identifiers with registered fallback behavior where a lineup remained unavailable.",
-            "No August 25 outcome was read, and the stale production ATS scorer was not invoked."
+            "APEX does not see enough independent matchup evidence to move materially away from the current FanDuel baseline on this side.",
+            "It gives TB -0.5 a 44.7% first-five cover probability and a WEAK rating."
           ],
           "artifact_sha256": "8f6f0118bb251a855adeb4bab52e464e745ca973ee1d9756bf0d859ddb2d5179",
           "implementation_sha256": "0514c410f8247f5dc8d6628de4fd9b310096263424c7069e1e4067d2fc17602c",
           "feature_contract_sha256": "5520eef9b748c0318589725cd89a78ce620cb8bc7c14148f2859422b74692f3c",
           "odds_source": "fanduel",
           "odds_captured_at_utc": "2026-08-25T22:14:49.636094Z",
-          "prediction_generated_at_utc": "2026-08-25T22:35:00.693307+00:00"
+          "prediction_generated_at_utc": "2026-08-25T22:35:00.693307+00:00",
+          "PRESENTATION_ONLY_RATIONALE": true,
+          "PUBLIC_RATIONALE_CONTRACT_VERSION": "APEX_PUBLIC_RATIONALE_HUMAN_V1"
         },
         {
           "market": "F5 TOT",
@@ -382,21 +380,21 @@
           "tier": "WEAK",
           "canonical_tier": "WEAK",
           "internal_value_strength": "WEAK",
-          "rationale": "At the FanDuel capture on August 25, 2026, R4 estimates UNDER 3.5 has a 43.4% unconditional first-five probability at +116. The exact live Totals authority generated a finite nonnegative normalized 62 by 62 away-home joint score distribution for this game. The R4 state used starter identifiers 668984 and 695549, current batting-order identifiers, the embedded starter-exit lookup, and frozen batter and pitcher transition counts. The total distribution was derived from the same joint cells and has expected first-five runs 4.782 with push probability 0.0000. No August 25 outcome was read, and the legacy Sparse PMF scorer was not invoked.",
-          "rationale_full": "At the FanDuel capture on August 25, 2026, R4 estimates UNDER 3.5 has a 43.4% unconditional first-five probability at +116. The exact live Totals authority generated a finite nonnegative normalized 62 by 62 away-home joint score distribution for this game. The R4 state used starter identifiers 668984 and 695549, current batting-order identifiers, the embedded starter-exit lookup, and frozen batter and pitcher transition counts. The total distribution was derived from the same joint cells and has expected first-five runs 4.782 with push probability 0.0000. No August 25 outcome was read, and the legacy Sparse PMF scorer was not invoked.",
-          "canonical_rationale": "At the FanDuel capture on August 25, 2026, R4 estimates UNDER 3.5 has a 43.4% unconditional first-five probability at +116. The exact live Totals authority generated a finite nonnegative normalized 62 by 62 away-home joint score distribution for this game. The R4 state used starter identifiers 668984 and 695549, current batting-order identifiers, the embedded starter-exit lookup, and frozen batter and pitcher transition counts. The total distribution was derived from the same joint cells and has expected first-five runs 4.782 with push probability 0.0000. No August 25 outcome was read, and the legacy Sparse PMF scorer was not invoked.",
+          "rationale": "APEX projects approximately 4.8 combined runs through five innings against a FanDuel total of 3.5. Current starter and lineup availability are included in that forecast. The model gives UNDER a 43.4% win probability and a WEAK rating.",
+          "rationale_full": "APEX projects approximately 4.8 combined runs through five innings against a FanDuel total of 3.5. Current starter and lineup availability are included in that forecast. The model gives UNDER a 43.4% win probability and a WEAK rating.",
+          "canonical_rationale": "APEX projects approximately 4.8 combined runs through five innings against a FanDuel total of 3.5. Current starter and lineup availability are included in that forecast. The model gives UNDER a 43.4% win probability and a WEAK rating.",
           "rationale_sentences": [
-            "At the FanDuel capture on August 25, 2026, R4 estimates UNDER 3.5 has a 43.4% unconditional first-five probability at +116.",
-            "The exact live Totals authority generated a finite nonnegative normalized 62 by 62 away-home joint score distribution for this game.",
-            "The R4 state used starter identifiers 668984 and 695549, current batting-order identifiers, the embedded starter-exit lookup, and frozen batter and pitcher transition counts.",
-            "The total distribution was derived from the same joint cells and has expected first-five runs 4.782 with push probability 0.0000.",
-            "No August 25 outcome was read, and the legacy Sparse PMF scorer was not invoked."
+            "APEX projects approximately 4.8 combined runs through five innings against a FanDuel total of 3.5.",
+            "Current starter and lineup availability are included in that forecast.",
+            "The model gives UNDER a 43.4% win probability and a WEAK rating."
           ],
           "artifact_sha256": "925913220be06339e6d3fa5201c485fe74fbd510a4c636879f29057ed821b1a4",
           "feature_contract_sha256": "0ea42ae8c6e6845fe0190824f8ab08d8a8fbbdf65416e862e97de81f0497a71b",
           "odds_source": "fanduel",
           "odds_captured_at_utc": "2026-08-25T22:14:49.636094Z",
-          "prediction_generated_at_utc": "2026-08-25T22:35:00.693307+00:00"
+          "prediction_generated_at_utc": "2026-08-25T22:35:00.693307+00:00",
+          "PRESENTATION_ONLY_RATIONALE": true,
+          "PUBLIC_RATIONALE_CONTRACT_VERSION": "APEX_PUBLIC_RATIONALE_HUMAN_V1"
         }
       ]
     },
@@ -541,22 +539,21 @@
           "tier": "WEAK",
           "canonical_tier": "WEAK",
           "internal_value_strength": "WEAK",
-          "rationale": "At the FanDuel capture on August 25, 2026, C1 estimates WSH -0.5 has a 49.8% first-five cover probability at -113. The live C1 state contains all 21 registered dimensions from the four R1 through R4 residuals, both R3 and R4 margin-distribution summaries, disagreement, market, starter-exit, feature-presence, and lineup-missingness states. The frozen earlier-only selection used 688 eligible prior rows through 2026-08-23 and selected the FANDUEL_IDENTITY branch. The sealed current state records 9 away and 9 home batting-order identifiers with registered fallback behavior where a lineup remained unavailable. No August 25 outcome was read, and the stale production ATS scorer was not invoked.",
-          "rationale_full": "At the FanDuel capture on August 25, 2026, C1 estimates WSH -0.5 has a 49.8% first-five cover probability at -113. The live C1 state contains all 21 registered dimensions from the four R1 through R4 residuals, both R3 and R4 margin-distribution summaries, disagreement, market, starter-exit, feature-presence, and lineup-missingness states. The frozen earlier-only selection used 688 eligible prior rows through 2026-08-23 and selected the FANDUEL_IDENTITY branch. The sealed current state records 9 away and 9 home batting-order identifiers with registered fallback behavior where a lineup remained unavailable. No August 25 outcome was read, and the stale production ATS scorer was not invoked.",
-          "canonical_rationale": "At the FanDuel capture on August 25, 2026, C1 estimates WSH -0.5 has a 49.8% first-five cover probability at -113. The live C1 state contains all 21 registered dimensions from the four R1 through R4 residuals, both R3 and R4 margin-distribution summaries, disagreement, market, starter-exit, feature-presence, and lineup-missingness states. The frozen earlier-only selection used 688 eligible prior rows through 2026-08-23 and selected the FANDUEL_IDENTITY branch. The sealed current state records 9 away and 9 home batting-order identifiers with registered fallback behavior where a lineup remained unavailable. No August 25 outcome was read, and the stale production ATS scorer was not invoked.",
+          "rationale": "APEX does not see enough independent matchup evidence to move materially away from the current FanDuel baseline on this side. It gives WSH -0.5 a 49.8% first-five cover probability and a WEAK rating.",
+          "rationale_full": "APEX does not see enough independent matchup evidence to move materially away from the current FanDuel baseline on this side. It gives WSH -0.5 a 49.8% first-five cover probability and a WEAK rating.",
+          "canonical_rationale": "APEX does not see enough independent matchup evidence to move materially away from the current FanDuel baseline on this side. It gives WSH -0.5 a 49.8% first-five cover probability and a WEAK rating.",
           "rationale_sentences": [
-            "At the FanDuel capture on August 25, 2026, C1 estimates WSH -0.5 has a 49.8% first-five cover probability at -113.",
-            "The live C1 state contains all 21 registered dimensions from the four R1 through R4 residuals, both R3 and R4 margin-distribution summaries, disagreement, market, starter-exit, feature-presence, and lineup-missingness states.",
-            "The frozen earlier-only selection used 688 eligible prior rows through 2026-08-23 and selected the FANDUEL_IDENTITY branch.",
-            "The sealed current state records 9 away and 9 home batting-order identifiers with registered fallback behavior where a lineup remained unavailable.",
-            "No August 25 outcome was read, and the stale production ATS scorer was not invoked."
+            "APEX does not see enough independent matchup evidence to move materially away from the current FanDuel baseline on this side.",
+            "It gives WSH -0.5 a 49.8% first-five cover probability and a WEAK rating."
           ],
           "artifact_sha256": "8f6f0118bb251a855adeb4bab52e464e745ca973ee1d9756bf0d859ddb2d5179",
           "implementation_sha256": "0514c410f8247f5dc8d6628de4fd9b310096263424c7069e1e4067d2fc17602c",
           "feature_contract_sha256": "5520eef9b748c0318589725cd89a78ce620cb8bc7c14148f2859422b74692f3c",
           "odds_source": "fanduel",
           "odds_captured_at_utc": "2026-08-25T22:14:50.144094Z",
-          "prediction_generated_at_utc": "2026-08-25T22:35:00.693307+00:00"
+          "prediction_generated_at_utc": "2026-08-25T22:35:00.693307+00:00",
+          "PRESENTATION_ONLY_RATIONALE": true,
+          "PUBLIC_RATIONALE_CONTRACT_VERSION": "APEX_PUBLIC_RATIONALE_HUMAN_V1"
         },
         {
           "market": "F5 TOT",
@@ -577,21 +574,21 @@
           "tier": "MODERATE",
           "canonical_tier": "MODERATE",
           "internal_value_strength": "MODERATE",
-          "rationale": "At the FanDuel capture on August 25, 2026, R4 estimates OVER 4.5 has a 50.0% unconditional first-five probability at -114. The exact live Totals authority generated a finite nonnegative normalized 62 by 62 away-home joint score distribution for this game. The R4 state used starter identifiers 690279 and 674841, current batting-order identifiers, the embedded starter-exit lookup, and frozen batter and pitcher transition counts. The total distribution was derived from the same joint cells and has expected first-five runs 4.957 with push probability 0.0000. No August 25 outcome was read, and the legacy Sparse PMF scorer was not invoked.",
-          "rationale_full": "At the FanDuel capture on August 25, 2026, R4 estimates OVER 4.5 has a 50.0% unconditional first-five probability at -114. The exact live Totals authority generated a finite nonnegative normalized 62 by 62 away-home joint score distribution for this game. The R4 state used starter identifiers 690279 and 674841, current batting-order identifiers, the embedded starter-exit lookup, and frozen batter and pitcher transition counts. The total distribution was derived from the same joint cells and has expected first-five runs 4.957 with push probability 0.0000. No August 25 outcome was read, and the legacy Sparse PMF scorer was not invoked.",
-          "canonical_rationale": "At the FanDuel capture on August 25, 2026, R4 estimates OVER 4.5 has a 50.0% unconditional first-five probability at -114. The exact live Totals authority generated a finite nonnegative normalized 62 by 62 away-home joint score distribution for this game. The R4 state used starter identifiers 690279 and 674841, current batting-order identifiers, the embedded starter-exit lookup, and frozen batter and pitcher transition counts. The total distribution was derived from the same joint cells and has expected first-five runs 4.957 with push probability 0.0000. No August 25 outcome was read, and the legacy Sparse PMF scorer was not invoked.",
+          "rationale": "APEX projects approximately 5.0 combined runs through five innings against a FanDuel total of 4.5. Current starter and lineup availability are included in that forecast. The model gives OVER a 50.0% win probability and a MODERATE rating.",
+          "rationale_full": "APEX projects approximately 5.0 combined runs through five innings against a FanDuel total of 4.5. Current starter and lineup availability are included in that forecast. The model gives OVER a 50.0% win probability and a MODERATE rating.",
+          "canonical_rationale": "APEX projects approximately 5.0 combined runs through five innings against a FanDuel total of 4.5. Current starter and lineup availability are included in that forecast. The model gives OVER a 50.0% win probability and a MODERATE rating.",
           "rationale_sentences": [
-            "At the FanDuel capture on August 25, 2026, R4 estimates OVER 4.5 has a 50.0% unconditional first-five probability at -114.",
-            "The exact live Totals authority generated a finite nonnegative normalized 62 by 62 away-home joint score distribution for this game.",
-            "The R4 state used starter identifiers 690279 and 674841, current batting-order identifiers, the embedded starter-exit lookup, and frozen batter and pitcher transition counts.",
-            "The total distribution was derived from the same joint cells and has expected first-five runs 4.957 with push probability 0.0000.",
-            "No August 25 outcome was read, and the legacy Sparse PMF scorer was not invoked."
+            "APEX projects approximately 5.0 combined runs through five innings against a FanDuel total of 4.5.",
+            "Current starter and lineup availability are included in that forecast.",
+            "The model gives OVER a 50.0% win probability and a MODERATE rating."
           ],
           "artifact_sha256": "925913220be06339e6d3fa5201c485fe74fbd510a4c636879f29057ed821b1a4",
           "feature_contract_sha256": "0ea42ae8c6e6845fe0190824f8ab08d8a8fbbdf65416e862e97de81f0497a71b",
           "odds_source": "fanduel",
           "odds_captured_at_utc": "2026-08-25T22:14:50.144094Z",
-          "prediction_generated_at_utc": "2026-08-25T22:35:00.693307+00:00"
+          "prediction_generated_at_utc": "2026-08-25T22:35:00.693307+00:00",
+          "PRESENTATION_ONLY_RATIONALE": true,
+          "PUBLIC_RATIONALE_CONTRACT_VERSION": "APEX_PUBLIC_RATIONALE_HUMAN_V1"
         }
       ]
     },
@@ -736,22 +733,21 @@
           "tier": "WEAK",
           "canonical_tier": "WEAK",
           "internal_value_strength": "WEAK",
-          "rationale": "At the FanDuel capture on August 25, 2026, C1 estimates NYY -0.5 has a 48.4% first-five cover probability at -106. The live C1 state contains all 21 registered dimensions from the four R1 through R4 residuals, both R3 and R4 margin-distribution summaries, disagreement, market, starter-exit, feature-presence, and lineup-missingness states. The frozen earlier-only selection used 688 eligible prior rows through 2026-08-23 and selected the FANDUEL_IDENTITY branch. The sealed current state records 9 away and 9 home batting-order identifiers with registered fallback behavior where a lineup remained unavailable. No August 25 outcome was read, and the stale production ATS scorer was not invoked.",
-          "rationale_full": "At the FanDuel capture on August 25, 2026, C1 estimates NYY -0.5 has a 48.4% first-five cover probability at -106. The live C1 state contains all 21 registered dimensions from the four R1 through R4 residuals, both R3 and R4 margin-distribution summaries, disagreement, market, starter-exit, feature-presence, and lineup-missingness states. The frozen earlier-only selection used 688 eligible prior rows through 2026-08-23 and selected the FANDUEL_IDENTITY branch. The sealed current state records 9 away and 9 home batting-order identifiers with registered fallback behavior where a lineup remained unavailable. No August 25 outcome was read, and the stale production ATS scorer was not invoked.",
-          "canonical_rationale": "At the FanDuel capture on August 25, 2026, C1 estimates NYY -0.5 has a 48.4% first-five cover probability at -106. The live C1 state contains all 21 registered dimensions from the four R1 through R4 residuals, both R3 and R4 margin-distribution summaries, disagreement, market, starter-exit, feature-presence, and lineup-missingness states. The frozen earlier-only selection used 688 eligible prior rows through 2026-08-23 and selected the FANDUEL_IDENTITY branch. The sealed current state records 9 away and 9 home batting-order identifiers with registered fallback behavior where a lineup remained unavailable. No August 25 outcome was read, and the stale production ATS scorer was not invoked.",
+          "rationale": "APEX does not see enough independent matchup evidence to move materially away from the current FanDuel baseline on this side. It gives NYY -0.5 a 48.4% first-five cover probability and a WEAK rating.",
+          "rationale_full": "APEX does not see enough independent matchup evidence to move materially away from the current FanDuel baseline on this side. It gives NYY -0.5 a 48.4% first-five cover probability and a WEAK rating.",
+          "canonical_rationale": "APEX does not see enough independent matchup evidence to move materially away from the current FanDuel baseline on this side. It gives NYY -0.5 a 48.4% first-five cover probability and a WEAK rating.",
           "rationale_sentences": [
-            "At the FanDuel capture on August 25, 2026, C1 estimates NYY -0.5 has a 48.4% first-five cover probability at -106.",
-            "The live C1 state contains all 21 registered dimensions from the four R1 through R4 residuals, both R3 and R4 margin-distribution summaries, disagreement, market, starter-exit, feature-presence, and lineup-missingness states.",
-            "The frozen earlier-only selection used 688 eligible prior rows through 2026-08-23 and selected the FANDUEL_IDENTITY branch.",
-            "The sealed current state records 9 away and 9 home batting-order identifiers with registered fallback behavior where a lineup remained unavailable.",
-            "No August 25 outcome was read, and the stale production ATS scorer was not invoked."
+            "APEX does not see enough independent matchup evidence to move materially away from the current FanDuel baseline on this side.",
+            "It gives NYY -0.5 a 48.4% first-five cover probability and a WEAK rating."
           ],
           "artifact_sha256": "8f6f0118bb251a855adeb4bab52e464e745ca973ee1d9756bf0d859ddb2d5179",
           "implementation_sha256": "0514c410f8247f5dc8d6628de4fd9b310096263424c7069e1e4067d2fc17602c",
           "feature_contract_sha256": "5520eef9b748c0318589725cd89a78ce620cb8bc7c14148f2859422b74692f3c",
           "odds_source": "fanduel",
           "odds_captured_at_utc": "2026-08-25T22:14:50.413171Z",
-          "prediction_generated_at_utc": "2026-08-25T22:35:00.693307+00:00"
+          "prediction_generated_at_utc": "2026-08-25T22:35:00.693307+00:00",
+          "PRESENTATION_ONLY_RATIONALE": true,
+          "PUBLIC_RATIONALE_CONTRACT_VERSION": "APEX_PUBLIC_RATIONALE_HUMAN_V1"
         },
         {
           "market": "F5 TOT",
@@ -772,21 +768,21 @@
           "tier": "MODERATE",
           "canonical_tier": "MODERATE",
           "internal_value_strength": "MODERATE",
-          "rationale": "At the FanDuel capture on August 25, 2026, R4 estimates OVER 4.5 has a 54.0% unconditional first-five probability at -135. The exact live Totals authority generated a finite nonnegative normalized 62 by 62 away-home joint score distribution for this game. The R4 state used starter identifiers 814490 and 701542, current batting-order identifiers, the embedded starter-exit lookup, and frozen batter and pitcher transition counts. The total distribution was derived from the same joint cells and has expected first-five runs 5.396 with push probability 0.0000. No August 25 outcome was read, and the legacy Sparse PMF scorer was not invoked.",
-          "rationale_full": "At the FanDuel capture on August 25, 2026, R4 estimates OVER 4.5 has a 54.0% unconditional first-five probability at -135. The exact live Totals authority generated a finite nonnegative normalized 62 by 62 away-home joint score distribution for this game. The R4 state used starter identifiers 814490 and 701542, current batting-order identifiers, the embedded starter-exit lookup, and frozen batter and pitcher transition counts. The total distribution was derived from the same joint cells and has expected first-five runs 5.396 with push probability 0.0000. No August 25 outcome was read, and the legacy Sparse PMF scorer was not invoked.",
-          "canonical_rationale": "At the FanDuel capture on August 25, 2026, R4 estimates OVER 4.5 has a 54.0% unconditional first-five probability at -135. The exact live Totals authority generated a finite nonnegative normalized 62 by 62 away-home joint score distribution for this game. The R4 state used starter identifiers 814490 and 701542, current batting-order identifiers, the embedded starter-exit lookup, and frozen batter and pitcher transition counts. The total distribution was derived from the same joint cells and has expected first-five runs 5.396 with push probability 0.0000. No August 25 outcome was read, and the legacy Sparse PMF scorer was not invoked.",
+          "rationale": "APEX projects approximately 5.4 combined runs through five innings against a FanDuel total of 4.5. Current starter and lineup availability are included in that forecast. The model gives OVER a 54.0% win probability and a MODERATE rating.",
+          "rationale_full": "APEX projects approximately 5.4 combined runs through five innings against a FanDuel total of 4.5. Current starter and lineup availability are included in that forecast. The model gives OVER a 54.0% win probability and a MODERATE rating.",
+          "canonical_rationale": "APEX projects approximately 5.4 combined runs through five innings against a FanDuel total of 4.5. Current starter and lineup availability are included in that forecast. The model gives OVER a 54.0% win probability and a MODERATE rating.",
           "rationale_sentences": [
-            "At the FanDuel capture on August 25, 2026, R4 estimates OVER 4.5 has a 54.0% unconditional first-five probability at -135.",
-            "The exact live Totals authority generated a finite nonnegative normalized 62 by 62 away-home joint score distribution for this game.",
-            "The R4 state used starter identifiers 814490 and 701542, current batting-order identifiers, the embedded starter-exit lookup, and frozen batter and pitcher transition counts.",
-            "The total distribution was derived from the same joint cells and has expected first-five runs 5.396 with push probability 0.0000.",
-            "No August 25 outcome was read, and the legacy Sparse PMF scorer was not invoked."
+            "APEX projects approximately 5.4 combined runs through five innings against a FanDuel total of 4.5.",
+            "Current starter and lineup availability are included in that forecast.",
+            "The model gives OVER a 54.0% win probability and a MODERATE rating."
           ],
           "artifact_sha256": "925913220be06339e6d3fa5201c485fe74fbd510a4c636879f29057ed821b1a4",
           "feature_contract_sha256": "0ea42ae8c6e6845fe0190824f8ab08d8a8fbbdf65416e862e97de81f0497a71b",
           "odds_source": "fanduel",
           "odds_captured_at_utc": "2026-08-25T22:14:50.413171Z",
-          "prediction_generated_at_utc": "2026-08-25T22:35:00.693307+00:00"
+          "prediction_generated_at_utc": "2026-08-25T22:35:00.693307+00:00",
+          "PRESENTATION_ONLY_RATIONALE": true,
+          "PUBLIC_RATIONALE_CONTRACT_VERSION": "APEX_PUBLIC_RATIONALE_HUMAN_V1"
         }
       ]
     },
@@ -931,22 +927,21 @@
           "tier": "WEAK",
           "canonical_tier": "WEAK",
           "internal_value_strength": "WEAK",
-          "rationale": "At the FanDuel capture on August 25, 2026, C1 estimates TOR -0.5 has a 45.2% first-five cover probability at +108. The live C1 state contains all 21 registered dimensions from the four R1 through R4 residuals, both R3 and R4 margin-distribution summaries, disagreement, market, starter-exit, feature-presence, and lineup-missingness states. The frozen earlier-only selection used 688 eligible prior rows through 2026-08-23 and selected the FANDUEL_IDENTITY branch. The sealed current state records 9 away and 9 home batting-order identifiers with registered fallback behavior where a lineup remained unavailable. No August 25 outcome was read, and the stale production ATS scorer was not invoked.",
-          "rationale_full": "At the FanDuel capture on August 25, 2026, C1 estimates TOR -0.5 has a 45.2% first-five cover probability at +108. The live C1 state contains all 21 registered dimensions from the four R1 through R4 residuals, both R3 and R4 margin-distribution summaries, disagreement, market, starter-exit, feature-presence, and lineup-missingness states. The frozen earlier-only selection used 688 eligible prior rows through 2026-08-23 and selected the FANDUEL_IDENTITY branch. The sealed current state records 9 away and 9 home batting-order identifiers with registered fallback behavior where a lineup remained unavailable. No August 25 outcome was read, and the stale production ATS scorer was not invoked.",
-          "canonical_rationale": "At the FanDuel capture on August 25, 2026, C1 estimates TOR -0.5 has a 45.2% first-five cover probability at +108. The live C1 state contains all 21 registered dimensions from the four R1 through R4 residuals, both R3 and R4 margin-distribution summaries, disagreement, market, starter-exit, feature-presence, and lineup-missingness states. The frozen earlier-only selection used 688 eligible prior rows through 2026-08-23 and selected the FANDUEL_IDENTITY branch. The sealed current state records 9 away and 9 home batting-order identifiers with registered fallback behavior where a lineup remained unavailable. No August 25 outcome was read, and the stale production ATS scorer was not invoked.",
+          "rationale": "APEX does not see enough independent matchup evidence to move materially away from the current FanDuel baseline on this side. It gives TOR -0.5 a 45.2% first-five cover probability and a WEAK rating.",
+          "rationale_full": "APEX does not see enough independent matchup evidence to move materially away from the current FanDuel baseline on this side. It gives TOR -0.5 a 45.2% first-five cover probability and a WEAK rating.",
+          "canonical_rationale": "APEX does not see enough independent matchup evidence to move materially away from the current FanDuel baseline on this side. It gives TOR -0.5 a 45.2% first-five cover probability and a WEAK rating.",
           "rationale_sentences": [
-            "At the FanDuel capture on August 25, 2026, C1 estimates TOR -0.5 has a 45.2% first-five cover probability at +108.",
-            "The live C1 state contains all 21 registered dimensions from the four R1 through R4 residuals, both R3 and R4 margin-distribution summaries, disagreement, market, starter-exit, feature-presence, and lineup-missingness states.",
-            "The frozen earlier-only selection used 688 eligible prior rows through 2026-08-23 and selected the FANDUEL_IDENTITY branch.",
-            "The sealed current state records 9 away and 9 home batting-order identifiers with registered fallback behavior where a lineup remained unavailable.",
-            "No August 25 outcome was read, and the stale production ATS scorer was not invoked."
+            "APEX does not see enough independent matchup evidence to move materially away from the current FanDuel baseline on this side.",
+            "It gives TOR -0.5 a 45.2% first-five cover probability and a WEAK rating."
           ],
           "artifact_sha256": "8f6f0118bb251a855adeb4bab52e464e745ca973ee1d9756bf0d859ddb2d5179",
           "implementation_sha256": "0514c410f8247f5dc8d6628de4fd9b310096263424c7069e1e4067d2fc17602c",
           "feature_contract_sha256": "5520eef9b748c0318589725cd89a78ce620cb8bc7c14148f2859422b74692f3c",
           "odds_source": "fanduel",
           "odds_captured_at_utc": "2026-08-25T22:14:50.689169Z",
-          "prediction_generated_at_utc": "2026-08-25T22:35:00.693307+00:00"
+          "prediction_generated_at_utc": "2026-08-25T22:35:00.693307+00:00",
+          "PRESENTATION_ONLY_RATIONALE": true,
+          "PUBLIC_RATIONALE_CONTRACT_VERSION": "APEX_PUBLIC_RATIONALE_HUMAN_V1"
         },
         {
           "market": "F5 TOT",
@@ -967,21 +962,21 @@
           "tier": "MODERATE",
           "canonical_tier": "MODERATE",
           "internal_value_strength": "MODERATE",
-          "rationale": "At the FanDuel capture on August 25, 2026, R4 estimates OVER 4.5 has a 53.1% unconditional first-five probability at -130. The exact live Totals authority generated a finite nonnegative normalized 62 by 62 away-home joint score distribution for this game. The R4 state used starter identifiers 607625 and 453286, current batting-order identifiers, the embedded starter-exit lookup, and frozen batter and pitcher transition counts. The total distribution was derived from the same joint cells and has expected first-five runs 5.108 with push probability 0.0000. No August 25 outcome was read, and the legacy Sparse PMF scorer was not invoked.",
-          "rationale_full": "At the FanDuel capture on August 25, 2026, R4 estimates OVER 4.5 has a 53.1% unconditional first-five probability at -130. The exact live Totals authority generated a finite nonnegative normalized 62 by 62 away-home joint score distribution for this game. The R4 state used starter identifiers 607625 and 453286, current batting-order identifiers, the embedded starter-exit lookup, and frozen batter and pitcher transition counts. The total distribution was derived from the same joint cells and has expected first-five runs 5.108 with push probability 0.0000. No August 25 outcome was read, and the legacy Sparse PMF scorer was not invoked.",
-          "canonical_rationale": "At the FanDuel capture on August 25, 2026, R4 estimates OVER 4.5 has a 53.1% unconditional first-five probability at -130. The exact live Totals authority generated a finite nonnegative normalized 62 by 62 away-home joint score distribution for this game. The R4 state used starter identifiers 607625 and 453286, current batting-order identifiers, the embedded starter-exit lookup, and frozen batter and pitcher transition counts. The total distribution was derived from the same joint cells and has expected first-five runs 5.108 with push probability 0.0000. No August 25 outcome was read, and the legacy Sparse PMF scorer was not invoked.",
+          "rationale": "APEX projects approximately 5.1 combined runs through five innings against a FanDuel total of 4.5. Current starter and lineup availability are included in that forecast. The model gives OVER a 53.1% win probability and a MODERATE rating.",
+          "rationale_full": "APEX projects approximately 5.1 combined runs through five innings against a FanDuel total of 4.5. Current starter and lineup availability are included in that forecast. The model gives OVER a 53.1% win probability and a MODERATE rating.",
+          "canonical_rationale": "APEX projects approximately 5.1 combined runs through five innings against a FanDuel total of 4.5. Current starter and lineup availability are included in that forecast. The model gives OVER a 53.1% win probability and a MODERATE rating.",
           "rationale_sentences": [
-            "At the FanDuel capture on August 25, 2026, R4 estimates OVER 4.5 has a 53.1% unconditional first-five probability at -130.",
-            "The exact live Totals authority generated a finite nonnegative normalized 62 by 62 away-home joint score distribution for this game.",
-            "The R4 state used starter identifiers 607625 and 453286, current batting-order identifiers, the embedded starter-exit lookup, and frozen batter and pitcher transition counts.",
-            "The total distribution was derived from the same joint cells and has expected first-five runs 5.108 with push probability 0.0000.",
-            "No August 25 outcome was read, and the legacy Sparse PMF scorer was not invoked."
+            "APEX projects approximately 5.1 combined runs through five innings against a FanDuel total of 4.5.",
+            "Current starter and lineup availability are included in that forecast.",
+            "The model gives OVER a 53.1% win probability and a MODERATE rating."
           ],
           "artifact_sha256": "925913220be06339e6d3fa5201c485fe74fbd510a4c636879f29057ed821b1a4",
           "feature_contract_sha256": "0ea42ae8c6e6845fe0190824f8ab08d8a8fbbdf65416e862e97de81f0497a71b",
           "odds_source": "fanduel",
           "odds_captured_at_utc": "2026-08-25T22:14:50.689169Z",
-          "prediction_generated_at_utc": "2026-08-25T22:35:00.693307+00:00"
+          "prediction_generated_at_utc": "2026-08-25T22:35:00.693307+00:00",
+          "PRESENTATION_ONLY_RATIONALE": true,
+          "PUBLIC_RATIONALE_CONTRACT_VERSION": "APEX_PUBLIC_RATIONALE_HUMAN_V1"
         }
       ]
     },
@@ -1126,22 +1121,21 @@
           "tier": "WEAK",
           "canonical_tier": "WEAK",
           "internal_value_strength": "WEAK",
-          "rationale": "At the FanDuel capture on August 25, 2026, C1 estimates MIL -0.5 has a 49.2% first-five cover probability at -110. The live C1 state contains all 21 registered dimensions from the four R1 through R4 residuals, both R3 and R4 margin-distribution summaries, disagreement, market, starter-exit, feature-presence, and lineup-missingness states. The frozen earlier-only selection used 688 eligible prior rows through 2026-08-23 and selected the FANDUEL_IDENTITY branch. The sealed current state records 9 away and 9 home batting-order identifiers with registered fallback behavior where a lineup remained unavailable. No August 25 outcome was read, and the stale production ATS scorer was not invoked.",
-          "rationale_full": "At the FanDuel capture on August 25, 2026, C1 estimates MIL -0.5 has a 49.2% first-five cover probability at -110. The live C1 state contains all 21 registered dimensions from the four R1 through R4 residuals, both R3 and R4 margin-distribution summaries, disagreement, market, starter-exit, feature-presence, and lineup-missingness states. The frozen earlier-only selection used 688 eligible prior rows through 2026-08-23 and selected the FANDUEL_IDENTITY branch. The sealed current state records 9 away and 9 home batting-order identifiers with registered fallback behavior where a lineup remained unavailable. No August 25 outcome was read, and the stale production ATS scorer was not invoked.",
-          "canonical_rationale": "At the FanDuel capture on August 25, 2026, C1 estimates MIL -0.5 has a 49.2% first-five cover probability at -110. The live C1 state contains all 21 registered dimensions from the four R1 through R4 residuals, both R3 and R4 margin-distribution summaries, disagreement, market, starter-exit, feature-presence, and lineup-missingness states. The frozen earlier-only selection used 688 eligible prior rows through 2026-08-23 and selected the FANDUEL_IDENTITY branch. The sealed current state records 9 away and 9 home batting-order identifiers with registered fallback behavior where a lineup remained unavailable. No August 25 outcome was read, and the stale production ATS scorer was not invoked.",
+          "rationale": "APEX does not see enough independent matchup evidence to move materially away from the current FanDuel baseline on this side. It gives MIL -0.5 a 49.2% first-five cover probability and a WEAK rating.",
+          "rationale_full": "APEX does not see enough independent matchup evidence to move materially away from the current FanDuel baseline on this side. It gives MIL -0.5 a 49.2% first-five cover probability and a WEAK rating.",
+          "canonical_rationale": "APEX does not see enough independent matchup evidence to move materially away from the current FanDuel baseline on this side. It gives MIL -0.5 a 49.2% first-five cover probability and a WEAK rating.",
           "rationale_sentences": [
-            "At the FanDuel capture on August 25, 2026, C1 estimates MIL -0.5 has a 49.2% first-five cover probability at -110.",
-            "The live C1 state contains all 21 registered dimensions from the four R1 through R4 residuals, both R3 and R4 margin-distribution summaries, disagreement, market, starter-exit, feature-presence, and lineup-missingness states.",
-            "The frozen earlier-only selection used 688 eligible prior rows through 2026-08-23 and selected the FANDUEL_IDENTITY branch.",
-            "The sealed current state records 9 away and 9 home batting-order identifiers with registered fallback behavior where a lineup remained unavailable.",
-            "No August 25 outcome was read, and the stale production ATS scorer was not invoked."
+            "APEX does not see enough independent matchup evidence to move materially away from the current FanDuel baseline on this side.",
+            "It gives MIL -0.5 a 49.2% first-five cover probability and a WEAK rating."
           ],
           "artifact_sha256": "8f6f0118bb251a855adeb4bab52e464e745ca973ee1d9756bf0d859ddb2d5179",
           "implementation_sha256": "0514c410f8247f5dc8d6628de4fd9b310096263424c7069e1e4067d2fc17602c",
           "feature_contract_sha256": "5520eef9b748c0318589725cd89a78ce620cb8bc7c14148f2859422b74692f3c",
           "odds_source": "fanduel",
           "odds_captured_at_utc": "2026-08-25T22:14:50.971932Z",
-          "prediction_generated_at_utc": "2026-08-25T22:35:00.693307+00:00"
+          "prediction_generated_at_utc": "2026-08-25T22:35:00.693307+00:00",
+          "PRESENTATION_ONLY_RATIONALE": true,
+          "PUBLIC_RATIONALE_CONTRACT_VERSION": "APEX_PUBLIC_RATIONALE_HUMAN_V1"
         },
         {
           "market": "F5 TOT",
@@ -1162,21 +1156,21 @@
           "tier": "WEAK",
           "canonical_tier": "WEAK",
           "internal_value_strength": "WEAK",
-          "rationale": "At the FanDuel capture on August 25, 2026, R4 estimates OVER 4.5 has a 44.7% unconditional first-five probability at +110. The exact live Totals authority generated a finite nonnegative normalized 62 by 62 away-home joint score distribution for this game. The R4 state used starter identifiers 690986 and 804267, current batting-order identifiers, the embedded starter-exit lookup, and frozen batter and pitcher transition counts. The total distribution was derived from the same joint cells and has expected first-five runs 4.777 with push probability 0.0000. No August 25 outcome was read, and the legacy Sparse PMF scorer was not invoked.",
-          "rationale_full": "At the FanDuel capture on August 25, 2026, R4 estimates OVER 4.5 has a 44.7% unconditional first-five probability at +110. The exact live Totals authority generated a finite nonnegative normalized 62 by 62 away-home joint score distribution for this game. The R4 state used starter identifiers 690986 and 804267, current batting-order identifiers, the embedded starter-exit lookup, and frozen batter and pitcher transition counts. The total distribution was derived from the same joint cells and has expected first-five runs 4.777 with push probability 0.0000. No August 25 outcome was read, and the legacy Sparse PMF scorer was not invoked.",
-          "canonical_rationale": "At the FanDuel capture on August 25, 2026, R4 estimates OVER 4.5 has a 44.7% unconditional first-five probability at +110. The exact live Totals authority generated a finite nonnegative normalized 62 by 62 away-home joint score distribution for this game. The R4 state used starter identifiers 690986 and 804267, current batting-order identifiers, the embedded starter-exit lookup, and frozen batter and pitcher transition counts. The total distribution was derived from the same joint cells and has expected first-five runs 4.777 with push probability 0.0000. No August 25 outcome was read, and the legacy Sparse PMF scorer was not invoked.",
+          "rationale": "APEX projects approximately 4.8 combined runs through five innings against a FanDuel total of 4.5. Current starter and lineup availability are included in that forecast. The model gives OVER a 44.7% win probability and a WEAK rating.",
+          "rationale_full": "APEX projects approximately 4.8 combined runs through five innings against a FanDuel total of 4.5. Current starter and lineup availability are included in that forecast. The model gives OVER a 44.7% win probability and a WEAK rating.",
+          "canonical_rationale": "APEX projects approximately 4.8 combined runs through five innings against a FanDuel total of 4.5. Current starter and lineup availability are included in that forecast. The model gives OVER a 44.7% win probability and a WEAK rating.",
           "rationale_sentences": [
-            "At the FanDuel capture on August 25, 2026, R4 estimates OVER 4.5 has a 44.7% unconditional first-five probability at +110.",
-            "The exact live Totals authority generated a finite nonnegative normalized 62 by 62 away-home joint score distribution for this game.",
-            "The R4 state used starter identifiers 690986 and 804267, current batting-order identifiers, the embedded starter-exit lookup, and frozen batter and pitcher transition counts.",
-            "The total distribution was derived from the same joint cells and has expected first-five runs 4.777 with push probability 0.0000.",
-            "No August 25 outcome was read, and the legacy Sparse PMF scorer was not invoked."
+            "APEX projects approximately 4.8 combined runs through five innings against a FanDuel total of 4.5.",
+            "Current starter and lineup availability are included in that forecast.",
+            "The model gives OVER a 44.7% win probability and a WEAK rating."
           ],
           "artifact_sha256": "925913220be06339e6d3fa5201c485fe74fbd510a4c636879f29057ed821b1a4",
           "feature_contract_sha256": "0ea42ae8c6e6845fe0190824f8ab08d8a8fbbdf65416e862e97de81f0497a71b",
           "odds_source": "fanduel",
           "odds_captured_at_utc": "2026-08-25T22:14:50.971932Z",
-          "prediction_generated_at_utc": "2026-08-25T22:35:00.693307+00:00"
+          "prediction_generated_at_utc": "2026-08-25T22:35:00.693307+00:00",
+          "PRESENTATION_ONLY_RATIONALE": true,
+          "PUBLIC_RATIONALE_CONTRACT_VERSION": "APEX_PUBLIC_RATIONALE_HUMAN_V1"
         }
       ]
     },
@@ -1321,22 +1315,21 @@
           "tier": "MODERATE",
           "canonical_tier": "MODERATE",
           "internal_value_strength": "MODERATE",
-          "rationale": "At the FanDuel capture on August 25, 2026, C1 estimates ATL +0.5 has a 50.0% first-five cover probability at -114. The live C1 state contains all 21 registered dimensions from the four R1 through R4 residuals, both R3 and R4 margin-distribution summaries, disagreement, market, starter-exit, feature-presence, and lineup-missingness states. The frozen earlier-only selection used 688 eligible prior rows through 2026-08-23 and selected the FANDUEL_IDENTITY branch. The sealed current state records 9 away and 9 home batting-order identifiers with registered fallback behavior where a lineup remained unavailable. No August 25 outcome was read, and the stale production ATS scorer was not invoked.",
-          "rationale_full": "At the FanDuel capture on August 25, 2026, C1 estimates ATL +0.5 has a 50.0% first-five cover probability at -114. The live C1 state contains all 21 registered dimensions from the four R1 through R4 residuals, both R3 and R4 margin-distribution summaries, disagreement, market, starter-exit, feature-presence, and lineup-missingness states. The frozen earlier-only selection used 688 eligible prior rows through 2026-08-23 and selected the FANDUEL_IDENTITY branch. The sealed current state records 9 away and 9 home batting-order identifiers with registered fallback behavior where a lineup remained unavailable. No August 25 outcome was read, and the stale production ATS scorer was not invoked.",
-          "canonical_rationale": "At the FanDuel capture on August 25, 2026, C1 estimates ATL +0.5 has a 50.0% first-five cover probability at -114. The live C1 state contains all 21 registered dimensions from the four R1 through R4 residuals, both R3 and R4 margin-distribution summaries, disagreement, market, starter-exit, feature-presence, and lineup-missingness states. The frozen earlier-only selection used 688 eligible prior rows through 2026-08-23 and selected the FANDUEL_IDENTITY branch. The sealed current state records 9 away and 9 home batting-order identifiers with registered fallback behavior where a lineup remained unavailable. No August 25 outcome was read, and the stale production ATS scorer was not invoked.",
+          "rationale": "APEX does not see enough independent matchup evidence to move materially away from the current FanDuel baseline on this side. It gives ATL +0.5 a 50.0% first-five cover probability and a MODERATE rating.",
+          "rationale_full": "APEX does not see enough independent matchup evidence to move materially away from the current FanDuel baseline on this side. It gives ATL +0.5 a 50.0% first-five cover probability and a MODERATE rating.",
+          "canonical_rationale": "APEX does not see enough independent matchup evidence to move materially away from the current FanDuel baseline on this side. It gives ATL +0.5 a 50.0% first-five cover probability and a MODERATE rating.",
           "rationale_sentences": [
-            "At the FanDuel capture on August 25, 2026, C1 estimates ATL +0.5 has a 50.0% first-five cover probability at -114.",
-            "The live C1 state contains all 21 registered dimensions from the four R1 through R4 residuals, both R3 and R4 margin-distribution summaries, disagreement, market, starter-exit, feature-presence, and lineup-missingness states.",
-            "The frozen earlier-only selection used 688 eligible prior rows through 2026-08-23 and selected the FANDUEL_IDENTITY branch.",
-            "The sealed current state records 9 away and 9 home batting-order identifiers with registered fallback behavior where a lineup remained unavailable.",
-            "No August 25 outcome was read, and the stale production ATS scorer was not invoked."
+            "APEX does not see enough independent matchup evidence to move materially away from the current FanDuel baseline on this side.",
+            "It gives ATL +0.5 a 50.0% first-five cover probability and a MODERATE rating."
           ],
           "artifact_sha256": "8f6f0118bb251a855adeb4bab52e464e745ca973ee1d9756bf0d859ddb2d5179",
           "implementation_sha256": "0514c410f8247f5dc8d6628de4fd9b310096263424c7069e1e4067d2fc17602c",
           "feature_contract_sha256": "5520eef9b748c0318589725cd89a78ce620cb8bc7c14148f2859422b74692f3c",
           "odds_source": "fanduel",
           "odds_captured_at_utc": "2026-08-25T22:14:51.231656Z",
-          "prediction_generated_at_utc": "2026-08-25T22:35:00.693307+00:00"
+          "prediction_generated_at_utc": "2026-08-25T22:35:00.693307+00:00",
+          "PRESENTATION_ONLY_RATIONALE": true,
+          "PUBLIC_RATIONALE_CONTRACT_VERSION": "APEX_PUBLIC_RATIONALE_HUMAN_V1"
         },
         {
           "market": "F5 TOT",
@@ -1357,21 +1350,21 @@
           "tier": "WEAK",
           "canonical_tier": "WEAK",
           "internal_value_strength": "WEAK",
-          "rationale": "At the FanDuel capture on August 25, 2026, R4 estimates UNDER 4.5 has a 47.9% unconditional first-five probability at -104. The exact live Totals authority generated a finite nonnegative normalized 62 by 62 away-home joint score distribution for this game. The R4 state used starter identifiers 607192 and 693821, current batting-order identifiers, the embedded starter-exit lookup, and frozen batter and pitcher transition counts. The total distribution was derived from the same joint cells and has expected first-five runs 5.254 with push probability 0.0000. No August 25 outcome was read, and the legacy Sparse PMF scorer was not invoked.",
-          "rationale_full": "At the FanDuel capture on August 25, 2026, R4 estimates UNDER 4.5 has a 47.9% unconditional first-five probability at -104. The exact live Totals authority generated a finite nonnegative normalized 62 by 62 away-home joint score distribution for this game. The R4 state used starter identifiers 607192 and 693821, current batting-order identifiers, the embedded starter-exit lookup, and frozen batter and pitcher transition counts. The total distribution was derived from the same joint cells and has expected first-five runs 5.254 with push probability 0.0000. No August 25 outcome was read, and the legacy Sparse PMF scorer was not invoked.",
-          "canonical_rationale": "At the FanDuel capture on August 25, 2026, R4 estimates UNDER 4.5 has a 47.9% unconditional first-five probability at -104. The exact live Totals authority generated a finite nonnegative normalized 62 by 62 away-home joint score distribution for this game. The R4 state used starter identifiers 607192 and 693821, current batting-order identifiers, the embedded starter-exit lookup, and frozen batter and pitcher transition counts. The total distribution was derived from the same joint cells and has expected first-five runs 5.254 with push probability 0.0000. No August 25 outcome was read, and the legacy Sparse PMF scorer was not invoked.",
+          "rationale": "APEX projects approximately 5.3 combined runs through five innings against a FanDuel total of 4.5. Current starter and lineup availability are included in that forecast. The model gives UNDER a 47.9% win probability and a WEAK rating.",
+          "rationale_full": "APEX projects approximately 5.3 combined runs through five innings against a FanDuel total of 4.5. Current starter and lineup availability are included in that forecast. The model gives UNDER a 47.9% win probability and a WEAK rating.",
+          "canonical_rationale": "APEX projects approximately 5.3 combined runs through five innings against a FanDuel total of 4.5. Current starter and lineup availability are included in that forecast. The model gives UNDER a 47.9% win probability and a WEAK rating.",
           "rationale_sentences": [
-            "At the FanDuel capture on August 25, 2026, R4 estimates UNDER 4.5 has a 47.9% unconditional first-five probability at -104.",
-            "The exact live Totals authority generated a finite nonnegative normalized 62 by 62 away-home joint score distribution for this game.",
-            "The R4 state used starter identifiers 607192 and 693821, current batting-order identifiers, the embedded starter-exit lookup, and frozen batter and pitcher transition counts.",
-            "The total distribution was derived from the same joint cells and has expected first-five runs 5.254 with push probability 0.0000.",
-            "No August 25 outcome was read, and the legacy Sparse PMF scorer was not invoked."
+            "APEX projects approximately 5.3 combined runs through five innings against a FanDuel total of 4.5.",
+            "Current starter and lineup availability are included in that forecast.",
+            "The model gives UNDER a 47.9% win probability and a WEAK rating."
           ],
           "artifact_sha256": "925913220be06339e6d3fa5201c485fe74fbd510a4c636879f29057ed821b1a4",
           "feature_contract_sha256": "0ea42ae8c6e6845fe0190824f8ab08d8a8fbbdf65416e862e97de81f0497a71b",
           "odds_source": "fanduel",
           "odds_captured_at_utc": "2026-08-25T22:14:51.231656Z",
-          "prediction_generated_at_utc": "2026-08-25T22:35:00.693307+00:00"
+          "prediction_generated_at_utc": "2026-08-25T22:35:00.693307+00:00",
+          "PRESENTATION_ONLY_RATIONALE": true,
+          "PUBLIC_RATIONALE_CONTRACT_VERSION": "APEX_PUBLIC_RATIONALE_HUMAN_V1"
         }
       ]
     },
@@ -1516,22 +1509,21 @@
           "tier": "WEAK",
           "canonical_tier": "WEAK",
           "internal_value_strength": "WEAK",
-          "rationale": "At the FanDuel capture on August 25, 2026, C1 estimates TEX -0.5 has a 44.3% first-five cover probability at +112. The live C1 state contains all 21 registered dimensions from the four R1 through R4 residuals, both R3 and R4 margin-distribution summaries, disagreement, market, starter-exit, feature-presence, and lineup-missingness states. The frozen earlier-only selection used 688 eligible prior rows through 2026-08-23 and selected the FANDUEL_IDENTITY branch. The sealed current state records 9 away and 9 home batting-order identifiers with registered fallback behavior where a lineup remained unavailable. No August 25 outcome was read, and the stale production ATS scorer was not invoked.",
-          "rationale_full": "At the FanDuel capture on August 25, 2026, C1 estimates TEX -0.5 has a 44.3% first-five cover probability at +112. The live C1 state contains all 21 registered dimensions from the four R1 through R4 residuals, both R3 and R4 margin-distribution summaries, disagreement, market, starter-exit, feature-presence, and lineup-missingness states. The frozen earlier-only selection used 688 eligible prior rows through 2026-08-23 and selected the FANDUEL_IDENTITY branch. The sealed current state records 9 away and 9 home batting-order identifiers with registered fallback behavior where a lineup remained unavailable. No August 25 outcome was read, and the stale production ATS scorer was not invoked.",
-          "canonical_rationale": "At the FanDuel capture on August 25, 2026, C1 estimates TEX -0.5 has a 44.3% first-five cover probability at +112. The live C1 state contains all 21 registered dimensions from the four R1 through R4 residuals, both R3 and R4 margin-distribution summaries, disagreement, market, starter-exit, feature-presence, and lineup-missingness states. The frozen earlier-only selection used 688 eligible prior rows through 2026-08-23 and selected the FANDUEL_IDENTITY branch. The sealed current state records 9 away and 9 home batting-order identifiers with registered fallback behavior where a lineup remained unavailable. No August 25 outcome was read, and the stale production ATS scorer was not invoked.",
+          "rationale": "APEX does not see enough independent matchup evidence to move materially away from the current FanDuel baseline on this side. It gives TEX -0.5 a 44.3% first-five cover probability and a WEAK rating.",
+          "rationale_full": "APEX does not see enough independent matchup evidence to move materially away from the current FanDuel baseline on this side. It gives TEX -0.5 a 44.3% first-five cover probability and a WEAK rating.",
+          "canonical_rationale": "APEX does not see enough independent matchup evidence to move materially away from the current FanDuel baseline on this side. It gives TEX -0.5 a 44.3% first-five cover probability and a WEAK rating.",
           "rationale_sentences": [
-            "At the FanDuel capture on August 25, 2026, C1 estimates TEX -0.5 has a 44.3% first-five cover probability at +112.",
-            "The live C1 state contains all 21 registered dimensions from the four R1 through R4 residuals, both R3 and R4 margin-distribution summaries, disagreement, market, starter-exit, feature-presence, and lineup-missingness states.",
-            "The frozen earlier-only selection used 688 eligible prior rows through 2026-08-23 and selected the FANDUEL_IDENTITY branch.",
-            "The sealed current state records 9 away and 9 home batting-order identifiers with registered fallback behavior where a lineup remained unavailable.",
-            "No August 25 outcome was read, and the stale production ATS scorer was not invoked."
+            "APEX does not see enough independent matchup evidence to move materially away from the current FanDuel baseline on this side.",
+            "It gives TEX -0.5 a 44.3% first-five cover probability and a WEAK rating."
           ],
           "artifact_sha256": "8f6f0118bb251a855adeb4bab52e464e745ca973ee1d9756bf0d859ddb2d5179",
           "implementation_sha256": "0514c410f8247f5dc8d6628de4fd9b310096263424c7069e1e4067d2fc17602c",
           "feature_contract_sha256": "5520eef9b748c0318589725cd89a78ce620cb8bc7c14148f2859422b74692f3c",
           "odds_source": "fanduel",
           "odds_captured_at_utc": "2026-08-25T22:14:51.515637Z",
-          "prediction_generated_at_utc": "2026-08-25T22:35:00.693307+00:00"
+          "prediction_generated_at_utc": "2026-08-25T22:35:00.693307+00:00",
+          "PRESENTATION_ONLY_RATIONALE": true,
+          "PUBLIC_RATIONALE_CONTRACT_VERSION": "APEX_PUBLIC_RATIONALE_HUMAN_V1"
         },
         {
           "market": "F5 TOT",
@@ -1552,21 +1544,21 @@
           "tier": "MODERATE",
           "canonical_tier": "MODERATE",
           "internal_value_strength": "MODERATE",
-          "rationale": "At the FanDuel capture on August 25, 2026, R4 estimates OVER 3.5 has a 52.6% unconditional first-five probability at -128. The exact live Totals authority generated a finite nonnegative normalized 62 by 62 away-home joint score distribution for this game. The R4 state used starter identifiers 594798 and 641743, current batting-order identifiers, the embedded starter-exit lookup, and frozen batter and pitcher transition counts. The total distribution was derived from the same joint cells and has expected first-five runs 4.421 with push probability 0.0000. No August 25 outcome was read, and the legacy Sparse PMF scorer was not invoked.",
-          "rationale_full": "At the FanDuel capture on August 25, 2026, R4 estimates OVER 3.5 has a 52.6% unconditional first-five probability at -128. The exact live Totals authority generated a finite nonnegative normalized 62 by 62 away-home joint score distribution for this game. The R4 state used starter identifiers 594798 and 641743, current batting-order identifiers, the embedded starter-exit lookup, and frozen batter and pitcher transition counts. The total distribution was derived from the same joint cells and has expected first-five runs 4.421 with push probability 0.0000. No August 25 outcome was read, and the legacy Sparse PMF scorer was not invoked.",
-          "canonical_rationale": "At the FanDuel capture on August 25, 2026, R4 estimates OVER 3.5 has a 52.6% unconditional first-five probability at -128. The exact live Totals authority generated a finite nonnegative normalized 62 by 62 away-home joint score distribution for this game. The R4 state used starter identifiers 594798 and 641743, current batting-order identifiers, the embedded starter-exit lookup, and frozen batter and pitcher transition counts. The total distribution was derived from the same joint cells and has expected first-five runs 4.421 with push probability 0.0000. No August 25 outcome was read, and the legacy Sparse PMF scorer was not invoked.",
+          "rationale": "APEX projects approximately 4.4 combined runs through five innings against a FanDuel total of 3.5. Current starter and lineup availability are included in that forecast. The model gives OVER a 52.6% win probability and a MODERATE rating.",
+          "rationale_full": "APEX projects approximately 4.4 combined runs through five innings against a FanDuel total of 3.5. Current starter and lineup availability are included in that forecast. The model gives OVER a 52.6% win probability and a MODERATE rating.",
+          "canonical_rationale": "APEX projects approximately 4.4 combined runs through five innings against a FanDuel total of 3.5. Current starter and lineup availability are included in that forecast. The model gives OVER a 52.6% win probability and a MODERATE rating.",
           "rationale_sentences": [
-            "At the FanDuel capture on August 25, 2026, R4 estimates OVER 3.5 has a 52.6% unconditional first-five probability at -128.",
-            "The exact live Totals authority generated a finite nonnegative normalized 62 by 62 away-home joint score distribution for this game.",
-            "The R4 state used starter identifiers 594798 and 641743, current batting-order identifiers, the embedded starter-exit lookup, and frozen batter and pitcher transition counts.",
-            "The total distribution was derived from the same joint cells and has expected first-five runs 4.421 with push probability 0.0000.",
-            "No August 25 outcome was read, and the legacy Sparse PMF scorer was not invoked."
+            "APEX projects approximately 4.4 combined runs through five innings against a FanDuel total of 3.5.",
+            "Current starter and lineup availability are included in that forecast.",
+            "The model gives OVER a 52.6% win probability and a MODERATE rating."
           ],
           "artifact_sha256": "925913220be06339e6d3fa5201c485fe74fbd510a4c636879f29057ed821b1a4",
           "feature_contract_sha256": "0ea42ae8c6e6845fe0190824f8ab08d8a8fbbdf65416e862e97de81f0497a71b",
           "odds_source": "fanduel",
           "odds_captured_at_utc": "2026-08-25T22:14:51.515637Z",
-          "prediction_generated_at_utc": "2026-08-25T22:35:00.693307+00:00"
+          "prediction_generated_at_utc": "2026-08-25T22:35:00.693307+00:00",
+          "PRESENTATION_ONLY_RATIONALE": true,
+          "PUBLIC_RATIONALE_CONTRACT_VERSION": "APEX_PUBLIC_RATIONALE_HUMAN_V1"
         }
       ]
     },
@@ -1711,22 +1703,21 @@
           "tier": "WEAK",
           "canonical_tier": "WEAK",
           "internal_value_strength": "WEAK",
-          "rationale": "At the FanDuel capture on August 25, 2026, C1 estimates STL -0.5 has a 46.9% first-five cover probability at +100. The live C1 state contains all 21 registered dimensions from the four R1 through R4 residuals, both R3 and R4 margin-distribution summaries, disagreement, market, starter-exit, feature-presence, and lineup-missingness states. The frozen earlier-only selection used 688 eligible prior rows through 2026-08-23 and selected the FANDUEL_IDENTITY branch. The sealed current state records 9 away and 9 home batting-order identifiers with registered fallback behavior where a lineup remained unavailable. No August 25 outcome was read, and the stale production ATS scorer was not invoked.",
-          "rationale_full": "At the FanDuel capture on August 25, 2026, C1 estimates STL -0.5 has a 46.9% first-five cover probability at +100. The live C1 state contains all 21 registered dimensions from the four R1 through R4 residuals, both R3 and R4 margin-distribution summaries, disagreement, market, starter-exit, feature-presence, and lineup-missingness states. The frozen earlier-only selection used 688 eligible prior rows through 2026-08-23 and selected the FANDUEL_IDENTITY branch. The sealed current state records 9 away and 9 home batting-order identifiers with registered fallback behavior where a lineup remained unavailable. No August 25 outcome was read, and the stale production ATS scorer was not invoked.",
-          "canonical_rationale": "At the FanDuel capture on August 25, 2026, C1 estimates STL -0.5 has a 46.9% first-five cover probability at +100. The live C1 state contains all 21 registered dimensions from the four R1 through R4 residuals, both R3 and R4 margin-distribution summaries, disagreement, market, starter-exit, feature-presence, and lineup-missingness states. The frozen earlier-only selection used 688 eligible prior rows through 2026-08-23 and selected the FANDUEL_IDENTITY branch. The sealed current state records 9 away and 9 home batting-order identifiers with registered fallback behavior where a lineup remained unavailable. No August 25 outcome was read, and the stale production ATS scorer was not invoked.",
+          "rationale": "APEX does not see enough independent matchup evidence to move materially away from the current FanDuel baseline on this side. It gives STL -0.5 a 46.9% first-five cover probability and a WEAK rating.",
+          "rationale_full": "APEX does not see enough independent matchup evidence to move materially away from the current FanDuel baseline on this side. It gives STL -0.5 a 46.9% first-five cover probability and a WEAK rating.",
+          "canonical_rationale": "APEX does not see enough independent matchup evidence to move materially away from the current FanDuel baseline on this side. It gives STL -0.5 a 46.9% first-five cover probability and a WEAK rating.",
           "rationale_sentences": [
-            "At the FanDuel capture on August 25, 2026, C1 estimates STL -0.5 has a 46.9% first-five cover probability at +100.",
-            "The live C1 state contains all 21 registered dimensions from the four R1 through R4 residuals, both R3 and R4 margin-distribution summaries, disagreement, market, starter-exit, feature-presence, and lineup-missingness states.",
-            "The frozen earlier-only selection used 688 eligible prior rows through 2026-08-23 and selected the FANDUEL_IDENTITY branch.",
-            "The sealed current state records 9 away and 9 home batting-order identifiers with registered fallback behavior where a lineup remained unavailable.",
-            "No August 25 outcome was read, and the stale production ATS scorer was not invoked."
+            "APEX does not see enough independent matchup evidence to move materially away from the current FanDuel baseline on this side.",
+            "It gives STL -0.5 a 46.9% first-five cover probability and a WEAK rating."
           ],
           "artifact_sha256": "8f6f0118bb251a855adeb4bab52e464e745ca973ee1d9756bf0d859ddb2d5179",
           "implementation_sha256": "0514c410f8247f5dc8d6628de4fd9b310096263424c7069e1e4067d2fc17602c",
           "feature_contract_sha256": "5520eef9b748c0318589725cd89a78ce620cb8bc7c14148f2859422b74692f3c",
           "odds_source": "fanduel",
           "odds_captured_at_utc": "2026-08-25T22:14:51.799399Z",
-          "prediction_generated_at_utc": "2026-08-25T22:35:00.693307+00:00"
+          "prediction_generated_at_utc": "2026-08-25T22:35:00.693307+00:00",
+          "PRESENTATION_ONLY_RATIONALE": true,
+          "PUBLIC_RATIONALE_CONTRACT_VERSION": "APEX_PUBLIC_RATIONALE_HUMAN_V1"
         },
         {
           "market": "F5 TOT",
@@ -1747,21 +1738,21 @@
           "tier": "WEAK",
           "canonical_tier": "WEAK",
           "internal_value_strength": "WEAK",
-          "rationale": "At the FanDuel capture on August 25, 2026, R4 estimates UNDER 4.5 has a 49.8% unconditional first-five probability at -113. The exact live Totals authority generated a finite nonnegative normalized 62 by 62 away-home joint score distribution for this game. The R4 state used starter identifiers 605135 and 669461, current batting-order identifiers, the embedded starter-exit lookup, and frozen batter and pitcher transition counts. The total distribution was derived from the same joint cells and has expected first-five runs 5.051 with push probability 0.0000. No August 25 outcome was read, and the legacy Sparse PMF scorer was not invoked.",
-          "rationale_full": "At the FanDuel capture on August 25, 2026, R4 estimates UNDER 4.5 has a 49.8% unconditional first-five probability at -113. The exact live Totals authority generated a finite nonnegative normalized 62 by 62 away-home joint score distribution for this game. The R4 state used starter identifiers 605135 and 669461, current batting-order identifiers, the embedded starter-exit lookup, and frozen batter and pitcher transition counts. The total distribution was derived from the same joint cells and has expected first-five runs 5.051 with push probability 0.0000. No August 25 outcome was read, and the legacy Sparse PMF scorer was not invoked.",
-          "canonical_rationale": "At the FanDuel capture on August 25, 2026, R4 estimates UNDER 4.5 has a 49.8% unconditional first-five probability at -113. The exact live Totals authority generated a finite nonnegative normalized 62 by 62 away-home joint score distribution for this game. The R4 state used starter identifiers 605135 and 669461, current batting-order identifiers, the embedded starter-exit lookup, and frozen batter and pitcher transition counts. The total distribution was derived from the same joint cells and has expected first-five runs 5.051 with push probability 0.0000. No August 25 outcome was read, and the legacy Sparse PMF scorer was not invoked.",
+          "rationale": "APEX projects approximately 5.1 combined runs through five innings against a FanDuel total of 4.5. Current starter and lineup availability are included in that forecast. The model gives UNDER a 49.8% win probability and a WEAK rating.",
+          "rationale_full": "APEX projects approximately 5.1 combined runs through five innings against a FanDuel total of 4.5. Current starter and lineup availability are included in that forecast. The model gives UNDER a 49.8% win probability and a WEAK rating.",
+          "canonical_rationale": "APEX projects approximately 5.1 combined runs through five innings against a FanDuel total of 4.5. Current starter and lineup availability are included in that forecast. The model gives UNDER a 49.8% win probability and a WEAK rating.",
           "rationale_sentences": [
-            "At the FanDuel capture on August 25, 2026, R4 estimates UNDER 4.5 has a 49.8% unconditional first-five probability at -113.",
-            "The exact live Totals authority generated a finite nonnegative normalized 62 by 62 away-home joint score distribution for this game.",
-            "The R4 state used starter identifiers 605135 and 669461, current batting-order identifiers, the embedded starter-exit lookup, and frozen batter and pitcher transition counts.",
-            "The total distribution was derived from the same joint cells and has expected first-five runs 5.051 with push probability 0.0000.",
-            "No August 25 outcome was read, and the legacy Sparse PMF scorer was not invoked."
+            "APEX projects approximately 5.1 combined runs through five innings against a FanDuel total of 4.5.",
+            "Current starter and lineup availability are included in that forecast.",
+            "The model gives UNDER a 49.8% win probability and a WEAK rating."
           ],
           "artifact_sha256": "925913220be06339e6d3fa5201c485fe74fbd510a4c636879f29057ed821b1a4",
           "feature_contract_sha256": "0ea42ae8c6e6845fe0190824f8ab08d8a8fbbdf65416e862e97de81f0497a71b",
           "odds_source": "fanduel",
           "odds_captured_at_utc": "2026-08-25T22:14:51.799399Z",
-          "prediction_generated_at_utc": "2026-08-25T22:35:00.693307+00:00"
+          "prediction_generated_at_utc": "2026-08-25T22:35:00.693307+00:00",
+          "PRESENTATION_ONLY_RATIONALE": true,
+          "PUBLIC_RATIONALE_CONTRACT_VERSION": "APEX_PUBLIC_RATIONALE_HUMAN_V1"
         }
       ]
     },
@@ -1773,7 +1764,7 @@
       "matchup": "Cleveland Guardians @ Los Angeles Angels",
       "home_team": "Los Angeles Angels",
       "away_team": "Cleveland Guardians",
-      "home_pitcher": "Walbert Ure\u00f1a",
+      "home_pitcher": "Walbert Ureña",
       "away_pitcher": "Gavin Williams",
       "information_states": [
         "REGISTERED_LINEUP_MISSINGNESS"
@@ -1906,22 +1897,21 @@
           "tier": "WEAK",
           "canonical_tier": "WEAK",
           "internal_value_strength": "WEAK",
-          "rationale": "At the FanDuel capture on August 25, 2026, C1 estimates CLE -0.5 has a 46.9% first-five cover probability at +100. The live C1 state contains all 21 registered dimensions from the four R1 through R4 residuals, both R3 and R4 margin-distribution summaries, disagreement, market, starter-exit, feature-presence, and lineup-missingness states. The frozen earlier-only selection used 688 eligible prior rows through 2026-08-23 and selected the FANDUEL_IDENTITY branch. The sealed current state records 0 away and 9 home batting-order identifiers with registered fallback behavior where a lineup remained unavailable. No August 25 outcome was read, and the stale production ATS scorer was not invoked.",
-          "rationale_full": "At the FanDuel capture on August 25, 2026, C1 estimates CLE -0.5 has a 46.9% first-five cover probability at +100. The live C1 state contains all 21 registered dimensions from the four R1 through R4 residuals, both R3 and R4 margin-distribution summaries, disagreement, market, starter-exit, feature-presence, and lineup-missingness states. The frozen earlier-only selection used 688 eligible prior rows through 2026-08-23 and selected the FANDUEL_IDENTITY branch. The sealed current state records 0 away and 9 home batting-order identifiers with registered fallback behavior where a lineup remained unavailable. No August 25 outcome was read, and the stale production ATS scorer was not invoked.",
-          "canonical_rationale": "At the FanDuel capture on August 25, 2026, C1 estimates CLE -0.5 has a 46.9% first-five cover probability at +100. The live C1 state contains all 21 registered dimensions from the four R1 through R4 residuals, both R3 and R4 margin-distribution summaries, disagreement, market, starter-exit, feature-presence, and lineup-missingness states. The frozen earlier-only selection used 688 eligible prior rows through 2026-08-23 and selected the FANDUEL_IDENTITY branch. The sealed current state records 0 away and 9 home batting-order identifiers with registered fallback behavior where a lineup remained unavailable. No August 25 outcome was read, and the stale production ATS scorer was not invoked.",
+          "rationale": "APEX does not see enough independent matchup evidence to move materially away from the current FanDuel baseline on this side. It gives CLE -0.5 a 46.9% first-five cover probability and a WEAK rating.",
+          "rationale_full": "APEX does not see enough independent matchup evidence to move materially away from the current FanDuel baseline on this side. It gives CLE -0.5 a 46.9% first-five cover probability and a WEAK rating.",
+          "canonical_rationale": "APEX does not see enough independent matchup evidence to move materially away from the current FanDuel baseline on this side. It gives CLE -0.5 a 46.9% first-five cover probability and a WEAK rating.",
           "rationale_sentences": [
-            "At the FanDuel capture on August 25, 2026, C1 estimates CLE -0.5 has a 46.9% first-five cover probability at +100.",
-            "The live C1 state contains all 21 registered dimensions from the four R1 through R4 residuals, both R3 and R4 margin-distribution summaries, disagreement, market, starter-exit, feature-presence, and lineup-missingness states.",
-            "The frozen earlier-only selection used 688 eligible prior rows through 2026-08-23 and selected the FANDUEL_IDENTITY branch.",
-            "The sealed current state records 0 away and 9 home batting-order identifiers with registered fallback behavior where a lineup remained unavailable.",
-            "No August 25 outcome was read, and the stale production ATS scorer was not invoked."
+            "APEX does not see enough independent matchup evidence to move materially away from the current FanDuel baseline on this side.",
+            "It gives CLE -0.5 a 46.9% first-five cover probability and a WEAK rating."
           ],
           "artifact_sha256": "8f6f0118bb251a855adeb4bab52e464e745ca973ee1d9756bf0d859ddb2d5179",
           "implementation_sha256": "0514c410f8247f5dc8d6628de4fd9b310096263424c7069e1e4067d2fc17602c",
           "feature_contract_sha256": "5520eef9b748c0318589725cd89a78ce620cb8bc7c14148f2859422b74692f3c",
           "odds_source": "fanduel",
           "odds_captured_at_utc": "2026-08-25T22:14:52.063742Z",
-          "prediction_generated_at_utc": "2026-08-25T22:35:00.693307+00:00"
+          "prediction_generated_at_utc": "2026-08-25T22:35:00.693307+00:00",
+          "PRESENTATION_ONLY_RATIONALE": true,
+          "PUBLIC_RATIONALE_CONTRACT_VERSION": "APEX_PUBLIC_RATIONALE_HUMAN_V1"
         },
         {
           "market": "F5 TOT",
@@ -1942,21 +1932,21 @@
           "tier": "WEAK",
           "canonical_tier": "WEAK",
           "internal_value_strength": "WEAK",
-          "rationale": "At the FanDuel capture on August 25, 2026, R4 estimates UNDER 3.5 has a 49.8% unconditional first-five probability at -113. The exact live Totals authority generated a finite nonnegative normalized 62 by 62 away-home joint score distribution for this game. The R4 state used starter identifiers 668909 and 700712, current batting-order identifiers, the embedded starter-exit lookup, and frozen batter and pitcher transition counts. The total distribution was derived from the same joint cells and has expected first-five runs 4.219 with push probability 0.0000. No August 25 outcome was read, and the legacy Sparse PMF scorer was not invoked.",
-          "rationale_full": "At the FanDuel capture on August 25, 2026, R4 estimates UNDER 3.5 has a 49.8% unconditional first-five probability at -113. The exact live Totals authority generated a finite nonnegative normalized 62 by 62 away-home joint score distribution for this game. The R4 state used starter identifiers 668909 and 700712, current batting-order identifiers, the embedded starter-exit lookup, and frozen batter and pitcher transition counts. The total distribution was derived from the same joint cells and has expected first-five runs 4.219 with push probability 0.0000. No August 25 outcome was read, and the legacy Sparse PMF scorer was not invoked.",
-          "canonical_rationale": "At the FanDuel capture on August 25, 2026, R4 estimates UNDER 3.5 has a 49.8% unconditional first-five probability at -113. The exact live Totals authority generated a finite nonnegative normalized 62 by 62 away-home joint score distribution for this game. The R4 state used starter identifiers 668909 and 700712, current batting-order identifiers, the embedded starter-exit lookup, and frozen batter and pitcher transition counts. The total distribution was derived from the same joint cells and has expected first-five runs 4.219 with push probability 0.0000. No August 25 outcome was read, and the legacy Sparse PMF scorer was not invoked.",
+          "rationale": "APEX projects approximately 4.2 combined runs through five innings against a FanDuel total of 3.5. Current starter and lineup availability are included in that forecast. The model gives UNDER a 49.8% win probability and a WEAK rating.",
+          "rationale_full": "APEX projects approximately 4.2 combined runs through five innings against a FanDuel total of 3.5. Current starter and lineup availability are included in that forecast. The model gives UNDER a 49.8% win probability and a WEAK rating.",
+          "canonical_rationale": "APEX projects approximately 4.2 combined runs through five innings against a FanDuel total of 3.5. Current starter and lineup availability are included in that forecast. The model gives UNDER a 49.8% win probability and a WEAK rating.",
           "rationale_sentences": [
-            "At the FanDuel capture on August 25, 2026, R4 estimates UNDER 3.5 has a 49.8% unconditional first-five probability at -113.",
-            "The exact live Totals authority generated a finite nonnegative normalized 62 by 62 away-home joint score distribution for this game.",
-            "The R4 state used starter identifiers 668909 and 700712, current batting-order identifiers, the embedded starter-exit lookup, and frozen batter and pitcher transition counts.",
-            "The total distribution was derived from the same joint cells and has expected first-five runs 4.219 with push probability 0.0000.",
-            "No August 25 outcome was read, and the legacy Sparse PMF scorer was not invoked."
+            "APEX projects approximately 4.2 combined runs through five innings against a FanDuel total of 3.5.",
+            "Current starter and lineup availability are included in that forecast.",
+            "The model gives UNDER a 49.8% win probability and a WEAK rating."
           ],
           "artifact_sha256": "925913220be06339e6d3fa5201c485fe74fbd510a4c636879f29057ed821b1a4",
           "feature_contract_sha256": "0ea42ae8c6e6845fe0190824f8ab08d8a8fbbdf65416e862e97de81f0497a71b",
           "odds_source": "fanduel",
           "odds_captured_at_utc": "2026-08-25T22:14:52.063742Z",
-          "prediction_generated_at_utc": "2026-08-25T22:35:00.693307+00:00"
+          "prediction_generated_at_utc": "2026-08-25T22:35:00.693307+00:00",
+          "PRESENTATION_ONLY_RATIONALE": true,
+          "PUBLIC_RATIONALE_CONTRACT_VERSION": "APEX_PUBLIC_RATIONALE_HUMAN_V1"
         }
       ]
     },
@@ -2101,22 +2091,21 @@
           "tier": "WEAK",
           "canonical_tier": "WEAK",
           "internal_value_strength": "WEAK",
-          "rationale": "At the FanDuel capture on August 25, 2026, C1 estimates SEA -0.5 has a 43.9% first-five cover probability at +114. The live C1 state contains all 21 registered dimensions from the four R1 through R4 residuals, both R3 and R4 margin-distribution summaries, disagreement, market, starter-exit, feature-presence, and lineup-missingness states. The frozen earlier-only selection used 688 eligible prior rows through 2026-08-23 and selected the FANDUEL_IDENTITY branch. The sealed current state records 0 away and 9 home batting-order identifiers with registered fallback behavior where a lineup remained unavailable. No August 25 outcome was read, and the stale production ATS scorer was not invoked.",
-          "rationale_full": "At the FanDuel capture on August 25, 2026, C1 estimates SEA -0.5 has a 43.9% first-five cover probability at +114. The live C1 state contains all 21 registered dimensions from the four R1 through R4 residuals, both R3 and R4 margin-distribution summaries, disagreement, market, starter-exit, feature-presence, and lineup-missingness states. The frozen earlier-only selection used 688 eligible prior rows through 2026-08-23 and selected the FANDUEL_IDENTITY branch. The sealed current state records 0 away and 9 home batting-order identifiers with registered fallback behavior where a lineup remained unavailable. No August 25 outcome was read, and the stale production ATS scorer was not invoked.",
-          "canonical_rationale": "At the FanDuel capture on August 25, 2026, C1 estimates SEA -0.5 has a 43.9% first-five cover probability at +114. The live C1 state contains all 21 registered dimensions from the four R1 through R4 residuals, both R3 and R4 margin-distribution summaries, disagreement, market, starter-exit, feature-presence, and lineup-missingness states. The frozen earlier-only selection used 688 eligible prior rows through 2026-08-23 and selected the FANDUEL_IDENTITY branch. The sealed current state records 0 away and 9 home batting-order identifiers with registered fallback behavior where a lineup remained unavailable. No August 25 outcome was read, and the stale production ATS scorer was not invoked.",
+          "rationale": "APEX does not see enough independent matchup evidence to move materially away from the current FanDuel baseline on this side. It gives SEA -0.5 a 43.9% first-five cover probability and a WEAK rating.",
+          "rationale_full": "APEX does not see enough independent matchup evidence to move materially away from the current FanDuel baseline on this side. It gives SEA -0.5 a 43.9% first-five cover probability and a WEAK rating.",
+          "canonical_rationale": "APEX does not see enough independent matchup evidence to move materially away from the current FanDuel baseline on this side. It gives SEA -0.5 a 43.9% first-five cover probability and a WEAK rating.",
           "rationale_sentences": [
-            "At the FanDuel capture on August 25, 2026, C1 estimates SEA -0.5 has a 43.9% first-five cover probability at +114.",
-            "The live C1 state contains all 21 registered dimensions from the four R1 through R4 residuals, both R3 and R4 margin-distribution summaries, disagreement, market, starter-exit, feature-presence, and lineup-missingness states.",
-            "The frozen earlier-only selection used 688 eligible prior rows through 2026-08-23 and selected the FANDUEL_IDENTITY branch.",
-            "The sealed current state records 0 away and 9 home batting-order identifiers with registered fallback behavior where a lineup remained unavailable.",
-            "No August 25 outcome was read, and the stale production ATS scorer was not invoked."
+            "APEX does not see enough independent matchup evidence to move materially away from the current FanDuel baseline on this side.",
+            "It gives SEA -0.5 a 43.9% first-five cover probability and a WEAK rating."
           ],
           "artifact_sha256": "8f6f0118bb251a855adeb4bab52e464e745ca973ee1d9756bf0d859ddb2d5179",
           "implementation_sha256": "0514c410f8247f5dc8d6628de4fd9b310096263424c7069e1e4067d2fc17602c",
           "feature_contract_sha256": "5520eef9b748c0318589725cd89a78ce620cb8bc7c14148f2859422b74692f3c",
           "odds_source": "fanduel",
           "odds_captured_at_utc": "2026-08-25T22:14:53.133088Z",
-          "prediction_generated_at_utc": "2026-08-25T22:35:00.693307+00:00"
+          "prediction_generated_at_utc": "2026-08-25T22:35:00.693307+00:00",
+          "PRESENTATION_ONLY_RATIONALE": true,
+          "PUBLIC_RATIONALE_CONTRACT_VERSION": "APEX_PUBLIC_RATIONALE_HUMAN_V1"
         },
         {
           "market": "F5 TOT",
@@ -2137,21 +2126,21 @@
           "tier": "WEAK",
           "canonical_tier": "WEAK",
           "internal_value_strength": "WEAK",
-          "rationale": "At the FanDuel capture on August 25, 2026, R4 estimates OVER 4.5 has a 46.9% unconditional first-five probability at +100. The exact live Totals authority generated a finite nonnegative normalized 62 by 62 away-home joint score distribution for this game. The R4 state used starter identifiers 605400 and 669923, current batting-order identifiers, the embedded starter-exit lookup, and frozen batter and pitcher transition counts. The total distribution was derived from the same joint cells and has expected first-five runs 4.807 with push probability 0.0000. No August 25 outcome was read, and the legacy Sparse PMF scorer was not invoked.",
-          "rationale_full": "At the FanDuel capture on August 25, 2026, R4 estimates OVER 4.5 has a 46.9% unconditional first-five probability at +100. The exact live Totals authority generated a finite nonnegative normalized 62 by 62 away-home joint score distribution for this game. The R4 state used starter identifiers 605400 and 669923, current batting-order identifiers, the embedded starter-exit lookup, and frozen batter and pitcher transition counts. The total distribution was derived from the same joint cells and has expected first-five runs 4.807 with push probability 0.0000. No August 25 outcome was read, and the legacy Sparse PMF scorer was not invoked.",
-          "canonical_rationale": "At the FanDuel capture on August 25, 2026, R4 estimates OVER 4.5 has a 46.9% unconditional first-five probability at +100. The exact live Totals authority generated a finite nonnegative normalized 62 by 62 away-home joint score distribution for this game. The R4 state used starter identifiers 605400 and 669923, current batting-order identifiers, the embedded starter-exit lookup, and frozen batter and pitcher transition counts. The total distribution was derived from the same joint cells and has expected first-five runs 4.807 with push probability 0.0000. No August 25 outcome was read, and the legacy Sparse PMF scorer was not invoked.",
+          "rationale": "APEX projects approximately 4.8 combined runs through five innings against a FanDuel total of 4.5. Current starter and lineup availability are included in that forecast. The model gives OVER a 46.9% win probability and a WEAK rating.",
+          "rationale_full": "APEX projects approximately 4.8 combined runs through five innings against a FanDuel total of 4.5. Current starter and lineup availability are included in that forecast. The model gives OVER a 46.9% win probability and a WEAK rating.",
+          "canonical_rationale": "APEX projects approximately 4.8 combined runs through five innings against a FanDuel total of 4.5. Current starter and lineup availability are included in that forecast. The model gives OVER a 46.9% win probability and a WEAK rating.",
           "rationale_sentences": [
-            "At the FanDuel capture on August 25, 2026, R4 estimates OVER 4.5 has a 46.9% unconditional first-five probability at +100.",
-            "The exact live Totals authority generated a finite nonnegative normalized 62 by 62 away-home joint score distribution for this game.",
-            "The R4 state used starter identifiers 605400 and 669923, current batting-order identifiers, the embedded starter-exit lookup, and frozen batter and pitcher transition counts.",
-            "The total distribution was derived from the same joint cells and has expected first-five runs 4.807 with push probability 0.0000.",
-            "No August 25 outcome was read, and the legacy Sparse PMF scorer was not invoked."
+            "APEX projects approximately 4.8 combined runs through five innings against a FanDuel total of 4.5.",
+            "Current starter and lineup availability are included in that forecast.",
+            "The model gives OVER a 46.9% win probability and a WEAK rating."
           ],
           "artifact_sha256": "925913220be06339e6d3fa5201c485fe74fbd510a4c636879f29057ed821b1a4",
           "feature_contract_sha256": "0ea42ae8c6e6845fe0190824f8ab08d8a8fbbdf65416e862e97de81f0497a71b",
           "odds_source": "fanduel",
           "odds_captured_at_utc": "2026-08-25T22:14:53.133088Z",
-          "prediction_generated_at_utc": "2026-08-25T22:35:00.693307+00:00"
+          "prediction_generated_at_utc": "2026-08-25T22:35:00.693307+00:00",
+          "PRESENTATION_ONLY_RATIONALE": true,
+          "PUBLIC_RATIONALE_CONTRACT_VERSION": "APEX_PUBLIC_RATIONALE_HUMAN_V1"
         }
       ]
     },
@@ -2296,22 +2285,21 @@
           "tier": "WEAK",
           "canonical_tier": "WEAK",
           "internal_value_strength": "WEAK",
-          "rationale": "At the FanDuel capture on August 25, 2026, C1 estimates PIT -0.5 has a 41.5% first-five cover probability at +126. The live C1 state contains all 21 registered dimensions from the four R1 through R4 residuals, both R3 and R4 margin-distribution summaries, disagreement, market, starter-exit, feature-presence, and lineup-missingness states. The frozen earlier-only selection used 688 eligible prior rows through 2026-08-23 and selected the FANDUEL_IDENTITY branch. The sealed current state records 0 away and 9 home batting-order identifiers with registered fallback behavior where a lineup remained unavailable. No August 25 outcome was read, and the stale production ATS scorer was not invoked.",
-          "rationale_full": "At the FanDuel capture on August 25, 2026, C1 estimates PIT -0.5 has a 41.5% first-five cover probability at +126. The live C1 state contains all 21 registered dimensions from the four R1 through R4 residuals, both R3 and R4 margin-distribution summaries, disagreement, market, starter-exit, feature-presence, and lineup-missingness states. The frozen earlier-only selection used 688 eligible prior rows through 2026-08-23 and selected the FANDUEL_IDENTITY branch. The sealed current state records 0 away and 9 home batting-order identifiers with registered fallback behavior where a lineup remained unavailable. No August 25 outcome was read, and the stale production ATS scorer was not invoked.",
-          "canonical_rationale": "At the FanDuel capture on August 25, 2026, C1 estimates PIT -0.5 has a 41.5% first-five cover probability at +126. The live C1 state contains all 21 registered dimensions from the four R1 through R4 residuals, both R3 and R4 margin-distribution summaries, disagreement, market, starter-exit, feature-presence, and lineup-missingness states. The frozen earlier-only selection used 688 eligible prior rows through 2026-08-23 and selected the FANDUEL_IDENTITY branch. The sealed current state records 0 away and 9 home batting-order identifiers with registered fallback behavior where a lineup remained unavailable. No August 25 outcome was read, and the stale production ATS scorer was not invoked.",
+          "rationale": "APEX does not see enough independent matchup evidence to move materially away from the current FanDuel baseline on this side. It gives PIT -0.5 a 41.5% first-five cover probability and a WEAK rating.",
+          "rationale_full": "APEX does not see enough independent matchup evidence to move materially away from the current FanDuel baseline on this side. It gives PIT -0.5 a 41.5% first-five cover probability and a WEAK rating.",
+          "canonical_rationale": "APEX does not see enough independent matchup evidence to move materially away from the current FanDuel baseline on this side. It gives PIT -0.5 a 41.5% first-five cover probability and a WEAK rating.",
           "rationale_sentences": [
-            "At the FanDuel capture on August 25, 2026, C1 estimates PIT -0.5 has a 41.5% first-five cover probability at +126.",
-            "The live C1 state contains all 21 registered dimensions from the four R1 through R4 residuals, both R3 and R4 margin-distribution summaries, disagreement, market, starter-exit, feature-presence, and lineup-missingness states.",
-            "The frozen earlier-only selection used 688 eligible prior rows through 2026-08-23 and selected the FANDUEL_IDENTITY branch.",
-            "The sealed current state records 0 away and 9 home batting-order identifiers with registered fallback behavior where a lineup remained unavailable.",
-            "No August 25 outcome was read, and the stale production ATS scorer was not invoked."
+            "APEX does not see enough independent matchup evidence to move materially away from the current FanDuel baseline on this side.",
+            "It gives PIT -0.5 a 41.5% first-five cover probability and a WEAK rating."
           ],
           "artifact_sha256": "8f6f0118bb251a855adeb4bab52e464e745ca973ee1d9756bf0d859ddb2d5179",
           "implementation_sha256": "0514c410f8247f5dc8d6628de4fd9b310096263424c7069e1e4067d2fc17602c",
           "feature_contract_sha256": "5520eef9b748c0318589725cd89a78ce620cb8bc7c14148f2859422b74692f3c",
           "odds_source": "fanduel",
           "odds_captured_at_utc": "2026-08-25T22:14:52.594195Z",
-          "prediction_generated_at_utc": "2026-08-25T22:35:00.693307+00:00"
+          "prediction_generated_at_utc": "2026-08-25T22:35:00.693307+00:00",
+          "PRESENTATION_ONLY_RATIONALE": true,
+          "PUBLIC_RATIONALE_CONTRACT_VERSION": "APEX_PUBLIC_RATIONALE_HUMAN_V1"
         },
         {
           "market": "F5 TOT",
@@ -2332,21 +2320,21 @@
           "tier": "MODERATE",
           "canonical_tier": "MODERATE",
           "internal_value_strength": "MODERATE",
-          "rationale": "At the FanDuel capture on August 25, 2026, R4 estimates OVER 3.5 has a 52.1% unconditional first-five probability at -125. The exact live Totals authority generated a finite nonnegative normalized 62 by 62 away-home joint score distribution for this game. The R4 state used starter identifiers 694973 and 650633, current batting-order identifiers, the embedded starter-exit lookup, and frozen batter and pitcher transition counts. The total distribution was derived from the same joint cells and has expected first-five runs 4.224 with push probability 0.0000. No August 25 outcome was read, and the legacy Sparse PMF scorer was not invoked.",
-          "rationale_full": "At the FanDuel capture on August 25, 2026, R4 estimates OVER 3.5 has a 52.1% unconditional first-five probability at -125. The exact live Totals authority generated a finite nonnegative normalized 62 by 62 away-home joint score distribution for this game. The R4 state used starter identifiers 694973 and 650633, current batting-order identifiers, the embedded starter-exit lookup, and frozen batter and pitcher transition counts. The total distribution was derived from the same joint cells and has expected first-five runs 4.224 with push probability 0.0000. No August 25 outcome was read, and the legacy Sparse PMF scorer was not invoked.",
-          "canonical_rationale": "At the FanDuel capture on August 25, 2026, R4 estimates OVER 3.5 has a 52.1% unconditional first-five probability at -125. The exact live Totals authority generated a finite nonnegative normalized 62 by 62 away-home joint score distribution for this game. The R4 state used starter identifiers 694973 and 650633, current batting-order identifiers, the embedded starter-exit lookup, and frozen batter and pitcher transition counts. The total distribution was derived from the same joint cells and has expected first-five runs 4.224 with push probability 0.0000. No August 25 outcome was read, and the legacy Sparse PMF scorer was not invoked.",
+          "rationale": "APEX projects approximately 4.2 combined runs through five innings against a FanDuel total of 3.5. Current starter and lineup availability are included in that forecast. The model gives OVER a 52.1% win probability and a MODERATE rating.",
+          "rationale_full": "APEX projects approximately 4.2 combined runs through five innings against a FanDuel total of 3.5. Current starter and lineup availability are included in that forecast. The model gives OVER a 52.1% win probability and a MODERATE rating.",
+          "canonical_rationale": "APEX projects approximately 4.2 combined runs through five innings against a FanDuel total of 3.5. Current starter and lineup availability are included in that forecast. The model gives OVER a 52.1% win probability and a MODERATE rating.",
           "rationale_sentences": [
-            "At the FanDuel capture on August 25, 2026, R4 estimates OVER 3.5 has a 52.1% unconditional first-five probability at -125.",
-            "The exact live Totals authority generated a finite nonnegative normalized 62 by 62 away-home joint score distribution for this game.",
-            "The R4 state used starter identifiers 694973 and 650633, current batting-order identifiers, the embedded starter-exit lookup, and frozen batter and pitcher transition counts.",
-            "The total distribution was derived from the same joint cells and has expected first-five runs 4.224 with push probability 0.0000.",
-            "No August 25 outcome was read, and the legacy Sparse PMF scorer was not invoked."
+            "APEX projects approximately 4.2 combined runs through five innings against a FanDuel total of 3.5.",
+            "Current starter and lineup availability are included in that forecast.",
+            "The model gives OVER a 52.1% win probability and a MODERATE rating."
           ],
           "artifact_sha256": "925913220be06339e6d3fa5201c485fe74fbd510a4c636879f29057ed821b1a4",
           "feature_contract_sha256": "0ea42ae8c6e6845fe0190824f8ab08d8a8fbbdf65416e862e97de81f0497a71b",
           "odds_source": "fanduel",
           "odds_captured_at_utc": "2026-08-25T22:14:52.594195Z",
-          "prediction_generated_at_utc": "2026-08-25T22:35:00.693307+00:00"
+          "prediction_generated_at_utc": "2026-08-25T22:35:00.693307+00:00",
+          "PRESENTATION_ONLY_RATIONALE": true,
+          "PUBLIC_RATIONALE_CONTRACT_VERSION": "APEX_PUBLIC_RATIONALE_HUMAN_V1"
         }
       ]
     },
@@ -2491,22 +2479,21 @@
           "tier": "MODERATE",
           "canonical_tier": "MODERATE",
           "internal_value_strength": "MODERATE",
-          "rationale": "At the FanDuel capture on August 25, 2026, C1 estimates ATH +0.5 has a 52.1% first-five cover probability at -125. The live C1 state contains all 21 registered dimensions from the four R1 through R4 residuals, both R3 and R4 margin-distribution summaries, disagreement, market, starter-exit, feature-presence, and lineup-missingness states. The frozen earlier-only selection used 688 eligible prior rows through 2026-08-23 and selected the FANDUEL_IDENTITY branch. The sealed current state records 9 away and 9 home batting-order identifiers with registered fallback behavior where a lineup remained unavailable. No August 25 outcome was read, and the stale production ATS scorer was not invoked.",
-          "rationale_full": "At the FanDuel capture on August 25, 2026, C1 estimates ATH +0.5 has a 52.1% first-five cover probability at -125. The live C1 state contains all 21 registered dimensions from the four R1 through R4 residuals, both R3 and R4 margin-distribution summaries, disagreement, market, starter-exit, feature-presence, and lineup-missingness states. The frozen earlier-only selection used 688 eligible prior rows through 2026-08-23 and selected the FANDUEL_IDENTITY branch. The sealed current state records 9 away and 9 home batting-order identifiers with registered fallback behavior where a lineup remained unavailable. No August 25 outcome was read, and the stale production ATS scorer was not invoked.",
-          "canonical_rationale": "At the FanDuel capture on August 25, 2026, C1 estimates ATH +0.5 has a 52.1% first-five cover probability at -125. The live C1 state contains all 21 registered dimensions from the four R1 through R4 residuals, both R3 and R4 margin-distribution summaries, disagreement, market, starter-exit, feature-presence, and lineup-missingness states. The frozen earlier-only selection used 688 eligible prior rows through 2026-08-23 and selected the FANDUEL_IDENTITY branch. The sealed current state records 9 away and 9 home batting-order identifiers with registered fallback behavior where a lineup remained unavailable. No August 25 outcome was read, and the stale production ATS scorer was not invoked.",
+          "rationale": "APEX does not see enough independent matchup evidence to move materially away from the current FanDuel baseline on this side. It gives ATH +0.5 a 52.1% first-five cover probability and a MODERATE rating.",
+          "rationale_full": "APEX does not see enough independent matchup evidence to move materially away from the current FanDuel baseline on this side. It gives ATH +0.5 a 52.1% first-five cover probability and a MODERATE rating.",
+          "canonical_rationale": "APEX does not see enough independent matchup evidence to move materially away from the current FanDuel baseline on this side. It gives ATH +0.5 a 52.1% first-five cover probability and a MODERATE rating.",
           "rationale_sentences": [
-            "At the FanDuel capture on August 25, 2026, C1 estimates ATH +0.5 has a 52.1% first-five cover probability at -125.",
-            "The live C1 state contains all 21 registered dimensions from the four R1 through R4 residuals, both R3 and R4 margin-distribution summaries, disagreement, market, starter-exit, feature-presence, and lineup-missingness states.",
-            "The frozen earlier-only selection used 688 eligible prior rows through 2026-08-23 and selected the FANDUEL_IDENTITY branch.",
-            "The sealed current state records 9 away and 9 home batting-order identifiers with registered fallback behavior where a lineup remained unavailable.",
-            "No August 25 outcome was read, and the stale production ATS scorer was not invoked."
+            "APEX does not see enough independent matchup evidence to move materially away from the current FanDuel baseline on this side.",
+            "It gives ATH +0.5 a 52.1% first-five cover probability and a MODERATE rating."
           ],
           "artifact_sha256": "8f6f0118bb251a855adeb4bab52e464e745ca973ee1d9756bf0d859ddb2d5179",
           "implementation_sha256": "0514c410f8247f5dc8d6628de4fd9b310096263424c7069e1e4067d2fc17602c",
           "feature_contract_sha256": "5520eef9b748c0318589725cd89a78ce620cb8bc7c14148f2859422b74692f3c",
           "odds_source": "fanduel",
           "odds_captured_at_utc": "2026-08-25T22:14:52.868363Z",
-          "prediction_generated_at_utc": "2026-08-25T22:35:00.693307+00:00"
+          "prediction_generated_at_utc": "2026-08-25T22:35:00.693307+00:00",
+          "PRESENTATION_ONLY_RATIONALE": true,
+          "PUBLIC_RATIONALE_CONTRACT_VERSION": "APEX_PUBLIC_RATIONALE_HUMAN_V1"
         },
         {
           "market": "F5 TOT",
@@ -2527,21 +2514,21 @@
           "tier": "MODERATE",
           "canonical_tier": "MODERATE",
           "internal_value_strength": "MODERATE",
-          "rationale": "At the FanDuel capture on August 25, 2026, R4 estimates UNDER 5.5 has a 52.1% unconditional first-five probability at -125. The exact live Totals authority generated a finite nonnegative normalized 62 by 62 away-home joint score distribution for this game. The R4 state used starter identifiers 671737 and 695611, current batting-order identifiers, the embedded starter-exit lookup, and frozen batter and pitcher transition counts. The total distribution was derived from the same joint cells and has expected first-five runs 5.397 with push probability 0.0000. No August 25 outcome was read, and the legacy Sparse PMF scorer was not invoked.",
-          "rationale_full": "At the FanDuel capture on August 25, 2026, R4 estimates UNDER 5.5 has a 52.1% unconditional first-five probability at -125. The exact live Totals authority generated a finite nonnegative normalized 62 by 62 away-home joint score distribution for this game. The R4 state used starter identifiers 671737 and 695611, current batting-order identifiers, the embedded starter-exit lookup, and frozen batter and pitcher transition counts. The total distribution was derived from the same joint cells and has expected first-five runs 5.397 with push probability 0.0000. No August 25 outcome was read, and the legacy Sparse PMF scorer was not invoked.",
-          "canonical_rationale": "At the FanDuel capture on August 25, 2026, R4 estimates UNDER 5.5 has a 52.1% unconditional first-five probability at -125. The exact live Totals authority generated a finite nonnegative normalized 62 by 62 away-home joint score distribution for this game. The R4 state used starter identifiers 671737 and 695611, current batting-order identifiers, the embedded starter-exit lookup, and frozen batter and pitcher transition counts. The total distribution was derived from the same joint cells and has expected first-five runs 5.397 with push probability 0.0000. No August 25 outcome was read, and the legacy Sparse PMF scorer was not invoked.",
+          "rationale": "APEX projects approximately 5.4 combined runs through five innings against a FanDuel total of 5.5. Current starter and lineup availability are included in that forecast. The model gives UNDER a 52.1% win probability and a MODERATE rating.",
+          "rationale_full": "APEX projects approximately 5.4 combined runs through five innings against a FanDuel total of 5.5. Current starter and lineup availability are included in that forecast. The model gives UNDER a 52.1% win probability and a MODERATE rating.",
+          "canonical_rationale": "APEX projects approximately 5.4 combined runs through five innings against a FanDuel total of 5.5. Current starter and lineup availability are included in that forecast. The model gives UNDER a 52.1% win probability and a MODERATE rating.",
           "rationale_sentences": [
-            "At the FanDuel capture on August 25, 2026, R4 estimates UNDER 5.5 has a 52.1% unconditional first-five probability at -125.",
-            "The exact live Totals authority generated a finite nonnegative normalized 62 by 62 away-home joint score distribution for this game.",
-            "The R4 state used starter identifiers 671737 and 695611, current batting-order identifiers, the embedded starter-exit lookup, and frozen batter and pitcher transition counts.",
-            "The total distribution was derived from the same joint cells and has expected first-five runs 5.397 with push probability 0.0000.",
-            "No August 25 outcome was read, and the legacy Sparse PMF scorer was not invoked."
+            "APEX projects approximately 5.4 combined runs through five innings against a FanDuel total of 5.5.",
+            "Current starter and lineup availability are included in that forecast.",
+            "The model gives UNDER a 52.1% win probability and a MODERATE rating."
           ],
           "artifact_sha256": "925913220be06339e6d3fa5201c485fe74fbd510a4c636879f29057ed821b1a4",
           "feature_contract_sha256": "0ea42ae8c6e6845fe0190824f8ab08d8a8fbbdf65416e862e97de81f0497a71b",
           "odds_source": "fanduel",
           "odds_captured_at_utc": "2026-08-25T22:14:52.868363Z",
-          "prediction_generated_at_utc": "2026-08-25T22:35:00.693307+00:00"
+          "prediction_generated_at_utc": "2026-08-25T22:35:00.693307+00:00",
+          "PRESENTATION_ONLY_RATIONALE": true,
+          "PUBLIC_RATIONALE_CONTRACT_VERSION": "APEX_PUBLIC_RATIONALE_HUMAN_V1"
         }
       ]
     },
@@ -2686,22 +2673,21 @@
           "tier": "WEAK",
           "canonical_tier": "WEAK",
           "internal_value_strength": "WEAK",
-          "rationale": "At the FanDuel capture on August 25, 2026, C1 estimates CHC -0.5 has a 42.3% first-five cover probability at +122. The live C1 state contains all 21 registered dimensions from the four R1 through R4 residuals, both R3 and R4 margin-distribution summaries, disagreement, market, starter-exit, feature-presence, and lineup-missingness states. The frozen earlier-only selection used 688 eligible prior rows through 2026-08-23 and selected the FANDUEL_IDENTITY branch. The sealed current state records 0 away and 9 home batting-order identifiers with registered fallback behavior where a lineup remained unavailable. No August 25 outcome was read, and the stale production ATS scorer was not invoked.",
-          "rationale_full": "At the FanDuel capture on August 25, 2026, C1 estimates CHC -0.5 has a 42.3% first-five cover probability at +122. The live C1 state contains all 21 registered dimensions from the four R1 through R4 residuals, both R3 and R4 margin-distribution summaries, disagreement, market, starter-exit, feature-presence, and lineup-missingness states. The frozen earlier-only selection used 688 eligible prior rows through 2026-08-23 and selected the FANDUEL_IDENTITY branch. The sealed current state records 0 away and 9 home batting-order identifiers with registered fallback behavior where a lineup remained unavailable. No August 25 outcome was read, and the stale production ATS scorer was not invoked.",
-          "canonical_rationale": "At the FanDuel capture on August 25, 2026, C1 estimates CHC -0.5 has a 42.3% first-five cover probability at +122. The live C1 state contains all 21 registered dimensions from the four R1 through R4 residuals, both R3 and R4 margin-distribution summaries, disagreement, market, starter-exit, feature-presence, and lineup-missingness states. The frozen earlier-only selection used 688 eligible prior rows through 2026-08-23 and selected the FANDUEL_IDENTITY branch. The sealed current state records 0 away and 9 home batting-order identifiers with registered fallback behavior where a lineup remained unavailable. No August 25 outcome was read, and the stale production ATS scorer was not invoked.",
+          "rationale": "APEX does not see enough independent matchup evidence to move materially away from the current FanDuel baseline on this side. It gives CHC -0.5 a 42.3% first-five cover probability and a WEAK rating.",
+          "rationale_full": "APEX does not see enough independent matchup evidence to move materially away from the current FanDuel baseline on this side. It gives CHC -0.5 a 42.3% first-five cover probability and a WEAK rating.",
+          "canonical_rationale": "APEX does not see enough independent matchup evidence to move materially away from the current FanDuel baseline on this side. It gives CHC -0.5 a 42.3% first-five cover probability and a WEAK rating.",
           "rationale_sentences": [
-            "At the FanDuel capture on August 25, 2026, C1 estimates CHC -0.5 has a 42.3% first-five cover probability at +122.",
-            "The live C1 state contains all 21 registered dimensions from the four R1 through R4 residuals, both R3 and R4 margin-distribution summaries, disagreement, market, starter-exit, feature-presence, and lineup-missingness states.",
-            "The frozen earlier-only selection used 688 eligible prior rows through 2026-08-23 and selected the FANDUEL_IDENTITY branch.",
-            "The sealed current state records 0 away and 9 home batting-order identifiers with registered fallback behavior where a lineup remained unavailable.",
-            "No August 25 outcome was read, and the stale production ATS scorer was not invoked."
+            "APEX does not see enough independent matchup evidence to move materially away from the current FanDuel baseline on this side.",
+            "It gives CHC -0.5 a 42.3% first-five cover probability and a WEAK rating."
           ],
           "artifact_sha256": "8f6f0118bb251a855adeb4bab52e464e745ca973ee1d9756bf0d859ddb2d5179",
           "implementation_sha256": "0514c410f8247f5dc8d6628de4fd9b310096263424c7069e1e4067d2fc17602c",
           "feature_contract_sha256": "5520eef9b748c0318589725cd89a78ce620cb8bc7c14148f2859422b74692f3c",
           "odds_source": "fanduel",
           "odds_captured_at_utc": "2026-08-25T22:14:52.332386Z",
-          "prediction_generated_at_utc": "2026-08-25T22:35:00.693307+00:00"
+          "prediction_generated_at_utc": "2026-08-25T22:35:00.693307+00:00",
+          "PRESENTATION_ONLY_RATIONALE": true,
+          "PUBLIC_RATIONALE_CONTRACT_VERSION": "APEX_PUBLIC_RATIONALE_HUMAN_V1"
         },
         {
           "market": "F5 TOT",
@@ -2722,21 +2708,21 @@
           "tier": "MODERATE",
           "canonical_tier": "MODERATE",
           "internal_value_strength": "MODERATE",
-          "rationale": "At the FanDuel capture on August 25, 2026, R4 estimates UNDER 4.5 has a 53.1% unconditional first-five probability at -130. The exact live Totals authority generated a finite nonnegative normalized 62 by 62 away-home joint score distribution for this game. The R4 state used starter identifiers 605280 and 694297, current batting-order identifiers, the embedded starter-exit lookup, and frozen batter and pitcher transition counts. The total distribution was derived from the same joint cells and has expected first-five runs 4.783 with push probability 0.0000. No August 25 outcome was read, and the legacy Sparse PMF scorer was not invoked.",
-          "rationale_full": "At the FanDuel capture on August 25, 2026, R4 estimates UNDER 4.5 has a 53.1% unconditional first-five probability at -130. The exact live Totals authority generated a finite nonnegative normalized 62 by 62 away-home joint score distribution for this game. The R4 state used starter identifiers 605280 and 694297, current batting-order identifiers, the embedded starter-exit lookup, and frozen batter and pitcher transition counts. The total distribution was derived from the same joint cells and has expected first-five runs 4.783 with push probability 0.0000. No August 25 outcome was read, and the legacy Sparse PMF scorer was not invoked.",
-          "canonical_rationale": "At the FanDuel capture on August 25, 2026, R4 estimates UNDER 4.5 has a 53.1% unconditional first-five probability at -130. The exact live Totals authority generated a finite nonnegative normalized 62 by 62 away-home joint score distribution for this game. The R4 state used starter identifiers 605280 and 694297, current batting-order identifiers, the embedded starter-exit lookup, and frozen batter and pitcher transition counts. The total distribution was derived from the same joint cells and has expected first-five runs 4.783 with push probability 0.0000. No August 25 outcome was read, and the legacy Sparse PMF scorer was not invoked.",
+          "rationale": "APEX projects approximately 4.8 combined runs through five innings against a FanDuel total of 4.5. Current starter and lineup availability are included in that forecast. The model gives UNDER a 53.1% win probability and a MODERATE rating.",
+          "rationale_full": "APEX projects approximately 4.8 combined runs through five innings against a FanDuel total of 4.5. Current starter and lineup availability are included in that forecast. The model gives UNDER a 53.1% win probability and a MODERATE rating.",
+          "canonical_rationale": "APEX projects approximately 4.8 combined runs through five innings against a FanDuel total of 4.5. Current starter and lineup availability are included in that forecast. The model gives UNDER a 53.1% win probability and a MODERATE rating.",
           "rationale_sentences": [
-            "At the FanDuel capture on August 25, 2026, R4 estimates UNDER 4.5 has a 53.1% unconditional first-five probability at -130.",
-            "The exact live Totals authority generated a finite nonnegative normalized 62 by 62 away-home joint score distribution for this game.",
-            "The R4 state used starter identifiers 605280 and 694297, current batting-order identifiers, the embedded starter-exit lookup, and frozen batter and pitcher transition counts.",
-            "The total distribution was derived from the same joint cells and has expected first-five runs 4.783 with push probability 0.0000.",
-            "No August 25 outcome was read, and the legacy Sparse PMF scorer was not invoked."
+            "APEX projects approximately 4.8 combined runs through five innings against a FanDuel total of 4.5.",
+            "Current starter and lineup availability are included in that forecast.",
+            "The model gives UNDER a 53.1% win probability and a MODERATE rating."
           ],
           "artifact_sha256": "925913220be06339e6d3fa5201c485fe74fbd510a4c636879f29057ed821b1a4",
           "feature_contract_sha256": "0ea42ae8c6e6845fe0190824f8ab08d8a8fbbdf65416e862e97de81f0497a71b",
           "odds_source": "fanduel",
           "odds_captured_at_utc": "2026-08-25T22:14:52.332386Z",
-          "prediction_generated_at_utc": "2026-08-25T22:35:00.693307+00:00"
+          "prediction_generated_at_utc": "2026-08-25T22:35:00.693307+00:00",
+          "PRESENTATION_ONLY_RATIONALE": true,
+          "PUBLIC_RATIONALE_CONTRACT_VERSION": "APEX_PUBLIC_RATIONALE_HUMAN_V1"
         }
       ]
     },
@@ -2881,22 +2867,21 @@
           "tier": "STRONG",
           "canonical_tier": "STRONG",
           "internal_value_strength": "STRONG",
-          "rationale": "At the FanDuel capture on August 25, 2026, C1 estimates CIN +0.5 has a 57.7% first-five cover probability at -160. The live C1 state contains all 21 registered dimensions from the four R1 through R4 residuals, both R3 and R4 margin-distribution summaries, disagreement, market, starter-exit, feature-presence, and lineup-missingness states. The frozen earlier-only selection used 688 eligible prior rows through 2026-08-23 and selected the FANDUEL_IDENTITY branch. The sealed current state records 9 away and 9 home batting-order identifiers with registered fallback behavior where a lineup remained unavailable. No August 25 outcome was read, and the stale production ATS scorer was not invoked.",
-          "rationale_full": "At the FanDuel capture on August 25, 2026, C1 estimates CIN +0.5 has a 57.7% first-five cover probability at -160. The live C1 state contains all 21 registered dimensions from the four R1 through R4 residuals, both R3 and R4 margin-distribution summaries, disagreement, market, starter-exit, feature-presence, and lineup-missingness states. The frozen earlier-only selection used 688 eligible prior rows through 2026-08-23 and selected the FANDUEL_IDENTITY branch. The sealed current state records 9 away and 9 home batting-order identifiers with registered fallback behavior where a lineup remained unavailable. No August 25 outcome was read, and the stale production ATS scorer was not invoked.",
-          "canonical_rationale": "At the FanDuel capture on August 25, 2026, C1 estimates CIN +0.5 has a 57.7% first-five cover probability at -160. The live C1 state contains all 21 registered dimensions from the four R1 through R4 residuals, both R3 and R4 margin-distribution summaries, disagreement, market, starter-exit, feature-presence, and lineup-missingness states. The frozen earlier-only selection used 688 eligible prior rows through 2026-08-23 and selected the FANDUEL_IDENTITY branch. The sealed current state records 9 away and 9 home batting-order identifiers with registered fallback behavior where a lineup remained unavailable. No August 25 outcome was read, and the stale production ATS scorer was not invoked.",
+          "rationale": "APEX does not see enough independent matchup evidence to move materially away from the current FanDuel baseline on this side. It gives CIN +0.5 a 57.7% first-five cover probability and a STRONG rating.",
+          "rationale_full": "APEX does not see enough independent matchup evidence to move materially away from the current FanDuel baseline on this side. It gives CIN +0.5 a 57.7% first-five cover probability and a STRONG rating.",
+          "canonical_rationale": "APEX does not see enough independent matchup evidence to move materially away from the current FanDuel baseline on this side. It gives CIN +0.5 a 57.7% first-five cover probability and a STRONG rating.",
           "rationale_sentences": [
-            "At the FanDuel capture on August 25, 2026, C1 estimates CIN +0.5 has a 57.7% first-five cover probability at -160.",
-            "The live C1 state contains all 21 registered dimensions from the four R1 through R4 residuals, both R3 and R4 margin-distribution summaries, disagreement, market, starter-exit, feature-presence, and lineup-missingness states.",
-            "The frozen earlier-only selection used 688 eligible prior rows through 2026-08-23 and selected the FANDUEL_IDENTITY branch.",
-            "The sealed current state records 9 away and 9 home batting-order identifiers with registered fallback behavior where a lineup remained unavailable.",
-            "No August 25 outcome was read, and the stale production ATS scorer was not invoked."
+            "APEX does not see enough independent matchup evidence to move materially away from the current FanDuel baseline on this side.",
+            "It gives CIN +0.5 a 57.7% first-five cover probability and a STRONG rating."
           ],
           "artifact_sha256": "8f6f0118bb251a855adeb4bab52e464e745ca973ee1d9756bf0d859ddb2d5179",
           "implementation_sha256": "0514c410f8247f5dc8d6628de4fd9b310096263424c7069e1e4067d2fc17602c",
           "feature_contract_sha256": "5520eef9b748c0318589725cd89a78ce620cb8bc7c14148f2859422b74692f3c",
           "odds_source": "fanduel",
           "odds_captured_at_utc": "2026-08-25T22:14:53.397895Z",
-          "prediction_generated_at_utc": "2026-08-25T22:35:00.693307+00:00"
+          "prediction_generated_at_utc": "2026-08-25T22:35:00.693307+00:00",
+          "PRESENTATION_ONLY_RATIONALE": true,
+          "PUBLIC_RATIONALE_CONTRACT_VERSION": "APEX_PUBLIC_RATIONALE_HUMAN_V1"
         },
         {
           "market": "F5 TOT",
@@ -2917,21 +2902,21 @@
           "tier": "WEAK",
           "canonical_tier": "WEAK",
           "internal_value_strength": "WEAK",
-          "rationale": "At the FanDuel capture on August 25, 2026, R4 estimates OVER 4.5 has a 47.4% unconditional first-five probability at -102. The exact live Totals authority generated a finite nonnegative normalized 62 by 62 away-home joint score distribution for this game. The R4 state used starter identifiers 663903 and 605288, current batting-order identifiers, the embedded starter-exit lookup, and frozen batter and pitcher transition counts. The total distribution was derived from the same joint cells and has expected first-five runs 4.864 with push probability 0.0000. No August 25 outcome was read, and the legacy Sparse PMF scorer was not invoked.",
-          "rationale_full": "At the FanDuel capture on August 25, 2026, R4 estimates OVER 4.5 has a 47.4% unconditional first-five probability at -102. The exact live Totals authority generated a finite nonnegative normalized 62 by 62 away-home joint score distribution for this game. The R4 state used starter identifiers 663903 and 605288, current batting-order identifiers, the embedded starter-exit lookup, and frozen batter and pitcher transition counts. The total distribution was derived from the same joint cells and has expected first-five runs 4.864 with push probability 0.0000. No August 25 outcome was read, and the legacy Sparse PMF scorer was not invoked.",
-          "canonical_rationale": "At the FanDuel capture on August 25, 2026, R4 estimates OVER 4.5 has a 47.4% unconditional first-five probability at -102. The exact live Totals authority generated a finite nonnegative normalized 62 by 62 away-home joint score distribution for this game. The R4 state used starter identifiers 663903 and 605288, current batting-order identifiers, the embedded starter-exit lookup, and frozen batter and pitcher transition counts. The total distribution was derived from the same joint cells and has expected first-five runs 4.864 with push probability 0.0000. No August 25 outcome was read, and the legacy Sparse PMF scorer was not invoked.",
+          "rationale": "APEX projects approximately 4.9 combined runs through five innings against a FanDuel total of 4.5. Current starter and lineup availability are included in that forecast. The model gives OVER a 47.4% win probability and a WEAK rating.",
+          "rationale_full": "APEX projects approximately 4.9 combined runs through five innings against a FanDuel total of 4.5. Current starter and lineup availability are included in that forecast. The model gives OVER a 47.4% win probability and a WEAK rating.",
+          "canonical_rationale": "APEX projects approximately 4.9 combined runs through five innings against a FanDuel total of 4.5. Current starter and lineup availability are included in that forecast. The model gives OVER a 47.4% win probability and a WEAK rating.",
           "rationale_sentences": [
-            "At the FanDuel capture on August 25, 2026, R4 estimates OVER 4.5 has a 47.4% unconditional first-five probability at -102.",
-            "The exact live Totals authority generated a finite nonnegative normalized 62 by 62 away-home joint score distribution for this game.",
-            "The R4 state used starter identifiers 663903 and 605288, current batting-order identifiers, the embedded starter-exit lookup, and frozen batter and pitcher transition counts.",
-            "The total distribution was derived from the same joint cells and has expected first-five runs 4.864 with push probability 0.0000.",
-            "No August 25 outcome was read, and the legacy Sparse PMF scorer was not invoked."
+            "APEX projects approximately 4.9 combined runs through five innings against a FanDuel total of 4.5.",
+            "Current starter and lineup availability are included in that forecast.",
+            "The model gives OVER a 47.4% win probability and a WEAK rating."
           ],
           "artifact_sha256": "925913220be06339e6d3fa5201c485fe74fbd510a4c636879f29057ed821b1a4",
           "feature_contract_sha256": "0ea42ae8c6e6845fe0190824f8ab08d8a8fbbdf65416e862e97de81f0497a71b",
           "odds_source": "fanduel",
           "odds_captured_at_utc": "2026-08-25T22:14:53.397895Z",
-          "prediction_generated_at_utc": "2026-08-25T22:35:00.693307+00:00"
+          "prediction_generated_at_utc": "2026-08-25T22:35:00.693307+00:00",
+          "PRESENTATION_ONLY_RATIONALE": true,
+          "PUBLIC_RATIONALE_CONTRACT_VERSION": "APEX_PUBLIC_RATIONALE_HUMAN_V1"
         }
       ]
     }

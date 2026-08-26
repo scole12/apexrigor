@@ -157,8 +157,8 @@ def main() -> int:
 
     about = route_text.get("/about", "")
     for model_id in (
-        "ATS_DYNAMIC_LOGIT_FILTER_V1__CAL_IDENTITY",
-        "TOTALS_SPARSE_PMF_STACK_V1",
+        "ATS-ELITE-C1-CONDITIONAL-DISTRIBUTION-RESIDUAL",
+        "TOTALS_FINAL_NESTED_JOINT_R4_V1_20260825",
     ):
         if model_id not in about:
             errors.append(f"/about missing current MLB model identity: {model_id}")
