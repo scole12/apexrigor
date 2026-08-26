@@ -161,7 +161,8 @@
     "venue_native_event_page": "Oriental Sports Center"
   },
   "event_controller": {
-    "human_weekly_trigger_required": false,
+    "autonomous_discovery_status": "BLOCKED_PENDING_LAWFUL_OFFICIAL_UFC_EVENT_FEED",
+    "human_weekly_trigger_required": true,
     "interval": "30 minutes",
     "persistent": true,
     "service": "apex-mma-event-controller.service",
@@ -169,18 +170,18 @@
   },
   "event_id": "2c9eb7de-4ae6-53ff-9b0c-8fc841ee993c",
   "fight_count": 13,
-  "generated_at_utc": "2026-08-26T01:12:09.987451Z",
+  "generated_at_utc": "2026-08-26T01:46:26.436295Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "IMPLEMENTED_NO_ELIGIBLE_ISSUANCE"
   },
   "latest_results": [],
-  "payload_sha256": "cca1cd25a205340f310972f34f6d24bc8e73f6a1c8c3da8ecfc8b57b53e2ec19",
+  "payload_sha256": "ed30387660803638172f3c45f3a11b1e74dc12b676bcc6c97877c9e951b9fb56",
   "picks_published": false,
   "release_state": "NO_RELEASE_SCIENTIFIC_GATE",
   "schema_version": "APEX_MMA_PUBLIC_STATE_V2",
   "science_blocker": "LICENSED_HISTORICAL_ELEMENTAL_MMA_ROUND_STAT_DATA_WITH_STABLE_IDENTITIES_AND_PIT_OR_RECONSTRUCTIBLE_SOURCE_TIMESTAMPS",
-  "semantic_state_sha256": "fec4bf2065653569bf88179fc31d70b3893755977b6c38088901914d6da7923a",
+  "semantic_state_sha256": "4872e0f7c117ebbcaa4a8dad99637078fcde20950e5b39707ee87a73042b54f6",
   "source_conflicts": [
     {
       "official_pair": [
