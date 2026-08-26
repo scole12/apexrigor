@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Fail closed on the APEX MLB/NCAA public boundary, assets, and RUM drift."""
+"""Fail closed on the MLB-only public boundary, assets, and RUM drift."""
 
 from __future__ import annotations
 
@@ -42,9 +42,6 @@ def main() -> int:
         "/picks": root / "picks" / "index.html",
         "/results": root / "results" / "index.html",
         "/about": root / "about" / "index.html",
-        "/ncaaf": root / "ncaaf" / "index.html",
-        "/ncaaf/results": root / "ncaaf" / "results" / "index.html",
-        "/ncaaf/about": root / "ncaaf" / "about" / "index.html",
     }
     icon_pairs = (
         (root / "favicon.svg", root / "assets" / "favicon.svg"),
@@ -94,23 +91,22 @@ def main() -> int:
             f"Vercel Analytics script must appear once per public route: {route_vercel_scripts}"
         )
 
-    switcher_re = re.compile(r'<nav class="sport-nav".*?</nav>', re.DOTALL)
+    switcher_re = re.compile(r'<div class="sport-switcher".*?</div>', re.DOTALL)
     public_sport_switcher_count = 0
     public_world_cup_label_count = 0
     public_soccer_label_count = 0
     public_other_sport_label_counts = {
         "nhl": 0,
         "nba": 0,
+        "ncaa": 0,
         "mls": 0,
         "liga_mx": 0,
     }
     for route, text in route_text.items():
         switcher_count = len(switcher_re.findall(text))
         public_sport_switcher_count += switcher_count
-        if switcher_count != 1:
-            errors.append(f"{route} must contain exactly one sport selector, found {switcher_count}")
-        elif not all(label in switcher_re.findall(text)[0] for label in ("MLB", "NCAA FOOTBALL")):
-            errors.append(f"{route} sport selector does not contain the two active sports")
+        if switcher_count:
+            errors.append(f"{route} exposes an unneeded sport switcher before launch")
         public_world_cup_label_count += len(
             re.findall(r"(?:href=\"[^\"]*worldcup|>\s*WORLD CUP\s*<)", text, re.IGNORECASE)
         )
@@ -122,6 +118,9 @@ def main() -> int:
         )
         public_other_sport_label_counts["nba"] += len(
             re.findall(r"\bNBA\b", text, re.IGNORECASE)
+        )
+        public_other_sport_label_counts["ncaa"] += len(
+            re.findall(r"\bNCAA\b", text, re.IGNORECASE)
         )
         public_other_sport_label_counts["mls"] += len(
             re.findall(r"\bMLS\b", text, re.IGNORECASE)
