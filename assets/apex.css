@@ -134,12 +134,9 @@ table.results tr:hover td{background:var(--panel)}
   .hero-tag{ font-size:10px; letter-spacing:0.36em; }
 }
 @media (max-width: 480px){
-  .shell{padding:0 16px}
   .sport-nav,.section-nav{width:100%;gap:4px;padding:8px 0}
   .sport-nav a,.section-nav a{flex:1 1 0;min-width:0;padding:0 6px;font-size:9px;letter-spacing:.11em}
   .sport-nav a{font-size:8.5px}
-  .section-head{display:block;padding-top:22px}
-  .section-head .meta{margin-top:8px;line-height:1.6}
   .market-prefire{min-height:0}
   .market-state{font-size:14px}
   .game-context{line-height:1.55}
