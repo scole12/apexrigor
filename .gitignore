@@ -33,3 +33,4 @@ public/
 data/*STALE*
 data/*.v*_stage
 data/_wc_qa_screenshots.py
+.vercel
