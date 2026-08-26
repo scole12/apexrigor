@@ -72,6 +72,12 @@ def main() -> int:
     commands = (
         [
             sys.executable,
+            str(ROOT / "bin" / "apply_shared_sport_selector.py"),
+            "--root",
+            str(OUTPUT),
+        ],
+        [
+            sys.executable,
             str(ROOT / "bin" / "apply_cloudflare_web_analytics.py"),
             "--root",
             str(OUTPUT),

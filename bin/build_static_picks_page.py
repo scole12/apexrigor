@@ -323,6 +323,7 @@ def main() -> int:
   <nav class="sport-nav" aria-label="Sport selector">
     <a href="/" class="active" aria-current="true">MLB</a>
     <a href="/ncaaf">NCAA FOOTBALL</a>
+    <a href="/mma">MMA / UFC</a>
   </nav>
   <nav class="section-nav" aria-label="MLB sections">
     <a href="/" class="active">PICKS</a>

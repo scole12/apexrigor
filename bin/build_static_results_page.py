@@ -241,6 +241,7 @@ def build():
   <nav class="sport-nav" aria-label="Sport selector">
     <a href="/results" class="active" aria-current="true">MLB</a>
     <a href="/ncaaf/results">NCAA FOOTBALL</a>
+    <a href="/mma/results">MMA / UFC</a>
   </nav>
   <nav class="section-nav" aria-label="MLB sections">
     <a href="/">PICKS</a>
