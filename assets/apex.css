@@ -14,6 +14,21 @@ a{color:var(--text);text-decoration:none}
 .nav a{font-family:Helvetica,Arial,sans-serif;font-size:11px;letter-spacing:0.24em;text-transform:uppercase;color:var(--muted);padding-bottom:6px;border-bottom:1px solid transparent}
 .nav a:hover{color:var(--text)}
 .nav a.active{color:var(--text);border-bottom:1px solid var(--text)}
+.apex-nav-stack{border-bottom:1px solid var(--border)}
+.sport-nav,.section-nav{display:flex;align-items:center;justify-content:center;gap:8px;padding:10px 0}
+.sport-nav{border-bottom:1px solid var(--hairline)}
+.sport-nav a,.section-nav a{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 18px;border:1px solid transparent;font-family:Helvetica,Arial,sans-serif;font-size:10px;font-weight:600;letter-spacing:.19em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+.sport-nav a:hover,.sport-nav a:focus-visible,.section-nav a:hover,.section-nav a:focus-visible{color:var(--text);border-color:var(--border-strong);outline:none}
+.sport-nav a.active{color:var(--bg);background:var(--text);border-color:var(--text)}
+.section-nav a.active{color:var(--text);border-bottom-color:var(--text)}
+.game-context{font-family:"JetBrains Mono",monospace;font-size:10px;color:var(--dim);letter-spacing:.04em;margin-top:5px;text-transform:uppercase}
+.market-prefire{min-height:210px;display:flex;flex-direction:column;justify-content:space-between}
+.market-state{font-family:Helvetica,Arial,sans-serif;font-size:15px;font-weight:600;line-height:1.4;color:var(--text);margin:10px 0}
+.market-quote{font-family:"JetBrains Mono",monospace;font-size:12px;line-height:1.7;color:#d8d8d8;margin:10px 0}
+.market-lock{font-family:"JetBrains Mono",monospace;font-size:10px;line-height:1.55;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding-top:12px;border-top:1px solid var(--hairline)}
+.empty-state{border:1px solid var(--border);padding:44px 28px;text-align:center;color:var(--muted);font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.08em;line-height:1.8}
+.result-section{padding:28px 0;border-bottom:1px solid var(--border)}
+.result-section h2{font-size:11px;letter-spacing:.25em;text-transform:uppercase;margin-bottom:16px}
 .section-head{display:flex;align-items:baseline;justify-content:space-between;padding:28px 0 14px;border-bottom:1px solid var(--border)}
 .section-head .title{font-family:Helvetica,Arial,sans-serif;font-size:12px;letter-spacing:0.28em;text-transform:uppercase;color:var(--text)}
 .section-head .meta{font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--muted);letter-spacing:0.08em}
@@ -117,6 +132,17 @@ table.results tr:hover td{background:var(--panel)}
   .hero-mark svg{ width:32px; height:32px; }
   .hero-wordmark{ font-size:56px; letter-spacing:0.32em; padding-left:0.32em; margin-bottom:20px; }
   .hero-tag{ font-size:10px; letter-spacing:0.36em; }
+}
+@media (max-width: 480px){
+  .shell{padding:0 16px}
+  .sport-nav,.section-nav{width:100%;gap:4px;padding:8px 0}
+  .sport-nav a,.section-nav a{flex:1 1 0;min-width:0;padding:0 6px;font-size:9px;letter-spacing:.11em}
+  .sport-nav a{font-size:8.5px}
+  .section-head{display:block;padding-top:22px}
+  .section-head .meta{margin-top:8px;line-height:1.6}
+  .market-prefire{min-height:0}
+  .market-state{font-size:14px}
+  .game-context{line-height:1.55}
 }
 
 /* About page — namespaced; does not alter Picks/Results */

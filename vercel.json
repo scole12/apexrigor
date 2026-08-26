@@ -15,7 +15,25 @@
       ]
     },
     {
+      "source": "/data/ncaaf_results_summary.json",
+      "headers": [
+        { "key": "Cache-Control", "value": "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0" }
+      ]
+    },
+    {
+      "source": "/data/ncaaf_results_archive.json",
+      "headers": [
+        { "key": "Cache-Control", "value": "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0" }
+      ]
+    },
+    {
       "source": "/ncaaf",
+      "headers": [
+        { "key": "Cache-Control", "value": "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0" }
+      ]
+    },
+    {
+      "source": "/ncaaf/results",
       "headers": [
         { "key": "Cache-Control", "value": "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0" }
       ]

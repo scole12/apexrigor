@@ -319,11 +319,17 @@ def main() -> int:
 """
     body = f"""<div class="shell">
 {SHELL_HERO}
-  <nav class="nav">
+  <div class="apex-nav-stack">
+  <nav class="sport-nav" aria-label="Sport selector">
+    <a href="/" class="active" aria-current="true">MLB</a>
+    <a href="/ncaaf">NCAA FOOTBALL</a>
+  </nav>
+  <nav class="section-nav" aria-label="MLB sections">
     <a href="/" class="active">PICKS</a>
     <a href="/results">RESULTS</a>
     <a href="/about">ABOUT</a>
   </nav>
+  </div>
   <div class="section-head picks-board-head">
     <div class="title">{board_title}</div>
     <div class="meta mono">{meta_line}</div>

@@ -54,6 +54,9 @@ def active_outputs(root: Path) -> tuple[Path, ...]:
         root / "results.html",
         root / "results" / "index.html",
         root / "about" / "index.html",
+        root / "ncaaf" / "index.html",
+        root / "ncaaf" / "results" / "index.html",
+        root / "ncaaf" / "about" / "index.html",
     )
 
 

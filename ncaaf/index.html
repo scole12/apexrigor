@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
-<title>APEX — NCAA Football</title>
+<title>APEX — NCAA Football Picks</title>
 <meta name="description" content="APEX full-game NCAA Football ATS and Totals forecasts.">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=apex-20260629-tier-perf">
 <link rel="icon" type="image/x-icon" href="/favicon.ico?v=apex-20260629-tier-perf" sizes="32x32">
@@ -12,49 +12,58 @@
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=apex-20260629-tier-perf">
 <link rel="manifest" href="/site.webmanifest?v=apex-20260629-tier-perf">
 <meta name="theme-color" content="#000000">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="APEX">
-<meta property="og:title" content="APEX — NCAA Football">
+<meta property="og:type" content="website"><meta property="og:site_name" content="APEX">
+<meta property="og:title" content="APEX — NCAA Football Picks">
 <meta property="og:description" content="Full-game NCAA Football ATS and Totals forecasts.">
 <meta property="og:url" content="https://apexrigor.com/ncaaf">
 <meta property="og:image" content="https://apexrigor.com/og-image.png?v=apex-20260629-tier-perf">
-<link rel="stylesheet" href="/assets/apex.css?v=apex-20260629-tier-perf">
+<link rel="stylesheet" href="/assets/apex.css?v=apex-20260825-ncaaf-ops">
 </head>
 <body>
 <div class="shell">
   <div class="hero">
     <div class="hero-mark"><svg viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg"><polygon points="22,6 38,36 6,36"/></svg></div>
-    <div class="hero-wordmark">APEX</div>
-    <div class="hero-rule"></div>
-    <div class="hero-tag">NCAA FOOTBALL</div>
-    <div class="hero-math">The Math Speaks.</div>
+    <div class="hero-wordmark">APEX</div><div class="hero-rule"></div>
+    <div class="hero-tag">NCAA FOOTBALL</div><div class="hero-math">The Math Speaks.</div>
   </div>
-  <nav class="nav">
-    <a href="/">MLB</a>
-    <a href="/ncaaf" class="active">NCAA</a>
-  </nav>
-  <div class="section-head picks-board-head">
-    <div class="title">FULL-GAME CARD</div>
-    <div class="meta mono" id="slate-meta">LOADING CERTIFIED SLATE</div>
+  <div class="apex-nav-stack">
+    <nav class="sport-nav" aria-label="Sport selector"><a href="/" data-sport="mlb">MLB</a><a href="/ncaaf" class="active" aria-current="true" data-sport="ncaaf">NCAA FOOTBALL</a></nav>
+    <nav class="section-nav" aria-label="NCAA Football sections"><a href="/ncaaf" class="active" aria-current="page">PICKS</a><a href="/ncaaf/results">RESULTS</a><a href="/ncaaf/about">ABOUT</a></nav>
   </div>
-  <main class="picks-page">
-    <div class="picks-board" id="games" aria-live="polite"></div>
-  </main>
+  <div class="section-head picks-board-head"><div class="title">FULL-GAME CARD</div><div class="meta mono" id="slate-meta">LOADING AUTHORITATIVE SLATE</div></div>
+  <main class="picks-page"><div class="picks-board" id="games" aria-live="polite"></div></main>
 </div>
 <script>
-const escapeHtml = value => String(value ?? "").replace(/[&<>"']/g, char => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[char]));
-const positionMarkup = position => `<div class="market-panel"><div class="market-label">FULL-GAME ${escapeHtml(position.market_type)}</div><div class="market-panel-head"><span class="pick-headline">${escapeHtml(position.selection)} ${escapeHtml(position.line)}</span><span class="tier-badge tier-badge--${escapeHtml(String(position.rating).toLowerCase())}">${escapeHtml(position.rating)}</span></div><div class="meta mono">FANDUEL · ${escapeHtml(position.price)}</div></div>`;
-fetch("/data/ncaaf_today.json", {cache:"no-store"}).then(response => { if (!response.ok) throw new Error(`HTTP ${response.status}`); return response.json(); }).then(document => {
-  const slate = document.slate;
-  document.getElementById("slate-meta").textContent = `${slate.slate_date_et} · ${slate.games.length} DIVISION I GAMES · ATS + TOTALS`;
-  document.getElementById("games").innerHTML = slate.games.map((game, index) => {
-    const markets = game.positions.length ? game.positions.map(positionMarkup).join("") : `<div class="market-panel"><div class="market-label">MARKET STATUS</div><div class="pick-headline">${escapeHtml(game.market_status)}</div><div class="meta mono">NO WAGER INVENTED</div></div>`;
-    return `<article class="game-module" data-game="${escapeHtml(game.game_id)}"><header class="game-header"><div class="game-num mono">G${String(index + 1).padStart(2,"0")}</div><div class="game-meta"><h2 class="game-matchup">${escapeHtml(game.matchup)}</h2></div><div class="game-time mono">${escapeHtml(game.kickoff_et)}</div></header><div class="market-grid">${markets}</div></article>`;
-  }).join("");
-}).catch(error => {
-  document.getElementById("slate-meta").textContent = "NCAA DATA UNAVAILABLE";
-  document.getElementById("games").innerHTML = `<article class="game-module"><div class="meta mono">${escapeHtml(error.message)}</div></article>`;
-});
+const esc=v=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const signed=v=>Number(v)>0?`+${v}`:String(v);
+const captureLabel=ms=>ms?`Captured ${new Date(ms).toLocaleTimeString("en-US",{timeZone:"America/New_York",hour:"numeric",minute:"2-digit"})} ET`:"";
+function issuedPanel(p){
+ const headline=p.market_type==="ATS"?`${esc(p.selection)} ${esc(p.line)}`:`${esc(p.direction)} ${esc(p.line)}`;
+ const rationale=(p.rationale||[]).map(x=>`<p>${esc(x)}</p>`).join("");
+ return `<section class="market-panel"><div class="market-label">FULL-GAME ${esc(p.market_type)}</div><div class="market-panel-head"><span class="pick-headline">${headline}</span><span class="rating-label">APEX WIN PROBABILITY RATING</span><span class="tier-badge tier-badge--${esc(String(p.rating).toLowerCase())}">${esc(p.rating)}</span></div><div class="meta mono">Sportsbook: FanDuel · ${signed(p.price)}</div><div class="rationale-copy">${rationale}</div></section>`;
+}
+function prefirePanel(game,type){
+ const m=type==="ATS"?game.ats_market:game.totals_market;
+ const label=type==="ATS"?"FULL-GAME ATS":"FULL-GAME TOTAL";
+ let state,quote,lock;
+ if(m.available){
+   state="FANDUEL MARKET AVAILABLE — APEX FORECAST LOCKS AT T-2";
+   quote=type==="ATS"?`${esc(m.side_a_name)} ${signed(m.line)} (${signed(m.price_a)}) · ${esc(m.side_b_name)} ${signed(-Number(m.line))} (${signed(m.price_b)})`:`TOTAL ${esc(m.line)} · OVER ${signed(m.price_a)} · UNDER ${signed(m.price_b)}`;
+   lock=`Sportsbook: FanDuel · ${captureLabel(m.captured_at_utc_ms)} · No APEX position has been issued.`;
+ }else{
+   state=game.market_status==="GAME_LISTED_AWAITING_T2_FORECAST"?"GAME LISTED — AWAITING T-2 FORECAST":"FANDUEL MARKET NOT YET AVAILABLE";
+   quote="No authentic FanDuel full-game market is currently captured.";
+   lock="The game remains on the Division I slate. No line or APEX wager is invented.";
+ }
+ return `<section class="market-panel market-prefire"><div><div class="market-label">${label}</div><div class="market-state">${state}</div><div class="market-quote">${quote}</div></div><div class="market-lock">${lock}</div></section>`;
+}
+fetch("/data/ncaaf_today.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw new Error(`HTTP ${r.status}`);return r.json()}).then(doc=>{
+ const s=doc.slate; document.getElementById("slate-meta").textContent=`SATURDAY, AUGUST 29, 2026 · ${s.game_count} DIVISION I GAMES · ${s.fanduel_spread_available_count} SPREADS · ${s.fanduel_total_available_count} TOTALS`;
+ document.getElementById("games").innerHTML=s.games.map((g,i)=>{
+   const by=Object.fromEntries((g.positions||[]).map(p=>[p.market_type,p]));
+   const ats=by.ATS?issuedPanel(by.ATS):prefirePanel(g,"ATS"),tot=by.TOTALS?issuedPanel(by.TOTALS):prefirePanel(g,"TOTALS");
+   return `<article class="game-module" data-game="${esc(g.game_id)}"><header class="game-header"><div class="game-num mono">G${String(i+1).padStart(2,"0")}</div><div class="game-meta"><h2 class="game-matchup">${esc(g.matchup)}</h2><p class="game-context">${esc(g.fbs_fcs_classification.replaceAll("_"," "))} · ${esc(g.venue)}</p></div><div class="game-time mono">${esc(g.kickoff_display_et)}</div></header><div class="market-grid">${ats}${tot}</div></article>`;
+ }).join("");
+}).catch(e=>{document.getElementById("slate-meta").textContent="NCAA DATA UNAVAILABLE";document.getElementById("games").innerHTML=`<div class="empty-state">${esc(e.message)}</div>`});
 </script>
-</body>
-</html>
+</body></html>
