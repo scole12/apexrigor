@@ -62,7 +62,7 @@ def split_sentences(text: str) -> list[str]:
         flags=re.I,
     )
     parts = [p.replace("\u2024", ".") for p in re.split(r"(?<=[.!?])\s+", t) if p.strip()]
-    return parts[:6]
+    return parts[:8]
 
 
 def tier_class(tier: str) -> str:

@@ -52,11 +52,11 @@ def safe_sentences(text):
         return []
     protected = text.replace("St. Louis", "St__DOT__ Louis")
     parts = [x.strip().replace("St__DOT__ Louis", "St. Louis") for x in re.split(r"(?<=[.!?])\s+", protected) if x.strip()]
-    return parts[:6]
+    return parts[:8]
 
 def rationale_html(p):
     if isinstance(p.get("rationale_sentences"), list) and p["rationale_sentences"]:
-        parts = [str(x).strip() for x in p["rationale_sentences"] if str(x).strip()][:6]
+        parts = [str(x).strip() for x in p["rationale_sentences"] if str(x).strip()][:8]
     else:
         parts = safe_sentences(p.get("rationale"))
     return "".join(f"<p>{esc(x)}</p>" for x in parts)
