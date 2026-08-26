@@ -1,0 +1,163 @@
+{
+  "active_model": null,
+  "active_model_sha256": null,
+  "authenticity": {
+    "card_reconciliation_status": "OFFICIAL_REFERENCE_13_FIGHTS_PROVIDER_PAIR_MATCH_12_OF_13",
+    "no_authentic_fanduel_total_means_no_total_position": true,
+    "no_fabricated_positions": true
+  },
+  "card": [
+    {
+      "fighter_a": "Umar Nurmagomedov",
+      "fighter_b": "Song Yadong",
+      "is_co_main_event": false,
+      "is_main_event": true,
+      "official_display_order": 1,
+      "segment": "MAIN",
+      "weight_class": "BANTAMWEIGHT"
+    },
+    {
+      "fighter_a": "Yan Xiaonan",
+      "fighter_b": "Denise Gomes",
+      "is_co_main_event": true,
+      "is_main_event": false,
+      "official_display_order": 2,
+      "segment": "MAIN",
+      "weight_class": "WOMENS_STRAWWEIGHT"
+    },
+    {
+      "fighter_a": "Aoriqileng",
+      "fighter_b": "Kai Asakura",
+      "is_co_main_event": false,
+      "is_main_event": false,
+      "official_display_order": 3,
+      "segment": "MAIN",
+      "weight_class": "BANTAMWEIGHT"
+    },
+    {
+      "fighter_a": "Alex Perez",
+      "fighter_b": "Sumudaerji",
+      "is_co_main_event": false,
+      "is_main_event": false,
+      "official_display_order": 4,
+      "segment": "MAIN",
+      "weight_class": "FLYWEIGHT"
+    },
+    {
+      "fighter_a": "Liu Ce",
+      "fighter_b": "Junior Tafa",
+      "is_co_main_event": false,
+      "is_main_event": false,
+      "official_display_order": 5,
+      "segment": "MAIN",
+      "weight_class": "LIGHT_HEAVYWEIGHT"
+    },
+    {
+      "fighter_a": "Bilal Hasan",
+      "fighter_b": "Nilson Rojas",
+      "is_co_main_event": false,
+      "is_main_event": false,
+      "official_display_order": 6,
+      "segment": "MAIN",
+      "weight_class": "FLYWEIGHT"
+    },
+    {
+      "fighter_a": "Namsrai Batbayar",
+      "fighter_b": "Andre Lima",
+      "is_co_main_event": false,
+      "is_main_event": false,
+      "official_display_order": 7,
+      "segment": "PRELIMS",
+      "weight_class": "FLYWEIGHT"
+    },
+    {
+      "fighter_a": "Rei Tsuruya",
+      "fighter_b": "Kevin Borjas",
+      "is_co_main_event": false,
+      "is_main_event": false,
+      "official_display_order": 8,
+      "segment": "PRELIMS",
+      "weight_class": "FLYWEIGHT"
+    },
+    {
+      "fighter_a": "Xiao Long",
+      "fighter_b": "Francesco Nuzzi",
+      "is_co_main_event": false,
+      "is_main_event": false,
+      "official_display_order": 9,
+      "segment": "PRELIMS",
+      "weight_class": "BANTAMWEIGHT"
+    },
+    {
+      "fighter_a": "Jack Jenkins",
+      "fighter_b": "Sean Woodson",
+      "is_co_main_event": false,
+      "is_main_event": false,
+      "official_display_order": 10,
+      "segment": "PRELIMS",
+      "weight_class": "FEATHERWEIGHT"
+    },
+    {
+      "fighter_a": "Lawrence Lui",
+      "fighter_b": "Hector Santiago",
+      "is_co_main_event": false,
+      "is_main_event": false,
+      "official_display_order": 11,
+      "segment": "PRELIMS",
+      "weight_class": "BANTAMWEIGHT"
+    },
+    {
+      "fighter_a": "Xiong Jingnan",
+      "fighter_b": "Julia Polastri",
+      "is_co_main_event": false,
+      "is_main_event": false,
+      "official_display_order": 12,
+      "segment": "PRELIMS",
+      "weight_class": "WOMENS_STRAWWEIGHT"
+    },
+    {
+      "fighter_a": "Ding Meng",
+      "fighter_b": "Cam Nelson",
+      "is_co_main_event": false,
+      "is_main_event": false,
+      "official_display_order": 13,
+      "segment": "PRELIMS",
+      "weight_class": "WELTERWEIGHT"
+    }
+  ],
+  "event": {
+    "city": "Shanghai",
+    "country": "China",
+    "display_name": "UFC Fight Night \u2014 Nurmagomedov vs Song",
+    "district": "Pudong District",
+    "event_date": "2026-08-29",
+    "main_card_start_et": "2026-08-29T06:00:00-04:00",
+    "main_card_start_utc": "2026-08-29T10:00:00Z",
+    "name": "UFC Fight Night: Nurmagomedov vs Song",
+    "prelims_start_et": "2026-08-29T03:00:00-04:00",
+    "prelims_start_utc": "2026-08-29T07:00:00Z",
+    "promotion": "UFC",
+    "venue": "Pudong Development Bank Shanghai Oriental Sports Center",
+    "venue_native_event_page": "Oriental Sports Center"
+  },
+  "fight_count": 13,
+  "generated_at_utc": "2026-08-26T00:18:22.696334Z",
+  "payload_sha256": "46c4a11c7da1def4be14c7217aa996f28ff2275b836d14ffc766a52856e57030",
+  "picks_published": false,
+  "positions": [],
+  "release_state": "NO_RELEASE_SCIENTIFIC_GATE",
+  "schema_version": "APEX_MMA_TODAY_V1",
+  "science_blocker": "LICENSED_HISTORICAL_ELEMENTAL_MMA_ROUND_STAT_DATA_WITH_STABLE_IDENTITIES_AND_PIT_OR_RECONSTRUCTIBLE_SOURCE_TIMESTAMPS",
+  "t2": {
+    "anchor": "EARLIEST_PUBLISHED_SCHEDULED_BOUT_MINUS_2_HOURS",
+    "scheduled_et": "2026-08-29T01:00:00-04:00",
+    "scheduled_utc": "2026-08-29T05:00:00Z",
+    "status": "FAIL_CLOSED_NO_SEALED_RELEASE"
+  },
+  "t3": {
+    "anchor": "EARLIEST_PUBLISHED_SCHEDULED_BOUT_MINUS_3_HOURS",
+    "scheduled_et": "2026-08-29T00:00:00-04:00",
+    "scheduled_utc": "2026-08-29T04:00:00Z",
+    "status": "IMPLEMENTED_AWAITING_CANONICAL_EVENT"
+  }
+}

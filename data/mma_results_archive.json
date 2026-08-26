@@ -1,0 +1,7 @@
+{
+  "events": [],
+  "generated_at_utc": "2026-08-26T00:18:22.696334Z",
+  "payload_sha256": "0e24ac13ac074ea79de2132c4bd56a527024d9bdb4fdf015524bc569ad65e234",
+  "revision_policy": "APPEND_ONLY_RESULT_AND_GRADE_REVISIONS",
+  "schema_version": "APEX_MMA_RESULTS_ARCHIVE_V1"
+}

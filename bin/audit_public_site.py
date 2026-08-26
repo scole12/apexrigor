@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Fail closed on the MLB-only public boundary, assets, and RUM drift."""
+"""Fail closed on the active MLB/NCAA/MMA boundary, assets, and RUM drift."""
 
 from __future__ import annotations
 
@@ -42,6 +42,10 @@ def main() -> int:
         "/picks": root / "picks" / "index.html",
         "/results": root / "results" / "index.html",
         "/about": root / "about" / "index.html",
+        "/ncaaf": root / "ncaaf" / "index.html",
+        "/mma": root / "mma" / "index.html",
+        "/mma/results": root / "mma" / "results" / "index.html",
+        "/mma/about": root / "mma" / "about" / "index.html",
     }
     icon_pairs = (
         (root / "favicon.svg", root / "assets" / "favicon.svg"),
@@ -91,41 +95,44 @@ def main() -> int:
             f"Vercel Analytics script must appear once per public route: {route_vercel_scripts}"
         )
 
-    switcher_re = re.compile(r'<div class="sport-switcher".*?</div>', re.DOTALL)
+    switcher_re = re.compile(
+        r'<(?:div|nav) class="[^"]*sport-switcher[^"]*".*?</(?:div|nav)>',
+        re.DOTALL,
+    )
     public_sport_switcher_count = 0
     public_world_cup_label_count = 0
     public_soccer_label_count = 0
-    public_other_sport_label_counts = {
+    public_unlaunched_sport_label_counts = {
         "nhl": 0,
         "nba": 0,
-        "ncaa": 0,
         "mls": 0,
         "liga_mx": 0,
     }
     for route, text in route_text.items():
         switcher_count = len(switcher_re.findall(text))
         public_sport_switcher_count += switcher_count
-        if switcher_count:
-            errors.append(f"{route} exposes an unneeded sport switcher before launch")
+        if switcher_count != 1:
+            errors.append(f"{route} must expose exactly one MLB/NCAA/MMA sport switcher")
+        switcher_text = "".join(switcher_re.findall(text))
+        for required_sport in ("MLB", "NCAA", "MMA"):
+            if required_sport not in switcher_text:
+                errors.append(f"{route} sport switcher missing {required_sport}")
         public_world_cup_label_count += len(
             re.findall(r"(?:href=\"[^\"]*worldcup|>\s*WORLD CUP\s*<)", text, re.IGNORECASE)
         )
         public_soccer_label_count += len(
             re.findall(r"(?:href=\"[^\"]*soccer|\bsoccer\b)", text, re.IGNORECASE)
         )
-        public_other_sport_label_counts["nhl"] += len(
+        public_unlaunched_sport_label_counts["nhl"] += len(
             re.findall(r"\bNHL\b", text, re.IGNORECASE)
         )
-        public_other_sport_label_counts["nba"] += len(
+        public_unlaunched_sport_label_counts["nba"] += len(
             re.findall(r"\bNBA\b", text, re.IGNORECASE)
         )
-        public_other_sport_label_counts["ncaa"] += len(
-            re.findall(r"\bNCAA\b", text, re.IGNORECASE)
-        )
-        public_other_sport_label_counts["mls"] += len(
+        public_unlaunched_sport_label_counts["mls"] += len(
             re.findall(r"\bMLS\b", text, re.IGNORECASE)
         )
-        public_other_sport_label_counts["liga_mx"] += len(
+        public_unlaunched_sport_label_counts["liga_mx"] += len(
             re.findall(r"\bLiga\s+(?:MX|Mexico)\b", text, re.IGNORECASE)
         )
     if public_world_cup_label_count or public_soccer_label_count:
@@ -134,15 +141,15 @@ def main() -> int:
             f"soccer={public_soccer_label_count}, "
             f"world_cup={public_world_cup_label_count}"
         )
-    public_other_sport_label_count = sum(
-        public_other_sport_label_counts.values()
+    public_unlaunched_sport_label_count = sum(
+        public_unlaunched_sport_label_counts.values()
     )
-    if public_other_sport_label_count:
+    if public_unlaunched_sport_label_count:
         errors.append(
-            "non-MLB sport leaked into a current public route: "
+            "unlaunched sport leaked into a current public route: "
             + ", ".join(
                 f"{sport}={count}"
-                for sport, count in public_other_sport_label_counts.items()
+                for sport, count in public_unlaunched_sport_label_counts.items()
             )
         )
 
@@ -163,6 +170,40 @@ def main() -> int:
         if model_id not in about:
             errors.append(f"/about missing current MLB model identity: {model_id}")
 
+    mma_about = route_text.get("/mma/about", "")
+    for required_text in (
+        "Factual authority",
+        "Two outputs, one distribution",
+        "Current gate",
+        "07:00 America/New_York",
+    ):
+        if required_text not in mma_about:
+            errors.append(f"/mma/about missing {required_text}")
+
+    required_mma_payloads = {
+        "mma_today.json": "APEX_MMA_TODAY_V1",
+        "mma_results_summary.json": "APEX_MMA_RESULTS_SUMMARY_V1",
+        "mma_results_archive.json": "APEX_MMA_RESULTS_ARCHIVE_V1",
+        "mma_ops_snapshot.json": "APEX_MMA_OPS_SNAPSHOT_V1",
+    }
+    mma_payloads: dict[str, dict[str, object]] = {}
+    for name, schema in required_mma_payloads.items():
+        path = root / "data" / name
+        try:
+            payload = json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError) as exc:
+            errors.append(f"invalid MMA payload {name}: {exc}")
+            continue
+        mma_payloads[name] = payload
+        if payload.get("schema_version") != schema:
+            errors.append(f"{name} schema mismatch")
+    today = mma_payloads.get("mma_today.json", {})
+    if today.get("release_state") == "NO_RELEASE_SCIENTIFIC_GATE":
+        if today.get("picks_published") is not False or today.get("positions") != []:
+            errors.append("release-gated MMA payload contains a public position")
+    if today and today.get("fight_count") != len(today.get("card", [])):
+        errors.append("MMA fight count does not reconcile to card length")
+
     config_root = root if (root / "vercel.json").is_file() else root.parent
     try:
         vercel = json.loads((config_root / "vercel.json").read_text(encoding="utf-8"))
@@ -178,6 +219,10 @@ def main() -> int:
             for value in (source, destination)
         ):
             errors.append(f"unlaunched sport redirect present: {source} -> {destination}")
+    header_sources = {str(item.get("source")) for item in vercel.get("headers", [])}
+    for required_source in ("/mma", "/mma/:path*", "/data/mma_:path*"):
+        if required_source not in header_sources:
+            errors.append(f"vercel.json missing no-store MMA header: {required_source}")
 
     icon_hashes: dict[str, str] = {}
     for root_icon, asset_icon in icon_pairs:
@@ -228,8 +273,12 @@ def main() -> int:
         "public_soccer_label_count": public_soccer_label_count,
         "public_sport_label_soccer": "HIDDEN",
         "public_world_cup_label_count": public_world_cup_label_count,
-        "public_other_sport_label_count": public_other_sport_label_count,
-        "public_other_sport_label_counts": public_other_sport_label_counts,
+        "public_unlaunched_sport_label_count": public_unlaunched_sport_label_count,
+        "public_unlaunched_sport_label_counts": public_unlaunched_sport_label_counts,
+        "mma_payloads": {
+            name: {"schema_version": payload.get("schema_version"), "sha256": sha256(root / "data" / name)}
+            for name, payload in mma_payloads.items()
+        },
     }
     print(json.dumps(result, indent=2, sort_keys=True))
     print("PUBLIC_SPORT_LABEL_SOCCER=HIDDEN")
