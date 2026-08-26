@@ -65,7 +65,11 @@ def active_payloads(table: str, key: str, database: Path, where: str = "") -> di
 
 def latest_capture(slate_date: str) -> dict[str, Any] | None:
     paths = sorted((STATE / "market_captures" / slate_date / "receipts").glob("*.json"))
-    return None if not paths else json.loads(paths[-1].read_text(encoding="utf-8"))
+    if not paths:
+        return None
+    payload = json.loads(paths[-1].read_text(encoding="utf-8"))
+    payload["receipt_path"] = str(paths[-1])
+    return payload
 
 
 def team_metadata() -> tuple[dict[str, str], dict[str, str]]:
