@@ -24,7 +24,13 @@ FILES = (
     "og-image.png",
     "site.webmanifest",
 )
-DIRECTORIES = ("assets", "data", "picks", "results", "about", "ncaaf")
+DIRECTORIES = ("assets", "data", "picks", "results", "about", "ncaaf", "mma")
+GENERATORS = (
+    "build_mma_public_payload.py",
+    "build_mma_picks_page.py",
+    "build_mma_results_page.py",
+    "build_mma_about_page.py",
+)
 
 
 def ignore_data_backups(_directory: str, names: list[str]) -> set[str]:
@@ -43,6 +49,9 @@ def ignore_data_backups(_directory: str, names: list[str]) -> set[str]:
 def main() -> int:
     if OUTPUT.parent != ROOT or OUTPUT.name != "public":
         raise RuntimeError(f"refusing unsafe output path: {OUTPUT}")
+    for generator in GENERATORS:
+        subprocess.run([sys.executable, str(ROOT / "bin" / generator)], check=True)
+
     if OUTPUT.exists():
         shutil.rmtree(OUTPUT)
     OUTPUT.mkdir(mode=0o755)

@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>APEX — MMA Results</title>
+<meta name="description" content="Append-only APEX MMA issuance and grading results.">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg?v=apex-20260825-mma">
+<link rel="icon" type="image/x-icon" href="/favicon.ico?v=apex-20260825-mma" sizes="32x32">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=apex-20260825-mma">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=apex-20260825-mma">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=apex-20260825-mma">
+<link rel="manifest" href="/site.webmanifest?v=apex-20260825-mma">
+<meta name="theme-color" content="#000000">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="APEX">
+<meta property="og:title" content="APEX — MMA Results">
+<meta property="og:description" content="Append-only APEX MMA issuance and grading results.">
+<meta property="og:url" content="https://apexrigor.com/mma/results">
+<meta property="og:image" content="https://apexrigor.com/og-image.png?v=apex-20260825-mma">
+<link rel="stylesheet" href="/assets/apex.css?v=apex-20260825-mma">
+</head>
+<body>
+<div class="shell">
+  <div class="hero">
+    <div class="hero-mark"><svg viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg"><polygon points="22,6 38,36 6,36"/></svg></div>
+    <div class="hero-wordmark">APEX</div>
+    <div class="hero-rule"></div>
+    <div class="hero-tag">MMA / UFC</div>
+    <div class="hero-math">The Math Speaks.</div>
+  </div>
+  <div class="apex-nav-stack">
+  <nav class="sport-nav" aria-label="Sport selector">
+    <a href="/results">MLB</a>
+    <a href="/ncaaf/results">NCAA FOOTBALL</a>
+    <a href="/mma/results" class="active" aria-current="true">MMA / UFC</a>
+  </nav>
+  <nav class="section-nav" aria-label="MMA sections">
+    <a href="/mma">PICKS</a>
+    <a href="/mma/results" class="active">RESULTS</a>
+    <a href="/mma/about">ABOUT</a>
+  </nav>
+  </div>
+  <div class="section-head"><div class="title">MMA RESULTS</div><div class="meta mono" id="results-meta">LOADING GRADER STATE</div></div>
+  <main class="picks-page"><div class="picks-board" id="results" aria-live="polite"></div></main>
+<script>
+const esc=v=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+fetch("/data/mma_results_summary.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw new Error(`HTTP ${r.status}`);return r.json()}).then(d=>{
+ document.getElementById("results-meta").textContent=`${d.status.replaceAll("_"," ")} · GRADER ${d.grader.schedule}`;
+ document.getElementById("results").innerHTML=d.issued_event_count?"<div class=\"meta mono\">Issued event results are available.</div>":`<article class="game-module"><header class="game-header"><div class="game-num mono">0</div><div class="game-meta"><h2 class="game-matchup">No MMA event has been issued or graded</h2><p class="meta mono">${esc(d.release_state)}</p></div></header><div class="market-grid"><div class="market-panel"><div class="market-label">GRADER</div><div class="pick-headline">Clean no-op</div><div class="rationale-copy"><p>The grader runs at 07:00 America/New_York and writes nothing when no lawful issuance is eligible.</p></div></div></div></article>`;
+}).catch(e=>{document.getElementById("results-meta").textContent="MMA RESULTS DATA UNAVAILABLE";document.getElementById("results").textContent=e.message});
+</script>
+</div>
+</body>
+</html>
