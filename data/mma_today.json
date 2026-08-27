@@ -141,13 +141,13 @@
     "venue_native_event_page": "Oriental Sports Center"
   },
   "fight_count": 13,
-  "generated_at_utc": "2026-08-27T22:32:27.950070Z",
-  "payload_sha256": "3bb519aa6d229193511a38de5c328daba5bc1e37bfd505d4cd8044724b997b7a",
+  "generated_at_utc": "2026-08-27T22:36:03.361533Z",
+  "payload_sha256": "a3ff40a879166d277d82d7aace1dabaed0c60c25940940acb1adffd5e8d320cb",
   "picks_published": false,
   "positions": [],
   "release_state": "NO_RELEASE_SCIENTIFIC_GATE",
   "schema_version": "APEX_MMA_TODAY_V1",
-  "science_blocker": "LICENSED_HISTORICAL_ELEMENTAL_MMA_ROUND_STAT_DATA_WITH_STABLE_IDENTITIES_AND_PIT_OR_RECONSTRUCTIBLE_SOURCE_TIMESTAMPS",
+  "science_blocker": "NO_RESULT_LEVEL_WINNER_CANDIDATE_IMPROVED_AUTHENTIC_MATCHED_TIME_FANDUEL; RICHER_ACTION_PROCESS_AND_HOLMES_BENCHMARK_REQUIRE_LICENSED_HISTORICAL_ELEMENTAL_ROUND_STATS",
   "t2": {
     "anchor": "EARLIEST_PUBLISHED_SCHEDULED_BOUT_MINUS_2_HOURS",
     "scheduled_utc": "2026-08-29T05:00:00Z",

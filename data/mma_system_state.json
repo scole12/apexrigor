@@ -172,18 +172,18 @@
   },
   "event_id": "2c9eb7de-4ae6-53ff-9b0c-8fc841ee993c",
   "fight_count": 13,
-  "generated_at_utc": "2026-08-27T22:32:27.950070Z",
+  "generated_at_utc": "2026-08-27T22:36:03.361533Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "IMPLEMENTED_NO_ELIGIBLE_ISSUANCE"
   },
   "latest_results": [],
-  "payload_sha256": "a5245ebbb1b8fc96bebb96f8b0b24aa72de38248a9282ef2f34cb620dc2be4a5",
+  "payload_sha256": "8a7f423f8181a9efe78a009d1555be48e793b4193975565d42bc052fc7c57bce",
   "picks_published": false,
   "release_state": "NO_RELEASE_SCIENTIFIC_GATE",
   "schema_version": "APEX_MMA_PUBLIC_STATE_V2",
-  "science_blocker": "LICENSED_HISTORICAL_ELEMENTAL_MMA_ROUND_STAT_DATA_WITH_STABLE_IDENTITIES_AND_PIT_OR_RECONSTRUCTIBLE_SOURCE_TIMESTAMPS",
-  "semantic_state_sha256": "6ad44061e90f62b40e247271f87703d1f41f26972e6ee88a2da3b9554fb5f6c0",
+  "science_blocker": "NO_RESULT_LEVEL_WINNER_CANDIDATE_IMPROVED_AUTHENTIC_MATCHED_TIME_FANDUEL; RICHER_ACTION_PROCESS_AND_HOLMES_BENCHMARK_REQUIRE_LICENSED_HISTORICAL_ELEMENTAL_ROUND_STATS",
+  "semantic_state_sha256": "224b61056e09391930961a6ec24d34de17ba892f32f1876c045fe3185d33cfe6",
   "source_conflicts": [],
   "system_readiness_state": "TECHNICALLY_READY_SCIENCE_BLOCKED",
   "t2": {
