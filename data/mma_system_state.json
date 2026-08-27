@@ -18,11 +18,13 @@
     },
     "testing": {
       "experiments": 22,
-      "feature_matrices": 0,
+      "feature_matrices": 1,
       "features": 162,
-      "model_families": 16,
-      "model_runs": 0,
-      "signals": 30
+      "model_families": 18,
+      "model_runs": 6,
+      "proper_scores": 12,
+      "signals": 30,
+      "status": "RESEARCH_COURT_SCORED_NO_RELEASE"
     }
   },
   "card": [
@@ -170,18 +172,18 @@
   },
   "event_id": "2c9eb7de-4ae6-53ff-9b0c-8fc841ee993c",
   "fight_count": 13,
-  "generated_at_utc": "2026-08-27T21:50:15.134098Z",
+  "generated_at_utc": "2026-08-27T22:32:27.950070Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "IMPLEMENTED_NO_ELIGIBLE_ISSUANCE"
   },
   "latest_results": [],
-  "payload_sha256": "d6e16ccf0bda56a8e17518cff9fd777b4a6212535a3d05e538a55c1726315593",
+  "payload_sha256": "a5245ebbb1b8fc96bebb96f8b0b24aa72de38248a9282ef2f34cb620dc2be4a5",
   "picks_published": false,
   "release_state": "NO_RELEASE_SCIENTIFIC_GATE",
   "schema_version": "APEX_MMA_PUBLIC_STATE_V2",
   "science_blocker": "LICENSED_HISTORICAL_ELEMENTAL_MMA_ROUND_STAT_DATA_WITH_STABLE_IDENTITIES_AND_PIT_OR_RECONSTRUCTIBLE_SOURCE_TIMESTAMPS",
-  "semantic_state_sha256": "a12222733b79859744aea5b5fc760231be2040117f7dc097a38587012c736c97",
+  "semantic_state_sha256": "6ad44061e90f62b40e247271f87703d1f41f26972e6ee88a2da3b9554fb5f6c0",
   "source_conflicts": [],
   "system_readiness_state": "TECHNICALLY_READY_SCIENCE_BLOCKED",
   "t2": {

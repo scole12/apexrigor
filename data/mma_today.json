@@ -141,8 +141,8 @@
     "venue_native_event_page": "Oriental Sports Center"
   },
   "fight_count": 13,
-  "generated_at_utc": "2026-08-27T21:50:15.134098Z",
-  "payload_sha256": "9034574f923d2dc63489dba0a7a48bca6bd6f8a56a051c7cba7beaa6cc8b4b2f",
+  "generated_at_utc": "2026-08-27T22:32:27.950070Z",
+  "payload_sha256": "3bb519aa6d229193511a38de5c328daba5bc1e37bfd505d4cd8044724b997b7a",
   "picks_published": false,
   "positions": [],
   "release_state": "NO_RELEASE_SCIENTIFIC_GATE",
