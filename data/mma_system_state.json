@@ -64,7 +64,7 @@
     },
     {
       "fighter_a": "Liu Ce",
-      "fighter_b": "Junior Tafa",
+      "fighter_b": "Levi Rodrigues Jr.",
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 5,
@@ -144,7 +144,7 @@
       "weight_class": "WELTERWEIGHT"
     }
   ],
-  "card_reconciliation_status": "OPEN_PROVIDER_IDENTITY_CONFLICT",
+  "card_reconciliation_status": "PASS",
   "event": {
     "city": "Shanghai",
     "country": "China",
@@ -170,34 +170,19 @@
   },
   "event_id": "2c9eb7de-4ae6-53ff-9b0c-8fc841ee993c",
   "fight_count": 13,
-  "generated_at_utc": "2026-08-26T01:46:26.436295Z",
+  "generated_at_utc": "2026-08-27T21:50:15.134098Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "IMPLEMENTED_NO_ELIGIBLE_ISSUANCE"
   },
   "latest_results": [],
-  "payload_sha256": "ed30387660803638172f3c45f3a11b1e74dc12b676bcc6c97877c9e951b9fb56",
+  "payload_sha256": "d6e16ccf0bda56a8e17518cff9fd777b4a6212535a3d05e538a55c1726315593",
   "picks_published": false,
   "release_state": "NO_RELEASE_SCIENTIFIC_GATE",
   "schema_version": "APEX_MMA_PUBLIC_STATE_V2",
   "science_blocker": "LICENSED_HISTORICAL_ELEMENTAL_MMA_ROUND_STAT_DATA_WITH_STABLE_IDENTITIES_AND_PIT_OR_RECONSTRUCTIBLE_SOURCE_TIMESTAMPS",
-  "semantic_state_sha256": "4872e0f7c117ebbcaa4a8dad99637078fcde20950e5b39707ee87a73042b54f6",
-  "source_conflicts": [
-    {
-      "official_pair": [
-        "Liu Ce",
-        "Junior Tafa"
-      ],
-      "provider_commence_time_utc": "2026-08-29T10:00:00Z",
-      "provider_event_id": "8efe763cfd08b280b54f56d7e2e6604f",
-      "provider_pair": [
-        "Levi Rodrigues",
-        "Liu Ce"
-      ],
-      "source_capture_id": "b55092a8-d0a4-4b63-8104-f81b0a8925b3",
-      "status": "ONE_SIDE_MATCH_PROVIDER_CARD_CONFLICT"
-    }
-  ],
+  "semantic_state_sha256": "a12222733b79859744aea5b5fc760231be2040117f7dc097a38587012c736c97",
+  "source_conflicts": [],
   "system_readiness_state": "TECHNICALLY_READY_SCIENCE_BLOCKED",
   "t2": {
     "anchor": "EARLIEST_PUBLISHED_SCHEDULED_BOUT_MINUS_2_HOURS",

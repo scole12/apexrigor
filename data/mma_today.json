@@ -2,7 +2,7 @@
   "active_model": null,
   "active_model_sha256": null,
   "authenticity": {
-    "card_reconciliation_status": "OPEN_PROVIDER_IDENTITY_CONFLICT",
+    "card_reconciliation_status": "PASS",
     "no_authentic_fanduel_total_means_no_total_position": true,
     "no_fabricated_positions": true
   },
@@ -45,7 +45,7 @@
     },
     {
       "fighter_a": "Liu Ce",
-      "fighter_b": "Junior Tafa",
+      "fighter_b": "Levi Rodrigues Jr.",
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 5,
@@ -141,8 +141,8 @@
     "venue_native_event_page": "Oriental Sports Center"
   },
   "fight_count": 13,
-  "generated_at_utc": "2026-08-26T01:46:26.436295Z",
-  "payload_sha256": "b0082ac4264fcc107a1a6f9c0df7f5bc33187f1f2d53c6d80289164381e5717b",
+  "generated_at_utc": "2026-08-27T21:50:15.134098Z",
+  "payload_sha256": "9034574f923d2dc63489dba0a7a48bca6bd6f8a56a051c7cba7beaa6cc8b4b2f",
   "picks_published": false,
   "positions": [],
   "release_state": "NO_RELEASE_SCIENTIFIC_GATE",
