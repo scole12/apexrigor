@@ -4,8 +4,8 @@
   "authorities": {
     "fighter": {
       "bouts": 47,
-      "events": 4,
-      "fighters": 93,
+      "events": 791,
+      "fighters": 1898,
       "results": 47,
       "round_stats": 0,
       "scorecards": 37,
@@ -172,18 +172,18 @@
   },
   "event_id": "2c9eb7de-4ae6-53ff-9b0c-8fc841ee993c",
   "fight_count": 13,
-  "generated_at_utc": "2026-08-27T22:36:03.361533Z",
+  "generated_at_utc": "2026-08-28T02:30:01.221974Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "IMPLEMENTED_NO_ELIGIBLE_ISSUANCE"
   },
   "latest_results": [],
-  "payload_sha256": "8a7f423f8181a9efe78a009d1555be48e793b4193975565d42bc052fc7c57bce",
+  "payload_sha256": "869967ecc62797b8e1acb3ed3cf6e40cd3572e411fb9007fb1bb49cda1d31fff",
   "picks_published": false,
   "release_state": "NO_RELEASE_SCIENTIFIC_GATE",
   "schema_version": "APEX_MMA_PUBLIC_STATE_V2",
   "science_blocker": "NO_RESULT_LEVEL_WINNER_CANDIDATE_IMPROVED_AUTHENTIC_MATCHED_TIME_FANDUEL; RICHER_ACTION_PROCESS_AND_HOLMES_BENCHMARK_REQUIRE_LICENSED_HISTORICAL_ELEMENTAL_ROUND_STATS",
-  "semantic_state_sha256": "224b61056e09391930961a6ec24d34de17ba892f32f1876c045fe3185d33cfe6",
+  "semantic_state_sha256": "f8747ae47d480520ec58653a460b368b6f9c38ce1fba5fa3f612c909d876fa56",
   "source_conflicts": [],
   "system_readiness_state": "TECHNICALLY_READY_SCIENCE_BLOCKED",
   "t2": {
