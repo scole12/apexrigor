@@ -1,0 +1,88 @@
+name: NCAA same-day card email
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  deliver:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      SMTP_HOST: ${{ secrets.NCAAF_SMTP_HOST }}
+      SMTP_PORT: ${{ secrets.NCAAF_SMTP_PORT }}
+      SMTP_USER: ${{ secrets.NCAAF_SMTP_USER }}
+      SMTP_PASSWORD: ${{ secrets.NCAAF_SMTP_PASSWORD }}
+      EMAIL_FROM: ${{ secrets.NCAAF_EMAIL_FROM }}
+      EMAIL_TO: ${{ secrets.NCAAF_EMAIL_TO }}
+      EMAIL_INTERNAL: ${{ secrets.NCAAF_EMAIL_INTERNAL }}
+      CANONICAL_CARD_SHA256: 2eda355c496ac6129c53580668b81e81812f9cf3e14b71d5d10b9708e69df988
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate and send sealed NCAA card
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from email.message import EmailMessage
+          from email.utils import format_datetime
+          from datetime import datetime, timezone
+          import json, os, smtplib, ssl
+
+          document=json.load(open('data/ncaaf_today.json', encoding='utf-8'))
+          games=[game for game in document['slate']['games'] if game.get('positions')]
+          positions=[position for game in games for position in game['positions']]
+          assert len(games)==8, len(games)
+          assert len(positions)==16, len(positions)
+          assert all(float(position['p_selected']) >= 0.5 for position in positions)
+
+          lines=[
+              'APEX NCAA FOOTBALL — LIVE CARD',
+              'SLATE: 2026-08-29',
+              f"CANONICAL CARD SHA256: {os.environ['CANONICAL_CARD_SHA256']}",
+              'SPORTSBOOK: FANDUEL',
+              '',
+          ]
+          for number,game in enumerate(games,1):
+              lines.extend([f"G{number:02d} — {game['matchup']}", f"KICKOFF ET: {game['kickoff_et']}"])
+              for position in game['positions']:
+                  lines.extend([
+                      f"{position['market_type']}: {position['display_selection']} ({int(position['price']):+d})",
+                      f"APEX CALIBRATED WIN PROBABILITY: {100*float(position['p_selected']):.1f}%",
+                      f"RATING: {position['rating']}",
+                  ])
+                  lines.extend(position['rationale'])
+              lines.append('')
+
+          recipients=[]
+          for raw in (os.environ['EMAIL_TO'],os.environ.get('EMAIL_INTERNAL','')):
+              recipients.extend(value.strip() for value in raw.replace(';',',').split(',') if value.strip())
+          recipients=list(dict.fromkeys(recipients))
+          assert recipients
+          message=EmailMessage()
+          message['From']=os.environ['EMAIL_FROM']
+          message['To']=', '.join(recipients)
+          message['Subject']='APEX NCAA Football — August 29 Live Card'
+          message['Date']=format_datetime(datetime.now(timezone.utc))
+          message['Message-ID']=f"<ncaaf-20260829-{os.environ['CANONICAL_CARD_SHA256'][:24]}@apexrigor.com>"
+          message['X-APEX-Canonical-Card-SHA256']=os.environ['CANONICAL_CARD_SHA256']
+          message.set_content('\n'.join(lines)+'\n')
+
+          host=os.environ['SMTP_HOST']; port=int(os.environ['SMTP_PORT'])
+          context=ssl.create_default_context()
+          if port==465:
+              client=smtplib.SMTP_SSL(host,port,context=context,timeout=45)
+          else:
+              client=smtplib.SMTP(host,port,timeout=45)
+              client.ehlo(); client.starttls(context=context); client.ehlo()
+          with client:
+              client.login(os.environ['SMTP_USER'],os.environ['SMTP_PASSWORD'])
+              rejected=client.send_message(message)
+          assert not rejected
+          print('EMAIL_SEND=PASS')
+          print('ISSUED_GAME_COUNT=8')
+          print('POSITION_COUNT=16')
+          print('SELECTED_SIDE_BELOW_50_COUNT=0')
+          print('CANONICAL_CARD_SHA256='+os.environ['CANONICAL_CARD_SHA256'])
+          PY

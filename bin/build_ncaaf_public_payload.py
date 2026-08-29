@@ -155,6 +155,22 @@ def build_slate(slate_date: str) -> tuple[dict[str, Any], dict[str, Any]]:
     venues = venue_names()
     capture = latest_capture(slate_date)
     overrides = {} if capture is None else capture.get("overrides", {})
+    # Emergency and normal gameday operation share one canonical slate object.
+    # Prefer its immutable cards and already-rendered public rationale payload;
+    # retain per-game fallback for older slates.
+    slate_issuance_path = STATE / "issuance" / slate_date / "slate.json"
+    slate_issuance = json.loads(slate_issuance_path.read_text(encoding="utf-8")) if slate_issuance_path.is_file() else None
+    slate_cards = {
+        str(row["game_id"]): row.get("card")
+        for row in (slate_issuance or {}).get("games", [])
+        if row.get("card") is not None
+    }
+    canonical_public_path = STATE / "public" / slate_date / "website.json"
+    canonical_public = json.loads(canonical_public_path.read_text(encoding="utf-8")) if canonical_public_path.is_file() else None
+    canonical_positions = {
+        str(row["game_id"]): list(row.get("positions") or [])
+        for row in (canonical_public or {}).get("games", [])
+    }
     games = []
     counts = {"FBS": 0, "FCS": 0, "D1_VS_LOWER_DIVISION": 0, "spread": 0, "total": 0}
     for schedule in schedules:
@@ -182,8 +198,12 @@ def build_slate(slate_date: str) -> tuple[dict[str, Any], dict[str, Any]]:
         counts["spread"] += int(ats_market["available"])
         counts["total"] += int(totals_market["available"])
         issuance_path = STATE / "issuance" / slate_date / f"{game_id}.json"
-        card = json.loads(issuance_path.read_text(encoding="utf-8")) if issuance_path.is_file() else None
-        positions = [] if card is None else [public_position(position, card) for position in card["positions"]]
+        card = slate_cards.get(game_id)
+        if card is None and issuance_path.is_file():
+            card = json.loads(issuance_path.read_text(encoding="utf-8"))
+        positions = canonical_positions.get(game_id)
+        if positions is None:
+            positions = [] if card is None else [public_position(position, card) for position in card["positions"]]
         if positions:
             status = "APEX_T2_ISSUANCE_LOCKED"
         elif ats_market["available"] or totals_market["available"]:
