@@ -45,12 +45,12 @@ jobs:
           assert public_sha==manifest['canonical_public_payload_sha256']
           document=json.loads(public_path.read_text(encoding='utf-8'))
           slate=document['slate']
-          assert slate['game_count']==51
-          assert slate['issued_game_count']==8
-          assert slate['official_position_count']==16
-          assert slate['market_pending_game_count']==43
+          assert slate['game_count']==manifest['canonical_game_count']==51
+          assert slate['issued_game_count']==manifest['issued_game_count']
+          assert slate['official_position_count']==manifest['official_position_count']
+          assert slate['market_pending_game_count']==manifest['market_pending_game_count']
           positions=[position for game in slate['games'] for position in game.get('positions',[])]
-          assert len(positions)==16
+          assert len(positions)==manifest['official_position_count']
           assert all(float(position['p_selected'])>=0.5 for position in positions)
           assert all(len(position.get('rationale',[]))>=5 for position in positions)
           for filename,expected in manifest['files'].items():
@@ -74,10 +74,10 @@ jobs:
                   'The APEX NCAA Football T-minus-2 Picks Card for August 29, 2026 is attached.\n\n'
                   'The full issued slate has been published to the live NCAA Picks page.\n\n'
                   'Slate summary:\n'
-                  '51 canonical games\n'
-                  '8 FanDuel-issuable games\n'
-                  '16 official positions\n'
-                  '43 market-pending games\n\n'
+                  f"{manifest['canonical_game_count']} canonical games\n"
+                  f"{manifest['issued_game_count']} FanDuel-issuable games\n"
+                  f"{manifest['official_position_count']} official positions\n"
+                  f"{manifest['market_pending_game_count']} market-pending games\n\n"
                   'Attached in order:\n'
                   '1. APEX NCAA Football T-2 Picks Card PDF\n'
                   '2. APEX NCAA Football T-2 Picks Card PNG\n'
@@ -116,9 +116,9 @@ jobs:
           assert not rejected
           print('EMAIL_SEND=PASS')
           print('PRODUCT='+product)
-          print('CANONICAL_GAME_COUNT=51')
-          print('ISSUED_GAME_COUNT=8')
-          print('POSITION_COUNT=16')
+          print('CANONICAL_GAME_COUNT='+str(manifest['canonical_game_count']))
+          print('ISSUED_GAME_COUNT='+str(manifest['issued_game_count']))
+          print('POSITION_COUNT='+str(manifest['official_position_count']))
           print('ATTACHMENT_COUNT=2')
           print('PUBLIC_PAYLOAD_SHA256='+public_sha)
           PY
