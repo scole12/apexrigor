@@ -1,0 +1,15 @@
+{
+  "schema_version": "apex.ncaaf.full_slate_delivery.2026-08-29.v1",
+  "slate_date": "2026-08-29",
+  "canonical_game_count": 51,
+  "issued_game_count": 8,
+  "official_position_count": 16,
+  "market_pending_game_count": 43,
+  "canonical_public_payload_sha256": "bdc9b64c680e0efc3febf99621c5a498727cb13692b8badbab23778952c1e18d",
+  "files": {
+    "NCAAF_T2_FULL_SLATE_20260829.pdf": "92c89149806eee58f8faefa85b9693fdf87828abf4490b7bd2da9bce0978d4e5",
+    "NCAAF_T2_PICKS_CARD_20260829.png": "26c48371afe56714f3edcc956df9a4798d1daee73072da574a6d12b1588c7c53",
+    "T3_APEX_NCAAF_DATA_REPORT_20260829.pdf": "6863b425b90fcf10b7d80f88a8dafd2edb51dabf80158928b9dca23ead24720a",
+    "T3_APEX_NCAAF_DATA_REPORT_20260829.png": "6948174b034107cdfdd576502e6439ffba2a0c864d2e4531ad9b7e0d3364f4f5"
+  }
+}

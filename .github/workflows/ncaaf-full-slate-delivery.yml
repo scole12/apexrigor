@@ -1,0 +1,124 @@
+name: NCAA full-slate product delivery
+
+on:
+  workflow_dispatch:
+    inputs:
+      product:
+        description: NCAA product to deliver
+        required: true
+        type: choice
+        options:
+          - T3
+          - T2
+
+permissions:
+  contents: read
+
+jobs:
+  deliver:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      PRODUCT: ${{ inputs.product }}
+      SMTP_HOST: ${{ secrets.NCAAF_SMTP_HOST }}
+      SMTP_PORT: ${{ secrets.NCAAF_SMTP_PORT }}
+      SMTP_USER: ${{ secrets.NCAAF_SMTP_USER }}
+      SMTP_PASSWORD: ${{ secrets.NCAAF_SMTP_PASSWORD }}
+      EMAIL_FROM: ${{ secrets.NCAAF_EMAIL_FROM }}
+      EMAIL_TO: ${{ secrets.NCAAF_EMAIL_TO }}
+      EMAIL_INTERNAL: ${{ secrets.NCAAF_EMAIL_INTERNAL }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate canonical NCAA payload and send attachments
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from datetime import datetime, timezone
+          from email.message import EmailMessage
+          from email.utils import format_datetime
+          import hashlib, json, os, pathlib, smtplib, ssl
+
+          root=pathlib.Path('data/ncaaf/2026-08-29')
+          manifest=json.loads((root/'full_slate_delivery_manifest.json').read_text())
+          public_path=pathlib.Path('data/ncaaf_today.json')
+          public_sha=hashlib.sha256(public_path.read_bytes()).hexdigest()
+          assert public_sha==manifest['canonical_public_payload_sha256']
+          document=json.loads(public_path.read_text(encoding='utf-8'))
+          slate=document['slate']
+          assert slate['game_count']==51
+          assert slate['issued_game_count']==8
+          assert slate['official_position_count']==16
+          assert slate['market_pending_game_count']==43
+          positions=[position for game in slate['games'] for position in game.get('positions',[])]
+          assert len(positions)==16
+          assert all(float(position['p_selected'])>=0.5 for position in positions)
+          assert all(len(position.get('rationale',[]))>=5 for position in positions)
+          for filename,expected in manifest['files'].items():
+              assert hashlib.sha256((root/filename).read_bytes()).hexdigest()==expected
+
+          product=os.environ['PRODUCT']
+          if product=='T3':
+              subject='APEX NCAA Football T-3 Data Report — August 29, 2026'
+              body=(
+                  'The APEX NCAA Football T-minus-3 Data Report for August 29, 2026 is attached.\n\n'
+                  'The report accounts for all 51 canonical games, factual hydration, input readiness, '
+                  'market coverage, and explicit missingness. T-3 creates no final positions.\n\n'
+                  'Attached in order:\n'
+                  '1. APEX NCAA Football T-3 Data Report PDF\n'
+                  '2. APEX NCAA Football T-3 Data Report PNG\n'
+              )
+              attachments=['T3_APEX_NCAAF_DATA_REPORT_20260829.pdf','T3_APEX_NCAAF_DATA_REPORT_20260829.png']
+          else:
+              subject='APEX NCAA Football T-2 Picks Card — August 29, 2026'
+              body=(
+                  'The APEX NCAA Football T-minus-2 Picks Card for August 29, 2026 is attached.\n\n'
+                  'The full issued slate has been published to the live NCAA Picks page.\n\n'
+                  'Slate summary:\n'
+                  '51 canonical games\n'
+                  '8 FanDuel-issuable games\n'
+                  '16 official positions\n'
+                  '43 market-pending games\n\n'
+                  'Attached in order:\n'
+                  '1. APEX NCAA Football T-2 Picks Card PDF\n'
+                  '2. APEX NCAA Football T-2 Picks Card PNG\n'
+              )
+              attachments=['NCAAF_T2_FULL_SLATE_20260829.pdf','NCAAF_T2_PICKS_CARD_20260829.png']
+
+          recipients=[]
+          for raw in (os.environ['EMAIL_TO'],os.environ.get('EMAIL_INTERNAL','')):
+              recipients.extend(value.strip() for value in raw.replace(';',',').split(',') if value.strip())
+          recipients=list(dict.fromkeys(recipients))
+          assert recipients
+          message=EmailMessage()
+          message['From']=os.environ['EMAIL_FROM']
+          message['To']=', '.join(recipients)
+          message['Subject']=subject
+          message['Date']=format_datetime(datetime.now(timezone.utc))
+          message['Message-ID']=f"<ncaaf-20260829-{product.lower()}-{public_sha[:20]}@apexrigor.com>"
+          message['X-APEX-NCAA-Public-Payload-SHA256']=public_sha
+          message.set_content(body)
+          for filename in attachments:
+              path=root/filename
+              if path.suffix=='.pdf':
+                  message.add_attachment(path.read_bytes(),maintype='application',subtype='pdf',filename=filename)
+              else:
+                  message.add_attachment(path.read_bytes(),maintype='image',subtype='png',filename=filename)
+
+          host=os.environ['SMTP_HOST']; port=int(os.environ['SMTP_PORT']); context=ssl.create_default_context()
+          if port==465:
+              client=smtplib.SMTP_SSL(host,port,context=context,timeout=45)
+          else:
+              client=smtplib.SMTP(host,port,timeout=45)
+              client.ehlo(); client.starttls(context=context); client.ehlo()
+          with client:
+              client.login(os.environ['SMTP_USER'],os.environ['SMTP_PASSWORD'])
+              rejected=client.send_message(message)
+          assert not rejected
+          print('EMAIL_SEND=PASS')
+          print('PRODUCT='+product)
+          print('CANONICAL_GAME_COUNT=51')
+          print('ISSUED_GAME_COUNT=8')
+          print('POSITION_COUNT=16')
+          print('ATTACHMENT_COUNT=2')
+          print('PUBLIC_PAYLOAD_SHA256='+public_sha)
+          PY
