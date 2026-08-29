@@ -1,5 +1,5 @@
 {
-  "schema_version": "apex.ncaaf.full_slate_delivery.2026-08-29.v1",
+  "schema_version": "apex.ncaaf.full_slate_delivery.2026-08-29.v2",
   "slate_date": "2026-08-29",
   "canonical_game_count": 51,
   "issued_game_count": 8,
