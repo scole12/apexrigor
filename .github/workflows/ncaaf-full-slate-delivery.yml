@@ -10,6 +10,7 @@ on:
         options:
           - T3
           - T2
+          - RESULTS
 
 permissions:
   contents: read
@@ -55,6 +56,8 @@ jobs:
           assert all(len(position.get('rationale',[]))>=5 for position in positions)
           for filename,expected in manifest['files'].items():
               assert hashlib.sha256((root/filename).read_bytes()).hexdigest()==expected
+          for filename,expected in manifest.get('results_files',{}).items():
+              assert hashlib.sha256(pathlib.Path(filename).read_bytes()).hexdigest()==expected
 
           product=os.environ['PRODUCT']
           if product=='T3':
@@ -68,7 +71,7 @@ jobs:
                   '2. APEX NCAA Football T-3 Data Report PNG\n'
               )
               attachments=['T3_APEX_NCAAF_DATA_REPORT_20260829.pdf','T3_APEX_NCAAF_DATA_REPORT_20260829.png']
-          else:
+          elif product=='T2':
               subject='APEX NCAA Football T-2 Picks Card — August 29, 2026'
               body=(
                   'The APEX NCAA Football T-minus-2 Picks Card for August 29, 2026 is attached.\n\n'
@@ -83,6 +86,25 @@ jobs:
                   '2. APEX NCAA Football T-2 Picks Card PNG\n'
               )
               attachments=['NCAAF_T2_FULL_SLATE_20260829.pdf','NCAAF_T2_PICKS_CARD_20260829.png']
+          else:
+              results=json.loads(pathlib.Path('data/ncaaf_results_summary.json').read_text())
+              assert results['graded_position_count']>0
+              assert results['pending_position_count']==0
+              subject='APEX NCAA Football Graded Results — August 29, 2026'
+              body=(
+                  'The official APEX NCAA Football graded results for August 29, 2026 are attached.\n\n'
+                  'Every immutable issued position was settled against its exact issued FanDuel line. '
+                  'No engine was rerun and no later market line was substituted.\n\n'
+                  'Attached in order:\n'
+                  '1. APEX NCAA Football Detailed Results PDF\n'
+                  '2. APEX NCAA Football Prior-Day Slate PNG\n'
+                  '3. APEX NCAA Football Cumulative Record PNG\n'
+              )
+              attachments=[
+                  'results/NCAAF_DETAILED_RESULTS_20260829.pdf',
+                  'results/NCAAF_PRIOR_DAY_SLATE_20260829.png',
+                  'results/NCAAF_CUMULATIVE_RECORD_2026.png',
+              ]
 
           recipients=[]
           for raw in (os.environ['EMAIL_TO'],os.environ.get('EMAIL_INTERNAL','')):
