@@ -5,7 +5,7 @@
   "issued_game_count": 8,
   "official_position_count": 16,
   "market_pending_game_count": 43,
-  "canonical_public_payload_sha256": "254cec15986ce18aba6af4d9bda00a86ccf5656e8584e327bc78cb37d79745d6",
+  "canonical_public_payload_sha256": "79cd59eea0632a787f603ff391c3dba51e3efdba52c236230352ddd506a79f01",
   "files": {
     "NCAAF_T2_FULL_SLATE_20260829.pdf": "92c89149806eee58f8faefa85b9693fdf87828abf4490b7bd2da9bce0978d4e5",
     "NCAAF_T2_PICKS_CARD_20260829.png": "26c48371afe56714f3edcc956df9a4798d1daee73072da574a6d12b1588c7c53",
@@ -13,7 +13,10 @@
     "T3_APEX_NCAAF_DATA_REPORT_20260829.png": "6948174b034107cdfdd576502e6439ffba2a0c864d2e4531ad9b7e0d3364f4f5"
   },
   "results_files": {
-    "data/ncaaf_results_archive.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
-    "data/ncaaf_results_summary.json": "614253072d11b648445be75e17f057b2f683832da1f21a5400f880bfa9ce6c88"
+    "data/ncaaf/2026-08-29/results/NCAAF_DETAILED_RESULTS_20260829.pdf": "0c234dde18a00e24967f0b53ebd7d2205816efaaef0c3989b9c0abccf616e33b",
+    "data/ncaaf/2026-08-29/results/NCAAF_PRIOR_DAY_SLATE_20260829.png": "0c27277c174ed85c33d672cf2229837a62c06bba76e78690b476b39b3451af07",
+    "data/ncaaf/2026-08-29/results/NCAAF_CUMULATIVE_RECORD_2026.png": "eebfec6abd99eac023605736ba6aac2bce7acdc32e3e856d2bc989354ff78155",
+    "data/ncaaf_results_archive.json": "172a9ddab856428d7fd70423a0a8a3031681e42621aa3c44e296459d1e5446c8",
+    "data/ncaaf_results_summary.json": "859a2de5e2f7a5c8efb2a3afc9aa1e61cfc161f26982f4585015f217c6a2cf1d"
   }
 }
