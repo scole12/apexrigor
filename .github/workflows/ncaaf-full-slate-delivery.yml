@@ -11,6 +11,10 @@ on:
           - T3
           - T2
           - RESULTS
+      slate_date:
+        description: NCAA slate date (YYYY-MM-DD)
+        required: true
+        type: string
 
 permissions:
   contents: read
@@ -21,6 +25,7 @@ jobs:
     timeout-minutes: 10
     env:
       PRODUCT: ${{ inputs.product }}
+      SLATE_DATE: ${{ inputs.slate_date }}
       SMTP_HOST: ${{ secrets.NCAAF_SMTP_HOST }}
       SMTP_PORT: ${{ secrets.NCAAF_SMTP_PORT }}
       SMTP_USER: ${{ secrets.NCAAF_SMTP_USER }}
@@ -39,14 +44,21 @@ jobs:
           from email.utils import format_datetime
           import hashlib, json, os, pathlib, smtplib, ssl
 
-          root=pathlib.Path('data/ncaaf/2026-08-29')
+          slate_date=os.environ['SLATE_DATE']
+          parsed_date=datetime.strptime(slate_date,'%Y-%m-%d')
+          assert parsed_date.strftime('%Y-%m-%d')==slate_date
+          display_date=parsed_date.strftime('%B %-d, %Y')
+          date_token=parsed_date.strftime('%Y%m%d')
+          root=pathlib.Path('data/ncaaf')/slate_date
           manifest=json.loads((root/'full_slate_delivery_manifest.json').read_text())
+          assert manifest['slate_date']==slate_date
           public_path=pathlib.Path('data/ncaaf_today.json')
           public_sha=hashlib.sha256(public_path.read_bytes()).hexdigest()
           assert public_sha==manifest['canonical_public_payload_sha256']
           document=json.loads(public_path.read_text(encoding='utf-8'))
           slate=document['slate']
-          assert slate['game_count']==manifest['canonical_game_count']==51
+          assert slate['game_count']==manifest['canonical_game_count']==len(slate['games'])
+          assert len({str(game['game_id']) for game in slate['games']})==len(slate['games'])
           assert slate['issued_game_count']==manifest['issued_game_count']
           assert slate['official_position_count']==manifest['official_position_count']
           assert slate['market_pending_game_count']==manifest['market_pending_game_count']
@@ -61,20 +73,20 @@ jobs:
 
           product=os.environ['PRODUCT']
           if product=='T3':
-              subject='APEX NCAA Football T-3 Data Report — August 29, 2026'
+              subject=f'APEX NCAA Football T-3 Data Report — {display_date}'
               body=(
-                  'The APEX NCAA Football T-minus-3 Data Report for August 29, 2026 is attached.\n\n'
-                  'The report accounts for all 51 canonical games, factual hydration, input readiness, '
+                  f'The APEX NCAA Football T-minus-3 Data Report for {display_date} is attached.\n\n'
+                  f"The report accounts for all {manifest['canonical_game_count']} canonical games, factual hydration, input readiness, "
                   'market coverage, and explicit missingness. T-3 creates no final positions.\n\n'
                   'Attached in order:\n'
                   '1. APEX NCAA Football T-3 Data Report PDF\n'
                   '2. APEX NCAA Football T-3 Data Report PNG\n'
               )
-              attachments=['T3_APEX_NCAAF_DATA_REPORT_20260829.pdf','T3_APEX_NCAAF_DATA_REPORT_20260829.png']
+              attachments=[f'T3_APEX_NCAAF_DATA_REPORT_{date_token}.pdf',f'T3_APEX_NCAAF_DATA_REPORT_{date_token}.png']
           elif product=='T2':
-              subject='APEX NCAA Football T-2 Picks Card — August 29, 2026'
+              subject=f'APEX NCAA Football T-2 Picks Card — {display_date}'
               body=(
-                  'The APEX NCAA Football T-minus-2 Picks Card for August 29, 2026 is attached.\n\n'
+                  f'The APEX NCAA Football T-minus-2 Picks Card for {display_date} is attached.\n\n'
                   'The full issued slate has been published to the live NCAA Picks page.\n\n'
                   'Slate summary:\n'
                   f"{manifest['canonical_game_count']} canonical games\n"
@@ -85,14 +97,13 @@ jobs:
                   '1. APEX NCAA Football T-2 Picks Card PDF\n'
                   '2. APEX NCAA Football T-2 Picks Card PNG\n'
               )
-              attachments=['NCAAF_T2_FULL_SLATE_20260829.pdf','NCAAF_T2_PICKS_CARD_20260829.png']
+              attachments=[f'NCAAF_T2_FULL_SLATE_{date_token}.pdf',f'NCAAF_T2_PICKS_CARD_{date_token}.png']
           else:
               results=json.loads(pathlib.Path('data/ncaaf_results_summary.json').read_text())
               assert results['graded_position_count']>0
-              assert results['pending_position_count']==0
-              subject='APEX NCAA Football Graded Results — August 29, 2026'
+              subject=f'APEX NCAA Football Graded Results — {display_date}'
               body=(
-                  'The official APEX NCAA Football graded results for August 29, 2026 are attached.\n\n'
+                  f'The official APEX NCAA Football graded results for {display_date} are attached.\n\n'
                   'Every immutable issued position was settled against its exact issued FanDuel line. '
                   'No engine was rerun and no later market line was substituted.\n\n'
                   'Attached in order:\n'
@@ -101,10 +112,11 @@ jobs:
                   '3. APEX NCAA Football Cumulative Record PNG\n'
               )
               attachments=[
-                  'results/NCAAF_DETAILED_RESULTS_20260829.pdf',
-                  'results/NCAAF_PRIOR_DAY_SLATE_20260829.png',
+                  f'results/NCAAF_DETAILED_RESULTS_{date_token}.pdf',
+                  f'results/NCAAF_PRIOR_DAY_SLATE_{date_token}.png',
                   'results/NCAAF_CUMULATIVE_RECORD_2026.png',
               ]
+              assert len(attachments)==3
 
           recipients=[]
           for raw in (os.environ['EMAIL_TO'],os.environ.get('EMAIL_INTERNAL','')):
@@ -116,7 +128,7 @@ jobs:
           message['To']=', '.join(recipients)
           message['Subject']=subject
           message['Date']=format_datetime(datetime.now(timezone.utc))
-          message['Message-ID']=f"<ncaaf-20260829-{product.lower()}-{public_sha[:20]}@apexrigor.com>"
+          message['Message-ID']=f"<ncaaf-{date_token}-{product.lower()}-{public_sha[:20]}@apexrigor.com>"
           message['X-APEX-NCAA-Public-Payload-SHA256']=public_sha
           message.set_content(body)
           for filename in attachments:
@@ -141,6 +153,6 @@ jobs:
           print('CANONICAL_GAME_COUNT='+str(manifest['canonical_game_count']))
           print('ISSUED_GAME_COUNT='+str(manifest['issued_game_count']))
           print('POSITION_COUNT='+str(manifest['official_position_count']))
-          print('ATTACHMENT_COUNT=2')
+          print('ATTACHMENT_COUNT='+str(len(attachments)))
           print('PUBLIC_PAYLOAD_SHA256='+public_sha)
           PY
