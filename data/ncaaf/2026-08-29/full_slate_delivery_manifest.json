@@ -17,15 +17,14 @@
   "results_files": {
     "data/ncaaf/2026-08-29/results/NCAAF_DETAILED_RESULTS_20260829.pdf": "b7184e5528afa9f21c35ac5553e5d8184a440156b6ee990c40f6cbf041b4ef16",
     "data/ncaaf/2026-08-29/results/NCAAF_PRIOR_DAY_SLATE_20260829.png": "35739ee98cf134c79ac506607187ae12d5dacea5ad36884fea82e9d22aee444e",
-    "data/ncaaf/2026-08-29/results/NCAAF_CUMULATIVE_RECORD_2026.png": "5c262593d6b96f6fb36cc08684f973f3d9757f8550e7737bf1b9eefffd22a952",
-    "data/ncaaf_results_archive.json": "4ba3d8e87bf179d06b755bb58a7a859b04896ff9da3fbd5cb03fab6d2d6d35c1",
-    "data/ncaaf_results_summary.json": "e9b69dfc4316ede1080782805a53d1d146de76a7c9039c59cfa91aa16e093818",
-    "data/ncaaf_results_cumulative.json": "e9b69dfc4316ede1080782805a53d1d146de76a7c9039c59cfa91aa16e093818"
+    "data/ncaaf/2026-08-29/results/APEX_CUMULATIVE_RECORD_2026.png": "96d377de8ab20c823be7bf794fdc1691662770815bca31e9d6ee649e7d137018",
+    "data/ncaaf_results_cumulative.json": "e9b69dfc4316ede1080782805a53d1d146de76a7c9039c59cfa91aa16e093818",
+    "data/apex_results_summary.json": "8dae6202ff91310e71612cff463f5e39ff2cfba9f43e31019846fac4307bd04e"
   },
   "attachment_count": 3,
   "attachment_names": [
     "results/NCAAF_DETAILED_RESULTS_20260829.pdf",
-    "results/NCAAF_CUMULATIVE_RECORD_2026.png",
+    "results/APEX_CUMULATIVE_RECORD_2026.png",
     "results/NCAAF_PRIOR_DAY_SLATE_20260829.png"
   ]
 }
