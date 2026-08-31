@@ -25,6 +25,7 @@ on:
           - RECOVERY
           - CORRECTED
           - FINAL_CORRECTED
+          - APEX_FINAL_CORRECTED
 
 permissions:
   contents: read
@@ -62,8 +63,9 @@ jobs:
           display_date=parsed_date.strftime('%B %-d, %Y')
           date_token=parsed_date.strftime('%Y%m%d')
           delivery_mode=os.environ['DELIVERY_MODE']
-          assert delivery_mode in ('NORMAL','RECOVERY','CORRECTED','FINAL_CORRECTED')
-          if delivery_mode in ('RECOVERY','CORRECTED','FINAL_CORRECTED'):
+          explicit_modes=('RECOVERY','CORRECTED','FINAL_CORRECTED','APEX_FINAL_CORRECTED')
+          assert delivery_mode in ('NORMAL',)+explicit_modes
+          if delivery_mode in explicit_modes:
               assert os.environ['PRODUCT']=='RESULTS'
           root=pathlib.Path('data/ncaaf')/slate_date
           manifest=json.loads((root/'full_slate_delivery_manifest.json').read_text())
@@ -116,6 +118,7 @@ jobs:
               attachments=[f'NCAAF_T2_FULL_SLATE_{date_token}.pdf',f'NCAAF_T2_PICKS_CARD_{date_token}.png']
           else:
               results=json.loads(pathlib.Path('data/ncaaf_results_cumulative.json').read_text())
+              apex=json.loads(pathlib.Path('data/apex_results_summary.json').read_text())
               archive=results['positions']
               assert results['graded_position_count']>0
               prior=[row for row in archive if row.get('slate_date')==slate_date]
@@ -125,23 +128,22 @@ jobs:
               prior_ats=counts([row for row in prior if row.get('market')=='ATS'])
               prior_totals=counts([row for row in prior if row.get('market')=='TOTALS'])
               season=results['season_record']
-              settled=int(results['settled_position_count'])
-              tracked=int(results['total_tracked_positions'])
-              binary_settled=int(season['W'])+int(season['L'])
-              win_rate=0.0 if not binary_settled else 100.0*int(season['W'])/binary_settled
               def tier_line(engine,key):
                   values=[]
                   for tier in ('WEAK','MODERATE','STRONG','ELITE'):
                       row=results[key][tier]
-                      values.append(f"{tier} {row['W']}W-{row['L']}L-{row['PUSH']}P")
+                      value=f"{tier} {row['W']}W-{row['L']}L"
+                      if int(row['PUSH']): value+=f"-{row['PUSH']}P"
+                      values.append(value)
                   return engine+': '+' · '.join(values)
               tier_rank={'WEAK':1,'MODERATE':2,'STRONG':3,'ELITE':4}
               ordered=sorted((float(position['p_selected']),tier_rank[position['rating']]) for position in positions)
               mismatch_count=sum(right[1]<left[1] for left,right in zip(ordered,ordered[1:]))
               results_receipt=hashlib.sha256(pathlib.Path('data/ncaaf_results_cumulative.json').read_bytes()).hexdigest()
+              apex_overall=apex['overall']
               subject=(
                   'APEX NCAA Football Daily Graded Results — Previous Day Slate — Final Corrected'
-                  if delivery_mode=='FINAL_CORRECTED' else
+                  if delivery_mode in ('FINAL_CORRECTED','APEX_FINAL_CORRECTED') else
                   'APEX NCAA Football Daily Graded Results — Previous Day Slate — Corrected'
                   if delivery_mode=='CORRECTED' else
                   f'APEX NCAA Football Results — {display_date} — Recovery'
@@ -153,8 +155,8 @@ jobs:
                   f"Prior-day combined: {prior_all['W']}W-{prior_all['L']}L\n"
                   f"ATS: {prior_ats['W']}W-{prior_ats['L']}L\n"
                   f"Totals: {prior_totals['W']}W-{prior_totals['L']}L\n"
-                  f"Cumulative NCAA: {season['W']}W-{season['L']}L-{season['PUSH']}P ({win_rate:.1f}%)\n"
-                  f"NCAA settled/tracked: {settled}/{tracked} · VOID {season['VOID']} · PENDING {season['PENDING']} · OTHER 0\n\n"
+                  "\nAPEX cumulative record:\n"
+                  f"{apex_overall['wins']}W-{apex_overall['losses']}L-{apex_overall['pushes']}P ({apex_overall['win_rate_display']})\n\n"
                   "Tier quality:\n"
                   +tier_line('ATS','ats_by_tier')+'\n'
                   +tier_line('TOTALS','totals_by_tier')+'\n\n'
@@ -164,12 +166,12 @@ jobs:
                   "Every immutable issued position was settled against its exact issued FanDuel line. No engine was rerun and no later market line was substituted.\n\n"
                   "Attachments, in order:\n"
                   "1. Elite detailed graded-results PDF\n"
-                  "2. Cumulative APEX NCAA Football record graphic\n"
+                  "2. APEX cumulative record graphic\n"
                   "3. Prior-day single-slate results graphic\n"
               )
               attachments=[
                   f'results/NCAAF_DETAILED_RESULTS_{date_token}.pdf',
-                  'results/NCAAF_CUMULATIVE_RECORD_2026.png',
+                  'results/APEX_CUMULATIVE_RECORD_2026.png',
                   f'results/NCAAF_PRIOR_DAY_SLATE_{date_token}.png',
               ]
               assert len(attachments)==3
@@ -186,7 +188,7 @@ jobs:
           message['Date']=format_datetime(datetime.now(timezone.utc))
           message['Message-ID']=(
               f"<ncaaf-{date_token}-{product.lower()}-{delivery_mode.lower()}-{os.environ['GITHUB_RUN_ID']}@apexrigor.com>"
-              if delivery_mode in ('RECOVERY','CORRECTED','FINAL_CORRECTED') else
+              if delivery_mode in explicit_modes else
               f"<ncaaf-{date_token}-{product.lower()}-{public_sha[:20]}@apexrigor.com>"
           )
           message['X-APEX-NCAA-Public-Payload-SHA256']=public_sha
@@ -210,7 +212,7 @@ jobs:
               })
 
           mime_bytes=message.as_bytes(policy=SMTP)
-          if delivery_mode in ('RECOVERY','CORRECTED','FINAL_CORRECTED'):
+          if delivery_mode in explicit_modes:
               pathlib.Path(f'NCAAF_RESULTS_{delivery_mode}_MESSAGE.eml').write_bytes(mime_bytes)
 
           host=os.environ['SMTP_HOST']; port=int(os.environ['SMTP_PORT']); context=ssl.create_default_context()
@@ -221,7 +223,7 @@ jobs:
               client.ehlo(); client.starttls(context=context); client.ehlo()
           with client:
               client.login(os.environ['SMTP_USER'],os.environ['SMTP_PASSWORD'])
-              if delivery_mode in ('RECOVERY','CORRECTED','FINAL_CORRECTED'):
+              if delivery_mode in explicit_modes:
                   envelope_from=parseaddr(str(message['From']))[1]
                   mail_code,mail_text=client.mail(envelope_from)
                   assert 200 <= mail_code < 300, (mail_code,mail_text)

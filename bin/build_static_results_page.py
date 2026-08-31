@@ -102,7 +102,7 @@ def build():
     summary = build_canonical_results_summary(d)
     if SUMMARY_PATH.exists():
         ms = json.loads(SUMMARY_PATH.read_text(encoding="utf-8"))
-        if (ms.get("sports_included") or []) == ["mlb"]:
+        if ms.get("overall") and (ms.get("sports") or {}).get("mlb"):
             summary = ms
     season = d.get("season", {}) or {}
     archive = d.get("archive", []) or []
