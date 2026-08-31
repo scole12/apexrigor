@@ -16,13 +16,14 @@ on:
         required: true
         type: string
       delivery_mode:
-        description: Normal delivery or an explicitly authorized recovery
+        description: Normal delivery or an explicitly authorized one-time result delivery
         required: true
         default: NORMAL
         type: choice
         options:
           - NORMAL
           - RECOVERY
+          - CORRECTED
 
 permissions:
   contents: read
@@ -60,8 +61,8 @@ jobs:
           display_date=parsed_date.strftime('%B %-d, %Y')
           date_token=parsed_date.strftime('%Y%m%d')
           delivery_mode=os.environ['DELIVERY_MODE']
-          assert delivery_mode in ('NORMAL','RECOVERY')
-          if delivery_mode=='RECOVERY':
+          assert delivery_mode in ('NORMAL','RECOVERY','CORRECTED')
+          if delivery_mode in ('RECOVERY','CORRECTED'):
               assert os.environ['PRODUCT']=='RESULTS'
           root=pathlib.Path('data/ncaaf')/slate_date
           manifest=json.loads((root/'full_slate_delivery_manifest.json').read_text())
@@ -114,29 +115,58 @@ jobs:
               attachments=[f'NCAAF_T2_FULL_SLATE_{date_token}.pdf',f'NCAAF_T2_PICKS_CARD_{date_token}.png']
           else:
               results=json.loads(pathlib.Path('data/ncaaf_results_summary.json').read_text())
+              archive=json.loads(pathlib.Path('data/ncaaf_results_archive.json').read_text())
               assert results['graded_position_count']>0
+              prior=[row for row in archive if row.get('date')==slate_date]
+              def counts(rows):
+                  return {key:sum(row.get('result')==key for row in rows) for key in ('W','L','PUSH','VOID','PENDING')}
+              prior_all=counts(prior)
+              prior_ats=counts([row for row in prior if row.get('market')=='ATS'])
+              prior_totals=counts([row for row in prior if row.get('market')=='TOTALS'])
+              season=results['season_record']
+              settled=int(season['W'])+int(season['L'])
+              tracked=settled+int(season['PUSH'])+int(season['VOID'])+int(season['PENDING'])
+              win_rate=0.0 if not settled else 100.0*int(season['W'])/settled
+              def tier_line(engine,key):
+                  values=[]
+                  for tier in ('WEAK','MODERATE','STRONG','ELITE'):
+                      row=results[key][tier]
+                      values.append(f"{tier} {row['W']}W-{row['L']}L-{row['PUSH']}P (N={row['W']+row['L']+row['PUSH']+row['VOID']+row['PENDING']})")
+                  return engine+': '+' · '.join(values)
+              tier_rank={'WEAK':1,'MODERATE':2,'STRONG':3,'ELITE':4}
+              ordered=sorted((float(position['p_selected']),tier_rank[position['rating']]) for position in positions)
+              mismatch_count=sum(right[1]<left[1] for left,right in zip(ordered,ordered[1:]))
+              results_receipt=hashlib.sha256(pathlib.Path('data/ncaaf_results_summary.json').read_bytes()).hexdigest()
               subject=(
+                  'APEX NCAA Football Daily Graded Results — Previous Day Slate — Corrected'
+                  if delivery_mode=='CORRECTED' else
                   f'APEX NCAA Football Results — {display_date} — Recovery'
                   if delivery_mode=='RECOVERY' else
-                  f'APEX NCAA Football Graded Results — {display_date}'
+                  'APEX NCAA Football Daily Graded Results — Previous Day Slate'
               )
               body=(
-                  (
-                      f'This is the authorized recovery delivery of the official APEX NCAA Football results for {display_date}.\n\n'
-                      if delivery_mode=='RECOVERY' else
-                      f'The official APEX NCAA Football graded results for {display_date} are attached.\n\n'
-                  ) +
-                  'Every immutable issued position was settled against its exact issued FanDuel line. '
-                  'No engine was rerun and no later market line was substituted.\n\n'
-                  'Attached in order:\n'
-                  '1. APEX NCAA Football Detailed Results PDF\n'
-                  '2. APEX NCAA Football Prior-Day Slate PNG\n'
-                  '3. APEX NCAA Football Cumulative Record PNG\n'
+                  "The previous day's APEX NCAA Football results have been graded from the immutable issuance and official full-game outcomes.\n\n"
+                  f"Prior-day combined: {prior_all['W']}W-{prior_all['L']}L\n"
+                  f"ATS: {prior_ats['W']}W-{prior_ats['L']}L\n"
+                  f"Totals: {prior_totals['W']}W-{prior_totals['L']}L\n"
+                  f"Cumulative NCAA: {season['W']}W-{season['L']}L-{season['PUSH']}P ({win_rate:.1f}%)\n"
+                  f"NCAA settled/tracked: {settled}/{tracked} · VOID {season['VOID']} · PENDING {season['PENDING']} · OTHER 0\n\n"
+                  "Tier quality:\n"
+                  +tier_line('ATS','ats_by_tier')+'\n'
+                  +tier_line('TOTALS','totals_by_tier')+'\n\n'
+                  f"Probability/tier mismatches: {mismatch_count}\n\n"
+                  "Results: https://apexrigor.com/ncaaf/results\n"
+                  f"Canonical receipt SHA256: {results_receipt}\n\n"
+                  "Every immutable issued position was settled against its exact issued FanDuel line. No engine was rerun and no later market line was substituted.\n\n"
+                  "Attachments, in order:\n"
+                  "1. Elite detailed graded-results PDF\n"
+                  "2. Cumulative APEX NCAA Football record graphic\n"
+                  "3. Prior-day single-slate results graphic\n"
               )
               attachments=[
                   f'results/NCAAF_DETAILED_RESULTS_{date_token}.pdf',
-                  f'results/NCAAF_PRIOR_DAY_SLATE_{date_token}.png',
                   'results/NCAAF_CUMULATIVE_RECORD_2026.png',
+                  f'results/NCAAF_PRIOR_DAY_SLATE_{date_token}.png',
               ]
               assert len(attachments)==3
 
@@ -151,8 +181,8 @@ jobs:
           message['Subject']=subject
           message['Date']=format_datetime(datetime.now(timezone.utc))
           message['Message-ID']=(
-              f"<ncaaf-{date_token}-{product.lower()}-recovery-{os.environ['GITHUB_RUN_ID']}@apexrigor.com>"
-              if delivery_mode=='RECOVERY' else
+              f"<ncaaf-{date_token}-{product.lower()}-{delivery_mode.lower()}-{os.environ['GITHUB_RUN_ID']}@apexrigor.com>"
+              if delivery_mode in ('RECOVERY','CORRECTED') else
               f"<ncaaf-{date_token}-{product.lower()}-{public_sha[:20]}@apexrigor.com>"
           )
           message['X-APEX-NCAA-Public-Payload-SHA256']=public_sha
@@ -176,8 +206,8 @@ jobs:
               })
 
           mime_bytes=message.as_bytes(policy=SMTP)
-          if delivery_mode=='RECOVERY':
-              pathlib.Path('NCAAF_AUG29_RESULTS_RECOVERY_MESSAGE.eml').write_bytes(mime_bytes)
+          if delivery_mode in ('RECOVERY','CORRECTED'):
+              pathlib.Path(f'NCAAF_RESULTS_{delivery_mode}_MESSAGE.eml').write_bytes(mime_bytes)
 
           host=os.environ['SMTP_HOST']; port=int(os.environ['SMTP_PORT']); context=ssl.create_default_context()
           if port==465:
@@ -187,7 +217,7 @@ jobs:
               client.ehlo(); client.starttls(context=context); client.ehlo()
           with client:
               client.login(os.environ['SMTP_USER'],os.environ['SMTP_PASSWORD'])
-              if delivery_mode=='RECOVERY':
+              if delivery_mode in ('RECOVERY','CORRECTED'):
                   envelope_from=parseaddr(str(message['From']))[1]
                   mail_code,mail_text=client.mail(envelope_from)
                   assert 200 <= mail_code < 300, (mail_code,mail_text)
@@ -210,7 +240,7 @@ jobs:
                   if 'queued as ' in lower:
                       provider_queue_id=smtp_response[lower.index('queued as ')+10:].split()[0].strip('.,;')
                   evidence={
-                      'schema_version':'apex.ncaaf.results_recovery_email_evidence.v1',
+                      'schema_version':'apex.ncaaf.results_explicit_email_evidence.v2',
                       'slate_date':slate_date,
                       'delivery_mode':delivery_mode,
                       'from':str(message['From']),
@@ -236,16 +266,17 @@ jobs:
                       'delivery_state':'PENDING_PROVIDER_EVENT',
                       'credentials_recorded':False,
                   }
-                  pathlib.Path('NCAAF_AUG29_RESULTS_RECOVERY_TRANSACTION.json').write_text(
+                  pathlib.Path(f'NCAAF_RESULTS_{delivery_mode}_TRANSACTION.json').write_text(
                       json.dumps(evidence,sort_keys=True,indent=2)+'\n',encoding='utf-8'
                   )
-                  print('RECOVERY_MESSAGE_ID='+str(message['Message-ID']))
-                  print('RECOVERY_ENVELOPE_RCPT_COUNT='+str(len(recipients)))
-                  print('RECOVERY_ENVELOPE_RCPT_LIST='+','.join(recipients))
-                  print('RECOVERY_SMTP_RESPONSE_CODE='+str(smtp_code))
-                  print('RECOVERY_SMTP_RESPONSE_TEXT='+smtp_response)
-                  print('RECOVERY_PROVIDER_QUEUE_ID='+provider_queue_id)
-                  print('RECOVERY_ACCEPTED_AT='+accepted_at)
+                  prefix=delivery_mode
+                  print(prefix+'_MESSAGE_ID='+str(message['Message-ID']))
+                  print(prefix+'_ENVELOPE_RCPT_COUNT='+str(len(recipients)))
+                  print(prefix+'_ENVELOPE_RCPT_LIST='+','.join(recipients))
+                  print(prefix+'_SMTP_RESPONSE_CODE='+str(smtp_code))
+                  print(prefix+'_SMTP_RESPONSE_TEXT='+smtp_response)
+                  print(prefix+'_PROVIDER_QUEUE_ID='+provider_queue_id)
+                  print(prefix+'_ACCEPTED_AT='+accepted_at)
               else:
                   rejected=client.send_message(message)
                   assert not rejected
@@ -257,12 +288,12 @@ jobs:
           print('ATTACHMENT_COUNT='+str(len(attachments)))
           print('PUBLIC_PAYLOAD_SHA256='+public_sha)
           PY
-      - name: Preserve NCAA recovery transaction evidence
-        if: ${{ inputs.product == 'RESULTS' && inputs.delivery_mode == 'RECOVERY' }}
+      - name: Preserve NCAA explicit results transaction evidence
+        if: ${{ inputs.product == 'RESULTS' && inputs.delivery_mode != 'NORMAL' }}
         uses: actions/upload-artifact@v4
         with:
-          name: ncaaf-results-recovery-${{ inputs.slate_date }}-${{ github.run_id }}
+          name: ncaaf-results-${{ inputs.delivery_mode }}-${{ inputs.slate_date }}-${{ github.run_id }}
           path: |
-            NCAAF_AUG29_RESULTS_RECOVERY_MESSAGE.eml
-            NCAAF_AUG29_RESULTS_RECOVERY_TRANSACTION.json
+            NCAAF_RESULTS_${{ inputs.delivery_mode }}_MESSAGE.eml
+            NCAAF_RESULTS_${{ inputs.delivery_mode }}_TRANSACTION.json
           if-no-files-found: error
