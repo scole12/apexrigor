@@ -15,6 +15,14 @@ on:
         description: NCAA slate date (YYYY-MM-DD)
         required: true
         type: string
+      delivery_mode:
+        description: Normal delivery or an explicitly authorized recovery
+        required: true
+        default: NORMAL
+        type: choice
+        options:
+          - NORMAL
+          - RECOVERY
 
 permissions:
   contents: read
@@ -26,6 +34,7 @@ jobs:
     env:
       PRODUCT: ${{ inputs.product }}
       SLATE_DATE: ${{ inputs.slate_date }}
+      DELIVERY_MODE: ${{ inputs.delivery_mode }}
       SMTP_HOST: ${{ secrets.NCAAF_SMTP_HOST }}
       SMTP_PORT: ${{ secrets.NCAAF_SMTP_PORT }}
       SMTP_USER: ${{ secrets.NCAAF_SMTP_USER }}
@@ -41,7 +50,8 @@ jobs:
           python3 - <<'PY'
           from datetime import datetime, timezone
           from email.message import EmailMessage
-          from email.utils import format_datetime
+          from email.policy import SMTP
+          from email.utils import format_datetime, parseaddr
           import hashlib, json, os, pathlib, smtplib, ssl
 
           slate_date=os.environ['SLATE_DATE']
@@ -49,6 +59,10 @@ jobs:
           assert parsed_date.strftime('%Y-%m-%d')==slate_date
           display_date=parsed_date.strftime('%B %-d, %Y')
           date_token=parsed_date.strftime('%Y%m%d')
+          delivery_mode=os.environ['DELIVERY_MODE']
+          assert delivery_mode in ('NORMAL','RECOVERY')
+          if delivery_mode=='RECOVERY':
+              assert os.environ['PRODUCT']=='RESULTS'
           root=pathlib.Path('data/ncaaf')/slate_date
           manifest=json.loads((root/'full_slate_delivery_manifest.json').read_text())
           assert manifest['slate_date']==slate_date
@@ -101,9 +115,17 @@ jobs:
           else:
               results=json.loads(pathlib.Path('data/ncaaf_results_summary.json').read_text())
               assert results['graded_position_count']>0
-              subject=f'APEX NCAA Football Graded Results — {display_date}'
+              subject=(
+                  f'APEX NCAA Football Results — {display_date} — Recovery'
+                  if delivery_mode=='RECOVERY' else
+                  f'APEX NCAA Football Graded Results — {display_date}'
+              )
               body=(
-                  f'The official APEX NCAA Football graded results for {display_date} are attached.\n\n'
+                  (
+                      f'This is the authorized recovery delivery of the official APEX NCAA Football results for {display_date}.\n\n'
+                      if delivery_mode=='RECOVERY' else
+                      f'The official APEX NCAA Football graded results for {display_date} are attached.\n\n'
+                  ) +
                   'Every immutable issued position was settled against its exact issued FanDuel line. '
                   'No engine was rerun and no later market line was substituted.\n\n'
                   'Attached in order:\n'
@@ -128,15 +150,34 @@ jobs:
           message['To']=', '.join(recipients)
           message['Subject']=subject
           message['Date']=format_datetime(datetime.now(timezone.utc))
-          message['Message-ID']=f"<ncaaf-{date_token}-{product.lower()}-{public_sha[:20]}@apexrigor.com>"
+          message['Message-ID']=(
+              f"<ncaaf-{date_token}-{product.lower()}-recovery-{os.environ['GITHUB_RUN_ID']}@apexrigor.com>"
+              if delivery_mode=='RECOVERY' else
+              f"<ncaaf-{date_token}-{product.lower()}-{public_sha[:20]}@apexrigor.com>"
+          )
           message['X-APEX-NCAA-Public-Payload-SHA256']=public_sha
+          message['X-APEX-NCAA-Delivery-Mode']=delivery_mode
           message.set_content(body)
+          attachment_evidence=[]
           for filename in attachments:
               path=root/filename
+              payload=path.read_bytes()
               if path.suffix=='.pdf':
-                  message.add_attachment(path.read_bytes(),maintype='application',subtype='pdf',filename=filename)
+                  content_type='application/pdf'
+                  message.add_attachment(payload,maintype='application',subtype='pdf',filename=pathlib.Path(filename).name)
               else:
-                  message.add_attachment(path.read_bytes(),maintype='image',subtype='png',filename=filename)
+                  content_type='image/png'
+                  message.add_attachment(payload,maintype='image',subtype='png',filename=pathlib.Path(filename).name)
+              attachment_evidence.append({
+                  'filename':pathlib.Path(filename).name,
+                  'content_type':content_type,
+                  'size_bytes':len(payload),
+                  'sha256':hashlib.sha256(payload).hexdigest(),
+              })
+
+          mime_bytes=message.as_bytes(policy=SMTP)
+          if delivery_mode=='RECOVERY':
+              pathlib.Path('NCAAF_AUG29_RESULTS_RECOVERY_MESSAGE.eml').write_bytes(mime_bytes)
 
           host=os.environ['SMTP_HOST']; port=int(os.environ['SMTP_PORT']); context=ssl.create_default_context()
           if port==465:
@@ -146,8 +187,68 @@ jobs:
               client.ehlo(); client.starttls(context=context); client.ehlo()
           with client:
               client.login(os.environ['SMTP_USER'],os.environ['SMTP_PASSWORD'])
-              rejected=client.send_message(message)
-          assert not rejected
+              if delivery_mode=='RECOVERY':
+                  envelope_from=parseaddr(str(message['From']))[1]
+                  mail_code,mail_text=client.mail(envelope_from)
+                  assert 200 <= mail_code < 300, (mail_code,mail_text)
+                  recipient_responses=[]
+                  for recipient in recipients:
+                      code,text=client.rcpt(recipient)
+                      recipient_responses.append({
+                          'recipient':recipient,
+                          'code':code,
+                          'text':text.decode('utf-8','replace') if isinstance(text,bytes) else str(text),
+                          'accepted':code in (250,251),
+                      })
+                  assert all(row['accepted'] for row in recipient_responses), recipient_responses
+                  smtp_code,smtp_text=client.data(mime_bytes)
+                  smtp_response=(smtp_text.decode('utf-8','replace') if isinstance(smtp_text,bytes) else str(smtp_text))
+                  assert smtp_code==250, (smtp_code,smtp_response)
+                  accepted_at=datetime.now(timezone.utc).isoformat().replace('+00:00','Z')
+                  provider_queue_id='UNAVAILABLE_NOT_SEPARATELY_EXPOSED'
+                  lower=smtp_response.lower()
+                  if 'queued as ' in lower:
+                      provider_queue_id=smtp_response[lower.index('queued as ')+10:].split()[0].strip('.,;')
+                  evidence={
+                      'schema_version':'apex.ncaaf.results_recovery_email_evidence.v1',
+                      'slate_date':slate_date,
+                      'delivery_mode':delivery_mode,
+                      'from':str(message['From']),
+                      'reply_to':str(message.get('Reply-To','')),
+                      'to':recipients,
+                      'cc':[],
+                      'bcc':[],
+                      'envelope_from':envelope_from,
+                      'envelope_recipients':recipients,
+                      'subject':subject,
+                      'message_id':str(message['Message-ID']),
+                      'attachment_count':len(attachment_evidence),
+                      'attachments':attachment_evidence,
+                      'mime_sha256':hashlib.sha256(mime_bytes).hexdigest(),
+                      'smtp_mail_response_code':mail_code,
+                      'smtp_mail_response_text':mail_text.decode('utf-8','replace') if isinstance(mail_text,bytes) else str(mail_text),
+                      'smtp_recipient_responses':recipient_responses,
+                      'smtp_data_response_code':smtp_code,
+                      'smtp_data_response_text':smtp_response,
+                      'provider_queue_id':provider_queue_id,
+                      'provider_accepted_at':accepted_at,
+                      'provider_delivery_tracking_available':False,
+                      'delivery_state':'PENDING_PROVIDER_EVENT',
+                      'credentials_recorded':False,
+                  }
+                  pathlib.Path('NCAAF_AUG29_RESULTS_RECOVERY_TRANSACTION.json').write_text(
+                      json.dumps(evidence,sort_keys=True,indent=2)+'\n',encoding='utf-8'
+                  )
+                  print('RECOVERY_MESSAGE_ID='+str(message['Message-ID']))
+                  print('RECOVERY_ENVELOPE_RCPT_COUNT='+str(len(recipients)))
+                  print('RECOVERY_ENVELOPE_RCPT_LIST='+','.join(recipients))
+                  print('RECOVERY_SMTP_RESPONSE_CODE='+str(smtp_code))
+                  print('RECOVERY_SMTP_RESPONSE_TEXT='+smtp_response)
+                  print('RECOVERY_PROVIDER_QUEUE_ID='+provider_queue_id)
+                  print('RECOVERY_ACCEPTED_AT='+accepted_at)
+              else:
+                  rejected=client.send_message(message)
+                  assert not rejected
           print('EMAIL_SEND=PASS')
           print('PRODUCT='+product)
           print('CANONICAL_GAME_COUNT='+str(manifest['canonical_game_count']))
@@ -156,3 +257,12 @@ jobs:
           print('ATTACHMENT_COUNT='+str(len(attachments)))
           print('PUBLIC_PAYLOAD_SHA256='+public_sha)
           PY
+      - name: Preserve NCAA recovery transaction evidence
+        if: ${{ inputs.product == 'RESULTS' && inputs.delivery_mode == 'RECOVERY' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: ncaaf-results-recovery-${{ inputs.slate_date }}-${{ github.run_id }}
+          path: |
+            NCAAF_AUG29_RESULTS_RECOVERY_MESSAGE.eml
+            NCAAF_AUG29_RESULTS_RECOVERY_TRANSACTION.json
+          if-no-files-found: error
