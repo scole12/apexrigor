@@ -3,13 +3,13 @@
   "active_model_sha256": null,
   "authorities": {
     "fighter": {
-      "bouts": 1785,
-      "events": 803,
-      "fighters": 2495,
-      "results": 1775,
+      "bouts": 3217,
+      "events": 997,
+      "fighters": 3857,
+      "results": 3170,
       "round_stats": 0,
       "scorecards": 37,
-      "weigh_ins": 2603
+      "weigh_ins": 5442
     },
     "production": {
       "frozen_releases": 0,
@@ -155,7 +155,7 @@
       "weight_class": "WOMENS_STRAWWEIGHT"
     }
   ],
-  "card_reconciliation_status": "OPEN_PROVIDER_IDENTITY_CONFLICT",
+  "card_reconciliation_status": "PASS",
   "event": {
     "city": "Paris",
     "country": "France",
@@ -181,31 +181,19 @@
   },
   "event_id": "442712e5-1e33-505e-86ab-48e849da87c0",
   "fight_count": 14,
-  "generated_at_utc": "2026-09-01T03:30:01.580817Z",
+  "generated_at_utc": "2026-09-01T19:30:02.463447Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "IMPLEMENTED_NO_ELIGIBLE_ISSUANCE"
   },
   "latest_results": [],
-  "payload_sha256": "eefd8cca3727743e33ec5ed97c55caca040da85cc15a90bcf245da2eb4d7a7ff",
+  "payload_sha256": "706248a61c42f630a3d057860b2b258b024832988729a608aa1701743c9a2c82",
   "picks_published": false,
   "release_state": "NO_RELEASE_SCIENTIFIC_GATE",
   "schema_version": "APEX_MMA_PUBLIC_STATE_V2",
   "science_blocker": "NO_RESULT_LEVEL_WINNER_CANDIDATE_IMPROVED_AUTHENTIC_MATCHED_TIME_FANDUEL; RICHER_ACTION_PROCESS_AND_HOLMES_BENCHMARK_REQUIRE_LICENSED_HISTORICAL_ELEMENTAL_ROUND_STATS",
-  "semantic_state_sha256": "cf6f32f67397f0a0c0d42c849bb044c9dc851c47aa5f04a09bc90df4e11e1500",
-  "source_conflicts": [
-    {
-      "official_pair": [
-        "Nathaniel Wood",
-        "Mairon Santos"
-      ],
-      "provider_commence_time_utc": null,
-      "provider_event_id": null,
-      "provider_pair": null,
-      "source_capture_id": null,
-      "status": "NO_PROVIDER_MATCH"
-    }
-  ],
+  "semantic_state_sha256": "1f5dfead070fd57e393ef6962fc24788bc7170550b4a20f0b88189242cca1bab",
+  "source_conflicts": [],
   "system_readiness_state": "TECHNICALLY_READY_SCIENCE_BLOCKED",
   "t2": {
     "anchor": "EARLIEST_PUBLISHED_SCHEDULED_BOUT_MINUS_2_HOURS",
