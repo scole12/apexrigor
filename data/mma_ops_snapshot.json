@@ -129,15 +129,15 @@
     }
   ],
   "fighter_authority": {
-    "bouts": 1315,
-    "events": 799,
-    "fighters": 2465,
-    "results": 1299,
+    "bouts": 1785,
+    "events": 803,
+    "fighters": 2495,
+    "results": 1775,
     "round_stats": 0,
     "scorecards": 37,
-    "weigh_ins": 2575
+    "weigh_ins": 2603
   },
-  "generated_at_utc": "2026-08-30T21:30:01.386324Z",
+  "generated_at_utc": "2026-09-01T03:30:01.580817Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "IMPLEMENTED_NO_ELIGIBLE_ISSUANCE"
@@ -160,7 +160,7 @@
     "promotion": "UFC",
     "venue": "Accor Arena"
   },
-  "payload_sha256": "db1ab04aaa59b0d1be363bc07adedae6136c11bd4ae5959f8a8efa818658795b",
+  "payload_sha256": "301f11fb8bd1c784b630d792bff93894debac459346b540e7248ef9981c3d4ef",
   "production_isolation": "PASS",
   "schema_version": "APEX_MMA_OPS_SNAPSHOT_V1",
   "science_blocker": "NO_RESULT_LEVEL_WINNER_CANDIDATE_IMPROVED_AUTHENTIC_MATCHED_TIME_FANDUEL; RICHER_ACTION_PROCESS_AND_HOLMES_BENCHMARK_REQUIRE_LICENSED_HISTORICAL_ELEMENTAL_ROUND_STATS",
