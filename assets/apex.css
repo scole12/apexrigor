@@ -17,9 +17,10 @@ a{color:var(--text);text-decoration:none}
 .apex-nav-stack{border-bottom:1px solid var(--border)}
 .sport-nav,.section-nav{display:flex;align-items:center;justify-content:center;gap:8px;padding:10px 0}
 .sport-nav{border-bottom:1px solid var(--hairline)}
-.sport-nav a,.section-nav a{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 18px;border:1px solid transparent;font-family:Helvetica,Arial,sans-serif;font-size:10px;font-weight:600;letter-spacing:.19em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+.sport-nav a,.sport-nav span,.section-nav a{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 18px;border:1px solid transparent;font-family:Helvetica,Arial,sans-serif;font-size:10px;font-weight:600;letter-spacing:.19em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
 .sport-nav a:hover,.sport-nav a:focus-visible,.section-nav a:hover,.section-nav a:focus-visible{color:var(--text);border-color:var(--border-strong);outline:none}
 .sport-nav a.active{color:var(--bg);background:var(--text);border-color:var(--text)}
+.sport-nav .sport-unavailable{color:var(--dim);cursor:not-allowed}
 .section-nav a.active{color:var(--text);border-bottom-color:var(--text)}
 .game-context{font-family:"JetBrains Mono",monospace;font-size:10px;color:var(--dim);letter-spacing:.04em;margin-top:5px;text-transform:uppercase}
 .market-prefire{min-height:210px;display:flex;flex-direction:column;justify-content:space-between}
@@ -135,8 +136,8 @@ table.results tr:hover td{background:var(--panel)}
 }
 @media (max-width: 480px){
   .sport-nav,.section-nav{width:100%;gap:4px;padding:8px 0}
-  .sport-nav a,.section-nav a{flex:1 1 0;min-width:0;padding:0 6px;font-size:9px;letter-spacing:.11em}
-  .sport-nav a{font-size:8.5px}
+  .sport-nav a,.sport-nav span,.section-nav a{flex:1 1 0;min-width:0;padding:0 6px;font-size:9px;letter-spacing:.11em}
+  .sport-nav a,.sport-nav span{font-size:8.5px}
   .market-prefire{min-height:0}
   .market-state{font-size:14px}
   .game-context{line-height:1.55}

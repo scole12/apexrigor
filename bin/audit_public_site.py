@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Fail closed on the APEX MLB/NCAA/MMA public boundary, assets, and RUM drift."""
+"""Fail closed on the APEX four-sport presentation boundary, assets, and RUM drift."""
 
 from __future__ import annotations
 
@@ -14,6 +14,11 @@ from pathlib import Path
 DEFAULT_ROOT = Path(__file__).resolve().parents[1]
 BEACON_URL = "https://static.cloudflareinsights.com/beacon.min.js"
 VERCEL_INSIGHTS_SCRIPT = "/_vercel/insights/script.js"
+SPORT_LABELS = ("MLB", "APEX NCAA FOOTBALL", "MMA / UFC", "NFL")
+SPORT_ITEM_RE = re.compile(
+    r'<(?P<tag>a|span)\b[^>]*>\s*(?P<label>[^<]+?)\s*</(?P=tag)>',
+    re.DOTALL,
+)
 
 
 def sha256(path: Path) -> str:
@@ -49,6 +54,19 @@ def main() -> int:
         "/mma/results": root / "mma" / "results" / "index.html",
         "/mma/about": root / "mma" / "about" / "index.html",
     }
+    nfl_routes = {
+        "/nfl": root / "nfl" / "index.html",
+        "/nfl/results": root / "nfl" / "results" / "index.html",
+        "/nfl/about": root / "nfl" / "about" / "index.html",
+    }
+    nfl_route_state = {route: path.is_file() for route, path in nfl_routes.items()}
+    nfl_route_established = all(nfl_route_state.values())
+    if any(nfl_route_state.values()) and not nfl_route_established:
+        errors = [f"partial NFL public route set is forbidden: {nfl_route_state}"]
+    else:
+        errors = []
+    if nfl_route_established:
+        routes.update(nfl_routes)
     icon_pairs = (
         (root / "favicon.svg", root / "assets" / "favicon.svg"),
         (root / "favicon.ico", root / "assets" / "favicon.ico"),
@@ -64,7 +82,6 @@ def main() -> int:
             root / "assets" / "android-chrome-512x512.png",
         ),
     )
-    errors: list[str] = []
     route_beacons: dict[str, int] = {}
     route_vercel_scripts: dict[str, int] = {}
     route_text: dict[str, str] = {}
@@ -112,8 +129,29 @@ def main() -> int:
         public_sport_switcher_count += switcher_count
         if switcher_count != 1:
             errors.append(f"{route} must contain exactly one sport selector, found {switcher_count}")
-        elif not all(label in switcher_re.findall(text)[0] for label in ("MLB", "NCAA FOOTBALL", "MMA / UFC")):
-            errors.append(f"{route} sport selector does not contain the three active sports")
+        else:
+            switcher = switcher_re.findall(text)[0]
+            labels = tuple(match.group("label").strip() for match in SPORT_ITEM_RE.finditer(switcher))
+            if labels != SPORT_LABELS:
+                errors.append(
+                    f"{route} sport selector labels/order {labels}, expected {SPORT_LABELS}"
+                )
+            if nfl_route_established:
+                if "sport-unavailable" in switcher or 'href="/nfl' not in switcher:
+                    errors.append(f"{route} does not link the established NFL presentation route")
+            elif not re.search(
+                r'<span\b[^>]*class="[^"]*sport-unavailable[^"]*"[^>]*>\s*NFL\s*</span>',
+                switcher,
+            ):
+                errors.append(
+                    f"{route} must expose disabled NFL identity while NFL routes are unestablished"
+                )
+        if route.startswith("/ncaaf"):
+            hero_labels = re.findall(r'<div class="hero-tag">\s*([^<]+?)\s*</div>', text)
+            if hero_labels != ["APEX NCAA FOOTBALL"]:
+                errors.append(
+                    f"{route} NCAA hero label {hero_labels}, expected APEX NCAA FOOTBALL"
+                )
         public_world_cup_label_count += len(
             re.findall(r"(?:href=\"[^\"]*worldcup|>\s*WORLD CUP\s*<)", text, re.IGNORECASE)
         )
@@ -268,6 +306,9 @@ def main() -> int:
         "icon_sha256": icon_hashes,
         "errors": errors,
         "public_sport_switcher_count": public_sport_switcher_count,
+        "public_sport_labels": list(SPORT_LABELS),
+        "nfl_route_established": nfl_route_established,
+        "nfl_route_state": nfl_route_state,
         "public_soccer_label_count": public_soccer_label_count,
         "public_sport_label_soccer": "HIDDEN",
         "public_world_cup_label_count": public_world_cup_label_count,

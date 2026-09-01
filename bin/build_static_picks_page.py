@@ -322,11 +322,12 @@ def main() -> int:
   <div class="apex-nav-stack">
   <nav class="sport-nav" aria-label="Sport selector">
     <a href="/" class="active" aria-current="true">MLB</a>
-    <a href="/ncaaf">NCAA FOOTBALL</a>
+    <a href="/ncaaf">APEX NCAA FOOTBALL</a>
     <a href="/mma">MMA / UFC</a>
+    <span class="sport-unavailable" aria-disabled="true" title="NFL public route not yet established">NFL</span>
   </nav>
   <nav class="section-nav" aria-label="MLB sections">
-    <a href="/" class="active">PICKS</a>
+    <a href="/" class="active" aria-current="true">PICKS</a>
     <a href="/results">RESULTS</a>
     <a href="/about">ABOUT</a>
   </nav>

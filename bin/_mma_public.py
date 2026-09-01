@@ -51,8 +51,9 @@ def navigation(active: str) -> str:
     sport = f"""  <div class=\"apex-nav-stack\">
   <nav class=\"sport-nav\" aria-label=\"Sport selector\">
     <a href=\"/{section_path.lstrip('/')}\">MLB</a>
-    <a href=\"/ncaaf{section_path}\">NCAA FOOTBALL</a>
+    <a href=\"/ncaaf{section_path}\">APEX NCAA FOOTBALL</a>
     <a href=\"/mma{section_path}\" class=\"active\" aria-current=\"true\">MMA / UFC</a>
+    <span class=\"sport-unavailable\" aria-disabled=\"true\" title=\"NFL public route not yet established\">NFL</span>
   </nav>"""
     links = (
         ("PICKS", "/mma"),
@@ -60,7 +61,7 @@ def navigation(active: str) -> str:
         ("ABOUT", "/mma/about"),
     )
     internal = "\n".join(
-        f'    <a href="{path}"{" class=\"active\"" if label == active else ""}>{label}</a>'
+        f'    <a href="{path}"{" class=\"active\" aria-current=\"true\"" if label == active else ""}>{label}</a>'
         for label, path in links
     )
     return f"{sport}\n  <nav class=\"section-nav\" aria-label=\"MMA sections\">\n{internal}\n  </nav>\n  </div>"
