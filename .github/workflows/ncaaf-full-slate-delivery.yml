@@ -26,6 +26,7 @@ on:
           - CORRECTED
           - FINAL_CORRECTED
           - APEX_FINAL_CORRECTED
+          - PRESENTATION_REV2
 
 permissions:
   contents: read
@@ -63,10 +64,14 @@ jobs:
           display_date=parsed_date.strftime('%B %-d, %Y')
           date_token=parsed_date.strftime('%Y%m%d')
           delivery_mode=os.environ['DELIVERY_MODE']
-          explicit_modes=('RECOVERY','CORRECTED','FINAL_CORRECTED','APEX_FINAL_CORRECTED')
+          results_explicit_modes=('RECOVERY','CORRECTED','FINAL_CORRECTED','APEX_FINAL_CORRECTED')
+          presentation_modes=('PRESENTATION_REV2',)
+          explicit_modes=results_explicit_modes+presentation_modes
           assert delivery_mode in ('NORMAL',)+explicit_modes
-          if delivery_mode in explicit_modes:
+          if delivery_mode in results_explicit_modes:
               assert os.environ['PRODUCT']=='RESULTS'
+          if delivery_mode in presentation_modes:
+              assert os.environ['PRODUCT']=='T2'
           root=pathlib.Path('data/ncaaf')/slate_date
           manifest=json.loads((root/'full_slate_delivery_manifest.json').read_text())
           assert manifest['slate_date']==slate_date
@@ -102,19 +107,36 @@ jobs:
               )
               attachments=[f'T3_APEX_NCAAF_DATA_REPORT_{date_token}.pdf',f'T3_APEX_NCAAF_DATA_REPORT_{date_token}.png']
           elif product=='T2':
-              subject=f'APEX NCAA Football T-2 Picks Card — {display_date}'
-              body=(
-                  f'The APEX NCAA Football T-minus-2 Picks Card for {display_date} is attached.\n\n'
-                  'The full issued slate has been published to the live NCAA Picks page.\n\n'
-                  'Slate summary:\n'
-                  f"{manifest['canonical_game_count']} canonical games\n"
-                  f"{manifest['issued_game_count']} FanDuel-issuable games\n"
-                  f"{manifest['official_position_count']} official positions\n"
-                  f"{manifest['market_pending_game_count']} market-pending games\n\n"
-                  'Attached in order:\n'
-                  '1. APEX NCAA Football T-2 Picks Card PDF\n'
-                  '2. APEX NCAA Football T-2 Picks Card PNG\n'
-              )
+              if delivery_mode=='PRESENTATION_REV2':
+                  subject=f'APEX NCAA Football T-2 Picks Card — {display_date} — PRESENTATION REV2'
+                  body=(
+                      f'This is a presentation-only revision of the already-sealed {display_date} NCAA Football T-2 card.\n\n'
+                      'No position, line, FanDuel price, APEX probability, tier, engine, capture timestamp or issuance mathematics changed.\n\n'
+                      'The revised card uses the established APEX presentation contract and adds sealed-snapshot NCAA rationale detail.\n\n'
+                      'Slate summary:\n'
+                      f"{manifest['canonical_game_count']} canonical games\n"
+                      f"{manifest['issued_game_count']} FanDuel-issuable games\n"
+                      f"{manifest['official_position_count']} official positions\n"
+                      f"{manifest['market_pending_game_count']} market-pending games\n\n"
+                      'Live NCAA Picks: https://apexrigor.com/ncaaf\n\n'
+                      'Attached in order:\n'
+                      '1. Corrected APEX NCAA Football T-2 Picks Card PDF\n'
+                      '2. Corrected APEX NCAA Football T-2 1080×1080 PNG\n'
+                  )
+              else:
+                  subject=f'APEX NCAA Football T-2 Picks Card — {display_date}'
+                  body=(
+                      f'The APEX NCAA Football T-minus-2 Picks Card for {display_date} is attached.\n\n'
+                      'The full issued slate has been published to the live NCAA Picks page.\n\n'
+                      'Slate summary:\n'
+                      f"{manifest['canonical_game_count']} canonical games\n"
+                      f"{manifest['issued_game_count']} FanDuel-issuable games\n"
+                      f"{manifest['official_position_count']} official positions\n"
+                      f"{manifest['market_pending_game_count']} market-pending games\n\n"
+                      'Attached in order:\n'
+                      '1. APEX NCAA Football T-2 Picks Card PDF\n'
+                      '2. APEX NCAA Football T-2 Picks Card PNG\n'
+                  )
               attachments=[f'NCAAF_T2_FULL_SLATE_{date_token}.pdf',f'NCAAF_T2_PICKS_CARD_{date_token}.png']
           else:
               results=json.loads(pathlib.Path('data/ncaaf_results_cumulative.json').read_text())
@@ -212,8 +234,12 @@ jobs:
               })
 
           mime_bytes=message.as_bytes(policy=SMTP)
+          evidence_stem=(
+              f'NCAAF_T2_{delivery_mode}' if delivery_mode in presentation_modes
+              else f'NCAAF_RESULTS_{delivery_mode}'
+          )
           if delivery_mode in explicit_modes:
-              pathlib.Path(f'NCAAF_RESULTS_{delivery_mode}_MESSAGE.eml').write_bytes(mime_bytes)
+              pathlib.Path(evidence_stem+'_MESSAGE.eml').write_bytes(mime_bytes)
 
           host=os.environ['SMTP_HOST']; port=int(os.environ['SMTP_PORT']); context=ssl.create_default_context()
           if port==465:
@@ -246,7 +272,11 @@ jobs:
                   if 'queued as ' in lower:
                       provider_queue_id=smtp_response[lower.index('queued as ')+10:].split()[0].strip('.,;')
                   evidence={
-                      'schema_version':'apex.ncaaf.results_explicit_email_evidence.v2',
+                      'schema_version':(
+                          'apex.ncaaf.presentation_revision_email_evidence.v1'
+                          if delivery_mode in presentation_modes
+                          else 'apex.ncaaf.results_explicit_email_evidence.v2'
+                      ),
                       'slate_date':slate_date,
                       'delivery_mode':delivery_mode,
                       'from':str(message['From']),
@@ -272,7 +302,7 @@ jobs:
                       'delivery_state':'PENDING_PROVIDER_EVENT',
                       'credentials_recorded':False,
                   }
-                  pathlib.Path(f'NCAAF_RESULTS_{delivery_mode}_TRANSACTION.json').write_text(
+                  pathlib.Path(evidence_stem+'_TRANSACTION.json').write_text(
                       json.dumps(evidence,sort_keys=True,indent=2)+'\n',encoding='utf-8'
                   )
                   prefix=delivery_mode
@@ -294,12 +324,12 @@ jobs:
           print('ATTACHMENT_COUNT='+str(len(attachments)))
           print('PUBLIC_PAYLOAD_SHA256='+public_sha)
           PY
-      - name: Preserve NCAA explicit results transaction evidence
-        if: ${{ inputs.product == 'RESULTS' && inputs.delivery_mode != 'NORMAL' }}
+      - name: Preserve NCAA explicit transaction evidence
+        if: ${{ inputs.delivery_mode != 'NORMAL' }}
         uses: actions/upload-artifact@v4
         with:
-          name: ncaaf-results-${{ inputs.delivery_mode }}-${{ inputs.slate_date }}-${{ github.run_id }}
+          name: ncaaf-${{ inputs.product }}-${{ inputs.delivery_mode }}-${{ inputs.slate_date }}-${{ github.run_id }}
           path: |
-            NCAAF_RESULTS_${{ inputs.delivery_mode }}_MESSAGE.eml
-            NCAAF_RESULTS_${{ inputs.delivery_mode }}_TRANSACTION.json
+            NCAAF_*_${{ inputs.delivery_mode }}_MESSAGE.eml
+            NCAAF_*_${{ inputs.delivery_mode }}_TRANSACTION.json
           if-no-files-found: error

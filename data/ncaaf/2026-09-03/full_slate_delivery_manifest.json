@@ -7,12 +7,13 @@
   "issued_game_count": 11,
   "official_position_count": 22,
   "market_pending_game_count": 3,
-  "canonical_public_payload_sha256": "1a24503b980c42f1603905f420997da5aab8870e6528dbfea1ed53c613279e24",
+  "canonical_public_payload_sha256": "c6e30473fd6f962c8cff1847312e8c752b0186d3dc1ec95ce300085102d0d94d",
+  "sealed_day_payload_sha256": "1a24503b980c42f1603905f420997da5aab8870e6528dbfea1ed53c613279e24",
   "files": {
     "T3_APEX_NCAAF_DATA_REPORT_20260903.pdf": "f3b1498b6b3996009361a881cfcb2778835851fa829ffb08c6f11f1cdc175a01",
     "T3_APEX_NCAAF_DATA_REPORT_20260903.png": "0541a963477df08ce88edc1add244da19e64b8a63d14ce407fb563c3b692f4ad",
-    "NCAAF_T2_FULL_SLATE_20260903.pdf": "9fbea3d7626316b78b3efad606fd6a6057e765aebdb9aaa0cd30689e9d1f924d",
-    "NCAAF_T2_PICKS_CARD_20260903.png": "fc840ea1e1f010255d8e8b1fd29771ef42f316674ea28dc5657837f269ca0332"
+    "NCAAF_T2_FULL_SLATE_20260903.pdf": "5faa252f0a17d348e1f28e85233ce486760b8a03706bd6c7f07a62085e0e2bf5",
+    "NCAAF_T2_PICKS_CARD_20260903.png": "4307e50ab336e30e49f26f5cdf7df6617c7657d6b4717573f96d466e8dbb3ff8"
   },
   "results_files": {
     "data/ncaaf/2026-09-03/results/APEX_CUMULATIVE_RECORD_2026.png": "1ed5a996c8332613ee7f41cf0f276f1e606e96dca71c1ba6a5dc8ab8ef0be053",

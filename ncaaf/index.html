@@ -3,21 +3,20 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
-<title>APEX - NCAA Football Picks</title>
-<meta name="description" content="APEX full-game NCAA Football ATS and Totals forecasts.">
+<title>APEX NCAA Football — Full-Game Picks</title>
+<meta name="description" content="APEX NCAA Football full-game ATS and Totals forecasts.">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=apex-20260629-tier-perf">
 <link rel="icon" type="image/x-icon" href="/favicon.ico?v=apex-20260629-tier-perf" sizes="32x32">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=apex-20260629-tier-perf">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=apex-20260629-tier-perf">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=apex-20260629-tier-perf">
 <link rel="manifest" href="/site.webmanifest?v=apex-20260629-tier-perf">
 <meta name="theme-color" content="#000000">
 <meta property="og:type" content="website"><meta property="og:site_name" content="APEX">
-<meta property="og:title" content="APEX - NCAA Football Picks">
+<meta property="og:title" content="APEX NCAA Football — Full-Game Picks">
 <meta property="og:description" content="Full-game NCAA Football ATS and Totals forecasts.">
 <meta property="og:url" content="https://apexrigor.com/ncaaf">
 <meta property="og:image" content="https://apexrigor.com/og-image.png?v=apex-20260629-tier-perf">
-<link rel="stylesheet" href="/assets/apex.css?v=apex-20260825-ncaaf-ops">
+<link rel="stylesheet" href="/assets/apex.css?v=apex-20260903-ncaaf-mlb-parity">
 </head>
 <body>
 <div class="shell" data-picks-state="issued" data-public-issuance="true" data-sport="NCAAF" data-slate-date="2026-09-03">
@@ -39,35 +38,57 @@
     <a href="/ncaaf/about">ABOUT</a>
   </nav>
   </div>
-  <div class="section-head picks-board-head"><div class="title">FULL-GAME CARD</div><div class="meta mono" id="slate-meta">LOADING AUTHORITATIVE SLATE</div></div>
+  <div class="section-head picks-board-head">
+    <div class="title">TODAY'S CARD</div>
+    <div class="meta mono" id="slate-meta">LOADING AUTHORITATIVE SLATE</div>
+  </div>
   <main class="picks-page"><div class="picks-board" id="games" aria-live="polite"></div></main>
+  <div class="tag">THE MATH SPEAKS.</div>
+  <div class="foot mono">APEX RESEARCH · WALK-FORWARD VALIDATED · NCAA FULL-GAME ATS + TOTALS</div>
 </div>
 <script>
 const esc=v=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));
-const signed=v=>Number(v)>0?("+"+v):String(v);
+const dateLabel=value=>{
+ const [y,m,d]=String(value).split("-").map(Number);
+ return new Intl.DateTimeFormat("en-US",{weekday:"long",year:"numeric",month:"long",day:"numeric",timeZone:"UTC"}).format(new Date(Date.UTC(y,m-1,d))).toUpperCase();
+};
+const marketName=value=>value==="ATS"?"FULL-GAME ATS":"FULL-GAME TOTALS";
 function issuedPanel(p){
- const headline=p.display_selection||(p.market_type==="ATS"?esc(p.selection)+" "+esc(p.line):esc(p.direction)+" "+esc(p.line));
- return '<section class="market-panel"><div class="market-label">FULL-GAME '+esc(p.market_type)+'</div><div class="market-panel-head"><span class="pick-headline">'+esc(headline)+'</span><span class="tier-badge tier-badge--'+esc(String(p.rating||"").toLowerCase())+'">'+esc(p.rating||"")+'</span></div><div class="meta mono">SEALED T-2</div></section>';
+ const headline=p.display_selection||(p.market_type==="ATS"?String(p.selection)+" "+String(p.line):String(p.direction)+" "+String(p.line));
+ const rationale=Array.isArray(p.rationale)?p.rationale:[];
+ return '<section class="market-panel" data-market="'+esc(p.market_type)+'" data-position-state="SEALED">'
+  +'<div class="market-label">'+marketName(p.market_type)+'</div>'
+  +'<div class="market-panel-head"><span class="pick-headline">'+esc(headline)+'</span>'
+  +'<span class="rating-label">APEX WIN PROBABILITY RATING</span>'
+  +'<span class="tier-badge tier-badge--'+esc(String(p.rating||"").toLowerCase())+'">'+esc(p.rating||"")+'</span></div>'
+  +'<div class="meta mono">APEX WIN PROBABILITY: '+(Number(p.p_selected)*100).toFixed(1)+'% · Sportsbook: FanDuel</div>'
+  +'<div class="rationale-copy">'+rationale.map(text=>'<p>'+esc(text)+'</p>').join("")+'</div></section>';
 }
-function unissuedPanel(type, game){
- const label=type==="ATS"?"FULL-GAME ATS":"FULL-GAME TOTALS";
- const tbd=game.schedule_time_status==="UNRESOLVED_TBD";
- const lock=tbd?"Kickoff unresolved. No APEX position is displayed.":"UNISSUED until this game's T-2. No APEX position is displayed.";
- return '<section class="market-panel"><div class="market-label">'+label+'</div><div class="market-state">UNISSUED</div><div class="market-lock">'+lock+'</div></section>';
+function pendingPanel(type){
+ return '<section class="market-panel" data-market="'+type+'" data-position-state="MARKET_PENDING">'
+  +'<div class="market-label">'+marketName(type)+'</div>'
+  +'<div class="market-state">MARKET PENDING — NO T-2 WAGER</div>'
+  +'<div class="market-lock">An authentic qualifying FanDuel T-2 market was not available under the registered issuance rule. No APEX position was issued.</div></section>';
 }
 fetch("/data/ncaaf_today.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw new Error("HTTP "+r.status);return r.json()}).then(doc=>{
  const s=doc.slate;
- const issued=Number(s.issued_game_count||0);
- const mode=issued>0?"SEALED T-2":"UNISSUED";
- document.getElementById("slate-meta").textContent=s.slate_date_et+" · "+s.game_count+" GAMES · "+issued+" ISSUED · "+mode;
+ const issued=Number(s.issued_game_count||0), positions=Number(s.official_position_count||0), pending=Number(s.market_pending_game_count||0);
+ const epoch=doc.active_engine_epoch||{};
+ const ats=((epoch.ATS||{}).model_id)||"D2";
+ const totals=((epoch.TOTALS||{}).model_id)||"TOTALS-V5-RECONCILED-POOL";
+ document.getElementById("slate-meta").textContent=dateLabel(s.slate_date_et)+" · "+s.game_count+" GAMES · "+positions+" POSITIONS · "+issued+" ISSUED · "+pending+" MARKET PENDING · ATS MODEL "+ats+" · TOT MODEL "+totals;
  const shell=document.querySelector(".shell");
- if(shell){shell.setAttribute("data-slate-date", s.slate_date_et);shell.setAttribute("data-public-issuance", issued>0?"true":"false");}
+ if(shell){shell.setAttribute("data-slate-date",s.slate_date_et);shell.setAttribute("data-public-issuance",issued>0?"true":"false");}
  document.getElementById("games").innerHTML=s.games.map((g,i)=>{
    const by=Object.fromEntries((g.positions||[]).map(p=>[p.market_type,p]));
    const clock=g.schedule_time_status==="UNRESOLVED_TBD"?"TIME TBA":esc(g.kickoff_display_et||"TIME TBA");
-   const ats=by.ATS?issuedPanel(by.ATS):unissuedPanel("ATS", g);
-   const tot=by.TOTALS?issuedPanel(by.TOTALS):unissuedPanel("TOTALS", g);
-   return '<article class="game-module" data-game="'+esc(g.game_id)+'"><header class="game-header"><div class="game-num mono">G'+String(i+1).padStart(2,"0")+'</div><div class="game-meta"><h2 class="game-matchup">'+esc(g.matchup)+'</h2><p class="game-context">'+esc(String(g.fbs_fcs_classification||"").replaceAll("_"," "))+" · "+esc(g.venue||"Venue not published")+'</p></div><div class="game-time mono">'+clock+'</div></header><div class="market-grid">'+ats+tot+'</div></article>';
+   const atsPanel=by.ATS?issuedPanel(by.ATS):pendingPanel("ATS");
+   const totalsPanel=by.TOTALS?issuedPanel(by.TOTALS):pendingPanel("TOTALS");
+   const context=esc(String(g.fbs_fcs_classification||"").replaceAll("_"," "))+" · "+esc(g.venue||"Venue not published");
+   return '<article class="game-module" data-game="'+esc(g.game_id)+'" data-game-state="'+((g.positions||[]).length?"ISSUED":"MARKET_PENDING")+'">'
+    +'<header class="game-header"><div class="game-num mono">G'+String(i+1).padStart(2,"0")+'</div><div class="game-meta">'
+    +'<h2 class="game-matchup">'+esc(g.matchup)+'</h2><p class="game-pitchers mono">'+context+'</p></div><div class="game-time mono">'+clock+'</div></header>'
+    +'<div class="market-grid">'+atsPanel+totalsPanel+'</div></article>';
  }).join("");
 }).catch(e=>{document.getElementById("slate-meta").textContent="NCAA DATA UNAVAILABLE";document.getElementById("games").innerHTML='<div class="empty-state">'+esc(e.message)+"</div>";});
 </script>

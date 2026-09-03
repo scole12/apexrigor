@@ -135,9 +135,10 @@ table.results tr:hover td{background:var(--panel)}
   .hero-tag{ font-size:10px; letter-spacing:0.36em; }
 }
 @media (max-width: 480px){
-  .sport-nav,.section-nav{width:100%;gap:4px;padding:8px 0}
-  .sport-nav a,.sport-nav span,.section-nav a{flex:1 1 0;min-width:0;padding:0 6px;font-size:9px;letter-spacing:.11em}
-  .sport-nav a,.sport-nav span{font-size:8.5px}
+  .sport-nav{display:grid;grid-template-columns:.65fr 1.75fr 1fr .6fr;width:100%;gap:4px;padding:8px 0}
+  .section-nav{width:100%;gap:4px;padding:8px 0}
+  .sport-nav a,.sport-nav span,.section-nav a{min-width:0;padding:0 5px;font-size:9px;letter-spacing:.11em}
+  .sport-nav a,.sport-nav span{width:100%;font-size:8.5px}
   .market-prefire{min-height:0}
   .market-state{font-size:14px}
   .game-context{line-height:1.55}

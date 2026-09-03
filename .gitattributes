@@ -6,3 +6,5 @@
 *.css text eol=lf
 *.pkl binary
 *.db binary
+*.pdf binary
+*.png binary
