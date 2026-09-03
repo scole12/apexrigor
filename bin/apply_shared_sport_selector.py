@@ -70,7 +70,7 @@ def navigation(sport: str, section: str, nfl_available: bool) -> str:
     }[sport]
     sport_lines = [
         anchor(sport_targets[0], "MLB", sport == "mlb"),
-        anchor(sport_targets[1], "APEX NCAA FOOTBALL", sport == "ncaaf"),
+        anchor(sport_targets[1], "NCAA FOOTBALL", sport == "ncaaf"),
         anchor(sport_targets[2], "MMA / UFC", sport == "mma"),
         anchor(sport_targets[3], "NFL", sport == "nfl")
         if nfl_available

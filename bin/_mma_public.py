@@ -51,7 +51,7 @@ def navigation(active: str) -> str:
     sport = f"""  <div class=\"apex-nav-stack\">
   <nav class=\"sport-nav\" aria-label=\"Sport selector\">
     <a href=\"/{section_path.lstrip('/')}\">MLB</a>
-    <a href=\"/ncaaf{section_path}\">APEX NCAA FOOTBALL</a>
+    <a href=\"/ncaaf{section_path}\">NCAA FOOTBALL</a>
     <a href=\"/mma{section_path}\" class=\"active\" aria-current=\"true\">MMA / UFC</a>
     <span class=\"sport-unavailable\" aria-disabled=\"true\" title=\"NFL public route not yet established\">NFL</span>
   </nav>"""

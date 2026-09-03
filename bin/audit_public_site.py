@@ -14,7 +14,7 @@ from pathlib import Path
 DEFAULT_ROOT = Path(__file__).resolve().parents[1]
 BEACON_URL = "https://static.cloudflareinsights.com/beacon.min.js"
 VERCEL_INSIGHTS_SCRIPT = "/_vercel/insights/script.js"
-SPORT_LABELS = ("MLB", "APEX NCAA FOOTBALL", "MMA / UFC", "NFL")
+SPORT_LABELS = ("MLB", "NCAA FOOTBALL", "MMA / UFC", "NFL")
 SPORT_ITEM_RE = re.compile(
     r'<(?P<tag>a|span)\b[^>]*>\s*(?P<label>[^<]+?)\s*</(?P=tag)>',
     re.DOTALL,

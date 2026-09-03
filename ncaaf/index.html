@@ -16,7 +16,7 @@
 <meta property="og:description" content="Full-game NCAA Football ATS and Totals forecasts.">
 <meta property="og:url" content="https://apexrigor.com/ncaaf">
 <meta property="og:image" content="https://apexrigor.com/og-image.png?v=apex-20260629-tier-perf">
-<link rel="stylesheet" href="/assets/apex.css?v=apex-20260903-ncaaf-mlb-parity">
+<link rel="stylesheet" href="/assets/apex.css?v=apex-20260903-ncaaf-issued-tier-parity">
 </head>
 <body>
 <div class="shell" data-picks-state="issued" data-public-issuance="true" data-sport="NCAAF" data-slate-date="2026-09-03">
@@ -28,7 +28,7 @@
   <div class="apex-nav-stack">
   <nav class="sport-nav" aria-label="Sport selector">
     <a href="/">MLB</a>
-    <a href="/ncaaf" class="active" aria-current="true">APEX NCAA FOOTBALL</a>
+    <a href="/ncaaf" class="active" aria-current="true">NCAA FOOTBALL</a>
     <a href="/mma">MMA / UFC</a>
     <span class="sport-unavailable" aria-disabled="true" title="NFL public route not yet established">NFL</span>
   </nav>
@@ -64,31 +64,25 @@ function issuedPanel(p){
   +'<div class="meta mono">APEX WIN PROBABILITY: '+(Number(p.p_selected)*100).toFixed(1)+'% · Sportsbook: FanDuel</div>'
   +'<div class="rationale-copy">'+rationale.map(text=>'<p>'+esc(text)+'</p>').join("")+'</div></section>';
 }
-function pendingPanel(type){
- return '<section class="market-panel" data-market="'+type+'" data-position-state="MARKET_PENDING">'
-  +'<div class="market-label">'+marketName(type)+'</div>'
-  +'<div class="market-state">MARKET PENDING — NO T-2 WAGER</div>'
-  +'<div class="market-lock">An authentic qualifying FanDuel T-2 market was not available under the registered issuance rule. No APEX position was issued.</div></section>';
-}
 fetch("/data/ncaaf_today.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw new Error("HTTP "+r.status);return r.json()}).then(doc=>{
  const s=doc.slate;
- const issued=Number(s.issued_game_count||0), positions=Number(s.official_position_count||0), pending=Number(s.market_pending_game_count||0);
+ const visibleGames=(Array.isArray(s.games)?s.games:[]).filter(g=>Array.isArray(g.positions)&&g.positions.length>0);
+ const positions=visibleGames.reduce((count,g)=>count+g.positions.length,0);
  const epoch=doc.active_engine_epoch||{};
  const ats=((epoch.ATS||{}).model_id)||"D2";
  const totals=((epoch.TOTALS||{}).model_id)||"TOTALS-V5-RECONCILED-POOL";
- document.getElementById("slate-meta").textContent=dateLabel(s.slate_date_et)+" · "+s.game_count+" GAMES · "+positions+" POSITIONS · "+issued+" ISSUED · "+pending+" MARKET PENDING · ATS MODEL "+ats+" · TOT MODEL "+totals;
+ document.getElementById("slate-meta").textContent=dateLabel(s.slate_date_et)+" · "+visibleGames.length+" GAMES · "+positions+" POSITIONS · ATS MODEL "+ats+" · TOT MODEL "+totals;
  const shell=document.querySelector(".shell");
- if(shell){shell.setAttribute("data-slate-date",s.slate_date_et);shell.setAttribute("data-public-issuance",issued>0?"true":"false");}
- document.getElementById("games").innerHTML=s.games.map((g,i)=>{
-   const by=Object.fromEntries((g.positions||[]).map(p=>[p.market_type,p]));
+ if(shell){shell.setAttribute("data-slate-date",s.slate_date_et);shell.setAttribute("data-public-issuance",visibleGames.length>0?"true":"false");}
+ document.getElementById("games").innerHTML=visibleGames.map((g,i)=>{
+   const issuedPositions=g.positions.filter(p=>p&&p.market_type);
    const clock=g.schedule_time_status==="UNRESOLVED_TBD"?"TIME TBA":esc(g.kickoff_display_et||"TIME TBA");
-   const atsPanel=by.ATS?issuedPanel(by.ATS):pendingPanel("ATS");
-   const totalsPanel=by.TOTALS?issuedPanel(by.TOTALS):pendingPanel("TOTALS");
+   const panels=issuedPositions.map(issuedPanel).join("");
    const context=esc(String(g.fbs_fcs_classification||"").replaceAll("_"," "))+" · "+esc(g.venue||"Venue not published");
-   return '<article class="game-module" data-game="'+esc(g.game_id)+'" data-game-state="'+((g.positions||[]).length?"ISSUED":"MARKET_PENDING")+'">'
+   return '<article class="game-module" data-game="'+esc(g.game_id)+'" data-game-state="ISSUED">'
     +'<header class="game-header"><div class="game-num mono">G'+String(i+1).padStart(2,"0")+'</div><div class="game-meta">'
     +'<h2 class="game-matchup">'+esc(g.matchup)+'</h2><p class="game-pitchers mono">'+context+'</p></div><div class="game-time mono">'+clock+'</div></header>'
-    +'<div class="market-grid">'+atsPanel+totalsPanel+'</div></article>';
+    +'<div class="market-grid'+(issuedPositions.length===1?' market-grid--single':'')+'">'+panels+'</div></article>';
  }).join("");
 }).catch(e=>{document.getElementById("slate-meta").textContent="NCAA DATA UNAVAILABLE";document.getElementById("games").innerHTML='<div class="empty-state">'+esc(e.message)+"</div>";});
 </script>
