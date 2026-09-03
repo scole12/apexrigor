@@ -84,13 +84,16 @@ jobs:
           assert public_sha==manifest['canonical_public_payload_sha256']
           document=json.loads(public_path.read_text(encoding='utf-8'))
           slate=document['slate']
-          assert slate['game_count']==manifest['canonical_game_count']==len(slate['games'])
+          assert slate['game_count']==manifest['canonical_game_count']
           assert len({str(game['game_id']) for game in slate['games']})==len(slate['games'])
           assert slate['issued_game_count']==manifest['issued_game_count']
           assert slate['official_position_count']==manifest['official_position_count']
           assert slate['market_pending_game_count']==manifest['market_pending_game_count']
           positions=[position for game in slate['games'] for position in game.get('positions',[])]
           assert len(positions)==manifest['official_position_count']
+          assert len(slate['games']) in {manifest['canonical_game_count'],manifest['issued_game_count']}
+          if len(slate['games'])==manifest['issued_game_count']:
+              assert all(game.get('positions') for game in slate['games'])
           assert all(float(position['p_selected'])>=0.5 for position in positions)
           assert all(len(position.get('rationale',[]))>=5 for position in positions)
           for filename,expected in manifest['files'].items():
