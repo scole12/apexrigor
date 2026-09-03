@@ -27,6 +27,7 @@ on:
           - FINAL_CORRECTED
           - APEX_FINAL_CORRECTED
           - PRESENTATION_REV2
+          - T3_RECOVERY
 
 permissions:
   contents: read
@@ -66,12 +67,15 @@ jobs:
           delivery_mode=os.environ['DELIVERY_MODE']
           results_explicit_modes=('RECOVERY','CORRECTED','FINAL_CORRECTED','APEX_FINAL_CORRECTED')
           presentation_modes=('PRESENTATION_REV2',)
-          explicit_modes=results_explicit_modes+presentation_modes
+          t3_recovery_modes=('T3_RECOVERY',)
+          explicit_modes=results_explicit_modes+presentation_modes+t3_recovery_modes
           assert delivery_mode in ('NORMAL',)+explicit_modes
           if delivery_mode in results_explicit_modes:
               assert os.environ['PRODUCT']=='RESULTS'
           if delivery_mode in presentation_modes:
               assert os.environ['PRODUCT']=='T2'
+          if delivery_mode in t3_recovery_modes:
+              assert os.environ['PRODUCT']=='T3'
           root=pathlib.Path('data/ncaaf')/slate_date
           manifest=json.loads((root/'full_slate_delivery_manifest.json').read_text())
           assert manifest['slate_date']==slate_date
@@ -96,16 +100,41 @@ jobs:
 
           product=os.environ['PRODUCT']
           if product=='T3':
-              subject=f'APEX NCAA Football T-3 Data Report — {display_date}'
-              body=(
-                  f'The APEX NCAA Football T-minus-3 Data Report for {display_date} is attached.\n\n'
-                  f"The report accounts for all {manifest['canonical_game_count']} canonical games, factual hydration, input readiness, "
-                  'market coverage, and explicit missingness. T-3 creates no final positions.\n\n'
-                  'Attached in order:\n'
-                  '1. APEX NCAA Football T-3 Data Report PDF\n'
-                  '2. APEX NCAA Football T-3 Data Report PNG\n'
-              )
-              attachments=[f'T3_APEX_NCAAF_DATA_REPORT_{date_token}.pdf',f'T3_APEX_NCAAF_DATA_REPORT_{date_token}.png']
+              if delivery_mode=='T3_RECOVERY':
+                  recovery_path=root/f'T3_RECOVERY_RECEIPT_{date_token}.json'
+                  recovery=json.loads(recovery_path.read_text(encoding='utf-8'))
+                  assert recovery['slate_date_et']==slate_date
+                  assert recovery['T3_SCHEDULED_EXECUTION_MISSED']=='YES'
+                  assert recovery['T3_RECOVERY_LABELED_LATE']=='YES'
+                  assert recovery['outcome_read_count']==0
+                  assert recovery['post_kickoff_as_pregame_count']==0
+                  assert recovery['unsupported_backfill_count']==0
+                  recovery_pdf=f'T3_APEX_NCAAF_DATA_REPORT_{date_token}_LATE_RECOVERY.pdf'
+                  assert hashlib.sha256((root/recovery_pdf).read_bytes()).hexdigest()==recovery['recovery_pdf_sha256']
+                  subject=f'APEX NCAA Football T-3 Data Report — {display_date} — Late Recovery'
+                  body=(
+                      f'The scheduled APEX NCAA Football T-minus-3 execution for {display_date} did not complete successfully. '
+                      'This attached report is a truthfully labeled late recovery/reconciliation, not an on-time T-3 claim.\n\n'
+                      f"Scheduled T-3: {recovery['intended_t3_et']}\n"
+                      f"Recovery executed: {recovery['actual_recovery_et']}\n"
+                      f"Canonical games: {recovery['canonical_game_count']}\n\n"
+                      'Only retained facts with provable availability at or before the intended cutoff are reported. '
+                      'Perishable facts without historical availability proof remain explicitly unavailable. No outcomes were read, '
+                      'no post-kickoff observation was treated as pregame state, and the sealed T-2 issuance was not changed.\n\n'
+                      'Attached:\n'
+                      '1. APEX NCAA Football T-3 Late Recovery Data Report PDF\n'
+                  )
+                  attachments=[recovery_pdf]
+              else:
+                  subject=f'APEX NCAA Football T-3 Data Report — {display_date}'
+                  body=(
+                      f'The APEX NCAA Football T-minus-3 Data Report for {display_date} is attached.\n\n'
+                      f"The report accounts for all {manifest['canonical_game_count']} canonical games, factual hydration, input readiness, "
+                      'market coverage, and explicit missingness. T-3 creates no final positions.\n\n'
+                      'Attached:\n'
+                      '1. APEX NCAA Football T-3 Data Report PDF\n'
+                  )
+                  attachments=[f'T3_APEX_NCAAF_DATA_REPORT_{date_token}.pdf']
           elif product=='T2':
               if delivery_mode=='PRESENTATION_REV2':
                   subject=f'APEX NCAA Football T-2 Picks Card — {display_date} — PRESENTATION REV2'
@@ -203,6 +232,7 @@ jobs:
               recipients.extend(value.strip() for value in raw.replace(';',',').split(',') if value.strip())
           recipients=list(dict.fromkeys(recipients))
           assert recipients
+          assert 'debbiemille@gmail.com' in {value.lower() for value in recipients}, 'required NCAA recipient Debbie is absent'
           message=EmailMessage()
           message['From']=os.environ['EMAIL_FROM']
           message['To']=', '.join(recipients)
@@ -236,6 +266,7 @@ jobs:
           mime_bytes=message.as_bytes(policy=SMTP)
           evidence_stem=(
               f'NCAAF_T2_{delivery_mode}' if delivery_mode in presentation_modes
+              else f'NCAAF_T3_{delivery_mode}' if delivery_mode in t3_recovery_modes
               else f'NCAAF_RESULTS_{delivery_mode}'
           )
           if delivery_mode in explicit_modes:
@@ -275,6 +306,8 @@ jobs:
                       'schema_version':(
                           'apex.ncaaf.presentation_revision_email_evidence.v1'
                           if delivery_mode in presentation_modes
+                          else 'apex.ncaaf.t3_recovery_email_evidence.v1'
+                          if delivery_mode in t3_recovery_modes
                           else 'apex.ncaaf.results_explicit_email_evidence.v2'
                       ),
                       'slate_date':slate_date,
