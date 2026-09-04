@@ -27,6 +27,16 @@
       "status": "RESEARCH_COURT_SCORED_NO_RELEASE"
     }
   },
+  "canonical_fighter_identity": {
+    "authority_population_permitted": false,
+    "candidate_event_count": 0,
+    "canonical_event_id": null,
+    "complete_card_match_count": 0,
+    "reason": "NO_UNIQUE_COMPLETE_CANONICAL_CARD_MATCH",
+    "reference_bout_count": 14,
+    "reference_event_id": "442712e5-1e33-505e-86ab-48e849da87c0",
+    "status": "REFERENCE_ONLY_NO_CANONICAL_FIGHTER_EVENT"
+  },
   "card": [
     {
       "fighter_a": "Dan Hooker",
@@ -181,20 +191,20 @@
   },
   "event_id": "442712e5-1e33-505e-86ab-48e849da87c0",
   "fight_count": 14,
-  "generated_at_utc": "2026-09-01T19:30:02.463447Z",
+  "generated_at_utc": "2026-09-04T07:30:01.586912Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "IMPLEMENTED_NO_ELIGIBLE_ISSUANCE"
   },
   "latest_results": [],
-  "payload_sha256": "706248a61c42f630a3d057860b2b258b024832988729a608aa1701743c9a2c82",
+  "payload_sha256": "00ca56431c2bf42076dd36105df023576b6a20f2620edff675ebc8f81d07b893",
   "picks_published": false,
   "release_state": "NO_RELEASE_SCIENTIFIC_GATE",
   "schema_version": "APEX_MMA_PUBLIC_STATE_V2",
   "science_blocker": "NO_RESULT_LEVEL_WINNER_CANDIDATE_IMPROVED_AUTHENTIC_MATCHED_TIME_FANDUEL; RICHER_ACTION_PROCESS_AND_HOLMES_BENCHMARK_REQUIRE_LICENSED_HISTORICAL_ELEMENTAL_ROUND_STATS",
-  "semantic_state_sha256": "1f5dfead070fd57e393ef6962fc24788bc7170550b4a20f0b88189242cca1bab",
+  "semantic_state_sha256": "228b0fa9b3120e02d56436658c72747e90f955b4552a4e83f2bb5eaa50a147d6",
   "source_conflicts": [],
-  "system_readiness_state": "TECHNICALLY_READY_SCIENCE_BLOCKED",
+  "system_readiness_state": "DATA_BLOCKED_REFERENCE_ONLY_NO_CANONICAL_FIGHTER_EVENT",
   "t2": {
     "anchor": "EARLIEST_PUBLISHED_SCHEDULED_BOUT_MINUS_2_HOURS",
     "scheduled_utc": "2026-09-05T14:00:00Z",
