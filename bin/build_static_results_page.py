@@ -161,7 +161,7 @@ def build():
 
         era_start = daily_archive.get("tier_era_start") or tier_summary.get("tier_ledger_era_start", "")
         era_end = daily_archive.get("tier_era_end") or tier_summary.get("latest_graded_date", "")
-        era_label = f"VERIFIED TIER ERA · {_MONTH(era_start)} — {_MONTH(era_end)}"
+        era_label = f"{_MONTH(era_start)} — {_MONTH(era_end)}"
 
         def _tier_rows_body(rows: list) -> str:
             return "".join(
@@ -205,7 +205,7 @@ def build():
 
         tier_html = (
             '  <div class="section-head">\n'
-            '    <div class="title">MLB TIER PERFORMANCE</div>\n'
+            '    <div class="title">AS-ISSUED TIER PERFORMANCE</div>\n'
             f'    <div class="meta mono">{html.escape(era_label)}</div>\n'
             "  </div>\n"
             + two_col
@@ -242,7 +242,7 @@ def build():
     <a href="/results" class="active" aria-current="true">MLB</a>
     <a href="/ncaaf/results">NCAA FOOTBALL</a>
     <a href="/mma/results">MMA / UFC</a>
-    <span class="sport-unavailable" aria-disabled="true" title="NFL public route not yet established">NFL</span>
+    <a href="/nfl/results">NFL</a>
   </nav>
   <nav class="section-nav" aria-label="MLB sections">
     <a href="/">PICKS</a>
