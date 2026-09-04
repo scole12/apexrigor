@@ -20,6 +20,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+import time
 from dataclasses import dataclass
 from datetime import datetime, timedelta, timezone
 from pathlib import Path, PurePosixPath
@@ -43,6 +44,8 @@ FINAL_RECEIPT_STATES = {
     "PUBLISHED_NO_CONTENT_CHANGE",
     "PUBLISHED_EMAIL_DISPATCHED",
     "PUBLISHED_NO_CONTENT_CHANGE_EMAIL_DISPATCHED",
+    "PUBLISHED_EMAIL_VERIFIED",
+    "PUBLISHED_NO_CONTENT_CHANGE_EMAIL_VERIFIED",
 }
 ROUTE_PATHS = {
     "index.html",
@@ -109,6 +112,21 @@ def atomic_json(path: Path, value: Any) -> None:
             temporary.unlink()
 
 
+def atomic_bytes(path: Path, body: bytes, mode: int = 0o640) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True, mode=0o750)
+    temporary = path.with_name(f".{path.name}.{os.getpid()}.tmp")
+    descriptor = os.open(temporary, os.O_WRONLY | os.O_CREAT | os.O_EXCL, mode)
+    try:
+        with os.fdopen(descriptor, "wb") as handle:
+            handle.write(body)
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.replace(temporary, path)
+    finally:
+        if temporary.exists():
+            temporary.unlink()
+
+
 def load_json(path: Path) -> dict[str, Any]:
     value = json.loads(path.read_text(encoding="utf-8"))
     if not isinstance(value, dict):
@@ -161,7 +179,13 @@ def is_complete(request: Request) -> bool:
     path = receipt_path(request)
     if not path.is_file():
         return False
-    return load_json(path).get("status") in FINAL_RECEIPT_STATES
+    status = str(load_json(path).get("status") or "")
+    if request.sport == "NCAAF":
+        return status in {
+            "PUBLISHED_EMAIL_VERIFIED",
+            "PUBLISHED_NO_CONTENT_CHANGE_EMAIL_VERIFIED",
+        }
+    return status in FINAL_RECEIPT_STATES
 
 
 def validate_payload_set(request: Request) -> dict[str, str]:
@@ -537,17 +561,161 @@ def publish(request: Request, *, dry_run: bool) -> dict[str, Any]:
     }
 
 
+def ncaaf_workflow_title(request: Request) -> str:
+    return f"NCAA {request.product} {request.slate_date} {request.request_id}"
+
+
+def matching_ncaaf_workflow_runs(request: Request) -> list[dict[str, Any]]:
+    raw = run(
+        [
+            "gh", "run", "list", "--repo", "scole12/apexrigor",
+            "--workflow", "ncaaf-full-slate-delivery.yml", "--event", "workflow_dispatch",
+            "--limit", "100", "--json",
+            "databaseId,displayTitle,status,conclusion,createdAt,updatedAt,url,headSha",
+        ],
+        cwd=ROOT,
+    )
+    rows = json.loads(raw or "[]")
+    title = ncaaf_workflow_title(request)
+    return [row for row in rows if str(row.get("displayTitle") or "") == title]
+
+
+def wait_for_ncaaf_workflow(request: Request, run_id: int | None) -> dict[str, Any]:
+    deadline = time.monotonic() + 360
+    selected: dict[str, Any] | None = None
+    while time.monotonic() < deadline:
+        matches = matching_ncaaf_workflow_runs(request)
+        if len(matches) > 1:
+            raise RuntimeError(
+                f"duplicate NCAA email workflows for immutable request: "
+                f"{[row.get('databaseId') for row in matches]}"
+            )
+        if matches:
+            selected = matches[0]
+            if run_id is not None and int(selected["databaseId"]) != run_id:
+                raise RuntimeError("NCAA saved workflow identity differs from GitHub read-back")
+            run_id = int(selected["databaseId"])
+            if selected.get("status") == "completed":
+                if selected.get("conclusion") != "success":
+                    raise RuntimeError(
+                        f"NCAA email workflow {run_id} completed {selected.get('conclusion')}"
+                    )
+                return selected
+        time.sleep(2)
+    raise RuntimeError(
+        f"NCAA email workflow did not complete before timeout: "
+        f"request={request.request_id} run_id={run_id} last={selected}"
+    )
+
+
+def preserve_ncaaf_email_evidence(
+    request: Request,
+    workflow: dict[str, Any],
+) -> dict[str, Any]:
+    run_id = int(workflow["databaseId"])
+    evidence_root = STATE_ROOT / "email_evidence" / "ncaaf" / request.request_id
+    transaction_path = evidence_root / "transaction.json"
+    message_path = evidence_root / "message.eml"
+    if transaction_path.is_file() and message_path.is_file():
+        transaction = load_json(transaction_path)
+    else:
+        download_root = STATE_ROOT / "downloads"
+        download_root.mkdir(parents=True, exist_ok=True, mode=0o750)
+        with tempfile.TemporaryDirectory(prefix="ncaaf-email-", dir=download_root) as temporary:
+            temporary_path = Path(temporary)
+            run(
+                [
+                    "gh", "run", "download", str(run_id), "--repo", "scole12/apexrigor",
+                    "--dir", str(temporary_path),
+                ],
+                cwd=ROOT,
+                timeout=180,
+            )
+            transactions = sorted(temporary_path.rglob("*_TRANSACTION.json"))
+            messages = sorted(temporary_path.rglob("*_MESSAGE.eml"))
+            if len(transactions) != 1 or len(messages) != 1:
+                raise RuntimeError(
+                    "NCAA workflow artifact did not contain exactly one transaction and message: "
+                    f"transactions={len(transactions)} messages={len(messages)}"
+                )
+            transaction_bytes = transactions[0].read_bytes()
+            message_bytes = messages[0].read_bytes()
+            transaction = json.loads(transaction_bytes)
+            atomic_bytes(transaction_path, transaction_bytes)
+            atomic_bytes(message_path, message_bytes, 0o600)
+
+    expected_message_id = (
+        f"<ncaaf-{request.slate_date.replace('-', '')}-{request.product.lower()}-"
+        f"{str(request.manifest['canonical_public_payload_sha256'])[:20]}@apexrigor.com>"
+    )
+    expected_attachment_count = {"T3": 1, "T2": 2, "RESULTS": 3}[request.product]
+    recipient_rows = list(transaction.get("smtp_recipient_responses") or [])
+    checks = {
+        "request_id": transaction.get("request_id") == request.request_id,
+        "slate_date": transaction.get("slate_date") == request.slate_date,
+        "delivery_mode": transaction.get("delivery_mode") == "NORMAL",
+        "message_id": transaction.get("message_id") == expected_message_id,
+        "attachment_count": int(transaction.get("attachment_count") or -1)
+        == expected_attachment_count,
+        "recipient_set_nonempty": bool(transaction.get("envelope_recipients")),
+        "all_recipients_accepted": bool(recipient_rows)
+        and all(bool(row.get("accepted")) for row in recipient_rows),
+        "smtp_data_accepted": int(transaction.get("smtp_data_response_code") or 0) == 250,
+        "delivery_state": transaction.get("delivery_state") == "PROVIDER_ACCEPTED",
+        "credentials_absent": transaction.get("credentials_recorded") is False,
+    }
+    if not all(checks.values()):
+        raise RuntimeError(f"NCAA provider transaction verification failed: {checks}")
+    return {
+        "status": "PASS",
+        "checks": checks,
+        "message_id": transaction["message_id"],
+        "provider_queue_id": transaction.get("provider_queue_id"),
+        "provider_accepted_at": transaction.get("provider_accepted_at"),
+        "recipient_count": len(transaction["envelope_recipients"]),
+        "attachment_count": int(transaction["attachment_count"]),
+        "transaction_path": str(transaction_path),
+        "transaction_sha256": sha256_file(transaction_path),
+        "message_path": str(message_path),
+        "message_sha256": sha256_file(message_path),
+    }
+
+
 def dispatch_ncaaf_email(request: Request, receipt: dict[str, Any]) -> dict[str, Any]:
     if request.slate_date is None or request.product is None:
         raise RuntimeError("NCAAF email handoff identity is incomplete")
+    state_path = receipt_path(request)
+    prior = load_json(state_path) if state_path.is_file() else {}
+    publication_status = str(
+        prior.get("publication_status")
+        or receipt.get("publication_status")
+        or str(receipt["status"]).split("_EMAIL_", 1)[0]
+    )
+    saved_run_id = prior.get("email_workflow_run_id")
+    matches = matching_ncaaf_workflow_runs(request)
+    if len(matches) > 1:
+        raise RuntimeError(
+            f"duplicate NCAA email workflows for immutable request: "
+            f"{[row.get('databaseId') for row in matches]}"
+        )
+    if matches:
+        observed_run_id = int(matches[0]["databaseId"])
+        if saved_run_id is not None and int(saved_run_id) != observed_run_id:
+            raise RuntimeError("NCAA persisted workflow identity differs from GitHub read-back")
+        saved_run_id = observed_run_id
     intent = {
         **receipt,
-        "status": receipt["status"] + "_EMAIL_DISPATCH_INTENT",
+        "publication_status": publication_status,
+        "status": publication_status + "_EMAIL_DISPATCH_INTENT",
         "email_workflow": "ncaaf-full-slate-delivery.yml",
-        "email_dispatch_at_utc": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
+        "email_workflow_title": ncaaf_workflow_title(request),
+        "email_workflow_run_id": saved_run_id,
+        "email_dispatch_at_utc": prior.get("email_dispatch_at_utc")
+        or datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
+        "duplicate_email_workflow_count": 0,
     }
-    atomic_json(receipt_path(request), intent)
-    try:
+    atomic_json(state_path, intent)
+    if saved_run_id is None:
         run(
             [
                 "gh", "workflow", "run", "ncaaf-full-slate-delivery.yml",
@@ -555,23 +723,37 @@ def dispatch_ncaaf_email(request: Request, receipt: dict[str, Any]) -> dict[str,
                 "-f", f"product={request.product}",
                 "-f", f"slate_date={request.slate_date}",
                 "-f", "delivery_mode=NORMAL",
+                "-f", f"request_id={request.request_id}",
             ],
             cwd=ROOT,
         )
+    try:
+        workflow = wait_for_ncaaf_workflow(
+            request,
+            int(saved_run_id) if saved_run_id is not None else None,
+        )
+        evidence = preserve_ncaaf_email_evidence(request, workflow)
     except Exception as error:
         failed = {
             **intent,
-            "status": receipt["status"] + "_EMAIL_DISPATCH_FAILED_REQUIRES_REVIEW",
-            "exact_error": f"{type(error).__name__}: {str(error)[:1000]}",
+            "status": publication_status + "_EMAIL_VERIFICATION_FAILED_REQUIRES_RETRY",
+            "exact_error": f"{type(error).__name__}: {str(error)[:1600]}",
         }
-        atomic_json(receipt_path(request), failed)
+        atomic_json(state_path, failed)
         raise
     complete = {
         **intent,
-        "status": receipt["status"] + "_EMAIL_DISPATCHED",
+        "status": publication_status + "_EMAIL_VERIFIED",
         "email_dispatch_accepted": True,
+        "email_workflow_run_id": int(workflow["databaseId"]),
+        "email_workflow_url": workflow.get("url"),
+        "email_workflow_conclusion": workflow.get("conclusion"),
+        "email_provider_evidence": evidence,
+        "email_external_action_count": 1,
+        "duplicate_email_workflow_count": 0,
+        "verified_at_utc": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
     }
-    atomic_json(receipt_path(request), complete)
+    atomic_json(state_path, complete)
     return complete
 
 

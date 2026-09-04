@@ -1,4 +1,5 @@
 name: NCAA full-slate product delivery
+run-name: NCAA ${{ inputs.product }} ${{ inputs.slate_date }} ${{ inputs.request_id }}
 
 on:
   workflow_dispatch:
@@ -28,6 +29,11 @@ on:
           - APEX_FINAL_CORRECTED
           - PRESENTATION_REV2
           - T3_RECOVERY
+      request_id:
+        description: Immutable shared-publisher request identity
+        required: false
+        default: manual
+        type: string
 
 permissions:
   contents: read
@@ -40,6 +46,7 @@ jobs:
       PRODUCT: ${{ inputs.product }}
       SLATE_DATE: ${{ inputs.slate_date }}
       DELIVERY_MODE: ${{ inputs.delivery_mode }}
+      REQUEST_ID: ${{ inputs.request_id }}
       SMTP_HOST: ${{ secrets.NCAAF_SMTP_HOST }}
       SMTP_PORT: ${{ secrets.NCAAF_SMTP_PORT }}
       SMTP_USER: ${{ secrets.NCAAF_SMTP_USER }}
@@ -80,6 +87,9 @@ jobs:
           root=pathlib.Path('data/ncaaf')/slate_date
           manifest=json.loads((root/'full_slate_delivery_manifest.json').read_text())
           assert manifest['slate_date']==slate_date
+          request_id=os.environ['REQUEST_ID']
+          if request_id!='manual':
+              assert request_id==manifest['queue_request_id']
           public_sha=manifest['canonical_public_payload_sha256']
           positions=[]
           # A late T-3 recovery is bound directly to its immutable recovery
@@ -290,13 +300,8 @@ jobs:
               })
 
           mime_bytes=message.as_bytes(policy=SMTP)
-          evidence_stem=(
-              f'NCAAF_T2_{delivery_mode}' if delivery_mode in presentation_modes
-              else f'NCAAF_T3_{delivery_mode}' if delivery_mode in t3_recovery_modes
-              else f'NCAAF_RESULTS_{delivery_mode}'
-          )
-          if delivery_mode in explicit_modes:
-              pathlib.Path(evidence_stem+'_MESSAGE.eml').write_bytes(mime_bytes)
+          evidence_stem=f'NCAAF_{product}_{delivery_mode}'
+          pathlib.Path(evidence_stem+'_MESSAGE.eml').write_bytes(mime_bytes)
 
           host=os.environ['SMTP_HOST']; port=int(os.environ['SMTP_PORT']); context=ssl.create_default_context()
           if port==465:
@@ -306,75 +311,70 @@ jobs:
               client.ehlo(); client.starttls(context=context); client.ehlo()
           with client:
               client.login(os.environ['SMTP_USER'],os.environ['SMTP_PASSWORD'])
-              if delivery_mode in explicit_modes:
-                  envelope_from=parseaddr(str(message['From']))[1]
-                  mail_code,mail_text=client.mail(envelope_from)
-                  assert 200 <= mail_code < 300, (mail_code,mail_text)
-                  recipient_responses=[]
-                  for recipient in recipients:
-                      code,text=client.rcpt(recipient)
-                      recipient_responses.append({
-                          'recipient':recipient,
-                          'code':code,
-                          'text':text.decode('utf-8','replace') if isinstance(text,bytes) else str(text),
-                          'accepted':code in (250,251),
-                      })
-                  assert all(row['accepted'] for row in recipient_responses), recipient_responses
-                  smtp_code,smtp_text=client.data(mime_bytes)
-                  smtp_response=(smtp_text.decode('utf-8','replace') if isinstance(smtp_text,bytes) else str(smtp_text))
-                  assert smtp_code==250, (smtp_code,smtp_response)
-                  accepted_at=datetime.now(timezone.utc).isoformat().replace('+00:00','Z')
-                  provider_queue_id='UNAVAILABLE_NOT_SEPARATELY_EXPOSED'
-                  lower=smtp_response.lower()
-                  if 'queued as ' in lower:
-                      provider_queue_id=smtp_response[lower.index('queued as ')+10:].split()[0].strip('.,;')
-                  evidence={
-                      'schema_version':(
-                          'apex.ncaaf.presentation_revision_email_evidence.v1'
-                          if delivery_mode in presentation_modes
-                          else 'apex.ncaaf.t3_recovery_email_evidence.v1'
-                          if delivery_mode in t3_recovery_modes
-                          else 'apex.ncaaf.results_explicit_email_evidence.v2'
-                      ),
-                      'slate_date':slate_date,
-                      'delivery_mode':delivery_mode,
-                      'from':str(message['From']),
-                      'reply_to':str(message.get('Reply-To','')),
-                      'to':recipients,
-                      'cc':[],
-                      'bcc':[],
-                      'envelope_from':envelope_from,
-                      'envelope_recipients':recipients,
-                      'subject':subject,
-                      'message_id':str(message['Message-ID']),
-                      'attachment_count':len(attachment_evidence),
-                      'attachments':attachment_evidence,
-                      'mime_sha256':hashlib.sha256(mime_bytes).hexdigest(),
-                      'smtp_mail_response_code':mail_code,
-                      'smtp_mail_response_text':mail_text.decode('utf-8','replace') if isinstance(mail_text,bytes) else str(mail_text),
-                      'smtp_recipient_responses':recipient_responses,
-                      'smtp_data_response_code':smtp_code,
-                      'smtp_data_response_text':smtp_response,
-                      'provider_queue_id':provider_queue_id,
-                      'provider_accepted_at':accepted_at,
-                      'provider_delivery_tracking_available':False,
-                      'delivery_state':'PENDING_PROVIDER_EVENT',
-                      'credentials_recorded':False,
-                  }
-                  pathlib.Path(evidence_stem+'_TRANSACTION.json').write_text(
-                      json.dumps(evidence,sort_keys=True,indent=2)+'\n',encoding='utf-8'
-                  )
-                  prefix=delivery_mode
-                  print(prefix+'_MESSAGE_ID='+str(message['Message-ID']))
-                  print(prefix+'_ENVELOPE_RCPT_COUNT='+str(len(recipients)))
-                  print(prefix+'_ENVELOPE_RCPT_LIST='+','.join(recipients))
-                  print(prefix+'_SMTP_RESPONSE_CODE='+str(smtp_code))
-                  print(prefix+'_SMTP_RESPONSE_TEXT='+smtp_response)
-                  print(prefix+'_PROVIDER_QUEUE_ID='+provider_queue_id)
-                  print(prefix+'_ACCEPTED_AT='+accepted_at)
-              else:
-                  rejected=client.send_message(message)
-                  assert not rejected
+              envelope_from=parseaddr(str(message['From']))[1]
+              mail_code,mail_text=client.mail(envelope_from)
+              assert 200 <= mail_code < 300, (mail_code,mail_text)
+              recipient_responses=[]
+              for recipient in recipients:
+                  code,text=client.rcpt(recipient)
+                  recipient_responses.append({
+                      'recipient':recipient,
+                      'code':code,
+                      'text':text.decode('utf-8','replace') if isinstance(text,bytes) else str(text),
+                      'accepted':code in (250,251),
+                  })
+              assert all(row['accepted'] for row in recipient_responses), recipient_responses
+              smtp_code,smtp_text=client.data(mime_bytes)
+              smtp_response=(smtp_text.decode('utf-8','replace') if isinstance(smtp_text,bytes) else str(smtp_text))
+              assert smtp_code==250, (smtp_code,smtp_response)
+              accepted_at=datetime.now(timezone.utc).isoformat().replace('+00:00','Z')
+              provider_queue_id='UNAVAILABLE_NOT_SEPARATELY_EXPOSED'
+              lower=smtp_response.lower()
+              if 'queued as ' in lower:
+                  provider_queue_id=smtp_response[lower.index('queued as ')+10:].split()[0].strip('.,;')
+              evidence={
+                  'schema_version':(
+                      'apex.ncaaf.presentation_revision_email_evidence.v1'
+                      if delivery_mode in presentation_modes
+                      else 'apex.ncaaf.t3_recovery_email_evidence.v1'
+                      if delivery_mode in t3_recovery_modes
+                      else 'apex.ncaaf.results_email_evidence.v3'
+                  ),
+                  'slate_date':slate_date,
+                  'delivery_mode':delivery_mode,
+                  'request_id':request_id,
+                  'from':str(message['From']),
+                  'reply_to':str(message.get('Reply-To','')),
+                  'to':recipients,
+                  'cc':[],
+                  'bcc':[],
+                  'envelope_from':envelope_from,
+                  'envelope_recipients':recipients,
+                  'subject':subject,
+                  'message_id':str(message['Message-ID']),
+                  'attachment_count':len(attachment_evidence),
+                  'attachments':attachment_evidence,
+                  'mime_sha256':hashlib.sha256(mime_bytes).hexdigest(),
+                  'smtp_mail_response_code':mail_code,
+                  'smtp_mail_response_text':mail_text.decode('utf-8','replace') if isinstance(mail_text,bytes) else str(mail_text),
+                  'smtp_recipient_responses':recipient_responses,
+                  'smtp_data_response_code':smtp_code,
+                  'smtp_data_response_text':smtp_response,
+                  'provider_queue_id':provider_queue_id,
+                  'provider_accepted_at':accepted_at,
+                  'provider_delivery_tracking_available':False,
+                  'delivery_state':'PROVIDER_ACCEPTED',
+                  'credentials_recorded':False,
+              }
+              pathlib.Path(evidence_stem+'_TRANSACTION.json').write_text(
+                  json.dumps(evidence,sort_keys=True,indent=2)+'\n',encoding='utf-8'
+              )
+              prefix=delivery_mode
+              print(prefix+'_MESSAGE_ID='+str(message['Message-ID']))
+              print(prefix+'_ENVELOPE_RCPT_COUNT='+str(len(recipients)))
+              print(prefix+'_SMTP_RESPONSE_CODE='+str(smtp_code))
+              print(prefix+'_PROVIDER_QUEUE_ID='+provider_queue_id)
+              print(prefix+'_ACCEPTED_AT='+accepted_at)
           print('EMAIL_SEND=PASS')
           print('PRODUCT='+product)
           print('CANONICAL_GAME_COUNT='+str(manifest['canonical_game_count']))
@@ -383,8 +383,7 @@ jobs:
           print('ATTACHMENT_COUNT='+str(len(attachments)))
           print('PUBLIC_PAYLOAD_SHA256='+public_sha)
           PY
-      - name: Preserve NCAA explicit transaction evidence
-        if: ${{ inputs.delivery_mode != 'NORMAL' }}
+      - name: Preserve NCAA provider transaction evidence
         uses: actions/upload-artifact@v4
         with:
           name: ncaaf-${{ inputs.product }}-${{ inputs.delivery_mode }}-${{ inputs.slate_date }}-${{ github.run_id }}
