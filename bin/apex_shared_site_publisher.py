@@ -34,6 +34,7 @@ STATE_ROOT = Path(
 )
 LOCK_PATH = Path("/run/lock/apex-shared-site-publication.lock")
 NCAAF_QUEUE = Path("/var/opt/apex_ncaaf/production/publication_queue")
+NCAAF_T3_ROOT = Path("/var/opt/apex_ncaaf/production/t3")
 MMA_QUEUE = Path("/var/opt/apex_mma/production/publication_queue")
 NFL_QUEUE = Path("/var/opt/apex_nfl/production/publication_queue")
 NFL_ISSUANCE = Path("/var/opt/apex_nfl/production/issuance")
@@ -415,6 +416,29 @@ def ncaaf_delivery_manifest(request: Request, worktree: Path) -> None:
             "outcome_read_count": proof.get("outcome_read_count"),
             "path": proof_relative.removeprefix(date_root),
             "sha256": source_hashes[proof_relative],
+        }
+        t3_receipt_path = NCAAF_T3_ROOT / f"{request.slate_date}.json"
+        if not t3_receipt_path.is_file():
+            raise RuntimeError("NCAAF T3 timing receipt is absent")
+        t3_receipt = load_json(t3_receipt_path)
+        nominal_ms = int(t3_receipt.get("nominal_t3_utc_ms") or -1)
+        actual_start_ms = int(proof.get("request_started_at_utc_ms") or -1)
+        if (
+            t3_receipt.get("status") != "PASS"
+            or t3_receipt.get("slate_date_et") != request.slate_date
+            or nominal_ms <= 0
+            or actual_start_ms <= 0
+        ):
+            raise RuntimeError("NCAAF T3 timing receipt is invalid")
+        manifest["t3_timing"] = {
+            "execution_class": (
+                "LATE_RECOVERY" if actual_start_ms > nominal_ms else "ON_TIME"
+            ),
+            "nominal_t3_utc_ms": nominal_ms,
+            "actual_hydration_start_utc_ms": actual_start_ms,
+            "actual_hydration_receipt_utc_ms": int(
+                proof.get("captured_at_utc_ms") or -1
+            ),
         }
     destination = worktree / date_root / "full_slate_delivery_manifest.json"
     destination.parent.mkdir(parents=True, exist_ok=True)

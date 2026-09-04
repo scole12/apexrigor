@@ -162,15 +162,25 @@ jobs:
                       assert authority['source_rows_accounted']>0
                       assert authority['source_failure_count']==0
                       assert authority['post_commit_reopen_verify']=='PASS'
-                      assert authority['sha256_before'] and authority['sha256_after']
-                  subject=f'APEX NCAA Football T-3 Data Report — {display_date}'
+                      before_hash=authority.get('observational_main_file_sha256_before') or authority.get('sha256_before')
+                      after_hash=authority.get('observational_main_file_sha256_after') or authority.get('sha256_after')
+                      assert before_hash and after_hash
+                  timing=manifest.get('t3_timing') or {}
+                  late_recovery=timing.get('execution_class')=='LATE_RECOVERY'
+                  subject=(
+                      f'APEX NCAA Football T-3 Data Report — {display_date} — Late Recovery'
+                      if late_recovery else
+                      f'APEX NCAA Football T-3 Data Report — {display_date}'
+                  )
                   body=(
-                      f'The APEX NCAA Football T-minus-3 Data Report for {display_date} is attached.\n\n'
-                      f"The report accounts for all {manifest['canonical_game_count']} canonical games and records physical PLAYER, "
-                      'TEAM_LINEUP and HISTORICAL transactions, source-row dispositions, before/after hashes and post-commit reopen verification. '
-                      'It also reports D2/V5 input readiness, explicit missingness, and zero-filter accounting. T-3 creates no final positions.\n\n'
-                      'Attached:\n'
-                      '1. APEX NCAA Football T-3 Data Report PDF\n'
+                      (f'The scheduled APEX NCAA Football T-minus-3 Data Report for {display_date} completed as a truthfully labeled late recovery.\n\n'
+                       if late_recovery else
+                       f'The APEX NCAA Football T-minus-3 Data Report for {display_date} is attached.\n\n')
+                      + f"The report accounts for all {manifest['canonical_game_count']} canonical games and records physical PLAYER, "
+                      + 'TEAM_LINEUP and HISTORICAL transactions, source-row dispositions, before/after hashes and post-commit reopen verification. '
+                      + 'It also reports D2/V5 input readiness, explicit missingness, and zero-filter accounting. T-3 creates no final positions.\n\n'
+                      + 'Attached:\n'
+                      + '1. APEX NCAA Football T-3 Data Report PDF\n'
                   )
                   attachments=[f'T3_APEX_NCAAF_DATA_REPORT_{date_token}.pdf']
           elif product=='T2':
