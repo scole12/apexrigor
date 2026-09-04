@@ -95,7 +95,10 @@ jobs:
           # A late T-3 recovery is bound directly to its immutable recovery
           # receipt and PDF below.  It must not be coupled to a later public
           # Picks projection, which can legitimately be regenerated after T-2.
-          if delivery_mode not in t3_recovery_modes and product!='RESULTS':
+          # T-3 is a factual-hydration report and intentionally does not
+          # publish or depend on the Picks projection.  The Picks payload can
+          # legitimately still identify the prior T-2 at this point.
+          if product not in ('T3','RESULTS'):
               public_path=pathlib.Path('data/ncaaf_today.json')
               public_sha=hashlib.sha256(public_path.read_bytes()).hexdigest()
               assert public_sha==manifest['canonical_public_payload_sha256']
