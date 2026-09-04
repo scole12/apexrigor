@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>APEX — NFL Results</title>
+<meta name="description" content="Exact issued-versus-graded APEX NFL results.">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg?v=apex-20260904-nfl">
+<link rel="icon" type="image/x-icon" href="/favicon.ico?v=apex-20260904-nfl" sizes="32x32">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=apex-20260904-nfl">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=apex-20260904-nfl">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=apex-20260904-nfl">
+<link rel="manifest" href="/site.webmanifest?v=apex-20260904-nfl">
+<meta name="theme-color" content="#000000">
+<meta property="og:type" content="website"><meta property="og:site_name" content="APEX">
+<meta property="og:title" content="APEX — NFL Results">
+<meta property="og:description" content="Exact issued-versus-graded APEX NFL results.">
+<meta property="og:url" content="https://apexrigor.com/nfl/results">
+<meta property="og:image" content="https://apexrigor.com/og-image.png?v=apex-20260904-nfl">
+<link rel="stylesheet" href="/assets/apex.css?v=apex-20260904-nfl">
+</head>
+<body>
+<div class="shell" data-sport="NFL">
+  <div class="hero"><div class="hero-mark"><svg viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg"><polygon points="22,6 38,36 6,36"/></svg></div><div class="hero-wordmark">APEX</div><div class="hero-rule"></div><div class="hero-tag">NFL</div><div class="hero-math">The Math Speaks.</div></div>
+  <div class="apex-nav-stack">
+  <nav class="sport-nav" aria-label="Sport selector"><a href="/results">MLB</a><a href="/ncaaf/results">NCAA FOOTBALL</a><a href="/mma/results">MMA / UFC</a><a href="/nfl/results" class="active" aria-current="true">NFL</a></nav>
+  <nav class="section-nav" aria-label="NFL sections"><a href="/nfl">PICKS</a><a href="/nfl/results" class="active" aria-current="true">RESULTS</a><a href="/nfl/about">ABOUT</a></nav>
+  </div>
+  <div class="section-head"><div class="title">NFL RESULTS</div><div class="meta mono" id="result-meta">LOADING SEALED LEDGER STATE</div></div>
+  <main class="picks-page"><div id="result" class="picks-board" aria-live="polite"></div></main>
+  <div class="foot mono">ONLY SEALED ISSUANCE IS ELIGIBLE FOR GRADING</div>
+</div>
+<script>
+const esc=v=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));
+fetch("/data/nfl_results_summary.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw new Error("HTTP "+r.status);return r.json()}).then(d=>{
+  if(d.issued_position_count!==0||d.graded_position_count!==0||d.ungraded_position_count!==0)throw new Error("NFL result-state invariant failed");
+  document.getElementById("result-meta").textContent="0 ISSUED · 0 GRADED · SCIENCE BLOCKED";
+  document.getElementById("result").innerHTML='<article class="game-module"><header class="game-header"><div class="game-num mono">LEDGER</div><div class="game-meta"><h2 class="game-matchup">No NFL performance claimed</h2><p class="game-pitchers mono">NO SEALED NFL POSITIONS EXIST</p></div><div class="game-time mono">0–0</div></header><div class="market-grid market-grid--single"><section class="market-panel"><div class="market-label">ISSUED-VERSUS-GRADED RECONCILIATION</div><div class="pick-headline">EMPTY BY SCIENTIFIC DESIGN</div><div class="rationale-copy"><p>'+esc(d.message)+'</p><p>The grader is implemented to settle exact sealed issuance only. It will not reconstruct yesterday’s probability from a later model.</p></div></section></div></article>';
+}).catch(e=>{document.getElementById("result-meta").textContent="NFL RESULTS UNAVAILABLE";document.getElementById("result").innerHTML='<div class="empty-state">FAIL CLOSED · '+esc(e.message)+'</div>'});
+</script>
+</body>
+</html>

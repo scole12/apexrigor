@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>APEX — NFL</title>
+<meta name="description" content="APEX NFL technical readiness and truthful scientific release state.">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg?v=apex-20260904-nfl">
+<link rel="icon" type="image/x-icon" href="/favicon.ico?v=apex-20260904-nfl" sizes="32x32">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=apex-20260904-nfl">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=apex-20260904-nfl">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=apex-20260904-nfl">
+<link rel="manifest" href="/site.webmanifest?v=apex-20260904-nfl">
+<meta name="theme-color" content="#000000">
+<meta property="og:type" content="website"><meta property="og:site_name" content="APEX">
+<meta property="og:title" content="APEX — NFL">
+<meta property="og:description" content="APEX NFL technical readiness and truthful scientific release state.">
+<meta property="og:url" content="https://apexrigor.com/nfl">
+<meta property="og:image" content="https://apexrigor.com/og-image.png?v=apex-20260904-nfl">
+<link rel="stylesheet" href="/assets/apex.css?v=apex-20260904-nfl">
+</head>
+<body>
+<div class="shell" data-sport="NFL" data-picks-state="science-blocked" data-public-issuance="false">
+  <div class="hero">
+    <div class="hero-mark"><svg viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg"><polygon points="22,6 38,36 6,36"/></svg></div>
+    <div class="hero-wordmark">APEX</div><div class="hero-rule"></div>
+    <div class="hero-tag">NFL</div><div class="hero-math">The Math Speaks.</div>
+  </div>
+  <div class="apex-nav-stack">
+  <nav class="sport-nav" aria-label="Sport selector">
+    <a href="/">MLB</a><a href="/ncaaf">NCAA FOOTBALL</a><a href="/mma">MMA / UFC</a><a href="/nfl" class="active" aria-current="true">NFL</a>
+  </nav>
+  <nav class="section-nav" aria-label="NFL sections">
+    <a href="/nfl" class="active" aria-current="true">PICKS</a><a href="/nfl/results">RESULTS</a><a href="/nfl/about">ABOUT</a>
+  </nav>
+  </div>
+  <div class="section-head picks-board-head">
+    <div class="title">WEEK 1 READINESS</div><div class="meta mono" id="slate-meta">LOADING CANONICAL NFL STATE</div>
+  </div>
+  <main class="picks-page"><div class="picks-board" id="games" aria-live="polite"></div></main>
+  <div class="tag">THE MATH SPEAKS.</div>
+  <div class="foot mono">APEX NFL · POINT-IN-TIME AUTHORITIES · RELEASE GATED</div>
+</div>
+<script>
+const esc=v=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));
+const stamp=v=>new Intl.DateTimeFormat("en-US",{timeZone:"America/New_York",weekday:"short",month:"short",day:"numeric",hour:"numeric",minute:"2-digit",timeZoneName:"short"}).format(new Date(v));
+fetch("/data/nfl_today.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw new Error("HTTP "+r.status);return r.json()}).then(d=>{
+  const games=d.slate.games||[];
+  if(d.public_issuance!==false||d.position_count!==0||!games.every(g=>Array.isArray(g.positions)&&g.positions.length===0))throw new Error("NFL release-state invariant failed");
+  document.getElementById("slate-meta").textContent=`${games.length} GAMES · TECHNICAL READY · SCIENCE BLOCKED · 0 POSITIONS`;
+  const gate='<article class="game-module" data-game-state="SCIENCE_BLOCKED"><header class="game-header"><div class="game-num mono">GATE</div><div class="game-meta"><h2 class="game-matchup">No NFL picks issued</h2><p class="game-pitchers mono">ATS · QB/RB/WR PROPS · FULL-GAME TOTALS</p></div><div class="game-time mono">0 POSITIONS</div></header><div class="market-grid market-grid--single"><section class="market-panel"><div class="market-label">SCIENTIFIC RELEASE STATE</div><div class="pick-headline">NO QUALIFIED CHAMPION</div><div class="rationale-copy"><p>The acquisition, point-in-time T-3, T-2 serving, and exact-issuance grader machinery is technically ready. Each engine lane remains closed until a candidate earns promotion through chronological evidence. APEX does not publish a forecast, probability, or market position from review scaffolding.</p></div></section></div></article>';
+  const schedule=games.map((g,i)=>'<article class="game-module" data-game="'+esc(g.game_id)+'" data-game-state="SCHEDULED"><header class="game-header"><div class="game-num mono">G'+String(i+1).padStart(2,"0")+'</div><div class="game-meta"><h2 class="game-matchup">'+esc(g.matchup)+'</h2><p class="game-pitchers mono">2026 REGULAR SEASON · WEEK '+esc(g.week)+' · CANONICAL SCHEDULE</p></div><div class="game-time mono">'+esc(stamp(g.kickoff_utc))+'</div></header></article>').join("");
+  document.getElementById("games").innerHTML=gate+schedule;
+}).catch(e=>{document.getElementById("slate-meta").textContent="NFL STATE UNAVAILABLE";document.getElementById("games").innerHTML='<div class="empty-state">FAIL CLOSED · '+esc(e.message)+'</div>'});
+</script>
+</body>
+</html>

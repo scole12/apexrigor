@@ -240,6 +240,53 @@ def main() -> int:
     if today and today.get("fight_count") != len(today.get("card", [])):
         errors.append("MMA fight count does not reconcile to card length")
 
+    required_nfl_payloads = {
+        "nfl_today.json": "APEX_NFL_TODAY_V1",
+        "nfl_system_state.json": "APEX_NFL_PUBLIC_STATE_V1",
+        "nfl_results_summary.json": "APEX_NFL_RESULTS_SUMMARY_V1",
+        "nfl_results_archive.json": "APEX_NFL_RESULTS_ARCHIVE_V1",
+    }
+    nfl_payloads: dict[str, dict[str, object]] = {}
+    if nfl_route_established:
+        for name, schema in required_nfl_payloads.items():
+            path = root / "data" / name
+            try:
+                payload = json.loads(path.read_text(encoding="utf-8"))
+            except (OSError, json.JSONDecodeError) as exc:
+                errors.append(f"invalid NFL payload {name}: {exc}")
+                continue
+            nfl_payloads[name] = payload
+            if payload.get("schema_version") != schema:
+                errors.append(f"{name} schema mismatch")
+        nfl_today = nfl_payloads.get("nfl_today.json", {})
+        nfl_state = nfl_payloads.get("nfl_system_state.json", {})
+        nfl_results = nfl_payloads.get("nfl_results_summary.json", {})
+        if nfl_today:
+            games = nfl_today.get("slate", {}).get("games", [])
+            if nfl_today.get("public_issuance") is not False:
+                errors.append("science-blocked NFL payload claims public issuance")
+            if nfl_today.get("positions") != []:
+                errors.append("science-blocked NFL payload contains a public position")
+            if nfl_today.get("slate", {}).get("game_count") != len(games):
+                errors.append("NFL game count does not reconcile to schedule length")
+            if any(game.get("positions") != [] for game in games):
+                errors.append("science-blocked NFL schedule contains a position")
+        if nfl_state:
+            expected_science = {
+                "ATS": "NO_QUALIFIED_CHAMPION",
+                "PROPS": "NO_QUALIFIED_CHAMPION",
+                "TOTALS": "NO_QUALIFIED_CHAMPION",
+            }
+            if nfl_state.get("science") != expected_science:
+                errors.append("NFL science state does not truthfully preserve all three gates")
+            if nfl_state.get("hydration", {}).get("source_to_target_parity") != "PASS":
+                errors.append("NFL public state is not backed by source-to-target parity")
+        if nfl_results and any(
+            nfl_results.get(key) != 0
+            for key in ("issued_position_count", "graded_position_count", "ungraded_position_count")
+        ):
+            errors.append("NFL results claim positions while every engine is science-blocked")
+
     config_root = root if (root / "vercel.json").is_file() else root.parent
     try:
         vercel = json.loads((config_root / "vercel.json").read_text(encoding="utf-8"))
@@ -256,9 +303,12 @@ def main() -> int:
         ):
             errors.append(f"unlaunched sport redirect present: {source} -> {destination}")
     header_sources = {str(item.get("source")) for item in vercel.get("headers", [])}
-    for required_source in ("/mma", "/mma/:path*", "/data/mma_:path*"):
+    for required_source in (
+        "/mma", "/mma/:path*", "/data/mma_:path*",
+        "/nfl", "/nfl/:path*", "/data/nfl_:path*",
+    ):
         if required_source not in header_sources:
-            errors.append(f"vercel.json missing no-store MMA header: {required_source}")
+            errors.append(f"vercel.json missing required no-store header: {required_source}")
 
     icon_hashes: dict[str, str] = {}
     for root_icon, asset_icon in icon_pairs:
@@ -320,6 +370,13 @@ def main() -> int:
                 "sha256": sha256(root / "data" / name),
             }
             for name, payload in mma_payloads.items()
+        },
+        "nfl_payloads": {
+            name: {
+                "schema_version": payload.get("schema_version"),
+                "sha256": sha256(root / "data" / name),
+            }
+            for name, payload in nfl_payloads.items()
         },
     }
     print(json.dumps(result, indent=2, sort_keys=True))
