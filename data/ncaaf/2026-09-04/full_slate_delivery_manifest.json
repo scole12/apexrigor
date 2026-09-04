@@ -5,7 +5,7 @@
     "NCAAF_T2_PICKS_CARD_20260904.png"
   ],
   "canonical_game_count": 9,
-  "canonical_public_payload_sha256": "9318a0915762dd4659767bdced5d477f27f5578413a9ce8e94bc417141615faa",
+  "canonical_public_payload_sha256": "06c81091968123ceeeead6e7ba63757b33e74593b48d65a5bf837adaf86e3ed9",
   "count_scope": "EXPLICIT_CANONICAL_AND_DISPLAY",
   "delivery_product": "T2",
   "display_date": "September 4, 2026",
@@ -22,7 +22,7 @@
   "issued_game_count": 7,
   "market_pending_game_count": 2,
   "official_position_count": 14,
-  "queue_request_id": "1bb8b08f3a36d2c16cc7f75b4a45ed9c93cf1b308b69b57cf5e88a5bc1238f7c",
+  "queue_request_id": "80addb2d7ae842c772dee07c5765b4172e50fb8e7312ca31a0ca34ed6a0f3242",
   "results_files": {},
   "schema_version": "apex.ncaaf.full_slate_delivery.v5.shared_publisher",
   "sealed_day_payload_sha256": "4e4578e9b4b8a010f1e697df69bf21aece06459ed291cc1baed596ea78173e62",
