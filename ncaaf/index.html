@@ -79,15 +79,14 @@ fetch("/data/ncaaf_today.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw new E
  const epoch=doc.active_engine_epoch||{};
  const ats=((epoch.ATS||{}).model_id)||"D2";
  const totals=((epoch.TOTALS||{}).model_id)||"TOTALS-V5-RECONCILED-POOL";
- const pending=visibleGames.filter(g=>!Array.isArray(g.positions)||g.positions.length===0).length;
- document.getElementById("slate-meta").textContent=dateLabel(s.slate_date_et)+" · "+visibleGames.length+" GAMES · "+positions+" POSITIONS · "+pending+" MARKET PENDING · ATS MODEL "+ats+" · TOT MODEL "+totals;
+ document.getElementById("slate-meta").textContent=dateLabel(s.slate_date_et)+" · "+visibleGames.length+" GAMES · "+positions+" POSITIONS · ATS MODEL "+ats+" · TOT MODEL "+totals;
  const shell=document.querySelector(".shell");
  if(shell){shell.setAttribute("data-slate-date",s.slate_date_et);shell.setAttribute("data-public-issuance",positions>0?"true":"false");}
  document.getElementById("games").innerHTML=visibleGames.map((g,i)=>{
    const issuedPositions=(Array.isArray(g.positions)?g.positions:[]).filter(p=>p&&p.market_type);
    const clock=g.schedule_time_status==="UNRESOLVED_TBD"?"TIME TBA":esc(g.kickoff_display_et||"TIME TBA");
    const byMarket=Object.fromEntries(issuedPositions.map(p=>[p.market_type,p]));
-   const panels=["ATS","TOTALS"].map(market=>byMarket[market]?issuedPanel(byMarket[market]):pendingPanel(market)).join("");
+   const panels=["ATS","TOTALS"].map(market=>byMarket[market]?issuedPanel(byMarket[market]):"").join("");
    const context=esc(String(g.fbs_fcs_classification||"").replaceAll("_"," "))+" · "+esc(g.venue||"Venue not published");
    return '<article class="game-module" data-game="'+esc(g.game_id)+'" data-game-state="'+(issuedPositions.length?'ISSUED':'MARKET_PENDING')+'">'
     +'<header class="game-header"><div class="game-num mono">G'+String(i+1).padStart(2,"0")+'</div><div class="game-meta">'
