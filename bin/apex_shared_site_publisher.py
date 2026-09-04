@@ -190,7 +190,13 @@ def validate_payload_set(request: Request) -> dict[str, str]:
             raise RuntimeError(f"queued payload hash mismatch: {relative}")
         if request.sport == "NCAAF":
             allowed = (
-                relative in {"data/ncaaf_today.json", "ncaaf/index.html", "data/ncaaf_results_cumulative.json"}
+                relative in {
+                    "data/ncaaf_today.json",
+                    "ncaaf/index.html",
+                    "data/ncaaf_results_cumulative.json",
+                    "data/ncaaf_results_summary.json",
+                    "data/ncaaf_results_archive.json",
+                }
                 or bool(re.fullmatch(r"data/ncaaf/\d{4}-\d{2}-\d{2}/[A-Za-z0-9_./-]+", relative))
             )
         else:
@@ -228,6 +234,21 @@ def discover_ncaaf(today_et: str, yesterday_et: str) -> list[Request]:
             or manifest.get("product") != product
         ):
             raise RuntimeError(f"NCAAF queue identity mismatch: {request_path}")
+        display_slate_date = str(manifest.get("display_slate_date_et") or "")
+        if (
+            manifest.get("count_scope") != "EXPLICIT_CANONICAL_AND_DISPLAY"
+            or not display_slate_date
+        ):
+            raise RuntimeError(f"NCAAF queue omits explicit display/count scope: {request_path}")
+        if product == "RESULTS":
+            if (
+                manifest.get("graded_slate_date_et") != slate_date
+                or display_slate_date <= slate_date
+                or not isinstance(manifest.get("season_year"), int)
+            ):
+                raise RuntimeError(f"NCAAF results queue crosses graded/display identity: {request_path}")
+        elif display_slate_date != slate_date:
+            raise RuntimeError(f"NCAAF live-stage display identity mismatch: {request_path}")
         request = Request("NCAAF", request_id, manifest, request_path.parent / "payload", slate_date, product)
         validate_payload_set(request)
         if not is_complete(request):
@@ -303,31 +324,49 @@ def ncaaf_delivery_manifest(request: Request, worktree: Path) -> None:
     ordinary: dict[str, str] = {}
     result_files: dict[str, str] = {}
     for relative, digest in source_hashes.items():
-        if relative.startswith(date_root + "results/") or relative == "data/ncaaf_results_cumulative.json":
+        if relative.startswith(date_root + "results/") or relative in {
+            "data/ncaaf_results_cumulative.json",
+            "data/ncaaf_results_summary.json",
+            "data/ncaaf_results_archive.json",
+        }:
             result_files[relative] = digest
         elif relative.startswith(date_root):
             name = relative.removeprefix(date_root)
             if "/" not in name and not name.endswith(".json"):
                 ordinary[name] = digest
     token = request.slate_date.replace("-", "")
+    season_year = int(
+        request.manifest.get("season_year")
+        if request.product == "RESULTS"
+        else request.slate_date[:4]
+    )
     names = {
         "T3": [f"T3_APEX_NCAAF_DATA_REPORT_{token}.pdf"],
         "T2": [f"NCAAF_T2_FULL_SLATE_{token}.pdf", f"NCAAF_T2_PICKS_CARD_{token}.png"],
         "RESULTS": [
             f"results/NCAAF_DETAILED_RESULTS_{token}.pdf",
-            "results/NCAAF_CUMULATIVE_RECORD_2026.png",
+            f"results/NCAAF_CUMULATIVE_RECORD_{season_year}.png",
             f"results/NCAAF_PRIOR_DAY_SLATE_{token}.png",
         ],
     }
     manifest: dict[str, Any] = {
-        "schema_version": "apex.ncaaf.full_slate_delivery.v4.shared_publisher",
+        "schema_version": "apex.ncaaf.full_slate_delivery.v5.shared_publisher",
         "slate_date": request.slate_date,
+        "graded_slate_date_et": request.manifest.get("graded_slate_date_et"),
+        "season_year": request.manifest.get("season_year"),
+        "display_slate_date_et": request.manifest["display_slate_date_et"],
+        "count_scope": request.manifest["count_scope"],
+        "graded_date": request.manifest.get("graded_date"),
         "display_date": request.manifest["display_date"],
         "delivery_product": request.product,
         "canonical_game_count": int(request.manifest["canonical_game_count"]),
+        "display_game_count": int(request.manifest["display_game_count"]),
         "issued_game_count": int(request.manifest["issued_game_count"]),
         "official_position_count": int(request.manifest["official_position_count"]),
         "market_pending_game_count": int(request.manifest["market_pending_game_count"]),
+        "internal_market_pending_game_count": int(
+            request.manifest["internal_market_pending_game_count"]
+        ),
         "canonical_public_payload_sha256": request.manifest["canonical_public_payload_sha256"],
         "sealed_day_payload_sha256": request.manifest["sealed_day_payload_sha256"],
         "queue_request_id": request.request_id,
@@ -391,6 +430,8 @@ def allowed_site_change(relative: str) -> bool:
         relative in ROUTE_PATHS
         or relative == "data/ncaaf_today.json"
         or relative == "data/ncaaf_results_cumulative.json"
+        or relative == "data/ncaaf_results_summary.json"
+        or relative == "data/ncaaf_results_archive.json"
         or relative.startswith("data/ncaaf/")
         or relative in {
             "data/mma_system_state.json",

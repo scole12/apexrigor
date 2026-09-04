@@ -17,7 +17,14 @@ class NFLPublicStateTest(unittest.TestCase):
     def test_science_blocked_state_has_no_position(self) -> None:
         today = load("nfl_today.json")
         self.assertEqual(today["schema_version"], "APEX_NFL_TODAY_V1")
-        self.assertEqual(today["technical_status"], "TECHNICAL_RUNTIME_READY")
+        # The infrastructure has been exercised, but the first event-relative
+        # T-3/T-2 cohort is not due yet. The public contract must not collapse
+        # those two facts into a premature runtime-ready claim.
+        self.assertEqual(today["technical_status"], "ARMED_NOT_YET_EXERCISED")
+        self.assertTrue(today["capture_health"]["completion_ledger_present"])
+        self.assertEqual(today["capture_health"]["critical_missed_capture_count"], 0)
+        self.assertEqual(today["capture_health"]["sealed_t3_cohort_count"], 0)
+        self.assertEqual(today["capture_health"]["sealed_t2_cohort_count"], 0)
         self.assertEqual(
             today["scientific_release_state"],
             "SCIENCE_BLOCKED_NO_QUALIFIED_CHAMPION",
