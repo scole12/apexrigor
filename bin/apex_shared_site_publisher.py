@@ -604,20 +604,29 @@ def matching_ncaaf_workflow_runs(request: Request) -> list[dict[str, Any]]:
     return [row for row in rows if str(row.get("displayTitle") or "") == title]
 
 
-def wait_for_ncaaf_workflow(request: Request, run_id: int | None) -> dict[str, Any]:
+def wait_for_ncaaf_workflow(
+    request: Request,
+    run_id: int | None,
+    *,
+    excluded_run_ids: set[int] | None = None,
+) -> dict[str, Any]:
     deadline = time.monotonic() + 360
     selected: dict[str, Any] | None = None
+    excluded = excluded_run_ids or set()
     while time.monotonic() < deadline:
         matches = matching_ncaaf_workflow_runs(request)
-        if len(matches) > 1:
+        candidates = [
+            row for row in matches
+            if int(row["databaseId"]) not in excluded
+            and (run_id is None or int(row["databaseId"]) == run_id)
+        ]
+        if len(candidates) > 1:
             raise RuntimeError(
-                f"duplicate NCAA email workflows for immutable request: "
-                f"{[row.get('databaseId') for row in matches]}"
+                f"duplicate current NCAA email workflow attempts: "
+                f"{[row.get('databaseId') for row in candidates]}"
             )
-        if matches:
-            selected = matches[0]
-            if run_id is not None and int(selected["databaseId"]) != run_id:
-                raise RuntimeError("NCAA saved workflow identity differs from GitHub read-back")
+        if candidates:
+            selected = candidates[0]
             run_id = int(selected["databaseId"])
             if selected.get("status") == "completed":
                 if selected.get("conclusion") != "success":
@@ -717,16 +726,27 @@ def dispatch_ncaaf_email(request: Request, receipt: dict[str, Any]) -> dict[str,
     )
     saved_run_id = prior.get("email_workflow_run_id")
     matches = matching_ncaaf_workflow_runs(request)
-    if len(matches) > 1:
+    successful = [row for row in matches if row.get("conclusion") == "success"]
+    active = [row for row in matches if row.get("status") != "completed"]
+    if len(successful) > 1 or len(active) > 1:
         raise RuntimeError(
-            f"duplicate NCAA email workflows for immutable request: "
+            f"duplicate deliverable NCAA email workflows for immutable request: "
             f"{[row.get('databaseId') for row in matches]}"
         )
-    if matches:
-        observed_run_id = int(matches[0]["databaseId"])
-        if saved_run_id is not None and int(saved_run_id) != observed_run_id:
-            raise RuntimeError("NCAA persisted workflow identity differs from GitHub read-back")
-        saved_run_id = observed_run_id
+    by_id = {int(row["databaseId"]): row for row in matches}
+    if saved_run_id is not None:
+        saved = by_id.get(int(saved_run_id))
+        if saved is None:
+            raise RuntimeError("NCAA persisted workflow identity is absent from GitHub read-back")
+        if saved.get("status") == "completed" and saved.get("conclusion") != "success":
+            # A completed failed attempt performed no verified external action.
+            # Retry the email stage using the current canonical workflow source.
+            saved_run_id = None
+    if saved_run_id is None and successful:
+        saved_run_id = int(successful[0]["databaseId"])
+    if saved_run_id is None and active:
+        saved_run_id = int(active[0]["databaseId"])
+    prior_attempt_ids = sorted(by_id)
     intent = {
         **receipt,
         "publication_status": publication_status,
@@ -755,6 +775,7 @@ def dispatch_ncaaf_email(request: Request, receipt: dict[str, Any]) -> dict[str,
         workflow = wait_for_ncaaf_workflow(
             request,
             int(saved_run_id) if saved_run_id is not None else None,
+            excluded_run_ids=set(prior_attempt_ids) if saved_run_id is None else None,
         )
         evidence = preserve_ncaaf_email_evidence(request, workflow)
     except Exception as error:
@@ -772,6 +793,9 @@ def dispatch_ncaaf_email(request: Request, receipt: dict[str, Any]) -> dict[str,
         "email_workflow_run_id": int(workflow["databaseId"]),
         "email_workflow_url": workflow.get("url"),
         "email_workflow_conclusion": workflow.get("conclusion"),
+        "email_workflow_attempt_ids": sorted(
+            set(prior_attempt_ids) | {int(workflow["databaseId"])}
+        ),
         "email_provider_evidence": evidence,
         "email_external_action_count": 1,
         "duplicate_email_workflow_count": 0,
