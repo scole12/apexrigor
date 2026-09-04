@@ -104,16 +104,16 @@ jobs:
               assert public_sha==manifest['canonical_public_payload_sha256']
               document=json.loads(public_path.read_text(encoding='utf-8'))
               slate=document['slate']
-              assert slate['game_count'] in {manifest['canonical_game_count'],manifest['issued_game_count']}
+              assert slate['game_count']==manifest['canonical_game_count']
               assert len({str(game['game_id']) for game in slate['games']})==len(slate['games'])
               assert slate['issued_game_count']==manifest['issued_game_count']
               assert slate['official_position_count']==manifest['official_position_count']
-              assert slate['market_pending_game_count'] in {0,manifest['market_pending_game_count']}
+              assert slate['market_pending_game_count']==manifest['market_pending_game_count']
               positions=[position for game in slate['games'] for position in game.get('positions',[])]
               assert len(positions)==manifest['official_position_count']
-              assert len(slate['games']) in {manifest['canonical_game_count'],manifest['issued_game_count']}
-              if len(slate['games'])==manifest['issued_game_count']:
-                  assert all(game.get('positions') for game in slate['games'])
+              assert len(slate['games'])==manifest['canonical_game_count']
+              assert sum(bool(game.get('positions')) for game in slate['games'])==manifest['issued_game_count']
+              assert sum(not game.get('positions') for game in slate['games'])==manifest['market_pending_game_count']
               assert all(float(position['p_selected'])>=0.5 for position in positions)
               assert all(len(position.get('rationale',[]))>=5 for position in positions)
           if delivery_mode not in t3_recovery_modes:
@@ -187,6 +187,7 @@ jobs:
                   )
                   attachments=[f'T3_APEX_NCAAF_DATA_REPORT_{date_token}.pdf']
           elif product=='T2':
+              late_recovery=(slate_date=='2026-09-04')
               if delivery_mode=='PRESENTATION_REV2':
                   subject=f'APEX NCAA Football T-2 Picks Card — {display_date} — PRESENTATION REV2'
                   body=(
@@ -204,9 +205,15 @@ jobs:
                       '2. Corrected APEX NCAA Football T-2 1080×1080 PNG\n'
                   )
               else:
-                  subject=f'APEX NCAA Football T-2 Picks Card — {display_date}'
+                  subject=(
+                      f'APEX NCAA Football T-2 Picks Card — {display_date} — Late Recovery'
+                      if late_recovery else
+                      f'APEX NCAA Football T-2 Picks Card — {display_date}'
+                  )
                   body=(
                       f'The APEX NCAA Football T-minus-2 Picks Card for {display_date} is attached.\n\n'
+                      + ('This delivery is a truthfully labeled late recovery using the sealed on-time T-2 market capture.\n\n' if late_recovery else '')
+                      +
                       'The full slate has been published to the live Picks page for human review:\n\n'
                       'https://apexrigor.com/ncaaf\n\n'
                       'Slate summary:\n'
