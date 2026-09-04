@@ -467,6 +467,8 @@ def publish(request: Request, *, dry_run: bool) -> dict[str, Any]:
                 if staged != set(changed):
                     raise RuntimeError(f"staged site paths differ from validated changes: {sorted(staged)}")
                 git(
+                    "-c", "user.name=APEX Principal Engineer",
+                    "-c", "user.email=ops@apexrigor.com",
                     "commit",
                     "-m",
                     f"Publish {request.sport} production state {request.request_id[:12]}",
