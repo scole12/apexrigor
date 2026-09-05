@@ -2,6 +2,7 @@
 """Build the APEX MMA results page with a finished no-history state and next event."""
 
 from _mma_public import close, head, hero, navigation, write
+from _mma_forecast_display import DISPLAY_SCRIPT
 
 SCRIPT = r"""
 <script>
@@ -19,11 +20,14 @@ Promise.all([
  document.getElementById("graded").textContent=graded;
  document.getElementById("grader").textContent="7:00 AM ET";
  document.getElementById("nextdate").textContent=niceDate(e.event_date);
+ const forecast=window.ApexMmaDisplay.status(t);
+ document.getElementById("current-forecast-status").textContent=forecast.headline;
+ document.getElementById("current-forecast-detail").textContent=forecast.detail;
  const rows=Array.isArray(r.latest_event_results)?r.latest_event_results:[];
  if(issued && rows.length){
    document.getElementById("results").innerHTML=rows.map((x,i)=>`<article class="game-module"><header class="game-header"><div class="game-num mono">R${String(i+1).padStart(2,"0")}</div><div class="game-meta"><h2 class="game-matchup">${esc(x.matchup||x.selection||"MMA RESULT")}</h2><p class="meta mono">${esc(x.market||"")} · ${esc(x.result||x.status||"")}</p></div></header></article>`).join("");
  } else {
-   document.getElementById("results").innerHTML=`<article class="game-module"><header class="game-header"><div class="game-num mono">—</div><div class="game-meta"><h2 class="game-matchup">No MMA/UFC events have been graded yet</h2><p class="meta mono">PRODUCTION HISTORY BEGINS WITH THE FIRST OFFICIAL ISSUANCE</p></div></header></article>`;
+   document.getElementById("results").innerHTML=`<article class="game-module"><header class="game-header"><div class="game-num mono">—</div><div class="game-meta"><h2 class="game-matchup">No issued MMA/UFC forecasts to grade</h2><p class="meta mono">NO PICKS WERE ISSUED; A RUNNING GRADER DOES NOT CREATE A RESULTS RECORD</p></div></header></article>`;
  }
  document.getElementById("next-title").textContent=e.display_name||e.name||"NEXT UFC EVENT";
  document.getElementById("next-meta").textContent=`${niceDate(e.event_date)} · ${e.venue||""} · ${e.city||""}${e.country?`, ${e.country}`:""}`;
@@ -48,6 +52,8 @@ def main() -> int:
     <div class="cell"><div class="label">Next Event</div><div class="val mono" id="nextdate">—</div></div>
   </div>
   <main class="picks-page">
+    <div class="section-head"><div class="title">CURRENT EVENT FORECAST</div><a class="meta mono" href="/mma">PICKS &amp; DETAILED RATIONALE →</a></div>
+    <div class="market-grid market-grid--single"><section class="market-panel"><div class="pick-headline" id="current-forecast-status">Checking issuance</div><div class="rationale-copy"><p id="current-forecast-detail">Reading the current forecast record.</p></div></section></div>
     <div class="section-head"><div class="title">PRODUCTION HISTORY</div></div>
     <div class="picks-board" id="results" aria-live="polite"></div>
     <div class="section-head"><div class="title">NEXT EVENT</div><div class="meta mono" id="next-meta"></div></div>
@@ -59,7 +65,7 @@ def main() -> int:
       <div class="cell"><div class="label">T-2 Forecast</div><div class="val mono" id="t2time">—</div></div>
     </div>
     <div class="picks-board" id="next-card"></div>
-  </main>""" + SCRIPT + close()
+  </main>""" + DISPLAY_SCRIPT + SCRIPT + close()
     path = write("mma/results/index.html", html)
     print(f"MMA_RESULTS_PATH={path}")
     return 0

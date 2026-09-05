@@ -8,6 +8,7 @@ import hashlib
 import json
 from pathlib import Path
 from typing import Any
+from _mma_forecast_contract import validated_positions, positions_sha256, forecast_status
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -41,6 +42,8 @@ def main() -> int:
     if args.snapshot_state:
         write_json(DEFAULT_STATE, state)
 
+    positions = validated_positions(state)
+    forecast = forecast_status(state, positions)
     today = {
         "schema_version": "APEX_MMA_TODAY_V1",
         "generated_at_utc": state["generated_at_utc"],
@@ -51,7 +54,11 @@ def main() -> int:
         "event": state["event"],
         "fight_count": state["fight_count"],
         "card": state["card"],
-        "positions": [],
+        "positions": positions,
+        "positions_sha256": positions_sha256(positions),
+        "issuance_id": state.get("issuance_id"),
+        "issuance_status": state.get("issuance_status"),
+        "forecast": forecast,
         "t3": state["t3"],
         "t2": state["t2"],
         "authenticity": {
@@ -73,19 +80,20 @@ def main() -> int:
         "latest_event_results": state.get("latest_results", []),
         "grader": state["grader"],
         "status": "NO_ISSUANCE_NO_RESULTS" if not state["authorities"]["production"]["issuances"] else "RESULTS_AVAILABLE",
+        "current_event_forecast": forecast,
     }
     summary["payload_sha256"] = hashlib.sha256(canonical(summary)).hexdigest()
     archive = {
         "schema_version": "APEX_MMA_RESULTS_ARCHIVE_V1",
         "generated_at_utc": state["generated_at_utc"],
-        "events": [],
+        "events": state.get("results_archive", []),
         "revision_policy": "APPEND_ONLY_RESULT_AND_GRADE_REVISIONS",
     }
     archive["payload_sha256"] = hashlib.sha256(canonical(archive)).hexdigest()
     ops = {
         "schema_version": "APEX_MMA_OPS_SNAPSHOT_V1",
         "generated_at_utc": state["generated_at_utc"],
-        "system_status": "TECHNICALLY_READY_SCIENCE_BLOCKED",
+        "system_status": forecast["code"],
         "next_event": state["event"],
         "event_card": state["card"],
         "t3": state["t3"],
@@ -93,10 +101,10 @@ def main() -> int:
         "fighter_authority": state["authorities"]["fighter"],
         "market_outcomes_authority": {"status": "POPULATED_H2H_ONLY"},
         "testing_authority": state["authorities"]["testing"],
-        "active_engine": "NO_RELEASE_SCIENTIFIC_GATE",
-        "model_sha256": None,
+        "active_engine": state.get("active_model"),
+        "model_sha256": state.get("active_model_sha256"),
         "t3_fight_count": 0,
-        "t2_issued_position_count": 0,
+        "t2_issued_position_count": len(positions),
         "grader": state["grader"],
         "latest_event_results": state.get("latest_results", []),
         "production_isolation": "PASS",
@@ -111,7 +119,7 @@ def main() -> int:
     }
     for relative, value in outputs.items():
         write_json(ROOT / relative, value)
-    print(json.dumps({"status": "PASS", "outputs": sorted(outputs), "positions": 0}, sort_keys=True))
+    print(json.dumps({"status": "PASS", "outputs": sorted(outputs), "positions": len(positions)}, sort_keys=True))
     return 0
 
 

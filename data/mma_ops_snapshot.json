@@ -1,5 +1,5 @@
 {
-  "active_engine": "NO_RELEASE_SCIENTIFIC_GATE",
+  "active_engine": null,
   "event_card": [
     {
       "fighter_a": "Dan Hooker",
@@ -160,11 +160,11 @@
     "promotion": "UFC",
     "venue": "Accor Arena"
   },
-  "payload_sha256": "e6372770c0942cec6cf32ac6b6a7dbfe675f658a2f0db109437773d76bd3c3c3",
+  "payload_sha256": "b39d7947f46fae627387025abab489de5d8954dad68ae277719b33cf9a389006",
   "production_isolation": "PASS",
   "schema_version": "APEX_MMA_OPS_SNAPSHOT_V1",
   "science_blocker": "NO_SEALED_SCIENTIFIC_RELEASE; WINNER_AND_JOINT_VALIDATION_REQUIRED; HISTORICAL_ELEMENTAL_ROUND_STATS_MISSING",
-  "system_status": "TECHNICALLY_READY_SCIENCE_BLOCKED",
+  "system_status": "NO_FORECASTS_ISSUED",
   "t2": {
     "anchor": "EARLIEST_PUBLISHED_SCHEDULED_BOUT_MINUS_2_HOURS",
     "scheduled_utc": "2026-09-05T14:00:00Z",
