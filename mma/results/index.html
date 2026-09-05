@@ -19,8 +19,6 @@
 <meta property="og:url" content="https://apexrigor.com/mma/results">
 <meta property="og:image" content="https://apexrigor.com/og-image.png?v=apex-20260825-mma">
 <link rel="stylesheet" href="/assets/apex.css?v=apex-20260825-mma">
-<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "2ee12644257c4dd3b0357c59a12a109c"}'></script><!-- End Cloudflare Web Analytics -->
-<!-- Vercel Web Analytics --><script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script><script defer src="/_vercel/insights/script.js"></script><!-- End Vercel Web Analytics -->
 </head>
 <body>
 <div class="shell">
@@ -36,7 +34,7 @@
     <a href="/results">MLB</a>
     <a href="/ncaaf/results">NCAA FOOTBALL</a>
     <a href="/mma/results" class="active" aria-current="true">MMA / UFC</a>
-    <a href="/nfl/results">NFL</a>
+    <span class="sport-unavailable" aria-disabled="true" title="NFL public route not yet established">NFL</span>
   </nav>
   <nav class="section-nav" aria-label="MMA sections">
     <a href="/mma">PICKS</a>
@@ -67,7 +65,7 @@
 <script>
 const esc=v=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const clock=v=>new Intl.DateTimeFormat("en-US",{timeZone:"America/New_York",hour:"numeric",minute:"2-digit",timeZoneName:"short"}).format(new Date(v));
-const niceDate=v=>{if(!v)return "—";const [y,m,d]=String(v).split("-").map(Number);return new Intl.DateTimeFormat("en-US",{month:"long",day:"2-digit",year:"numeric"}).format(new Date(Date.UTC(y,m-1,d)))};
+const niceDate=v=>{if(!v)return "—";const [y,m,d]=String(v).split("-").map(Number);return new Intl.DateTimeFormat("en-US",{timeZone:"UTC",month:"long",day:"2-digit",year:"numeric"}).format(new Date(Date.UTC(y,m-1,d)))};
 const label=v=>String(v??"").replaceAll("_"," ");
 Promise.all([
  fetch("/data/mma_results_summary.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw new Error(`results HTTP ${r.status}`);return r.json()}),

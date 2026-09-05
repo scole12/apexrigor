@@ -7,7 +7,7 @@ SCRIPT = r"""
 <script>
 const esc=v=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const clock=v=>new Intl.DateTimeFormat("en-US",{timeZone:"America/New_York",hour:"numeric",minute:"2-digit",timeZoneName:"short"}).format(new Date(v));
-const niceDate=v=>{if(!v)return "—";const [y,m,d]=String(v).split("-").map(Number);return new Intl.DateTimeFormat("en-US",{month:"long",day:"2-digit",year:"numeric"}).format(new Date(Date.UTC(y,m-1,d)))};
+const niceDate=v=>{if(!v)return "—";const [y,m,d]=String(v).split("-").map(Number);return new Intl.DateTimeFormat("en-US",{timeZone:"UTC",month:"long",day:"2-digit",year:"numeric"}).format(new Date(Date.UTC(y,m-1,d)))};
 const label=v=>String(v??"").replaceAll("_"," ");
 Promise.all([
  fetch("/data/mma_results_summary.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw new Error(`results HTTP ${r.status}`);return r.json()}),
