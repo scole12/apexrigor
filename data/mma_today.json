@@ -153,10 +153,10 @@
     "detail": "14 winner forecasts from the sealed recovery run at 11:23 AM EDT. The original T-2 deadline was missed; these are not backdated picks. Prices, probabilities, ratings and detailed rationale below match the sealed issuance. A statistically proven market edge has not been established.",
     "headline": "Forecasts issued \u2014 late recovery"
   },
-  "generated_at_utc": "2026-09-05T15:25:15.026930Z",
+  "generated_at_utc": "2026-09-05T16:00:47.779071Z",
   "issuance_id": "f759603b-95ad-40d5-a0ca-dafe1c0cc3cc",
   "issuance_status": "SEALED",
-  "payload_sha256": "0080e191fb01cd0495e749ae3b58ef0f40e2161f746d7c174383e6e4686750af",
+  "payload_sha256": "cf6a12ccb33918398ed1e0f10db68deeeb963b528f73727ca8639f4b6373df82",
   "picks_published": true,
   "positions": [
     {
