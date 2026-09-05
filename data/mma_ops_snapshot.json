@@ -137,7 +137,7 @@
     "scorecards": 37,
     "weigh_ins": 5442
   },
-  "generated_at_utc": "2026-09-05T13:00:02.206451Z",
+  "generated_at_utc": "2026-09-05T14:00:13.260643Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "IMPLEMENTED_NO_ELIGIBLE_ISSUANCE"
@@ -160,7 +160,7 @@
     "promotion": "UFC",
     "venue": "Accor Arena"
   },
-  "payload_sha256": "72c0336803bf8605b483e87f0e088caf204c0199cfe6d9eb5df44618495ab4b0",
+  "payload_sha256": "01dc5b282dd94226b887ced90f88cdd4c8e562791d2be2e319444e32d1098f19",
   "production_isolation": "PASS",
   "schema_version": "APEX_MMA_OPS_SNAPSHOT_V1",
   "science_blocker": "NO_RESULT_LEVEL_WINNER_CANDIDATE_IMPROVED_AUTHENTIC_MATCHED_TIME_FANDUEL; RICHER_ACTION_PROCESS_AND_HOLMES_BENCHMARK_REQUIRE_LICENSED_HISTORICAL_ELEMENTAL_ROUND_STATS",
@@ -168,7 +168,7 @@
   "t2": {
     "anchor": "EARLIEST_PUBLISHED_SCHEDULED_BOUT_MINUS_2_HOURS",
     "scheduled_utc": "2026-09-05T14:00:00Z",
-    "status": "FAIL_CLOSED_NO_SCIENTIFIC_RELEASE_AWAITING_TARGET"
+    "status": "FAIL_CLOSED_NO_SCIENTIFIC_RELEASE"
   },
   "t2_issued_position_count": 0,
   "t3": {

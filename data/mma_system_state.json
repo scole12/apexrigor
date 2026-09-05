@@ -189,24 +189,24 @@
   },
   "event_id": "442712e5-1e33-505e-86ab-48e849da87c0",
   "fight_count": 14,
-  "generated_at_utc": "2026-09-05T13:00:02.206451Z",
+  "generated_at_utc": "2026-09-05T14:00:13.260643Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "IMPLEMENTED_NO_ELIGIBLE_ISSUANCE"
   },
   "latest_results": [],
-  "payload_sha256": "54f98234371b97787c663ac8c46f926943d3562560be738ba8760aaddd440390",
+  "payload_sha256": "2710ab37701234bb96aad91053bf1dffe777882bfc25e57673e51455ef0ac2e6",
   "picks_published": false,
   "release_state": "NO_RELEASE_SCIENTIFIC_GATE",
   "schema_version": "APEX_MMA_PUBLIC_STATE_V2",
   "science_blocker": "NO_RESULT_LEVEL_WINNER_CANDIDATE_IMPROVED_AUTHENTIC_MATCHED_TIME_FANDUEL; RICHER_ACTION_PROCESS_AND_HOLMES_BENCHMARK_REQUIRE_LICENSED_HISTORICAL_ELEMENTAL_ROUND_STATS",
-  "semantic_state_sha256": "1991881edf28cf48990b9082ac62d868522dbf63324e2df953f8f8023ba9c9e8",
+  "semantic_state_sha256": "41008ba2a3fbcc0699f9aa29b35b7c6e4a26655cd5b8db690b799947069e2a62",
   "source_conflicts": [],
   "system_readiness_state": "TECHNICALLY_READY_SCIENCE_BLOCKED",
   "t2": {
     "anchor": "EARLIEST_PUBLISHED_SCHEDULED_BOUT_MINUS_2_HOURS",
     "scheduled_utc": "2026-09-05T14:00:00Z",
-    "status": "FAIL_CLOSED_NO_SCIENTIFIC_RELEASE_AWAITING_TARGET"
+    "status": "FAIL_CLOSED_NO_SCIENTIFIC_RELEASE"
   },
   "t3": {
     "anchor": "EARLIEST_PUBLISHED_SCHEDULED_BOUT_MINUS_3_HOURS",
