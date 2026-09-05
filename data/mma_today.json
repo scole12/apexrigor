@@ -44,8 +44,8 @@
       "weight_class": "WELTERWEIGHT"
     },
     {
-      "fighter_a": "Morgan Charriere",
-      "fighter_b": "Felipe Lima",
+      "fighter_a": "Kurtis Campbell",
+      "fighter_b": "Trevor Peek",
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 5,
@@ -62,22 +62,22 @@
       "weight_class": "FEATHERWEIGHT"
     },
     {
-      "fighter_a": "Mario Pinto",
-      "fighter_b": "Ryan Spann",
+      "fighter_a": "Morgan Charriere",
+      "fighter_b": "Felipe Lima",
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 7,
       "segment": "PRELIMS",
-      "weight_class": "HEAVYWEIGHT"
+      "weight_class": "FEATHERWEIGHT"
     },
     {
-      "fighter_a": "Kurtis Campbell",
-      "fighter_b": "Trevor Peek",
+      "fighter_a": "Mario Pinto",
+      "fighter_b": "Ryan Spann",
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 8,
       "segment": "PRELIMS",
-      "weight_class": "FEATHERWEIGHT"
+      "weight_class": "HEAVYWEIGHT"
     },
     {
       "fighter_a": "Oumar Sy",
@@ -90,7 +90,7 @@
     },
     {
       "fighter_a": "Nathaniel Wood",
-      "fighter_b": "Mairon Santos",
+      "fighter_b": "Pavel Andrusca",
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 10,
@@ -148,8 +148,8 @@
     "venue": "Accor Arena"
   },
   "fight_count": 14,
-  "generated_at_utc": "2026-09-04T07:30:01.586912Z",
-  "payload_sha256": "421c448db0e4abbb4021bd5d83d8e3a1f39df73da71fb766da253a491f48fd5e",
+  "generated_at_utc": "2026-09-05T00:23:45.349565Z",
+  "payload_sha256": "5c8cdb5bedf3ea59ca6302955b2ba510d0f2ef021919f7ca68ee121b9cf00268",
   "picks_published": false,
   "positions": [],
   "release_state": "NO_RELEASE_SCIENTIFIC_GATE",
