@@ -104,14 +104,19 @@ jobs:
               assert public_sha==manifest['canonical_public_payload_sha256']
               document=json.loads(public_path.read_text(encoding='utf-8'))
               slate=document['slate']
-              assert slate['game_count']==manifest['canonical_game_count']
+              # Public picks contain issued games, not the full internal schedule.
+              display_count=int(manifest.get('display_game_count',manifest['canonical_game_count']))
+              assert int(slate['game_count'])==display_count, 'public display game count mismatch'
+              if manifest.get('count_scope')=='EXPLICIT_CANONICAL_AND_DISPLAY':
+                  assert int(manifest['canonical_game_count'])==int(manifest['issued_game_count'])+int(manifest['internal_market_pending_game_count']), 'internal canonical accounting mismatch'
+                  assert display_count==int(manifest['issued_game_count'])+int(manifest['market_pending_game_count']), 'public issued accounting mismatch'
               assert len({str(game['game_id']) for game in slate['games']})==len(slate['games'])
               assert slate['issued_game_count']==manifest['issued_game_count']
               assert slate['official_position_count']==manifest['official_position_count']
               assert slate['market_pending_game_count']==manifest['market_pending_game_count']
               positions=[position for game in slate['games'] for position in game.get('positions',[])]
               assert len(positions)==manifest['official_position_count']
-              assert len(slate['games'])==manifest['canonical_game_count']
+              assert len(slate['games'])==display_count
               assert sum(bool(game.get('positions')) for game in slate['games'])==manifest['issued_game_count']
               assert sum(not game.get('positions') for game in slate['games'])==manifest['market_pending_game_count']
               assert all(float(position['p_selected'])>=0.5 for position in positions)
