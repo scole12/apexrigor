@@ -1,5 +1,5 @@
 {
-  "active_engine": null,
+  "active_engine": "WINNER_RESIDUAL_BEST_AVAILABLE_V1",
   "event_card": [
     {
       "fighter_a": "Dan Hooker",
@@ -137,7 +137,7 @@
     "scorecards": 37,
     "weigh_ins": 5442
   },
-  "generated_at_utc": "2026-09-05T15:00:13.750122Z",
+  "generated_at_utc": "2026-09-05T15:25:15.026930Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "IMPLEMENTED_NO_ELIGIBLE_ISSUANCE"
@@ -146,7 +146,7 @@
   "market_outcomes_authority": {
     "status": "POPULATED_H2H_ONLY"
   },
-  "model_sha256": null,
+  "model_sha256": "c4405db96c390a3934649b9deb77c36ad510093defc2a9bcb1e01115757e2922",
   "next_event": {
     "city": "Paris",
     "country": "France",
@@ -160,17 +160,19 @@
     "promotion": "UFC",
     "venue": "Accor Arena"
   },
-  "payload_sha256": "c428e7bd0b7a6eaa0c4027d61e100972fcc034cd63c37fe5e87edbb892e307cb",
+  "payload_sha256": "89c87f19879fdaf4684e7db7433468c7bc74eaf3312770cb58b3139434e7f665",
   "production_isolation": "PASS",
   "schema_version": "APEX_MMA_OPS_SNAPSHOT_V1",
-  "science_blocker": "NO_SEALED_SCIENTIFIC_RELEASE; WINNER_AND_JOINT_VALIDATION_REQUIRED; HISTORICAL_ELEMENTAL_ROUND_STATS_PRESENT",
-  "system_status": "NO_FORECASTS_ISSUED",
+  "science_blocker": "WINNER_FORECAST_RELEASED; EDGE_CERTIFICATION=NO; METHOD_DURATION_COMMERCIAL_RELEASE=NO",
+  "system_status": "FORECASTS_ISSUED",
   "t2": {
+    "actual_utc": "2026-09-05T15:23:06.086763Z",
     "anchor": "EARLIEST_PUBLISHED_SCHEDULED_BOUT_MINUS_2_HOURS",
     "scheduled_utc": "2026-09-05T14:00:00Z",
-    "status": "FAIL_CLOSED_NO_SCIENTIFIC_RELEASE"
+    "status": "SEALED_LATE_RECOVERY",
+    "timeliness": "FAIL"
   },
-  "t2_issued_position_count": 0,
+  "t2_issued_position_count": 14,
   "t3": {
     "anchor": "EARLIEST_PUBLISHED_SCHEDULED_BOUT_MINUS_3_HOURS",
     "scheduled_utc": "2026-09-05T13:00:00Z",
