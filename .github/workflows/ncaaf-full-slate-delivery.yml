@@ -195,10 +195,8 @@ jobs:
                       'No position, line, FanDuel price, APEX probability, tier, engine, capture timestamp or issuance mathematics changed.\n\n'
                       'The revised card uses the established APEX presentation contract and adds sealed-snapshot NCAA rationale detail.\n\n'
                       'Slate summary:\n'
-                      f"{manifest['canonical_game_count']} canonical games\n"
-                      f"{manifest['issued_game_count']} FanDuel-issuable games\n"
-                      f"{manifest['official_position_count']} official positions\n"
-                      f"{manifest['market_pending_game_count']} market-pending games\n\n"
+                      f"{manifest['issued_game_count']} FanDuel-issued games\n"
+                      f"{manifest['official_position_count']} official positions\n\n"
                       'Live NCAA Picks: https://apexrigor.com/ncaaf\n\n'
                       'Attached in order:\n'
                       '1. Corrected APEX NCAA Football T-2 Picks Card PDF\n'
@@ -217,16 +215,12 @@ jobs:
                       'The full slate has been published to the live Picks page for human review:\n\n'
                       'https://apexrigor.com/ncaaf\n\n'
                       'Slate summary:\n'
-                      f"{manifest['canonical_game_count']} canonical games\n"
-                      f"{manifest['issued_game_count']} FanDuel-issuable games\n"
-                      f"{manifest['official_position_count']} positions\n"
-                      f"{manifest['market_pending_game_count']} market-pending games\n\n"
+                      f"{manifest['issued_game_count']} FanDuel-issued games\n"
+                      f"{manifest['official_position_count']} positions\n\n"
                       'Attached in order:\n'
                       '1. APEX NCAA Football T-2 Picks Card PDF\n'
                       '2. APEX NCAA Football T-2 Picks Card PNG\n\n'
-                      "Every canonical NCAA game on today's slate is represented.\n"
-                      'Games with an authentic qualifying FanDuel full-game market receive D2 ATS and V5 Totals positions.\n'
-                      'Games without a qualifying FanDuel market remain explicitly MARKET PENDING / NO T-2 WAGER.\n'
+                      'The public card contains only authentic sealed D2 ATS and V5 Totals positions at the captured FanDuel T-2 market.\n'
                   )
               attachments=[f'NCAAF_T2_FULL_SLATE_{date_token}.pdf',f'NCAAF_T2_PICKS_CARD_{date_token}.png']
           else:
