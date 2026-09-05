@@ -137,7 +137,7 @@
     "scorecards": 37,
     "weigh_ins": 5442
   },
-  "generated_at_utc": "2026-09-05T03:30:02.276849Z",
+  "generated_at_utc": "2026-09-05T13:00:02.206451Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "IMPLEMENTED_NO_ELIGIBLE_ISSUANCE"
@@ -160,7 +160,7 @@
     "promotion": "UFC",
     "venue": "Accor Arena"
   },
-  "payload_sha256": "dcc62f9828cfd744694c16ce739f559046dd8c45616011d096adfd5aed928cfd",
+  "payload_sha256": "72c0336803bf8605b483e87f0e088caf204c0199cfe6d9eb5df44618495ab4b0",
   "production_isolation": "PASS",
   "schema_version": "APEX_MMA_OPS_SNAPSHOT_V1",
   "science_blocker": "NO_RESULT_LEVEL_WINNER_CANDIDATE_IMPROVED_AUTHENTIC_MATCHED_TIME_FANDUEL; RICHER_ACTION_PROCESS_AND_HOLMES_BENCHMARK_REQUIRE_LICENSED_HISTORICAL_ELEMENTAL_ROUND_STATS",
@@ -174,7 +174,7 @@
   "t3": {
     "anchor": "EARLIEST_PUBLISHED_SCHEDULED_BOUT_MINUS_3_HOURS",
     "scheduled_utc": "2026-09-05T13:00:00Z",
-    "status": "SCHEDULED"
+    "status": "CANONICAL_SNAPSHOT_COMPLETE"
   },
   "t3_fight_count": 0,
   "testing_authority": {
