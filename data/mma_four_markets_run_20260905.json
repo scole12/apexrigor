@@ -1,0 +1,21 @@
+{
+  "completed_at_utc": "2026-09-05T16:58:11.288635+00:00",
+  "run_status": "RESEARCH_PROJECTIONS_COMPLETE_BETTING_ISSUANCE_BLOCKED",
+  "bout_count": 14,
+  "fighter_count": 28,
+  "family_sections_per_fighter_total": 112,
+  "unique_bout_family_sections": 56,
+  "confirmed_betting_positions": 0,
+  "market_capture": {
+    "started_at_utc": "2026-09-05T16:51:01.717443+00:00",
+    "completed_at_utc": "2026-09-05T16:52:54.289420+00:00",
+    "bouts_checked": 14,
+    "requests": 28,
+    "returned_keys": [
+      "h2h"
+    ],
+    "verified_requested_prop_quotes": 0
+  },
+  "probability_coherence": "PASS",
+  "tests_passed": 9
+}

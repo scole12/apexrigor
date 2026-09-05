@@ -1,0 +1,3263 @@
+{
+  "all_requested_bouts_included": true,
+  "bout_count": 14,
+  "bouts": [
+    {
+      "bet_ready": false,
+      "bout_id": "1d105761-84fb-5852-b235-1c87411fe8f8",
+      "families_evaluated": [
+        "METHOD",
+        "COMBINED_METHOD",
+        "TOTAL_ROUNDS",
+        "GOES_DISTANCE"
+      ],
+      "fighters": [
+        {
+          "combined_method": [
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.0740850848991352,
+              "selection": "Dan Hooker by KO/TKO or Submission"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.20330029268581706,
+              "selection": "Dan Hooker by KO/TKO or Points / Decision"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.1400954720511725,
+              "selection": "Dan Hooker by Submission or Points / Decision"
+            }
+          ],
+          "data_support": 1.0,
+          "fighter": "Dan Hooker",
+          "goes_distance_ref": "1d105761-84fb-5852-b235-1c87411fe8f8:GOES_DISTANCE",
+          "method": [
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.06864495276688988,
+              "selection": "Dan Hooker by KO/TKO"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.005440132132245325,
+              "selection": "Dan Hooker by Submission"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.1346553399189272,
+              "selection": "Dan Hooker by Points / Decision"
+            }
+          ],
+          "prior_fight_count": 24,
+          "slot": "A",
+          "total_rounds_ref": "1d105761-84fb-5852-b235-1c87411fe8f8:TOTAL_ROUNDS"
+        },
+        {
+          "combined_method": [
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.7402876994017902,
+              "selection": "Salahdine Parnasse by KO/TKO or Submission"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.2722917344199611,
+              "selection": "Salahdine Parnasse by KO/TKO or Points / Decision"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.5699397165421242,
+              "selection": "Salahdine Parnasse by Submission or Points / Decision"
+            }
+          ],
+          "data_support": 0.0,
+          "fighter": "Salahdine Parnasse",
+          "goes_distance_ref": "1d105761-84fb-5852-b235-1c87411fe8f8:GOES_DISTANCE",
+          "method": [
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.22131985863981354,
+              "selection": "Salahdine Parnasse by KO/TKO"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.5189678407619767,
+              "selection": "Salahdine Parnasse by Submission"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.050971875780147516,
+              "selection": "Salahdine Parnasse by Points / Decision"
+            }
+          ],
+          "prior_fight_count": 0,
+          "slot": "B",
+          "total_rounds_ref": "1d105761-84fb-5852-b235-1c87411fe8f8:TOTAL_ROUNDS"
+        }
+      ],
+      "goes_distance": {
+        "id": "1d105761-84fb-5852-b235-1c87411fe8f8:GOES_DISTANCE",
+        "no": {
+          "bet_ready": false,
+          "expected_value": null,
+          "fanduel_price": null,
+          "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+          "research_probability": 0.8398491700631607,
+          "selection": "Fight goes the distance \u2014 No"
+        },
+        "yes": {
+          "bet_ready": false,
+          "expected_value": null,
+          "fanduel_price": null,
+          "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+          "research_probability": 0.16015082993683927,
+          "selection": "Fight goes the distance \u2014 Yes"
+        }
+      },
+      "matchup": "Dan Hooker vs Salahdine Parnasse",
+      "model_status": "EXPERIMENTAL_NOT_COMMERCIAL_RELEASE",
+      "quote_status": "CURRENT_PROP_PRICES_NOT_VERIFIED",
+      "scheduled_rounds": 5,
+      "timing_label": "POST_CARD_START_RESEARCH_REPLAY_NOT_LIVE_IN_FIGHT_FORECAST",
+      "total_rounds": {
+        "id": "1d105761-84fb-5852-b235-1c87411fe8f8:TOTAL_ROUNDS",
+        "research_grid": [
+          {
+            "basis": "MODEL_REFERENCE_THRESHOLD_NOT_VERIFIED_SPORTSBOOK_LINE",
+            "fanduel_offering_verified": false,
+            "line": 0.5,
+            "over": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.8874285741016193,
+              "selection": "Over 0.5"
+            },
+            "under": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.11257142589838061,
+              "selection": "Under 0.5"
+            }
+          },
+          {
+            "basis": "MODEL_REFERENCE_THRESHOLD_NOT_VERIFIED_SPORTSBOOK_LINE",
+            "fanduel_offering_verified": false,
+            "line": 1.5,
+            "over": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.746544541088539,
+              "selection": "Over 1.5"
+            },
+            "under": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.25345545891146104,
+              "selection": "Under 1.5"
+            }
+          },
+          {
+            "basis": "MODEL_REFERENCE_THRESHOLD_NOT_VERIFIED_SPORTSBOOK_LINE",
+            "fanduel_offering_verified": false,
+            "line": 2.5,
+            "over": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.4637705296440592,
+              "selection": "Over 2.5"
+            },
+            "under": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.5362294703559408,
+              "selection": "Under 2.5"
+            }
+          },
+          {
+            "basis": "MODEL_REFERENCE_THRESHOLD_NOT_VERIFIED_SPORTSBOOK_LINE",
+            "fanduel_offering_verified": false,
+            "line": 3.5,
+            "over": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.1640288224164438,
+              "selection": "Over 3.5"
+            },
+            "under": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.8359711775835562,
+              "selection": "Under 3.5"
+            }
+          },
+          {
+            "basis": "MODEL_REFERENCE_THRESHOLD_NOT_VERIFIED_SPORTSBOOK_LINE",
+            "fanduel_offering_verified": false,
+            "line": 4.5,
+            "over": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.16032206085194234,
+              "selection": "Over 4.5"
+            },
+            "under": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.8396779391480577,
+              "selection": "Under 4.5"
+            }
+          }
+        ],
+        "verified_fanduel_lines": []
+      }
+    },
+    {
+      "bet_ready": false,
+      "bout_id": "a13505da-8b54-59f1-8b0c-0f24be2e8c9b",
+      "families_evaluated": [
+        "METHOD",
+        "COMBINED_METHOD",
+        "TOTAL_ROUNDS",
+        "GOES_DISTANCE"
+      ],
+      "fighters": [
+        {
+          "combined_method": [
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.246700341832333,
+              "selection": "Far\u00e8s Ziam by KO/TKO or Submission"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.5156167552460028,
+              "selection": "Far\u00e8s Ziam by KO/TKO or Points / Decision"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.468499335034853,
+              "selection": "Far\u00e8s Ziam by Submission or Points / Decision"
+            }
+          ],
+          "data_support": 1.0,
+          "fighter": "Far\u00e8s Ziam",
+          "goes_distance_ref": "a13505da-8b54-59f1-8b0c-0f24be2e8c9b:GOES_DISTANCE",
+          "method": [
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.1469088810217414,
+              "selection": "Far\u00e8s Ziam by KO/TKO"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.09979146081059159,
+              "selection": "Far\u00e8s Ziam by Submission"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.36870787422426143,
+              "selection": "Far\u00e8s Ziam by Points / Decision"
+            }
+          ],
+          "prior_fight_count": 11,
+          "slot": "A",
+          "total_rounds_ref": "a13505da-8b54-59f1-8b0c-0f24be2e8c9b:TOTAL_ROUNDS"
+        },
+        {
+          "combined_method": [
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.20523223030604484,
+              "selection": "Axel Sola by KO/TKO or Submission"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.32541554172776865,
+              "selection": "Axel Sola by KO/TKO or Points / Decision"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.23853579585299756,
+              "selection": "Axel Sola by Submission or Points / Decision"
+            }
+          ],
+          "data_support": 0.375,
+          "fighter": "Axel Sola",
+          "goes_distance_ref": "a13505da-8b54-59f1-8b0c-0f24be2e8c9b:GOES_DISTANCE",
+          "method": [
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.14605598809040798,
+              "selection": "Axel Sola by KO/TKO"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.05917624221563686,
+              "selection": "Axel Sola by Submission"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.1793595536373607,
+              "selection": "Axel Sola by Points / Decision"
+            }
+          ],
+          "prior_fight_count": 3,
+          "slot": "B",
+          "total_rounds_ref": "a13505da-8b54-59f1-8b0c-0f24be2e8c9b:TOTAL_ROUNDS"
+        }
+      ],
+      "goes_distance": {
+        "id": "a13505da-8b54-59f1-8b0c-0f24be2e8c9b:GOES_DISTANCE",
+        "no": {
+          "bet_ready": false,
+          "expected_value": null,
+          "fanduel_price": null,
+          "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+          "research_probability": 0.4524612081568359,
+          "selection": "Fight goes the distance \u2014 No"
+        },
+        "yes": {
+          "bet_ready": false,
+          "expected_value": null,
+          "fanduel_price": null,
+          "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+          "research_probability": 0.5475387918431641,
+          "selection": "Fight goes the distance \u2014 Yes"
+        }
+      },
+      "matchup": "Far\u00e8s Ziam vs Axel Sola",
+      "model_status": "EXPERIMENTAL_NOT_COMMERCIAL_RELEASE",
+      "quote_status": "CURRENT_PROP_PRICES_NOT_VERIFIED",
+      "scheduled_rounds": 3,
+      "timing_label": "POST_CARD_START_RESEARCH_REPLAY_NOT_LIVE_IN_FIGHT_FORECAST",
+      "total_rounds": {
+        "id": "a13505da-8b54-59f1-8b0c-0f24be2e8c9b:TOTAL_ROUNDS",
+        "research_grid": [
+          {
+            "basis": "MODEL_REFERENCE_THRESHOLD_NOT_VERIFIED_SPORTSBOOK_LINE",
+            "fanduel_offering_verified": false,
+            "line": 0.5,
+            "over": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.8955209837407989,
+              "selection": "Over 0.5"
+            },
+            "under": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.10447901625920103,
+              "selection": "Under 0.5"
+            }
+          },
+          {
+            "basis": "MODEL_REFERENCE_THRESHOLD_NOT_VERIFIED_SPORTSBOOK_LINE",
+            "fanduel_offering_verified": false,
+            "line": 1.5,
+            "over": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.7175738503174487,
+              "selection": "Over 1.5"
+            },
+            "under": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.2824261496825513,
+              "selection": "Under 1.5"
+            }
+          },
+          {
+            "basis": "MODEL_REFERENCE_THRESHOLD_NOT_VERIFIED_SPORTSBOOK_LINE",
+            "fanduel_offering_verified": false,
+            "line": 2.5,
+            "over": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.5844966355447262,
+              "selection": "Over 2.5"
+            },
+            "under": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.4155033644552738,
+              "selection": "Under 2.5"
+            }
+          }
+        ],
+        "verified_fanduel_lines": []
+      }
+    },
+    {
+      "bet_ready": false,
+      "bout_id": "62b096c4-b477-5bb6-992f-32ac9655ec81",
+      "families_evaluated": [
+        "METHOD",
+        "COMBINED_METHOD",
+        "TOTAL_ROUNDS",
+        "GOES_DISTANCE"
+      ],
+      "fighters": [
+        {
+          "combined_method": [
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.38799506543106693,
+              "selection": "Michael Venom Page by KO/TKO or Submission"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.5773557117418019,
+              "selection": "Michael Venom Page by KO/TKO or Points / Decision"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.436646423266213,
+              "selection": "Michael Venom Page by Submission or Points / Decision"
+            }
+          ],
+          "data_support": 0.625,
+          "fighter": "Michael Venom Page",
+          "goes_distance_ref": "62b096c4-b477-5bb6-992f-32ac9655ec81:GOES_DISTANCE",
+          "method": [
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.2643521769533279,
+              "selection": "Michael Venom Page by KO/TKO"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.12364288847773902,
+              "selection": "Michael Venom Page by Submission"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.313003534788474,
+              "selection": "Michael Venom Page by Points / Decision"
+            }
+          ],
+          "prior_fight_count": 5,
+          "slot": "A",
+          "total_rounds_ref": "62b096c4-b477-5bb6-992f-32ac9655ec81:TOTAL_ROUNDS"
+        },
+        {
+          "combined_method": [
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.18568307736189935,
+              "selection": "Nursulton Ruziboev by KO/TKO or Submission"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.22496040373791043,
+              "selection": "Nursulton Ruziboev by KO/TKO or Points / Decision"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.18735931846110843,
+              "selection": "Nursulton Ruziboev by Submission or Points / Decision"
+            }
+          ],
+          "data_support": 0.75,
+          "fighter": "Nursulton Ruziboev",
+          "goes_distance_ref": "62b096c4-b477-5bb6-992f-32ac9655ec81:GOES_DISTANCE",
+          "method": [
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.11164208131935066,
+              "selection": "Nursulton Ruziboev by KO/TKO"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.07404099604254868,
+              "selection": "Nursulton Ruziboev by Submission"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.11331832241855976,
+              "selection": "Nursulton Ruziboev by Points / Decision"
+            }
+          ],
+          "prior_fight_count": 6,
+          "slot": "B",
+          "total_rounds_ref": "62b096c4-b477-5bb6-992f-32ac9655ec81:TOTAL_ROUNDS"
+        }
+      ],
+      "goes_distance": {
+        "id": "62b096c4-b477-5bb6-992f-32ac9655ec81:GOES_DISTANCE",
+        "no": {
+          "bet_ready": false,
+          "expected_value": null,
+          "fanduel_price": null,
+          "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+          "research_probability": 0.576858569014751,
+          "selection": "Fight goes the distance \u2014 No"
+        },
+        "yes": {
+          "bet_ready": false,
+          "expected_value": null,
+          "fanduel_price": null,
+          "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+          "research_probability": 0.423141430985249,
+          "selection": "Fight goes the distance \u2014 Yes"
+        }
+      },
+      "matchup": "Michael Venom Page vs Nursulton Ruziboev",
+      "model_status": "EXPERIMENTAL_NOT_COMMERCIAL_RELEASE",
+      "quote_status": "CURRENT_PROP_PRICES_NOT_VERIFIED",
+      "scheduled_rounds": 3,
+      "timing_label": "POST_CARD_START_RESEARCH_REPLAY_NOT_LIVE_IN_FIGHT_FORECAST",
+      "total_rounds": {
+        "id": "62b096c4-b477-5bb6-992f-32ac9655ec81:TOTAL_ROUNDS",
+        "research_grid": [
+          {
+            "basis": "MODEL_REFERENCE_THRESHOLD_NOT_VERIFIED_SPORTSBOOK_LINE",
+            "fanduel_offering_verified": false,
+            "line": 0.5,
+            "over": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.8553333784304312,
+              "selection": "Over 0.5"
+            },
+            "under": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.14466662156956878,
+              "selection": "Under 0.5"
+            }
+          },
+          {
+            "basis": "MODEL_REFERENCE_THRESHOLD_NOT_VERIFIED_SPORTSBOOK_LINE",
+            "fanduel_offering_verified": false,
+            "line": 1.5,
+            "over": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.6177441516755919,
+              "selection": "Over 1.5"
+            },
+            "under": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.382255848324408,
+              "selection": "Under 1.5"
+            }
+          },
+          {
+            "basis": "MODEL_REFERENCE_THRESHOLD_NOT_VERIFIED_SPORTSBOOK_LINE",
+            "fanduel_offering_verified": false,
+            "line": 2.5,
+            "over": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.47907041534433636,
+              "selection": "Over 2.5"
+            },
+            "under": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.5209295846556636,
+              "selection": "Under 2.5"
+            }
+          }
+        ],
+        "verified_fanduel_lines": []
+      }
+    },
+    {
+      "bet_ready": false,
+      "bout_id": "55abd450-d78a-5222-be01-101e65ea0df5",
+      "families_evaluated": [
+        "METHOD",
+        "COMBINED_METHOD",
+        "TOTAL_ROUNDS",
+        "GOES_DISTANCE"
+      ],
+      "fighters": [
+        {
+          "combined_method": [
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.3712355952852944,
+              "selection": "Daniil Donchenko by KO/TKO or Submission"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.680289597981932,
+              "selection": "Daniil Donchenko by KO/TKO or Points / Decision"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.40040900658715106,
+              "selection": "Daniil Donchenko by Submission or Points / Decision"
+            }
+          ],
+          "data_support": 0.375,
+          "fighter": "Daniil Donchenko",
+          "goes_distance_ref": "55abd450-d78a-5222-be01-101e65ea0df5:GOES_DISTANCE",
+          "method": [
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.32555809334003766,
+              "selection": "Daniil Donchenko by KO/TKO"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.04567750194525671,
+              "selection": "Daniil Donchenko by Submission"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.35473150464189435,
+              "selection": "Daniil Donchenko by Points / Decision"
+            }
+          ],
+          "prior_fight_count": 3,
+          "slot": "A",
+          "total_rounds_ref": "55abd450-d78a-5222-be01-101e65ea0df5:TOTAL_ROUNDS"
+        },
+        {
+          "combined_method": [
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.14523788351898095,
+              "selection": "Punahele Soriano by KO/TKO or Submission"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.22542492303698178,
+              "selection": "Punahele Soriano by KO/TKO or Points / Decision"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.17740299358965972,
+              "selection": "Punahele Soriano by Submission or Points / Decision"
+            }
+          ],
+          "data_support": 1.0,
+          "fighter": "Punahele Soriano",
+          "goes_distance_ref": "55abd450-d78a-5222-be01-101e65ea0df5:GOES_DISTANCE",
+          "method": [
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.0966299064831515,
+              "selection": "Punahele Soriano by KO/TKO"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.048607977035829454,
+              "selection": "Punahele Soriano by Submission"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.12879501655383027,
+              "selection": "Punahele Soriano by Points / Decision"
+            }
+          ],
+          "prior_fight_count": 12,
+          "slot": "B",
+          "total_rounds_ref": "55abd450-d78a-5222-be01-101e65ea0df5:TOTAL_ROUNDS"
+        }
+      ],
+      "goes_distance": {
+        "id": "55abd450-d78a-5222-be01-101e65ea0df5:GOES_DISTANCE",
+        "no": {
+          "bet_ready": false,
+          "expected_value": null,
+          "fanduel_price": null,
+          "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+          "research_probability": 0.5186409651242654,
+          "selection": "Fight goes the distance \u2014 No"
+        },
+        "yes": {
+          "bet_ready": false,
+          "expected_value": null,
+          "fanduel_price": null,
+          "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+          "research_probability": 0.48135903487573456,
+          "selection": "Fight goes the distance \u2014 Yes"
+        }
+      },
+      "matchup": "Daniil Donchenko vs Punahele Soriano",
+      "model_status": "EXPERIMENTAL_NOT_COMMERCIAL_RELEASE",
+      "quote_status": "CURRENT_PROP_PRICES_NOT_VERIFIED",
+      "scheduled_rounds": 3,
+      "timing_label": "POST_CARD_START_RESEARCH_REPLAY_NOT_LIVE_IN_FIGHT_FORECAST",
+      "total_rounds": {
+        "id": "55abd450-d78a-5222-be01-101e65ea0df5:TOTAL_ROUNDS",
+        "research_grid": [
+          {
+            "basis": "MODEL_REFERENCE_THRESHOLD_NOT_VERIFIED_SPORTSBOOK_LINE",
+            "fanduel_offering_verified": false,
+            "line": 0.5,
+            "over": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.8841476267012868,
+              "selection": "Over 0.5"
+            },
+            "under": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.11585237329871324,
+              "selection": "Under 0.5"
+            }
+          },
+          {
+            "basis": "MODEL_REFERENCE_THRESHOLD_NOT_VERIFIED_SPORTSBOOK_LINE",
+            "fanduel_offering_verified": false,
+            "line": 1.5,
+            "over": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.668674943693214,
+              "selection": "Over 1.5"
+            },
+            "under": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.33132505630678594,
+              "selection": "Under 1.5"
+            }
+          },
+          {
+            "basis": "MODEL_REFERENCE_THRESHOLD_NOT_VERIFIED_SPORTSBOOK_LINE",
+            "fanduel_offering_verified": false,
+            "line": 2.5,
+            "over": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.5285997435265267,
+              "selection": "Over 2.5"
+            },
+            "under": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.4714002564734733,
+              "selection": "Under 2.5"
+            }
+          }
+        ],
+        "verified_fanduel_lines": []
+      }
+    },
+    {
+      "bet_ready": false,
+      "bout_id": "0dcad387-5358-5ce3-8601-b935fc75e95a",
+      "families_evaluated": [
+        "METHOD",
+        "COMBINED_METHOD",
+        "TOTAL_ROUNDS",
+        "GOES_DISTANCE"
+      ],
+      "fighters": [
+        {
+          "combined_method": [
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.33227173750263017,
+              "selection": "Kurtis Campbell by KO/TKO or Submission"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.6157089877840849,
+              "selection": "Kurtis Campbell by KO/TKO or Points / Decision"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.70808955545758,
+              "selection": "Kurtis Campbell by Submission or Points / Decision"
+            }
+          ],
+          "data_support": 0.25,
+          "fighter": "Kurtis Campbell",
+          "goes_distance_ref": "0dcad387-5358-5ce3-8601-b935fc75e95a:GOES_DISTANCE",
+          "method": [
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.11994558491456753,
+              "selection": "Kurtis Campbell by KO/TKO"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.21232615258806267,
+              "selection": "Kurtis Campbell by Submission"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.4957634028695173,
+              "selection": "Kurtis Campbell by Points / Decision"
+            }
+          ],
+          "prior_fight_count": 2,
+          "slot": "A",
+          "total_rounds_ref": "0dcad387-5358-5ce3-8601-b935fc75e95a:TOTAL_ROUNDS"
+        },
+        {
+          "combined_method": [
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.10665788896808048,
+              "selection": "Trevor Peek by KO/TKO or Submission"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.13200380863541272,
+              "selection": "Trevor Peek by KO/TKO or Points / Decision"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.10526802165221191,
+              "selection": "Trevor Peek by Submission or Points / Decision"
+            }
+          ],
+          "data_support": 0.75,
+          "fighter": "Trevor Peek",
+          "goes_distance_ref": "0dcad387-5358-5ce3-8601-b935fc75e95a:GOES_DISTANCE",
+          "method": [
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.06669683797564066,
+              "selection": "Trevor Peek by KO/TKO"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.03996105099243983,
+              "selection": "Trevor Peek by Submission"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.06530697065977208,
+              "selection": "Trevor Peek by Points / Decision"
+            }
+          ],
+          "prior_fight_count": 6,
+          "slot": "B",
+          "total_rounds_ref": "0dcad387-5358-5ce3-8601-b935fc75e95a:TOTAL_ROUNDS"
+        }
+      ],
+      "goes_distance": {
+        "id": "0dcad387-5358-5ce3-8601-b935fc75e95a:GOES_DISTANCE",
+        "no": {
+          "bet_ready": false,
+          "expected_value": null,
+          "fanduel_price": null,
+          "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+          "research_probability": 0.44083066296522455,
+          "selection": "Fight goes the distance \u2014 No"
+        },
+        "yes": {
+          "bet_ready": false,
+          "expected_value": null,
+          "fanduel_price": null,
+          "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+          "research_probability": 0.5591693370347754,
+          "selection": "Fight goes the distance \u2014 Yes"
+        }
+      },
+      "matchup": "Kurtis Campbell vs Trevor Peek",
+      "model_status": "EXPERIMENTAL_NOT_COMMERCIAL_RELEASE",
+      "quote_status": "CURRENT_PROP_PRICES_NOT_VERIFIED",
+      "scheduled_rounds": 3,
+      "timing_label": "POST_CARD_START_RESEARCH_REPLAY_NOT_LIVE_IN_FIGHT_FORECAST",
+      "total_rounds": {
+        "id": "0dcad387-5358-5ce3-8601-b935fc75e95a:TOTAL_ROUNDS",
+        "research_grid": [
+          {
+            "basis": "MODEL_REFERENCE_THRESHOLD_NOT_VERIFIED_SPORTSBOOK_LINE",
+            "fanduel_offering_verified": false,
+            "line": 0.5,
+            "over": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.9106544094146022,
+              "selection": "Over 0.5"
+            },
+            "under": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.08934559058539777,
+              "selection": "Under 0.5"
+            }
+          },
+          {
+            "basis": "MODEL_REFERENCE_THRESHOLD_NOT_VERIFIED_SPORTSBOOK_LINE",
+            "fanduel_offering_verified": false,
+            "line": 1.5,
+            "over": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.7265414412055597,
+              "selection": "Over 1.5"
+            },
+            "under": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.27345855879444025,
+              "selection": "Under 1.5"
+            }
+          },
+          {
+            "basis": "MODEL_REFERENCE_THRESHOLD_NOT_VERIFIED_SPORTSBOOK_LINE",
+            "fanduel_offering_verified": false,
+            "line": 2.5,
+            "over": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.603518261037713,
+              "selection": "Over 2.5"
+            },
+            "under": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.39648173896228706,
+              "selection": "Under 2.5"
+            }
+          }
+        ],
+        "verified_fanduel_lines": []
+      }
+    },
+    {
+      "bet_ready": false,
+      "bout_id": "f85dd00d-23c8-5c7e-9dbc-70a7259c58b6",
+      "families_evaluated": [
+        "METHOD",
+        "COMBINED_METHOD",
+        "TOTAL_ROUNDS",
+        "GOES_DISTANCE"
+      ],
+      "fighters": [
+        {
+          "combined_method": [
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.5814211660040693,
+              "selection": "Losene Keita by KO/TKO or Submission"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.6350098070776373,
+              "selection": "Losene Keita by KO/TKO or Points / Decision"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.3893666010120962,
+              "selection": "Losene Keita by Submission or Points / Decision"
+            }
+          ],
+          "data_support": 0.125,
+          "fighter": "Losene Keita",
+          "goes_distance_ref": "f85dd00d-23c8-5c7e-9dbc-70a7259c58b6:GOES_DISTANCE",
+          "method": [
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.4135321860348053,
+              "selection": "Losene Keita by KO/TKO"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.16788897996926408,
+              "selection": "Losene Keita by Submission"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.22147762104283208,
+              "selection": "Losene Keita by Points / Decision"
+            }
+          ],
+          "prior_fight_count": 1,
+          "slot": "A",
+          "total_rounds_ref": "f85dd00d-23c8-5c7e-9dbc-70a7259c58b6:TOTAL_ROUNDS"
+        },
+        {
+          "combined_method": [
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.16585601964354554,
+              "selection": "Muhammad Naimov by KO/TKO or Submission"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.16277300962409205,
+              "selection": "Muhammad Naimov by KO/TKO or Points / Decision"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.06557339663855956,
+              "selection": "Muhammad Naimov by Submission or Points / Decision"
+            }
+          ],
+          "data_support": 1.0,
+          "fighter": "Muhammad Naimov",
+          "goes_distance_ref": "f85dd00d-23c8-5c7e-9dbc-70a7259c58b6:GOES_DISTANCE",
+          "method": [
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.13152781631453903,
+              "selection": "Muhammad Naimov by KO/TKO"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.034328203329006525,
+              "selection": "Muhammad Naimov by Submission"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.03124519330955303,
+              "selection": "Muhammad Naimov by Points / Decision"
+            }
+          ],
+          "prior_fight_count": 8,
+          "slot": "B",
+          "total_rounds_ref": "f85dd00d-23c8-5c7e-9dbc-70a7259c58b6:TOTAL_ROUNDS"
+        }
+      ],
+      "goes_distance": {
+        "id": "f85dd00d-23c8-5c7e-9dbc-70a7259c58b6:GOES_DISTANCE",
+        "no": {
+          "bet_ready": false,
+          "expected_value": null,
+          "fanduel_price": null,
+          "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+          "research_probability": 0.7474478252980099,
+          "selection": "Fight goes the distance \u2014 No"
+        },
+        "yes": {
+          "bet_ready": false,
+          "expected_value": null,
+          "fanduel_price": null,
+          "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+          "research_probability": 0.2525521747019901,
+          "selection": "Fight goes the distance \u2014 Yes"
+        }
+      },
+      "matchup": "Losene Keita vs Muhammad Naimov",
+      "model_status": "EXPERIMENTAL_NOT_COMMERCIAL_RELEASE",
+      "quote_status": "CURRENT_PROP_PRICES_NOT_VERIFIED",
+      "scheduled_rounds": 3,
+      "timing_label": "POST_CARD_START_RESEARCH_REPLAY_NOT_LIVE_IN_FIGHT_FORECAST",
+      "total_rounds": {
+        "id": "f85dd00d-23c8-5c7e-9dbc-70a7259c58b6:TOTAL_ROUNDS",
+        "research_grid": [
+          {
+            "basis": "MODEL_REFERENCE_THRESHOLD_NOT_VERIFIED_SPORTSBOOK_LINE",
+            "fanduel_offering_verified": false,
+            "line": 0.5,
+            "over": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.8854607988834529,
+              "selection": "Over 0.5"
+            },
+            "under": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.11453920111654713,
+              "selection": "Under 0.5"
+            }
+          },
+          {
+            "basis": "MODEL_REFERENCE_THRESHOLD_NOT_VERIFIED_SPORTSBOOK_LINE",
+            "fanduel_offering_verified": false,
+            "line": 1.5,
+            "over": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.6167163591593643,
+              "selection": "Over 1.5"
+            },
+            "under": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.38328364084063565,
+              "selection": "Under 1.5"
+            }
+          },
+          {
+            "basis": "MODEL_REFERENCE_THRESHOLD_NOT_VERIFIED_SPORTSBOOK_LINE",
+            "fanduel_offering_verified": false,
+            "line": 2.5,
+            "over": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.34570898090968316,
+              "selection": "Over 2.5"
+            },
+            "under": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.6542910190903168,
+              "selection": "Under 2.5"
+            }
+          }
+        ],
+        "verified_fanduel_lines": []
+      }
+    },
+    {
+      "bet_ready": false,
+      "bout_id": "f60b09ff-6301-5d1c-bfee-7ac35874c75d",
+      "families_evaluated": [
+        "METHOD",
+        "COMBINED_METHOD",
+        "TOTAL_ROUNDS",
+        "GOES_DISTANCE"
+      ],
+      "fighters": [
+        {
+          "combined_method": [
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.18562403576068842,
+              "selection": "Morgan Charriere by KO/TKO or Submission"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.36225392173597515,
+              "selection": "Morgan Charriere by KO/TKO or Points / Decision"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.2578569126110395,
+              "selection": "Morgan Charriere by Submission or Points / Decision"
+            }
+          ],
+          "data_support": 0.75,
+          "fighter": "Morgan Charriere",
+          "goes_distance_ref": "f60b09ff-6301-5d1c-bfee-7ac35874c75d:GOES_DISTANCE",
+          "method": [
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.14501052244281204,
+              "selection": "Morgan Charriere by KO/TKO"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.040613513317876396,
+              "selection": "Morgan Charriere by Submission"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.21724339929316308,
+              "selection": "Morgan Charriere by Points / Decision"
+            }
+          ],
+          "prior_fight_count": 6,
+          "slot": "A",
+          "total_rounds_ref": "f60b09ff-6301-5d1c-bfee-7ac35874c75d:TOTAL_ROUNDS"
+        },
+        {
+          "combined_method": [
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.3120346234035586,
+              "selection": "Felipe Lima by KO/TKO or Submission"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.4546609402374422,
+              "selection": "Felipe Lima by KO/TKO or Points / Decision"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.4275695662512963,
+              "selection": "Felipe Lima by Submission or Points / Decision"
+            }
+          ],
+          "data_support": 0.375,
+          "fighter": "Felipe Lima",
+          "goes_distance_ref": "f60b09ff-6301-5d1c-bfee-7ac35874c75d:GOES_DISTANCE",
+          "method": [
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.16956299869485225,
+              "selection": "Felipe Lima by KO/TKO"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.1424716247087063,
+              "selection": "Felipe Lima by Submission"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.28509794154258994,
+              "selection": "Felipe Lima by Points / Decision"
+            }
+          ],
+          "prior_fight_count": 3,
+          "slot": "B",
+          "total_rounds_ref": "f60b09ff-6301-5d1c-bfee-7ac35874c75d:TOTAL_ROUNDS"
+        }
+      ],
+      "goes_distance": {
+        "id": "f60b09ff-6301-5d1c-bfee-7ac35874c75d:GOES_DISTANCE",
+        "no": {
+          "bet_ready": false,
+          "expected_value": null,
+          "fanduel_price": null,
+          "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+          "research_probability": 0.49822390249224413,
+          "selection": "Fight goes the distance \u2014 No"
+        },
+        "yes": {
+          "bet_ready": false,
+          "expected_value": null,
+          "fanduel_price": null,
+          "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+          "research_probability": 0.5017760975077559,
+          "selection": "Fight goes the distance \u2014 Yes"
+        }
+      },
+      "matchup": "Morgan Charriere vs Felipe Lima",
+      "model_status": "EXPERIMENTAL_NOT_COMMERCIAL_RELEASE",
+      "quote_status": "CURRENT_PROP_PRICES_NOT_VERIFIED",
+      "scheduled_rounds": 3,
+      "timing_label": "POST_CARD_START_RESEARCH_REPLAY_NOT_LIVE_IN_FIGHT_FORECAST",
+      "total_rounds": {
+        "id": "f60b09ff-6301-5d1c-bfee-7ac35874c75d:TOTAL_ROUNDS",
+        "research_grid": [
+          {
+            "basis": "MODEL_REFERENCE_THRESHOLD_NOT_VERIFIED_SPORTSBOOK_LINE",
+            "fanduel_offering_verified": false,
+            "line": 0.5,
+            "over": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.8954378921979717,
+              "selection": "Over 0.5"
+            },
+            "under": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.1045621078020283,
+              "selection": "Under 0.5"
+            }
+          },
+          {
+            "basis": "MODEL_REFERENCE_THRESHOLD_NOT_VERIFIED_SPORTSBOOK_LINE",
+            "fanduel_offering_verified": false,
+            "line": 1.5,
+            "over": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.6829681772631919,
+              "selection": "Over 1.5"
+            },
+            "under": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.31703182273680813,
+              "selection": "Under 1.5"
+            }
+          },
+          {
+            "basis": "MODEL_REFERENCE_THRESHOLD_NOT_VERIFIED_SPORTSBOOK_LINE",
+            "fanduel_offering_verified": false,
+            "line": 2.5,
+            "over": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.539755265157961,
+              "selection": "Over 2.5"
+            },
+            "under": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.460244734842039,
+              "selection": "Under 2.5"
+            }
+          }
+        ],
+        "verified_fanduel_lines": []
+      }
+    },
+    {
+      "bet_ready": false,
+      "bout_id": "5551b6d7-a556-59ce-87f2-119e6566fc1b",
+      "families_evaluated": [
+        "METHOD",
+        "COMBINED_METHOD",
+        "TOTAL_ROUNDS",
+        "GOES_DISTANCE"
+      ],
+      "fighters": [
+        {
+          "combined_method": [
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.5744709049315474,
+              "selection": "Mario Pinto by KO/TKO or Submission"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.7158690113525217,
+              "selection": "Mario Pinto by KO/TKO or Points / Decision"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.32599970840170145,
+              "selection": "Mario Pinto by Submission or Points / Decision"
+            }
+          ],
+          "data_support": 0.5,
+          "fighter": "Mario Pinto",
+          "goes_distance_ref": "5551b6d7-a556-59ce-87f2-119e6566fc1b:GOES_DISTANCE",
+          "method": [
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.48217010394118376,
+              "selection": "Mario Pinto by KO/TKO"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.0923008009903636,
+              "selection": "Mario Pinto by Submission"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.23369890741133786,
+              "selection": "Mario Pinto by Points / Decision"
+            }
+          ],
+          "prior_fight_count": 4,
+          "slot": "A",
+          "total_rounds_ref": "5551b6d7-a556-59ce-87f2-119e6566fc1b:TOTAL_ROUNDS"
+        },
+        {
+          "combined_method": [
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.1207241908246055,
+              "selection": "Ryan Spann by KO/TKO or Submission"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.12085663439627603,
+              "selection": "Ryan Spann by KO/TKO or Points / Decision"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.14207955009334802,
+              "selection": "Ryan Spann by Submission or Points / Decision"
+            }
+          ],
+          "data_support": 1.0,
+          "fighter": "Ryan Spann",
+          "goes_distance_ref": "5551b6d7-a556-59ce-87f2-119e6566fc1b:GOES_DISTANCE",
+          "method": [
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.049750637563766756,
+              "selection": "Ryan Spann by KO/TKO"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.07097355326083875,
+              "selection": "Ryan Spann by Submission"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.07110599683250927,
+              "selection": "Ryan Spann by Points / Decision"
+            }
+          ],
+          "prior_fight_count": 18,
+          "slot": "B",
+          "total_rounds_ref": "5551b6d7-a556-59ce-87f2-119e6566fc1b:TOTAL_ROUNDS"
+        }
+      ],
+      "goes_distance": {
+        "id": "5551b6d7-a556-59ce-87f2-119e6566fc1b:GOES_DISTANCE",
+        "no": {
+          "bet_ready": false,
+          "expected_value": null,
+          "fanduel_price": null,
+          "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+          "research_probability": 0.6970121099804714,
+          "selection": "Fight goes the distance \u2014 No"
+        },
+        "yes": {
+          "bet_ready": false,
+          "expected_value": null,
+          "fanduel_price": null,
+          "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+          "research_probability": 0.3029878900195286,
+          "selection": "Fight goes the distance \u2014 Yes"
+        }
+      },
+      "matchup": "Mario Pinto vs Ryan Spann",
+      "model_status": "EXPERIMENTAL_NOT_COMMERCIAL_RELEASE",
+      "quote_status": "CURRENT_PROP_PRICES_NOT_VERIFIED",
+      "scheduled_rounds": 3,
+      "timing_label": "POST_CARD_START_RESEARCH_REPLAY_NOT_LIVE_IN_FIGHT_FORECAST",
+      "total_rounds": {
+        "id": "5551b6d7-a556-59ce-87f2-119e6566fc1b:TOTAL_ROUNDS",
+        "research_grid": [
+          {
+            "basis": "MODEL_REFERENCE_THRESHOLD_NOT_VERIFIED_SPORTSBOOK_LINE",
+            "fanduel_offering_verified": false,
+            "line": 0.5,
+            "over": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.7517788861418686,
+              "selection": "Over 0.5"
+            },
+            "under": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.24822111385813145,
+              "selection": "Under 0.5"
+            }
+          },
+          {
+            "basis": "MODEL_REFERENCE_THRESHOLD_NOT_VERIFIED_SPORTSBOOK_LINE",
+            "fanduel_offering_verified": false,
+            "line": 1.5,
+            "over": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.485989646406774,
+              "selection": "Over 1.5"
+            },
+            "under": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.514010353593226,
+              "selection": "Under 1.5"
+            }
+          },
+          {
+            "basis": "MODEL_REFERENCE_THRESHOLD_NOT_VERIFIED_SPORTSBOOK_LINE",
+            "fanduel_offering_verified": false,
+            "line": 2.5,
+            "over": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.3417085656147786,
+              "selection": "Over 2.5"
+            },
+            "under": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.6582914343852214,
+              "selection": "Under 2.5"
+            }
+          }
+        ],
+        "verified_fanduel_lines": []
+      }
+    },
+    {
+      "bet_ready": false,
+      "bout_id": "49ace9ab-791b-53e5-ace7-3248e04f5daa",
+      "families_evaluated": [
+        "METHOD",
+        "COMBINED_METHOD",
+        "TOTAL_ROUNDS",
+        "GOES_DISTANCE"
+      ],
+      "fighters": [
+        {
+          "combined_method": [
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.3851547464605049,
+              "selection": "Oumar Sy by KO/TKO or Submission"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.6351139662665313,
+              "selection": "Oumar Sy by KO/TKO or Points / Decision"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.42815942016008895,
+              "selection": "Oumar Sy by Submission or Points / Decision"
+            }
+          ],
+          "data_support": 0.625,
+          "fighter": "Oumar Sy",
+          "goes_distance_ref": "49ace9ab-791b-53e5-ace7-3248e04f5daa:GOES_DISTANCE",
+          "method": [
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.2960546462834736,
+              "selection": "Oumar Sy by KO/TKO"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.0891001001770313,
+              "selection": "Oumar Sy by Submission"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.33905931998305766,
+              "selection": "Oumar Sy by Points / Decision"
+            }
+          ],
+          "prior_fight_count": 5,
+          "slot": "A",
+          "total_rounds_ref": "49ace9ab-791b-53e5-ace7-3248e04f5daa:TOTAL_ROUNDS"
+        },
+        {
+          "combined_method": [
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.15047670304575828,
+              "selection": "Modestas Bukauskas by KO/TKO or Submission"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.24956413327984772,
+              "selection": "Modestas Bukauskas by KO/TKO or Points / Decision"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.15153103078726896,
+              "selection": "Modestas Bukauskas by Submission or Points / Decision"
+            }
+          ],
+          "data_support": 1.0,
+          "fighter": "Modestas Bukauskas",
+          "goes_distance_ref": "49ace9ab-791b-53e5-ace7-3248e04f5daa:GOES_DISTANCE",
+          "method": [
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.12425490276916852,
+              "selection": "Modestas Bukauskas by KO/TKO"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.02622180027658977,
+              "selection": "Modestas Bukauskas by Submission"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.1253092305106792,
+              "selection": "Modestas Bukauskas by Points / Decision"
+            }
+          ],
+          "prior_fight_count": 13,
+          "slot": "B",
+          "total_rounds_ref": "49ace9ab-791b-53e5-ace7-3248e04f5daa:TOTAL_ROUNDS"
+        }
+      ],
+      "goes_distance": {
+        "id": "49ace9ab-791b-53e5-ace7-3248e04f5daa:GOES_DISTANCE",
+        "no": {
+          "bet_ready": false,
+          "expected_value": null,
+          "fanduel_price": null,
+          "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+          "research_probability": 0.536880698609816,
+          "selection": "Fight goes the distance \u2014 No"
+        },
+        "yes": {
+          "bet_ready": false,
+          "expected_value": null,
+          "fanduel_price": null,
+          "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+          "research_probability": 0.463119301390184,
+          "selection": "Fight goes the distance \u2014 Yes"
+        }
+      },
+      "matchup": "Oumar Sy vs Modestas Bukauskas",
+      "model_status": "EXPERIMENTAL_NOT_COMMERCIAL_RELEASE",
+      "quote_status": "CURRENT_PROP_PRICES_NOT_VERIFIED",
+      "scheduled_rounds": 3,
+      "timing_label": "POST_CARD_START_RESEARCH_REPLAY_NOT_LIVE_IN_FIGHT_FORECAST",
+      "total_rounds": {
+        "id": "49ace9ab-791b-53e5-ace7-3248e04f5daa:TOTAL_ROUNDS",
+        "research_grid": [
+          {
+            "basis": "MODEL_REFERENCE_THRESHOLD_NOT_VERIFIED_SPORTSBOOK_LINE",
+            "fanduel_offering_verified": false,
+            "line": 0.5,
+            "over": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.8667648642051522,
+              "selection": "Over 0.5"
+            },
+            "under": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.13323513579484775,
+              "selection": "Under 0.5"
+            }
+          },
+          {
+            "basis": "MODEL_REFERENCE_THRESHOLD_NOT_VERIFIED_SPORTSBOOK_LINE",
+            "fanduel_offering_verified": false,
+            "line": 1.5,
+            "over": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.6512680315670515,
+              "selection": "Over 1.5"
+            },
+            "under": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.3487319684329485,
+              "selection": "Under 1.5"
+            }
+          },
+          {
+            "basis": "MODEL_REFERENCE_THRESHOLD_NOT_VERIFIED_SPORTSBOOK_LINE",
+            "fanduel_offering_verified": false,
+            "line": 2.5,
+            "over": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.49777897716719444,
+              "selection": "Over 2.5"
+            },
+            "under": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.5022210228328056,
+              "selection": "Under 2.5"
+            }
+          }
+        ],
+        "verified_fanduel_lines": []
+      }
+    },
+    {
+      "bet_ready": false,
+      "bout_id": "7f48aa79-07ec-58a1-8e99-d2317b09b8f6",
+      "families_evaluated": [
+        "METHOD",
+        "COMBINED_METHOD",
+        "TOTAL_ROUNDS",
+        "GOES_DISTANCE"
+      ],
+      "fighters": [
+        {
+          "combined_method": [
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.40415033560510316,
+              "selection": "Nathaniel Wood by KO/TKO or Submission"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.6272285107146112,
+              "selection": "Nathaniel Wood by KO/TKO or Points / Decision"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.5105707635656136,
+              "selection": "Nathaniel Wood by Submission or Points / Decision"
+            }
+          ],
+          "data_support": 1.0,
+          "fighter": "Nathaniel Wood",
+          "goes_distance_ref": "7f48aa79-07ec-58a1-8e99-d2317b09b8f6:GOES_DISTANCE",
+          "method": [
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.26040404137705037,
+              "selection": "Nathaniel Wood by KO/TKO"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.1437462942280528,
+              "selection": "Nathaniel Wood by Submission"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.36682446933756085,
+              "selection": "Nathaniel Wood by Points / Decision"
+            }
+          ],
+          "prior_fight_count": 14,
+          "slot": "A",
+          "total_rounds_ref": "7f48aa79-07ec-58a1-8e99-d2317b09b8f6:TOTAL_ROUNDS"
+        },
+        {
+          "combined_method": [
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.12508179350731546,
+              "selection": "Pavel Andrusca by KO/TKO or Submission"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.20646476231634892,
+              "selection": "Pavel Andrusca by KO/TKO or Points / Decision"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.1265038342910076,
+              "selection": "Pavel Andrusca by Submission or Points / Decision"
+            }
+          ],
+          "data_support": 0.0,
+          "fighter": "Pavel Andrusca",
+          "goes_distance_ref": "7f48aa79-07ec-58a1-8e99-d2317b09b8f6:GOES_DISTANCE",
+          "method": [
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.1025213607663284,
+              "selection": "Pavel Andrusca by KO/TKO"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.022560432740987083,
+              "selection": "Pavel Andrusca by Submission"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.1039434015500205,
+              "selection": "Pavel Andrusca by Points / Decision"
+            }
+          ],
+          "prior_fight_count": 0,
+          "slot": "B",
+          "total_rounds_ref": "7f48aa79-07ec-58a1-8e99-d2317b09b8f6:TOTAL_ROUNDS"
+        }
+      ],
+      "goes_distance": {
+        "id": "7f48aa79-07ec-58a1-8e99-d2317b09b8f6:GOES_DISTANCE",
+        "no": {
+          "bet_ready": false,
+          "expected_value": null,
+          "fanduel_price": null,
+          "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+          "research_probability": 0.5312642329048409,
+          "selection": "Fight goes the distance \u2014 No"
+        },
+        "yes": {
+          "bet_ready": false,
+          "expected_value": null,
+          "fanduel_price": null,
+          "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+          "research_probability": 0.468735767095159,
+          "selection": "Fight goes the distance \u2014 Yes"
+        }
+      },
+      "matchup": "Nathaniel Wood vs Pavel Andrusca",
+      "model_status": "EXPERIMENTAL_NOT_COMMERCIAL_RELEASE",
+      "quote_status": "CURRENT_PROP_PRICES_NOT_VERIFIED",
+      "scheduled_rounds": 3,
+      "timing_label": "POST_CARD_START_RESEARCH_REPLAY_NOT_LIVE_IN_FIGHT_FORECAST",
+      "total_rounds": {
+        "id": "7f48aa79-07ec-58a1-8e99-d2317b09b8f6:TOTAL_ROUNDS",
+        "research_grid": [
+          {
+            "basis": "MODEL_REFERENCE_THRESHOLD_NOT_VERIFIED_SPORTSBOOK_LINE",
+            "fanduel_offering_verified": false,
+            "line": 0.5,
+            "over": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.8901997470320877,
+              "selection": "Over 0.5"
+            },
+            "under": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.10980025296791235,
+              "selection": "Under 0.5"
+            }
+          },
+          {
+            "basis": "MODEL_REFERENCE_THRESHOLD_NOT_VERIFIED_SPORTSBOOK_LINE",
+            "fanduel_offering_verified": false,
+            "line": 1.5,
+            "over": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.6800845286059948,
+              "selection": "Over 1.5"
+            },
+            "under": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.3199154713940052,
+              "selection": "Under 1.5"
+            }
+          },
+          {
+            "basis": "MODEL_REFERENCE_THRESHOLD_NOT_VERIFIED_SPORTSBOOK_LINE",
+            "fanduel_offering_verified": false,
+            "line": 2.5,
+            "over": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.5258371591786444,
+              "selection": "Over 2.5"
+            },
+            "under": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.47416284082135557,
+              "selection": "Under 2.5"
+            }
+          }
+        ],
+        "verified_fanduel_lines": []
+      }
+    },
+    {
+      "bet_ready": false,
+      "bout_id": "251f4da4-eab2-58e2-aa5d-dc0de2fae24d",
+      "families_evaluated": [
+        "METHOD",
+        "COMBINED_METHOD",
+        "TOTAL_ROUNDS",
+        "GOES_DISTANCE"
+      ],
+      "fighters": [
+        {
+          "combined_method": [
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.36444593380963014,
+              "selection": "Michael Aljarouj by KO/TKO or Submission"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.4109182707561343,
+              "selection": "Michael Aljarouj by KO/TKO or Points / Decision"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.43051077951481376,
+              "selection": "Michael Aljarouj by Submission or Points / Decision"
+            }
+          ],
+          "data_support": 0.0,
+          "fighter": "Michael Aljarouj",
+          "goes_distance_ref": "251f4da4-eab2-58e2-aa5d-dc0de2fae24d:GOES_DISTANCE",
+          "method": [
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.17242671252547534,
+              "selection": "Michael Aljarouj by KO/TKO"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.1920192212841548,
+              "selection": "Michael Aljarouj by Submission"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.23849155823065893,
+              "selection": "Michael Aljarouj by Points / Decision"
+            }
+          ],
+          "prior_fight_count": 0,
+          "slot": "A",
+          "total_rounds_ref": "251f4da4-eab2-58e2-aa5d-dc0de2fae24d:TOTAL_ROUNDS"
+        },
+        {
+          "combined_method": [
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.16334226584084113,
+              "selection": "Fabia Sintes by KO/TKO or Submission"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.33212564630593955,
+              "selection": "Fabia Sintes by KO/TKO or Points / Decision"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.29865710377264104,
+              "selection": "Fabia Sintes by Submission or Points / Decision"
+            }
+          ],
+          "data_support": 0.0,
+          "fighter": "Fabia Sintes",
+          "goes_distance_ref": "251f4da4-eab2-58e2-aa5d-dc0de2fae24d:GOES_DISTANCE",
+          "method": [
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.09840540418706982,
+              "selection": "Fabia Sintes by KO/TKO"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.06493686165377131,
+              "selection": "Fabia Sintes by Submission"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.23372024211886974,
+              "selection": "Fabia Sintes by Points / Decision"
+            }
+          ],
+          "prior_fight_count": 0,
+          "slot": "B",
+          "total_rounds_ref": "251f4da4-eab2-58e2-aa5d-dc0de2fae24d:TOTAL_ROUNDS"
+        }
+      ],
+      "goes_distance": {
+        "id": "251f4da4-eab2-58e2-aa5d-dc0de2fae24d:GOES_DISTANCE",
+        "no": {
+          "bet_ready": false,
+          "expected_value": null,
+          "fanduel_price": null,
+          "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+          "research_probability": 0.5444293574439256,
+          "selection": "Fight goes the distance \u2014 No"
+        },
+        "yes": {
+          "bet_ready": false,
+          "expected_value": null,
+          "fanduel_price": null,
+          "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+          "research_probability": 0.4555706425560744,
+          "selection": "Fight goes the distance \u2014 Yes"
+        }
+      },
+      "matchup": "Michael Aljarouj vs Fabia Sintes",
+      "model_status": "EXPERIMENTAL_NOT_COMMERCIAL_RELEASE",
+      "quote_status": "CURRENT_PROP_PRICES_NOT_VERIFIED",
+      "scheduled_rounds": 3,
+      "timing_label": "POST_CARD_START_RESEARCH_REPLAY_NOT_LIVE_IN_FIGHT_FORECAST",
+      "total_rounds": {
+        "id": "251f4da4-eab2-58e2-aa5d-dc0de2fae24d:TOTAL_ROUNDS",
+        "research_grid": [
+          {
+            "basis": "MODEL_REFERENCE_THRESHOLD_NOT_VERIFIED_SPORTSBOOK_LINE",
+            "fanduel_offering_verified": false,
+            "line": 0.5,
+            "over": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.867140521536639,
+              "selection": "Over 0.5"
+            },
+            "under": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.13285947846336094,
+              "selection": "Under 0.5"
+            }
+          },
+          {
+            "basis": "MODEL_REFERENCE_THRESHOLD_NOT_VERIFIED_SPORTSBOOK_LINE",
+            "fanduel_offering_verified": false,
+            "line": 1.5,
+            "over": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.6363120775009414,
+              "selection": "Over 1.5"
+            },
+            "under": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.36368792249905857,
+              "selection": "Under 1.5"
+            }
+          },
+          {
+            "basis": "MODEL_REFERENCE_THRESHOLD_NOT_VERIFIED_SPORTSBOOK_LINE",
+            "fanduel_offering_verified": false,
+            "line": 2.5,
+            "over": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.5036476754530314,
+              "selection": "Over 2.5"
+            },
+            "under": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.49635232454696865,
+              "selection": "Under 2.5"
+            }
+          }
+        ],
+        "verified_fanduel_lines": []
+      }
+    },
+    {
+      "bet_ready": false,
+      "bout_id": "e19e1a31-77b7-5baa-8fea-1fbf47440223",
+      "families_evaluated": [
+        "METHOD",
+        "COMBINED_METHOD",
+        "TOTAL_ROUNDS",
+        "GOES_DISTANCE"
+      ],
+      "fighters": [
+        {
+          "combined_method": [
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.21992392515033554,
+              "selection": "Nora Cornolle by KO/TKO or Submission"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.45653979032852743,
+              "selection": "Nora Cornolle by KO/TKO or Points / Decision"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.3937087545242884,
+              "selection": "Nora Cornolle by Submission or Points / Decision"
+            }
+          ],
+          "data_support": 0.75,
+          "fighter": "Nora Cornolle",
+          "goes_distance_ref": "e19e1a31-77b7-5baa-8fea-1fbf47440223:GOES_DISTANCE",
+          "method": [
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.1413774804772873,
+              "selection": "Nora Cornolle by KO/TKO"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.07854644467304824,
+              "selection": "Nora Cornolle by Submission"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.31516230985124016,
+              "selection": "Nora Cornolle by Points / Decision"
+            }
+          ],
+          "prior_fight_count": 6,
+          "slot": "A",
+          "total_rounds_ref": "e19e1a31-77b7-5baa-8fea-1fbf47440223:TOTAL_ROUNDS"
+        },
+        {
+          "combined_method": [
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.12664672696906515,
+              "selection": "Klaudia Sygula by KO/TKO or Submission"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.4092238253839785,
+              "selection": "Klaudia Sygula by KO/TKO or Points / Decision"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.393956977643805,
+              "selection": "Klaudia Sygula by Submission or Points / Decision"
+            }
+          ],
+          "data_support": 0.375,
+          "fighter": "Klaudia Sygula",
+          "goes_distance_ref": "e19e1a31-77b7-5baa-8fea-1fbf47440223:GOES_DISTANCE",
+          "method": [
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.07095678735461933,
+              "selection": "Klaudia Sygula by KO/TKO"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.05568993961444581,
+              "selection": "Klaudia Sygula by Submission"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.3382670380293592,
+              "selection": "Klaudia Sygula by Points / Decision"
+            }
+          ],
+          "prior_fight_count": 3,
+          "slot": "B",
+          "total_rounds_ref": "e19e1a31-77b7-5baa-8fea-1fbf47440223:TOTAL_ROUNDS"
+        }
+      ],
+      "goes_distance": {
+        "id": "e19e1a31-77b7-5baa-8fea-1fbf47440223:GOES_DISTANCE",
+        "no": {
+          "bet_ready": false,
+          "expected_value": null,
+          "fanduel_price": null,
+          "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+          "research_probability": 0.3470035134935039,
+          "selection": "Fight goes the distance \u2014 No"
+        },
+        "yes": {
+          "bet_ready": false,
+          "expected_value": null,
+          "fanduel_price": null,
+          "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+          "research_probability": 0.6529964865064961,
+          "selection": "Fight goes the distance \u2014 Yes"
+        }
+      },
+      "matchup": "Nora Cornolle vs Klaudia Sygula",
+      "model_status": "EXPERIMENTAL_NOT_COMMERCIAL_RELEASE",
+      "quote_status": "CURRENT_PROP_PRICES_NOT_VERIFIED",
+      "scheduled_rounds": 3,
+      "timing_label": "POST_CARD_START_RESEARCH_REPLAY_NOT_LIVE_IN_FIGHT_FORECAST",
+      "total_rounds": {
+        "id": "e19e1a31-77b7-5baa-8fea-1fbf47440223:TOTAL_ROUNDS",
+        "research_grid": [
+          {
+            "basis": "MODEL_REFERENCE_THRESHOLD_NOT_VERIFIED_SPORTSBOOK_LINE",
+            "fanduel_offering_verified": false,
+            "line": 0.5,
+            "over": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.9288205565310405,
+              "selection": "Over 0.5"
+            },
+            "under": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.0711794434689595,
+              "selection": "Under 0.5"
+            }
+          },
+          {
+            "basis": "MODEL_REFERENCE_THRESHOLD_NOT_VERIFIED_SPORTSBOOK_LINE",
+            "fanduel_offering_verified": false,
+            "line": 1.5,
+            "over": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.7844253066349544,
+              "selection": "Over 1.5"
+            },
+            "under": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.21557469336504564,
+              "selection": "Under 1.5"
+            }
+          },
+          {
+            "basis": "MODEL_REFERENCE_THRESHOLD_NOT_VERIFIED_SPORTSBOOK_LINE",
+            "fanduel_offering_verified": false,
+            "line": 2.5,
+            "over": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.6936416013460387,
+              "selection": "Over 2.5"
+            },
+            "under": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.30635839865396136,
+              "selection": "Under 2.5"
+            }
+          }
+        ],
+        "verified_fanduel_lines": []
+      }
+    },
+    {
+      "bet_ready": false,
+      "bout_id": "d1c2e3ff-2553-5d6f-9f14-41ffdff5e35a",
+      "families_evaluated": [
+        "METHOD",
+        "COMBINED_METHOD",
+        "TOTAL_ROUNDS",
+        "GOES_DISTANCE"
+      ],
+      "fighters": [
+        {
+          "combined_method": [
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.2757672631524443,
+              "selection": "Matthieu Letho Duclos by KO/TKO or Submission"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.4659723233046975,
+              "selection": "Matthieu Letho Duclos by KO/TKO or Points / Decision"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.38815673752138247,
+              "selection": "Matthieu Letho Duclos by Submission or Points / Decision"
+            }
+          ],
+          "data_support": 0.125,
+          "fighter": "Matthieu Letho Duclos",
+          "goes_distance_ref": "d1c2e3ff-2553-5d6f-9f14-41ffdff5e35a:GOES_DISTANCE",
+          "method": [
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.17679142446787968,
+              "selection": "Matthieu Letho Duclos by KO/TKO"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.09897583868456462,
+              "selection": "Matthieu Letho Duclos by Submission"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.28918089883681786,
+              "selection": "Matthieu Letho Duclos by Points / Decision"
+            }
+          ],
+          "prior_fight_count": 1,
+          "slot": "A",
+          "total_rounds_ref": "d1c2e3ff-2553-5d6f-9f14-41ffdff5e35a:TOTAL_ROUNDS"
+        },
+        {
+          "combined_method": [
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.3278520713930175,
+              "selection": "Luis Felipe Dias by KO/TKO or Submission"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.37240559016616503,
+              "selection": "Luis Felipe Dias by KO/TKO or Points / Decision"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.16984601446229322,
+              "selection": "Luis Felipe Dias by Submission or Points / Decision"
+            }
+          ],
+          "data_support": 0.25,
+          "fighter": "Luis Felipe Dias",
+          "goes_distance_ref": "d1c2e3ff-2553-5d6f-9f14-41ffdff5e35a:GOES_DISTANCE",
+          "method": [
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.26520582354844463,
+              "selection": "Luis Felipe Dias by KO/TKO"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.06264624784457283,
+              "selection": "Luis Felipe Dias by Submission"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.10719976661772039,
+              "selection": "Luis Felipe Dias by Points / Decision"
+            }
+          ],
+          "prior_fight_count": 2,
+          "slot": "B",
+          "total_rounds_ref": "d1c2e3ff-2553-5d6f-9f14-41ffdff5e35a:TOTAL_ROUNDS"
+        }
+      ],
+      "goes_distance": {
+        "id": "d1c2e3ff-2553-5d6f-9f14-41ffdff5e35a:GOES_DISTANCE",
+        "no": {
+          "bet_ready": false,
+          "expected_value": null,
+          "fanduel_price": null,
+          "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+          "research_probability": 0.6058021804632965,
+          "selection": "Fight goes the distance \u2014 No"
+        },
+        "yes": {
+          "bet_ready": false,
+          "expected_value": null,
+          "fanduel_price": null,
+          "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+          "research_probability": 0.3941978195367035,
+          "selection": "Fight goes the distance \u2014 Yes"
+        }
+      },
+      "matchup": "Matthieu Letho Duclos vs Luis Felipe Dias",
+      "model_status": "EXPERIMENTAL_NOT_COMMERCIAL_RELEASE",
+      "quote_status": "CURRENT_PROP_PRICES_NOT_VERIFIED",
+      "scheduled_rounds": 3,
+      "timing_label": "POST_CARD_START_RESEARCH_REPLAY_NOT_LIVE_IN_FIGHT_FORECAST",
+      "total_rounds": {
+        "id": "d1c2e3ff-2553-5d6f-9f14-41ffdff5e35a:TOTAL_ROUNDS",
+        "research_grid": [
+          {
+            "basis": "MODEL_REFERENCE_THRESHOLD_NOT_VERIFIED_SPORTSBOOK_LINE",
+            "fanduel_offering_verified": false,
+            "line": 0.5,
+            "over": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.8545431619149322,
+              "selection": "Over 0.5"
+            },
+            "under": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.1454568380850678,
+              "selection": "Under 0.5"
+            }
+          },
+          {
+            "basis": "MODEL_REFERENCE_THRESHOLD_NOT_VERIFIED_SPORTSBOOK_LINE",
+            "fanduel_offering_verified": false,
+            "line": 1.5,
+            "over": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.6196995409955146,
+              "selection": "Over 1.5"
+            },
+            "under": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.3803004590044854,
+              "selection": "Under 1.5"
+            }
+          },
+          {
+            "basis": "MODEL_REFERENCE_THRESHOLD_NOT_VERIFIED_SPORTSBOOK_LINE",
+            "fanduel_offering_verified": false,
+            "line": 2.5,
+            "over": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.4617799048822998,
+              "selection": "Over 2.5"
+            },
+            "under": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.5382200951177002,
+              "selection": "Under 2.5"
+            }
+          }
+        ],
+        "verified_fanduel_lines": []
+      }
+    },
+    {
+      "bet_ready": false,
+      "bout_id": "71224365-0edb-5f75-bdf1-6d8d58f41d12",
+      "families_evaluated": [
+        "METHOD",
+        "COMBINED_METHOD",
+        "TOTAL_ROUNDS",
+        "GOES_DISTANCE"
+      ],
+      "fighters": [
+        {
+          "combined_method": [
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.29058774014183686,
+              "selection": "Delphine Benouaich by KO/TKO or Submission"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.42206742873347536,
+              "selection": "Delphine Benouaich by KO/TKO or Points / Decision"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.4879132948616889,
+              "selection": "Delphine Benouaich by Submission or Points / Decision"
+            }
+          ],
+          "data_support": 0.0,
+          "fighter": "Delphine Benouaich",
+          "goes_distance_ref": "71224365-0edb-5f75-bdf1-6d8d58f41d12:GOES_DISTANCE",
+          "method": [
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.11237093700681167,
+              "selection": "Delphine Benouaich by KO/TKO"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.17821680313502522,
+              "selection": "Delphine Benouaich by Submission"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.3096964917266637,
+              "selection": "Delphine Benouaich by Points / Decision"
+            }
+          ],
+          "prior_fight_count": 0,
+          "slot": "A",
+          "total_rounds_ref": "71224365-0edb-5f75-bdf1-6d8d58f41d12:TOTAL_ROUNDS"
+        },
+        {
+          "combined_method": [
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.16027155127422738,
+              "selection": "Sofia Montenegro by KO/TKO or Submission"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.3033492533441269,
+              "selection": "Sofia Montenegro by KO/TKO or Points / Decision"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.33581073164464464,
+              "selection": "Sofia Montenegro by Submission or Points / Decision"
+            }
+          ],
+          "data_support": 0.125,
+          "fighter": "Sofia Montenegro",
+          "goes_distance_ref": "71224365-0edb-5f75-bdf1-6d8d58f41d12:GOES_DISTANCE",
+          "method": [
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.0639050364868548,
+              "selection": "Sofia Montenegro by KO/TKO"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.09636651478737257,
+              "selection": "Sofia Montenegro by Submission"
+            },
+            {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.23944421685727207,
+              "selection": "Sofia Montenegro by Points / Decision"
+            }
+          ],
+          "prior_fight_count": 1,
+          "slot": "B",
+          "total_rounds_ref": "71224365-0edb-5f75-bdf1-6d8d58f41d12:TOTAL_ROUNDS"
+        }
+      ],
+      "goes_distance": {
+        "id": "71224365-0edb-5f75-bdf1-6d8d58f41d12:GOES_DISTANCE",
+        "no": {
+          "bet_ready": false,
+          "expected_value": null,
+          "fanduel_price": null,
+          "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+          "research_probability": 0.46282476923170124,
+          "selection": "Fight goes the distance \u2014 No"
+        },
+        "yes": {
+          "bet_ready": false,
+          "expected_value": null,
+          "fanduel_price": null,
+          "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+          "research_probability": 0.5371752307682988,
+          "selection": "Fight goes the distance \u2014 Yes"
+        }
+      },
+      "matchup": "Delphine Benouaich vs Sofia Montenegro",
+      "model_status": "EXPERIMENTAL_NOT_COMMERCIAL_RELEASE",
+      "quote_status": "CURRENT_PROP_PRICES_NOT_VERIFIED",
+      "scheduled_rounds": 3,
+      "timing_label": "POST_CARD_START_RESEARCH_REPLAY_NOT_LIVE_IN_FIGHT_FORECAST",
+      "total_rounds": {
+        "id": "71224365-0edb-5f75-bdf1-6d8d58f41d12:TOTAL_ROUNDS",
+        "research_grid": [
+          {
+            "basis": "MODEL_REFERENCE_THRESHOLD_NOT_VERIFIED_SPORTSBOOK_LINE",
+            "fanduel_offering_verified": false,
+            "line": 0.5,
+            "over": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.8801557697591308,
+              "selection": "Over 0.5"
+            },
+            "under": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.11984423024086924,
+              "selection": "Under 0.5"
+            }
+          },
+          {
+            "basis": "MODEL_REFERENCE_THRESHOLD_NOT_VERIFIED_SPORTSBOOK_LINE",
+            "fanduel_offering_verified": false,
+            "line": 1.5,
+            "over": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.6500728073377198,
+              "selection": "Over 1.5"
+            },
+            "under": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.3499271926622803,
+              "selection": "Under 1.5"
+            }
+          },
+          {
+            "basis": "MODEL_REFERENCE_THRESHOLD_NOT_VERIFIED_SPORTSBOOK_LINE",
+            "fanduel_offering_verified": false,
+            "line": 2.5,
+            "over": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.5702668752795483,
+              "selection": "Over 2.5"
+            },
+            "under": {
+              "bet_ready": false,
+              "expected_value": null,
+              "fanduel_price": null,
+              "quote_status": "NO_VERIFIED_FANDUEL_QUOTE",
+              "research_probability": 0.4297331247204516,
+              "selection": "Under 2.5"
+            }
+          }
+        ],
+        "verified_fanduel_lines": []
+      }
+    }
+  ],
+  "caveats": [
+    "Experimental joint method/time probabilities, rescaled to the existing frozen winner probabilities. Not a certified prop model or demonstrated betting advantage.",
+    "Probability calculations are conditional on a decisive KO/TKO, submission, or points outcome; draw, no-contest and disqualification probabilities are not modeled.",
+    "Points and full distance are separate outcomes. Early technical decisions do not count as full distance.",
+    "Within-round timing uses empirical historical finishing times with weight-class pooling, not a uniform-time assumption.",
+    "Research total thresholds are not asserted to be offered FanDuel lines.",
+    "No cached search-engine price is presented as a current FanDuel offer. No expected-value claim without a verified quote.",
+    "Every fight is retained. This replay occurs after the card began, does not consume today\u2019s fight outcomes, and is not an in-fight forecasting model.",
+    "Totals and distance displayed for both fighters refer to shared fight outcomes, not independent wagers."
+  ],
+  "completed_at_utc": "2026-09-05T16:58:11.288635+00:00",
+  "confirmed_betting_positions": 0,
+  "diagnostic": {
+    "anchored_final_projection_validated": false,
+    "edge_certification": false,
+    "metrics": {
+      "distance_brier": 0.24019380461519152,
+      "joint_logloss": 2.188904075627253,
+      "under_2_5_brier": 0.23581832273871142
+    },
+    "same_timestamp_fanduel_prop_comparison": false,
+    "scope": "ONE_TIME_SPLIT_DIAGNOSTIC_NOT_RELEASE_CERTIFICATION",
+    "test_rows": 573,
+    "test_year": 2025,
+    "train_rows": 8134
+  },
+  "event_date": "2026-09-05",
+  "event_id": "442712e5-1e33-505e-86ab-48e849da87c0",
+  "event_name": "UFC Fight Night: Hooker vs Parnasse",
+  "families_per_fighter": [
+    "METHOD",
+    "COMBINED_METHOD",
+    "TOTAL_ROUNDS",
+    "GOES_DISTANCE"
+  ],
+  "family_sections_per_fighter_total": 112,
+  "fighter_count": 28,
+  "market_capture": {
+    "bouts_checked": 14,
+    "completed_at_utc": "2026-09-05T16:52:54.289420+00:00",
+    "requests": 28,
+    "returned_keys": [
+      "h2h"
+    ],
+    "started_at_utc": "2026-09-05T16:51:01.717443+00:00",
+    "verified_requested_prop_quotes": 0
+  },
+  "model_sha256": "10838095c6f57b8ec28bcff7204c82312425f8fd25d46653be7944a5c61c81d1",
+  "original_issuance_id": "f759603b-95ad-40d5-a0ca-dafe1c0cc3cc",
+  "original_issuance_sha256": "f50c29b6220873e51f055b5044771c3207c0f5a161173983655adf75bb4e2df4",
+  "rules_source": "https://www.fanduel.com/fanduel-sportsbook-house-rules-ma",
+  "run_status": "RESEARCH_PROJECTIONS_COMPLETE_BETTING_ISSUANCE_BLOCKED",
+  "schema": "APEX_MMA_FOUR_MARKET_ANALYSIS_V1",
+  "source_t3_sha256": "eee879542524bc7ec83427208fe74fb279afd8d29da11848ed36698ce46831d0",
+  "started_at_utc": "2026-09-05T16:57:44.739639+00:00",
+  "training": {
+    "cutoff": "2026-09-05 15:23:06.086763+00:00",
+    "events": 874,
+    "latest_event": "2026-09-01 23:00:00+00:00",
+    "missing_or_excluded_rows": 110,
+    "outcomes_from_current_card_read": 0,
+    "rows": 9086,
+    "source_matrix_sha256": "fd0a3a4e49fbbfb9fbf87402acf61736619a66647783e0ac561109b7793d3100"
+  },
+  "unique_bout_family_sections": 56
+}
