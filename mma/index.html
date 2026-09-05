@@ -105,6 +105,27 @@ window.ApexMmaDisplay=(()=>{
 
 <script>
 const M=window.ApexMmaDisplay;
+
+function showResearch(d){
+ if(d.picks_published||!/^\d{4}-\d{2}-\d{2}$/.test(String(d.event?.event_date||'')))return;
+ const day=d.event.event_date;
+ fetch('/data/mma_research_'+day+'.json',{cache:'no-store'}).then(r=>{if(!r.ok)return null;return r.json()}).then(r=>{
+  if(!r)return;
+  if(r.event_date!==day||r.status!=='UNVALIDATED_RESEARCH_NOT_OFFICIAL_ISSUANCE'||r.official_issuance!==false||r.scientific_release!=='NO')return;
+  if(!Array.isArray(r.forecasts)||r.forecasts.length!==r.forecast_count||!r.forecast_count||r.forecast_count!==(d.card||[]).length)return;
+  if(!(Date.parse(r.generated_at_utc)<Date.parse(r.event_start_utc)))return;
+  if(r.forecasts.some(p=>!Number.isFinite(p.probability)||p.probability<0||p.probability>1||!Array.isArray(p.rationale)||p.rationale.length!==6||p.rationale.some(x=>typeof x!=='string')))return;
+  const panels=r.forecasts.map(p=>`<article class="game-module" data-position-state="RESEARCH"><header class="game-header"><div class="game-num mono">F${String(p.order).padStart(2,'0')}</div><div class="game-meta"><h2 class="game-matchup">${M.esc(p.matchup)}</h2><p class="meta mono">WINNER FORECAST · UNVALIDATED RESEARCH</p></div></header><div class="market-grid market-grid--single"><section class="market-panel"><div class="market-label">RESEARCH MODEL SELECTION</div><div class="market-panel-head"><span class="pick-headline">${M.esc(p.selection)}</span><span class="rating-label">NO VALIDATED STRENGTH RATING</span></div><div class="meta mono">MODEL: ${(p.probability*100).toFixed(1)}% · ORIGINAL T-2 FANDUEL: ${M.esc(M.odds(p.price))} · PRICE BREAK-EVEN: ${(p.bookmaker_break_even_probability*100).toFixed(1)}%</div><div class="rationale-copy" aria-label="Research pick rationale">${p.rationale.map(t=>'<p>'+M.esc(t)+'</p>').join('')}</div></section></div></article>`).join('');
+  document.getElementById('forecast-status').textContent='OFFICIAL T-2 NOT ISSUED · RESEARCH AVAILABLE';
+  document.getElementById('forecast-headline').textContent='14 research model picks are available below';
+  document.getElementById('forecast-copy').textContent='These are actual model forecasts generated '+M.stamp(r.generated_at_utc)+', after T-2 and before the event. The model has not demonstrated a reliable betting advantage. These are not an approved T-2 card and are excluded from official performance grading. Original T-2 prices are not a claim of current availability.';
+  document.getElementById('forecast-status-panel').setAttribute('data-forecast-status','UNVALIDATED_RESEARCH');
+  document.getElementById('card-title').textContent='RESEARCH PICKS & DETAILED RATIONALE';
+  document.getElementById('card-meta').textContent='UNVALIDATED · NO PROVEN EDGE · NO FABRICATED RATINGS';
+  document.getElementById('games').innerHTML=panels;
+  document.getElementById('issuance-meta').innerHTML='OFFICIAL ISSUED POSITIONS: 0 · RESEARCH FORECASTS: '+r.forecast_count+' · <a href="/mma/research/'+day+'">OPEN RESEARCH REPORT</a>';
+ }).catch(()=>{});
+}
 fetch('/data/mma_today.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('HTTP '+r.status);return r.json()}).then(d=>{
  const e=d.event||{},positions=Array.isArray(d.positions)?d.positions:[],card=Array.isArray(d.card)?d.card:[];
  if(positions.length&&(!d.picks_published||!d.issuance_id||!d.active_model_sha256))throw new Error('Issued forecast identity is incomplete');
@@ -122,6 +143,7 @@ fetch('/data/mma_today.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw new Err
  document.getElementById('card-meta').textContent=positions.length?'FANDUEL AT ISSUANCE · RATINGS AS ISSUED':'SCHEDULE ONLY · NOT A FORECAST';
  document.getElementById('games').innerHTML=M.board(card,positions)||'<p class="meta mono">CURRENT CARD UNAVAILABLE</p>';
  document.getElementById('issuance-meta').textContent=positions.length?`ISSUANCE ${d.issuance_id} · MODEL ${d.active_model} · UPDATED ${M.stamp(d.generated_at_utc)}`:`LAST STATUS UPDATE ${M.stamp(d.generated_at_utc)}`;
+ showResearch(d);
 }).catch(error=>{
  document.getElementById('slate-meta').textContent='MMA FORECAST DATA UNAVAILABLE';
  document.getElementById('forecast-headline').textContent='Forecast unavailable';
