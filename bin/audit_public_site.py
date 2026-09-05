@@ -207,10 +207,10 @@ def main() -> int:
 
     mma_about = route_text.get("/mma/about", "")
     for required_text in (
-        "Factual authority",
-        "Two outputs, one distribution",
-        "Current gate",
-        "07:00 America/New_York",
+        "Four boxes for each fight",
+        "Current market coverage",
+        "Probability is not betting value",
+        "7:00 AM Eastern",
     ):
         if required_text not in mma_about:
             errors.append(f"/mma/about missing {required_text}")

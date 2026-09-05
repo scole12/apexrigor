@@ -1,46 +1,96 @@
-"""MMA uses the same game-module and market-panel markup as MLB/NCAA."""
+"""Read-only, four-box presentation of each issued MMA selection."""
+DISPLAY_STYLE = '''
+<style id="mma-four-box-style">
+.mma-four-box-page .mma-fight{border:1px solid #454545;margin:0 0 28px;padding:24px;background:#0b0b0b;overflow-wrap:anywhere}
+.mma-four-box-page .mma-fight .game-header{margin:0 0 22px;padding:0 0 18px;border-bottom:1px solid #333}
+.mma-four-box-page .mma-position{width:100%;min-width:0;margin:0;padding:0;border:0}
+.mma-four-box-page .mma-position+.mma-position{margin-top:24px;padding-top:24px;border-top:1px solid #444}
+.mma-four-box-page .mma-pick-boxes{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;width:100%;margin:0 0 22px}
+.mma-four-box-page .mma-pick-box{min-width:0;min-height:132px;border:1px solid #737373;padding:19px 16px;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;box-sizing:border-box;background:#0d0d0d}
+.mma-four-box-page .mma-box-label{font-size:10px;letter-spacing:.13em;line-height:1.6;color:#c1c1c1;text-transform:uppercase;margin:0 0 13px}
+.mma-four-box-page .mma-box-value{font-size:27px;font-weight:600;line-height:1.25;color:#fafafa;margin:0}
+.mma-four-box-page .mma-box-value--pick{font-size:20px;line-height:1.4}
+.mma-four-box-page .mma-box-note{font-size:11px;color:#b8b8b8;line-height:1.5;margin-top:9px}
+.mma-four-box-page .mma-box-value .tier-badge{display:inline-block;font-size:12px;letter-spacing:.13em;min-width:0;max-width:100%;padding:9px 12px;box-sizing:border-box}
+.mma-four-box-page .mma-rationale{width:100%;max-width:none;line-height:1.72;font-size:15px;color:#dedede;margin:0}
+.mma-four-box-page .mma-rationale p{max-width:none;margin:0 0 12px}
+.mma-four-box-page .mma-rationale-heading{font-size:10px;letter-spacing:.15em;color:#c1c1c1;text-transform:uppercase;margin:0 0 12px}
+.mma-four-box-page .mma-capture{margin:16px 0 0;color:#b8b8b8;font-size:11px;letter-spacing:.05em;line-height:1.6}
+.mma-four-box-page .mma-compact-status{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:#c8c8c8;font-size:11px;letter-spacing:.05em;line-height:1.65;margin:16px 0 26px}
+.mma-four-box-page .mma-audit-details{border-top:1px solid #555;border-bottom:1px solid #555;padding:16px 0;margin:28px 0;font-size:13px;line-height:1.7;overflow-wrap:anywhere}
+.mma-four-box-page .mma-audit-details summary,.mma-four-box-page .mma-rationale-details summary{cursor:pointer;color:#e7e7e7;font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:4px 0}
+.mma-four-box-page .mma-rationale-details .mma-rationale{margin-top:14px}
+.mma-four-box-page .mma-audit-details p{margin:10px 0;color:#c7c7c7}
+.mma-four-box-page .mma-grade-status{margin:0 0 18px;color:#d7d7d7;font-size:12px}
+.mma-four-box-page .mma-result-state{padding:18px;border:1px solid #454545;margin:20px 0 28px;line-height:1.6}
+.mma-four-box-page [hidden]{display:none!important}
+@media(max-width:700px){.mma-four-box-page .mma-fight{padding:17px 13px}.mma-four-box-page .mma-pick-boxes{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.mma-four-box-page .mma-pick-box{padding:16px 12px;min-height:126px}.mma-four-box-page .mma-box-value{font-size:25px}.mma-four-box-page .mma-box-value--pick{font-size:18px}.mma-four-box-page .mma-rationale{font-size:14px}.mma-four-box-page .mma-compact-status{display:block}.mma-four-box-page .mma-compact-status span{display:block;margin:6px 0}}
+@media(max-width:360px){.mma-four-box-page .mma-box-label{font-size:9px;letter-spacing:.06em}.mma-four-box-page .mma-pick-box{padding:13px 10px}.mma-four-box-page .mma-box-value--pick{font-size:16px}}
+</style>
+'''
 DISPLAY_SCRIPT = r'''
 <script>
 window.ApexMmaDisplay=(()=>{
  const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
  const label=v=>String(v??'').replaceAll('_',' ');
- const clock=v=>{const d=new Date(v);return v&&Number.isFinite(d.getTime())?new Intl.DateTimeFormat('en-US',{timeZone:'America/New_York',hour:'numeric',minute:'2-digit',timeZoneName:'short'}).format(d):'TIME TBA'};
- const stamp=v=>{const d=new Date(v);return v&&Number.isFinite(d.getTime())?new Intl.DateTimeFormat('en-US',{timeZone:'America/New_York',month:'short',day:'numeric',hour:'numeric',minute:'2-digit',timeZoneName:'short'}).format(d):'Not recorded'};
+ const parse=v=>new Date(typeof v==='string'?v.replace(' ','T'):v);
+ const clock=v=>{const d=parse(v);return v&&Number.isFinite(d.getTime())?new Intl.DateTimeFormat('en-US',{timeZone:'America/New_York',hour:'numeric',minute:'2-digit',timeZoneName:'short'}).format(d):'TIME TBA'};
+ const stamp=v=>{const d=parse(v);return v&&Number.isFinite(d.getTime())?new Intl.DateTimeFormat('en-US',{timeZone:'America/New_York',month:'short',day:'numeric',hour:'numeric',minute:'2-digit',timeZoneName:'short'}).format(d):'Not recorded'};
  const odds=v=>v===null||v===undefined?'Not recorded':(Number(v)>0?'+':'')+String(v);
  const norm=v=>String(v??'').normalize('NFKD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]/gi,'').toLowerCase();
  const pair=b=>[norm(b.fighter_a),norm(b.fighter_b)].filter(Boolean).sort().join('|');
- function panel(p){
+ const paragraphs=v=>Array.isArray(v)?v:String(v||'').split(/\n\s*\n/).filter(x=>x.trim());
+ function checkIssued(d){
+  const rows=Array.isArray(d.positions)?d.positions:[];
+  if(rows.length&&(!d.picks_published||!d.issuance_id||!d.active_model_sha256))throw new Error('Issued forecast identity is incomplete');
+  for(const p of rows){
+   if(!p.bout_id||!p.selection||!p.market||!Number.isFinite(p.probability)||p.probability<0||p.probability>1||!Number.isFinite(p.price)||!['WEAK','MODERATE','STRONG','ELITE'].includes(p.tier)||!paragraphs(p.rationale).length)throw new Error('Issued forecast fields are incomplete');
+  }
+  return rows;
+ }
+ function box(key,title,value,note=''){
+  return `<div class="mma-pick-box" data-field="${key}"><div class="mma-box-label mono">${esc(title)}</div><div class="mma-box-value${key==='pick'?' mma-box-value--pick':''} mono">${value}</div>${note?'<div class="mma-box-note">'+esc(note)+'</div>':''}</div>`;
+ }
+ function panel(p,options={}){
+  const research=options.research===true;
   let headline=p.display_selection||p.selection;
   if(!p.display_selection&&p.line!==null&&p.line!==undefined&&!String(headline).endsWith(' '+p.line))headline+=' '+p.line;
-  const rationale=String(p.rationale||'').split(/\n\s*\n/).filter(x=>x.trim());
   const issued=p.trace?.issuance_id||p.issuance_id||'';
-  const probability=Number(p.probability);
-  return `<section class="market-panel" data-market="${esc(p.market)}" data-position-state="SEALED" data-issuance="${esc(issued)}"><div class="market-label">${esc(label(p.market))}</div><div class="market-panel-head"><span class="pick-headline">${esc(headline)}</span><span class="rating-label">APEX WIN PROBABILITY RATING</span><span class="tier-badge tier-badge--${esc(String(p.tier).toLowerCase())}">${esc(p.tier)}</span></div><div class="meta mono">APEX PROBABILITY: ${(probability*100).toFixed(1)}% · FANDUEL: ${esc(odds(p.price))}${p.line!==null&&p.line!==undefined?' · LINE: '+esc(p.line):''}</div><div class="rationale-copy" aria-label="Pick rationale">${rationale.map(x=>'<p>'+esc(x)+'</p>').join('')}</div>${p.quote_time?'<div class="meta mono">FANDUEL CAPTURE: '+esc(stamp(p.quote_time))+'</div>':''}</section>`;
+  const rating=research?'UNRATED':p.tier;
+  const boxes=box('pick','APEX Pick',esc(headline),label(p.market||'WINNER'))
+   +box('price','FanDuel Price',esc(odds(p.price)),research?'Original T-2 capture':'Price at issuance')
+   +box('probability','APEX Probability',(p.probability*100).toFixed(1)+'%',research?'Research estimate':'Model estimate')
+   +box('rating','APEX Rating',research?'<span style="font-size:16px">UNRATED</span>':`<span class="tier-badge tier-badge--${esc(String(rating).toLowerCase())}">${esc(rating)}</span>`,research?'Unvalidated research':'Probability tier, not betting value');
+  const rationale=`<div class="mma-rationale rationale-copy" aria-label="${research?'Research pick rationale':'Pick rationale'}">${paragraphs(p.rationale).map(x=>'<p>'+esc(x)+'</p>').join('')}</div>`;
+  const text=options.collapseRationale?`<details class="mma-rationale-details"><summary>Full as-issued rationale</summary>${rationale}</details>`:`<h3 class="mma-rationale-heading mono">${research?'Research':'Detailed'} rationale</h3>${rationale}`;
+  return `<section class="mma-position" data-market="${esc(p.market||'WINNER')}" data-position-state="${research?'RESEARCH':'SEALED'}" data-issuance="${esc(issued)}" data-position-bout="${esc(p.bout_id||p.matchup)}"><div class="mma-pick-boxes" aria-label="Four-box pick summary">${boxes}</div>${text}${p.quote_time?'<p class="mma-capture mono">FANDUEL CAPTURE · '+esc(stamp(p.quote_time))+'</p>':''}</section>`;
  }
- function boutCard(b,positions,i){
+ function boutCard(b,positions,i,options={}){
   const name=b.matchup||(b.fighter_a&&b.fighter_b?b.fighter_a+' vs '+b.fighter_b:'MMA BOUT');
   const context=[label(b.weight_class),b.segment,b.scheduled_rounds?b.scheduled_rounds+' ROUNDS':null].filter(Boolean).join(' · ');
   const time=b.scheduled_start_utc?clock(b.scheduled_start_utc):(b.is_main_event?'MAIN EVENT':b.is_co_main_event?'CO-MAIN':'CARD ORDER '+String(b.official_display_order||i+1));
-  const body=positions.length?'<div class="market-grid'+(positions.length===1?' market-grid--single':'')+'">'+positions.map(panel).join('')+'</div>':'<p class="meta mono" data-position-state="UNISSUED">NOT ISSUED · NO FORECAST OR PICK RATIONALE AVAILABLE</p>';
-  return `<article class="game-module" data-bout="${esc(b.bout_id||b.apex_mma_bout_id||name)}" data-game-state="${positions.length?'ISSUED':'UNISSUED'}"><header class="game-header"><div class="game-num mono">F${String(i+1).padStart(2,'0')}</div><div class="game-meta"><h2 class="game-matchup">${esc(name)}</h2><p class="game-pitchers mono">${esc(context)}</p></div><div class="game-time mono">${esc(time)}</div></header>${body}</article>`;
+  const body=positions.length?positions.map(p=>panel(p,options)).join(''):'<p class="meta mono" data-position-state="UNISSUED">NO ISSUED SELECTION</p>';
+  return `<article class="game-module mma-fight" data-bout="${esc(b.bout_id||b.apex_mma_bout_id||name)}" data-game-state="${positions.length?'ISSUED':'UNISSUED'}"><header class="game-header"><div class="game-num mono">F${String(i+1).padStart(2,'0')}</div><div class="game-meta"><h2 class="game-matchup">${esc(name)}</h2><p class="game-pitchers mono">${esc(context)}</p></div><div class="game-time mono">${esc(time)}</div></header>${body}</article>`;
  }
- function board(card,positions){
+ function board(card,positions,options={}){
   const groups=card.map(b=>({b,positions:[]}));
   for(const p of positions){
-   let group=groups.find(g=>(g.b.bout_id||g.b.apex_mma_bout_id)===p.bout_id||((pair(p)&&pair(g.b)===pair(p)))||norm(g.b.matchup||(g.b.fighter_a+' vs '+g.b.fighter_b))===norm(p.matchup));
+   let group=groups.find(g=>Boolean(p.bout_id&&(g.b.bout_id||g.b.apex_mma_bout_id)===p.bout_id)||Boolean(pair(p)&&pair(g.b)===pair(p))||norm(g.b.matchup||(g.b.fighter_a+' vs '+g.b.fighter_b))===norm(p.matchup));
    if(!group){group={b:{...p,official_display_order:groups.length+1},positions:[]};groups.push(group)}
    group.positions.push(p);
   }
-  return groups.map((g,i)=>boutCard(g.b,g.positions,i)).join('');
+  return groups.map((g,i)=>boutCard(g.b,g.positions,i,options)).join('');
  }
  function status(d){
   if(d.forecast)return d.forecast;
-  if(d.picks_published&&(d.positions||[]).length)return{code:'FORECASTS_ISSUED',headline:'Forecasts issued',detail:'Selections and rationale from the sealed T-2 card.'};
-  const s=String(d.t2?.status||'');const due=Date.parse(d.t2?.scheduled_utc||'');
-  if((/FAIL|BLOCKED|NO_RELEASE/.test(s)&&!s.includes('AWAITING_TARGET'))||(Number.isFinite(due)&&Date.now()>=due))return{code:'NO_FORECASTS_ISSUED',headline:'No forecasts issued',detail:'No approved forecast card is available for this event. The schedule is not a set of picks.'};
+  if(d.picks_published&&(d.positions||[]).length)return{code:'FORECASTS_ISSUED',headline:'Forecasts issued',detail:'Selections and rationale from the sealed card.'};
+  const s=String(d.t2?.status||''),due=Date.parse(d.t2?.scheduled_utc||'');
+  if((/FAIL|BLOCKED|NO_RELEASE/.test(s)&&!s.includes('AWAITING_TARGET'))||(Number.isFinite(due)&&Date.now()>=due))return{code:'NO_FORECASTS_ISSUED',headline:'No forecasts issued',detail:'No issued forecast card is available for this event.'};
   return{code:'AWAITING_T2',headline:'Awaiting the T-2 forecast run',detail:'No forecasts have been issued yet.'};
  }
- return {esc,label,clock,stamp,odds,panel,board,status};
+ const issuedWhen=d=>d.t2?.actual_utc?clock(d.t2.actual_utc):'time recorded in issuance';
+ const compactStatus=d=>d.picks_published&&d.positions?.length?`ISSUED ${issuedWhen(d)}${d.t2?.timeliness==='FAIL'?' · LATE RECOVERY':''}`:status(d).headline.toUpperCase();
+ return {esc,label,clock,stamp,odds,panel,board,status,checkIssued,issuedWhen,compactStatus};
 })();
 </script>
 '''
