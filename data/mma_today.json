@@ -148,8 +148,8 @@
     "venue": "Accor Arena"
   },
   "fight_count": 14,
-  "generated_at_utc": "2026-09-05T01:00:02.504430Z",
-  "payload_sha256": "d0de84b715c6c3a99e83818b7eb94bd98822a7e3da969fefaa09a286f0379bc8",
+  "generated_at_utc": "2026-09-05T03:09:32.522074Z",
+  "payload_sha256": "30688916dbd49c7f67b2c0c5195a833f93ad5ee7397fa0cb5e01ef27ee4973ec",
   "picks_published": false,
   "positions": [],
   "release_state": "NO_RELEASE_SCIENTIFIC_GATE",
