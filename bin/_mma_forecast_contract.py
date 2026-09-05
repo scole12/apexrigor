@@ -2,6 +2,7 @@
 from __future__ import annotations
 from copy import deepcopy
 from datetime import datetime, timezone
+from zoneinfo import ZoneInfo
 import hashlib
 import json
 import math
@@ -11,7 +12,7 @@ TIERS = {'WEAK', 'MODERATE', 'STRONG', 'ELITE'}
 SHA = re.compile(r'^[0-9a-f]{64}$')
 
 def positions_sha256(positions):
-    return hashlib.sha256(json.dumps(positions,sort_keys=True,separators=(',',':'),ensure_ascii=False,allow_nan=False).encode()).hexdigest()
+    return hashlib.sha256(json.dumps(positions,sort_keys=True,separators=(',',':'),ensure_ascii=True,allow_nan=False).encode()).hexdigest()
 
 def validated_positions(state):
     raw=state.get('positions',[])
@@ -62,6 +63,16 @@ def validated_positions(state):
 
 def forecast_status(state,positions,now=None):
     if positions:
+        t2 = state.get('t2') or {}
+        if t2.get('status') == 'SEALED_LATE_RECOVERY' or t2.get('timeliness') == 'FAIL':
+            when = 'after the scheduled T-2 time'
+            try:
+                stamp = datetime.fromisoformat(str(t2['actual_utc']).replace('Z','+00:00'))
+                when = 'at ' + stamp.astimezone(ZoneInfo('America/New_York')).strftime('%I:%M %p %Z').lstrip('0')
+            except (KeyError,TypeError,ValueError):
+                pass
+            return {'code':'FORECASTS_ISSUED','headline':'Forecasts issued — late recovery',
+                    'detail':f'{len(positions)} winner forecasts from the sealed recovery run {when}. The original T-2 deadline was missed; these are not backdated picks. Prices, probabilities, ratings and detailed rationale below match the sealed issuance. A statistically proven market edge has not been established.'}
         return {'code':'FORECASTS_ISSUED','headline':'Forecasts issued',
                 'detail':f'{len(positions)} issued positions. Picks, FanDuel prices, probabilities, ratings and rationale below are read from the same sealed T-2 issuance.'}
     t2=state.get('t2') or {}; status=str(t2.get('status') or '')
