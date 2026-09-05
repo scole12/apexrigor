@@ -35,7 +35,6 @@ fetch('/data/mma_today.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw new Err
  document.getElementById('slate-meta').textContent=`${e.event_date||''} · ${card.length} BOUTS · ${positions.length} ISSUED POSITIONS`;
  document.getElementById('event-title').textContent=e.display_name||e.name||'UFC EVENT';
  document.getElementById('event-meta').textContent=[e.venue,e.city,e.country].filter(Boolean).join(' · ');
- for(const [id,v] of [['prelims',e.prelims_start_utc],['maincard',e.main_card_start_utc],['t3time',d.t3?.scheduled_utc],['t2time',d.t2?.scheduled_utc]])document.getElementById(id).textContent=M.clock(v);
  document.getElementById('compact-issuance').textContent=M.compactStatus(d);
  document.getElementById('forecast-status').textContent=s.code.replaceAll('_',' ');
  document.getElementById('forecast-headline').textContent=s.headline;
@@ -63,12 +62,6 @@ def main():
  <div class="section-head picks-board-head"><div class="title">UFC / MMA CARD</div><div class="meta mono" id="slate-meta">LOADING FORECAST STATUS</div></div>
  <main class="picks-page">
  <div class="section-head"><div class="title" id="event-title">UFC EVENT</div><div class="meta mono" id="event-meta"></div></div>
- <div class="banner">
- <div class="cell"><div class="label">Prelims</div><div class="val mono" id="prelims">—</div></div>
- <div class="cell"><div class="label">Main Card</div><div class="val mono" id="maincard">—</div></div>
- <div class="cell"><div class="label">T-3 Data</div><div class="val mono" id="t3time">—</div></div>
- <div class="cell"><div class="label">T-2 Forecast</div><div class="val mono" id="t2time">—</div></div>
- </div>
  <div class="mma-compact-status mono"><span id="compact-issuance">READING ISSUED CARD</span><span>Prices captured at issuance · <a href="/mma/about">Model &amp; rating details</a></span></div>
  <div class="section-head"><div class="title" id="card-title">FIGHT CARD</div><div class="meta mono" id="card-meta"></div></div>
  <div class="picks-board" id="games" aria-live="polite"></div>

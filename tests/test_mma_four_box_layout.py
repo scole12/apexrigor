@@ -46,6 +46,8 @@ class MmaFourBoxBrowserTests(unittest.TestCase):
                 context=self.context(width);page=context.new_page();errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
                 page.goto('http://mma-layout.test/mma');page.wait_for_selector('[data-position-state="SEALED"]')
                 self.assertEqual(page.locator('.mma-fight').count(),len(self.doc['card']))
+                self.assertEqual(page.locator('#prelims,#maincard,#t3time,#t2time').count(),0)
+                self.assertEqual(page.locator('.banner').count(),0)
                 self.assertEqual(page.locator('.mma-pick-box').count(),len(self.positions)*4)
                 self.assertEqual(page.locator('[data-position-state="RESEARCH"]').count(),0)
                 self.assertFalse(page.locator('#forecast-copy').is_visible())
