@@ -29,15 +29,11 @@
   },
   "canonical_fighter_identity": {
     "authority_population_permitted": false,
+    "canonical_bout_count": 14,
     "canonical_event_id": null,
-    "reason": "REFERENCE_FIGHTER_IDENTITY_UNRESOLVED",
     "reference_bout_count": 14,
     "reference_event_id": "442712e5-1e33-505e-86ab-48e849da87c0",
-    "resolved_pair_count": 13,
-    "status": "REFERENCE_ONLY_NO_CANONICAL_FIGHTER_EVENT",
-    "unresolved_display_names": [
-      "Pavel Andrusca"
-    ]
+    "status": "VERIFIED_OPERATIONAL_CARD_PIT_IDENTITIES"
   },
   "card": [
     {
@@ -193,20 +189,20 @@
   },
   "event_id": "442712e5-1e33-505e-86ab-48e849da87c0",
   "fight_count": 14,
-  "generated_at_utc": "2026-09-05T00:23:45.349565Z",
+  "generated_at_utc": "2026-09-05T01:00:02.504430Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "IMPLEMENTED_NO_ELIGIBLE_ISSUANCE"
   },
   "latest_results": [],
-  "payload_sha256": "051f309171020b8f7b93d4c5d134c64388de8511459618a37acc031dd3ecec56",
+  "payload_sha256": "e6d7dacabb1f78e8a87ed6dfc0d8a56c49b22d28839e81e704bcecd600584406",
   "picks_published": false,
   "release_state": "NO_RELEASE_SCIENTIFIC_GATE",
   "schema_version": "APEX_MMA_PUBLIC_STATE_V2",
   "science_blocker": "NO_RESULT_LEVEL_WINNER_CANDIDATE_IMPROVED_AUTHENTIC_MATCHED_TIME_FANDUEL; RICHER_ACTION_PROCESS_AND_HOLMES_BENCHMARK_REQUIRE_LICENSED_HISTORICAL_ELEMENTAL_ROUND_STATS",
-  "semantic_state_sha256": "608f53522ef15c2811137d56a73257fe1af1ec7d80c72614496c9b85772508cf",
+  "semantic_state_sha256": "75f27faaddaa9768187902a32e0f87b5f4ea1f7313094f5077a779be4027a608",
   "source_conflicts": [],
-  "system_readiness_state": "DATA_BLOCKED_REFERENCE_ONLY_NO_CANONICAL_FIGHTER_EVENT",
+  "system_readiness_state": "TECHNICALLY_READY_SCIENCE_BLOCKED",
   "t2": {
     "anchor": "EARLIEST_PUBLISHED_SCHEDULED_BOUT_MINUS_2_HOURS",
     "scheduled_utc": "2026-09-05T14:00:00Z",
