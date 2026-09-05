@@ -1,6 +1,6 @@
 {
   "commercial_settlement_count": 0,
-  "generated_at_utc": "2026-09-05T14:00:13.260643Z",
+  "generated_at_utc": "2026-09-05T14:31:23.292601Z",
   "graded_scientific_object_count": 0,
   "grader": {
     "schedule": "07:00 America/New_York",
@@ -8,7 +8,7 @@
   },
   "issued_event_count": 0,
   "latest_event_results": [],
-  "payload_sha256": "de6fba87b2120da0d0c6df87f24a8a29dd88a6e5225077b90c5b3e3e1f63c527",
+  "payload_sha256": "28281988b86c9896e84b7224bfd2ae6f71795cef0eec6a060becd0bc01a5f197",
   "release_state": "NO_RELEASE_SCIENTIFIC_GATE",
   "schema_version": "APEX_MMA_RESULTS_SUMMARY_V1",
   "status": "NO_ISSUANCE_NO_RESULTS"
