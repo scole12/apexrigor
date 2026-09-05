@@ -75,14 +75,15 @@ class MmaFourBoxBrowserTests(unittest.TestCase):
                     if width==1536:page.locator('.mma-fight').last.screenshot(path=str(folder/'LAST_FIGHT_1536.png'))
                 context.close()
     def test_results_matches_all_issued_positions(self):
-        page=self.context(390).new_page();page.goto('http://mma-layout.test/mma/results');page.wait_for_selector('[data-position-state="SEALED"]')
-        self.assertEqual(page.locator('.mma-pick-box').count(),4*len(self.positions))
-        self.assertEqual(page.locator('#current-picks').inner_text(),str(len(self.positions)))
-        self.assertNotIn('NO PICKS WERE ISSUED',page.locator('body').inner_text())
-        self.assertEqual(page.locator('.mma-rationale-details').count(),len(self.positions))
+        page=self.context(390).new_page();page.goto('http://mma-layout.test/mma/results')
+        page.wait_for_selector('.position-ledger tbody tr')
+        self.assertEqual(page.locator('.position-ledger tbody tr').count(),len(self.positions))
+        self.assertEqual(page.locator('.mma-pick-box').count(),0)
+        self.assertEqual(page.locator('#pending-count').inner_text(),str(len(self.positions)))
         for p in self.positions:
-            panel=page.locator('[data-position-bout="'+p['bout_id']+'"]')
-            self.assertEqual(panel.locator('[data-field="pick"] .mma-box-value').inner_text(),p['selection'])
+            row=page.locator('.position-ledger [data-position-bout="'+p['bout_id']+'"]')
+            self.assertEqual(row.locator('[data-field="pick"]').inner_text(),p['selection'])
+            self.assertEqual(row.locator('[data-field="rating"]').inner_text(),p['tier'])
         self.assertLessEqual(page.evaluate('document.documentElement.scrollWidth'),391)
     def test_about_reflects_current_issuance(self):
         page=self.context(390).new_page();page.goto('http://mma-layout.test/mma/about')
