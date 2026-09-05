@@ -40,11 +40,13 @@ class MmaFourBoxBrowserTests(unittest.TestCase):
             if not path.resolve().is_relative_to(ROOT) or not path.is_file():route.fulfill(status=404,body='Not found');return
             route.fulfill(status=200,content_type=mimetypes.guess_type(str(path))[0] or 'application/octet-stream',body=path.read_bytes())
         context.route('**/*',serve);self.addCleanup(context.close);return context
-    def test_all_positions_four_boxes_all_viewports(self):
+    def test_archived_winner_fields_all_viewports(self):
         for width in [1536,768,390,320]:
             with self.subTest(width=width):
                 context=self.context(width);page=context.new_page();errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
-                page.goto('http://mma-layout.test/mma');page.wait_for_selector('[data-position-state="SEALED"]')
+                page.goto('http://mma-layout.test/mma');page.wait_for_selector('#games[data-render-complete="true"]')
+                # The four requested prop markets are primary; verify unchanged Winner records after expanding.
+                page.locator('.mma-winner-history').evaluate_all('(es)=>es.forEach(e=>e.open=true)')
                 self.assertEqual(page.locator('.mma-fight').count(),len(self.doc['card']))
                 self.assertEqual(page.locator('#prelims,#maincard,#t3time,#t2time').count(),0)
                 self.assertEqual(page.locator('.banner').count(),0)
@@ -68,6 +70,7 @@ class MmaFourBoxBrowserTests(unittest.TestCase):
                     self.assertEqual(columns,4 if width>700 else 2)
                     self.assertTrue(panel.locator('.mma-pick-box').evaluate_all('(es)=>es.every(e=>getComputedStyle(e).borderTopStyle==="solid"&&parseFloat(getComputedStyle(e).borderTopWidth)>=1)'))
                 self.assertEqual(errors,[])
+                page.locator('.mma-winner-history').evaluate_all('(es)=>es.forEach(e=>e.open=false)')
                 proof=os.environ.get('APEX_MMA_LAYOUT_PROOF_DIR')
                 if proof:
                     folder=Path(proof);folder.mkdir(parents=True,exist_ok=True)

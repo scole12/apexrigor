@@ -1,71 +1,50 @@
 #!/usr/bin/env python3
-"""Render sealed MMA picks and full rationale using MLB/NCAA display classes."""
+"""Show four actual market families for every bout; preserve issued Winner records."""
 from _mma_public import close,head,hero,navigation,write
-from _mma_forecast_display import DISPLAY_SCRIPT, DISPLAY_STYLE
+from _mma_forecast_display import DISPLAY_SCRIPT,DISPLAY_STYLE
+from _mma_four_market_display import FOUR_MARKET_SCRIPT,FOUR_MARKET_STYLE
 SCRIPT=r'''
 <script>
-const M=window.ApexMmaDisplay;
-
-function showResearch(d){
- if(d.picks_published||!/^\d{4}-\d{2}-\d{2}$/.test(String(d.event?.event_date||'')))return;
- const day=d.event.event_date;
- fetch('/data/mma_research_'+day+'.json',{cache:'no-store'}).then(r=>{if(!r.ok)return null;return r.json()}).then(r=>{
-  if(!r)return;
-  if(r.event_date!==day||r.status!=='UNVALIDATED_RESEARCH_NOT_OFFICIAL_ISSUANCE'||r.official_issuance!==false||r.scientific_release!=='NO')return;
-  if(!Array.isArray(r.forecasts)||r.forecasts.length!==r.forecast_count||!r.forecast_count||r.forecast_count!==(d.card||[]).length)return;
-  if(!(Date.parse(r.generated_at_utc)<Date.parse(r.event_start_utc)))return;
-  if(r.forecasts.some(p=>!Number.isFinite(p.probability)||p.probability<0||p.probability>1||!Array.isArray(p.rationale)||p.rationale.length!==6||p.rationale.some(x=>typeof x!=='string')))return;
-  const panels=M.board(d.card||[],r.forecasts.map(p=>({...p,market:'WINNER'})),{research:true});
-  document.getElementById('forecast-status').textContent='OFFICIAL T-2 NOT ISSUED · RESEARCH AVAILABLE';
-  document.getElementById('forecast-headline').textContent=r.forecast_count+' research model picks are available below';
-  document.getElementById('forecast-copy').textContent='These are actual model forecasts generated '+M.stamp(r.generated_at_utc)+', after T-2 and before the event. The model has not demonstrated a reliable betting advantage. These are not an approved T-2 card and are excluded from official performance grading. Original T-2 prices are not a claim of current availability.';
-  document.getElementById('forecast-status-panel').setAttribute('data-forecast-status','UNVALIDATED_RESEARCH');
-  document.getElementById('card-title').textContent='RESEARCH PICKS & DETAILED RATIONALE';
-  document.getElementById('card-meta').textContent='UNVALIDATED · NO PROVEN EDGE · NO FABRICATED RATINGS';
-  document.getElementById('games').innerHTML=panels;
-  document.getElementById('compact-issuance').textContent='UNVALIDATED RESEARCH · GENERATED '+M.stamp(r.generated_at_utc);
-  document.getElementById('issuance-meta').innerHTML='OFFICIAL ISSUED POSITIONS: 0 · RESEARCH FORECASTS: '+r.forecast_count+' · <a href="/mma/research/'+day+'">OPEN RESEARCH REPORT</a>';
- }).catch(()=>{});
-}
-fetch('/data/mma_today.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('HTTP '+r.status);return r.json()}).then(d=>{
+const M=window.ApexMmaDisplay,F=window.ApexMmaMarkets;
+fetch('/data/mma_today.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('HTTP '+r.status);return r.json()}).then(async d=>{
  const e=d.event||{},positions=M.checkIssued(d),card=Array.isArray(d.card)?d.card:[];
- if(positions.length&&(!d.picks_published||!d.issuance_id||!d.active_model_sha256))throw new Error('Issued forecast identity is incomplete');
- const s=M.status(d);
+ const loaded=await F.load(d),research=loaded.data,s=M.status(d);
  document.querySelector('.shell').setAttribute('data-public-issuance',positions.length?'true':'false');
- document.getElementById('slate-meta').textContent=`${e.event_date||''} · ${card.length} BOUTS · ${positions.length} ISSUED POSITIONS`;
+ document.querySelector('.shell').setAttribute('data-four-market-state',research?'RESEARCH_UNISSUED':'UNAVAILABLE');
+ document.getElementById('slate-meta').textContent=`${e.event_date||''} · ${card.length} BOUTS · ${card.length*4} MARKET SECTIONS`;
  document.getElementById('event-title').textContent=e.display_name||e.name||'UFC EVENT';
  document.getElementById('event-meta').textContent=[e.venue,e.city,e.country].filter(Boolean).join(' · ');
- document.getElementById('compact-issuance').textContent=M.compactStatus(d);
+ document.getElementById('compact-issuance').textContent=research?'RESEARCH REPLAY · '+M.stamp(research.completed_at_utc)+' · AFTER CARD START':'FOUR-MARKET ANALYSIS UNAVAILABLE';
+ document.getElementById('card-title').textContent='FOUR MARKETS FOR EVERY FIGHT';
+ document.getElementById('card-meta').textContent='METHOD · DOUBLE CHANCE · ROUNDS · DISTANCE';
+ document.getElementById('games').innerHTML=F.render(d,research,loaded.reason);
  document.getElementById('forecast-status').textContent=s.code.replaceAll('_',' ');
- document.getElementById('forecast-headline').textContent=s.headline;
+ document.getElementById('forecast-headline').textContent='Previously issued Winner record';
  document.getElementById('forecast-copy').textContent=s.detail;
  document.getElementById('forecast-status-panel').setAttribute('data-forecast-status',s.code);
- document.getElementById('card-title').textContent=positions.length?'PICKS & DETAILED RATIONALE':'FIGHT CARD — NO ISSUED PICKS';
- document.getElementById('card-meta').textContent=positions.length?'FANDUEL AT ISSUANCE · RATINGS AS ISSUED':'SCHEDULE ONLY · NOT A FORECAST';
- document.getElementById('games').innerHTML=M.board(card,positions)||'<p class="meta mono">CURRENT CARD UNAVAILABLE</p>';
- document.getElementById('issuance-meta').textContent=positions.length?`ISSUANCE ${d.issuance_id} · MODEL ${d.active_model} · UPDATED ${M.stamp(d.generated_at_utc)}`:`LAST STATUS UPDATE ${M.stamp(d.generated_at_utc)}`;
- showResearch(d);
+ document.getElementById('issuance-meta').textContent=positions.length?`${positions.length} PREVIOUSLY ISSUED WINNER SELECTIONS · ISSUANCE ${d.issuance_id} · MODEL ${d.active_model}`:'No current Winner issuance';
+ document.getElementById('market-details').textContent=research?'Four-market run: '+research.completed_at_utc+' · '+research.confirmed_betting_positions+' issued prop bets · '+research.market_capture.verified_requested_prop_quotes+' verified requested prop quotes. Saved experimental probabilities only; not live forecasts and not an on-time pre-event issuance.':loaded.reason;
+ document.getElementById('market-caveats').innerHTML=research?(research.caveats||[]).map(x=>'<p>'+M.esc(x)+'</p>').join(''):'';
+ document.getElementById('games').setAttribute('data-render-complete','true');
 }).catch(error=>{
- document.getElementById('slate-meta').textContent='MMA FORECAST DATA UNAVAILABLE';
- document.getElementById('compact-issuance').textContent='FORECAST DATA UNAVAILABLE';
- document.getElementById('forecast-headline').textContent='Forecast unavailable';
- document.getElementById('forecast-status').textContent='DATA ERROR';
- document.getElementById('forecast-copy').textContent='No picks are displayed because the forecast data could not be verified.';
- document.getElementById('games').textContent='';
+ document.getElementById('slate-meta').textContent='MMA CARD DATA UNAVAILABLE';
+ document.getElementById('compact-issuance').textContent='CURRENT EVENT COULD NOT BE VERIFIED';
+ document.getElementById('games').textContent='The current event or its issued identity could not be verified. No positions were generated.';
+ document.getElementById('games').setAttribute('data-render-complete','error');
 });
 </script>
 '''
 def main():
- html=head('APEX — MMA Picks','APEX UFC / MMA picks, FanDuel prices, probabilities, ratings and detailed rationale.','/mma')+'\n'+hero()+'\n'+navigation('PICKS')
- html=html.replace('<body>','<body class="mma-four-box-page">').replace('</head>',DISPLAY_STYLE+'\n</head>')
+ html=head('APEX — MMA Picks','Four UFC / MMA markets per fight: method, Double Chance, total rounds and goes the distance.','/mma')+'\n'+hero()+'\n'+navigation('PICKS')
+ html=html.replace('<body>','<body class="mma-four-box-page mma-four-market-page">').replace('</head>',DISPLAY_STYLE+'\n'+FOUR_MARKET_STYLE+'\n</head>')
  html+='''
- <div class="section-head picks-board-head"><div class="title">UFC / MMA CARD</div><div class="meta mono" id="slate-meta">LOADING FORECAST STATUS</div></div>
+ <div class="section-head picks-board-head"><div class="title">UFC / MMA CARD</div><div class="meta mono" id="slate-meta">LOADING FOUR-MARKET CARD</div></div>
  <main class="picks-page">
  <div class="section-head"><div class="title" id="event-title">UFC EVENT</div><div class="meta mono" id="event-meta"></div></div>
- <div class="mma-compact-status mono"><span id="compact-issuance">READING ISSUED CARD</span><span>Prices captured at issuance · <a href="/mma/about">Model &amp; rating details</a></span></div>
- <div class="section-head"><div class="title" id="card-title">FIGHT CARD</div><div class="meta mono" id="card-meta"></div></div>
+ <div class="mma-compact-status mono"><span id="compact-issuance">READING SAVED MARKET RUN</span><span>Prop prices not verified · <a href="#issuance-details">Source &amp; timing details</a></span></div>
+ <div class="section-head"><div class="title" id="card-title">FOUR MARKETS FOR EVERY FIGHT</div><div class="meta mono" id="card-meta"></div></div>
  <div class="picks-board" id="games" aria-live="polite"></div>
- <details class="mma-audit-details" id="issuance-details"><summary>Issuance &amp; model details</summary><div id="forecast-status-panel"><p class="mono" id="forecast-status"></p><h3 id="forecast-headline"></h3><p id="forecast-copy"></p><p class="mono" id="issuance-meta"></p><p>Ratings describe the issued model probability, not a proven profitable betting edge. Captured prices are not live quotes.</p></div></details>
- </main>'''+DISPLAY_SCRIPT+SCRIPT+close()
+ <details class="mma-audit-details" id="issuance-details"><summary>Source, timing &amp; issuance details</summary><p id="market-details"></p><div id="market-caveats"></div><div id="forecast-status-panel"><p class="mono" id="forecast-status"></p><h3 id="forecast-headline"></h3><p id="forecast-copy"></p><p class="mono" id="issuance-meta"></p><p>The original Winner selections remain unchanged and available under each fight. Their ratings do not apply to the four prop markets above. Research prop outcomes are excluded from the official Results ledger.</p></div></details>
+ </main>'''+DISPLAY_SCRIPT+FOUR_MARKET_SCRIPT+SCRIPT+close()
  print('MMA_PICKS_PATH='+str(write('mma/index.html',html)));return 0
 if __name__=='__main__':raise SystemExit(main())
