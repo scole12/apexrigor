@@ -29,6 +29,7 @@ on:
           - APEX_FINAL_CORRECTED
           - PRESENTATION_REV2
           - T3_RECOVERY
+          - INPUT_CORRECTION_RERUN
       request_id:
         description: Immutable shared-publisher request identity
         required: false
@@ -66,225 +67,261 @@ jobs:
           from email.utils import format_datetime, parseaddr
           import hashlib, json, os, pathlib, smtplib, ssl
 
-          slate_date=os.environ['SLATE_DATE']
-          parsed_date=datetime.strptime(slate_date,'%Y-%m-%d')
-          assert parsed_date.strftime('%Y-%m-%d')==slate_date
-          display_date=parsed_date.strftime('%B %-d, %Y')
-          date_token=parsed_date.strftime('%Y%m%d')
-          delivery_mode=os.environ['DELIVERY_MODE']
-          results_explicit_modes=('RECOVERY','CORRECTED','FINAL_CORRECTED','APEX_FINAL_CORRECTED')
-          presentation_modes=('PRESENTATION_REV2',)
-          t3_recovery_modes=('T3_RECOVERY',)
-          explicit_modes=results_explicit_modes+presentation_modes+t3_recovery_modes
-          assert delivery_mode in ('NORMAL',)+explicit_modes
-          if delivery_mode in results_explicit_modes:
-              assert os.environ['PRODUCT']=='RESULTS'
-          if delivery_mode in presentation_modes:
-              assert os.environ['PRODUCT']=='T2'
-          if delivery_mode in t3_recovery_modes:
-              assert os.environ['PRODUCT']=='T3'
-          product=os.environ['PRODUCT']
-          root=pathlib.Path('data/ncaaf')/slate_date
-          manifest=json.loads((root/'full_slate_delivery_manifest.json').read_text())
-          assert manifest['slate_date']==slate_date
-          request_id=os.environ['REQUEST_ID']
-          if request_id!='manual':
-              assert request_id==manifest['queue_request_id']
-          public_sha=manifest['canonical_public_payload_sha256']
-          positions=[]
-          # A late T-3 recovery is bound directly to its immutable recovery
-          # receipt and PDF below.  It must not be coupled to a later public
-          # Picks projection, which can legitimately be regenerated after T-2.
-          # T-3 is a factual-hydration report and intentionally does not
-          # publish or depend on the Picks projection.  The Picks payload can
-          # legitimately still identify the prior T-2 at this point.
-          if product not in ('T3','RESULTS'):
-              public_path=pathlib.Path('data/ncaaf_today.json')
-              public_sha=hashlib.sha256(public_path.read_bytes()).hexdigest()
+          if os.environ['DELIVERY_MODE']=='INPUT_CORRECTION_RERUN':
+              assert os.environ.get('GITHUB_RUN_ATTEMPT','1')=='1', 'Do not repeat a correction send without checking the inbox'
+              slate_date=os.environ['SLATE_DATE']; parsed_date=datetime.strptime(slate_date,'%Y-%m-%d')
+              assert slate_date=='2026-09-05'
+              display_date=parsed_date.strftime('%B %-d, %Y'); date_token=parsed_date.strftime('%Y%m%d')
+              product=os.environ['PRODUCT']; assert product in ('T3','T2')
+              delivery_mode=os.environ['DELIVERY_MODE']; request_id=os.environ['REQUEST_ID']
+              root=pathlib.Path('data/ncaaf')/slate_date
+              manifest=json.loads((root/'INPUT_CORRECTION_DELIVERY_MANIFEST.json').read_text())
+              assert request_id==manifest['revision_id']
+              document=json.loads((root/'INPUT_CORRECTION_TODAY.json').read_text())
+              public_sha=hashlib.sha256((root/'INPUT_CORRECTION_TODAY.json').read_bytes()).hexdigest()
               assert public_sha==manifest['canonical_public_payload_sha256']
-              document=json.loads(public_path.read_text(encoding='utf-8'))
-              slate=document['slate']
-              # Public picks contain issued games, not the full internal schedule.
-              display_count=int(manifest.get('display_game_count',manifest['canonical_game_count']))
-              assert int(slate['game_count'])==display_count, 'public display game count mismatch'
-              if manifest.get('count_scope')=='EXPLICIT_CANONICAL_AND_DISPLAY':
-                  assert int(manifest['canonical_game_count'])==int(manifest['issued_game_count'])+int(manifest['internal_market_pending_game_count']), 'internal canonical accounting mismatch'
-                  assert display_count==int(manifest['issued_game_count'])+int(manifest['market_pending_game_count']), 'public issued accounting mismatch'
-              assert len({str(game['game_id']) for game in slate['games']})==len(slate['games'])
-              assert slate['issued_game_count']==manifest['issued_game_count']
-              assert slate['official_position_count']==manifest['official_position_count']
-              assert slate['market_pending_game_count']==manifest['market_pending_game_count']
-              positions=[position for game in slate['games'] for position in game.get('positions',[])]
-              assert len(positions)==manifest['official_position_count']
-              assert len(slate['games'])==display_count
-              assert sum(bool(game.get('positions')) for game in slate['games'])==manifest['issued_game_count']
-              assert sum(not game.get('positions') for game in slate['games'])==manifest['market_pending_game_count']
-              assert all(float(position['p_selected'])>=0.5 for position in positions)
-              assert all(len(position.get('rationale',[]))>=5 for position in positions)
-          if delivery_mode not in t3_recovery_modes:
+              assert len(document['slate']['games'])==manifest['issued_game_count']==68
+              assert sum(len(g['positions']) for g in document['slate']['games'])==manifest['official_position_count']==136
+              assert len({g['game_id'] for g in document['slate']['games']})==68
               for filename,expected in manifest['files'].items():
                   assert hashlib.sha256((root/filename).read_bytes()).hexdigest()==expected
-              for filename,expected in manifest.get('results_files',{}).items():
-                  assert hashlib.sha256(pathlib.Path(filename).read_bytes()).hexdigest()==expected
-
-          if product=='T3':
-              if delivery_mode=='T3_RECOVERY':
-                  recovery_path=root/f'T3_RECOVERY_RECEIPT_{date_token}.json'
-                  recovery=json.loads(recovery_path.read_text(encoding='utf-8'))
-                  assert recovery['slate_date_et']==slate_date
-                  assert recovery['T3_SCHEDULED_EXECUTION_MISSED']=='YES'
-                  assert recovery['T3_RECOVERY_LABELED_LATE']=='YES'
-                  assert recovery['outcome_read_count']==0
-                  assert recovery['post_kickoff_as_pregame_count']==0
-                  assert recovery['unsupported_backfill_count']==0
-                  recovery_pdf=f'T3_APEX_NCAAF_DATA_REPORT_{date_token}_LATE_RECOVERY.pdf'
-                  assert hashlib.sha256((root/recovery_pdf).read_bytes()).hexdigest()==recovery['recovery_pdf_sha256']
-                  subject=f'APEX NCAA Football T-3 Data Report — {display_date} — Late Recovery'
-                  body=(
-                      f'The scheduled APEX NCAA Football T-minus-3 execution for {display_date} did not complete successfully. '
-                      'This attached report is a truthfully labeled late recovery/reconciliation, not an on-time T-3 claim.\n\n'
-                      f"Scheduled T-3: {recovery['intended_t3_et']}\n"
-                      f"Recovery executed: {recovery['actual_recovery_et']}\n"
-                      f"Canonical games: {recovery['canonical_game_count']}\n\n"
-                      'Only retained facts with provable availability at or before the intended cutoff are reported. '
-                      'Perishable facts without historical availability proof remain explicitly unavailable. No outcomes were read, '
-                      'no post-kickoff observation was treated as pregame state, and the sealed T-2 issuance was not changed.\n\n'
-                      'Attached:\n'
-                      '1. APEX NCAA Football T-3 Late Recovery Data Report PDF\n'
-                  )
-                  attachments=[recovery_pdf]
+              assert datetime.now(timezone.utc).timestamp()*1000 < manifest['earliest_issued_kickoff_utc_ms'], 'Pregame correction send deadline reached'
+              explicit_modes=('INPUT_CORRECTION_RERUN',); presentation_modes=(); t3_recovery_modes=()
+              if product=='T3':
+                  subject=f'APEX NCAA Football T-3 — {display_date} — RETAINED-INPUT RERUN'
+                  body=('The requested NCAA retained-input T-3 reconstruction report is attached.\n\n'
+                        '103 game states were rebuilt. The team-state reader now includes eligible completed 2026 games instead of stopping at 2025. The correction passed 11 cutoff/state regression tests and 8 revision-reader tests.\n\n'
+                        'Actual T-3 reconstruction: 11:07 AM ET. Original forecast-information cutoff: 9:00 AM ET. This is not a fresh provider refresh or an on-time T-3 claim. The original receipts remain preserved.\n\n'
+                        'Open limitation: no 2026 drive-stat rows were retained in the authority. No unavailable drive, quarterback or weather facts were invented. Statistical absence of forecasting bias is not certified.\n\nAPEX — The Math Speaks.')
+                  attachments=['NCAAF_T3_INPUT_RECONSTRUCTION_20260905.pdf']
               else:
-                  hydration_proof=manifest.get('t3_hydration_proof') or {}
-                  assert hydration_proof.get('status')=='PASS'
-                  assert hydration_proof.get('execution_mode')=='OFFICIAL_T3'
-                  assert hydration_proof.get('all_three_post_commit_reopen')=='PASS'
-                  assert hydration_proof.get('outcome_read_count')==0
-                  hydration_path=root/hydration_proof['path']
-                  assert hashlib.sha256(hydration_path.read_bytes()).hexdigest()==hydration_proof['sha256']
-                  hydration=json.loads(hydration_path.read_text(encoding='utf-8'))
-                  assert hydration['slate_date_et']==slate_date
-                  assert hydration['as_of_et']==slate_date
-                  assert set(hydration['authorities'])=={'PLAYER','TEAM_LINEUP','HISTORICAL'}
-                  for authority in hydration['authorities'].values():
-                      assert str(authority['transaction']).startswith('PASS_')
-                      assert authority['source_rows_accounted']>0
-                      assert authority['source_failure_count']==0
-                      assert authority['post_commit_reopen_verify']=='PASS'
-                      before_hash=authority.get('observational_main_file_sha256_before') or authority.get('sha256_before')
-                      after_hash=authority.get('observational_main_file_sha256_after') or authority.get('sha256_after')
-                      assert before_hash and after_hash
-                  timing=manifest.get('t3_timing') or {}
-                  late_recovery=timing.get('execution_class')=='LATE_RECOVERY'
-                  subject=(
-                      f'APEX NCAA Football T-3 Data Report — {display_date} — Late Recovery'
-                      if late_recovery else
-                      f'APEX NCAA Football T-3 Data Report — {display_date}'
-                  )
-                  body=(
-                      (f'The scheduled APEX NCAA Football T-minus-3 Data Report for {display_date} completed as a truthfully labeled late recovery.\n\n'
-                       if late_recovery else
-                       f'The APEX NCAA Football T-minus-3 Data Report for {display_date} is attached.\n\n')
-                      + f"The report accounts for all {manifest['canonical_game_count']} canonical games and records physical PLAYER, "
-                      + 'TEAM_LINEUP and HISTORICAL transactions, source-row dispositions, before/after hashes and post-commit reopen verification. '
-                      + 'It also reports D2/V5 input readiness, explicit missingness, and zero-filter accounting. T-3 creates no final positions.\n\n'
-                      + 'Attached:\n'
-                      + '1. APEX NCAA Football T-3 Data Report PDF\n'
-                  )
-                  attachments=[f'T3_APEX_NCAAF_DATA_REPORT_{date_token}.pdf']
-          elif product=='T2':
-              late_recovery=(slate_date=='2026-09-04')
-              if delivery_mode=='PRESENTATION_REV2':
-                  subject=f'APEX NCAA Football T-2 Picks Card — {display_date} — PRESENTATION REV2'
-                  body=(
-                      f'This is a presentation-only revision of the already-sealed {display_date} NCAA Football T-2 card.\n\n'
-                      'No position, line, FanDuel price, APEX probability, tier, engine, capture timestamp or issuance mathematics changed.\n\n'
-                      'The revised card uses the established APEX presentation contract and adds sealed-snapshot NCAA rationale detail.\n\n'
-                      'Slate summary:\n'
-                      f"{manifest['issued_game_count']} FanDuel-issued games\n"
-                      f"{manifest['official_position_count']} official positions\n\n"
-                      'Live NCAA Picks: https://apexrigor.com/ncaaf\n\n'
-                      'Attached in order:\n'
-                      '1. Corrected APEX NCAA Football T-2 Picks Card PDF\n'
-                      '2. Corrected APEX NCAA Football T-2 1080×1080 PNG\n'
-                  )
-              else:
-                  subject=(
-                      f'APEX NCAA Football T-2 Picks Card — {display_date} — Late Recovery'
-                      if late_recovery else
-                      f'APEX NCAA Football T-2 Picks Card — {display_date}'
-                  )
-                  body=(
-                      f'The APEX NCAA Football T-minus-2 Picks Card for {display_date} is attached.\n\n'
-                      + ('This delivery is a truthfully labeled late recovery using the sealed on-time T-2 market capture.\n\n' if late_recovery else '')
-                      +
-                      'The full slate has been published to the live Picks page for human review:\n\n'
-                      'https://apexrigor.com/ncaaf\n\n'
-                      'Slate summary:\n'
-                      f"{manifest['issued_game_count']} FanDuel-issued games\n"
-                      f"{manifest['official_position_count']} positions\n\n"
-                      'Attached in order:\n'
-                      '1. APEX NCAA Football T-2 Picks Card PDF\n'
-                      '2. APEX NCAA Football T-2 Picks Card PNG\n\n'
-                      'The public card contains only authentic sealed D2 ATS and V5 Totals positions at the captured FanDuel T-2 market.\n'
-                  )
-              attachments=[f'NCAAF_T2_FULL_SLATE_{date_token}.pdf',f'NCAAF_T2_PICKS_CARD_{date_token}.png']
+                  subject=f'APEX NCAA Football T-2 — {display_date} — INPUT CORRECTION RERUN | ALL 68 GAMES'
+                  body=('The requested corrected NCAA T-2 PNG and detailed PDF are attached.\n\n'
+                        'All 68 issued games and 136 positions are visibly shown in the game-by-game PNG. This supersedes the earlier card for corrected probabilities; all selections, lines and captured FanDuel prices are unchanged.\n\n'
+                        'Actual T-2 rerun completed: 11:09 AM ET. Original information cutoff: 9:00 AM ET. Quotes were not refreshed. The original issuance is retained alongside this explicitly timed input correction.\n\n'
+                        'The corrected current-season state changes inputs for 38 issued games, but the totals remain 54 Unders and 14 Overs. No picks were forced into a balanced split. This does not prove that model bias is absent or profitability is improved. The missing 2026 drive-stat feed remains an open limitation.\n\n'
+                        'Attachments: complete 68-game PNG, then 68-page detailed PDF.\n\nAPEX — The Math Speaks.')
+                  attachments=['NCAAF_T2_ALL_68_GAMES_20260905_RERUN.png','NCAAF_T2_FULL_SLATE_20260905_RERUN.pdf']
           else:
-              results=json.loads(pathlib.Path('data/ncaaf_results_cumulative.json').read_text())
-              archive=results['positions']
-              assert results['graded_position_count']>0
-              prior=[row for row in archive if row.get('slate_date')==slate_date]
-              def counts(rows):
-                  return {key:sum(row.get('result')==key for row in rows) for key in ('W','L','PUSH','VOID','PENDING')}
-              prior_all=counts(prior)
-              prior_ats=counts([row for row in prior if row.get('market')=='ATS'])
-              prior_totals=counts([row for row in prior if row.get('market')=='TOTALS'])
-              season=results['season_record']
-              def tier_line(engine,key):
-                  values=[]
-                  for tier in ('WEAK','MODERATE','STRONG','ELITE'):
-                      row=results[key][tier]
-                      value=f"{tier} {row['W']}W-{row['L']}L"
-                      if int(row['PUSH']): value+=f"-{row['PUSH']}P"
-                      values.append(value)
-                  return engine+': '+' · '.join(values)
-              tier_rank={'WEAK':1,'MODERATE':2,'STRONG':3,'ELITE':4}
-              ordered=sorted((float(position['issued_probability']),tier_rank[position['tier']]) for position in archive)
-              mismatch_count=sum(right[1]<left[1] for left,right in zip(ordered,ordered[1:]))
-              results_receipt=hashlib.sha256(pathlib.Path('data/ncaaf_results_cumulative.json').read_bytes()).hexdigest()
-              subject=(
-                  'APEX NCAA Football Daily Graded Results — Previous Day Slate — Final Corrected'
-                  if delivery_mode in ('FINAL_CORRECTED','APEX_FINAL_CORRECTED') else
-                  'APEX NCAA Football Daily Graded Results — Previous Day Slate — Corrected'
-                  if delivery_mode=='CORRECTED' else
-                  f'APEX NCAA Football Results — {display_date} — Recovery'
-                  if delivery_mode=='RECOVERY' else
-                  'APEX NCAA Football Daily Graded Results — Previous Day Slate'
-              )
-              body=(
-                  "The previous day's APEX NCAA Football results have been graded from the immutable issuance and official full-game outcomes.\n\n"
-                  f"Prior-day combined: {prior_all['W']}W-{prior_all['L']}L\n"
-                  f"ATS: {prior_ats['W']}W-{prior_ats['L']}L\n"
-                  f"Totals: {prior_totals['W']}W-{prior_totals['L']}L\n"
-                  "\nNCAA Football cumulative record:\n"
-                  f"{season['W']}W-{season['L']}L-{season['PUSH']}P ({100.0 * season['win_rate']:.1f}%)\n\n"
-                  "Tier quality:\n"
-                  +tier_line('ATS','ats_by_tier')+'\n'
-                  +tier_line('TOTALS','totals_by_tier')+'\n\n'
-                  f"Probability/tier mismatches: {mismatch_count}\n\n"
-                  "Results: https://apexrigor.com/ncaaf/results\n"
-                  f"Canonical receipt SHA256: {results_receipt}\n\n"
-                  "Every immutable issued position was settled against its exact issued FanDuel line. No engine was rerun and no later market line was substituted.\n\n"
-                  "Attachments, in order:\n"
-                  "1. Elite detailed graded-results PDF\n"
-                  "2. Cumulative APEX NCAA Football record graphic\n"
-                  "3. Prior-day single-slate results graphic\n"
-              )
-              attachments=[
-                  f'results/NCAAF_DETAILED_RESULTS_{date_token}.pdf',
-                  'results/NCAAF_CUMULATIVE_RECORD_2026.png',
-                  f'results/NCAAF_PRIOR_DAY_SLATE_{date_token}.png',
-              ]
-              assert len(attachments)==3
+              slate_date=os.environ['SLATE_DATE']
+              parsed_date=datetime.strptime(slate_date,'%Y-%m-%d')
+              assert parsed_date.strftime('%Y-%m-%d')==slate_date
+              display_date=parsed_date.strftime('%B %-d, %Y')
+              date_token=parsed_date.strftime('%Y%m%d')
+              delivery_mode=os.environ['DELIVERY_MODE']
+              results_explicit_modes=('RECOVERY','CORRECTED','FINAL_CORRECTED','APEX_FINAL_CORRECTED')
+              presentation_modes=('PRESENTATION_REV2',)
+              t3_recovery_modes=('T3_RECOVERY',)
+              explicit_modes=results_explicit_modes+presentation_modes+t3_recovery_modes
+              assert delivery_mode in ('NORMAL',)+explicit_modes
+              if delivery_mode in results_explicit_modes:
+                  assert os.environ['PRODUCT']=='RESULTS'
+              if delivery_mode in presentation_modes:
+                  assert os.environ['PRODUCT']=='T2'
+              if delivery_mode in t3_recovery_modes:
+                  assert os.environ['PRODUCT']=='T3'
+              product=os.environ['PRODUCT']
+              root=pathlib.Path('data/ncaaf')/slate_date
+              manifest=json.loads((root/'full_slate_delivery_manifest.json').read_text())
+              assert manifest['slate_date']==slate_date
+              request_id=os.environ['REQUEST_ID']
+              if request_id!='manual':
+                  assert request_id==manifest['queue_request_id']
+              public_sha=manifest['canonical_public_payload_sha256']
+              positions=[]
+              # A late T-3 recovery is bound directly to its immutable recovery
+              # receipt and PDF below.  It must not be coupled to a later public
+              # Picks projection, which can legitimately be regenerated after T-2.
+              # T-3 is a factual-hydration report and intentionally does not
+              # publish or depend on the Picks projection.  The Picks payload can
+              # legitimately still identify the prior T-2 at this point.
+              if product not in ('T3','RESULTS'):
+                  public_path=pathlib.Path('data/ncaaf_today.json')
+                  public_sha=hashlib.sha256(public_path.read_bytes()).hexdigest()
+                  assert public_sha==manifest['canonical_public_payload_sha256']
+                  document=json.loads(public_path.read_text(encoding='utf-8'))
+                  slate=document['slate']
+                  # Public picks contain issued games, not the full internal schedule.
+                  display_count=int(manifest.get('display_game_count',manifest['canonical_game_count']))
+                  assert int(slate['game_count'])==display_count, 'public display game count mismatch'
+                  if manifest.get('count_scope')=='EXPLICIT_CANONICAL_AND_DISPLAY':
+                      assert int(manifest['canonical_game_count'])==int(manifest['issued_game_count'])+int(manifest['internal_market_pending_game_count']), 'internal canonical accounting mismatch'
+                      assert display_count==int(manifest['issued_game_count'])+int(manifest['market_pending_game_count']), 'public issued accounting mismatch'
+                  assert len({str(game['game_id']) for game in slate['games']})==len(slate['games'])
+                  assert slate['issued_game_count']==manifest['issued_game_count']
+                  assert slate['official_position_count']==manifest['official_position_count']
+                  assert slate['market_pending_game_count']==manifest['market_pending_game_count']
+                  positions=[position for game in slate['games'] for position in game.get('positions',[])]
+                  assert len(positions)==manifest['official_position_count']
+                  assert len(slate['games'])==display_count
+                  assert sum(bool(game.get('positions')) for game in slate['games'])==manifest['issued_game_count']
+                  assert sum(not game.get('positions') for game in slate['games'])==manifest['market_pending_game_count']
+                  assert all(float(position['p_selected'])>=0.5 for position in positions)
+                  assert all(len(position.get('rationale',[]))>=5 for position in positions)
+              if delivery_mode not in t3_recovery_modes:
+                  for filename,expected in manifest['files'].items():
+                      assert hashlib.sha256((root/filename).read_bytes()).hexdigest()==expected
+                  for filename,expected in manifest.get('results_files',{}).items():
+                      assert hashlib.sha256(pathlib.Path(filename).read_bytes()).hexdigest()==expected
+
+              if product=='T3':
+                  if delivery_mode=='T3_RECOVERY':
+                      recovery_path=root/f'T3_RECOVERY_RECEIPT_{date_token}.json'
+                      recovery=json.loads(recovery_path.read_text(encoding='utf-8'))
+                      assert recovery['slate_date_et']==slate_date
+                      assert recovery['T3_SCHEDULED_EXECUTION_MISSED']=='YES'
+                      assert recovery['T3_RECOVERY_LABELED_LATE']=='YES'
+                      assert recovery['outcome_read_count']==0
+                      assert recovery['post_kickoff_as_pregame_count']==0
+                      assert recovery['unsupported_backfill_count']==0
+                      recovery_pdf=f'T3_APEX_NCAAF_DATA_REPORT_{date_token}_LATE_RECOVERY.pdf'
+                      assert hashlib.sha256((root/recovery_pdf).read_bytes()).hexdigest()==recovery['recovery_pdf_sha256']
+                      subject=f'APEX NCAA Football T-3 Data Report — {display_date} — Late Recovery'
+                      body=(
+                          f'The scheduled APEX NCAA Football T-minus-3 execution for {display_date} did not complete successfully. '
+                          'This attached report is a truthfully labeled late recovery/reconciliation, not an on-time T-3 claim.\n\n'
+                          f"Scheduled T-3: {recovery['intended_t3_et']}\n"
+                          f"Recovery executed: {recovery['actual_recovery_et']}\n"
+                          f"Canonical games: {recovery['canonical_game_count']}\n\n"
+                          'Only retained facts with provable availability at or before the intended cutoff are reported. '
+                          'Perishable facts without historical availability proof remain explicitly unavailable. No outcomes were read, '
+                          'no post-kickoff observation was treated as pregame state, and the sealed T-2 issuance was not changed.\n\n'
+                          'Attached:\n'
+                          '1. APEX NCAA Football T-3 Late Recovery Data Report PDF\n'
+                      )
+                      attachments=[recovery_pdf]
+                  else:
+                      hydration_proof=manifest.get('t3_hydration_proof') or {}
+                      assert hydration_proof.get('status')=='PASS'
+                      assert hydration_proof.get('execution_mode')=='OFFICIAL_T3'
+                      assert hydration_proof.get('all_three_post_commit_reopen')=='PASS'
+                      assert hydration_proof.get('outcome_read_count')==0
+                      hydration_path=root/hydration_proof['path']
+                      assert hashlib.sha256(hydration_path.read_bytes()).hexdigest()==hydration_proof['sha256']
+                      hydration=json.loads(hydration_path.read_text(encoding='utf-8'))
+                      assert hydration['slate_date_et']==slate_date
+                      assert hydration['as_of_et']==slate_date
+                      assert set(hydration['authorities'])=={'PLAYER','TEAM_LINEUP','HISTORICAL'}
+                      for authority in hydration['authorities'].values():
+                          assert str(authority['transaction']).startswith('PASS_')
+                          assert authority['source_rows_accounted']>0
+                          assert authority['source_failure_count']==0
+                          assert authority['post_commit_reopen_verify']=='PASS'
+                          before_hash=authority.get('observational_main_file_sha256_before') or authority.get('sha256_before')
+                          after_hash=authority.get('observational_main_file_sha256_after') or authority.get('sha256_after')
+                          assert before_hash and after_hash
+                      timing=manifest.get('t3_timing') or {}
+                      late_recovery=timing.get('execution_class')=='LATE_RECOVERY'
+                      subject=(
+                          f'APEX NCAA Football T-3 Data Report — {display_date} — Late Recovery'
+                          if late_recovery else
+                          f'APEX NCAA Football T-3 Data Report — {display_date}'
+                      )
+                      body=(
+                          (f'The scheduled APEX NCAA Football T-minus-3 Data Report for {display_date} completed as a truthfully labeled late recovery.\n\n'
+                           if late_recovery else
+                           f'The APEX NCAA Football T-minus-3 Data Report for {display_date} is attached.\n\n')
+                          + f"The report accounts for all {manifest['canonical_game_count']} canonical games and records physical PLAYER, "
+                          + 'TEAM_LINEUP and HISTORICAL transactions, source-row dispositions, before/after hashes and post-commit reopen verification. '
+                          + 'It also reports D2/V5 input readiness, explicit missingness, and zero-filter accounting. T-3 creates no final positions.\n\n'
+                          + 'Attached:\n'
+                          + '1. APEX NCAA Football T-3 Data Report PDF\n'
+                      )
+                      attachments=[f'T3_APEX_NCAAF_DATA_REPORT_{date_token}.pdf']
+              elif product=='T2':
+                  late_recovery=(slate_date=='2026-09-04')
+                  if delivery_mode=='PRESENTATION_REV2':
+                      subject=f'APEX NCAA Football T-2 Picks Card — {display_date} — PRESENTATION REV2'
+                      body=(
+                          f'This is a presentation-only revision of the already-sealed {display_date} NCAA Football T-2 card.\n\n'
+                          'No position, line, FanDuel price, APEX probability, tier, engine, capture timestamp or issuance mathematics changed.\n\n'
+                          'The revised card uses the established APEX presentation contract and adds sealed-snapshot NCAA rationale detail.\n\n'
+                          'Slate summary:\n'
+                          f"{manifest['issued_game_count']} FanDuel-issued games\n"
+                          f"{manifest['official_position_count']} official positions\n\n"
+                          'Live NCAA Picks: https://apexrigor.com/ncaaf\n\n'
+                          'Attached in order:\n'
+                          '1. Corrected APEX NCAA Football T-2 Picks Card PDF\n'
+                          '2. Corrected APEX NCAA Football T-2 1080×1080 PNG\n'
+                      )
+                  else:
+                      subject=(
+                          f'APEX NCAA Football T-2 Picks Card — {display_date} — Late Recovery'
+                          if late_recovery else
+                          f'APEX NCAA Football T-2 Picks Card — {display_date}'
+                      )
+                      body=(
+                          f'The APEX NCAA Football T-minus-2 Picks Card for {display_date} is attached.\n\n'
+                          + ('This delivery is a truthfully labeled late recovery using the sealed on-time T-2 market capture.\n\n' if late_recovery else '')
+                          +
+                          'The full slate has been published to the live Picks page for human review:\n\n'
+                          'https://apexrigor.com/ncaaf\n\n'
+                          'Slate summary:\n'
+                          f"{manifest['issued_game_count']} FanDuel-issued games\n"
+                          f"{manifest['official_position_count']} positions\n\n"
+                          'Attached in order:\n'
+                          '1. APEX NCAA Football T-2 Picks Card PDF\n'
+                          '2. APEX NCAA Football T-2 Picks Card PNG\n\n'
+                          'The public card contains only authentic sealed D2 ATS and V5 Totals positions at the captured FanDuel T-2 market.\n'
+                      )
+                  attachments=[f'NCAAF_T2_FULL_SLATE_{date_token}.pdf',f'NCAAF_T2_PICKS_CARD_{date_token}.png']
+              else:
+                  results=json.loads(pathlib.Path('data/ncaaf_results_cumulative.json').read_text())
+                  archive=results['positions']
+                  assert results['graded_position_count']>0
+                  prior=[row for row in archive if row.get('slate_date')==slate_date]
+                  def counts(rows):
+                      return {key:sum(row.get('result')==key for row in rows) for key in ('W','L','PUSH','VOID','PENDING')}
+                  prior_all=counts(prior)
+                  prior_ats=counts([row for row in prior if row.get('market')=='ATS'])
+                  prior_totals=counts([row for row in prior if row.get('market')=='TOTALS'])
+                  season=results['season_record']
+                  def tier_line(engine,key):
+                      values=[]
+                      for tier in ('WEAK','MODERATE','STRONG','ELITE'):
+                          row=results[key][tier]
+                          value=f"{tier} {row['W']}W-{row['L']}L"
+                          if int(row['PUSH']): value+=f"-{row['PUSH']}P"
+                          values.append(value)
+                      return engine+': '+' · '.join(values)
+                  tier_rank={'WEAK':1,'MODERATE':2,'STRONG':3,'ELITE':4}
+                  ordered=sorted((float(position['issued_probability']),tier_rank[position['tier']]) for position in archive)
+                  mismatch_count=sum(right[1]<left[1] for left,right in zip(ordered,ordered[1:]))
+                  results_receipt=hashlib.sha256(pathlib.Path('data/ncaaf_results_cumulative.json').read_bytes()).hexdigest()
+                  subject=(
+                      'APEX NCAA Football Daily Graded Results — Previous Day Slate — Final Corrected'
+                      if delivery_mode in ('FINAL_CORRECTED','APEX_FINAL_CORRECTED') else
+                      'APEX NCAA Football Daily Graded Results — Previous Day Slate — Corrected'
+                      if delivery_mode=='CORRECTED' else
+                      f'APEX NCAA Football Results — {display_date} — Recovery'
+                      if delivery_mode=='RECOVERY' else
+                      'APEX NCAA Football Daily Graded Results — Previous Day Slate'
+                  )
+                  body=(
+                      "The previous day's APEX NCAA Football results have been graded from the immutable issuance and official full-game outcomes.\n\n"
+                      f"Prior-day combined: {prior_all['W']}W-{prior_all['L']}L\n"
+                      f"ATS: {prior_ats['W']}W-{prior_ats['L']}L\n"
+                      f"Totals: {prior_totals['W']}W-{prior_totals['L']}L\n"
+                      "\nNCAA Football cumulative record:\n"
+                      f"{season['W']}W-{season['L']}L-{season['PUSH']}P ({100.0 * season['win_rate']:.1f}%)\n\n"
+                      "Tier quality:\n"
+                      +tier_line('ATS','ats_by_tier')+'\n'
+                      +tier_line('TOTALS','totals_by_tier')+'\n\n'
+                      f"Probability/tier mismatches: {mismatch_count}\n\n"
+                      "Results: https://apexrigor.com/ncaaf/results\n"
+                      f"Canonical receipt SHA256: {results_receipt}\n\n"
+                      "Every immutable issued position was settled against its exact issued FanDuel line. No engine was rerun and no later market line was substituted.\n\n"
+                      "Attachments, in order:\n"
+                      "1. Elite detailed graded-results PDF\n"
+                      "2. Cumulative APEX NCAA Football record graphic\n"
+                      "3. Prior-day single-slate results graphic\n"
+                  )
+                  attachments=[
+                      f'results/NCAAF_DETAILED_RESULTS_{date_token}.pdf',
+                      'results/NCAAF_CUMULATIVE_RECORD_2026.png',
+                      f'results/NCAAF_PRIOR_DAY_SLATE_{date_token}.png',
+                  ]
+                  assert len(attachments)==3
 
           recipients=[]
           for raw in (os.environ['EMAIL_TO'],os.environ.get('EMAIL_INTERNAL','')):

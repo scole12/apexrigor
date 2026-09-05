@@ -1,0 +1,15 @@
+{
+  "revision_id": "CURRENT_SEASON_STATE_RERUN_20260905",
+  "slate_date": "2026-09-05",
+  "canonical_game_count": 103,
+  "issued_game_count": 68,
+  "official_position_count": 136,
+  "files": {
+    "NCAAF_T2_ALL_68_GAMES_20260905_RERUN.png": "806a8d6d7b5925b2c46db8cc4041b3d36c30fc83bbf9496a27d41d77c60ca259",
+    "NCAAF_T3_INPUT_RECONSTRUCTION_20260905.pdf": "b397feece07106a77df1a64b426bba6ec8d3552d1e6d72c6ffef478db3370c3d",
+    "NCAAF_T2_FULL_SLATE_20260905_RERUN.pdf": "1bdd2f5ef3313e5646e0d0286394ca507db8146d56965eb75a76e6b8b42669d0"
+  },
+  "canonical_public_payload_sha256": "57df965ba6dbdb6fc0b509c85dd0a834497f58a930a50e01a3fdf443ce7b006c",
+  "source_corrected_issuance_sha256": "d4e843d2045430ab571451618707fc263e098730c11387f78f18216d8a9db317",
+  "earliest_issued_kickoff_utc_ms": 1788624000000
+}
