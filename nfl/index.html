@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
 <title>APEX — NFL</title>
-<meta name="description" content="APEX NFL technical readiness and truthful scientific release state.">
+<meta name="description" content="APEX NFL matchups, kickoff times, and issued picks.">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=apex-20260904-nfl">
 <link rel="icon" type="image/x-icon" href="/favicon.ico?v=apex-20260904-nfl" sizes="32x32">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=apex-20260904-nfl">
@@ -14,12 +14,16 @@
 <meta name="theme-color" content="#000000">
 <meta property="og:type" content="website"><meta property="og:site_name" content="APEX">
 <meta property="og:title" content="APEX — NFL">
-<meta property="og:description" content="APEX NFL technical readiness and truthful scientific release state.">
+<meta property="og:description" content="APEX NFL matchups, kickoff times, and issued picks.">
 <meta property="og:url" content="https://apexrigor.com/nfl">
 <meta property="og:image" content="https://apexrigor.com/og-image.png?v=apex-20260904-nfl">
 <link rel="stylesheet" href="/assets/apex.css?v=apex-20260904-nfl">
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "2ee12644257c4dd3b0357c59a12a109c"}'></script><!-- End Cloudflare Web Analytics -->
 <!-- Vercel Web Analytics --><script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script><script defer src="/_vercel/insights/script.js"></script><!-- End Vercel Web Analytics -->
+<style>
+.shell[data-sport="NFL"] .game-module[data-game-state="SCHEDULED"]{padding:22px 0;}
+.shell[data-sport="NFL"] .game-module[data-game-state="SCHEDULED"] .game-header{padding-bottom:0;border-bottom:0;}
+</style>
 </head>
 <body>
 <div class="shell" data-sport="NFL" data-picks-state="science-blocked" data-public-issuance="false">
@@ -42,11 +46,11 @@
   </nav>
   </div>
   <div class="section-head picks-board-head">
-    <div class="title">WEEK 1 READINESS</div><div class="meta mono" id="slate-meta">LOADING CANONICAL NFL STATE</div>
+    <div class="title" id="slate-title">NFL GAMES</div><div class="meta mono" id="slate-meta">LOADING GAMES</div>
   </div>
   <main class="picks-page"><div class="picks-board" id="games" aria-live="polite"></div></main>
   <div class="tag">THE MATH SPEAKS.</div>
-  <div class="foot mono">APEX NFL · POINT-IN-TIME AUTHORITIES · RELEASE GATED</div>
+  <div class="foot mono">APEX NFL · FULL-GAME ATS · TOTALS · QB/RB/WR PROPS</div>
 </div>
 <script>
 const esc=v=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));
@@ -66,15 +70,15 @@ function issuedPanel(p){
 }
 fetch("/data/nfl_today.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw new Error("HTTP "+r.status);return r.json()}).then(d=>{
   const games=Array.isArray(d?.slate?.games)?d.slate.games:[];
+  document.getElementById("slate-title").textContent=d?.slate?.week ? `WEEK ${d.slate.week}` : "NFL GAMES";
   const positions=games.reduce((n,g)=>n+(Array.isArray(g.positions)?g.positions.length:0),0);
   const shell=document.querySelector(".shell");
   if(shell){shell.setAttribute("data-public-issuance",positions>0?"true":"false");shell.setAttribute("data-picks-state",positions>0?"issued":"science-blocked");}
   if(positions===0){
     if(d.public_issuance!==false||Number(d.position_count)!==0||!games.every(g=>Array.isArray(g.positions)&&g.positions.length===0))throw new Error("NFL release-state invariant failed");
-    document.getElementById("slate-meta").textContent=`${games.length} GAMES · TECHNICAL READY · SCIENCE BLOCKED · 0 POSITIONS`;
-    const gate='<article class="game-module" data-game-state="SCIENCE_BLOCKED"><header class="game-header"><div class="game-num mono">GATE</div><div class="game-meta"><h2 class="game-matchup">No NFL picks issued</h2><p class="game-pitchers mono">ATS · QB/RB/WR PROPS · FULL-GAME TOTALS</p></div><div class="game-time mono">0 POSITIONS</div></header><div class="market-grid market-grid--single"><section class="market-panel"><div class="market-label">SCIENTIFIC RELEASE STATE</div><div class="pick-headline">NO QUALIFIED CHAMPION</div><div class="rationale-copy"><p>The acquisition, point-in-time T-3, T-2 serving, and exact-issuance grader machinery is technically ready. Each engine lane remains closed until a candidate earns promotion through chronological evidence. APEX does not publish a forecast, probability, or market position from review scaffolding.</p></div></section></div></article>';
-    const schedule=games.map((g,i)=>'<article class="game-module" data-game="'+esc(g.game_id)+'" data-game-state="SCHEDULED"><header class="game-header"><div class="game-num mono">G'+String(i+1).padStart(2,"0")+'</div><div class="game-meta"><h2 class="game-matchup">'+esc(g.matchup)+'</h2><p class="game-pitchers mono">2026 REGULAR SEASON · WEEK '+esc(g.week)+' · CANONICAL SCHEDULE</p></div><div class="game-time mono">'+esc(stamp(g.kickoff_utc))+'</div></header></article>').join("");
-    document.getElementById("games").innerHTML=gate+schedule; return;
+    document.getElementById("slate-meta").textContent=`${games.length} GAMES`;
+    const schedule=games.map((g,i)=>'<article class="game-module" data-game="'+esc(g.game_id)+'" data-game-state="SCHEDULED"><header class="game-header"><div class="game-num mono">G'+String(i+1).padStart(2,"0")+'</div><div class="game-meta"><h2 class="game-matchup">'+esc(g.matchup)+'</h2><p class="game-pitchers mono">2026 REGULAR SEASON · WEEK '+esc(g.week)+'</p></div><div class="game-time mono">'+esc(stamp(g.kickoff_utc))+'</div></header></article>').join("");
+    document.getElementById("games").innerHTML=schedule; return;
   }
   if(d.public_issuance!==true||Number(d.position_count)!==positions)throw new Error("NFL issued-position reconciliation failed");
   const visible=games.filter(g=>Array.isArray(g.positions)&&g.positions.length);
