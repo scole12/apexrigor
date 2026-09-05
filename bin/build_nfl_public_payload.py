@@ -22,6 +22,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data"
 HIST = Path("/var/opt/apex_nfl/authorities/HISTORICAL_OUTCOMES_WITH_ODDS.db")
 TEAM = Path("/var/opt/apex_nfl/authorities/TEAM_LINEUP.db")
+PLAYER = Path("/var/opt/apex_nfl/authorities/PLAYER.db")
 CURRENT = Path("/var/opt/apex_nfl/state/t3_living/current.json")
 RUNTIME_MANIFEST = Path("/opt/apex_nfl/runtime/PRODUCTION_RUNTIME_MANIFEST.json")
 RELEASE_CURRENT = Path("/var/opt/apex_nfl/releases/current.json")
@@ -337,6 +338,62 @@ def main() -> int:
     generated_at = str(hydration["completed_at"])
     scientific_state, release = release_state()
     issuances, grades = sealed_history()
+    team_connection = ro(TEAM)
+    try:
+        all_team_names = {
+            str(row["team_id"]): str(row["current_name"])
+            for row in team_connection.execute("SELECT team_id,current_name FROM teams ORDER BY team_id")
+        }
+    finally:
+        team_connection.close()
+    all_player_ids = sorted({
+        str(position.get("player_id"))
+        for issuance in issuances
+        for position in issuance.get("positions", [])
+        if position.get("player_id")
+    })
+    all_player_names: dict[str, str] = {}
+    if all_player_ids:
+        player_connection = ro(PLAYER)
+        try:
+            placeholders = ",".join("?" for _ in all_player_ids)
+            all_player_names = {
+                str(row["player_id"]): str(row["display_name"])
+                for row in player_connection.execute(
+                    f"SELECT player_id,display_name FROM canonical_players WHERE player_id IN ({placeholders})",
+                    all_player_ids,
+                )
+            }
+        finally:
+            player_connection.close()
+
+    def public_position(source: dict[str, Any]) -> dict[str, Any]:
+        position = dict(source)
+        market = str(position.get("market") or "")
+        selection = str(position.get("selection") or "")
+        line = float(position.get("line") or 0.0)
+        if market == "ATS":
+            side = "FAVORITE" if line < 0 else "UNDERDOG" if line > 0 else "PICK'EM"
+            team_name = all_team_names.get(selection, selection)
+            position["display_market_label"] = "FULL-GAME ATS"
+            position["display_selection"] = f"{side}: {team_name} {line:+g}"
+        elif market == "TOTALS":
+            position["display_market_label"] = "FULL-GAME TOTALS"
+            position["display_selection"] = f"{selection.upper()} {line:g}"
+        elif market == "PROPS":
+            player_id = str(position.get("player_id") or "")
+            player_name = all_player_names.get(player_id, player_id or "PLAYER")
+            prop_family = str(position.get("prop_family") or "PLAYER PROP").replace("_", " ")
+            position["player_display_name"] = player_name
+            position["display_market_label"] = prop_family
+            position["display_selection"] = f"{player_name} · {selection.upper()} {line:g}"
+        position["sportsbook"] = "FanDuel"
+        return position
+
+    public_issuances = [
+        {**issuance, "positions": [public_position(position) for position in issuance.get("positions", [])]}
+        for issuance in issuances
+    ]
     release_qualified = scientific_state == "SCIENTIFICALLY_QUALIFIED_FOR_PRODUCTION"
     science = {lane: "SEE_QUALIFIED_RELEASE" if release_qualified else "NO_QUALIFIED_CHAMPION"
                for lane in ("ATS", "PROPS", "TOTALS")}
@@ -360,7 +417,7 @@ def main() -> int:
     )
     display_game_ids = {str(game["game_id"]) for game in games}
     today_positions: list[dict[str, Any]] = []
-    for issuance in issuances:
+    for issuance in public_issuances:
         for position in issuance["positions"]:
             if str(position.get("game_id")) in display_game_ids:
                 value = dict(position)
@@ -467,7 +524,7 @@ def main() -> int:
         "schema_version": "APEX_NFL_RESULTS_ARCHIVE_V1",
         "sport": "NFL",
         "generated_at_utc": generated_at,
-        "issuances": issuances,
+        "issuances": public_issuances,
         "grades": grades,
     }
     outputs = {

@@ -51,13 +51,40 @@
 <script>
 const esc=v=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));
 const stamp=v=>new Intl.DateTimeFormat("en-US",{timeZone:"America/New_York",weekday:"short",month:"short",day:"numeric",hour:"numeric",minute:"2-digit",timeZoneName:"short"}).format(new Date(v));
+const money=v=>v===null||v===undefined?"":(Number(v)>0?"+":"")+String(v);
+const order={ATS:0,TOTALS:1,PROPS:2};
+function issuedPanel(p){
+  const label=p.display_market_label||(p.market==="ATS"?"FULL-GAME ATS":p.market==="TOTALS"?"FULL-GAME TOTALS":"PLAYER PROP");
+  const headline=p.display_selection||(p.market==="ATS"?String(p.selection)+" "+String(p.line):String(p.selection)+" "+String(p.line));
+  const pv=Number(p.issued_probability); const pct=Number.isFinite(pv)?(pv*100).toFixed(1)+"%":"N/A";
+  const price=p.american_price===null||p.american_price===undefined?"":` · PRICE ${money(p.american_price)}`;
+  return '<section class="market-panel" data-market="'+esc(p.market)+'" data-position-state="SEALED">'
+    +'<div class="market-label">'+esc(label)+'</div>'
+    +'<div class="market-panel-head"><span class="pick-headline">'+esc(headline)+'</span></div>'
+    +'<div class="meta mono">APEX WIN PROBABILITY: '+esc(pct)+' · Sportsbook: FanDuel'+esc(price)+'</div>'
+    +'<div class="rationale-copy"><p>Sealed at the event-specific T-2 cutoff from the immutable qualified NFL release. The displayed line, price, probability, and market identity are the exact issued values.</p></div></section>';
+}
 fetch("/data/nfl_today.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw new Error("HTTP "+r.status);return r.json()}).then(d=>{
-  const games=d.slate.games||[];
-  if(d.public_issuance!==false||d.position_count!==0||!games.every(g=>Array.isArray(g.positions)&&g.positions.length===0))throw new Error("NFL release-state invariant failed");
-  document.getElementById("slate-meta").textContent=`${games.length} GAMES · TECHNICAL READY · SCIENCE BLOCKED · 0 POSITIONS`;
-  const gate='<article class="game-module" data-game-state="SCIENCE_BLOCKED"><header class="game-header"><div class="game-num mono">GATE</div><div class="game-meta"><h2 class="game-matchup">No NFL picks issued</h2><p class="game-pitchers mono">ATS · QB/RB/WR PROPS · FULL-GAME TOTALS</p></div><div class="game-time mono">0 POSITIONS</div></header><div class="market-grid market-grid--single"><section class="market-panel"><div class="market-label">SCIENTIFIC RELEASE STATE</div><div class="pick-headline">NO QUALIFIED CHAMPION</div><div class="rationale-copy"><p>The acquisition, point-in-time T-3, T-2 serving, and exact-issuance grader machinery is technically ready. Each engine lane remains closed until a candidate earns promotion through chronological evidence. APEX does not publish a forecast, probability, or market position from review scaffolding.</p></div></section></div></article>';
-  const schedule=games.map((g,i)=>'<article class="game-module" data-game="'+esc(g.game_id)+'" data-game-state="SCHEDULED"><header class="game-header"><div class="game-num mono">G'+String(i+1).padStart(2,"0")+'</div><div class="game-meta"><h2 class="game-matchup">'+esc(g.matchup)+'</h2><p class="game-pitchers mono">2026 REGULAR SEASON · WEEK '+esc(g.week)+' · CANONICAL SCHEDULE</p></div><div class="game-time mono">'+esc(stamp(g.kickoff_utc))+'</div></header></article>').join("");
-  document.getElementById("games").innerHTML=gate+schedule;
+  const games=Array.isArray(d?.slate?.games)?d.slate.games:[];
+  const positions=games.reduce((n,g)=>n+(Array.isArray(g.positions)?g.positions.length:0),0);
+  const shell=document.querySelector(".shell");
+  if(shell){shell.setAttribute("data-public-issuance",positions>0?"true":"false");shell.setAttribute("data-picks-state",positions>0?"issued":"science-blocked");}
+  if(positions===0){
+    if(d.public_issuance!==false||Number(d.position_count)!==0||!games.every(g=>Array.isArray(g.positions)&&g.positions.length===0))throw new Error("NFL release-state invariant failed");
+    document.getElementById("slate-meta").textContent=`${games.length} GAMES · TECHNICAL READY · SCIENCE BLOCKED · 0 POSITIONS`;
+    const gate='<article class="game-module" data-game-state="SCIENCE_BLOCKED"><header class="game-header"><div class="game-num mono">GATE</div><div class="game-meta"><h2 class="game-matchup">No NFL picks issued</h2><p class="game-pitchers mono">ATS · QB/RB/WR PROPS · FULL-GAME TOTALS</p></div><div class="game-time mono">0 POSITIONS</div></header><div class="market-grid market-grid--single"><section class="market-panel"><div class="market-label">SCIENTIFIC RELEASE STATE</div><div class="pick-headline">NO QUALIFIED CHAMPION</div><div class="rationale-copy"><p>The acquisition, point-in-time T-3, T-2 serving, and exact-issuance grader machinery is technically ready. Each engine lane remains closed until a candidate earns promotion through chronological evidence. APEX does not publish a forecast, probability, or market position from review scaffolding.</p></div></section></div></article>';
+    const schedule=games.map((g,i)=>'<article class="game-module" data-game="'+esc(g.game_id)+'" data-game-state="SCHEDULED"><header class="game-header"><div class="game-num mono">G'+String(i+1).padStart(2,"0")+'</div><div class="game-meta"><h2 class="game-matchup">'+esc(g.matchup)+'</h2><p class="game-pitchers mono">2026 REGULAR SEASON · WEEK '+esc(g.week)+' · CANONICAL SCHEDULE</p></div><div class="game-time mono">'+esc(stamp(g.kickoff_utc))+'</div></header></article>').join("");
+    document.getElementById("games").innerHTML=gate+schedule; return;
+  }
+  if(d.public_issuance!==true||Number(d.position_count)!==positions)throw new Error("NFL issued-position reconciliation failed");
+  const visible=games.filter(g=>Array.isArray(g.positions)&&g.positions.length);
+  document.getElementById("slate-meta").textContent=`WEEK ${d.slate.week} · ${visible.length} FANDUEL-ISSUED GAMES · ${positions} POSITIONS · SEALED T-2`;
+  document.getElementById("games").innerHTML=visible.map((g,i)=>{
+    const ps=g.positions.slice().sort((a,b)=>(order[a.market]??9)-(order[b.market]??9)||String(a.player_display_name||a.selection).localeCompare(String(b.player_display_name||b.selection)));
+    return '<article class="game-module" data-game="'+esc(g.game_id)+'" data-game-state="ISSUED">'
+      +'<header class="game-header"><div class="game-num mono">G'+String(i+1).padStart(2,"0")+'</div><div class="game-meta"><h2 class="game-matchup">'+esc(g.matchup)+'</h2><p class="game-pitchers mono">2026 REGULAR SEASON · WEEK '+esc(g.week)+' · SEALED T-2 ISSUANCE</p></div><div class="game-time mono">'+esc(stamp(g.kickoff_utc))+'</div></header>'
+      +'<div class="market-grid'+(ps.length===1?' market-grid--single':'')+'">'+ps.map(issuedPanel).join("")+'</div></article>';
+  }).join("");
 }).catch(e=>{document.getElementById("slate-meta").textContent="NFL STATE UNAVAILABLE";document.getElementById("games").innerHTML='<div class="empty-state">FAIL CLOSED · '+esc(e.message)+'</div>'});
 </script>
 </body>

@@ -92,6 +92,17 @@ class NFLPublicStateTest(unittest.TestCase):
             self.assertIn('href="/nfl', text)
             self.assertNotIn("sport-unavailable", text)
 
+    def test_nfl_pages_are_future_issuance_capable(self) -> None:
+        picks = (ROOT / "nfl" / "index.html").read_text(encoding="utf-8")
+        results = (ROOT / "nfl" / "results" / "index.html").read_text(encoding="utf-8")
+        self.assertIn("if(positions===0)", picks)
+        self.assertIn("SEALED T-2", picks)
+        self.assertIn("issuedPanel", picks)
+        self.assertNotIn("d.position_count!==0", picks)
+        self.assertIn("if(issued===0)", results)
+        self.assertIn("Exact Sealed Position Ledger", results)
+        self.assertNotIn("d.issued_position_count!==0", results)
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -43,10 +43,32 @@
 </div>
 <script>
 const esc=v=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));
-fetch("/data/nfl_results_summary.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw new Error("HTTP "+r.status);return r.json()}).then(d=>{
-  if(d.issued_position_count!==0||d.graded_position_count!==0||d.ungraded_position_count!==0)throw new Error("NFL result-state invariant failed");
-  document.getElementById("result-meta").textContent="0 ISSUED · 0 GRADED · SCIENCE BLOCKED";
-  document.getElementById("result").innerHTML='<article class="game-module"><header class="game-header"><div class="game-num mono">LEDGER</div><div class="game-meta"><h2 class="game-matchup">No NFL performance claimed</h2><p class="game-pitchers mono">NO SEALED NFL POSITIONS EXIST</p></div><div class="game-time mono">0–0</div></header><div class="market-grid market-grid--single"><section class="market-panel"><div class="market-label">ISSUED-VERSUS-GRADED RECONCILIATION</div><div class="pick-headline">EMPTY BY SCIENTIFIC DESIGN</div><div class="rationale-copy"><p>'+esc(d.message)+'</p><p>The grader is implemented to settle exact sealed issuance only. It will not reconstruct yesterday’s probability from a later model.</p></div></section></div></article>';
+const rec=r=>`${r.wins||0}-${r.losses||0}${(r.pushes||0)?`-${r.pushes}P`:""}${(r.voids||0)?`-${r.voids}V`:""}`;
+const pct=r=>{const d=(r.wins||0)+(r.losses||0);return d?`${(100*(r.wins||0)/d).toFixed(1)}%`:"N/A"};
+const prob=v=>Number.isFinite(Number(v))?`${(100*Number(v)).toFixed(1)}%`:"N/A";
+Promise.all([
+ fetch("/data/nfl_results_summary.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw new Error("summary HTTP "+r.status);return r.json()}),
+ fetch("/data/nfl_results_archive.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw new Error("archive HTTP "+r.status);return r.json()})
+]).then(([d,a])=>{
+  const issued=Number(d.issued_position_count||0), graded=Number(d.graded_position_count||0), pending=Number(d.ungraded_position_count||0);
+  document.getElementById("result-meta").textContent=`${issued} ISSUED · ${graded} GRADED · ${pending} PENDING`;
+  if(issued===0){
+    if(graded!==0||pending!==0||(a.issuances||[]).length||(a.grades||[]).length)throw new Error("NFL empty-ledger reconciliation failed");
+    document.getElementById("result").innerHTML='<article class="game-module"><header class="game-header"><div class="game-num mono">LEDGER</div><div class="game-meta"><h2 class="game-matchup">No NFL performance claimed</h2><p class="game-pitchers mono">NO SEALED NFL POSITIONS EXIST</p></div><div class="game-time mono">0–0</div></header><div class="market-grid market-grid--single"><section class="market-panel"><div class="market-label">ISSUED-VERSUS-GRADED RECONCILIATION</div><div class="pick-headline">EMPTY BY SCIENTIFIC DESIGN</div><div class="rationale-copy"><p>'+esc(d.message)+'</p><p>The grader settles exact sealed issuance only. It never reconstructs yesterday’s probability from a later model.</p></div></section></div></article>'; return;
+  }
+  const pos=new Map(); (a.issuances||[]).forEach(i=>(i.positions||[]).forEach(p=>pos.set(String(p.position_id),{...p,issuance_id:i.issuance_id,issued_at:i.issued_at,release_id:i.release_id})));
+  const settlement=[]; (a.grades||[]).forEach(g=>(g.settlements||[]).forEach(s=>settlement.push({...s,grade_id:g.grade_id,graded_at:g.graded_at,issuance_id:g.issuance_id})));
+  if(pos.size!==issued||settlement.length!==graded)throw new Error("NFL issued-versus-graded ledger mismatch");
+  const units=settlement.reduce((n,s)=>n+Number(s.flat_unit_result||0),0), ps=d.proper_scores||{};
+  const banner='<section class="result-section"><h2>Season Record</h2><div class="banner">'
+    +'<div class="cell"><div class="label">Overall</div><div class="val mono">'+esc(rec(d.record||{}))+'</div></div>'
+    +'<div class="cell"><div class="label">Win Rate</div><div class="val mono">'+esc(pct(d.record||{}))+'</div></div>'
+    +'<div class="cell"><div class="label">Flat 1u Net</div><div class="val mono">'+esc(units.toFixed(2))+'u</div></div>'
+    +'<div class="cell"><div class="label">Mean LogLoss</div><div class="val mono">'+esc(ps.mean_log_loss===undefined?"N/A":Number(ps.mean_log_loss).toFixed(4))+'</div></div></div></section>';
+  const gradedIds=new Set(settlement.map(s=>String(s.position_id)));
+  const rows=settlement.slice().sort((x,y)=>String(y.graded_at).localeCompare(String(x.graded_at))).map(s=>{const p=pos.get(String(s.position_id))||{};const pick=p.display_selection||`${p.selection||""} ${p.line??s.issued_line??""}`;const market=p.display_market_label||p.market||s.market||"";return `<tr><td class="mono">${esc(String(s.game_id||"").replace("NFL_GAME_", ""))}</td><td>${esc(market)}</td><td>${esc(pick)}</td><td class="mono">${esc(prob(s.issued_probability))}</td><td class="mono">${esc(s.result)}</td><td class="mono">${Number(s.flat_unit_result||0).toFixed(2)}u</td></tr>`}).join("");
+  const pendingRows=[...pos.values()].filter(p=>!gradedIds.has(String(p.position_id))).map(p=>`<tr><td class="mono">${esc(String(p.game_id||"").replace("NFL_GAME_", ""))}</td><td>${esc(p.display_market_label||p.market||"")}</td><td>${esc(p.display_selection||`${p.selection||""} ${p.line??""}`)}</td><td class="mono">${esc(prob(p.issued_probability))}</td><td class="mono">PENDING</td><td class="mono">—</td></tr>`).join("");
+  document.getElementById("result").innerHTML=banner+'<section class="result-section"><h2>Exact Sealed Position Ledger</h2><table class="results"><thead><tr><th>Game</th><th>Market</th><th>As Issued</th><th>Probability</th><th>Result</th><th>Flat 1u</th></tr></thead><tbody>'+rows+pendingRows+'</tbody></table></section>';
 }).catch(e=>{document.getElementById("result-meta").textContent="NFL RESULTS UNAVAILABLE";document.getElementById("result").innerHTML='<div class="empty-state">FAIL CLOSED · '+esc(e.message)+'</div>'});
 </script>
 </body>
