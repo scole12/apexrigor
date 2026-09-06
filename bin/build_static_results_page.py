@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
-import html, json, sys
+import html, json, os, sys
 from pathlib import Path
 from datetime import datetime
-import sys as _sys; _sys.path.insert(0, '/opt/apex_site/bin')
+RELEASE_ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+sys.path.insert(0, str(RELEASE_ROOT / "bin"))
+sys.path.insert(0, str(RELEASE_ROOT / "lib" / "pipeline"))
 from _apex_head import get_head_block, verify_branding
-import sys
 
-sys.path.insert(0, "/opt/apex_mlb/current/bin")
 from apex_visual_presentation_guard import guard_write
 from apex_canonical_results_summary import build_canonical_results_summary
 from apex_tier_grading_authority import (
@@ -14,11 +15,18 @@ from apex_tier_grading_authority import (
     SITE_TIER_DAILY_ARCHIVE_PATH,
     tier_rows_for_display,
 )
-JSON_PATH = Path("/opt/apex_site/data/results_archive.json")
-SUMMARY_PATH = Path("/opt/apex_site/data/apex_results_summary.json")
-SITE_DATA = Path("/opt/apex_site/data")
-OUT = Path("/opt/apex_site/results/index.html")
-RESULTS_HTML_ALT = Path("/opt/apex_site/results.html")
+SITE_ROOT = Path(os.environ.get("APEX_SITE_ROOT", "/opt/apex_site"))
+JSON_PATH = SITE_ROOT / "data/results_archive.json"
+SITE_DATA = SITE_ROOT / "data"
+OUT = SITE_ROOT / "results/index.html"
+
+
+def _parse_record(rec: str) -> dict[str, int]:
+    parts = [p.strip() for p in str(rec or "0-0-0").split("-")]
+    w = int(parts[0]) if parts else 0
+    l = int(parts[1]) if len(parts) > 1 else 0
+    p = int(str(parts[2]).replace("P", "").replace("p", "")) if len(parts) > 2 else 0
+    return {"W": w, "L": l, "PUSH": p}
 
 
 def _fmt_market(m: dict) -> str:
@@ -63,7 +71,7 @@ def build_latest_slate_detail() -> str:
     pend = sum(1 for r in rows if _status(r.get("outcome", "")) == "PENDING")
     void = sum(1 for r in rows if _status(r.get("outcome", "")) == "VOID")
     games = len({str(r.get("game_pk") or r.get("game_num") or "") for r in rows})
-    meta = f"{games} GAMES · {len(rows)} POSITIONS ISSUED · {terminal} GRADED"
+    meta = f"{games} GAMES · {len(rows)} POSITIONS ISSUED · {terminal} W/L/P SETTLED"
     if pend:
         meta += f" · {pend} PENDING"
     if void:
@@ -100,10 +108,6 @@ def build():
         print(f"BLOCKED: missing {JSON_PATH}", file=sys.stderr); sys.exit(2)
     d = json.loads(JSON_PATH.read_text())
     summary = build_canonical_results_summary(d)
-    if SUMMARY_PATH.exists():
-        ms = json.loads(SUMMARY_PATH.read_text(encoding="utf-8"))
-        if ms.get("overall") and (ms.get("sports") or {}).get("mlb"):
-            summary = ms
     season = d.get("season", {}) or {}
     archive = d.get("archive", []) or []
     baseline = d.get("baseline", {}) or {}
@@ -143,26 +147,55 @@ def build():
       </tr>""")
     archive_html = "\n".join(rows_html)
 
+
     tier_html = ""
     if SITE_TIER_SUMMARY_PATH.exists():
         tier_summary = json.loads(SITE_TIER_SUMMARY_PATH.read_text(encoding="utf-8"))
+        # NCAAF-shaped single as-issued era over ALL living-authority graded
+        # positions (windows.all_time). Dual LEGACY/CALIBRATED brackets are
+        # forbidden on the public MLB Results surface.
         disp = tier_rows_for_display(tier_summary, "all_time")
+        if not (disp.get("ats_by_tier") and disp.get("totals_by_tier") and disp.get("combined_by_tier")):
+            raise RuntimeError("FAIL_CLOSED:missing_all_time_tier_tables")
+        by_era = tier_summary.get("tier_records_by_era") or {}
+        all_time = (tier_summary.get("windows") or {}).get("all_time") or {}
+        if by_era and all_time:
+            for market_key in ("ats_by_tier", "totals_by_tier", "combined_by_tier"):
+                for tier_name in ("WEAK", "MODERATE", "STRONG", "ELITE"):
+                    a = ((all_time.get(market_key) or {}).get(tier_name) or {})
+                    w = sum(int((((by_era.get(e) or {}).get(market_key) or {}).get(tier_name) or {}).get("W") or 0) for e in by_era)
+                    l = sum(int((((by_era.get(e) or {}).get(market_key) or {}).get(tier_name) or {}).get("L") or 0) for e in by_era)
+                    p = sum(int((((by_era.get(e) or {}).get(market_key) or {}).get(tier_name) or {}).get("P") or 0) for e in by_era)
+                    if int(a.get("W") or 0) != w or int(a.get("L") or 0) != l or int(a.get("P") or 0) != p:
+                        raise RuntimeError(
+                            f"FAIL_CLOSED:all_time_era_sum_mismatch:{market_key}:{tier_name}"
+                        )
+
+        def _MONTH(iso: str) -> str:
+            raw = str(iso or "")[:10]
+            try:
+                return datetime.strptime(raw, "%Y-%m-%d").strftime("%B %-d, %Y").upper()
+            except Exception:
+                return raw or ""
+
         daily_archive = (
             json.loads(SITE_TIER_DAILY_ARCHIVE_PATH.read_text(encoding="utf-8"))
             if SITE_TIER_DAILY_ARCHIVE_PATH.exists()
             else {}
         )
-
-        def _MONTH(iso: str) -> str:
-            try:
-                return datetime.strptime(iso, "%Y-%m-%d").strftime("%B %-d, %Y").upper()
-            except Exception:
-                return iso or ""
-
-        era_start = daily_archive.get("tier_era_start") or tier_summary.get("tier_ledger_era_start", "")
-        era_end = daily_archive.get("tier_era_end") or tier_summary.get("latest_graded_date", "")
-        era_label = f"{_MONTH(era_start)} — {_MONTH(era_end)}"
-
+        era_start = (
+            daily_archive.get("tier_era_start")
+            or tier_summary.get("tier_ledger_era_start")
+            or ""
+        )
+        era_end = (
+            daily_archive.get("tier_era_end")
+            or tier_summary.get("latest_graded_date")
+            or ""
+        )
+        if not era_start or not era_end:
+            raise RuntimeError("FAIL_CLOSED:missing_as_issued_date_range")
+        era_meta = f"{_MONTH(era_start)} — {_MONTH(era_end)}"
         era = "AS_ISSUED"
 
         def _tier_rows_body(rows: list, market: str) -> str:
@@ -183,43 +216,36 @@ def build():
   </table>
 """
 
-        # Two-column desktop (ATS | Totals), stacked on mobile via .tier-grid
-        two_col = (
+        tier_html = (
+            '  <div class="section-head">\n'
+            '    <div class="title">AS-ISSUED TIER PERFORMANCE</div>\n'
+            f'    <div class="meta mono">{html.escape(era_meta)}</div>\n'
+            "  </div>\n"
             '  <div class="tier-grid">\n'
             '    <div class="tier-col">\n'
-            '      <div class="tier-sub">F5 ATS BY CONFIDENCE TIER</div>\n'
+            '      <div class="tier-sub">ATS BY CONFIDENCE TIER</div>\n'
             + _tier_table(disp["ats_by_tier"], "ATS")
             + "    </div>\n"
             '    <div class="tier-col">\n'
-            '      <div class="tier-sub">F5 TOTALS BY CONFIDENCE TIER</div>\n'
+            '      <div class="tier-sub">TOTALS BY CONFIDENCE TIER</div>\n'
             + _tier_table(disp["totals_by_tier"], "TOTALS")
             + "    </div>\n"
             "  </div>\n"
-        )
-
-        # Combined (diagnostic only) beneath
-        combined_html = (
             '  <div class="tier-sub">COMBINED MLB BY CONFIDENCE TIER</div>\n'
             '  <div class="tier-single">\n'
             + _tier_table(disp["combined_by_tier"], "COMBINED")
             + "  </div>\n"
         )
-
-        tier_html = (
-            '  <div class="section-head">\n'
-            '    <div class="title">AS-ISSUED TIER PERFORMANCE</div>\n'
-            f'    <div class="meta mono">{html.escape(era_label)}</div>\n'
-            "  </div>\n"
-            + two_col
-            + combined_html
-        )
-
         banned = (
             "LEGACY AS-ISSUED",
             "LEGACY TIER ERA",
             "LEGACY_AS_ISSUED",
             "CURRENT MAX-WIN CALIBRATED",
             "CALIBRATED CONFIDENCE ERA",
+            "data-apex-tier-era=\"CALIBRATED_CONFIDENCE\"",
+            "data-apex-tier-era=\"LEGACY_AS_ISSUED\"",
+            "F5 ATS BY CONFIDENCE TIER",
+            "F5 TOTALS BY CONFIDENCE TIER",
         )
         for token in banned:
             if token in tier_html:
@@ -227,12 +253,7 @@ def build():
 
     slate_html = build_latest_slate_detail()
 
-    generated_at = str(summary.get("generated_at_et") or "")
-    try:
-        report_date = datetime.fromisoformat(generated_at).date()
-    except (TypeError, ValueError):
-        report_date = datetime.now().date()
-    today_str = report_date.strftime("%A, %B %d, %Y").upper()
+    today_str = datetime.now().strftime("%A, %B %d, %Y").upper()
     HEAD_BLOCK = get_head_block("APEX — Results", "/results", "APEX Quantitative Forecasting — graded daily results archive.")
     out = f"""<!doctype html>
 <html lang="en">
@@ -252,14 +273,14 @@ def build():
   </div>
   <div class="apex-nav-stack">
   <nav class="sport-nav" aria-label="Sport selector">
-    <a href="/results" class="active" aria-current="true">MLB</a>
-    <a href="/ncaaf/results">NCAA FOOTBALL</a>
-    <a href="/mma/results">MMA / UFC</a>
-    <a href="/nfl/results">NFL</a>
+    <a href="/" class="active" aria-current="true">MLB</a>
+    <a href="/ncaaf">NCAA FOOTBALL</a>
+    <a href="/nfl">NFL</a>
+    <a href="/mma">MMA / UFC</a>
   </nav>
   <nav class="section-nav" aria-label="MLB sections">
     <a href="/">PICKS</a>
-    <a href="/results" class="active" aria-current="true">RESULTS</a>
+    <a href="/results" class="active">RESULTS</a>
     <a href="/about">ABOUT</a>
   </nav>
   </div>
@@ -267,7 +288,7 @@ def build():
     <div class="title">SEASON RECORD</div>
     <div class="meta mono">{html.escape(today_str)} · {s_rows} POSITIONS TRACKED</div>
   </div>
-  <div class="banner">
+  <div class="banner" data-apex-season-record="{html.escape(s_record)}" data-apex-season-win-rate="{html.escape(s_wr)}" data-apex-ats-record="{html.escape(fmt_market(ats))}" data-apex-totals-record="{html.escape(fmt_market(tot))}">
     <div class="cell"><div class="label">Overall</div><div class="val mono">{html.escape(s_record)}</div></div>
     <div class="cell"><div class="label">Win Rate</div><div class="val mono">{html.escape(s_wr)}</div></div>
     <div class="cell"><div class="label">F5 Spread</div><div class="val mono">{html.escape(fmt_market(ats))}</div></div>
@@ -291,10 +312,8 @@ def build():
     _ok, _missing = verify_branding(out)
     if not _ok:
         raise RuntimeError(f"BRANDING_CONTRACT_VIOLATION: results page missing tags: {_missing}")
-    guard_write(OUT)
     OUT.write_text(out)
-    guard_write(RESULTS_HTML_ALT)
-    RESULTS_HTML_ALT.write_text(out)
+    guard_write(OUT)
     print(f"STATIC_RESULTS_PAGE_BUILT: {OUT}")
 if __name__ == "__main__":
     build()
