@@ -72,7 +72,7 @@ function issuedPanel(p){
 fetch("/data/nfl_today.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw new Error("HTTP "+r.status);return r.json()}).then(d=>{
   const games=Array.isArray(d?.slate?.games)?d.slate.games:[];
   document.getElementById("slate-title").textContent=d?.slate?.week ? `WEEK ${d.slate.week}` : "NFL GAMES";
-  const labels={NEXT_T3:"NEXT DATA REPORT",NEXT_T2:"NEXT PICKS",NEXT_GRADER:"NEXT RESULTS"};
+  const labels={NEXT_T3:"NEXT DATA REPORT",NEXT_T2:"NEXT PICKS"};
   const timeET=v=>new Date(v).toLocaleString("en-US",{timeZone:"America/New_York",month:"short",day:"numeric",hour:"numeric",minute:"2-digit"})+" ET";
   document.getElementById("next-up").textContent=Object.entries(labels).filter(([key])=>d.next_up?.[key]?.at_utc).map(([key,label])=>label+": "+timeET(d.next_up[key].at_utc)).join(" · ");
   if(d.slate?.season_type==="POST")document.getElementById("slate-title").textContent=d.slate.week>=22?"SUPER BOWL":"PLAYOFFS";
