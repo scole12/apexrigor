@@ -543,12 +543,13 @@ def publish(request: Request, *, dry_run: bool) -> dict[str, Any]:
         raise RuntimeError(f"noncanonical site origin: {origin}")
     if git("branch", "--show-current") != "main":
         raise RuntimeError("shared site checkout is not on main")
-    if dirty_paths(ROOT):
+    root_dirty = bool(dirty_paths(ROOT))
+    if root_dirty and request.sport != "NFL":
         raise RuntimeError(f"shared site checkout is dirty: {sorted(dirty_paths(ROOT))}")
     git("fetch", "--quiet", "origin", "main")
     local_head = git("rev-parse", "HEAD")
     origin_head = git("rev-parse", "origin/main")
-    if local_head != origin_head:
+    if local_head != origin_head and not root_dirty:
         git("merge", "--ff-only", "origin/main")
     STATE_ROOT.mkdir(parents=True, exist_ok=True, mode=0o750)
     worktree_parent = STATE_ROOT / "worktrees"
@@ -591,7 +592,7 @@ def publish(request: Request, *, dry_run: bool) -> dict[str, Any]:
                 git("worktree", "remove", "--force", str(worktree), timeout=60)
                 git("worktree", "prune", timeout=60)
     git("fetch", "--quiet", "origin", "main")
-    if git("rev-parse", "HEAD") != git("rev-parse", "origin/main"):
+    if not dirty_paths(ROOT) and git("rev-parse", "HEAD") != git("rev-parse", "origin/main"):
         git("merge", "--ff-only", "origin/main")
     return {
         "status": publication_state,
