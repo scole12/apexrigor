@@ -328,17 +328,20 @@ jobs:
               recipients.extend(value.strip() for value in raw.replace(';',',').split(',') if value.strip())
           recipients=list(dict.fromkeys(recipients))
           assert recipients
-          if product in ('T3','T2'):
-              # The owner-approved NCAA live-stage contract is Scott, Ray and
-              # Jeff.  Preserve the configured addresses while excluding the
-              # older grader-only Debbie recipient from live-stage products.
+          if product == 'T3':
+              # Scott law 2026-09-06: T3 is Scott/Jeff/Ray only.
               recipients=[
                   value for value in recipients
                   if value.lower()!='debbiemille@gmail.com'
               ]
               assert len(recipients)==3, 'NCAA live-stage recipient contract must resolve to exactly three recipients'
           else:
-              assert 'debbiemille@gmail.com' in {value.lower() for value in recipients}, 'required NCAA grader recipient Debbie is absent'
+              # Scott law 2026-09-06: Debbie must receive every T2 picks email.
+              if product == 'T2' and 'debbiemille@gmail.com' not in {value.lower() for value in recipients}:
+                  recipients.append('debbiemille@gmail.com')
+              assert 'debbiemille@gmail.com' in {value.lower() for value in recipients}, 'required NCAA T2/grader recipient Debbie is absent'
+              if product == 'T2':
+                  assert len(recipients)==4, 'NCAA T2 must include Scott, Jeff, Ray and Debbie'
           message=EmailMessage()
           message['From']=os.environ['EMAIL_FROM']
           message['To']=', '.join(recipients)
