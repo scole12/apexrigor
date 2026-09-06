@@ -308,6 +308,18 @@ def discover_nfl() -> list[Request]:
         return requests
     for path in sorted(NFL_QUEUE.glob("*.json")):
         queue = load_json(path)
+        if queue.get('schema') == 'apex.nfl.stage_publication_queue.v2':
+            stage_path = Path(str(queue.get('stage_receipt_path') or ''))
+            valid_root = any(contained(stage_path, root) for root in (
+                Path('/var/opt/apex_nfl/state/cohorts'), Path('/var/opt/apex_nfl/state/stage_events')))
+            if (not valid_root or not stage_path.is_file()
+                or sha256_file(stage_path) != queue.get('stage_receipt_sha256')
+                or queue.get('status') != 'QUEUED' or queue.get('stage') not in {'T3', 'T2', 'GRADER'}):
+                raise RuntimeError('Invalid NFL stage publication binding')
+            request = Request('NFL', str(queue['request_id']), queue, None)
+            if not is_complete(request):
+                requests.append(request)
+            continue
         if queue.get("schema") != "apex.nfl.publication_queue.v1" or queue.get("status") != "QUEUED":
             raise RuntimeError(f"invalid NFL queue object: {path}")
         issuance_path = Path(str(queue.get("issuance_path") or ""))
@@ -509,6 +521,11 @@ def build_request(request: Request, worktree: Path) -> dict[str, Any]:
         python_tool(worktree, "build_nfl_public_payload.py")
     else:
         raise RuntimeError(f"unsupported sport publication request: {request.sport}")
+    if request.sport == 'NFL':
+        changed = dirty_paths(worktree)
+        if any(not (p.startswith('data/nfl_') or p.startswith('nfl/')) for p in changed):
+            raise RuntimeError('NFL publication attempted a non-NFL path')
+        return {'changed_paths': sorted(changed), 'audit_tail': 'NFL authority-bound builder completed'}
     python_tool(worktree, "apply_shared_sport_selector.py", "--root", str(worktree))
     python_tool(worktree, "apply_cloudflare_web_analytics.py", "--root", str(worktree))
     python_tool(worktree, "apply_vercel_web_analytics.py", "--root", str(worktree))
@@ -805,11 +822,11 @@ def dispatch_ncaaf_email(request: Request, receipt: dict[str, Any]) -> dict[str,
     return complete
 
 
-def execute(*, dry_run: bool) -> dict[str, Any]:
+def execute(*, dry_run: bool, sport: str | None = None) -> dict[str, Any]:
     LOCK_PATH.parent.mkdir(parents=True, exist_ok=True)
     with LOCK_PATH.open("a+", encoding="utf-8") as lock:
         fcntl.flock(lock.fileno(), fcntl.LOCK_EX)
-        pending = discover()
+        pending = discover_nfl() if sport == "NFL" else discover()
         if not pending:
             return {"status": "NO_PENDING_REQUEST", "pending_count": 0}
         request = pending[0]
@@ -827,9 +844,10 @@ def execute(*, dry_run: bool) -> dict[str, Any]:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--dry-run", action="store_true")
+    parser.add_argument("--sport", choices=("NFL",))
     arguments = parser.parse_args()
     try:
-        print(json.dumps(execute(dry_run=arguments.dry_run), indent=2, sort_keys=True))
+        print(json.dumps(execute(dry_run=arguments.dry_run, sport=arguments.sport), indent=2, sort_keys=True))
         return 0
     except Exception as error:
         print(

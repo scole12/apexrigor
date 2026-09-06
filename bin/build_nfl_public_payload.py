@@ -14,6 +14,9 @@ import json
 import os
 from pathlib import Path
 import sqlite3
+import sys
+sys.path.insert(0, "/opt/apex_nfl/src")
+from apex_nfl.season_clock import season_clock
 from typing import Any
 from zoneinfo import ZoneInfo
 
@@ -135,6 +138,7 @@ def schedule(as_of: datetime | None = None) -> tuple[list[dict[str, Any]], dict[
     next_identity = history_connection.execute(
         """SELECT season,season_type,week FROM canonical_games
             WHERE season>=2026 AND retracted_at IS NULL
+              AND season_type IN ('REG','POST')
               AND game_status IN ('SCHEDULED','DELAYED','POSTPONED')
               AND kickoff_ts>=?
             ORDER BY kickoff_ts,game_id LIMIT 1""",
@@ -159,7 +163,12 @@ def schedule(as_of: datetime | None = None) -> tuple[list[dict[str, Any]], dict[
     if not rows:
         raise RuntimeError("NFL next canonical schedule cohort is empty")
     games: list[dict[str, Any]] = []
+    next_day = min(datetime.fromisoformat(str(row['kickoff_ts']).replace('Z', '+00:00')).astimezone(NY).date()
+                   for row in rows if datetime.fromisoformat(str(row['kickoff_ts']).replace('Z', '+00:00')) >= current)
     for row in rows:
+        if (datetime.fromisoformat(str(row['kickoff_ts']).replace('Z', '+00:00')).astimezone(NY).date() != next_day
+            or row['game_status'] not in {'SCHEDULED', 'DELAYED', 'POSTPONED'}):
+            continue
         kickoff = datetime.fromisoformat(str(row["kickoff_ts"]).replace("Z", "+00:00"))
         away_id, home_id = str(row["away_team_id"]), str(row["home_team_id"])
         if away_id not in names or home_id not in names:
@@ -235,9 +244,11 @@ def physical_runtime_state(as_of: datetime | None = None) -> dict[str, Any]:
         ).fetchone()[0]) if completion_present else 0
     finally:
         connection.close()
+    clock = season_clock(HIST, current, COHORT_ROOT)
     return {
-        "active_capture_slot_count": slots,
-        "active_cohort_count": cohorts,
+        **clock,
+        "active_capture_slot_count": clock["active_capture_slot_count"],
+        "active_cohort_count": clock["active_cohort_count"],
         "completed_capture_slot_count": completed,
         "retryable_incomplete_capture_count": retry_pending,
         "critical_missed_capture_count": critical_missed,
@@ -335,7 +346,7 @@ def main() -> int:
     hydration, runtime, receipt = load_verified_state()
     games, schedule_state = schedule()
     physical = physical_runtime_state()
-    generated_at = str(hydration["completed_at"])
+    generated_at = datetime.now(UTC).isoformat().replace("+00:00", "Z")
     scientific_state, release = release_state()
     issuances, grades = sealed_history()
     team_connection = ro(TEAM)
@@ -399,8 +410,7 @@ def main() -> int:
                for lane in ("ATS", "PROPS", "TOTALS")}
     infrastructure_ready = bool(
         physical["completion_ledger_present"]
-        and physical["active_capture_slot_count"] == 708
-        and physical["active_cohort_count"] == 118
+        and physical["schedule_coverage_status"] == "PASS"
         and physical["critical_missed_capture_count"] == 0
         and runtime["sealed_file_hash_mismatch_count"] == 0
     )
@@ -445,6 +455,8 @@ def main() -> int:
     }
     issued_position_count = sum(len(row["positions"]) for row in issuances)
     shared = {
+        "next_up": {k: physical[k] for k in ("NEXT_T3", "NEXT_T2", "NEXT_GRADER")},
+        "season_continuity": physical["postseason_state"],
         "generated_at_utc": generated_at,
         "technical_status": technical_status,
         "scientific_release_state": scientific_state,
@@ -455,7 +467,7 @@ def main() -> int:
             "status": "PASS",
             "retrieval_mode": str(hydration["retrieval_mode"]),
             "retrieved_at_utc": str(hydration["retrieved_at"]),
-            "completed_at_utc": generated_at,
+            "completed_at_utc": str(hydration["completed_at"]),
             "source_to_target_parity": "PASS",
             "cross_authority_completion": str(
                 hydration["cross_authority_completion"]["status"]
@@ -498,7 +510,9 @@ def main() -> int:
             "retryable_incomplete_capture_count": physical["retryable_incomplete_capture_count"],
             "critical_missed_capture_count": physical["critical_missed_capture_count"],
             "week_min": 1,
-            "week_max": 18,
+            "week_max": max(18, int(schedule_state["week"])),
+            "season_types": ["REG", "POST"],
+            "super_bowl_included": True,
             "persistent_timer_count": 4,
         },
     }
