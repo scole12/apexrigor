@@ -163,9 +163,11 @@ def build():
         era_end = daily_archive.get("tier_era_end") or tier_summary.get("latest_graded_date", "")
         era_label = f"{_MONTH(era_start)} — {_MONTH(era_end)}"
 
-        def _tier_rows_body(rows: list) -> str:
+        era = "AS_ISSUED"
+
+        def _tier_rows_body(rows: list, market: str) -> str:
             return "".join(
-                f"""      <tr>
+                f"""      <tr data-apex-tier-era="{html.escape(era)}" data-apex-tier-market="{html.escape(market)}" data-apex-tier="{html.escape(r['tier'].upper())}" data-apex-record="{html.escape(r['record'])}" data-apex-win-rate="{html.escape(r['win_pct'])}">
         <td class="mono">{html.escape(r['tier'])}</td>
         <td class="mono">{html.escape(r['record'])}</td>
         <td class="mono muted">{html.escape(r['win_pct'])}</td>
@@ -173,11 +175,11 @@ def build():
                 for r in rows
             )
 
-        def _tier_table(rows: list) -> str:
+        def _tier_table(rows: list, market: str) -> str:
             return f"""  <table class="results">
     <thead><tr><th>Tier</th><th>Record</th><th>Win Rate</th></tr></thead>
     <tbody>
-{_tier_rows_body(rows)}    </tbody>
+{_tier_rows_body(rows, market)}    </tbody>
   </table>
 """
 
@@ -186,11 +188,11 @@ def build():
             '  <div class="tier-grid">\n'
             '    <div class="tier-col">\n'
             '      <div class="tier-sub">F5 ATS BY CONFIDENCE TIER</div>\n'
-            + _tier_table(disp["ats_by_tier"])
+            + _tier_table(disp["ats_by_tier"], "ATS")
             + "    </div>\n"
             '    <div class="tier-col">\n'
             '      <div class="tier-sub">F5 TOTALS BY CONFIDENCE TIER</div>\n'
-            + _tier_table(disp["totals_by_tier"])
+            + _tier_table(disp["totals_by_tier"], "TOTALS")
             + "    </div>\n"
             "  </div>\n"
         )
@@ -199,7 +201,7 @@ def build():
         combined_html = (
             '  <div class="tier-sub">COMBINED MLB BY CONFIDENCE TIER</div>\n'
             '  <div class="tier-single">\n'
-            + _tier_table(disp["combined_by_tier"])
+            + _tier_table(disp["combined_by_tier"], "COMBINED")
             + "  </div>\n"
         )
 
@@ -211,6 +213,17 @@ def build():
             + two_col
             + combined_html
         )
+
+        banned = (
+            "LEGACY AS-ISSUED",
+            "LEGACY TIER ERA",
+            "LEGACY_AS_ISSUED",
+            "CURRENT MAX-WIN CALIBRATED",
+            "CALIBRATED CONFIDENCE ERA",
+        )
+        for token in banned:
+            if token in tier_html:
+                raise RuntimeError(f"FAIL_CLOSED:banned_token_in_tier_html:{token}")
 
     slate_html = build_latest_slate_detail()
 
