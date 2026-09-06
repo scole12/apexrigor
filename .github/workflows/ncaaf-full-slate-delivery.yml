@@ -352,6 +352,21 @@ jobs:
           message['X-APEX-NCAA-Public-Payload-SHA256']=public_sha
           message['X-APEX-NCAA-Delivery-Mode']=delivery_mode
           message.set_content(body)
+          # LAW 2026-09-06: elite black HTML multipart/alternative (never text/plain-only)
+          import importlib.util as _ilu
+          _mod_path = pathlib.Path('bin/apex_elite_grader_email_html.py')
+          if not _mod_path.is_file():
+              raise RuntimeError('missing bin/apex_elite_grader_email_html.py — elite black HTML LAW')
+          _spec = _ilu.spec_from_file_location('apex_elite_grader_email_html', _mod_path)
+          _elite = _ilu.module_from_spec(_spec); _spec.loader.exec_module(_elite)
+          _receipt = None
+          if product == 'RESULTS':
+              try:
+                  _receipt = str(results_receipt)
+              except Exception:
+                  _receipt = None
+          _html = _elite.elite_grader_email_html(subject, body, receipt_sha256=_receipt)
+          message.add_alternative(_html, subtype='html')
           attachment_evidence=[]
           for filename in attachments:
               path=root/filename
