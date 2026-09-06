@@ -311,10 +311,11 @@ def discover_nfl() -> list[Request]:
         if queue.get('schema') == 'apex.nfl.stage_publication_queue.v2':
             stage_path = Path(str(queue.get('stage_receipt_path') or ''))
             valid_root = any(contained(stage_path, root) for root in (
-                Path('/var/opt/apex_nfl/state/cohorts'), Path('/var/opt/apex_nfl/state/stage_events')))
+                Path('/var/opt/apex_nfl/state/cohorts'), Path('/var/opt/apex_nfl/state/stage_events'),
+                Path('/var/opt/apex_nfl/state/season_refresh')))
             if (not valid_root or not stage_path.is_file()
                 or sha256_file(stage_path) != queue.get('stage_receipt_sha256')
-                or queue.get('status') != 'QUEUED' or queue.get('stage') not in {'T3', 'T2', 'GRADER'}):
+                or queue.get('status') != 'QUEUED' or queue.get('stage') not in {'T3', 'T2', 'GRADER', 'SCHEDULE_REFRESH'}):
                 raise RuntimeError('Invalid NFL stage publication binding')
             request = Request('NFL', str(queue['request_id']), queue, None)
             if not is_complete(request):
