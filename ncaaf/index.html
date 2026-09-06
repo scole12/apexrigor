@@ -19,6 +19,7 @@
 <link rel="stylesheet" href="/assets/apex.css?v=apex-20260903-ncaaf-issued-tier-parity">
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "2ee12644257c4dd3b0357c59a12a109c"}'></script><!-- End Cloudflare Web Analytics -->
 <!-- Vercel Web Analytics --><script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script><script defer src="/_vercel/insights/script.js"></script><!-- End Vercel Web Analytics -->
+
 </head>
 <body>
 <div class="shell" data-picks-state="quiet" data-public-issuance="false" data-sport="NCAAF" data-slate-date="2026-09-06">
@@ -73,13 +74,17 @@ fetch("/data/ncaaf_today.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw new E
  const epoch=doc.active_engine_epoch||{};
  const ats=((epoch.ATS||{}).model_id)||"D2";
  const totals=((epoch.TOTALS||{}).model_id)||"TOTALS-V5-RECONCILED-POOL";
- document.getElementById("slate-meta").textContent=dateLabel(s.slate_date_et)+" · "+visibleGames.length+" FANDUEL-ISSUED GAMES · "+positions+" POSITIONS · ATS MODEL "+ats+" · TOT MODEL "+totals;
+ const unissued=String(s.display_state||"")==="UNISSUED"||positions===0;
+ document.getElementById("slate-meta").textContent=unissued?(dateLabel(s.slate_date_et)+" · "+visibleGames.length+" SCHEDULED GAMES · "+positions+" POSITIONS · UNISSUED · AWAITING T-2 · ATS MODEL "+ats+" · TOT MODEL "+totals):(dateLabel(s.slate_date_et)+" · "+visibleGames.length+" FANDUEL-ISSUED GAMES · "+positions+" POSITIONS · ATS MODEL "+ats+" · TOT MODEL "+totals);
  const shell=document.querySelector(".shell");
  if(shell){shell.setAttribute("data-slate-date",s.slate_date_et);shell.setAttribute("data-public-issuance",positions>0?"true":"false");}
  document.getElementById("games").innerHTML=visibleGames.map((g,i)=>{
    const issuedPositions=(Array.isArray(g.positions)?g.positions:[]).filter(p=>p&&p.market_type);
    const clock=g.schedule_time_status==="UNRESOLVED_TBD"?"TIME TBA":esc(g.kickoff_display_et||"TIME TBA");
-   const panels=issuedPositions.slice().sort((a,b)=>(a.market_type==="ATS"?0:1)-(b.market_type==="ATS"?0:1)).map(issuedPanel).join("");
+   let panels=issuedPositions.slice().sort((a,b)=>(a.market_type==="ATS"?0:1)-(b.market_type==="ATS"?0:1)).map(issuedPanel).join("");
+   if(!issuedPositions.length){
+     panels='<section class="market-panel" data-position-state="UNISSUED"><div class="market-label">STATUS</div><div class="market-panel-head"><span class="pick-headline">UNISSUED — AWAITING T-2</span><span class="tier-badge tier-badge--moderate">SCHEDULED</span></div><div class="rationale-copy"><p>Listed from the official schedule. No sealed FanDuel-issued APEX positions yet.</p></div></section>';
+   }
    const context=esc(String(g.fbs_fcs_classification||"").replaceAll("_"," "))+" · "+esc(g.venue||"Venue not published");
    return '<article class="game-module" data-game="'+esc(g.game_id)+'" data-game-state="ISSUED">'
     +'<header class="game-header"><div class="game-num mono">G'+String(i+1).padStart(2,"0")+'</div><div class="game-meta">'
