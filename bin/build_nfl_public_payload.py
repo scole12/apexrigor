@@ -550,6 +550,8 @@ def main() -> int:
     for name, payload in outputs.items():
         atomic_write(DATA / name, payload)
         print(f"NFL_PUBLIC_PAYLOAD={name} SHA256={sha256(DATA / name)}")
+    from build_nfl_public_board import build as build_board
+    build_board(ROOT)
     return 0
 
 

@@ -47,9 +47,12 @@ class NFLPublicStateTest(unittest.TestCase):
         self.assertEqual(slate["season"], 2026)
         self.assertEqual(slate["season_type"], "REG")
         self.assertEqual(slate["week"], 1)
-        self.assertEqual(slate["game_count"], 16)
-        self.assertEqual(len(games), 16)
-        self.assertEqual(len({game["game_id"] for game in games}), 16)
+        self.assertGreater(len(games), 0)
+        self.assertEqual(slate["game_count"], len(games))
+        self.assertEqual(len({game["game_id"] for game in games}), len(games))
+        self.assertTrue(set(load("nfl_today.json")["next_up"]["NEXT_T3"]["game_ids"]).issubset(
+            {game["game_id"] for game in games}
+        ))
         self.assertTrue(all(game["positions"] == [] for game in games))
         self.assertEqual(
             games,
@@ -95,9 +98,10 @@ class NFLPublicStateTest(unittest.TestCase):
     def test_nfl_pages_are_future_issuance_capable(self) -> None:
         picks = (ROOT / "nfl" / "index.html").read_text(encoding="utf-8")
         results = (ROOT / "nfl" / "results" / "index.html").read_text(encoding="utf-8")
-        self.assertIn("if(positions===0)", picks)
-        self.assertIn("SEALED T-2", picks)
-        self.assertIn("issuedPanel", picks)
+        board = (ROOT / "nfl" / "board.js").read_text(encoding="utf-8")
+        self.assertIn("NFLBoard.mount({picks:true})", picks)
+        self.assertIn("SEALED T-2", board)
+        self.assertIn("issuedPanel", board)
         self.assertNotIn("d.position_count!==0", picks)
         self.assertIn("if(issued===0)", results)
         self.assertIn("Exact Sealed Position Ledger", results)

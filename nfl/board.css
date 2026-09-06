@@ -1,0 +1,22 @@
+.shell[data-sport="NFL"] .nfl-board{margin-top:8px}
+.nfl-board .section-head{gap:16px;flex-wrap:wrap}
+.nfl-board .section-head .title{margin:0;font-weight:500}
+.nfl-board .nfl-game{margin-top:20px;padding:26px!important;border:1px solid #272727;background:#080808}
+.nfl-board .game-header{grid-template-columns:44px minmax(0,1fr) auto;gap:16px;border-bottom:1px solid #242424;padding-bottom:22px}
+.nfl-board .game-matchup{font-size:24px;letter-spacing:-.02em;line-height:1.3;max-width:540px}
+.nfl-eyebrow{font-size:10px;letter-spacing:.12em;color:#aaa;margin:0 0 12px}
+.nfl-board .game-num{font-size:10px;color:#bbb}
+.nfl-board .game-time{color:#e4e4e4;letter-spacing:.03em;line-height:1.7}
+.nfl-kick-label{display:block;font-size:9px;letter-spacing:.12em;color:#888;margin-bottom:8px}
+.nfl-preparation{padding-top:20px}
+.nfl-status{display:flex;align-items:center;gap:12px;font-size:10px;letter-spacing:.12em;color:#bdbdbd}
+.nfl-badge{border:1px solid #565656;padding:4px 9px;color:#eee}
+.nfl-preparation p,.nfl-schedule-note,.nfl-ledger-note{font-size:13px;color:#a6a6a6;line-height:1.7;margin:12px 0 0}
+.nfl-milestones{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;padding:20px 0 0;margin:20px 0 0;border-top:1px solid #242424}
+.nfl-milestones dt{font-size:9px;letter-spacing:.1em;color:#999;margin-bottom:8px}
+.nfl-milestones dd{font-size:11px;letter-spacing:.02em;color:#ddd;margin:0;line-height:1.7}
+.nfl-science{font-size:9px;letter-spacing:.08em;color:#929292;margin:22px 0 0}
+.nfl-updated{font-size:9px;letter-spacing:.06em;color:#888;line-height:1.7;margin:16px 0 4px}
+.nfl-ledger-note{padding:20px 0 8px;margin:0}
+@media(max-width:900px){.nfl-board .game-header{grid-template-columns:36px minmax(0,1fr)}.nfl-board .game-time{grid-column:2;text-align:left;white-space:normal}.nfl-board .game-matchup{font-size:22px}}
+@media(max-width:480px){.nfl-board .nfl-game{padding:20px 16px!important}.nfl-board .game-header{gap:12px;grid-template-columns:30px minmax(0,1fr)}.nfl-board .game-matchup{font-size:20px}.nfl-milestones{grid-template-columns:1fr;gap:16px}.nfl-board .section-head .meta{font-size:10px}.nfl-science{line-height:1.8}}
