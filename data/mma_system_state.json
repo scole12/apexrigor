@@ -29,127 +29,88 @@
   },
   "canonical_fighter_identity": {
     "authority_population_permitted": false,
-    "canonical_bout_count": 11,
     "canonical_event_id": null,
-    "reference_bout_count": 11,
-    "reference_event_id": "152caf3d-be5d-5931-af19-31e4b2fd2917",
-    "status": "VERIFIED_OPERATIONAL_CARD_PIT_IDENTITIES"
+    "provider_missing_pairs": [
+      [
+        "Reginaldo Geraldo Jr.",
+        "Isaac Moreno"
+      ],
+      [
+        "Martin Koz\u00e1k",
+        "Christian Echols"
+      ],
+      [
+        "Apollo Gomes",
+        "Kwon Won Il"
+      ]
+    ],
+    "reason": "REFERENCE_PROVIDER_PAIR_RECONCILIATION_INCOMPLETE",
+    "reference_bout_count": 5,
+    "reference_event_id": "35011612-26fa-5aa6-a57a-f7cf70751b52",
+    "resolved_pair_count": 2,
+    "status": "REFERENCE_ONLY_NO_CANONICAL_FIGHTER_EVENT"
   },
   "card": [
     {
-      "fighter_a": "Jean Silva",
-      "fighter_b": "Jose Miguel Delgado",
+      "fighter_a": "Quentin Pasley",
+      "fighter_b": "Arlind Berisha",
       "is_co_main_event": false,
-      "is_main_event": true,
-      "official_display_order": 1,
-      "segment": "MAIN",
-      "weight_class": "FEATHERWEIGHT"
-    },
-    {
-      "fighter_a": "Brandon Moreno",
-      "fighter_b": "Joseph Morales",
-      "is_co_main_event": true,
       "is_main_event": false,
       "official_display_order": 2,
-      "segment": "MAIN",
-      "weight_class": "FLYWEIGHT"
+      "segment": "PRELIMS",
+      "weight_class": "LIGHT_HEAVYWEIGHT"
     },
     {
-      "fighter_a": "Tommy McMillen",
-      "fighter_b": "Marwan Rahiki",
-      "is_co_main_event": false,
-      "is_main_event": false,
-      "official_display_order": 3,
-      "segment": "MAIN",
-      "weight_class": "FEATHERWEIGHT"
-    },
-    {
-      "fighter_a": "Manon Fiorot",
-      "fighter_b": "Alexa Grasso",
+      "fighter_a": "Reginaldo Geraldo Jr.",
+      "fighter_b": "Isaac Moreno",
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 4,
-      "segment": "MAIN",
-      "weight_class": "WOMENS_FLYWEIGHT"
+      "segment": "PRELIMS",
+      "weight_class": "WELTERWEIGHT"
     },
     {
-      "fighter_a": "Waldo Cortes Acosta",
-      "fighter_b": "Curtis Blaydes",
+      "fighter_a": "Martin Koz\u00e1k",
+      "fighter_b": "Christian Echols",
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 5,
-      "segment": "MAIN",
-      "weight_class": "HEAVYWEIGHT"
+      "segment": "PRELIMS",
+      "weight_class": "MIDDLEWEIGHT"
     },
     {
-      "fighter_a": "David Martinez",
-      "fighter_b": "Dan Ige",
+      "fighter_a": "Apollo Gomes",
+      "fighter_b": "Kwon Won Il",
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 6,
-      "segment": "MAIN",
-      "weight_class": "FEATHERWEIGHT"
+      "segment": "PRELIMS",
+      "weight_class": "BANTAMWEIGHT"
     },
     {
-      "fighter_a": "Tim Elliott",
-      "fighter_b": "Edgar Chairez",
+      "fighter_a": "Colton Loud",
+      "fighter_b": "Christian Natividad",
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 7,
       "segment": "PRELIMS",
       "weight_class": "FLYWEIGHT"
-    },
-    {
-      "fighter_a": "Ignacio Bahamondes",
-      "fighter_b": "Muslim Salikhov",
-      "is_co_main_event": false,
-      "is_main_event": false,
-      "official_display_order": 8,
-      "segment": "PRELIMS",
-      "weight_class": "WELTERWEIGHT"
-    },
-    {
-      "fighter_a": "Yousri Belgaroui",
-      "fighter_b": "Djorden Santos",
-      "is_co_main_event": false,
-      "is_main_event": false,
-      "official_display_order": 9,
-      "segment": "PRELIMS",
-      "weight_class": "MIDDLEWEIGHT"
-    },
-    {
-      "fighter_a": "Ramiro Jimenez",
-      "fighter_b": "Rodrigo Vera",
-      "is_co_main_event": false,
-      "is_main_event": false,
-      "official_display_order": 10,
-      "segment": "PRELIMS",
-      "weight_class": "FEATHERWEIGHT"
-    },
-    {
-      "fighter_a": "Rafa Garcia",
-      "fighter_b": "Rongzhu",
-      "is_co_main_event": false,
-      "is_main_event": false,
-      "official_display_order": 11,
-      "segment": "PRELIMS",
-      "weight_class": "LIGHTWEIGHT"
     }
   ],
-  "card_reconciliation_status": "PASS",
+  "card_reconciliation_status": "OPEN_PROVIDER_IDENTITY_CONFLICT",
   "event": {
-    "city": "Glendale",
+    "city": "Las Vegas",
     "country": "United States",
-    "display_name": "Noche UFC \u2014 Silva vs Delgado",
-    "event_date": "2026-09-12",
-    "main_card_start_et": "2026-09-12T17:00:00-04:00",
-    "main_card_start_utc": "2026-09-12T21:00:00Z",
-    "name": "Noche UFC: Silva vs Delgado",
-    "prelims_start_et": "2026-09-12T14:00:00-04:00",
-    "prelims_start_utc": "2026-09-12T18:00:00Z",
+    "display_name": "Dana White's Contender Series 91",
+    "event_date": "2026-09-08",
+    "main_card_start_et": "2026-09-08T19:00:00-04:00",
+    "main_card_start_utc": "2026-09-08T23:00:00Z",
+    "name": "Dana White's Contender Series 91",
+    "prelims_start_et": "2026-09-08T19:00:00-04:00",
+    "prelims_start_utc": "2026-09-08T23:00:00Z",
     "promotion": "UFC",
-    "region": "Arizona",
-    "venue": "Desert Diamond Arena"
+    "region": "Nevada",
+    "venue": "Meta Apex"
   },
   "event_controller": {
     "autonomous_discovery_status": "VERIFIED_OFFICIAL_REFERENCE_QUEUE_PRELOADED_THROUGH_2026-09-19",
@@ -158,12 +119,12 @@
     "persistent": true,
     "service": "apex-mma-event-controller.service",
     "timer": "apex-mma-event-controller.timer",
-    "verified_future_reference_count": 2,
+    "verified_future_reference_count": 3,
     "verified_queue_horizon": "2026-09-19"
   },
-  "event_id": "152caf3d-be5d-5931-af19-31e4b2fd2917",
-  "fight_count": 11,
-  "generated_at_utc": "2026-09-06T13:58:33.509802Z",
+  "event_id": "35011612-26fa-5aa6-a57a-f7cf70751b52",
+  "fight_count": 5,
+  "generated_at_utc": "2026-09-07T13:33:04.056741Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "GRADED_COMMERCIAL_AND_OR_SCIENTIFIC"
@@ -354,7 +315,7 @@
       "source": "PRODUCTION_COMMERCIAL_GRADES"
     }
   ],
-  "payload_sha256": "b981ee476ef0ab562a73ee83203047cca07cfbb952b5689b19f7cbc74cfc42fd",
+  "payload_sha256": "e9beb626aa2c0008eeb2b95926b82b8a3fba14f69a3cdc63ddd647812ebbbb74",
   "picks_published": false,
   "positions": [],
   "positions_sha256": null,
@@ -1081,19 +1042,65 @@
   ],
   "schema_version": "APEX_MMA_PUBLIC_STATE_V2",
   "science_blocker": "SEALED_FORECAST_RELEASE_PRESENT_BUT_NO_EVENT_ISSUANCE",
-  "semantic_state_sha256": "0fc866ab2772976cc4376faee929f9588f4fee7afb23a211e4448773de4f87c8",
-  "source_conflicts": [],
-  "system_readiness_state": "RELEASE_PRESENT_AWAITING_ISSUANCE",
+  "semantic_state_sha256": "b8b9a17ebd7cc18d8ad40f4e49c4d55a4fbed8104efc5cd859003b6bc31d1b56",
+  "source_conflicts": [
+    {
+      "capture_basis": "LATEST_LIVE_EVENTS_CAPTURE",
+      "official_pair": [
+        "Reginaldo Geraldo Jr.",
+        "Isaac Moreno"
+      ],
+      "provider_commence_time_utc": "2026-09-08T22:00:00Z",
+      "provider_event_id": "0f242b61f00fb27453c3d06c1b4a2d1c",
+      "provider_pair": [
+        "Isaac Moreno",
+        "Reginaldo Junior"
+      ],
+      "provider_selection_slots": {},
+      "source_capture_id": "86a495e2-4afb-4f88-9a1b-8e7c652fc309",
+      "status": "ONE_SIDE_MATCH_PROVIDER_CARD_CONFLICT"
+    },
+    {
+      "capture_basis": "LATEST_LIVE_EVENTS_CAPTURE",
+      "official_pair": [
+        "Apollo Gomes",
+        "Kwon Won Il"
+      ],
+      "provider_commence_time_utc": "2026-09-08T22:00:00Z",
+      "provider_event_id": "b7d74355fe55dde1803fa84c96828776",
+      "provider_pair": [
+        "Won Il Kwon",
+        "Apollo Gomes"
+      ],
+      "provider_selection_slots": {},
+      "source_capture_id": "86a495e2-4afb-4f88-9a1b-8e7c652fc309",
+      "status": "ONE_SIDE_MATCH_PROVIDER_CARD_CONFLICT"
+    },
+    {
+      "capture_basis": null,
+      "official_pair": [
+        "Martin Koz\u00e1k",
+        "Christian Echols"
+      ],
+      "provider_commence_time_utc": null,
+      "provider_event_id": null,
+      "provider_pair": null,
+      "provider_selection_slots": {},
+      "source_capture_id": null,
+      "status": "NO_PROVIDER_MATCH"
+    }
+  ],
+  "system_readiness_state": "DATA_BLOCKED_REFERENCE_ONLY_NO_CANONICAL_FIGHTER_EVENT",
   "t2": {
     "actual_utc": null,
     "anchor": "EARLIEST_PUBLISHED_SCHEDULED_BOUT_MINUS_2_HOURS",
-    "scheduled_utc": "2026-09-12T16:00:00Z",
+    "scheduled_utc": "2026-09-08T21:00:00Z",
     "status": "FAIL_CLOSED_NO_SCIENTIFIC_RELEASE_AWAITING_TARGET",
     "timeliness": null
   },
   "t3": {
     "anchor": "EARLIEST_PUBLISHED_SCHEDULED_BOUT_MINUS_3_HOURS",
-    "scheduled_utc": "2026-09-12T15:00:00Z",
+    "scheduled_utc": "2026-09-08T20:00:00Z",
     "status": "SCHEDULED"
   }
 }
