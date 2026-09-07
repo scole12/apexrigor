@@ -3,11 +3,11 @@
   "active_model_sha256": "c4405db96c390a3934649b9deb77c36ad510093defc2a9bcb1e01115757e2922",
   "authorities": {
     "fighter": {
-      "bouts": 3491,
-      "events": 1029,
-      "fighters": 3972,
-      "results": 3429,
-      "round_stats": 4246,
+      "bouts": 3504,
+      "events": 1030,
+      "fighters": 3985,
+      "results": 3442,
+      "round_stats": 5046,
       "scorecards": 37,
       "weigh_ins": 5442
     },
@@ -29,29 +29,29 @@
   },
   "canonical_fighter_identity": {
     "authority_population_permitted": false,
-    "canonical_bout_count": 11,
+    "canonical_bout_count": 13,
     "canonical_event_id": null,
-    "reference_bout_count": 11,
+    "reference_bout_count": 13,
     "reference_event_id": "152caf3d-be5d-5931-af19-31e4b2fd2917",
     "status": "VERIFIED_OPERATIONAL_CARD_PIT_IDENTITIES"
   },
   "card": [
     {
       "fighter_a": "Jean Silva",
-      "fighter_b": "Jose Miguel Delgado",
+      "fighter_b": "Jose Delgado",
       "is_co_main_event": false,
-      "is_main_event": true,
-      "official_display_order": 1,
-      "segment": "MAIN",
+      "is_main_event": false,
+      "official_display_order": 2,
+      "segment": "PRELIMS",
       "weight_class": "FEATHERWEIGHT"
     },
     {
       "fighter_a": "Brandon Moreno",
       "fighter_b": "Joseph Morales",
-      "is_co_main_event": true,
+      "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 2,
-      "segment": "MAIN",
+      "official_display_order": 3,
+      "segment": "PRELIMS",
       "weight_class": "FLYWEIGHT"
     },
     {
@@ -59,8 +59,8 @@
       "fighter_b": "Marwan Rahiki",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 3,
-      "segment": "MAIN",
+      "official_display_order": 4,
+      "segment": "PRELIMS",
       "weight_class": "FEATHERWEIGHT"
     },
     {
@@ -68,8 +68,8 @@
       "fighter_b": "Alexa Grasso",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 4,
-      "segment": "MAIN",
+      "official_display_order": 5,
+      "segment": "PRELIMS",
       "weight_class": "WOMENS_FLYWEIGHT"
     },
     {
@@ -77,8 +77,8 @@
       "fighter_b": "Curtis Blaydes",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 5,
-      "segment": "MAIN",
+      "official_display_order": 6,
+      "segment": "PRELIMS",
       "weight_class": "HEAVYWEIGHT"
     },
     {
@@ -86,16 +86,16 @@
       "fighter_b": "Dan Ige",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 6,
-      "segment": "MAIN",
-      "weight_class": "FEATHERWEIGHT"
+      "official_display_order": 7,
+      "segment": "PRELIMS",
+      "weight_class": "BANTAMWEIGHT"
     },
     {
       "fighter_a": "Tim Elliott",
-      "fighter_b": "Edgar Chairez",
+      "fighter_b": "\u00c9dgar Ch\u00e1irez",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 7,
+      "official_display_order": 8,
       "segment": "PRELIMS",
       "weight_class": "FLYWEIGHT"
     },
@@ -104,7 +104,7 @@
       "fighter_b": "Muslim Salikhov",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 8,
+      "official_display_order": 9,
       "segment": "PRELIMS",
       "weight_class": "WELTERWEIGHT"
     },
@@ -113,27 +113,45 @@
       "fighter_b": "Djorden Santos",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 9,
+      "official_display_order": 11,
       "segment": "PRELIMS",
       "weight_class": "MIDDLEWEIGHT"
     },
     {
-      "fighter_a": "Ramiro Jimenez",
-      "fighter_b": "Rodrigo Vera",
+      "fighter_a": "Drakkar Klose",
+      "fighter_b": "Thomas Gantt",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 10,
+      "official_display_order": 13,
       "segment": "PRELIMS",
-      "weight_class": "FEATHERWEIGHT"
+      "weight_class": "LIGHTWEIGHT"
     },
     {
       "fighter_a": "Rafa Garcia",
       "fighter_b": "Rongzhu",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 11,
+      "official_display_order": 14,
       "segment": "PRELIMS",
       "weight_class": "LIGHTWEIGHT"
+    },
+    {
+      "fighter_a": "Sean King",
+      "fighter_b": "Jessie Rosas",
+      "is_co_main_event": false,
+      "is_main_event": false,
+      "official_display_order": 15,
+      "segment": "PRELIMS",
+      "weight_class": "FEATHERWEIGHT"
+    },
+    {
+      "fighter_a": "JJ Aldrich",
+      "fighter_b": "Regina Tarin",
+      "is_co_main_event": false,
+      "is_main_event": false,
+      "official_display_order": 16,
+      "segment": "PRELIMS",
+      "weight_class": "WOMENS_FLYWEIGHT"
     }
   ],
   "card_reconciliation_status": "PASS",
@@ -152,18 +170,18 @@
     "venue": "Desert Diamond Arena"
   },
   "event_controller": {
-    "autonomous_discovery_status": "VERIFIED_OFFICIAL_REFERENCE_QUEUE_PRELOADED_THROUGH_2026-09-19",
+    "autonomous_discovery_status": "VERIFIED_OFFICIAL_REFERENCE_QUEUE_PRELOADED_THROUGH_2026-11-07",
     "human_weekly_trigger_required": false,
     "interval": "30 minutes",
     "persistent": true,
     "service": "apex-mma-event-controller.service",
     "timer": "apex-mma-event-controller.timer",
-    "verified_future_reference_count": 2,
-    "verified_queue_horizon": "2026-09-19"
+    "verified_future_reference_count": 9,
+    "verified_queue_horizon": "2026-11-07"
   },
   "event_id": "152caf3d-be5d-5931-af19-31e4b2fd2917",
-  "fight_count": 11,
-  "generated_at_utc": "2026-09-07T13:43:03.540630Z",
+  "fight_count": 13,
+  "generated_at_utc": "2026-09-07T20:37:26.111496Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "GRADED_COMMERCIAL_AND_OR_SCIENTIFIC"
@@ -354,7 +372,7 @@
       "source": "PRODUCTION_COMMERCIAL_GRADES"
     }
   ],
-  "payload_sha256": "ee6dc669b0ec66ad0321037acbd64f79f30ef291fc81bd2414369cfaa07c7ece",
+  "payload_sha256": "63d67c778850f229230dcfc630fa80c06cb61a46f3427399cd1448de2100579e",
   "picks_published": false,
   "positions": [],
   "positions_sha256": null,
@@ -1081,14 +1099,14 @@
   ],
   "schema_version": "APEX_MMA_PUBLIC_STATE_V2",
   "science_blocker": "SEALED_FORECAST_RELEASE_PRESENT_BUT_NO_EVENT_ISSUANCE",
-  "semantic_state_sha256": "0fc866ab2772976cc4376faee929f9588f4fee7afb23a211e4448773de4f87c8",
+  "semantic_state_sha256": "8dcd2da29234b6fa8ade622f506fb7a9e37bbadf13189041c4c3fdeaed239b4a",
   "source_conflicts": [],
   "system_readiness_state": "RELEASE_PRESENT_AWAITING_ISSUANCE",
   "t2": {
     "actual_utc": null,
     "anchor": "EARLIEST_PUBLISHED_SCHEDULED_BOUT_MINUS_2_HOURS",
     "scheduled_utc": "2026-09-12T16:00:00Z",
-    "status": "FAIL_CLOSED_NO_SCIENTIFIC_RELEASE_AWAITING_TARGET",
+    "status": "AWAITING_T2",
     "timeliness": null
   },
   "t3": {

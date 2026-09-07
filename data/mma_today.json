@@ -9,20 +9,20 @@
   "card": [
     {
       "fighter_a": "Jean Silva",
-      "fighter_b": "Jose Miguel Delgado",
+      "fighter_b": "Jose Delgado",
       "is_co_main_event": false,
-      "is_main_event": true,
-      "official_display_order": 1,
-      "segment": "MAIN",
+      "is_main_event": false,
+      "official_display_order": 2,
+      "segment": "PRELIMS",
       "weight_class": "FEATHERWEIGHT"
     },
     {
       "fighter_a": "Brandon Moreno",
       "fighter_b": "Joseph Morales",
-      "is_co_main_event": true,
+      "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 2,
-      "segment": "MAIN",
+      "official_display_order": 3,
+      "segment": "PRELIMS",
       "weight_class": "FLYWEIGHT"
     },
     {
@@ -30,8 +30,8 @@
       "fighter_b": "Marwan Rahiki",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 3,
-      "segment": "MAIN",
+      "official_display_order": 4,
+      "segment": "PRELIMS",
       "weight_class": "FEATHERWEIGHT"
     },
     {
@@ -39,8 +39,8 @@
       "fighter_b": "Alexa Grasso",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 4,
-      "segment": "MAIN",
+      "official_display_order": 5,
+      "segment": "PRELIMS",
       "weight_class": "WOMENS_FLYWEIGHT"
     },
     {
@@ -48,8 +48,8 @@
       "fighter_b": "Curtis Blaydes",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 5,
-      "segment": "MAIN",
+      "official_display_order": 6,
+      "segment": "PRELIMS",
       "weight_class": "HEAVYWEIGHT"
     },
     {
@@ -57,16 +57,16 @@
       "fighter_b": "Dan Ige",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 6,
-      "segment": "MAIN",
-      "weight_class": "FEATHERWEIGHT"
+      "official_display_order": 7,
+      "segment": "PRELIMS",
+      "weight_class": "BANTAMWEIGHT"
     },
     {
       "fighter_a": "Tim Elliott",
-      "fighter_b": "Edgar Chairez",
+      "fighter_b": "\u00c9dgar Ch\u00e1irez",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 7,
+      "official_display_order": 8,
       "segment": "PRELIMS",
       "weight_class": "FLYWEIGHT"
     },
@@ -75,7 +75,7 @@
       "fighter_b": "Muslim Salikhov",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 8,
+      "official_display_order": 9,
       "segment": "PRELIMS",
       "weight_class": "WELTERWEIGHT"
     },
@@ -84,27 +84,45 @@
       "fighter_b": "Djorden Santos",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 9,
+      "official_display_order": 11,
       "segment": "PRELIMS",
       "weight_class": "MIDDLEWEIGHT"
     },
     {
-      "fighter_a": "Ramiro Jimenez",
-      "fighter_b": "Rodrigo Vera",
+      "fighter_a": "Drakkar Klose",
+      "fighter_b": "Thomas Gantt",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 10,
+      "official_display_order": 13,
       "segment": "PRELIMS",
-      "weight_class": "FEATHERWEIGHT"
+      "weight_class": "LIGHTWEIGHT"
     },
     {
       "fighter_a": "Rafa Garcia",
       "fighter_b": "Rongzhu",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 11,
+      "official_display_order": 14,
       "segment": "PRELIMS",
       "weight_class": "LIGHTWEIGHT"
+    },
+    {
+      "fighter_a": "Sean King",
+      "fighter_b": "Jessie Rosas",
+      "is_co_main_event": false,
+      "is_main_event": false,
+      "official_display_order": 15,
+      "segment": "PRELIMS",
+      "weight_class": "FEATHERWEIGHT"
+    },
+    {
+      "fighter_a": "JJ Aldrich",
+      "fighter_b": "Regina Tarin",
+      "is_co_main_event": false,
+      "is_main_event": false,
+      "official_display_order": 16,
+      "segment": "PRELIMS",
+      "weight_class": "WOMENS_FLYWEIGHT"
     }
   ],
   "event": {
@@ -121,16 +139,16 @@
     "region": "Arizona",
     "venue": "Desert Diamond Arena"
   },
-  "fight_count": 11,
+  "fight_count": 13,
   "forecast": {
     "code": "AWAITING_T2",
     "detail": "No forecasts have been issued yet. Any published card will show the selection, captured FanDuel price, APEX probability, rating and full model-supported rationale.",
     "headline": "Awaiting the T-2 forecast run"
   },
-  "generated_at_utc": "2026-09-07T13:43:03.540630Z",
+  "generated_at_utc": "2026-09-07T20:37:26.111496Z",
   "issuance_id": null,
   "issuance_status": null,
-  "payload_sha256": "7d2eeb053cc05b2dff7599f61f85e9e61f7d3f3aa2acefb2799938c754813d62",
+  "payload_sha256": "45c41d0016e5a0d01c49a0f9af3d156734a2f6a437e87c3c22fd31ee63ae858f",
   "picks_published": false,
   "positions": [],
   "positions_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
@@ -141,7 +159,7 @@
     "actual_utc": null,
     "anchor": "EARLIEST_PUBLISHED_SCHEDULED_BOUT_MINUS_2_HOURS",
     "scheduled_utc": "2026-09-12T16:00:00Z",
-    "status": "FAIL_CLOSED_NO_SCIENTIFIC_RELEASE_AWAITING_TARGET",
+    "status": "AWAITING_T2",
     "timeliness": null
   },
   "t3": {
