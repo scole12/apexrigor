@@ -1,42 +1,31 @@
 {
-  "attachment_count": 1,
+  "attachment_count": 2,
   "attachment_names": [
-    "T3_APEX_NCAAF_DATA_REPORT_20260907.pdf"
+    "NCAAF_T2_FULL_SLATE_20260907.pdf",
+    "NCAAF_T2_PICKS_CARD_20260907.png"
   ],
   "canonical_game_count": 1,
-  "canonical_public_payload_sha256": "2d0a11718e259f43027c6b103b4e69b04eaf71b87eb94d4cae7f898969b86e56",
+  "canonical_public_payload_sha256": "ad41f0003dabec167c7e454f672bda63c4cdc873db0b048d77e3b5b41ace9672",
   "count_scope": "EXPLICIT_CANONICAL_AND_DISPLAY",
-  "delivery_product": "T3",
+  "delivery_product": "T2",
   "display_date": "September 7, 2026",
   "display_game_count": 1,
   "display_slate_date_et": "2026-09-07",
   "files": {
+    "NCAAF_T2_FULL_SLATE_20260907.pdf": "3cc6e0872b5671b268db02357e9c52019d2329723cfb824f05599d6d9c5030b8",
+    "NCAAF_T2_PICKS_CARD_20260907.png": "73943e17ff4748dc1993571d80e13fed698277799f064e8673fbea8e28f01e96",
     "T3_APEX_NCAAF_DATA_REPORT_20260907.pdf": "83929a7138d2c11d7c4b79ffc3b0ecdc07de1f129c74b864f890ea66b49424db"
   },
   "graded_date": null,
   "graded_slate_date_et": null,
-  "internal_market_pending_game_count": 1,
-  "issued_game_count": 0,
-  "market_pending_game_count": 1,
-  "official_position_count": 0,
-  "queue_request_id": "98e1932e256ad9f59099bbcbcdc67aa15bb703ce408ea66838099388f26da6f6",
+  "internal_market_pending_game_count": 0,
+  "issued_game_count": 1,
+  "market_pending_game_count": 0,
+  "official_position_count": 2,
+  "queue_request_id": "a23d25b9d97d0faa5e1c04cc37e953beea0eebea657c409f6f266aea691efd4d",
   "results_files": {},
   "schema_version": "apex.ncaaf.full_slate_delivery.v5.shared_publisher",
-  "sealed_day_payload_sha256": "2d0a11718e259f43027c6b103b4e69b04eaf71b87eb94d4cae7f898969b86e56",
+  "sealed_day_payload_sha256": "47d3056f614bf21d46361135edc7abb7bfe2bc57683879b04c3eda2443ae3032",
   "season_year": null,
-  "slate_date": "2026-09-07",
-  "t3_hydration_proof": {
-    "all_three_post_commit_reopen": "PASS",
-    "execution_mode": "OFFICIAL_T3",
-    "outcome_read_count": 0,
-    "path": "T3_LIVING_HYDRATION_RECEIPT_20260907.json",
-    "sha256": "4231cea4e81b820da9d92cbdbb6ada89095364df4ebcaabafe50b55641a65382",
-    "status": "PASS"
-  },
-  "t3_timing": {
-    "actual_hydration_receipt_utc_ms": 1788813061870,
-    "actual_hydration_start_utc_ms": 1788813059576,
-    "execution_class": "LATE_RECOVERY",
-    "nominal_t3_utc_ms": 1788813000000
-  }
+  "slate_date": "2026-09-07"
 }
