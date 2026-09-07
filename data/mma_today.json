@@ -2,81 +2,135 @@
   "active_model": "WINNER_RESIDUAL_BEST_AVAILABLE_V1",
   "active_model_sha256": "c4405db96c390a3934649b9deb77c36ad510093defc2a9bcb1e01115757e2922",
   "authenticity": {
-    "card_reconciliation_status": "OPEN_PROVIDER_IDENTITY_CONFLICT",
+    "card_reconciliation_status": "PASS",
     "no_authentic_fanduel_total_means_no_total_position": true,
     "no_fabricated_positions": true
   },
   "card": [
     {
-      "fighter_a": "Quentin Pasley",
-      "fighter_b": "Arlind Berisha",
+      "fighter_a": "Jean Silva",
+      "fighter_b": "Jose Miguel Delgado",
       "is_co_main_event": false,
-      "is_main_event": false,
-      "official_display_order": 2,
-      "segment": "PRELIMS",
-      "weight_class": "LIGHT_HEAVYWEIGHT"
+      "is_main_event": true,
+      "official_display_order": 1,
+      "segment": "MAIN",
+      "weight_class": "FEATHERWEIGHT"
     },
     {
-      "fighter_a": "Reginaldo Geraldo Jr.",
-      "fighter_b": "Isaac Moreno",
+      "fighter_a": "Brandon Moreno",
+      "fighter_b": "Joseph Morales",
+      "is_co_main_event": true,
+      "is_main_event": false,
+      "official_display_order": 2,
+      "segment": "MAIN",
+      "weight_class": "FLYWEIGHT"
+    },
+    {
+      "fighter_a": "Tommy McMillen",
+      "fighter_b": "Marwan Rahiki",
+      "is_co_main_event": false,
+      "is_main_event": false,
+      "official_display_order": 3,
+      "segment": "MAIN",
+      "weight_class": "FEATHERWEIGHT"
+    },
+    {
+      "fighter_a": "Manon Fiorot",
+      "fighter_b": "Alexa Grasso",
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 4,
-      "segment": "PRELIMS",
-      "weight_class": "WELTERWEIGHT"
+      "segment": "MAIN",
+      "weight_class": "WOMENS_FLYWEIGHT"
     },
     {
-      "fighter_a": "Martin Koz\u00e1k",
-      "fighter_b": "Christian Echols",
+      "fighter_a": "Waldo Cortes Acosta",
+      "fighter_b": "Curtis Blaydes",
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 5,
-      "segment": "PRELIMS",
-      "weight_class": "MIDDLEWEIGHT"
+      "segment": "MAIN",
+      "weight_class": "HEAVYWEIGHT"
     },
     {
-      "fighter_a": "Apollo Gomes",
-      "fighter_b": "Kwon Won Il",
+      "fighter_a": "David Martinez",
+      "fighter_b": "Dan Ige",
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 6,
-      "segment": "PRELIMS",
-      "weight_class": "BANTAMWEIGHT"
+      "segment": "MAIN",
+      "weight_class": "FEATHERWEIGHT"
     },
     {
-      "fighter_a": "Colton Loud",
-      "fighter_b": "Christian Natividad",
+      "fighter_a": "Tim Elliott",
+      "fighter_b": "Edgar Chairez",
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 7,
       "segment": "PRELIMS",
       "weight_class": "FLYWEIGHT"
+    },
+    {
+      "fighter_a": "Ignacio Bahamondes",
+      "fighter_b": "Muslim Salikhov",
+      "is_co_main_event": false,
+      "is_main_event": false,
+      "official_display_order": 8,
+      "segment": "PRELIMS",
+      "weight_class": "WELTERWEIGHT"
+    },
+    {
+      "fighter_a": "Yousri Belgaroui",
+      "fighter_b": "Djorden Santos",
+      "is_co_main_event": false,
+      "is_main_event": false,
+      "official_display_order": 9,
+      "segment": "PRELIMS",
+      "weight_class": "MIDDLEWEIGHT"
+    },
+    {
+      "fighter_a": "Ramiro Jimenez",
+      "fighter_b": "Rodrigo Vera",
+      "is_co_main_event": false,
+      "is_main_event": false,
+      "official_display_order": 10,
+      "segment": "PRELIMS",
+      "weight_class": "FEATHERWEIGHT"
+    },
+    {
+      "fighter_a": "Rafa Garcia",
+      "fighter_b": "Rongzhu",
+      "is_co_main_event": false,
+      "is_main_event": false,
+      "official_display_order": 11,
+      "segment": "PRELIMS",
+      "weight_class": "LIGHTWEIGHT"
     }
   ],
   "event": {
-    "city": "Las Vegas",
+    "city": "Glendale",
     "country": "United States",
-    "display_name": "Dana White's Contender Series 91",
-    "event_date": "2026-09-08",
-    "main_card_start_et": "2026-09-08T19:00:00-04:00",
-    "main_card_start_utc": "2026-09-08T23:00:00Z",
-    "name": "Dana White's Contender Series 91",
-    "prelims_start_et": "2026-09-08T19:00:00-04:00",
-    "prelims_start_utc": "2026-09-08T23:00:00Z",
+    "display_name": "Noche UFC \u2014 Silva vs Delgado",
+    "event_date": "2026-09-12",
+    "main_card_start_et": "2026-09-12T17:00:00-04:00",
+    "main_card_start_utc": "2026-09-12T21:00:00Z",
+    "name": "Noche UFC: Silva vs Delgado",
+    "prelims_start_et": "2026-09-12T14:00:00-04:00",
+    "prelims_start_utc": "2026-09-12T18:00:00Z",
     "promotion": "UFC",
-    "region": "Nevada",
-    "venue": "Meta Apex"
+    "region": "Arizona",
+    "venue": "Desert Diamond Arena"
   },
-  "fight_count": 5,
+  "fight_count": 11,
   "forecast": {
     "code": "AWAITING_T2",
     "detail": "No forecasts have been issued yet. Any published card will show the selection, captured FanDuel price, APEX probability, rating and full model-supported rationale.",
     "headline": "Awaiting the T-2 forecast run"
   },
-  "generated_at_utc": "2026-09-07T13:33:04.056741Z",
+  "generated_at_utc": "2026-09-07T13:43:03.540630Z",
   "issuance_id": null,
   "issuance_status": null,
-  "payload_sha256": "5a49dcc4ec51d32aa6845a70d5a4d06aab692c27fcb11d0b8e8c786025448f84",
+  "payload_sha256": "7d2eeb053cc05b2dff7599f61f85e9e61f7d3f3aa2acefb2799938c754813d62",
   "picks_published": false,
   "positions": [],
   "positions_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
@@ -86,13 +140,13 @@
   "t2": {
     "actual_utc": null,
     "anchor": "EARLIEST_PUBLISHED_SCHEDULED_BOUT_MINUS_2_HOURS",
-    "scheduled_utc": "2026-09-08T21:00:00Z",
+    "scheduled_utc": "2026-09-12T16:00:00Z",
     "status": "FAIL_CLOSED_NO_SCIENTIFIC_RELEASE_AWAITING_TARGET",
     "timeliness": null
   },
   "t3": {
     "anchor": "EARLIEST_PUBLISHED_SCHEDULED_BOUT_MINUS_3_HOURS",
-    "scheduled_utc": "2026-09-08T20:00:00Z",
+    "scheduled_utc": "2026-09-12T15:00:00Z",
     "status": "SCHEDULED"
   }
 }
