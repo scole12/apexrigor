@@ -5,9 +5,9 @@
       "fighter_a": "Jean Silva",
       "fighter_b": "Jose Delgado",
       "is_co_main_event": false,
-      "is_main_event": false,
-      "official_display_order": 2,
-      "segment": "PRELIMS",
+      "is_main_event": true,
+      "official_display_order": 1,
+      "segment": "MAIN",
       "weight_class": "FEATHERWEIGHT"
     },
     {
@@ -15,8 +15,8 @@
       "fighter_b": "Joseph Morales",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 3,
-      "segment": "PRELIMS",
+      "official_display_order": 2,
+      "segment": "MAIN",
       "weight_class": "FLYWEIGHT"
     },
     {
@@ -24,8 +24,8 @@
       "fighter_b": "Marwan Rahiki",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 4,
-      "segment": "PRELIMS",
+      "official_display_order": 3,
+      "segment": "MAIN",
       "weight_class": "FEATHERWEIGHT"
     },
     {
@@ -33,8 +33,8 @@
       "fighter_b": "Alexa Grasso",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 5,
-      "segment": "PRELIMS",
+      "official_display_order": 4,
+      "segment": "MAIN",
       "weight_class": "WOMENS_FLYWEIGHT"
     },
     {
@@ -42,8 +42,8 @@
       "fighter_b": "Curtis Blaydes",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 6,
-      "segment": "PRELIMS",
+      "official_display_order": 5,
+      "segment": "MAIN",
       "weight_class": "HEAVYWEIGHT"
     },
     {
@@ -51,8 +51,8 @@
       "fighter_b": "Dan Ige",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 7,
-      "segment": "PRELIMS",
+      "official_display_order": 6,
+      "segment": "MAIN",
       "weight_class": "BANTAMWEIGHT"
     },
     {
@@ -60,7 +60,7 @@
       "fighter_b": "\u00c9dgar Ch\u00e1irez",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 8,
+      "official_display_order": 7,
       "segment": "PRELIMS",
       "weight_class": "FLYWEIGHT"
     },
@@ -69,7 +69,7 @@
       "fighter_b": "Muslim Salikhov",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 9,
+      "official_display_order": 8,
       "segment": "PRELIMS",
       "weight_class": "WELTERWEIGHT"
     },
@@ -78,7 +78,7 @@
       "fighter_b": "Djorden Santos",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 11,
+      "official_display_order": 9,
       "segment": "PRELIMS",
       "weight_class": "MIDDLEWEIGHT"
     },
@@ -87,7 +87,7 @@
       "fighter_b": "Thomas Gantt",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 13,
+      "official_display_order": 10,
       "segment": "PRELIMS",
       "weight_class": "LIGHTWEIGHT"
     },
@@ -96,7 +96,7 @@
       "fighter_b": "Rongzhu",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 14,
+      "official_display_order": 11,
       "segment": "PRELIMS",
       "weight_class": "LIGHTWEIGHT"
     },
@@ -105,7 +105,7 @@
       "fighter_b": "Jessie Rosas",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 15,
+      "official_display_order": 12,
       "segment": "PRELIMS",
       "weight_class": "FEATHERWEIGHT"
     },
@@ -114,7 +114,7 @@
       "fighter_b": "Regina Tarin",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 16,
+      "official_display_order": 13,
       "segment": "PRELIMS",
       "weight_class": "WOMENS_FLYWEIGHT"
     }
@@ -128,7 +128,7 @@
     "scorecards": 37,
     "weigh_ins": 5442
   },
-  "generated_at_utc": "2026-09-07T20:37:26.111496Z",
+  "generated_at_utc": "2026-09-07T21:00:22.934753Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "GRADED_COMMERCIAL_AND_OR_SCIENTIFIC"
@@ -335,7 +335,7 @@
     "region": "Arizona",
     "venue": "Desert Diamond Arena"
   },
-  "payload_sha256": "1d99bc4373d4e9afd0d1b826bece56208461d63436b4101665722d26fb6d65f5",
+  "payload_sha256": "713b2bd408da160281253a356b5d0a335e1600f97785138e1623a38f6f9130fe",
   "production_isolation": "PASS",
   "schema_version": "APEX_MMA_OPS_SNAPSHOT_V1",
   "science_blocker": "SEALED_FORECAST_RELEASE_PRESENT_BUT_NO_EVENT_ISSUANCE",
