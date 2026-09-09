@@ -6,11 +6,11 @@
       "state": "SCHEDULED"
     },
     "NEXT_T2": {
-      "at_et": "2026-09-10T18:35:00-04:00",
-      "at_utc": "2026-09-10T22:35:00Z",
-      "cohort_id": "NFL_COHORT_V2_B65497880C959E8C4FD1C1B2B61C917B17484F51",
+      "at_et": "2026-09-09T18:20:00-04:00",
+      "at_utc": "2026-09-09T22:20:00Z",
+      "cohort_id": "NFL_GAMEDAY_COHORT_V3_08CDBDC7604516A6E41796AC1339AA62985A4CB9",
       "game_ids": [
-        "NFL_GAME_2026_01_SF_LA"
+        "NFL_GAME_2026_01_NE_SEA"
       ],
       "season_type": "REG",
       "state": "SCHEDULED"
@@ -18,20 +18,20 @@
     "NEXT_T3": {
       "at_et": "2026-09-10T17:35:00-04:00",
       "at_utc": "2026-09-10T21:35:00Z",
-      "cohort_id": "NFL_COHORT_V2_B65497880C959E8C4FD1C1B2B61C917B17484F51",
+      "cohort_id": "NFL_GAMEDAY_COHORT_V3_F56C95795832F4F6FF88D71B08B7DCF548450F8F",
       "game_ids": [
         "NFL_GAME_2026_01_SF_LA"
       ],
       "season_type": "REG",
       "state": "SCHEDULED"
     },
-    "active_capture_slot_count": 708,
-    "active_cohort_count": 118,
-    "completed_capture_slot_count": 17,
+    "active_capture_slot_count": 342,
+    "active_cohort_count": 57,
+    "completed_capture_slot_count": 28,
     "completion_ledger_present": true,
     "critical_missed_capture_count": 0,
-    "expected_capture_slot_count": 708,
-    "measured_at": "2026-09-09T19:20:54.987074Z",
+    "expected_capture_slot_count": 342,
+    "measured_at": "2026-09-09T21:26:09.418427Z",
     "missing_or_duplicate_slot_cohorts": [],
     "postseason_state": "AWAITING_PUBLISHED_GAMES",
     "reg_gamedays": 57,
@@ -42,21 +42,21 @@
     },
     "schema": "apex.nfl.season_clock.v1",
     "sealed_t2_cohort_count": 1,
-    "sealed_t3_cohort_count": 1,
+    "sealed_t3_cohort_count": 2,
     "season_scope": [
       "REG",
       "POST"
     ],
     "super_bowl_included_as": "POST"
   },
-  "generated_at_utc": "2026-09-09T19:20:55.0723Z",
+  "generated_at_utc": "2026-09-09T21:26:09.4771Z",
   "hydration": {
-    "completed_at_utc": "2026-09-09T19:19:23.009Z",
+    "completed_at_utc": "2026-09-09T21:23:38.768Z",
     "cross_authority_completion": "PASS",
-    "raw_set_sha256": "bb9d327b6dbb4d352935412fb0e2d8e72403331b90e7aa02ea5cf349041a7ebb",
-    "receipt_sha256": "65a61f6be2389ac4e6d072c342fb146940aa2200c7ea35288df3984d71f2fd28",
+    "raw_set_sha256": "ab483f26f5ced833274e8f850c4de1b8c2fb74a5af7f58dfad0a821fa43f5c89",
+    "receipt_sha256": "f65e6ebe486ec436d1d3f2f5d0730831d0be62411978a41bf0daa89c84b59551",
     "retrieval_mode": "LIVE_NETWORK_RETRIEVAL",
-    "retrieved_at_utc": "2026-09-09T19:17:02.273Z",
+    "retrieved_at_utc": "2026-09-09T21:20:22.385Z",
     "source_to_target_parity": "PASS",
     "status": "PASS"
   },
@@ -67,11 +67,11 @@
       "state": "SCHEDULED"
     },
     "NEXT_T2": {
-      "at_et": "2026-09-10T18:35:00-04:00",
-      "at_utc": "2026-09-10T22:35:00Z",
-      "cohort_id": "NFL_COHORT_V2_B65497880C959E8C4FD1C1B2B61C917B17484F51",
+      "at_et": "2026-09-09T18:20:00-04:00",
+      "at_utc": "2026-09-09T22:20:00Z",
+      "cohort_id": "NFL_GAMEDAY_COHORT_V3_08CDBDC7604516A6E41796AC1339AA62985A4CB9",
       "game_ids": [
-        "NFL_GAME_2026_01_SF_LA"
+        "NFL_GAME_2026_01_NE_SEA"
       ],
       "season_type": "REG",
       "state": "SCHEDULED"
@@ -79,7 +79,7 @@
     "NEXT_T3": {
       "at_et": "2026-09-10T17:35:00-04:00",
       "at_utc": "2026-09-10T21:35:00Z",
-      "cohort_id": "NFL_COHORT_V2_B65497880C959E8C4FD1C1B2B61C917B17484F51",
+      "cohort_id": "NFL_GAMEDAY_COHORT_V3_F56C95795832F4F6FF88D71B08B7DCF548450F8F",
       "game_ids": [
         "NFL_GAME_2026_01_SF_LA"
       ],
@@ -92,7 +92,7 @@
   "public_issuance": false,
   "runtime": {
     "code_commit": "68bc967606d6fc69a334a9bd267e32e13008f3a1",
-    "manifest_sha256": "82efa40292fa30e8f6b01c59d88c1a222a00ce1bc1782930c28e9ee4fac75031",
+    "manifest_sha256": "62c50e73d1a29443fa6f976d22ae1b066358226d554eee269fda68d1d858ce7d",
     "sealed_file_hash_mismatch_count": 0
   },
   "schema_version": "APEX_NFL_TODAY_V1",
@@ -116,8 +116,8 @@
         "kickoff_utc": "2026-09-10T00:20:00Z",
         "matchup": "New England Patriots at Seattle Seahawks",
         "positions": [],
-        "schedule_available_at_utc": "2026-09-09T18:59:20.121Z",
-        "schedule_effective_at_utc": "2026-09-09T18:59:20.121Z",
+        "schedule_available_at_utc": "2026-09-09T21:20:22.385Z",
+        "schedule_effective_at_utc": "2026-09-09T21:20:22.385Z",
         "season": 2026,
         "status": "SCHEDULED",
         "week": 1
