@@ -17,6 +17,7 @@ import sqlite3
 import sys
 sys.path.insert(0, "/opt/apex_nfl/src")
 from apex_nfl.season_clock import season_clock
+from apex_nfl.point_in_time_capture import PARSER_VERSION
 from typing import Any
 from zoneinfo import ZoneInfo
 
@@ -33,7 +34,6 @@ IMMUTABLE_RELEASE_ROOT = Path("/var/opt/apex_nfl/releases/immutable")
 COHORT_ROOT = Path("/var/opt/apex_nfl/state/cohorts")
 ISSUANCE_ROOT = Path("/var/opt/apex_nfl/issuance")
 GRADE_ROOT = Path("/var/opt/apex_nfl/grades")
-PARSER_VERSION = "apex-nfl-2026-pit-cohort-capture-v2.0.0"
 NY = ZoneInfo("America/New_York")
 
 
