@@ -719,8 +719,8 @@
       "schema_version": "APEX_MMA_TODAY_V1"
     }
   ],
-  "generated_at_utc": "2026-09-07T21:00:22.934753Z",
-  "payload_sha256": "00fd792f09aba6d8fcb144e020574f252c9ef45dd5b82d42f949452760aa40f6",
+  "generated_at_utc": "2026-09-09T14:00:26.190570Z",
+  "payload_sha256": "6a971babcab4f48cc397d902ba3809c26cf26b8ca9f83aa50b1876f6f70fb596",
   "revision_policy": "APPEND_ONLY_RESULT_AND_GRADE_REVISIONS",
   "schema_version": "APEX_MMA_RESULTS_ARCHIVE_V1"
 }
