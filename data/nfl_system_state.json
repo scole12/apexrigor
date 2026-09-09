@@ -7,5 +7,7 @@
     "PROPS": "READY"
   },
   "position_count": 5,
-  "updated_at_utc": "2026-09-09T22:24:30.803510Z"
+  "updated_at_utc": "2026-09-09T22:26:02.294353Z",
+  "selection_rule": "highest_model_win_probability_among_paired_fanduel_lines",
+  "bias": "none_max_p"
 }
