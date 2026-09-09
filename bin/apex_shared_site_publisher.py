@@ -855,7 +855,7 @@ def main() -> int:
         print(
             json.dumps(
                 {
-                    "status": "OPEN",
+                    "status": "FAIL_CLOSED",
                     "error_type": type(error).__name__,
                     "exact_error": str(error)[:2000],
                 },

@@ -156,7 +156,7 @@ def build():
         # forbidden on the public MLB Results surface.
         disp = tier_rows_for_display(tier_summary, "all_time")
         if not (disp.get("ats_by_tier") and disp.get("totals_by_tier") and disp.get("combined_by_tier")):
-            raise RuntimeError("OPEN:missing_all_time_tier_tables")
+            raise RuntimeError("FAIL_CLOSED:missing_all_time_tier_tables")
         by_era = tier_summary.get("tier_records_by_era") or {}
         all_time = (tier_summary.get("windows") or {}).get("all_time") or {}
         if by_era and all_time:
@@ -168,7 +168,7 @@ def build():
                     p = sum(int((((by_era.get(e) or {}).get(market_key) or {}).get(tier_name) or {}).get("P") or 0) for e in by_era)
                     if int(a.get("W") or 0) != w or int(a.get("L") or 0) != l or int(a.get("P") or 0) != p:
                         raise RuntimeError(
-                            f"OPEN:all_time_era_sum_mismatch:{market_key}:{tier_name}"
+                            f"FAIL_CLOSED:all_time_era_sum_mismatch:{market_key}:{tier_name}"
                         )
 
         def _MONTH(iso: str) -> str:
@@ -194,7 +194,7 @@ def build():
             or ""
         )
         if not era_start or not era_end:
-            raise RuntimeError("OPEN:missing_as_issued_date_range")
+            raise RuntimeError("FAIL_CLOSED:missing_as_issued_date_range")
         era_meta = f"{_MONTH(era_start)} — {_MONTH(era_end)}"
         era = "AS_ISSUED"
 
@@ -249,7 +249,7 @@ def build():
         )
         for token in banned:
             if token in tier_html:
-                raise RuntimeError(f"OPEN:banned_token_in_tier_html:{token}")
+                raise RuntimeError(f"FAIL_CLOSED:banned_token_in_tier_html:{token}")
 
     slate_html = build_latest_slate_detail()
 

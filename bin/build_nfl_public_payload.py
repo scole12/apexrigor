@@ -260,29 +260,30 @@ def physical_runtime_state(as_of: datetime | None = None) -> dict[str, Any]:
 
 def release_state() -> tuple[str, dict[str, Any] | None]:
     if not RELEASE_CURRENT.is_file():
-        return "AWAITING_MODEL_RUN", None
+        return "SCIENCE_BLOCKED_NO_QUALIFIED_CHAMPION", None
     pointer = json.loads(RELEASE_CURRENT.read_text(encoding="utf-8"))
     if pointer.get("schema") != "apex.nfl.production_release_pointer.v2":
-        return "OPEN_INVALID_RELEASE_POINTER", None
+        return "FAIL_CLOSED_INVALID_RELEASE_POINTER", None
     release_id = str(pointer.get("release_id") or "")
     manifest = (IMMUTABLE_RELEASE_ROOT / release_id / "release.json").resolve()
     try:
         manifest.relative_to(IMMUTABLE_RELEASE_ROOT.resolve())
     except ValueError:
-        return "OPEN_RELEASE_PATH_ESCAPE", None
+        return "FAIL_CLOSED_RELEASE_PATH_ESCAPE", None
     if not manifest.is_file() or sha256(manifest) != pointer.get("release_manifest_sha256"):
-        return "OPEN_RELEASE_HASH_MISMATCH", None
+        return "FAIL_CLOSED_RELEASE_HASH_MISMATCH", None
     release = json.loads(manifest.read_text(encoding="utf-8"))
     if (
         release.get("schema") != "apex.nfl.production_release.v2"
         or release.get("release_id") != release_id
+        or release.get("status") != "SCIENTIFICALLY_QUALIFIED_FOR_PRODUCTION"
     ):
-        return "INVALID_RELEASE_IDENTITY", None
+        return "FAIL_CLOSED_RELEASE_NOT_QUALIFIED", None
     engines = release.get("engines")
     if not isinstance(engines, list) or {
         row.get("market") for row in engines if isinstance(row, dict)
     } != {"ATS", "TOTALS", "PROPS"}:
-        return "OPEN_RELEASE_ENGINE_SET", None
+        return "FAIL_CLOSED_RELEASE_ENGINE_SET", None
     for engine in engines:
         for path_key, hash_key in (
             ("serving_program", "serving_program_sha256"),
@@ -293,10 +294,10 @@ def release_state() -> tuple[str, dict[str, Any] | None]:
             try:
                 path.relative_to(manifest.parent.resolve())
             except ValueError:
-                return "OPEN_RELEASE_ARTIFACT_PATH", None
+                return "FAIL_CLOSED_RELEASE_ARTIFACT_PATH", None
             if not path.is_file() or sha256(path) != engine.get(hash_key):
-                return "OPEN_RELEASE_ARTIFACT_HASH", None
-    return "READY", release
+                return "FAIL_CLOSED_RELEASE_ARTIFACT_HASH", None
+    return "SCIENTIFICALLY_QUALIFIED_FOR_PRODUCTION", release
 
 
 def sealed_history() -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
@@ -404,8 +405,8 @@ def main() -> int:
         {**issuance, "positions": [public_position(position) for position in issuance.get("positions", [])]}
         for issuance in issuances
     ]
-    release_qualified = release is not None
-    science = {lane: "MODEL_AVAILABLE" if release_qualified else "AWAITING_MODEL_RUN"
+    release_qualified = scientific_state == "SCIENTIFICALLY_QUALIFIED_FOR_PRODUCTION"
+    science = {lane: "SEE_QUALIFIED_RELEASE" if release_qualified else "NO_QUALIFIED_CHAMPION"
                for lane in ("ATS", "PROPS", "TOTALS")}
     infrastructure_ready = bool(
         physical["completion_ledger_present"]

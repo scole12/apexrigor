@@ -241,10 +241,10 @@ def main() -> int:
         errors.append("MMA fight count does not reconcile to card length")
 
     required_nfl_payloads = {
-        "nfl_today.json": {"APEX_NFL_TODAY_V1", "apex.nfl.public_today.v1"},
-        "nfl_system_state.json": {"APEX_NFL_PUBLIC_STATE_V1", "apex.nfl.public_state.v1", "apex.nfl.system_state.v1"},
-        "nfl_results_summary.json": {"APEX_NFL_RESULTS_SUMMARY_V1", "apex.nfl.results_summary.v1"},
-        "nfl_results_archive.json": {"APEX_NFL_RESULTS_ARCHIVE_V1", "apex.nfl.results_archive.v1"},
+        "nfl_today.json": "APEX_NFL_TODAY_V1",
+        "nfl_system_state.json": "APEX_NFL_PUBLIC_STATE_V1",
+        "nfl_results_summary.json": "APEX_NFL_RESULTS_SUMMARY_V1",
+        "nfl_results_archive.json": "APEX_NFL_RESULTS_ARCHIVE_V1",
     }
     nfl_payloads: dict[str, dict[str, object]] = {}
     if nfl_route_established:
@@ -256,58 +256,36 @@ def main() -> int:
                 errors.append(f"invalid NFL payload {name}: {exc}")
                 continue
             nfl_payloads[name] = payload
-            allowed = schema if isinstance(schema, set) else {schema}
-            if payload.get("schema_version") not in allowed:
+            if payload.get("schema_version") != schema:
                 errors.append(f"{name} schema mismatch")
         nfl_today = nfl_payloads.get("nfl_today.json", {})
         nfl_state = nfl_payloads.get("nfl_system_state.json", {})
         nfl_results = nfl_payloads.get("nfl_results_summary.json", {})
         if nfl_today:
-            games = nfl_today.get("slate", {}).get("games") or nfl_today.get("games") or []
-            positions = nfl_today.get("positions") or []
-            issuance = nfl_today.get("public_issuance")
-            issued = False
-            if issuance is True:
-                issued = True
-            elif isinstance(issuance, dict) and str(issuance.get("status", "")).upper() in {"ISSUED", "PUBLIC", "LIVE"}:
-                issued = True
-            sci = str(nfl_today.get("scientific_release_state") or "").upper()
-            if issued:
-                if not positions:
-                    errors.append("issued NFL payload has zero public positions")
-                pos_count = nfl_today.get("position_count")
-                if pos_count is not None and int(pos_count) != len(positions):
-                    errors.append("NFL position_count does not reconcile to positions length")
-                if isinstance(issuance, dict) and issuance.get("position_count") is not None:
-                    if int(issuance["position_count"]) != len(positions):
-                        errors.append("NFL public_issuance.position_count does not reconcile")
-            else:
-                if positions:
-                    errors.append("non-issued NFL payload contains a public position")
-            game_count = None
-            if isinstance(nfl_today.get("slate"), dict):
-                game_count = nfl_today["slate"].get("game_count")
-            if game_count is None:
-                game_count = nfl_today.get("game_count")
-            if game_count is not None and int(game_count) != len(games):
+            games = nfl_today.get("slate", {}).get("games", [])
+            if nfl_today.get("public_issuance") is not False:
+                errors.append("science-blocked NFL payload claims public issuance")
+            if nfl_today.get("positions") != []:
+                errors.append("science-blocked NFL payload contains a public position")
+            if nfl_today.get("slate", {}).get("game_count") != len(games):
                 errors.append("NFL game count does not reconcile to schedule length")
+            if any(game.get("positions") != [] for game in games):
+                errors.append("science-blocked NFL schedule contains a position")
         if nfl_state:
-            # Scott 2026-09-09: no SCIENCE_BLOCKED invent-gates; READY or explicit engine map OK
-            sci_state = str(nfl_state.get("scientific_release_state") or "").upper()
-            science = nfl_state.get("science")
-            if sci_state not in {"READY", "ISSUED", "LIVE"} and isinstance(science, dict):
-                blocked = {k: v for k, v in science.items() if "BLOCK" in str(v).upper()}
-                if blocked and nfl_today.get("positions"):
-                    errors.append("NFL science map still blocked while public positions exist")
-            hydration = nfl_state.get("hydration") or {}
-            if hydration and hydration.get("source_to_target_parity") not in (None, "PASS"):
+            expected_science = {
+                "ATS": "NO_QUALIFIED_CHAMPION",
+                "PROPS": "NO_QUALIFIED_CHAMPION",
+                "TOTALS": "NO_QUALIFIED_CHAMPION",
+            }
+            if nfl_state.get("science") != expected_science:
+                errors.append("NFL science state does not truthfully preserve all three gates")
+            if nfl_state.get("hydration", {}).get("source_to_target_parity") != "PASS":
                 errors.append("NFL public state is not backed by source-to-target parity")
-            if not hydration and nfl_today:
-                # parity may live on today payload
-                th = nfl_today.get("hydration") or {}
-                if th and th.get("source_to_target_parity") not in (None, "PASS"):
-                    errors.append("NFL public state is not backed by source-to-target parity")
-        # results may be non-zero once issued; no science-blocked zero-force
+        if nfl_results and any(
+            nfl_results.get(key) != 0
+            for key in ("issued_position_count", "graded_position_count", "ungraded_position_count")
+        ):
+            errors.append("NFL results claim positions while every engine is science-blocked")
 
     config_root = root if (root / "vercel.json").is_file() else root.parent
     try:
