@@ -1,7 +1,7 @@
 {
   "schema_version": "apex.nfl.public_today.v1",
   "sport": "NFL",
-  "generated_at_utc": "2026-09-09T22:26:02.4046Z",
+  "generated_at_utc": "2026-09-09T22:27:36.941754Z",
   "scientific_release_state": "READY",
   "science": {
     "ATS": "READY",

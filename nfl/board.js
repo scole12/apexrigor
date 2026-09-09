@@ -17,13 +17,19 @@ window.NFLBoard = (() => {
     const probability = p.issued_probability == null ? NaN : Number(p.issued_probability);
     const pct = Number.isFinite(probability) ? (probability * 100).toFixed(1) + '%' : 'N/A';
     const price = p.american_price == null ? '' : ` · PRICE ${Number(p.american_price) > 0 ? '+' : ''}${p.american_price}`;
-    return `<section class="market-panel" data-market="${esc(p.market)}" data-position-state="SEALED"><div class="market-label">${esc(label)}</div><div class="market-panel-head"><span class="pick-headline">${esc(headline)}</span></div><div class="meta mono">APEX WIN PROBABILITY: ${esc(pct)} · Sportsbook: FanDuel${esc(price)}</div><div class="rationale-copy"><p>Line, price and probability as issued at SEALED T-2.</p></div></section>`;
+    const tier = p.APEX_RATING_TIER || p.public_win_probability_rating || p.tier || p.rating || '—';
+    const paras = (p.rationale_paragraphs && p.rationale_paragraphs.length)
+      ? p.rationale_paragraphs
+      : String(p.rationale || 'Line, price and probability from the sealed model run.').split(/\n\n+/);
+    const rationaleHtml = paras.filter(Boolean).map(x => `<p>${esc(x)}</p>`).join('');
+    return `<section class="market-panel" data-market="${esc(p.market)}" data-position-state="SEALED"><div class="market-label">${esc(label)}</div><div class="market-panel-head"><span class="pick-headline">${esc(headline)}</span><span class="rating-label">APEX WIN PROBABILITY RATING</span><span class="tier-badge">${esc(tier)}</span></div><div class="meta mono">APEX WIN PROBABILITY: ${esc(pct)} · Sportsbook: FanDuel${esc(price)}</div><div class="rationale-copy">${rationaleHtml}</div></section>`;
   }
   function render(today, {picks = false} = {}) {
     if (!Array.isArray(today?.slate?.games)) throw new Error('Schedule unavailable');
     const games = today.slate.games.slice().sort((a, b) => String(a.kickoff_utc).localeCompare(String(b.kickoff_utc)) || String(a.game_id).localeCompare(String(b.game_id)));
     const positions = games.reduce((n, g) => n + (g.positions || []).length, 0);
-    const reconciled = Number(today.position_count) === positions && today.public_issuance === (positions > 0);
+    const issuanceOk = (today.public_issuance === true) || (today.public_issuance && today.public_issuance.status === 'ISSUED') || (Number(today.position_count) > 0 && positions > 0);
+    const reconciled = Number(today.position_count) === positions && issuanceOk && positions > 0;
     const blocked = false;
     const template = document.getElementById('nfl-game-template').innerHTML;
     document.getElementById('slate-title').textContent = positions && reconciled ? 'NFL GAME BOARD' : 'UPCOMING NFL';
