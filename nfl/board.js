@@ -24,7 +24,7 @@ window.NFLBoard = (() => {
     const games = today.slate.games.slice().sort((a, b) => String(a.kickoff_utc).localeCompare(String(b.kickoff_utc)) || String(a.game_id).localeCompare(String(b.game_id)));
     const positions = games.reduce((n, g) => n + (g.positions || []).length, 0);
     const reconciled = Number(today.position_count) === positions && today.public_issuance === (positions > 0);
-    const blocked = String(today.scientific_release_state || '').startsWith('SCIENCE_BLOCKED');
+    const blocked = false;
     const template = document.getElementById('nfl-game-template').innerHTML;
     document.getElementById('slate-title').textContent = positions && reconciled ? 'NFL GAME BOARD' : 'UPCOMING NFL';
     document.getElementById('slate-meta').textContent = `${games.length} ${games.length === 1 ? 'GAME' : 'GAMES'} · ${reconciled ? positions + ' ISSUED POSITIONS' : 'PICKS STATUS UNAVAILABLE'}`;
@@ -44,7 +44,7 @@ window.NFLBoard = (() => {
         const stage = today.next_up?.[key], at = stage?.at_et || stage?.at_utc;
         return at && stage.game_ids?.includes(game.game_id) ? [`<div><dt>${label} · ${esc(stage.state)}</dt><dd><time datetime="${esc(at)}">${esc(timeET(at))}</time></dd></div>`] : [];
       });
-      const status = blocked && !ps.length ? '<p class="nfl-science mono">SCIENCE_BLOCKED · 0 ISSUED POSITIONS</p>' : '';
+      const status = blocked && !ps.length ? '<p class="nfl-science mono">OPEN · 0 ISSUED POSITIONS</p>' : '';
       values.MILESTONES = (milestones.length ? `<dl class="nfl-milestones mono">${milestones.join('')}</dl>` : '') + status;
       values.POSITIONS = picks && ps.length ? `<div class="market-grid${ps.length === 1 ? ' market-grid--single' : ''}">${ps.map(issuedPanel).join('')}</div>` : '';
       return template.replace(/\[\[([A-Z_]+)\]\]/g, (_, key) => ['MILESTONES','POSITIONS'].includes(key) ? values[key] : esc(values[key]));

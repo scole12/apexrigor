@@ -27,10 +27,10 @@ def date_meta(value: str) -> str:
 
 
 def issued_panel(label: str, pos: dict) -> str:
-    pick = escape(str(pos.get("selection") or pos.get("pick") or pos.get("headline") or pos.get("display_selection") or "ISSUED"))
-    tier = str(pos.get("rating_tier") or pos.get("tier") or "MODERATE").upper()
+    pick = escape(str(pos.get("display_selection") or pos.get("pick") or pos.get("headline") or pos.get("selection") or "ISSUED"))
+    tier = str(pos.get("rating_tier") or pos.get("tier") or "").upper()
     if tier not in {"WEAK", "MODERATE", "STRONG", "ELITE"}:
-        tier = "MODERATE"
+        tier = ""
     prob = pos.get("win_probability") or pos.get("apex_win_probability") or pos.get("issued_probability")
     if isinstance(prob, float) and prob <= 1:
         prob_s = f"{prob * 100:.1f}%"
@@ -75,15 +75,13 @@ def unissued_panel(label: str, state: str) -> str:
         f'<div class="market-panel">'
         f'<div class="market-label">{escape(label)}</div>'
         f'<div class="market-panel-head">'
-        f'<span class="pick-headline">UNISSUED</span>'
+        f'<span class="pick-headline">AWAITING PICKS</span>'
         f'<span class="rating-label">APEX WIN PROBABILITY RATING</span>'
         f'<span class="tier-badge">—</span>'
         f'</div>'
         f'<div class="meta mono">APEX WIN PROBABILITY: — · Sportsbook: FanDuel</div>'
         f'<div class="rationale-copy">'
-        f'<p>No position issued. Release state: {escape(state)}.</p>'
-        f'<p>When a FanDuel-qualified champion clears A-law, this panel publishes selection, '
-        f'WEAK/MODERATE/STRONG/ELITE rating, win probability, and detailed rationale.</p>'
+        f'<p>The next model run will supply the pick, win probability, rating, and explanation.</p>'
         f'</div></div>'
     )
 

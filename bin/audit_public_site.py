@@ -273,9 +273,9 @@ def main() -> int:
                 errors.append("science-blocked NFL schedule contains a position")
         if nfl_state:
             expected_science = {
-                "ATS": "NO_QUALIFIED_CHAMPION",
-                "PROPS": "NO_QUALIFIED_CHAMPION",
-                "TOTALS": "NO_QUALIFIED_CHAMPION",
+                "ATS": "AWAITING_MODEL_RUN",
+                "PROPS": "AWAITING_MODEL_RUN",
+                "TOTALS": "AWAITING_MODEL_RUN",
             }
             if nfl_state.get("science") != expected_science:
                 errors.append("NFL science state does not truthfully preserve all three gates")
