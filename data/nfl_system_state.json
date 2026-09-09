@@ -7,7 +7,11 @@
     "PROPS": "READY"
   },
   "position_count": 5,
-  "updated_at_utc": "2026-09-09T22:26:02.294353Z",
+  "updated_at_utc": "2026-09-09T22:33:57.950698Z",
   "selection_rule": "highest_model_win_probability_among_paired_fanduel_lines",
-  "bias": "none_max_p"
+  "bias": "none_max_p",
+  "schema_version": "apex.nfl.public_state.v1",
+  "hydration": {
+    "status": "PRESENT"
+  }
 }

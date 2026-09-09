@@ -1,7 +1,7 @@
 {
   "schema_version": "apex.nfl.public_today.v1",
   "sport": "NFL",
-  "generated_at_utc": "2026-09-09T22:27:36.941754Z",
+  "generated_at_utc": "2026-09-09T22:34:13.5786Z",
   "scientific_release_state": "READY",
   "science": {
     "ATS": "READY",
@@ -571,7 +571,9 @@
           ],
           "coverage": ""
         }
-      ]
+      ],
+      "pitchers": "Drake Maye vs Sam Darnold",
+      "starters_line": "Drake Maye vs Sam Darnold"
     }
   ],
   "slate": {
