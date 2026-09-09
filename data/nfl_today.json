@@ -31,7 +31,7 @@
     "completion_ledger_present": true,
     "critical_missed_capture_count": 0,
     "expected_capture_slot_count": 708,
-    "measured_at": "2026-09-09T19:20:51.821761Z",
+    "measured_at": "2026-09-09T19:20:54.987074Z",
     "missing_or_duplicate_slot_cohorts": [],
     "postseason_state": "AWAITING_PUBLISHED_GAMES",
     "reg_gamedays": 57,
@@ -49,7 +49,7 @@
     ],
     "super_bowl_included_as": "POST"
   },
-  "generated_at_utc": "2026-09-09T19:20:51.8891Z",
+  "generated_at_utc": "2026-09-09T19:20:55.0723Z",
   "hydration": {
     "completed_at_utc": "2026-09-09T19:19:23.009Z",
     "cross_authority_completion": "PASS",
