@@ -20,11 +20,20 @@
       "weight_class": "FLYWEIGHT"
     },
     {
+      "fighter_a": "Tommy McMillen",
+      "fighter_b": "Marwan Rahiki",
+      "is_co_main_event": false,
+      "is_main_event": false,
+      "official_display_order": 3,
+      "segment": "MAIN",
+      "weight_class": "FEATHERWEIGHT"
+    },
+    {
       "fighter_a": "Manon Fiorot",
       "fighter_b": "Alexa Grasso",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 3,
+      "official_display_order": 4,
       "segment": "MAIN",
       "weight_class": "WOMENS_FLYWEIGHT"
     },
@@ -33,7 +42,7 @@
       "fighter_b": "Curtis Blaydes",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 4,
+      "official_display_order": 5,
       "segment": "MAIN",
       "weight_class": "HEAVYWEIGHT"
     },
@@ -42,7 +51,7 @@
       "fighter_b": "Dan Ige",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 5,
+      "official_display_order": 6,
       "segment": "MAIN",
       "weight_class": "BANTAMWEIGHT"
     },
@@ -51,8 +60,8 @@
       "fighter_b": "\u00c9dgar Ch\u00e1irez",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 6,
-      "segment": "PRELIMS",
+      "official_display_order": 7,
+      "segment": "MAIN",
       "weight_class": "FLYWEIGHT"
     },
     {
@@ -60,8 +69,8 @@
       "fighter_b": "Muslim Salikhov",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 7,
-      "segment": "PRELIMS",
+      "official_display_order": 8,
+      "segment": "MAIN",
       "weight_class": "WELTERWEIGHT"
     },
     {
@@ -69,8 +78,8 @@
       "fighter_b": "Djorden Santos",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 8,
-      "segment": "PRELIMS",
+      "official_display_order": 9,
+      "segment": "MAIN",
       "weight_class": "MIDDLEWEIGHT"
     },
     {
@@ -78,8 +87,8 @@
       "fighter_b": "Thomas Gantt",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 9,
-      "segment": "PRELIMS",
+      "official_display_order": 10,
+      "segment": "MAIN",
       "weight_class": "LIGHTWEIGHT"
     },
     {
@@ -87,8 +96,8 @@
       "fighter_b": "Rongzhu",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 10,
-      "segment": "PRELIMS",
+      "official_display_order": 11,
+      "segment": "MAIN",
       "weight_class": "LIGHTWEIGHT"
     },
     {
@@ -96,8 +105,8 @@
       "fighter_b": "Jessie Rosas",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 11,
-      "segment": "PRELIMS",
+      "official_display_order": 12,
+      "segment": "MAIN",
       "weight_class": "FEATHERWEIGHT"
     },
     {
@@ -105,8 +114,8 @@
       "fighter_b": "Regina Tarin",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 12,
-      "segment": "PRELIMS",
+      "official_display_order": 13,
+      "segment": "MAIN",
       "weight_class": "WOMENS_FLYWEIGHT"
     }
   ],
@@ -119,7 +128,7 @@
     "scorecards": 37,
     "weigh_ins": 5442
   },
-  "generated_at_utc": "2026-09-09T14:00:26.190570Z",
+  "generated_at_utc": "2026-09-09T16:00:26.322616Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "GRADED_COMMERCIAL_AND_OR_SCIENTIFIC"
@@ -326,7 +335,7 @@
     "region": "Arizona",
     "venue": "Desert Diamond Arena"
   },
-  "payload_sha256": "bfb39315f3860ba75f16d07a93f4ff862a5d8e4a6e7b589c3c44c94753813abd",
+  "payload_sha256": "54dc3e94ef8e8535137e1cc6214843a8f1653811f0081cd504c4a9c5bd246aea",
   "production_isolation": "PASS",
   "schema_version": "APEX_MMA_OPS_SNAPSHOT_V1",
   "science_blocker": "SEALED_FORECAST_RELEASE_PRESENT_BUT_NO_EVENT_ISSUANCE",
