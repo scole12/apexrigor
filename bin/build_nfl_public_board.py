@@ -27,7 +27,7 @@ def date_meta(value: str) -> str:
 
 
 def issued_panel(label: str, pos: dict) -> str:
-    pick = escape(str(pos.get("selection") or pos.get("pick") or pos.get("headline") or pos.get("display_selection") or "ISSUED"))
+    pick = escape(str(pos.get("display_selection") or pos.get("headline") or pos.get("pick") or pos.get("selection") or "ISSUED"))
     tier = str(pos.get("rating_tier") or pos.get("tier") or "MODERATE").upper()
     if tier not in {"WEAK", "MODERATE", "STRONG", "ELITE"}:
         tier = "MODERATE"
