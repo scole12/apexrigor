@@ -30,6 +30,7 @@ GENERATORS = (
     "build_mma_picks_page.py",
     "build_mma_results_page.py",
     "build_mma_about_page.py",
+    "build_total_apex_results.py",
 )
 
 

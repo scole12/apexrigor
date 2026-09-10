@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
-"""Render NFL results from the published issuance and immutable grade archive."""
+"""Render NFL results from the published issuance and immutable grade archive.
+
+FOREVER: no Flat/1u/UNITS chrome. Public NFL results UI is MLB-mirrored SEASON RECORD via render.js.
+"""
 from collections import Counter, defaultdict
 from datetime import datetime
 from html import escape
@@ -15,10 +18,6 @@ def record(rows):
     if counts['PUSH']:
         value += f"-{counts['PUSH']}P"
     return value
-
-
-def net(rows):
-    return sum(float(row.get('flat_unit_result') or 0) for row in rows)
 
 
 def table(headers, rows):
@@ -48,18 +47,18 @@ def build(root: Path):
     decided = sum(row['result'] in {'WIN', 'LOSS'} for row in rows)
     wins = sum(row['result'] == 'WIN' for row in rows)
     win_rate = f'{100 * wins / decided:.1f}%' if decided else '—'
-    body = '<style>.nfl-results-scroll{overflow-x:auto;margin-bottom:28px}.nfl-results-scroll table{width:100%;min-width:620px}.nfl-results-scroll td,.nfl-results-scroll th{text-align:left;padding:14px 12px}.nfl-results-section{margin:28px 0}.nfl-results-note{color:#999;line-height:1.6}.nfl-results-metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#333;border:1px solid #333;margin:20px 0}.nfl-results-metrics>div{background:#000;padding:22px 15px}.nfl-results-metrics strong{display:block;font-size:25px;margin-top:8px}.nfl-results-metrics span{color:#aaa;font-size:11px;text-transform:uppercase;letter-spacing:.08em}@media(max-width:640px){.nfl-results-metrics{grid-template-columns:repeat(2,1fr)}} </style>'
+    body = '<style>.nfl-results-scroll{overflow-x:auto;margin-bottom:28px}.nfl-results-scroll table{width:100%;min-width:620px}.nfl-results-scroll td,.nfl-results-scroll th{text-align:left;padding:14px 12px}.nfl-results-section{margin:28px 0}.nfl-results-note{color:#999;line-height:1.6}.nfl-results-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#333;border:1px solid #333;margin:20px 0}.nfl-results-metrics>div{background:#000;padding:22px 15px}.nfl-results-metrics strong{display:block;font-size:25px;margin-top:8px}.nfl-results-metrics span{color:#aaa;font-size:11px;text-transform:uppercase;letter-spacing:.08em}@media(max-width:640px){.nfl-results-metrics{grid-template-columns:repeat(2,1fr)}} </style>'
     body += '<div class="section-head"><div class="title">NFL RESULTS</div><div class="meta mono">2026 SEASON · AS ISSUED</div></div>'
-    body += '<div class="nfl-results-metrics">' + ''.join(f'<div><span>{label}</span><strong class="mono">{value}</strong></div>' for label, value in [('Record', record(rows)), ('Win Rate', win_rate), ('Flat 1u Net', f'{net(rows):+.2f}u'), ('Graded Picks', str(len(rows)))]) + '</div>'
+    body += '<div class="nfl-results-metrics">' + ''.join(f'<div><span>{label}</span><strong class="mono">{value}</strong></div>' for label, value in [('Record', record(rows)), ('Win Rate', win_rate), ('Graded Picks', str(len(rows)))]) + '</div>'
     body += f'<p class="nfl-results-note">{len(positions)} issued · {len(rows)} graded · {len(positions)-len(rows)} pending. Results use the selections, FanDuel prices and APEX probabilities published before kickoff.</p>'
     body += '<section class="nfl-results-section"><div class="section-head"><div class="title">PERFORMANCE BY RATING</div></div>'
     tiers = []
     for tier in ('WEAK', 'MODERATE', 'STRONG', 'ELITE'):
         selected = [r for r in rows if r.get('rating_tier') == tier]
-        tiers.append([tier, len(selected), record(selected), f'{net(selected):+.2f}u'])
-    body += table(['As-issued rating', 'Graded', 'Record', 'Flat 1u Net'], tiers) + '</section>'
+        tiers.append([tier, len(selected), record(selected)])
+    body += table(['As-issued rating', 'Graded', 'Record'], tiers) + '</section>'
     body += '<section class="nfl-results-section"><div class="section-head"><div class="title">DAILY ARCHIVE</div></div>'
-    body += table(['Slate date (ET)', 'Graded', 'Record', 'Flat 1u Net'], [[day, len(values), record(values), f'{net(values):+.2f}u'] for day, values in sorted(days.items(), reverse=True)]) + '</section>'
+    body += table(['Slate date (ET)', 'Graded', 'Record'], [[day, len(values), record(values)] for day, values in sorted(days.items(), reverse=True)]) + '</section>'
     for day, values in sorted(days.items(), reverse=True):
         body += f'<section class="nfl-results-section"><div class="section-head"><div class="title">SLATE DETAIL — {escape(day)}</div><div class="meta mono">{len(values)} GRADED PICKS</div></div>'
         details = []
@@ -68,8 +67,8 @@ def build(root: Path):
             actual = evidence.get('official_value', evidence.get('official_total'))
             if actual is None:
                 actual = f"{evidence['covered_margin']:+g} vs spread"
-            details.append([row.get('display_selection') or row['selection'], f"{row['issued_american_price']:+d}", f"{100*row['issued_probability']:.1f}%", row.get('rating_tier', '—'), actual, row['result'], f"{float(row['flat_unit_result'] or 0):+.2f}u"])
-        body += table(['As-issued pick', 'FanDuel', 'APEX', 'Rating', 'Actual', 'Result', 'Flat 1u'], details) + '</section>'
+            details.append([row.get('display_selection') or row['selection'], f"{row['issued_american_price']:+d}", f"{100*row['issued_probability']:.1f}%", row.get('rating_tier', '—'), actual, row['result']])
+        body += table(['As-issued pick', 'FanDuel', 'APEX', 'Rating', 'Actual', 'Result'], details) + '</section>'
     if not rows:
         body += '<p class="nfl-results-note">No graded picks yet.</p>'
     path = root / 'nfl/results/index.html'
@@ -78,12 +77,17 @@ def build(root: Path):
     text = re.sub(r'<script>NFLBoard\.mount.*?</script>', '', text, flags=re.S)
     text = re.sub(r'<script>\s*const esc=.*?</script>', '', text, flags=re.S)
     text = text.replace('ONLY SEALED ISSUANCE IS ELIGIBLE FOR GRADING', 'AS-ISSUED PICKS · OFFICIAL GAME AND PLAYER RESULTS')
+    text = text.replace('AS-ISSUED PICKS · OFFICIAL GAME AND PLAYER RESULTS · ZERO UNITS', 'AS-ISSUED PICKS · OFFICIAL GAME AND PLAYER RESULTS')
     path.write_text(text)
     # A concise result link remains visible on Picks after the slate flips.
     picks = root / 'nfl/index.html'
     text = re.sub(r'<!-- NFL_LATEST_RESULTS_START -->.*?<!-- NFL_LATEST_RESULTS_END -->', '', picks.read_text(), flags=re.S)
     if latest:
         values = days[latest]
-        text = text.replace('<!-- NFL_BOARD_START -->', f'<!-- NFL_LATEST_RESULTS_START --><p class="nfl-ledger-note">{latest} results: {record(values)} · {len(values)} graded picks · {net(values):+.2f}u. <a href="/nfl/results">View results</a></p><!-- NFL_LATEST_RESULTS_END -->\n<!-- NFL_BOARD_START -->', 1)
+        text = text.replace('<!-- NFL_BOARD_START -->', f'<!-- NFL_LATEST_RESULTS_START --><p class="nfl-ledger-note">{latest} results: {record(values)} · {len(values)} graded picks. <a href="/nfl/results">View results</a></p><!-- NFL_LATEST_RESULTS_END -->\n<!-- NFL_BOARD_START -->', 1)
     picks.write_text(text)
-    print(f'NFL_PUBLIC_RESULTS={len(rows)} RECORD={record(rows)} NET={net(rows):+.6f}')
+    print(f'NFL_PUBLIC_RESULTS={len(rows)} RECORD={record(rows)}')
+
+
+if __name__ == '__main__':
+    build(Path('/opt/apex_site/public'))

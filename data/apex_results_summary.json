@@ -1,35 +1,37 @@
 {
   "contract_version": "apex_results_summary_from_grader_receipt_v1",
-  "generated_at_et": "2026-09-10T12:24:32.516383-04:00",
+  "generated_at_et": "2026-09-10T00:57:40.579309-04:00",
   "sports_included": [
     "mlb",
-    "nfl"
+    "nfl",
+    "mma",
+    "ncaaf"
   ],
   "latest_graded_date": "2026-09-09",
   "latest_graded_date_display": "September 09, 2026",
-  "daily_archive_count": 112,
-  "overall_wins": 1809,
-  "overall_losses": 1678,
+  "daily_archive_count": 120,
+  "overall_wins": 1927,
+  "overall_losses": 1770,
   "overall_pushes": 26,
-  "overall_win_rate": 51.9,
-  "overall_win_rate_display": "51.9%",
-  "positions_graded": 3532,
+  "overall_win_rate": 52.1,
+  "overall_win_rate_display": "52.1%",
+  "positions_graded": 3742,
   "overall": {
-    "wins": 1809,
-    "losses": 1678,
+    "wins": 1927,
+    "losses": 1770,
     "pushes": 26,
     "voids": 13,
     "pending": 6,
     "other": 0,
-    "win_rate": 51.9,
-    "win_rate_display": "51.9%",
-    "positions_tracked": 3532,
-    "positions_settled": 3513,
-    "positions_graded": 3532,
-    "decided_n": 3487,
-    "settled_n": 3513,
-    "tracked_n": 3532,
-    "slates_graded": 112,
+    "win_rate": 52.1,
+    "win_rate_display": "52.1%",
+    "positions_tracked": 3742,
+    "positions_settled": 3723,
+    "positions_graded": 3742,
+    "decided_n": 3697,
+    "settled_n": 3723,
+    "tracked_n": 3742,
+    "slates_graded": 120,
     "f5_spread": "909-842-4P",
     "f5_total": "898-833-22P",
     "f5_spread_raw": {
@@ -101,22 +103,175 @@
       "props_record": "2W-1L-0P",
       "latest_graded_date": "2026-09-09",
       "graded_slate_count": 1,
-      "win_rate_display": "40.0%"
+      "win_rate_display": "40.0%",
+      "decided_n": 5,
+      "settled_n": 5,
+      "tracked_n": 5,
+      "slates_graded": 1,
+      "latest_graded_date_display": "September 09, 2026",
+      "status": "ACTIVE",
+      "source_row_count": 5,
+      "source_files": [
+        {
+          "path": "/opt/apex_site/data/nfl_results_archive.json",
+          "sha256": "c17c0bbb42b5abad69255c9c23c9c4940e0c5ed8be990d3afaad2806bd9a5539",
+          "field": "issuances[].positions + active grades[].settlements"
+        }
+      ],
+      "underdog_plus_1_5_record": "0W-0L-0P"
+    },
+    "nhl": {
+      "status": "UNISSUED",
+      "wins": 0,
+      "losses": 0,
+      "pushes": 0,
+      "voids": 0,
+      "pending": 0,
+      "other": 0,
+      "win_rate": null,
+      "win_rate_display": "—",
+      "positions_tracked": 0,
+      "positions_settled": 0,
+      "positions_graded": 0,
+      "totals_record": "0W-0L-0P",
+      "underdog_plus_1_5_record": "0W-0L-0P",
+      "latest_graded_date": null,
+      "graded_slate_count": 0,
+      "decided_n": 0,
+      "settled_n": 0,
+      "tracked_n": 0,
+      "slates_graded": 0,
+      "latest_graded_date_display": "",
+      "source_row_count": 0,
+      "source_files": [
+        {
+          "path": "/opt/apex_site/data/nhl_results_archive.json",
+          "sha256": "de3733097a158309ff1ae73b29b101516b7799d9d92e8c6e4e5317fd7bf2ccc5",
+          "field": "issuances[].positions + active grades[].settlements"
+        }
+      ],
+      "ats_record": "0W-0L-0P",
+      "props_record": "0W-0L-0P"
+    },
+    "mma": {
+      "wins": 10,
+      "losses": 4,
+      "pushes": 0,
+      "voids": 0,
+      "pending": 0,
+      "other": 0,
+      "win_rate": 71.4,
+      "win_rate_display": "71.4%",
+      "positions_tracked": 14,
+      "positions_graded": 14,
+      "positions_settled": 14,
+      "decided_n": 14,
+      "settled_n": 14,
+      "tracked_n": 14,
+      "slates_graded": 1,
+      "graded_slate_count": 1,
+      "latest_graded_date": "2026-09-05",
+      "latest_graded_date_display": "September 05, 2026",
+      "winner_record": "10W-4L-0P",
+      "source_scope": "PRODUCTION_COMMERCIAL_WINNER_H2H",
+      "source_files": [
+        {
+          "path": "/opt/apex_site/data/mma_results_archive.json",
+          "sha256": "8299d30ebb5941114d5383fa694a264f2cce49152e822b7a5c0c4779fbf3557c",
+          "field": "events[].latest_results"
+        },
+        {
+          "path": "/opt/apex_site/data/mma_results_summary.json",
+          "sha256": "e0c242c0415dc3e0e9f6a5f943741c66a3cc38ae9ae066bfa9613053735e0b40",
+          "field": "latest_event_results"
+        }
+      ],
+      "source_row_count": 14,
+      "duplicate_rows_ignored": 14,
+      "deduplication_key": "issuance_id + bout_id + WINNER"
+    },
+    "ncaaf": {
+      "wins": 108,
+      "losses": 88,
+      "pushes": 0,
+      "voids": 0,
+      "pending": 0,
+      "other": 0,
+      "win_rate": 55.1,
+      "win_rate_display": "55.1%",
+      "positions_tracked": 196,
+      "positions_graded": 196,
+      "positions_settled": 196,
+      "decided_n": 196,
+      "settled_n": 196,
+      "tracked_n": 196,
+      "slates_graded": 6,
+      "graded_slate_count": 6,
+      "latest_graded_date": "2026-09-07",
+      "latest_graded_date_display": "September 07, 2026",
+      "source_files": [
+        {
+          "path": "/opt/apex_site/data/ncaaf_results_cumulative.json",
+          "sha256": "1673ab6fed779999a05c3f7b9566a60acffc966b2d61b3aecf6490e4084f1d6c",
+          "field": "positions",
+          "aggregate_check": "lifetime_record"
+        }
+      ],
+      "source_row_count": 196,
+      "source_scope": "OFFICIAL_NCAA_PRODUCTION_POSITIONS_ONLY"
     }
   },
   "mlb_wins": 1807,
   "mlb_losses": 1675,
   "mlb_pushes": 26,
   "mlb_positions_graded": 3527,
-  "note": "CHIEF 2026-09-10: Overall = sum of sports_included forever records (MLB+NFL+\u2026). NFL grader overall PNG must render APEX TOTAL RECORD from this file, not NFL-only.",
+  "note": "Overall = sum of included sport graded books. Settled=W+L+P; tracked=settled+VOID+PENDING+OTHER.",
   "canonical_receipt_sha256": "8d04b15ed5386348b7a10b0fd1197c9b79b89a2f16f14d5632d25b33be222e17",
   "source_summary_path": "/opt/apex_site/data/results_archive.json",
   "source_summary_sha256": "2c2a7991aa1f029e270db34a1a700d32f32ed010e8ed80ee6029442448abd767",
-  "calculation_authority": "SINGLE_CANONICAL_GRADER_RECEIPT",
+  "calculation_authority": "CANONICAL_SPORT_GRADED_BOOKS",
   "total_apex_fuse": {
-    "version": "total_apex_fuse_v1",
-    "nfl_source": "/opt/apex_site/data/nfl_results_cumulative.json",
-    "nfl_sha256": "393c683af619c523b90416fd0702fc39978bd40c3a9f39b9218875274db06c27",
-    "fused_at_et": "2026-09-10T12:24:32.516524-04:00"
+    "version": "total_apex_fuse_v2",
+    "builder": "/opt/apex_site/bin/apex_total_results.py",
+    "sources": {
+      "mlb": [
+        {
+          "path": "/opt/apex_site/data/results_archive.json",
+          "sha256": "2c2a7991aa1f029e270db34a1a700d32f32ed010e8ed80ee6029442448abd767",
+          "canonical_receipt_sha256": "8d04b15ed5386348b7a10b0fd1197c9b79b89a2f16f14d5632d25b33be222e17",
+          "field": "_canonical_grader_receipt_projection.sports.mlb"
+        }
+      ],
+      "nfl": [
+        {
+          "path": "/opt/apex_site/data/nfl_results_archive.json",
+          "sha256": "c17c0bbb42b5abad69255c9c23c9c4940e0c5ed8be990d3afaad2806bd9a5539",
+          "field": "issuances[].positions + active grades[].settlements"
+        }
+      ],
+      "mma": [
+        {
+          "path": "/opt/apex_site/data/mma_results_archive.json",
+          "sha256": "8299d30ebb5941114d5383fa694a264f2cce49152e822b7a5c0c4779fbf3557c",
+          "field": "events[].latest_results"
+        },
+        {
+          "path": "/opt/apex_site/data/mma_results_summary.json",
+          "sha256": "e0c242c0415dc3e0e9f6a5f943741c66a3cc38ae9ae066bfa9613053735e0b40",
+          "field": "latest_event_results"
+        }
+      ],
+      "ncaaf": [
+        {
+          "path": "/opt/apex_site/data/ncaaf_results_cumulative.json",
+          "sha256": "1673ab6fed779999a05c3f7b9566a60acffc966b2d61b3aecf6490e4084f1d6c",
+          "field": "positions",
+          "aggregate_check": "lifetime_record"
+        }
+      ]
+    },
+    "excluded_ungraded_sports": [
+      "nhl"
+    ]
   }
 }

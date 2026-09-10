@@ -312,14 +312,14 @@ jobs:
                       f"Canonical receipt SHA256: {results_receipt}\n\n"
                       "Every immutable issued position was settled against its exact issued FanDuel line. No engine was rerun and no later market line was substituted.\n\n"
                       "Attachments, in order:\n"
-                      "1. Elite detailed graded-results PDF\n"
-                      "2. Cumulative APEX NCAA Football record graphic\n"
-                      "3. Prior-day single-slate results graphic\n"
+                      "1. APEX TOTAL RECORD graphic\n"
+                      "2. Prior-day single-slate results graphic\n"
+                      "3. Elite detailed graded-results PDF\n"
                   )
                   attachments=[
-                      f'results/NCAAF_DETAILED_RESULTS_{date_token}.pdf',
-                      'results/NCAAF_CUMULATIVE_RECORD_2026.png',
+                      f'results/APEX_TOTAL_RECORD_{date_token}.png',
                       f'results/NCAAF_PRIOR_DAY_SLATE_{date_token}.png',
+                      f'results/NCAAF_DETAILED_RESULTS_{date_token}.pdf',
                   ]
                   assert len(attachments)==3
 

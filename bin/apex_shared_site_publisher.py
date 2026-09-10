@@ -382,9 +382,9 @@ def ncaaf_delivery_manifest(request: Request, worktree: Path) -> None:
         "T3": [f"T3_APEX_NCAAF_DATA_REPORT_{token}.pdf"],
         "T2": [f"NCAAF_T2_FULL_SLATE_{token}.pdf", f"NCAAF_T2_PICKS_CARD_{token}.png"],
         "RESULTS": [
-            f"results/NCAAF_DETAILED_RESULTS_{token}.pdf",
-            f"results/NCAAF_CUMULATIVE_RECORD_{season_year}.png",
+            f"results/APEX_TOTAL_RECORD_{token}.png",
             f"results/NCAAF_PRIOR_DAY_SLATE_{token}.png",
+            f"results/NCAAF_DETAILED_RESULTS_{token}.pdf",
         ],
     }
     manifest: dict[str, Any] = {
