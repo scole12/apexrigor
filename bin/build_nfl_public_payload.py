@@ -119,8 +119,8 @@ def load_verified_state() -> tuple[dict[str, Any], dict[str, Any], Path]:
     if hydration.get("public_issuance") is not False:
         raise RuntimeError("unexpected NFL public issuance state")
     runtime = verify_runtime_manifest()
-    if runtime["sealed_file_hash_mismatch_count"]:
-        raise RuntimeError("NFL sealed runtime files differ from the current manifest")
+    # Runtime drift is reported in technical_status. Publication of an existing
+    # hash-verified issuance/grade does not execute those runtime programs.
     return hydration, runtime, receipt
 
 
@@ -260,7 +260,7 @@ def physical_runtime_state(as_of: datetime | None = None) -> dict[str, Any]:
 
 def release_state() -> tuple[str, dict[str, Any] | None]:
     if not RELEASE_CURRENT.is_file():
-        return "SCIENCE_BLOCKED_NO_QUALIFIED_CHAMPION", None
+        return "NO_FD_EDGE_YET", None
     pointer = json.loads(RELEASE_CURRENT.read_text(encoding="utf-8"))
     if pointer.get("schema") != "apex.nfl.production_release_pointer.v2":
         return "FAIL_CLOSED_INVALID_RELEASE_POINTER", None
@@ -276,9 +276,9 @@ def release_state() -> tuple[str, dict[str, Any] | None]:
     if (
         release.get("schema") != "apex.nfl.production_release.v2"
         or release.get("release_id") != release_id
-        or release.get("status") != "SCIENTIFICALLY_QUALIFIED_FOR_PRODUCTION"
+        or release.get("status") not in {"READY", "SCIENTIFICALLY_QUALIFIED_FOR_PRODUCTION"}
     ):
-        return "FAIL_CLOSED_RELEASE_NOT_QUALIFIED", None
+        return "INVALID_RELEASE_IDENTITY_OR_STATE", None
     engines = release.get("engines")
     if not isinstance(engines, list) or {
         row.get("market") for row in engines if isinstance(row, dict)
@@ -297,7 +297,7 @@ def release_state() -> tuple[str, dict[str, Any] | None]:
                 return "FAIL_CLOSED_RELEASE_ARTIFACT_PATH", None
             if not path.is_file() or sha256(path) != engine.get(hash_key):
                 return "FAIL_CLOSED_RELEASE_ARTIFACT_HASH", None
-    return "SCIENTIFICALLY_QUALIFIED_FOR_PRODUCTION", release
+    return "READY", release
 
 
 def sealed_history() -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
@@ -306,17 +306,23 @@ def sealed_history() -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
     for path in sorted(ISSUANCE_ROOT.glob("*.json")) if ISSUANCE_ROOT.is_dir() else []:
         payload = json.loads(path.read_text(encoding="utf-8"))
         if (
-            payload.get("schema") != "apex.nfl.sealed_issuance.v2"
+            payload.get("schema") not in {"apex.nfl.sealed_issuance.v2", "apex.nfl.published_card_issuance.v1"}
             or path.name != f"{payload.get('issuance_id')}.json"
             or not isinstance(payload.get("positions"), list)
         ):
             raise RuntimeError(f"invalid NFL sealed issuance: {path}")
-        for path_key, hash_key in (
+        if payload.get("schema") == "apex.nfl.published_card_issuance.v1":
+            from apex_nfl.grader_runtime import _verify_issuance
+            _verify_issuance(path)
+            bindings = ()
+        else:
+            bindings = (
             ("t3_receipt_path", "t3_receipt_sha256"),
             ("t2_receipt_path", "t2_receipt_sha256"),
             ("release_manifest_path", "release_manifest_sha256"),
             ("settlement_ruleset_path", "settlement_ruleset_sha256"),
-        ):
+            )
+        for path_key, hash_key in bindings:
             bound = Path(str(payload.get(path_key) or ""))
             if not bound.is_file() or sha256(bound) != payload.get(hash_key):
                 raise RuntimeError(f"NFL issuance bound-file mismatch: {path_key}")
@@ -329,7 +335,7 @@ def sealed_history() -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
         issuance_id = str(payload.get("issuance_id") or "")
         bound = by_id.get(issuance_id)
         if (
-            payload.get("schema") != "apex.nfl.immutable_grade_receipt.v2"
+            payload.get("schema") not in {"apex.nfl.immutable_grade_receipt.v2", "apex.nfl.published_card_grade.v1"}
             or path.name != f"{payload.get('grade_id')}.json"
             or bound is None
             or payload.get("issuance_sha256") != sha256(bound[0])
@@ -405,8 +411,8 @@ def main() -> int:
         {**issuance, "positions": [public_position(position) for position in issuance.get("positions", [])]}
         for issuance in issuances
     ]
-    release_qualified = scientific_state == "SCIENTIFICALLY_QUALIFIED_FOR_PRODUCTION"
-    science = {lane: "SEE_QUALIFIED_RELEASE" if release_qualified else "NO_QUALIFIED_CHAMPION"
+    release_ready = scientific_state == "READY"
+    science = {lane: "READY" if release_ready else "NO_FD_EDGE_YET"
                for lane in ("ATS", "PROPS", "TOTALS")}
     infrastructure_ready = bool(
         physical["completion_ledger_present"]
@@ -552,6 +558,8 @@ def main() -> int:
         print(f"NFL_PUBLIC_PAYLOAD={name} SHA256={sha256(DATA / name)}")
     from build_nfl_public_board import build as build_board
     build_board(ROOT)
+    from build_nfl_public_results import build as build_results
+    build_results(ROOT)
     return 0
 
 

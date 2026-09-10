@@ -81,8 +81,8 @@ def unissued_panel(label: str, state: str) -> str:
         f'</div>'
         f'<div class="meta mono">APEX WIN PROBABILITY: — · Sportsbook: FanDuel</div>'
         f'<div class="rationale-copy">'
-        f'<p>No position issued. Release state: {escape(state)}.</p>'
-        f'<p>When a FanDuel-qualified champion clears A-law, this panel publishes selection, '
+        f'<p>The T-2 picks card has not been published for this game.</p>'
+        f'<p>The published card will include selection, '
         f'WEAK/MODERATE/STRONG/ELITE rating, win probability, and detailed rationale.</p>'
         f'</div></div>'
     )
@@ -171,7 +171,7 @@ def build(root: Path = ROOT) -> None:
     today["generated_at_utc"] = datetime.now(tz=NY).astimezone(ZoneInfo("UTC")).strftime("%Y-%m-%dT%H:%M:%S.%fZ")[:-3] + "Z"
     today_path.write_text(json.dumps(today, indent=2) + "\n")
     board = render_board(today)
-    for relative in ("nfl/index.html", "nfl/results/index.html"):
+    for relative in ("nfl/index.html",):
         path = root / relative
         text = path.read_text()
         start, end = "<!-- NFL_BOARD_START -->", "<!-- NFL_BOARD_END -->"
