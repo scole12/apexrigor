@@ -134,7 +134,7 @@
       html += `<div class="section-head"><div class="title">SLATE DETAIL — ${esc(date)}</div><div class="meta mono">${selected.length} POSITIONS</div></div>`;
       html += table(["Game","Matchup","Market","Pick","Tier","Result"], details);
     }
-    if (!rows.length) root.innerHTML = html;
+    root.innerHTML = html;
   }
   load().catch(err => {
     root.innerHTML = `<p class="muted">Results temporarily unavailable.</p>`;
