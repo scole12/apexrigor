@@ -79,6 +79,18 @@ def build(root: Path):
     text = text.replace('ONLY SEALED ISSUANCE IS ELIGIBLE FOR GRADING', 'AS-ISSUED PICKS · OFFICIAL GAME AND PLAYER RESULTS')
     text = text.replace('AS-ISSUED PICKS · OFFICIAL GAME AND PLAYER RESULTS · ZERO UNITS', 'AS-ISSUED PICKS · OFFICIAL GAME AND PLAYER RESULTS')
     path.write_text(text)
+
+    # FAIL_CLOSED_NO_PICKS_TEASER — Scott forever ban: no prior-day results strip on /nfl picks.
+    picks_path = root / "nfl/index.html"
+    if picks_path.exists():
+        html = picks_path.read_text()
+        if "NFL_LATEST_RESULTS" in html or "nfl-ledger-note" in html:
+            raise RuntimeError(f"NFL picks teaser banned but present in {picks_path}")
+        if "<!-- NFL_BOARD_START -->" in html:
+            before = html.split("<!-- NFL_BOARD_START -->", 1)[0]
+            if "graded picks" in before or ("View results" in before and "results:" in before):
+                raise RuntimeError(f"NFL picks prior-day teaser banned but present before BOARD in {picks_path}")
+
     print(f'NFL_PUBLIC_RESULTS={len(rows)} RECORD={record(rows)}')
 
 
