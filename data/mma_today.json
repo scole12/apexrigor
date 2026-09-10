@@ -67,8 +67,8 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 7,
-      "segment": "MAIN",
-      "weight_class": "FLYWEIGHT"
+      "segment": "PRELIMS",
+      "weight_class": "CATCHWEIGHT"
     },
     {
       "fighter_a": "Ignacio Bahamondes",
@@ -76,7 +76,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 8,
-      "segment": "MAIN",
+      "segment": "PRELIMS",
       "weight_class": "WELTERWEIGHT"
     },
     {
@@ -85,7 +85,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 9,
-      "segment": "MAIN",
+      "segment": "PRELIMS",
       "weight_class": "MIDDLEWEIGHT"
     },
     {
@@ -94,7 +94,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 10,
-      "segment": "MAIN",
+      "segment": "PRELIMS",
       "weight_class": "LIGHTWEIGHT"
     },
     {
@@ -103,7 +103,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 11,
-      "segment": "MAIN",
+      "segment": "PRELIMS",
       "weight_class": "LIGHTWEIGHT"
     },
     {
@@ -112,7 +112,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 12,
-      "segment": "MAIN",
+      "segment": "PRELIMS",
       "weight_class": "FEATHERWEIGHT"
     },
     {
@@ -121,7 +121,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 13,
-      "segment": "MAIN",
+      "segment": "PRELIMS",
       "weight_class": "WOMENS_FLYWEIGHT"
     }
   ],
@@ -145,10 +145,10 @@
     "detail": "No forecasts have been issued yet. Any published card will show the selection, captured FanDuel price, APEX probability, rating and full model-supported rationale.",
     "headline": "Awaiting the T-2 forecast run"
   },
-  "generated_at_utc": "2026-09-09T16:00:26.322616Z",
+  "generated_at_utc": "2026-09-09T20:00:26.806791Z",
   "issuance_id": null,
   "issuance_status": null,
-  "payload_sha256": "f18b0366111282fd87e560d1d3916b9e66d61fd1ca847a550eafbf2d0e0910e9",
+  "payload_sha256": "67070005557c5703906d38de7163413d7582eb90e44bdbe3045f3d2b64c55491",
   "picks_published": false,
   "positions": [],
   "positions_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",

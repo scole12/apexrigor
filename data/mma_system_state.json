@@ -96,8 +96,8 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 7,
-      "segment": "MAIN",
-      "weight_class": "FLYWEIGHT"
+      "segment": "PRELIMS",
+      "weight_class": "CATCHWEIGHT"
     },
     {
       "fighter_a": "Ignacio Bahamondes",
@@ -105,7 +105,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 8,
-      "segment": "MAIN",
+      "segment": "PRELIMS",
       "weight_class": "WELTERWEIGHT"
     },
     {
@@ -114,7 +114,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 9,
-      "segment": "MAIN",
+      "segment": "PRELIMS",
       "weight_class": "MIDDLEWEIGHT"
     },
     {
@@ -123,7 +123,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 10,
-      "segment": "MAIN",
+      "segment": "PRELIMS",
       "weight_class": "LIGHTWEIGHT"
     },
     {
@@ -132,7 +132,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 11,
-      "segment": "MAIN",
+      "segment": "PRELIMS",
       "weight_class": "LIGHTWEIGHT"
     },
     {
@@ -141,7 +141,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 12,
-      "segment": "MAIN",
+      "segment": "PRELIMS",
       "weight_class": "FEATHERWEIGHT"
     },
     {
@@ -150,7 +150,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 13,
-      "segment": "MAIN",
+      "segment": "PRELIMS",
       "weight_class": "WOMENS_FLYWEIGHT"
     }
   ],
@@ -181,7 +181,7 @@
   },
   "event_id": "152caf3d-be5d-5931-af19-31e4b2fd2917",
   "fight_count": 13,
-  "generated_at_utc": "2026-09-09T16:00:26.322616Z",
+  "generated_at_utc": "2026-09-09T20:00:26.806791Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "GRADED_COMMERCIAL_AND_OR_SCIENTIFIC"
@@ -372,7 +372,7 @@
       "source": "PRODUCTION_COMMERCIAL_GRADES"
     }
   ],
-  "payload_sha256": "f562373f663bd96792e2ebd140a57c7adc8411150ce45781c2f22d727e197bad",
+  "payload_sha256": "30bb9189223bb3216ad3582d6c1c2c0c78f4f61998f1f3c8237154fe42f48783",
   "picks_published": false,
   "positions": [],
   "positions_sha256": null,
@@ -1099,7 +1099,7 @@
   ],
   "schema_version": "APEX_MMA_PUBLIC_STATE_V2",
   "science_blocker": "SEALED_FORECAST_RELEASE_PRESENT_BUT_NO_EVENT_ISSUANCE",
-  "semantic_state_sha256": "c394c8bbd5106756a73afb82166e0266e71821865dc1b862cbc03f44435cc21f",
+  "semantic_state_sha256": "7efdc6491f97aeed7830eb5c6cc2d30fb07a1ef96d6e5d7bf44cc683e4442ba6",
   "source_conflicts": [],
   "system_readiness_state": "RELEASE_PRESENT_AWAITING_ISSUANCE",
   "t2": {
