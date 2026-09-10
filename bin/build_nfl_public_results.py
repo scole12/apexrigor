@@ -79,13 +79,6 @@ def build(root: Path):
     text = text.replace('ONLY SEALED ISSUANCE IS ELIGIBLE FOR GRADING', 'AS-ISSUED PICKS · OFFICIAL GAME AND PLAYER RESULTS')
     text = text.replace('AS-ISSUED PICKS · OFFICIAL GAME AND PLAYER RESULTS · ZERO UNITS', 'AS-ISSUED PICKS · OFFICIAL GAME AND PLAYER RESULTS')
     path.write_text(text)
-    # A concise result link remains visible on Picks after the slate flips.
-    picks = root / 'nfl/index.html'
-    text = re.sub(r'<!-- NFL_LATEST_RESULTS_START -->.*?<!-- NFL_LATEST_RESULTS_END -->', '', picks.read_text(), flags=re.S)
-    if latest:
-        values = days[latest]
-        text = text.replace('<!-- NFL_BOARD_START -->', f'<!-- NFL_LATEST_RESULTS_START --><p class="nfl-ledger-note">{latest} results: {record(values)} · {len(values)} graded picks. <a href="/nfl/results">View results</a></p><!-- NFL_LATEST_RESULTS_END -->\n<!-- NFL_BOARD_START -->', 1)
-    picks.write_text(text)
     print(f'NFL_PUBLIC_RESULTS={len(rows)} RECORD={record(rows)}')
 
 
