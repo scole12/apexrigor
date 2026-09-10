@@ -55,7 +55,7 @@
     "completion_ledger_present": true,
     "critical_missed_capture_count": 0,
     "expected_capture_slot_count": 336,
-    "measured_at": "2026-09-10T23:10:04.740651Z",
+    "measured_at": "2026-09-10T23:13:52.973574Z",
     "missing_or_duplicate_slot_cohorts": [],
     "postseason_state": "AWAITING_PUBLISHED_GAMES",
     "reg_gamedays": 57,
@@ -73,7 +73,7 @@
     ],
     "super_bowl_included_as": "POST"
   },
-  "generated_at_utc": "2026-09-10T23:10:04.9597Z",
+  "generated_at_utc": "2026-09-10T23:13:53.1609Z",
   "hydration": {
     "completed_at_utc": "2026-09-10T23:08:17.859Z",
     "cross_authority_completion": "PASS",
@@ -1078,7 +1078,7 @@
   "runtime": {
     "code_commit": "68bc967606d6fc69a334a9bd267e32e13008f3a1",
     "manifest_sha256": "8aa1c99e45275d500e7f3c6872600e3649db61dbf01ddf4f454ba46cfbed0f2b",
-    "sealed_file_hash_mismatch_count": 9
+    "sealed_file_hash_mismatch_count": 10
   },
   "schema_version": "APEX_NFL_TODAY_V1",
   "science": {
