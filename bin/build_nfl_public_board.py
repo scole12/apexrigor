@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
-"""NFL TODAY'S CARD — MLB chrome parity (Scott 2026-09-09 both-track)."""
+"""NFL TODAY'S CARD — NCAAF unissued status and shared issued-market chrome."""
 from __future__ import annotations
 
 from datetime import datetime
 from html import escape
 import json
 from pathlib import Path
+import re
 from zoneinfo import ZoneInfo
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -91,6 +92,19 @@ def unissued_panel(label: str, state: str) -> str:
 def panels_for_game(game: dict, today: dict) -> str:
     state = str(today.get("scientific_release_state") or "UNISSUED")
     positions = list(game.get("positions") or [])
+    if not positions:
+        # Match the unissued STATUS block in ncaaf/index.html exactly.
+        return (
+            '<div class="market-grid">'
+            '<section class="market-panel" data-position-state="UNISSUED">'
+            '<div class="market-label">STATUS</div>'
+            '<div class="market-panel-head">'
+            '<span class="pick-headline">UNISSUED — AWAITING T-2</span>'
+            '<span class="tier-badge tier-badge--moderate">SCHEDULED</span>'
+            '</div><div class="rationale-copy">'
+            '<p>Listed from the official schedule. No sealed FanDuel-issued APEX positions yet.</p>'
+            '</div></section></div>'
+        )
 
     def take(engine: str, label: str) -> str:
         hits = []
@@ -178,6 +192,9 @@ def build(root: Path = ROOT) -> None:
         if text.count(start) != 1 or text.count(end) != 1:
             raise ValueError(f"markers missing: {relative}")
         text = text.split(start)[0] + start + "\n" + board + "\n" + end + text.split(end)[1]
+        issued = any(game.get("positions") for game in today.get("slate", {}).get("games", []))
+        text = re.sub(r'data-picks-state="[^"]*"', f'data-picks-state="{"issued" if issued else "quiet"}"', text)
+        text = re.sub(r'data-public-issuance="[^"]*"', f'data-public-issuance="{str(issued).lower()}"', text)
         # keep board.js disabled
         path.write_text(text)
         print(f"NFL_PUBLIC_BOARD={relative}")
