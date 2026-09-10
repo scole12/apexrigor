@@ -98,7 +98,7 @@
       <div class="cell"><div class="label">NFL ATS</div><div class="val mono">${esc(atsBanner)}</div></div>
       <div class="cell"><div class="label">NFL Totals</div><div class="val mono">${esc(totBanner)}</div></div>
     </div>`;
-    html += `<p class="muted" style="margin:8px 0 18px;font-size:12px">Overall = APEX Total Record (all sports fused). NFL ATS/Totals are this sport only. No units.</p>`;
+    html += ``;
 
     // AS-ISSUED TIER PERFORMANCE — ATS | TOTALS side by side like MLB
     html += `<div class="section-head"><div class="title">AS-ISSUED TIER PERFORMANCE</div><div class="meta mono">NFL FULL-GAME · AS ISSUED</div></div>`;
@@ -134,8 +134,7 @@
       html += `<div class="section-head"><div class="title">SLATE DETAIL — ${esc(date)}</div><div class="meta mono">${selected.length} POSITIONS</div></div>`;
       html += table(["Game","Matchup","Market","Pick","Tier","Result"], details);
     }
-    if (!rows.length) html += `<p class="muted">No graded NFL picks yet.</p>`;
-    root.innerHTML = html;
+    if (!rows.length) root.innerHTML = html;
   }
   load().catch(err => {
     root.innerHTML = `<p class="muted">Results temporarily unavailable.</p>`;
