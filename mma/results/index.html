@@ -4,73 +4,27 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
 <title>APEX — MMA Results</title>
-<meta name="description" content="APEX UFC / MMA season record, as-issued tier performance, daily archive and position ledger.">
-<link rel="icon" type="image/svg+xml" href="/favicon.svg?v=apex-20260825-mma">
-<link rel="icon" type="image/x-icon" href="/favicon.ico?v=apex-20260825-mma" sizes="32x32">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=apex-20260825-mma">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=apex-20260825-mma">
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=apex-20260825-mma">
-<link rel="manifest" href="/site.webmanifest?v=apex-20260825-mma">
+<meta name="description" content="APEX MMA / UFC graded results. Overall is Total Apex forever record.">
+<link rel="stylesheet" href="/assets/apex.css?v=mma-total-apex-003">
 <meta name="theme-color" content="#000000">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="APEX">
-<meta property="og:title" content="APEX — MMA Results">
-<meta property="og:description" content="APEX UFC / MMA season record, as-issued tier performance, daily archive and position ledger.">
-<meta property="og:url" content="https://apexrigor.com/mma/results">
-<meta property="og:image" content="https://apexrigor.com/og-image.png?v=apex-20260825-mma">
-<link rel="stylesheet" href="/assets/apex.css?v=apex-20260825-mma">
-
-<style id="mma-results-style">
-.mma-results-page [hidden]{display:none!important}
-.mma-results-page .results-scroll{width:100%;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
-.mma-results-page table.results{width:100%;border-collapse:collapse}
-.mma-results-page .position-ledger{min-width:920px}
-.mma-results-page .position-ledger td{font-size:12px;vertical-align:top;line-height:1.65}
-.mma-results-page .position-ledger th{white-space:nowrap}
-.mma-results-page .position-ledger .matchup{min-width:170px;max-width:220px;white-space:normal}
-.mma-results-page .result-mark{font-size:10px;letter-spacing:.08em;white-space:nowrap;border:1px solid #555;padding:5px 7px;display:inline-block}
-.mma-results-page .result-mark--PENDING{color:#aaa;border-color:#333}
-.mma-results-page .result-mark--W{background:#eee;color:#111;border-color:#eee}
-.mma-results-page .results-note{color:#aaa;font-size:12px;line-height:1.7;margin:14px 0 22px}
-.mma-results-page .results-error{border:1px solid #666;padding:18px;margin:20px 0;line-height:1.7}
-.mma-results-page .results-tier-single{max-width:600px;width:100%}
-.mma-results-page .event-summary{padding-bottom:20px}
-.mma-results-page .results-details{border-top:1px solid #333;margin-top:28px;padding:16px 0;color:#aaa;font-size:12px;line-height:1.7}
-.mma-results-page .results-details summary{cursor:pointer;text-transform:uppercase;letter-spacing:.1em;font-size:11px}
-.mma-results-page .results-details p{overflow-wrap:anywhere}
-@media(max-width:700px){.mma-results-page .banner .val{font-size:23px}.mma-results-page .section-head{gap:10px;flex-wrap:wrap}.mma-results-page .meta{overflow-wrap:anywhere}.mma-results-page .archive-table{min-width:560px}.mma-results-page .tier-grid{display:block}.mma-results-page .tier-col{margin-bottom:20px}}
-
-@media(max-width:700px){
-.mma-results-page .position-ledger,.mma-results-page .archive-table{min-width:0}
-.mma-results-page .position-ledger .matchup{min-width:0;max-width:none}
-.mma-results-page .position-ledger td[data-label]::before{content:attr(data-label) " · ";display:inline;font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:#999}
-.mma-results-page .position-ledger td:first-child::before{display:none}
-.mma-results-page #tier-performance table.results,.mma-results-page #combined-tiers table.results{display:table;table-layout:auto;font-size:11px}
-.mma-results-page #tier-performance thead,.mma-results-page #combined-tiers thead{display:table-header-group}
-.mma-results-page #tier-performance tbody,.mma-results-page #combined-tiers tbody{display:table-row-group}
-.mma-results-page #tier-performance tr,.mma-results-page #combined-tiers tr{display:table-row;margin:0;padding:0;border:0}
-.mma-results-page #tier-performance td,.mma-results-page #combined-tiers td{display:table-cell;width:auto;padding:10px 5px;font-size:11px;white-space:nowrap;border-bottom:1px solid #222}
-.mma-results-page #tier-performance th,.mma-results-page #combined-tiers th{padding:10px 5px;font-size:9px;letter-spacing:.06em}
-.mma-results-page #tier-performance td::before,.mma-results-page #combined-tiers td::before{display:none;content:none}
-}
-</style>
-
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg?v=mma-total-apex-003">
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "2ee12644257c4dd3b0357c59a12a109c"}'></script><!-- End Cloudflare Web Analytics -->
+<!-- Vercel Web Analytics --><script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script><script defer src="/_vercel/insights/script.js"></script><!-- End Vercel Web Analytics -->
 </head>
-<body class="mma-results-page">
-<div class="shell">
-  <div class="hero">
-    <div class="hero-mark"><svg viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg"><polygon points="22,6 38,36 6,36"/></svg></div>
-    <div class="hero-wordmark">APEX</div>
-    <div class="hero-rule"></div>
-    <div class="hero-tag">MMA / UFC</div>
-    <div class="hero-math">The Math Speaks.</div>
-  </div>
+<body>
+<div class="shell" data-sport="MMA">
+  <div class="hero"><div class="hero-mark"><svg viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg"><polygon points="22,6 38,36 6,36"/></svg></div><div class="hero-wordmark">APEX</div><div class="hero-rule"></div><div class="hero-tag">MMA / UFC</div><div class="hero-math">The Math Speaks.</div></div>
   <div class="apex-nav-stack">
   <nav class="sport-nav" aria-label="Sport selector">
     <a href="/results">MLB</a>
     <a href="/ncaaf/results">NCAA FOOTBALL</a>
     <a href="/mma/results" class="active" aria-current="true">MMA / UFC</a>
-    <span class="sport-unavailable" aria-disabled="true" title="NFL public route not yet established">NFL</span>
+    <a href="/nfl/results">NFL</a>
+    <a href="/nhl/results">NHL</a>
   </nav>
   <nav class="section-nav" aria-label="MMA sections">
     <a href="/mma">PICKS</a>
@@ -78,174 +32,9 @@
     <a href="/mma/about">ABOUT</a>
   </nav>
   </div>
-<div class="section-head"><div class="title">SEASON RECORD</div><div class="meta mono" id="results-meta">LOADING RESULTS</div></div>
-<div id="results-error" class="results-error" hidden role="alert"></div>
-<main id="results-root" hidden>
-<div class="banner" id="season-banner"></div>
-<p class="results-note" id="grade-note"></p><p class="results-error" id="coverage-warning" hidden></p>
-<div class="section-head"><div class="title">AS-ISSUED TIER PERFORMANCE</div><div class="meta mono" id="tier-period"></div></div>
-<div id="tier-performance"></div><div id="combined-tiers"></div>
-<div class="section-head"><div class="title">DAILY ARCHIVE</div></div>
-<div class="results-scroll" role="region" aria-label="Daily results archive" tabindex="0"><table class="results archive-table"><thead><tr><th>Date</th><th>Record</th><th>Win Rate</th><th>Summary</th></tr></thead><tbody id="daily-archive"></tbody></table></div>
-<div class="section-head"><div class="title" id="latest-title">LATEST EVENT</div><div class="meta mono" id="latest-date"></div></div>
-<div class="banner" id="latest-summary"></div><div id="event-ledgers"></div>
-<details class="results-details"><summary>Grading &amp; issuance details</summary><p id="asof"></p><p>Only recorded grades are counted. Pending results are not wins, losses, pushes or voids. Win rate is wins divided by wins plus losses. Prices, probabilities and ratings are preserved as issued; ratings are not a proven betting advantage.</p></details>
-</main>
-<script>
-window.ApexMmaDisplay=(()=>{
- const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
- const label=v=>String(v??'').replaceAll('_',' ');
- const parse=v=>new Date(typeof v==='string'?v.replace(' ','T'):v);
- const clock=v=>{const d=parse(v);return v&&Number.isFinite(d.getTime())?new Intl.DateTimeFormat('en-US',{timeZone:'America/New_York',hour:'numeric',minute:'2-digit',timeZoneName:'short'}).format(d):'TIME TBA'};
- const stamp=v=>{const d=parse(v);return v&&Number.isFinite(d.getTime())?new Intl.DateTimeFormat('en-US',{timeZone:'America/New_York',month:'short',day:'numeric',hour:'numeric',minute:'2-digit',timeZoneName:'short'}).format(d):'Not recorded'};
- const odds=v=>v===null||v===undefined?'Not recorded':(Number(v)>0?'+':'')+String(v);
- const norm=v=>String(v??'').normalize('NFKD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]/gi,'').toLowerCase();
- const pair=b=>[norm(b.fighter_a),norm(b.fighter_b)].filter(Boolean).sort().join('|');
- const paragraphs=v=>Array.isArray(v)?v:String(v||'').split(/\n\s*\n/).filter(x=>x.trim());
- function checkIssued(d){
-  const rows=Array.isArray(d.positions)?d.positions:[];
-  if(rows.length&&(!d.picks_published||!d.issuance_id||!d.active_model_sha256))throw new Error('Issued forecast identity is incomplete');
-  for(const p of rows){
-   if(!p.bout_id||!p.selection||!p.market||!Number.isFinite(p.probability)||p.probability<0||p.probability>1||!Number.isFinite(p.price)||!['WEAK','MODERATE','STRONG','ELITE'].includes(p.tier)||!paragraphs(p.rationale).length)throw new Error('Issued forecast fields are incomplete');
-  }
-  return rows;
- }
- function box(key,title,value,note=''){
-  return `<div class="mma-pick-box" data-field="${key}"><div class="mma-box-label mono">${esc(title)}</div><div class="mma-box-value${key==='pick'?' mma-box-value--pick':''} mono">${value}</div>${note?'<div class="mma-box-note">'+esc(note)+'</div>':''}</div>`;
- }
- function panel(p,options={}){
-  const research=options.research===true;
-  let headline=p.display_selection||p.selection;
-  if(!p.display_selection&&p.line!==null&&p.line!==undefined&&!String(headline).endsWith(' '+p.line))headline+=' '+p.line;
-  const issued=p.trace?.issuance_id||p.issuance_id||'';
-  const rating=research?'UNRATED':p.tier;
-  const boxes=box('pick','APEX Pick',esc(headline),label(p.market||'WINNER'))
-   +box('price','FanDuel Price',esc(odds(p.price)),research?'Original T-2 capture':'Price at issuance')
-   +box('probability','APEX Probability',(p.probability*100).toFixed(1)+'%',research?'Research estimate':'Model estimate')
-   +box('rating','APEX Rating',research?'<span style="font-size:16px">UNRATED</span>':`<span class="tier-badge tier-badge--${esc(String(rating).toLowerCase())}">${esc(rating)}</span>`,research?'Unvalidated research':'Probability tier, not betting value');
-  const rationale=`<div class="mma-rationale rationale-copy" aria-label="${research?'Research pick rationale':'Pick rationale'}">${paragraphs(p.rationale).map(x=>'<p>'+esc(x)+'</p>').join('')}</div>`;
-  const text=options.collapseRationale?`<details class="mma-rationale-details"><summary>Full as-issued rationale</summary>${rationale}</details>`:`<h3 class="mma-rationale-heading mono">${research?'Research':'Detailed'} rationale</h3>${rationale}`;
-  return `<section class="mma-position" data-market="${esc(p.market||'WINNER')}" data-position-state="${research?'RESEARCH':'SEALED'}" data-issuance="${esc(issued)}" data-position-bout="${esc(p.bout_id||p.matchup)}"><div class="mma-pick-boxes" aria-label="Four-box pick summary">${boxes}</div>${text}${p.quote_time?'<p class="mma-capture mono">FANDUEL CAPTURE · '+esc(stamp(p.quote_time))+'</p>':''}</section>`;
- }
- function boutCard(b,positions,i,options={}){
-  const name=b.matchup||(b.fighter_a&&b.fighter_b?b.fighter_a+' vs '+b.fighter_b:'MMA BOUT');
-  const context=[label(b.weight_class),b.segment,b.scheduled_rounds?b.scheduled_rounds+' ROUNDS':null].filter(Boolean).join(' · ');
-  const time=b.scheduled_start_utc?clock(b.scheduled_start_utc):(b.is_main_event?'MAIN EVENT':b.is_co_main_event?'CO-MAIN':'CARD ORDER '+String(b.official_display_order||i+1));
-  const body=positions.length?positions.map(p=>panel(p,options)).join(''):'<p class="meta mono" data-position-state="UNISSUED">NO ISSUED SELECTION</p>';
-  return `<article class="game-module mma-fight" data-bout="${esc(b.bout_id||b.apex_mma_bout_id||name)}" data-game-state="${positions.length?'ISSUED':'UNISSUED'}"><header class="game-header"><div class="game-num mono">F${String(i+1).padStart(2,'0')}</div><div class="game-meta"><h2 class="game-matchup">${esc(name)}</h2><p class="game-pitchers mono">${esc(context)}</p></div><div class="game-time mono">${esc(time)}</div></header>${body}</article>`;
- }
- function board(card,positions,options={}){
-  const groups=card.map(b=>({b,positions:[]}));
-  for(const p of positions){
-   let group=groups.find(g=>Boolean(p.bout_id&&(g.b.bout_id||g.b.apex_mma_bout_id)===p.bout_id)||Boolean(pair(p)&&pair(g.b)===pair(p))||norm(g.b.matchup||(g.b.fighter_a+' vs '+g.b.fighter_b))===norm(p.matchup));
-   if(!group){group={b:{...p,official_display_order:groups.length+1},positions:[]};groups.push(group)}
-   group.positions.push(p);
-  }
-  return groups.map((g,i)=>boutCard(g.b,g.positions,i,options)).join('');
- }
- function status(d){
-  if(d.forecast)return d.forecast;
-  if(d.picks_published&&(d.positions||[]).length)return{code:'FORECASTS_ISSUED',headline:'Forecasts issued',detail:'Selections and rationale from the sealed card.'};
-  const s=String(d.t2?.status||''),due=Date.parse(d.t2?.scheduled_utc||'');
-  if((/FAIL|BLOCKED|NO_RELEASE/.test(s)&&!s.includes('AWAITING_TARGET'))||(Number.isFinite(due)&&Date.now()>=due))return{code:'NO_FORECASTS_ISSUED',headline:'No forecasts issued',detail:'No issued forecast card is available for this event.'};
-  return{code:'AWAITING_T2',headline:'Awaiting the T-2 forecast run',detail:'No forecasts have been issued yet.'};
- }
- const issuedWhen=d=>d.t2?.actual_utc?clock(d.t2.actual_utc):'time recorded in issuance';
- const compactStatus=d=>d.picks_published&&d.positions?.length?`ISSUED ${issuedWhen(d)}${d.t2?.timeliness==='FAIL'?' · LATE RECOVERY':''}`:status(d).headline.toUpperCase();
- return {esc,label,clock,stamp,odds,panel,board,status,checkIssued,issuedWhen,compactStatus};
-})();
-</script>
-
-<script>
-window.ApexMmaResults=(()=>{
- const tiers=['WEAK','MODERATE','STRONG','ELITE'];
- const aliases={W:'W',WIN:'W',WON:'W',L:'L',LOSS:'L',LOST:'L',P:'P',PUSH:'P',VOID:'VOID',VOIDED:'VOID',PENDING:'PENDING',UNSETTLED:'PENDING'};
- const outcome=v=>aliases[String(v??'PENDING').toUpperCase()]||'PENDING';
- const key=p=>JSON.stringify([p.issuance_id,p.bout_id,p.market,p.selection,p.line??null]);
- function ledger(today,summary,archive,validate){
-  if(!Array.isArray(archive.events)||!Array.isArray(summary.latest_event_results))throw new Error('MMA result source format is incomplete');
-  const events=[],byIssuance=new Map(),warnings=[];
-  const documents=[...archive.events,today];
-  for(const doc of documents){
-   if(doc!==today&&(doc.official_issuance===false||doc.status==='UNVALIDATED_RESEARCH_NOT_OFFICIAL_ISSUANCE'))continue;
-   const rows=validate(doc);if(!rows.length)continue;
-   const date=doc.event?.event_date||doc.event_date;
-   if(!/^\d{4}-\d{2}-\d{2}$/.test(String(date))||!doc.issuance_id)throw new Error('Issued result card lacks its date or issuance');
-   const positions=rows.map((p,i)=>({...p,issuance_id:doc.issuance_id,event_date:date,order:i+1,result:'PENDING'}));
-   const event={date,name:doc.event?.display_name||doc.event?.name||doc.event_name||'UFC event',issuance_id:doc.issuance_id,positions,grades:[...(doc.latest_results||doc.results||[])]};
-   if(byIssuance.has(doc.issuance_id)){
-    const previous=byIssuance.get(doc.issuance_id);
-    if(JSON.stringify(previous.positions)!==JSON.stringify(positions))throw new Error('Conflicting as-issued archive');
-    previous.grades.push(...event.grades);continue;
-   }
-   events.push(event);byIssuance.set(doc.issuance_id,event);
-  }
-  const positions=events.flatMap(e=>e.positions),seen=new Set(),grades=new Map();
-  for(const p of positions){if(seen.has(key(p)))throw new Error('Duplicate issued position');seen.add(key(p));}
-  const gradeRows=[...events.flatMap(e=>e.grades.map(g=>({...g,issuance_id:g.issuance_id||e.issuance_id}))),...summary.latest_event_results];
-  for(const g of gradeRows){
-   const bid=g.bout_id||g.apex_mma_bout_id,market=g.market||g.market_family,selection=g.issued_selection||g.selection;
-   const matches=positions.filter(p=>bid&&p.bout_id===bid&&(!g.issuance_id||g.issuance_id===p.issuance_id)&&(!market||p.market===market)&&(!selection||p.selection===selection)&&(g.issued_line===undefined||g.issued_line===p.line));
-   if(matches.length!==1){warnings.push('Some recorded grades could not be matched to an issued selection.');continue;}
-   const p=matches[0],result=outcome(g.result||g.outcome||g.status),id=key(p);
-   if(grades.has(id)&&grades.get(id)!==result)throw new Error('Conflicting published grades require reconciliation');
-   grades.set(id,result);p.result=result;
-  }
-  if(Number(summary.issued_event_count||0)>events.length)warnings.push('Earlier issued event details are not present in the published archive.');
-  if(Number(summary.commercial_settlement_count||0)>positions.filter(p=>p.result!=='PENDING').length)warnings.push('Some settlement details have not reached the public ledger.');
-  events.sort((a,b)=>b.date.localeCompare(a.date)||a.issuance_id.localeCompare(b.issuance_id));
-  return{events,positions,warnings:[...new Set(warnings)]};
- }
- function record(rows){const r={W:0,L:0,P:0,VOID:0,PENDING:0};for(const p of rows)r[outcome(p.result)]++;return r;}
- const recordText=r=>`${r.W.toLocaleString('en-US')}-${r.L.toLocaleString('en-US')}${r.P?'-'+r.P+'P':''}${r.VOID?'-'+r.VOID+'V':''}`;
- const winRate=r=>r.W+r.L?((100*r.W)/(r.W+r.L)).toFixed(1)+'%':'—';
- const marketLabel=v=>String(v).replaceAll('_',' ').replace(/\b\w/g,x=>x.toUpperCase());
- const dateLabel=v=>{if(!/^\d{4}-\d{2}-\d{2}$/.test(String(v)))return '—';return new Intl.DateTimeFormat('en-US',{timeZone:'UTC',month:'long',day:'2-digit',year:'numeric'}).format(new Date(v+'T12:00:00Z'));};
- return{tiers,outcome,ledger,record,recordText,winRate,marketLabel,dateLabel};
-})();
-</script>
-
-<script>
-const M=window.ApexMmaDisplay,R=window.ApexMmaResults;
-const section=(title,meta='')=>`<div class="section-head"><div class="title">${M.esc(title)}</div><div class="meta mono">${M.esc(meta)}</div></div>`;
-const cell=(label,value,id='')=>`<div class="cell"><div class="label">${M.esc(label)}</div><div class="val mono"${id?' id="'+id+'"':''}>${M.esc(value)}</div></div>`;
-function tierTable(rows,market){return `<table class="results" data-tier-market="${M.esc(market)}"><thead><tr><th>Tier</th><th>Record</th><th>Win Rate</th><th>Pending</th></tr></thead><tbody>${R.tiers.map(t=>{
- const s=R.record(rows.filter(p=>p.tier===t));return `<tr data-apex-tier="${t}" data-apex-tier-market="${M.esc(market)}"><td class="mono">${t[0]+t.slice(1).toLowerCase()}</td><td class="mono">${R.recordText(s)}</td><td class="mono muted">${R.winRate(s)}</td><td class="mono muted">${s.PENDING}</td></tr>`;
- }).join('')}</tbody></table>`;}
-function positionTable(event){return `<div class="results-scroll" role="region" aria-label="${M.esc(event.date)} position ledger" tabindex="0"><table class="results position-ledger"><thead><tr><th>Fight</th><th>Matchup</th><th>Market</th><th>Issued Pick</th><th>FanDuel</th><th>APEX</th><th>Tier</th><th>Result</th></tr></thead><tbody>${event.positions.map(p=>{
- const pick=p.display_selection||(p.selection+(p.line===null||p.line===undefined?'':' '+p.line));
- return `<tr data-position-bout="${M.esc(p.bout_id)}" data-issuance="${M.esc(p.issuance_id)}" data-result="${p.result}"><td class="mono" data-label="Fight">F${String(p.order).padStart(2,'0')}</td><td class="matchup" data-label="Matchup">${M.esc(p.matchup)}</td><td class="mono" data-label="Market">${M.esc(R.marketLabel(p.market))}</td><td data-field="pick" data-label="Issued pick">${M.esc(pick)}</td><td class="mono" data-field="price" data-label="FanDuel">${M.esc(M.odds(p.price))}</td><td class="mono" data-field="probability" data-label="APEX probability">${(p.probability*100).toFixed(1)}%</td><td class="mono" data-field="rating" data-label="Tier">${M.esc(p.tier)}</td><td data-label="Result"><span class="result-mark result-mark--${p.result}">${p.result}</span></td></tr>`;
- }).join('')}</tbody></table></div>`;}
-Promise.all(['/data/mma_today.json','/data/mma_results_summary.json','/data/mma_results_archive.json'].map(url=>fetch(url,{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('HTTP '+r.status);return r.json()}))).then(([today,summary,archive])=>{
- const data=R.ledger(today,summary,archive,M.checkIssued),all=R.record(data.positions),markets=[...new Set(data.positions.map(p=>p.market))].sort();
- const primary=markets[0]||'WINNER',primaryRecord=R.record(data.positions.filter(p=>p.market===primary));
- document.getElementById('results-meta').textContent=`${data.positions.length} POSITIONS TRACKED · ${all.PENDING} PENDING`;
- document.getElementById('season-banner').innerHTML=cell('Overall',R.recordText(all),'season-record')+cell('Win Rate',R.winRate(all),'season-win-rate')+cell(R.marketLabel(primary),R.recordText(primaryRecord),'primary-record')+cell('Pending',all.PENDING,'pending-count');
- document.getElementById('season-banner').setAttribute('data-apex-season-record',R.recordText(all));
- document.getElementById('season-banner').setAttribute('data-apex-season-win-rate',R.winRate(all));
- document.getElementById('grade-note').textContent=all.PENDING===data.positions.length&&all.PENDING?'Issued selections are recorded below. Official grades have not been posted yet.':`${all.W+all.L+all.P+all.VOID} settled · ${all.PENDING} pending. Win rate uses wins and losses only.`;
- document.getElementById('coverage-warning').textContent=data.warnings.join(' ');document.getElementById('coverage-warning').hidden=!data.warnings.length;
- document.getElementById('tier-period').textContent=data.events.length?`${R.dateLabel(data.events[data.events.length-1].date)} — ${R.dateLabel(data.events[0].date)}`:'NO ISSUED EVENTS';
- const groupHtml=(markets.length?markets:['WINNER']).map(m=>`<div class="tier-col"><div class="tier-sub">${M.esc(R.marketLabel(m))} BY CONFIDENCE TIER</div>${tierTable(data.positions.filter(p=>p.market===m),m)}</div>`).join('');
- document.getElementById('tier-performance').className=markets.length>1?'tier-grid':'results-tier-single';document.getElementById('tier-performance').innerHTML=groupHtml;
- document.getElementById('combined-tiers').innerHTML=markets.length>1?'<div class="tier-sub">COMBINED MMA BY CONFIDENCE TIER</div><div class="tier-single">'+tierTable(data.positions,'COMBINED')+'</div>':'';
- const days=[...new Set(data.events.map(e=>e.date))];
- document.getElementById('daily-archive').innerHTML=days.length?days.map(day=>{
-  const entries=data.events.filter(e=>e.date===day),s=R.record(entries.flatMap(e=>e.positions));
-  return `<tr><td class="mono"><a href="#event-${day}">${R.dateLabel(day)}</a></td><td class="mono">${R.recordText(s)}</td><td class="mono muted">${R.winRate(s)}</td><td class="muted">${M.esc(entries.map(e=>e.name).join(' · '))}${s.PENDING?' · '+s.PENDING+' pending':''}</td></tr>`;
- }).join(''):'<tr><td colspan="4" class="muted">No issued events in the results archive.</td></tr>';
- const latest=data.events[0];
- document.getElementById('latest-title').textContent=latest&&latest.positions.some(p=>p.result!=='PENDING')?'LATEST EVENT RESULTS':'LATEST EVENT';
- document.getElementById('latest-date').textContent=latest?R.dateLabel(latest.date).toUpperCase():'';
- if(latest){const s=R.record(latest.positions);document.getElementById('latest-summary').innerHTML=cell('Event Record',R.recordText(s))+cell('Win Rate',R.winRate(s))+cell('Positions',latest.positions.length)+cell('Pending',s.PENDING);}
- document.getElementById('event-ledgers').innerHTML=data.events.map((event,i)=>{
-  const title=`${R.dateLabel(event.date)} · Position Ledger`,meta=event.name;
-  return `<section class="event-summary" id="event-${event.date}" data-event-date="${event.date}">${section(title,meta)}${positionTable(event)}${i===0?'<p class="results-note"><a href="/mma">View picks and full rationale →</a></p>':''}</section>`;
- }).join('');
- document.getElementById('asof').textContent='SOURCE UPDATE '+M.stamp(summary.generated_at_utc)+' · '+M.compactStatus(today);
- document.getElementById('results-root').hidden=false;
-}).catch(()=>{document.getElementById('results-meta').textContent='RESULTS DATA UNAVAILABLE';document.getElementById('results-root').hidden=true;const error=document.getElementById('results-error');error.hidden=false;error.textContent='The issued selections or grading ledger could not be verified. No record is being shown from incomplete data.';});
-</script>
+  <main id="results-root" aria-live="polite"><p class="muted mono">Loading results…</p></main>
+  <div class="foot mono">AS-ISSUED PICKS · OFFICIAL BOUT RESULTS · ZERO UNITS</div>
 </div>
+<script src="/mma/results/render.js?v=mma-total-apex-003"></script>
 </body>
 </html>
