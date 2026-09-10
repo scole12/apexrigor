@@ -1,0 +1,18 @@
+/* NHL uses the NFL gold layout and shared APEX typography. */
+.sport-nav { flex-wrap: wrap; }
+.results-scroll { overflow-x: auto; }
+.unissued-note { padding: 18px 0; color: var(--muted); }
+@media (max-width: 760px) {
+  .sport-nav { display: flex; gap: 2px; }
+  .sport-nav a { width: auto; padding: 0 9px; }
+  .section-head { flex-wrap: wrap; gap: 8px; }
+  .banner { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .banner .val { font-size: 19px; }
+  .tier-grid { grid-template-columns: 1fr; }
+  .results-scroll table.results { display: table; min-width: 540px; }
+  .results-scroll table.results thead { display: table-header-group; }
+  .results-scroll table.results tbody { display: table-row-group; }
+  .results-scroll table.results tr { display: table-row; }
+  .results-scroll table.results td { display: table-cell; }
+  .results-scroll table.results td::before { content: none; }
+}

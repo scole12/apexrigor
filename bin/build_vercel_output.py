@@ -24,7 +24,7 @@ FILES = (
     "og-image.png",
     "site.webmanifest",
 )
-DIRECTORIES = ("assets", "data", "picks", "results", "about", "ncaaf", "mma", "nfl")
+DIRECTORIES = ("assets", "data", "picks", "results", "about", "ncaaf", "mma", "nfl", "nhl")
 GENERATORS = (
     "build_mma_public_payload.py",
     "build_mma_picks_page.py",
