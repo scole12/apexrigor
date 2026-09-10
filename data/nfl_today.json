@@ -27,11 +27,11 @@
     },
     "active_capture_slot_count": 336,
     "active_cohort_count": 56,
-    "completed_capture_slot_count": 30,
+    "completed_capture_slot_count": 31,
     "completion_ledger_present": true,
     "critical_missed_capture_count": 0,
     "expected_capture_slot_count": 336,
-    "measured_at": "2026-09-10T12:27:40.655879Z",
+    "measured_at": "2026-09-10T16:12:27.166283Z",
     "missing_or_duplicate_slot_cohorts": [],
     "postseason_state": "AWAITING_PUBLISHED_GAMES",
     "reg_gamedays": 57,
@@ -49,14 +49,14 @@
     ],
     "super_bowl_included_as": "POST"
   },
-  "generated_at_utc": "2026-09-10T12:27:40.8352Z",
+  "generated_at_utc": "2026-09-10T16:12:27.3569Z",
   "hydration": {
-    "completed_at_utc": "2026-09-10T03:44:36.938Z",
+    "completed_at_utc": "2026-09-10T15:47:02.497Z",
     "cross_authority_completion": "PASS",
-    "raw_set_sha256": "1cb2859ee11a929620f5ccbe3470b9a1ed6a5160be2b676833d20d3327ac4def",
-    "receipt_sha256": "92a80af70173a46d84e30367a9cd9f5b86ed434c294461001fbc716980cee0e4",
+    "raw_set_sha256": "8cc5d6f7ca8bcb5fa2c0a86280ff35510a2be67a6632f6909fe7565bdbd2d831",
+    "receipt_sha256": "f384cf377e00734e16857cc51947663e5fcbf1a79d83628653367ae78e293926",
     "retrieval_mode": "LIVE_NETWORK_RETRIEVAL",
-    "retrieved_at_utc": "2026-09-10T03:42:09.155Z",
+    "retrieved_at_utc": "2026-09-10T15:41:22.124Z",
     "source_to_target_parity": "PASS",
     "status": "PASS"
   },
@@ -93,7 +93,7 @@
   "runtime": {
     "code_commit": "68bc967606d6fc69a334a9bd267e32e13008f3a1",
     "manifest_sha256": "8aa1c99e45275d500e7f3c6872600e3649db61dbf01ddf4f454ba46cfbed0f2b",
-    "sealed_file_hash_mismatch_count": 3
+    "sealed_file_hash_mismatch_count": 8
   },
   "schema_version": "APEX_NFL_TODAY_V1",
   "science": {
@@ -116,8 +116,8 @@
         "kickoff_utc": "2026-09-11T00:35:00Z",
         "matchup": "San Francisco 49ers at Los Angeles Rams",
         "positions": [],
-        "schedule_available_at_utc": "2026-09-10T03:42:09.155Z",
-        "schedule_effective_at_utc": "2026-09-10T03:42:09.155Z",
+        "schedule_available_at_utc": "2026-09-10T15:41:22.124Z",
+        "schedule_effective_at_utc": "2026-09-10T15:41:22.124Z",
         "season": 2026,
         "status": "SCHEDULED",
         "week": 1
