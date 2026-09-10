@@ -81,15 +81,39 @@ def build(root: Path):
     path.write_text(text)
 
     # FAIL_CLOSED_NO_PICKS_TEASER — Scott forever ban: no prior-day results strip on /nfl picks.
-    picks_path = root / "nfl/index.html"
-    if picks_path.exists():
+    _teaser_re = re.compile(
+        r"(NFL_LATEST_RESULTS|nfl-ledger-note|graded picks|View results\s*</a>)",
+        re.I,
+    )
+
+    def _assert_no_picks_teaser(picks_path: Path) -> None:
+        if not picks_path.exists():
+            return
         html = picks_path.read_text()
         if "NFL_LATEST_RESULTS" in html or "nfl-ledger-note" in html:
             raise RuntimeError(f"NFL picks teaser banned but present in {picks_path}")
+        window = html
         if "<!-- NFL_BOARD_START -->" in html:
-            before = html.split("<!-- NFL_BOARD_START -->", 1)[0]
-            if "graded picks" in before or ("View results" in before and "results:" in before):
-                raise RuntimeError(f"NFL picks prior-day teaser banned but present before BOARD in {picks_path}")
+            window = html.split("<!-- NFL_BOARD_START -->", 1)[0]
+        elif "TODAY" in html.upper():
+            # section-nav → TODAY'S CARD window
+            m = re.search(r"section-nav(.*?)TODAY", html, re.I | re.S)
+            window = m.group(1) if m else window
+        if _teaser_re.search(window) or "graded picks" in window or (
+            "View results" in window and "results:" in window
+        ):
+            raise RuntimeError(
+                f"NFL picks prior-day teaser banned but present before BOARD in {picks_path}"
+            )
+
+    candidates = [root / "nfl/index.html"]
+    # When root is site root, also check public copy; when root is public/, also check sibling ../nfl.
+    if root.name == "public":
+        candidates.append(root.parent / "nfl/index.html")
+    else:
+        candidates.append(root / "public/nfl/index.html")
+    for picks_path in candidates:
+        _assert_no_picks_teaser(picks_path)
 
     print(f'NFL_PUBLIC_RESULTS={len(rows)} RECORD={record(rows)}')
 

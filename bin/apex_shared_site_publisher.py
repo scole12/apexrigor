@@ -523,6 +523,17 @@ def build_request(request: Request, worktree: Path) -> dict[str, Any]:
     else:
         raise RuntimeError(f"unsupported sport publication request: {request.sport}")
     if request.sport == 'NFL':
+        # FAIL_CLOSED_NO_PICKS_TEASER — ban prior-day results strip on /nfl picks.
+        for rel in ("nfl/index.html", "public/nfl/index.html"):
+            picks = worktree / rel
+            if not picks.is_file():
+                continue
+            html = picks.read_text()
+            if "NFL_LATEST_RESULTS" in html or "nfl-ledger-note" in html:
+                raise RuntimeError(f"NFL picks teaser banned but present in {picks}")
+            before = html.split("<!-- NFL_BOARD_START -->", 1)[0] if "<!-- NFL_BOARD_START -->" in html else html
+            if "graded picks" in before or ("View results" in before and "results:" in before):
+                raise RuntimeError(f"NFL picks prior-day teaser banned but present in {picks}")
         changed = dirty_paths(worktree)
         if any(not (p.startswith('data/nfl_') or p.startswith('nfl/')) for p in changed):
             raise RuntimeError('NFL publication attempted a non-NFL path')
