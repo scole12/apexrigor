@@ -35,6 +35,15 @@
       "weight_class": "FEATHERWEIGHT"
     },
     {
+      "fighter_a": "Waldo Cortes Acosta",
+      "fighter_b": "Curtis Blaydes",
+      "is_co_main_event": false,
+      "is_main_event": false,
+      "official_display_order": 4,
+      "segment": "MAIN",
+      "weight_class": "HEAVYWEIGHT"
+    },
+    {
       "fighter_a": "Manon Fiorot",
       "fighter_b": "Alexa Grasso",
       "is_co_main_event": false,
@@ -44,20 +53,11 @@
       "weight_class": "WOMENS_FLYWEIGHT"
     },
     {
-      "fighter_a": "Waldo Cortes Acosta",
-      "fighter_b": "Curtis Blaydes",
-      "is_co_main_event": false,
-      "is_main_event": false,
-      "official_display_order": 5,
-      "segment": "MAIN",
-      "weight_class": "HEAVYWEIGHT"
-    },
-    {
       "fighter_a": "David Martinez",
       "fighter_b": "Dan Ige",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 6,
+      "official_display_order": 5,
       "segment": "MAIN",
       "weight_class": "BANTAMWEIGHT"
     },
@@ -66,7 +66,7 @@
       "fighter_b": "\u00c9dgar Ch\u00e1irez",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 7,
+      "official_display_order": 6,
       "segment": "PRELIMS",
       "weight_class": "CATCHWEIGHT"
     },
@@ -75,7 +75,7 @@
       "fighter_b": "Muslim Salikhov",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 8,
+      "official_display_order": 7,
       "segment": "PRELIMS",
       "weight_class": "WELTERWEIGHT"
     },
@@ -84,7 +84,7 @@
       "fighter_b": "Djorden Santos",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 9,
+      "official_display_order": 8,
       "segment": "PRELIMS",
       "weight_class": "MIDDLEWEIGHT"
     },
@@ -93,7 +93,7 @@
       "fighter_b": "Thomas Gantt",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 10,
+      "official_display_order": 9,
       "segment": "PRELIMS",
       "weight_class": "LIGHTWEIGHT"
     },
@@ -102,7 +102,7 @@
       "fighter_b": "Rongzhu",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 11,
+      "official_display_order": 10,
       "segment": "PRELIMS",
       "weight_class": "LIGHTWEIGHT"
     },
@@ -111,7 +111,7 @@
       "fighter_b": "Jessie Rosas",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 12,
+      "official_display_order": 11,
       "segment": "PRELIMS",
       "weight_class": "FEATHERWEIGHT"
     },
@@ -120,7 +120,7 @@
       "fighter_b": "Regina Tarin",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 13,
+      "official_display_order": 12,
       "segment": "PRELIMS",
       "weight_class": "WOMENS_FLYWEIGHT"
     }
@@ -145,10 +145,10 @@
     "detail": "No forecasts have been issued yet. Any published card will show the selection, captured FanDuel price, APEX probability, rating and full model-supported rationale.",
     "headline": "Awaiting the T-2 forecast run"
   },
-  "generated_at_utc": "2026-09-09T20:00:26.806791Z",
+  "generated_at_utc": "2026-09-11T02:30:24.666239Z",
   "issuance_id": null,
   "issuance_status": null,
-  "payload_sha256": "67070005557c5703906d38de7163413d7582eb90e44bdbe3045f3d2b64c55491",
+  "payload_sha256": "cfeb5458057a55d6a74eca2b6389be106b89b99b54f6b63198d2e605d7c7b904",
   "picks_published": false,
   "positions": [],
   "positions_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
