@@ -15,7 +15,13 @@ FIELDS = {"wins": "W", "losses": "L", "pushes": "PUSH", "voids": "VOID", "pendin
 
 def _read(path):
     raw = path.read_bytes()
-    return json.loads(raw), {"path": str(path), "sha256": hashlib.sha256(raw).hexdigest()}
+    return json.loads(raw), {"path": f"data/{path.name}", "sha256": hashlib.sha256(raw).hexdigest()}
+
+
+def _stable_source_path(value):
+    """Return a checkout-independent identity for a saved site data source."""
+    name = Path(str(value or "")).name
+    return f"data/{name}" if name else "data/results_archive.json"
 
 
 def _count(value):
@@ -226,17 +232,20 @@ def fuse_summary(summary, *, data_dir, previous=None):
                  positions_graded=overall["positions_graded"], daily_archive_count=overall["slates_graded"],
                  calculation_authority="CANONICAL_SPORT_GRADED_BOOKS",
                  note="Overall = sum of included sport graded books. Settled=W+L+P; tracked=settled+VOID+PENDING+OTHER.")
+    fused["source_summary_path"] = _stable_source_path(
+        summary.get("source_summary_path", data_dir / "results_archive.json")
+    )
     for field in ("wins", "losses", "pushes", "win_rate", "win_rate_display"):
         fused[f"overall_{field}"] = overall[field]
     for field in ("latest_graded_date", "latest_graded_date_display"):
         fused[field] = overall[field]
     fused["total_apex_fuse"] = {
-        "version": "total_apex_fuse_v2", "builder": str(Path(__file__).resolve()),
+        "version": "total_apex_fuse_v2", "builder": "bin/apex_total_results.py",
         "sources": {sport: sports[sport].get("source_files", []) for sport in included},
         "excluded_ungraded_sports": [sport for sport in sports if sport not in included],
     }
     fused["total_apex_fuse"]["sources"]["mlb"] = [{
-        "path": summary.get("source_summary_path", str(data_dir / "results_archive.json")),
+        "path": _stable_source_path(summary.get("source_summary_path", data_dir / "results_archive.json")),
         "sha256": summary.get("source_summary_sha256", ""),
         "canonical_receipt_sha256": summary.get("canonical_receipt_sha256", ""),
         "field": "_canonical_grader_receipt_projection.sports.mlb",

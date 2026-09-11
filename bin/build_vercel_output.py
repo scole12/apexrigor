@@ -27,10 +27,12 @@ FILES = (
 DIRECTORIES = ("assets", "data", "picks", "results", "about", "ncaaf", "mma", "nfl", "nhl")
 GENERATORS = (
     "build_mma_public_payload.py",
+    # The MMA ledger is parity-gated against the freshly fused Total Apex
+    # summary, so the fuse must precede the Results renderer.
+    "build_total_apex_results.py",
     "build_mma_picks_page.py",
     "build_mma_results_page.py",
     "build_mma_about_page.py",
-    "build_total_apex_results.py",
 )
 
 

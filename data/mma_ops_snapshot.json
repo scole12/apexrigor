@@ -1,5 +1,5 @@
 {
-  "active_engine": "WINNER_RESIDUAL_BEST_AVAILABLE_V1",
+  "active_engine": null,
   "event_card": [
     {
       "fighter_a": "Jean Silva",
@@ -42,7 +42,7 @@
       "fighter_b": "Alexa Grasso",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 4,
+      "official_display_order": 5,
       "segment": "MAIN",
       "weight_class": "WOMENS_FLYWEIGHT"
     },
@@ -51,7 +51,7 @@
       "fighter_b": "Dan Ige",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 5,
+      "official_display_order": 6,
       "segment": "MAIN",
       "weight_class": "BANTAMWEIGHT"
     },
@@ -60,7 +60,7 @@
       "fighter_b": "\u00c9dgar Ch\u00e1irez",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 6,
+      "official_display_order": 7,
       "segment": "PRELIMS",
       "weight_class": "CATCHWEIGHT"
     },
@@ -69,7 +69,7 @@
       "fighter_b": "Muslim Salikhov",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 7,
+      "official_display_order": 8,
       "segment": "PRELIMS",
       "weight_class": "WELTERWEIGHT"
     },
@@ -78,7 +78,7 @@
       "fighter_b": "Djorden Santos",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 8,
+      "official_display_order": 9,
       "segment": "PRELIMS",
       "weight_class": "MIDDLEWEIGHT"
     },
@@ -87,7 +87,7 @@
       "fighter_b": "Thomas Gantt",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 9,
+      "official_display_order": 10,
       "segment": "PRELIMS",
       "weight_class": "LIGHTWEIGHT"
     },
@@ -96,7 +96,7 @@
       "fighter_b": "Rongzhu",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 10,
+      "official_display_order": 11,
       "segment": "PRELIMS",
       "weight_class": "LIGHTWEIGHT"
     },
@@ -105,7 +105,7 @@
       "fighter_b": "Jessie Rosas",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 11,
+      "official_display_order": 12,
       "segment": "PRELIMS",
       "weight_class": "FEATHERWEIGHT"
     },
@@ -114,7 +114,7 @@
       "fighter_b": "Regina Tarin",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 12,
+      "official_display_order": 13,
       "segment": "PRELIMS",
       "weight_class": "WOMENS_FLYWEIGHT"
     }
@@ -320,7 +320,7 @@
   "market_outcomes_authority": {
     "status": "POPULATED_H2H_ONLY"
   },
-  "model_sha256": "c4405db96c390a3934649b9deb77c36ad510093defc2a9bcb1e01115757e2922",
+  "model_sha256": null,
   "next_event": {
     "city": "Glendale",
     "country": "United States",
@@ -335,10 +335,19 @@
     "region": "Arizona",
     "venue": "Desert Diamond Arena"
   },
-  "payload_sha256": "bcc7d85bd1c3f371a1b9ce7483f62608d6c70018f0481ba90ad0e8c4127c8f79",
+  "payload_sha256": "b6dcffa941e144581ddc912d7347877195b057b4c64c08c2d62a6704d9e8dd9b",
   "production_isolation": "PASS",
   "schema_version": "APEX_MMA_OPS_SNAPSHOT_V1",
-  "science_blocker": "SEALED_FORECAST_RELEASE_PRESENT_BUT_NO_EVENT_ISSUANCE",
+  "science_blocker": "FAIL_CLOSED_KEEP_NONE_EDGE_CERT_NO",
+  "science_gate": {
+    "ci_fully_below_0": false,
+    "edge_cert": "NO",
+    "eligible": false,
+    "keep": "NONE",
+    "policy": "STATUS_ONLY",
+    "production_issuance_authorized": false,
+    "release_binding": "NONE"
+  },
   "system_status": "AWAITING_T2",
   "t2": {
     "actual_utc": null,
@@ -353,7 +362,7 @@
     "scheduled_utc": "2026-09-12T15:00:00Z",
     "status": "SCHEDULED"
   },
-  "t3_fight_count": 0,
+  "t3_fight_count": null,
   "testing_authority": {
     "experiments": 22,
     "feature_matrices": 1,

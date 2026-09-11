@@ -500,6 +500,7 @@ def allowed_site_change(relative: str) -> bool:
             "data/mma_results_summary.json",
             "data/mma_results_archive.json",
             "data/mma_ops_snapshot.json",
+            "data/apex_results_summary.json",
             "data/nfl_today.json",
             "data/nfl_results_summary.json",
             "data/nfl_results_archive.json",
@@ -515,6 +516,7 @@ def build_request(request: Request, worktree: Path) -> dict[str, Any]:
         ncaaf_delivery_manifest(request, worktree)
     elif request.sport == "MMA":
         python_tool(worktree, "build_mma_public_payload.py")
+        python_tool(worktree, "build_total_apex_results.py")
         python_tool(worktree, "build_mma_picks_page.py")
         python_tool(worktree, "build_mma_results_page.py")
         python_tool(worktree, "build_mma_about_page.py")

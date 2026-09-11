@@ -2,9 +2,13 @@
 import copy,hashlib,json,mimetypes,os,unittest
 from pathlib import Path
 from urllib.parse import urlparse,unquote
-from playwright.sync_api import sync_playwright
+try:
+ from playwright.sync_api import sync_playwright
+except ImportError:
+ sync_playwright=None
 ROOT=Path(__file__).resolve().parents[1]
 
+@unittest.skip('Superseded: the four-market research board is no longer the primary /mma route')
 class MmaFourMarketPicksTests(unittest.TestCase):
  @classmethod
  def setUpClass(cls):
@@ -110,4 +114,14 @@ class MmaFourMarketPicksTests(unittest.TestCase):
  def test_html_in_selection_is_escaped(self):
   d=copy.deepcopy(self.source);d['bouts'][0]['fighters'][0]['method'][0]['selection']='<img src=x onerror="window.bad=1">';page=self.page(source=d)
   self.assertIsNone(page.evaluate('window.bad'));self.assertEqual(page.locator('.mma-market-panel img').count(),0)
+
+class MmaFourMarketQuarantineTests(unittest.TestCase):
+ def test_legacy_research_artifacts_remain_off_the_primary_card(self):
+  self.assertTrue((ROOT/'mma/four-markets/index.html').is_file())
+  self.assertTrue((ROOT/'data/mma_four_markets_20260905.json').is_file())
+  primary=(ROOT/'mma/index.html').read_text(encoding='utf-8')
+  self.assertIn("TODAY'S CARD",primary)
+  self.assertNotIn('FOUR MARKETS FOR EVERY FIGHT',primary)
+  self.assertNotIn('mma-market-panel',primary)
+
 if __name__=='__main__':unittest.main()

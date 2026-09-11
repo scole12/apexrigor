@@ -1,6 +1,6 @@
 {
   "contract_version": "apex_results_summary_from_grader_receipt_v1",
-  "generated_at_et": "2026-09-11T07:00:22.354759-04:00",
+  "generated_at_et": "2026-09-11T07:30:51.225108-04:00",
   "sports_included": [
     "mlb",
     "nfl",
@@ -113,7 +113,7 @@
       "source_row_count": 10,
       "source_files": [
         {
-          "path": "/opt/apex_site/data/nfl_results_archive.json",
+          "path": "data/nfl_results_archive.json",
           "sha256": "690de4c75bd77bcd2c41f98fc38163e1b2c8b4a15027690b48dc08261cb936d0",
           "field": "issuances[].positions + active grades[].settlements"
         }
@@ -145,7 +145,7 @@
       "source_row_count": 0,
       "source_files": [
         {
-          "path": "/opt/apex_site/data/nhl_results_archive.json",
+          "path": "data/nhl_results_archive.json",
           "sha256": "de3733097a158309ff1ae73b29b101516b7799d9d92e8c6e4e5317fd7bf2ccc5",
           "field": "issuances[].positions + active grades[].settlements"
         }
@@ -176,13 +176,13 @@
       "source_scope": "PRODUCTION_COMMERCIAL_WINNER_H2H",
       "source_files": [
         {
-          "path": "/opt/apex_site/data/mma_results_archive.json",
+          "path": "data/mma_results_archive.json",
           "sha256": "c57d8b9a58b5eff27b1c549f5616c4abe73184ca21b6cf2751937d89b9ca4673",
           "field": "events[].latest_results"
         },
         {
-          "path": "/opt/apex_site/data/mma_results_summary.json",
-          "sha256": "3502278231738f1ed9078e119f1151d04ff521bd132c6b6fc064216c88e8aa73",
+          "path": "data/mma_results_summary.json",
+          "sha256": "6705fb1e572a264286d456a63818df4a9916fb4e54f01fa92be6b6e39971e44f",
           "field": "latest_event_results"
         }
       ],
@@ -211,7 +211,7 @@
       "latest_graded_date_display": "September 07, 2026",
       "source_files": [
         {
-          "path": "/opt/apex_site/data/ncaaf_results_cumulative.json",
+          "path": "data/ncaaf_results_cumulative.json",
           "sha256": "1673ab6fed779999a05c3f7b9566a60acffc966b2d61b3aecf6490e4084f1d6c",
           "field": "positions",
           "aggregate_check": "lifetime_record"
@@ -226,44 +226,44 @@
   "mlb_pushes": 26,
   "mlb_positions_graded": 3537,
   "note": "Overall = sum of included sport graded books. Settled=W+L+P; tracked=settled+VOID+PENDING+OTHER.",
-  "canonical_receipt_sha256": "2e4cdaf51dae177e03bbad61c001784bb808b7075acc2ac4642d5dc661bb46dc",
-  "source_summary_path": "/opt/apex_site/data/results_archive.json",
-  "source_summary_sha256": "189f321b85dc25758be37097d3d80588759949fc8c17f302b7d8c78f8566c2bd",
+  "canonical_receipt_sha256": "78d00687854d21b1458347ef7c9c4df763974513029352431147b871989d9c56",
+  "source_summary_path": "data/results_archive.json",
+  "source_summary_sha256": "aa6063cf3fc49fa8d852f387ff18f3ebf6dda8865cb74cb209eb86b52395ebfc",
   "calculation_authority": "CANONICAL_SPORT_GRADED_BOOKS",
   "total_apex_fuse": {
     "version": "total_apex_fuse_v2",
-    "builder": "/opt/apex_site/bin/apex_total_results.py",
+    "builder": "bin/apex_total_results.py",
     "sources": {
       "mlb": [
         {
-          "path": "/opt/apex_site/data/results_archive.json",
-          "sha256": "189f321b85dc25758be37097d3d80588759949fc8c17f302b7d8c78f8566c2bd",
-          "canonical_receipt_sha256": "2e4cdaf51dae177e03bbad61c001784bb808b7075acc2ac4642d5dc661bb46dc",
+          "path": "data/results_archive.json",
+          "sha256": "aa6063cf3fc49fa8d852f387ff18f3ebf6dda8865cb74cb209eb86b52395ebfc",
+          "canonical_receipt_sha256": "78d00687854d21b1458347ef7c9c4df763974513029352431147b871989d9c56",
           "field": "_canonical_grader_receipt_projection.sports.mlb"
         }
       ],
       "nfl": [
         {
-          "path": "/opt/apex_site/data/nfl_results_archive.json",
+          "path": "data/nfl_results_archive.json",
           "sha256": "690de4c75bd77bcd2c41f98fc38163e1b2c8b4a15027690b48dc08261cb936d0",
           "field": "issuances[].positions + active grades[].settlements"
         }
       ],
       "mma": [
         {
-          "path": "/opt/apex_site/data/mma_results_archive.json",
+          "path": "data/mma_results_archive.json",
           "sha256": "c57d8b9a58b5eff27b1c549f5616c4abe73184ca21b6cf2751937d89b9ca4673",
           "field": "events[].latest_results"
         },
         {
-          "path": "/opt/apex_site/data/mma_results_summary.json",
-          "sha256": "3502278231738f1ed9078e119f1151d04ff521bd132c6b6fc064216c88e8aa73",
+          "path": "data/mma_results_summary.json",
+          "sha256": "6705fb1e572a264286d456a63818df4a9916fb4e54f01fa92be6b6e39971e44f",
           "field": "latest_event_results"
         }
       ],
       "ncaaf": [
         {
-          "path": "/opt/apex_site/data/ncaaf_results_cumulative.json",
+          "path": "data/ncaaf_results_cumulative.json",
           "sha256": "1673ab6fed779999a05c3f7b9566a60acffc966b2d61b3aecf6490e4084f1d6c",
           "field": "positions",
           "aggregate_check": "lifetime_record"

@@ -1,6 +1,6 @@
 {
-  "active_model": "WINNER_RESIDUAL_BEST_AVAILABLE_V1",
-  "active_model_sha256": "c4405db96c390a3934649b9deb77c36ad510093defc2a9bcb1e01115757e2922",
+  "active_model": null,
+  "active_model_sha256": null,
   "authorities": {
     "fighter": {
       "bouts": 3504,
@@ -77,7 +77,7 @@
       "fighter_b": "Alexa Grasso",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 4,
+      "official_display_order": 5,
       "segment": "MAIN",
       "weight_class": "WOMENS_FLYWEIGHT"
     },
@@ -86,7 +86,7 @@
       "fighter_b": "Dan Ige",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 5,
+      "official_display_order": 6,
       "segment": "MAIN",
       "weight_class": "BANTAMWEIGHT"
     },
@@ -95,7 +95,7 @@
       "fighter_b": "\u00c9dgar Ch\u00e1irez",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 6,
+      "official_display_order": 7,
       "segment": "PRELIMS",
       "weight_class": "CATCHWEIGHT"
     },
@@ -104,7 +104,7 @@
       "fighter_b": "Muslim Salikhov",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 7,
+      "official_display_order": 8,
       "segment": "PRELIMS",
       "weight_class": "WELTERWEIGHT"
     },
@@ -113,7 +113,7 @@
       "fighter_b": "Djorden Santos",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 8,
+      "official_display_order": 9,
       "segment": "PRELIMS",
       "weight_class": "MIDDLEWEIGHT"
     },
@@ -122,7 +122,7 @@
       "fighter_b": "Thomas Gantt",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 9,
+      "official_display_order": 10,
       "segment": "PRELIMS",
       "weight_class": "LIGHTWEIGHT"
     },
@@ -131,7 +131,7 @@
       "fighter_b": "Rongzhu",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 10,
+      "official_display_order": 11,
       "segment": "PRELIMS",
       "weight_class": "LIGHTWEIGHT"
     },
@@ -140,7 +140,7 @@
       "fighter_b": "Jessie Rosas",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 11,
+      "official_display_order": 12,
       "segment": "PRELIMS",
       "weight_class": "FEATHERWEIGHT"
     },
@@ -149,7 +149,7 @@
       "fighter_b": "Regina Tarin",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 12,
+      "official_display_order": 13,
       "segment": "PRELIMS",
       "weight_class": "WOMENS_FLYWEIGHT"
     }
@@ -372,7 +372,7 @@
       "source": "PRODUCTION_COMMERCIAL_GRADES"
     }
   ],
-  "payload_sha256": "08b6b60c51487f02e4ae144b98eaf6433420e22df28c5bb7c5a8cda40d5a1f72",
+  "payload_sha256": "8fe0de704eb3e02e15de36d5f979cea62984919c39f04f86c2c2d2e706def2ea",
   "picks_published": false,
   "positions": [],
   "positions_sha256": null,
@@ -1098,7 +1098,16 @@
     }
   ],
   "schema_version": "APEX_MMA_PUBLIC_STATE_V2",
-  "science_blocker": "SEALED_FORECAST_RELEASE_PRESENT_BUT_NO_EVENT_ISSUANCE",
+  "science_blocker": "FAIL_CLOSED_KEEP_NONE_EDGE_CERT_NO",
+  "science_gate": {
+    "ci_fully_below_0": false,
+    "edge_cert": "NO",
+    "eligible": false,
+    "keep": "NONE",
+    "policy": "STATUS_ONLY",
+    "production_issuance_authorized": false,
+    "release_binding": "NONE"
+  },
   "semantic_state_sha256": "643eecf5b22ceeec9ab79b9e0966a665be1ded325a785d1515951540504968cc",
   "source_conflicts": [],
   "system_readiness_state": "RELEASE_PRESENT_AWAITING_ISSUANCE",

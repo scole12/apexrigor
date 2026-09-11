@@ -58,6 +58,7 @@ const norm=v=>String(v??"").normalize("NFKD").replace(/[\u0300-\u036f]/g,"").rep
 const pair=b=>b.fighter_a&&b.fighter_b?[norm(b.fighter_a),norm(b.fighter_b)].sort().join("|"):"";
 const matchup=b=>b.fighter_a&&b.fighter_b?b.fighter_a+" vs "+b.fighter_b:b.matchup;
 const paragraphs=v=>String(v||"").split(/\n\s*\n/).filter(x=>x.trim());
+const allowedMarkets=new Set(["WINNER","METHOD","TIME"]);
 const dateLabel=value=>{
  const [y,m,d]=String(value).split("-").map(Number);
  return new Intl.DateTimeFormat("en-US",{weekday:"long",year:"numeric",month:"long",day:"numeric",timeZone:"UTC"}).format(new Date(Date.UTC(y,m-1,d))).toUpperCase();
@@ -79,18 +80,20 @@ function issuedPositions(d){
  const rows=d.positions;
  if(!rows.length){
   if(d.picks_published===true)throw new Error("Empty published issuance");
+  if(d.active_model!=null||d.active_model_sha256!=null)throw new Error("Unissued payload exposes a model identity");
   return [];
  }
  if(d.picks_published!==true||d.release_state!=="SEALED_RELEASE_AVAILABLE"||!d.issuance_id||!["SEALED","ALREADY_ISSUED"].includes(d.issuance_status)||!d.active_model||!/^[0-9a-f]{64}$/.test(d.active_model_sha256||""))throw new Error("Unsealed issuance");
  const seen=new Set();
  for(const p of rows){
-  if(!p||!["bout_id","matchup","market","selection","rationale"].every(k=>typeof p[k]==="string"&&p[k].trim())||!paragraphs(p.rationale).length||p.sportsbook!=="FanDuel"||!["WEAK","MODERATE","STRONG","ELITE"].includes(p.tier)||!Number.isFinite(p.probability)||p.probability<0||p.probability>1||!Number.isFinite(p.price)||Math.abs(p.price)<100||(p.line!=null&&!Number.isFinite(p.line)))throw new Error("Invalid issued position");
+  if(!p||!["bout_id","matchup","fighter_a","fighter_b","market","selection","rationale"].every(k=>typeof p[k]==="string"&&p[k].trim())||!pair(p)||!paragraphs(p.rationale).length||p.sportsbook!=="FanDuel"||!["WEAK","MODERATE","STRONG","ELITE"].includes(p.tier)||!Number.isFinite(p.probability)||p.probability<0||p.probability>1||!Number.isFinite(p.price)||Math.abs(p.price)<100||(p.line!=null&&!Number.isFinite(p.line)))throw new Error("Invalid issued position");
+  if(!allowedMarkets.has(p.market))throw new Error("Unsupported MMA public market");
   if((p.trace?.issuance_id||p.issuance_id)!==d.issuance_id||(p.trace?.model_sha256||p.model_sha256)!==d.active_model_sha256)throw new Error("Foreign issuance identity");
   const key=JSON.stringify([p.bout_id,p.market,p.selection,p.line??null]);
   if(seen.has(key))throw new Error("Duplicate issued position");
   seen.add(key);
  }
- return rows.filter(p=>p.market==="WINNER"||p.market==="METHOD");
+ return rows;
 }
 function issuedPanel(p){
  const headline=p.display_selection||p.selection;
@@ -105,6 +108,13 @@ function issuedPanel(p){
 fetch("/data/mma_today.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw new Error("HTTP "+r.status);return r.json()}).then(d=>{
  if(!d.event?.event_date||!Array.isArray(d.card)||d.card.some(b=>!b||!matchup(b)))throw new Error("Invalid official card");
  const e=d.event,positions=issuedPositions(d);
+ const forecast=d.forecast;
+ if(!forecast||typeof forecast.code!=="string"||typeof forecast.headline!=="string"||typeof forecast.detail!=="string")throw new Error("Invalid forecast status");
+ const displayOrders=d.card.map(b=>b.official_display_order);
+ if(displayOrders.some(order=>!Number.isInteger(order))||[...displayOrders].sort((a,b)=>a-b).some((order,index)=>order!==index+1))throw new Error("Invalid official display order");
+ const cardPairs=d.card.map(pair);
+ const cardFighters=d.card.flatMap(b=>[norm(b.fighter_a),norm(b.fighter_b)]);
+ if(cardPairs.some(value=>!value)||new Set(cardPairs).size!==cardPairs.length||new Set(cardFighters).size!==cardFighters.length)throw new Error("Duplicate official bout or fighter");
  const card=d.card.map((b,i)=>({b,order:Number.isFinite(b.official_display_order)?b.official_display_order:i+1,positions:[]})).sort((a,b)=>a.order-b.order);
  for(const p of positions){
   const matches=card.filter(g=>{
@@ -115,11 +125,12 @@ fetch("/data/mma_today.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw new Err
   matches[0].positions.push(p);
  }
  const meta=dateLabel(e.event_date)+" · "+card.length+" SCHEDULED BOUTS · "+positions.length+" POSITIONS"
-  +(positions.length?"":" · UNISSUED · AWAITING T-2")+(d.active_model?" · MODEL "+d.active_model:"");
+  +(positions.length?" · MODEL "+d.active_model:" · UNISSUED · "+forecast.code.replaceAll("_"," "));
  const html=card.map(({b,positions:issued},i)=>{
   let panels=issued.slice().sort((a,b)=>(a.market==="WINNER"?0:1)-(b.market==="WINNER"?0:1)).map(issuedPanel).join("");
   if(!issued.length){
-   panels='<section class="market-panel" data-position-state="UNISSUED"><div class="market-label">STATUS</div><div class="market-panel-head"><span class="pick-headline">UNISSUED — AWAITING T-2</span><span class="tier-badge tier-badge--moderate">SCHEDULED</span></div><div class="rationale-copy"><p>Listed from the official card. No sealed FanDuel-issued APEX positions yet.</p></div></section>';
+   const badge=forecast.code==="AWAITING_T2"?"SCHEDULED":"FAIL CLOSED";
+   panels='<section class="market-panel" data-position-state="UNISSUED" data-forecast-code="'+esc(forecast.code)+'"><div class="market-label">STATUS</div><div class="market-panel-head"><span class="pick-headline">UNISSUED — '+esc(forecast.headline.toUpperCase())+'</span><span class="tier-badge tier-badge--moderate">'+badge+'</span></div><div class="rationale-copy"><p>'+esc(forecast.detail)+'</p></div></section>';
   }
   const eventContext=[e.display_name||e.name,e.venue].filter(Boolean).join(" / ");
   const context=[String(b.weight_class||"").replaceAll("_"," "),eventContext].filter(Boolean).join(" · ");

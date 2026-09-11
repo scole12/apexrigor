@@ -3,6 +3,7 @@ from copy import deepcopy
 import importlib.util
 import json
 from pathlib import Path
+import shutil
 import sys
 import tempfile
 import unittest
@@ -44,6 +45,21 @@ class TotalResultsTests(unittest.TestCase):
         self.assertEqual(fused["sports"]["mma"]["source_row_count"], 2)
         self.assertEqual(fused, fuse_summary(fused, data_dir=self.data))
         self.assertEqual(fused["sports"]["mlb"], self.base["sports"]["mlb"])
+
+    def test_fuse_provenance_is_checkout_path_independent(self):
+        self.put("mma_results_summary", {"latest_event_results": [self.mma("one")]})
+        first = fuse_summary(self.base, data_dir=self.data)
+        with tempfile.TemporaryDirectory() as second_root:
+            second_data = Path(second_root) / "nested" / "data"
+            shutil.copytree(self.data, second_data)
+            second = fuse_summary(self.base, data_dir=second_data)
+        self.assertEqual(first, second)
+        self.assertEqual(first["total_apex_fuse"]["builder"], "bin/apex_total_results.py")
+        self.assertTrue(all(
+            source["path"].startswith("data/")
+            for sources in first["total_apex_fuse"]["sources"].values()
+            for source in sources
+        ))
 
     def test_conflicting_mma_snapshot_does_not_replace_summary(self):
         self.put("apex_results_summary", self.base)
@@ -107,6 +123,8 @@ class TotalResultsTests(unittest.TestCase):
 
     def test_canonical_archive_writer_retains_other_sports_on_rebuild(self):
         path = Path("/opt/apex_mlb/current/bin/apex_canonical_results_summary.py")
+        if not path.is_file():
+            self.skipTest("canonical MLB writer is available only on the production host")
         spec = importlib.util.spec_from_file_location("canonical_results_test", path)
         module = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(module)
