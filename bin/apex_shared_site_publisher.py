@@ -501,6 +501,7 @@ def allowed_site_change(relative: str) -> bool:
             "data/mma_results_archive.json",
             "data/mma_ops_snapshot.json",
             "data/apex_results_summary.json",
+            "mma/results/render.js",
             "data/nfl_today.json",
             "data/nfl_results_summary.json",
             "data/nfl_results_archive.json",
