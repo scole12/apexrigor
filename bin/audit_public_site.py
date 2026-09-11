@@ -11,6 +11,8 @@ import struct
 import sys
 from pathlib import Path
 
+from _mma_forecast_contract import validated_card, validated_positions
+
 DEFAULT_ROOT = Path(__file__).resolve().parents[1]
 BEACON_URL = "https://static.cloudflareinsights.com/beacon.min.js"
 VERCEL_INSIGHTS_SCRIPT = "/_vercel/insights/script.js"
@@ -19,6 +21,8 @@ SPORT_ITEM_RE = re.compile(
     r'<(?P<tag>a|span)\b[^>]*>\s*(?P<label>[^<]+?)\s*</(?P=tag)>',
     re.DOTALL,
 )
+MMA_SEALED_RELEASE_STATE = "SEALED_RELEASE_AVAILABLE"
+MMA_PUBLIC_MARKETS = {"WINNER", "METHOD", "TIME"}
 
 
 def sha256(path: Path) -> str:
@@ -206,14 +210,32 @@ def main() -> int:
             errors.append(f"/about missing current MLB model identity: {model_id}")
 
     mma_about = route_text.get("/mma/about", "")
+    mma_picks = route_text.get("/mma", "")
+    if "TODAY'S CARD" not in mma_picks:
+        errors.append("/mma missing TODAY'S CARD chrome")
+    for legacy_primary_marker in ("FOUR MARKETS FOR EVERY FIGHT", "mma-market-panel"):
+        if legacy_primary_marker in mma_picks:
+            errors.append(f"/mma regenerated the legacy four-market board: {legacy_primary_marker}")
     for required_text in (
-        "Four boxes for each fight",
+        "How an issued selection appears",
         "Current market coverage",
-        "Probability is not betting value",
+        "Science gate",
+        'id="science-state"',
+        "P(WINNER, METHOD, TIME)",
+        "event-based",
+        "the next morning",
         "7:00 AM Eastern",
     ):
         if required_text not in mma_about:
             errors.append(f"/mma/about missing {required_text}")
+    for obsolete_text in ("Four boxes for each fight", "daily grader"):
+        if obsolete_text in mma_about:
+            errors.append(f"/mma/about retains obsolete wording: {obsolete_text}")
+    if 'id="active-model"' in mma_about:
+        errors.append("/mma/about exposes an active-model field")
+    mma_results_script = root / "mma" / "results" / "render.js"
+    if not mma_results_script.is_file() or "APEX TOTAL RECORD" not in mma_results_script.read_text(encoding="utf-8"):
+        errors.append("/mma/results does not label the fused forever tally APEX TOTAL RECORD")
 
     required_mma_payloads = {
         "mma_today.json": {"APEX_MMA_TODAY_V1"},
@@ -234,11 +256,110 @@ def main() -> int:
         if payload.get("schema_version") not in schemas:
             errors.append(f"{name} schema mismatch")
     today = mma_payloads.get("mma_today.json", {})
-    if today.get("release_state") == "NO_RELEASE_SCIENTIFIC_GATE":
-        if today.get("picks_published") is not False or today.get("positions") != []:
-            errors.append("release-gated MMA payload contains a public position")
-    if today and today.get("fight_count") != len(today.get("card", [])):
-        errors.append("MMA fight count does not reconcile to card length")
+    state = mma_payloads.get("mma_system_state.json", {})
+    ops = mma_payloads.get("mma_ops_snapshot.json", {})
+    summary = mma_payloads.get("mma_results_summary.json", {})
+    for name, payload in (("mma_today.json", today), ("mma_system_state.json", state)):
+        if not payload:
+            continue
+        positions = payload.get("positions")
+        if not isinstance(positions, list):
+            errors.append(f"{name} positions must be a list")
+            continue
+        exact_release = payload.get("release_state") == MMA_SEALED_RELEASE_STATE
+        if not exact_release and positions:
+            errors.append(f"{name} contains positions outside the exact sealed-release state")
+        if payload.get("picks_published") is False or not exact_release:
+            if positions:
+                errors.append(f"{name} redacted state must contain zero positions")
+            if (
+                "active_model" not in payload
+                or "active_model_sha256" not in payload
+                or payload.get("active_model") is not None
+                or payload.get("active_model_sha256") is not None
+            ):
+                errors.append(f"{name} does not redact the inactive model identity")
+        if positions:
+            if payload.get("picks_published") is not True:
+                errors.append(f"{name} contains positions without picks_published=true")
+            if not payload.get("active_model") or not re.fullmatch(
+                r"[0-9a-f]{64}", str(payload.get("active_model_sha256") or "")
+            ):
+                errors.append(f"{name} issued positions lack a sealed model identity")
+            if not payload.get("issuance_id") or payload.get("issuance_status") not in {
+                "SEALED", "ALREADY_ISSUED"
+            }:
+                errors.append(f"{name} issued positions lack a sealed issuance identity")
+        else:
+            if payload.get("picks_published") is not False:
+                errors.append(f"{name} empty positions require picks_published=false")
+            if payload.get("active_model") is not None or payload.get("active_model_sha256") is not None:
+                errors.append(f"{name} exposes an active model while unissued")
+        for number, position in enumerate(positions, 1):
+            if not isinstance(position, dict) or position.get("market") not in MMA_PUBLIC_MARKETS:
+                errors.append(f"{name} position {number} is outside Winner/Method/Time joint marginals")
+
+        try:
+            validated_card(payload)
+            validated_positions(payload)
+        except (TypeError, ValueError) as exc:
+            errors.append(f"{name} violates the MMA card/issuance contract: {exc}")
+
+        card = payload.get("card")
+        if not isinstance(card, list):
+            errors.append(f"{name} official card must be a list")
+        else:
+            fight_count = payload.get("fight_count")
+            if (
+                isinstance(fight_count, bool)
+                or not isinstance(fight_count, int)
+                or fight_count != len(card)
+            ):
+                errors.append(f"{name} fight count does not reconcile to card length")
+            orders = [bout.get("official_display_order") for bout in card if isinstance(bout, dict)]
+            invalid_order_type = any(isinstance(order, bool) or not isinstance(order, int) for order in orders)
+            if (
+                len(orders) != len(card)
+                or invalid_order_type
+                or sorted(orders) != list(range(1, len(card) + 1))
+            ):
+                errors.append(f"{name} official display order is not unique contiguous 1..{len(card)}")
+
+        science = payload.get("science_gate")
+        if not isinstance(science, dict):
+            errors.append(f"{name} lacks an explicit science gate")
+        else:
+            eligible = (
+                science.get("keep") not in {None, "NONE"}
+                and science.get("edge_cert") == "YES"
+                and science.get("ci_fully_below_0") is True
+                and science.get("production_issuance_authorized") is True
+            )
+            if science.get("eligible") is not eligible:
+                errors.append(f"{name} science-gate eligibility is internally inconsistent")
+            if positions and not eligible:
+                errors.append(f"{name} publishes positions without an eligible science gate")
+
+    if not (today.get("positions") or []):
+        if (
+            "active_engine" not in ops
+            or "model_sha256" not in ops
+            or ops.get("active_engine") is not None
+            or ops.get("model_sha256") is not None
+        ):
+            errors.append("mma_ops_snapshot.json exposes an active model while unissued")
+    if state and summary:
+        production = state.get("authorities", {}).get("production", {})
+        production_grades = production.get("commercial_grades", production.get("grades"))
+        scientific_grades = production.get("scientific_grades", 0)
+        if production_grades is not None and summary.get("commercial_settlement_count") != production_grades:
+            errors.append("MMA commercial settlement count does not match production grades")
+        if summary.get("graded_scientific_object_count") != scientific_grades:
+            errors.append("MMA scientific settlement count does not match production grades")
+    if ops:
+        t3 = ops.get("t3") if isinstance(ops.get("t3"), dict) else {}
+        if t3.get("status") == "CANONICAL_SNAPSHOT_COMPLETE" and not isinstance(ops.get("t3_fight_count"), int):
+            errors.append("mma_ops_snapshot.json lacks the completed T-3 fight count")
 
     required_nfl_payloads = {
         "nfl_today.json": {"APEX_NFL_TODAY_V1", "apex.nfl.public_today.v1"},

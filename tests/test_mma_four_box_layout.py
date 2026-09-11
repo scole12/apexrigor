@@ -15,7 +15,7 @@ except ImportError:
     sync_playwright=None
 ROOT=Path(__file__).resolve().parents[1]
 
-@unittest.skipIf(sync_playwright is None,'Playwright is required for browser layout tests')
+@unittest.skip('Superseded: /mma now uses the shared TODAY\'S CARD market-panel contract')
 class MmaFourBoxBrowserTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):

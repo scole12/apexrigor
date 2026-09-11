@@ -1,6 +1,6 @@
 {
   "contract": "APEX_RESULTS_TIER_PROJECTION_V2",
-  "generated_at_et": "2026-09-11T07:00:22.354759-04:00",
+  "generated_at_et": "2026-09-11T07:30:51.225108-04:00",
   "source_authority": "IMMUTABLE_AS_ISSUED_POSITION_PLUS_CANONICAL_OFFICIAL_SETTLEMENT",
   "source_grain": "SLATE_DATE+POSITION_ID",
   "tier_order": [

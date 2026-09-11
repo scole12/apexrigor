@@ -1,12 +1,12 @@
 {
-  "commercial_settlement_count": 0,
+  "commercial_settlement_count": 14,
   "current_event_forecast": {
     "code": "AWAITING_T2",
     "detail": "No forecasts have been issued yet. Any published card will show the selection, captured FanDuel price, APEX probability, rating and full model-supported rationale.",
     "headline": "Awaiting the T-2 forecast run"
   },
-  "generated_at_utc": "2026-09-11T13:00:24.967696Z",
-  "graded_scientific_object_count": 14,
+  "generated_at_utc": "2026-09-11T02:30:24.666239Z",
+  "graded_scientific_object_count": 0,
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "GRADED_COMMERCIAL_AND_OR_SCIENTIFIC"
@@ -196,8 +196,8 @@
       "source": "PRODUCTION_COMMERCIAL_GRADES"
     }
   ],
-  "payload_sha256": "a7419cd460df8c0cfd811ea35e3325f7b74542dfd1da675ae9ea3da441b2def4",
-  "release_state": "NO_RELEASE_SCIENTIFIC_GATE",
+  "payload_sha256": "a0bedb3f4110e2667dd7f186daaf8e49b5e67ea895cd82ff3cbbf8ed67879a0c",
+  "release_state": "SEALED_RELEASE_NO_EVENT_ISSUANCE",
   "schema_version": "APEX_MMA_RESULTS_SUMMARY_V1",
   "status": "RESULTS_AVAILABLE"
 }

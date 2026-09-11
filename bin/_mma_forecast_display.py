@@ -40,11 +40,24 @@ window.ApexMmaDisplay=(()=>{
  const norm=v=>String(v??'').normalize('NFKD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]/gi,'').toLowerCase();
  const pair=b=>[norm(b.fighter_a),norm(b.fighter_b)].filter(Boolean).sort().join('|');
  const paragraphs=v=>Array.isArray(v)?v:String(v||'').split(/\n\s*\n/).filter(x=>x.trim());
+ const allowedMarkets=new Set(['WINNER','METHOD','TIME']);
  function checkIssued(d){
-  const rows=Array.isArray(d.positions)?d.positions:[];
-  if(rows.length&&(!d.picks_published||!d.issuance_id||!d.active_model_sha256))throw new Error('Issued forecast identity is incomplete');
+  if(!Array.isArray(d.positions))throw new Error('Missing positions array');
+  const rows=d.positions;
+  if(!rows.length){
+   if(d.picks_published===true)throw new Error('Empty published issuance');
+   if(d.active_model!=null||d.active_model_sha256!=null)throw new Error('Unissued payload exposes a model identity');
+   return [];
+  }
+  if(d.picks_published!==true||d.release_state!=='SEALED_RELEASE_AVAILABLE'||!d.issuance_id||!['SEALED','ALREADY_ISSUED'].includes(d.issuance_status)||!d.active_model||!/^[0-9a-f]{64}$/.test(d.active_model_sha256||''))throw new Error('Issued forecast identity is incomplete');
+  const seen=new Set();
   for(const p of rows){
-   if(!p.bout_id||!p.selection||!p.market||!Number.isFinite(p.probability)||p.probability<0||p.probability>1||!Number.isFinite(p.price)||!['WEAK','MODERATE','STRONG','ELITE'].includes(p.tier)||!paragraphs(p.rationale).length)throw new Error('Issued forecast fields are incomplete');
+   if(!p||!['bout_id','matchup','market','selection','rationale'].every(k=>typeof p[k]==='string'&&p[k].trim())||!paragraphs(p.rationale).length||p.sportsbook!=='FanDuel'||!['WEAK','MODERATE','STRONG','ELITE'].includes(p.tier)||!Number.isFinite(p.probability)||p.probability<0||p.probability>1||!Number.isFinite(p.price)||Math.abs(p.price)<100||(p.line!=null&&!Number.isFinite(p.line)))throw new Error('Issued forecast fields are incomplete');
+   if(!allowedMarkets.has(p.market))throw new Error('Unsupported MMA public market');
+   if((p.trace?.issuance_id||p.issuance_id)!==d.issuance_id||(p.trace?.model_sha256||p.model_sha256)!==d.active_model_sha256)throw new Error('Issued forecast identity mismatch');
+   const key=JSON.stringify([p.bout_id,p.market,p.selection,p.line??null]);
+   if(seen.has(key))throw new Error('Duplicate issued position');
+   seen.add(key);
   }
   return rows;
  }
