@@ -55,7 +55,7 @@
     "completion_ledger_present": true,
     "critical_missed_capture_count": 0,
     "expected_capture_slot_count": 336,
-    "measured_at": "2026-09-10T23:36:09.612694Z",
+    "measured_at": "2026-09-11T00:09:37.714256Z",
     "missing_or_duplicate_slot_cohorts": [],
     "postseason_state": "AWAITING_PUBLISHED_GAMES",
     "reg_gamedays": 57,
@@ -73,7 +73,7 @@
     ],
     "super_bowl_included_as": "POST"
   },
-  "generated_at_utc": "2026-09-10T23:36:09.8381Z",
+  "generated_at_utc": "2026-09-11T00:09:37.9188Z",
   "hydration": {
     "completed_at_utc": "2026-09-10T23:08:17.859Z",
     "cross_authority_completion": "PASS",
@@ -144,7 +144,7 @@
       "distribution_sha256": "be2f478cab1d26199d0ecf9530b19c7fa8db4a5245042860d0925890155f441a",
       "engine": "TOTALS",
       "game_id": "NFL_GAME_2026_01_SF_LA",
-      "issuance_id": "53cd4a55b3b2cc0d9177a7ec7fc341e12234154ef679046406ee5a7589d76334",
+      "issuance_id": "00f8e3ae8d6dde39b7503e61e1829538eb1b3614e653e17ffafc5300a97bc243",
       "issued_at_utc": "2026-09-10T23:32:57.759Z",
       "issued_probability": 0.5013427271781948,
       "line": 47.5,
@@ -154,7 +154,7 @@
       "position_id": "NFL_FORWARD_1750e48796a1980b81e206939355",
       "probability_semantics": "Unconditional model win probability; push probability recorded separately",
       "push_probability": 0.0,
-      "rating_semantics": "WEAK below 55%; MODERATE 55\u2013<60%; STRONG 60\u2013<65%; ELITE 65% or higher",
+      "rating_semantics": "WEAK below 52%; MODERATE 52\u2013<54%; STRONG 54\u2013<58%; ELITE 58% or higher",
       "rating_tier": "WEAK",
       "rationale_evidence": {
         "context_observation_ids": [
@@ -273,7 +273,7 @@
       "distribution_sha256": "5254a70ca1f7cda8c459cbd154f567444048640e555010a3999f878df147fd4e",
       "engine": "PROPS",
       "game_id": "NFL_GAME_2026_01_SF_LA",
-      "issuance_id": "53cd4a55b3b2cc0d9177a7ec7fc341e12234154ef679046406ee5a7589d76334",
+      "issuance_id": "00f8e3ae8d6dde39b7503e61e1829538eb1b3614e653e17ffafc5300a97bc243",
       "issued_at_utc": "2026-09-10T23:32:57.759Z",
       "issued_probability": 0.5422384916501912,
       "line": 4.5,
@@ -287,8 +287,8 @@
       "probability_semantics": "Unconditional model win probability; push probability recorded separately",
       "prop_family": "player_receptions",
       "push_probability": 0.0,
-      "rating_semantics": "WEAK below 55%; MODERATE 55\u2013<60%; STRONG 60\u2013<65%; ELITE 65% or higher",
-      "rating_tier": "WEAK",
+      "rating_semantics": "WEAK below 52%; MODERATE 52\u2013<54%; STRONG 54\u2013<58%; ELITE 58% or higher",
+      "rating_tier": "STRONG",
       "rationale_evidence": {
         "context_observation_ids": [
           "NFL_PIT_CTX_00B8E5365DFA96C48344192088839363BC00EC20",
@@ -463,7 +463,7 @@
         }
       },
       "rationale_paragraphs": [
-        "Davante Adams \u00b7 UNDER 4.5 receptions is the selected WR proposition at FanDuel -130. The saved model assigns 54.2% win probability (WEAK). It is the highest model win probability among the supplied paired standard lines for the WR group.",
+        "Davante Adams \u00b7 UNDER 4.5 receptions is the selected WR proposition at FanDuel -130. The saved model assigns 54.2% win probability (STRONG). It is the highest model win probability among the supplied paired standard lines for the WR group.",
         "The player database contains 48 completed appearances. Across the latest 5 (2025-12-07 to 2026-01-25), Davante Adams averaged 3.80 receptions, 8.00 targets, 3.80 receptions and 0.00 carries. The actual receptions observations were 4, 4, 5, 2, 4.",
         "The last-five team totals from player game facts average 39.40 pass attempts, 26.60 carries and 37.80 targets for Los Angeles. The saved opportunity model shrinks observed rates toward its historical family priors with strength 10. Its central statistical location is 3.82 receptions; the final distribution's mean is 4.23. The player-only/opportunity distribution gives Over 33.7% and Under 66.3%. The saved model then combines 10% structural and 90% paired FanDuel information on the log-odds scale, yielding Over 45.8% and Under 54.2%. The rating is a probability bucket and does not establish an advantage over the offered price.",
         "Opponent context: in its last five completed games San Francisco allowed 219.4 passing yards and 132.6 rushing yards per game, with opposing offenses at +0.103 EPA per play and 48.1% success. These are aggregate opponent figures, not a player matchup adjustment in this saved props model.",
@@ -484,7 +484,7 @@
       "distribution_sha256": "1391bde1f4f57fc3d51246138ac05807d2890b6f184db5eedc47d34b370e1665",
       "engine": "PROPS",
       "game_id": "NFL_GAME_2026_01_SF_LA",
-      "issuance_id": "53cd4a55b3b2cc0d9177a7ec7fc341e12234154ef679046406ee5a7589d76334",
+      "issuance_id": "00f8e3ae8d6dde39b7503e61e1829538eb1b3614e653e17ffafc5300a97bc243",
       "issued_at_utc": "2026-09-10T23:32:57.759Z",
       "issued_probability": 0.5290245497490134,
       "line": 10.5,
@@ -498,8 +498,8 @@
       "probability_semantics": "Unconditional model win probability; push probability recorded separately",
       "prop_family": "player_reception_yds",
       "push_probability": 0.0,
-      "rating_semantics": "WEAK below 55%; MODERATE 55\u2013<60%; STRONG 60\u2013<65%; ELITE 65% or higher",
-      "rating_tier": "WEAK",
+      "rating_semantics": "WEAK below 52%; MODERATE 52\u2013<54%; STRONG 54\u2013<58%; ELITE 58% or higher",
+      "rating_tier": "MODERATE",
       "rationale_evidence": {
         "context_observation_ids": [
           "NFL_PIT_CTX_00B8E5365DFA96C48344192088839363BC00EC20",
@@ -687,7 +687,7 @@
         }
       },
       "rationale_paragraphs": [
-        "Kyren Williams \u00b7 OVER 10.5 receiving yards is the selected RB proposition at FanDuel -113. The saved model assigns 52.9% win probability (WEAK). It is the highest model win probability among the supplied paired standard lines for the RB group.",
+        "Kyren Williams \u00b7 OVER 10.5 receiving yards is the selected RB proposition at FanDuel -113. The saved model assigns 52.9% win probability (MODERATE). It is the highest model win probability among the supplied paired standard lines for the RB group.",
         "The player database contains 51 completed appearances. Across the latest 5 (2025-12-30 to 2026-01-25), Kyren Williams averaged 25.80 receiving yards, 3.40 targets, 2.80 receptions and 13.80 carries. The actual receiving yards observations were 38, 21, 18, 30, 22.",
         "The last-five team totals from player game facts average 39.40 pass attempts, 26.60 carries and 37.80 targets for Los Angeles. The saved opportunity model shrinks observed rates toward its historical family priors with strength 10. Its central statistical location is 24.60 receiving yards; the final distribution's mean is 16.75. The player-only/opportunity distribution gives Over 76.2% and Under 23.8%. The saved model then combines 10% structural and 90% paired FanDuel information on the log-odds scale, yielding Over 52.9% and Under 47.1%. The rating is a probability bucket and does not establish an advantage over the offered price.",
         "Opponent context: in its last five completed games San Francisco allowed 219.4 passing yards and 132.6 rushing yards per game, with opposing offenses at +0.103 EPA per play and 48.1% success. These are aggregate opponent figures, not a player matchup adjustment in this saved props model.",
@@ -708,7 +708,7 @@
       "distribution_sha256": "4067f8ec2d0dae486c06d79be0dd8c38823ddf9318e604b9c9374fa1837bd478",
       "engine": "ATS",
       "game_id": "NFL_GAME_2026_01_SF_LA",
-      "issuance_id": "53cd4a55b3b2cc0d9177a7ec7fc341e12234154ef679046406ee5a7589d76334",
+      "issuance_id": "00f8e3ae8d6dde39b7503e61e1829538eb1b3614e653e17ffafc5300a97bc243",
       "issued_at_utc": "2026-09-10T23:32:57.759Z",
       "issued_probability": 0.5033570802365565,
       "line": 3.5,
@@ -718,7 +718,7 @@
       "position_id": "NFL_FORWARD_b1730fe1ddd3b52195336d53e246",
       "probability_semantics": "Unconditional model win probability; push probability recorded separately",
       "push_probability": 0.0,
-      "rating_semantics": "WEAK below 55%; MODERATE 55\u2013<60%; STRONG 60\u2013<65%; ELITE 65% or higher",
+      "rating_semantics": "WEAK below 52%; MODERATE 52\u2013<54%; STRONG 54\u2013<58%; ELITE 58% or higher",
       "rating_tier": "WEAK",
       "rationale_evidence": {
         "coefficient_contributions": {
@@ -858,7 +858,7 @@
       "distribution_sha256": "1ae774ddab952568af7b8f2c3fd60a69605cab813c6a3ac557d258b84ede90a0",
       "engine": "PROPS",
       "game_id": "NFL_GAME_2026_01_SF_LA",
-      "issuance_id": "53cd4a55b3b2cc0d9177a7ec7fc341e12234154ef679046406ee5a7589d76334",
+      "issuance_id": "00f8e3ae8d6dde39b7503e61e1829538eb1b3614e653e17ffafc5300a97bc243",
       "issued_at_utc": "2026-09-10T23:32:57.759Z",
       "issued_probability": 0.5112911351980131,
       "line": 258.5,
@@ -872,7 +872,7 @@
       "probability_semantics": "Unconditional model win probability; push probability recorded separately",
       "prop_family": "player_pass_yds",
       "push_probability": 0.0,
-      "rating_semantics": "WEAK below 55%; MODERATE 55\u2013<60%; STRONG 60\u2013<65%; ELITE 65% or higher",
+      "rating_semantics": "WEAK below 52%; MODERATE 52\u2013<54%; STRONG 54\u2013<58%; ELITE 58% or higher",
       "rating_tier": "WEAK",
       "rationale_evidence": {
         "context_observation_ids": [
@@ -1097,7 +1097,7 @@
             "distribution_sha256": "be2f478cab1d26199d0ecf9530b19c7fa8db4a5245042860d0925890155f441a",
             "engine": "TOTALS",
             "game_id": "NFL_GAME_2026_01_SF_LA",
-            "issuance_id": "53cd4a55b3b2cc0d9177a7ec7fc341e12234154ef679046406ee5a7589d76334",
+            "issuance_id": "00f8e3ae8d6dde39b7503e61e1829538eb1b3614e653e17ffafc5300a97bc243",
             "issued_at_utc": "2026-09-10T23:32:57.759Z",
             "issued_probability": 0.5013427271781948,
             "line": 47.5,
@@ -1107,7 +1107,7 @@
             "position_id": "NFL_FORWARD_1750e48796a1980b81e206939355",
             "probability_semantics": "Unconditional model win probability; push probability recorded separately",
             "push_probability": 0.0,
-            "rating_semantics": "WEAK below 55%; MODERATE 55\u2013<60%; STRONG 60\u2013<65%; ELITE 65% or higher",
+            "rating_semantics": "WEAK below 52%; MODERATE 52\u2013<54%; STRONG 54\u2013<58%; ELITE 58% or higher",
             "rating_tier": "WEAK",
             "rationale_evidence": {
               "context_observation_ids": [
@@ -1226,7 +1226,7 @@
             "distribution_sha256": "5254a70ca1f7cda8c459cbd154f567444048640e555010a3999f878df147fd4e",
             "engine": "PROPS",
             "game_id": "NFL_GAME_2026_01_SF_LA",
-            "issuance_id": "53cd4a55b3b2cc0d9177a7ec7fc341e12234154ef679046406ee5a7589d76334",
+            "issuance_id": "00f8e3ae8d6dde39b7503e61e1829538eb1b3614e653e17ffafc5300a97bc243",
             "issued_at_utc": "2026-09-10T23:32:57.759Z",
             "issued_probability": 0.5422384916501912,
             "line": 4.5,
@@ -1240,8 +1240,8 @@
             "probability_semantics": "Unconditional model win probability; push probability recorded separately",
             "prop_family": "player_receptions",
             "push_probability": 0.0,
-            "rating_semantics": "WEAK below 55%; MODERATE 55\u2013<60%; STRONG 60\u2013<65%; ELITE 65% or higher",
-            "rating_tier": "WEAK",
+            "rating_semantics": "WEAK below 52%; MODERATE 52\u2013<54%; STRONG 54\u2013<58%; ELITE 58% or higher",
+            "rating_tier": "STRONG",
             "rationale_evidence": {
               "context_observation_ids": [
                 "NFL_PIT_CTX_00B8E5365DFA96C48344192088839363BC00EC20",
@@ -1416,7 +1416,7 @@
               }
             },
             "rationale_paragraphs": [
-              "Davante Adams \u00b7 UNDER 4.5 receptions is the selected WR proposition at FanDuel -130. The saved model assigns 54.2% win probability (WEAK). It is the highest model win probability among the supplied paired standard lines for the WR group.",
+              "Davante Adams \u00b7 UNDER 4.5 receptions is the selected WR proposition at FanDuel -130. The saved model assigns 54.2% win probability (STRONG). It is the highest model win probability among the supplied paired standard lines for the WR group.",
               "The player database contains 48 completed appearances. Across the latest 5 (2025-12-07 to 2026-01-25), Davante Adams averaged 3.80 receptions, 8.00 targets, 3.80 receptions and 0.00 carries. The actual receptions observations were 4, 4, 5, 2, 4.",
               "The last-five team totals from player game facts average 39.40 pass attempts, 26.60 carries and 37.80 targets for Los Angeles. The saved opportunity model shrinks observed rates toward its historical family priors with strength 10. Its central statistical location is 3.82 receptions; the final distribution's mean is 4.23. The player-only/opportunity distribution gives Over 33.7% and Under 66.3%. The saved model then combines 10% structural and 90% paired FanDuel information on the log-odds scale, yielding Over 45.8% and Under 54.2%. The rating is a probability bucket and does not establish an advantage over the offered price.",
               "Opponent context: in its last five completed games San Francisco allowed 219.4 passing yards and 132.6 rushing yards per game, with opposing offenses at +0.103 EPA per play and 48.1% success. These are aggregate opponent figures, not a player matchup adjustment in this saved props model.",
@@ -1437,7 +1437,7 @@
             "distribution_sha256": "1391bde1f4f57fc3d51246138ac05807d2890b6f184db5eedc47d34b370e1665",
             "engine": "PROPS",
             "game_id": "NFL_GAME_2026_01_SF_LA",
-            "issuance_id": "53cd4a55b3b2cc0d9177a7ec7fc341e12234154ef679046406ee5a7589d76334",
+            "issuance_id": "00f8e3ae8d6dde39b7503e61e1829538eb1b3614e653e17ffafc5300a97bc243",
             "issued_at_utc": "2026-09-10T23:32:57.759Z",
             "issued_probability": 0.5290245497490134,
             "line": 10.5,
@@ -1451,8 +1451,8 @@
             "probability_semantics": "Unconditional model win probability; push probability recorded separately",
             "prop_family": "player_reception_yds",
             "push_probability": 0.0,
-            "rating_semantics": "WEAK below 55%; MODERATE 55\u2013<60%; STRONG 60\u2013<65%; ELITE 65% or higher",
-            "rating_tier": "WEAK",
+            "rating_semantics": "WEAK below 52%; MODERATE 52\u2013<54%; STRONG 54\u2013<58%; ELITE 58% or higher",
+            "rating_tier": "MODERATE",
             "rationale_evidence": {
               "context_observation_ids": [
                 "NFL_PIT_CTX_00B8E5365DFA96C48344192088839363BC00EC20",
@@ -1640,7 +1640,7 @@
               }
             },
             "rationale_paragraphs": [
-              "Kyren Williams \u00b7 OVER 10.5 receiving yards is the selected RB proposition at FanDuel -113. The saved model assigns 52.9% win probability (WEAK). It is the highest model win probability among the supplied paired standard lines for the RB group.",
+              "Kyren Williams \u00b7 OVER 10.5 receiving yards is the selected RB proposition at FanDuel -113. The saved model assigns 52.9% win probability (MODERATE). It is the highest model win probability among the supplied paired standard lines for the RB group.",
               "The player database contains 51 completed appearances. Across the latest 5 (2025-12-30 to 2026-01-25), Kyren Williams averaged 25.80 receiving yards, 3.40 targets, 2.80 receptions and 13.80 carries. The actual receiving yards observations were 38, 21, 18, 30, 22.",
               "The last-five team totals from player game facts average 39.40 pass attempts, 26.60 carries and 37.80 targets for Los Angeles. The saved opportunity model shrinks observed rates toward its historical family priors with strength 10. Its central statistical location is 24.60 receiving yards; the final distribution's mean is 16.75. The player-only/opportunity distribution gives Over 76.2% and Under 23.8%. The saved model then combines 10% structural and 90% paired FanDuel information on the log-odds scale, yielding Over 52.9% and Under 47.1%. The rating is a probability bucket and does not establish an advantage over the offered price.",
               "Opponent context: in its last five completed games San Francisco allowed 219.4 passing yards and 132.6 rushing yards per game, with opposing offenses at +0.103 EPA per play and 48.1% success. These are aggregate opponent figures, not a player matchup adjustment in this saved props model.",
@@ -1661,7 +1661,7 @@
             "distribution_sha256": "4067f8ec2d0dae486c06d79be0dd8c38823ddf9318e604b9c9374fa1837bd478",
             "engine": "ATS",
             "game_id": "NFL_GAME_2026_01_SF_LA",
-            "issuance_id": "53cd4a55b3b2cc0d9177a7ec7fc341e12234154ef679046406ee5a7589d76334",
+            "issuance_id": "00f8e3ae8d6dde39b7503e61e1829538eb1b3614e653e17ffafc5300a97bc243",
             "issued_at_utc": "2026-09-10T23:32:57.759Z",
             "issued_probability": 0.5033570802365565,
             "line": 3.5,
@@ -1671,7 +1671,7 @@
             "position_id": "NFL_FORWARD_b1730fe1ddd3b52195336d53e246",
             "probability_semantics": "Unconditional model win probability; push probability recorded separately",
             "push_probability": 0.0,
-            "rating_semantics": "WEAK below 55%; MODERATE 55\u2013<60%; STRONG 60\u2013<65%; ELITE 65% or higher",
+            "rating_semantics": "WEAK below 52%; MODERATE 52\u2013<54%; STRONG 54\u2013<58%; ELITE 58% or higher",
             "rating_tier": "WEAK",
             "rationale_evidence": {
               "coefficient_contributions": {
@@ -1811,7 +1811,7 @@
             "distribution_sha256": "1ae774ddab952568af7b8f2c3fd60a69605cab813c6a3ac557d258b84ede90a0",
             "engine": "PROPS",
             "game_id": "NFL_GAME_2026_01_SF_LA",
-            "issuance_id": "53cd4a55b3b2cc0d9177a7ec7fc341e12234154ef679046406ee5a7589d76334",
+            "issuance_id": "00f8e3ae8d6dde39b7503e61e1829538eb1b3614e653e17ffafc5300a97bc243",
             "issued_at_utc": "2026-09-10T23:32:57.759Z",
             "issued_probability": 0.5112911351980131,
             "line": 258.5,
@@ -1825,7 +1825,7 @@
             "probability_semantics": "Unconditional model win probability; push probability recorded separately",
             "prop_family": "player_pass_yds",
             "push_probability": 0.0,
-            "rating_semantics": "WEAK below 55%; MODERATE 55\u2013<60%; STRONG 60\u2013<65%; ELITE 65% or higher",
+            "rating_semantics": "WEAK below 52%; MODERATE 52\u2013<54%; STRONG 54\u2013<58%; ELITE 58% or higher",
             "rating_tier": "WEAK",
             "rationale_evidence": {
               "context_observation_ids": [
