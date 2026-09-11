@@ -35,22 +35,22 @@
       "weight_class": "FEATHERWEIGHT"
     },
     {
-      "fighter_a": "Waldo Cortes Acosta",
-      "fighter_b": "Curtis Blaydes",
-      "is_co_main_event": false,
-      "is_main_event": false,
-      "official_display_order": 4,
-      "segment": "MAIN",
-      "weight_class": "HEAVYWEIGHT"
-    },
-    {
       "fighter_a": "Manon Fiorot",
       "fighter_b": "Alexa Grasso",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 5,
+      "official_display_order": 4,
       "segment": "MAIN",
       "weight_class": "WOMENS_FLYWEIGHT"
+    },
+    {
+      "fighter_a": "Waldo Cortes Acosta",
+      "fighter_b": "Curtis Blaydes",
+      "is_co_main_event": false,
+      "is_main_event": false,
+      "official_display_order": 5,
+      "segment": "MAIN",
+      "weight_class": "HEAVYWEIGHT"
     },
     {
       "fighter_a": "David Martinez",
@@ -145,14 +145,14 @@
     "detail": "No forecasts have been issued yet. Any published card will show the selection, captured FanDuel price, APEX probability, rating and full model-supported rationale.",
     "headline": "Awaiting the T-2 forecast run"
   },
-  "generated_at_utc": "2026-09-11T02:30:24.666239Z",
+  "generated_at_utc": "2026-09-11T13:00:24.967696Z",
   "issuance_id": null,
   "issuance_status": null,
-  "payload_sha256": "29214a112959679906ed86d2f020f18fd868cb0b9094e758a3e0bf19f067663a",
+  "payload_sha256": "22a9828e6f694d807280925a702aab3ad094a78d9bcb29b4bc8ec5f44ceb248e",
   "picks_published": false,
   "positions": [],
   "positions_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-  "release_state": "SEALED_RELEASE_NO_EVENT_ISSUANCE",
+  "release_state": "NO_RELEASE_SCIENTIFIC_GATE",
   "schema_version": "APEX_MMA_TODAY_V1",
   "science_blocker": "FAIL_CLOSED_KEEP_NONE_EDGE_CERT_NO",
   "science_gate": {
@@ -173,6 +173,7 @@
   },
   "t3": {
     "anchor": "EARLIEST_PUBLISHED_SCHEDULED_BOUT_MINUS_3_HOURS",
+    "bout_count": null,
     "scheduled_utc": "2026-09-12T15:00:00Z",
     "status": "SCHEDULED"
   }

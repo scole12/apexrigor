@@ -5,16 +5,21 @@
     "fighter": {
       "bouts": 3504,
       "events": 1030,
+      "fight_statistics_source_aggregate": 0,
       "fighters": 3985,
       "results": 3442,
-      "round_stats": 5046,
+      "round_statistics_elemental": 5046,
+      "round_stats": 0,
       "scorecards": 37,
       "weigh_ins": 5442
     },
     "production": {
+      "commercial_grades": 14,
+      "eligible_releases": 0,
       "frozen_releases": 1,
       "grades": 14,
-      "issuances": 1
+      "issuances": 1,
+      "scientific_grades": 0
     },
     "testing": {
       "experiments": 22,
@@ -64,22 +69,22 @@
       "weight_class": "FEATHERWEIGHT"
     },
     {
-      "fighter_a": "Waldo Cortes Acosta",
-      "fighter_b": "Curtis Blaydes",
-      "is_co_main_event": false,
-      "is_main_event": false,
-      "official_display_order": 4,
-      "segment": "MAIN",
-      "weight_class": "HEAVYWEIGHT"
-    },
-    {
       "fighter_a": "Manon Fiorot",
       "fighter_b": "Alexa Grasso",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 5,
+      "official_display_order": 4,
       "segment": "MAIN",
       "weight_class": "WOMENS_FLYWEIGHT"
+    },
+    {
+      "fighter_a": "Waldo Cortes Acosta",
+      "fighter_b": "Curtis Blaydes",
+      "is_co_main_event": false,
+      "is_main_event": false,
+      "official_display_order": 5,
+      "segment": "MAIN",
+      "weight_class": "HEAVYWEIGHT"
     },
     {
       "fighter_a": "David Martinez",
@@ -181,7 +186,7 @@
   },
   "event_id": "152caf3d-be5d-5931-af19-31e4b2fd2917",
   "fight_count": 13,
-  "generated_at_utc": "2026-09-11T02:30:24.666239Z",
+  "generated_at_utc": "2026-09-11T13:00:24.967696Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "GRADED_COMMERCIAL_AND_OR_SCIENTIFIC"
@@ -372,11 +377,11 @@
       "source": "PRODUCTION_COMMERCIAL_GRADES"
     }
   ],
-  "payload_sha256": "8fe0de704eb3e02e15de36d5f979cea62984919c39f04f86c2c2d2e706def2ea",
+  "payload_sha256": "5b6ff726a4a2f6827e2a0f1a2ca3eb889d8b039060ec65eb3b50356406754f8c",
   "picks_published": false,
   "positions": [],
   "positions_sha256": null,
-  "release_state": "SEALED_RELEASE_NO_EVENT_ISSUANCE",
+  "release_state": "NO_RELEASE_SCIENTIFIC_GATE",
   "results_archive": [
     {
       "active_model": "WINNER_RESIDUAL_BEST_AVAILABLE_V1",
@@ -1108,9 +1113,9 @@
     "production_issuance_authorized": false,
     "release_binding": "NONE"
   },
-  "semantic_state_sha256": "643eecf5b22ceeec9ab79b9e0966a665be1ded325a785d1515951540504968cc",
+  "semantic_state_sha256": "460258a0dd3a524d36b2d71996e05052b920742c67a9182b6128b3180d09717b",
   "source_conflicts": [],
-  "system_readiness_state": "RELEASE_PRESENT_AWAITING_ISSUANCE",
+  "system_readiness_state": "TECHNICALLY_READY_SCIENCE_BLOCKED",
   "t2": {
     "actual_utc": null,
     "anchor": "EARLIEST_PUBLISHED_SCHEDULED_BOUT_MINUS_2_HOURS",
@@ -1120,6 +1125,7 @@
   },
   "t3": {
     "anchor": "EARLIEST_PUBLISHED_SCHEDULED_BOUT_MINUS_3_HOURS",
+    "bout_count": null,
     "scheduled_utc": "2026-09-12T15:00:00Z",
     "status": "SCHEDULED"
   }

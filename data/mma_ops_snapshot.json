@@ -29,22 +29,22 @@
       "weight_class": "FEATHERWEIGHT"
     },
     {
-      "fighter_a": "Waldo Cortes Acosta",
-      "fighter_b": "Curtis Blaydes",
-      "is_co_main_event": false,
-      "is_main_event": false,
-      "official_display_order": 4,
-      "segment": "MAIN",
-      "weight_class": "HEAVYWEIGHT"
-    },
-    {
       "fighter_a": "Manon Fiorot",
       "fighter_b": "Alexa Grasso",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 5,
+      "official_display_order": 4,
       "segment": "MAIN",
       "weight_class": "WOMENS_FLYWEIGHT"
+    },
+    {
+      "fighter_a": "Waldo Cortes Acosta",
+      "fighter_b": "Curtis Blaydes",
+      "is_co_main_event": false,
+      "is_main_event": false,
+      "official_display_order": 5,
+      "segment": "MAIN",
+      "weight_class": "HEAVYWEIGHT"
     },
     {
       "fighter_a": "David Martinez",
@@ -122,13 +122,15 @@
   "fighter_authority": {
     "bouts": 3504,
     "events": 1030,
+    "fight_statistics_source_aggregate": 0,
     "fighters": 3985,
     "results": 3442,
-    "round_stats": 5046,
+    "round_statistics_elemental": 5046,
+    "round_stats": 0,
     "scorecards": 37,
     "weigh_ins": 5442
   },
-  "generated_at_utc": "2026-09-11T02:30:24.666239Z",
+  "generated_at_utc": "2026-09-11T13:00:24.967696Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "GRADED_COMMERCIAL_AND_OR_SCIENTIFIC"
@@ -335,7 +337,7 @@
     "region": "Arizona",
     "venue": "Desert Diamond Arena"
   },
-  "payload_sha256": "b6dcffa941e144581ddc912d7347877195b057b4c64c08c2d62a6704d9e8dd9b",
+  "payload_sha256": "90e3320e50b9157e18b56530ee88008152f1df3336c9537d2c69a1ac77fc7d6f",
   "production_isolation": "PASS",
   "schema_version": "APEX_MMA_OPS_SNAPSHOT_V1",
   "science_blocker": "FAIL_CLOSED_KEEP_NONE_EDGE_CERT_NO",
@@ -359,6 +361,7 @@
   "t2_issued_position_count": 0,
   "t3": {
     "anchor": "EARLIEST_PUBLISHED_SCHEDULED_BOUT_MINUS_3_HOURS",
+    "bout_count": null,
     "scheduled_utc": "2026-09-12T15:00:00Z",
     "status": "SCHEDULED"
   },
