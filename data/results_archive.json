@@ -45,7 +45,7 @@
       "canonical_only": true,
       "canonical_positions": 10,
       "canonical_source_sha256": "7040dac508aa08fe7b938bf209f60bbd2f4edd54aaf27ae4476c125e95a58a96",
-      "canonical_receipt_sha256": "78d00687854d21b1458347ef7c9c4df763974513029352431147b871989d9c56",
+      "canonical_receipt_sha256": "3f4da3cfe639a3b686f7173abbdf8512fba23812dc891ff62ffb2b2e60d76958",
       "issuance_data_quality": {
         "status": "VALID_NO_INVALIDATION_REGISTERED",
         "data_quality_invalidated_for_scientific_forward_grade": false
@@ -98,7 +98,7 @@
         "canonical_only": true,
         "canonical_positions": 10,
         "canonical_source_sha256": "7040dac508aa08fe7b938bf209f60bbd2f4edd54aaf27ae4476c125e95a58a96",
-        "canonical_receipt_sha256": "78d00687854d21b1458347ef7c9c4df763974513029352431147b871989d9c56",
+        "canonical_receipt_sha256": "3f4da3cfe639a3b686f7173abbdf8512fba23812dc891ff62ffb2b2e60d76958",
         "issuance_data_quality": {
           "status": "VALID_NO_INVALIDATION_REGISTERED",
           "data_quality_invalidated_for_scientific_forward_grade": false
@@ -4612,7 +4612,7 @@
   "_apex_public_excluded_note": "PUBLIC_EXCLUDED_DUE_TO_CANONICAL_RESULTS_RESET",
   "_canonical_grader_receipt_projection": {
     "contract_version": "apex_results_summary_from_grader_receipt_v1",
-    "generated_at_et": "2026-09-11T07:30:51.225108-04:00",
+    "generated_at_et": "2026-09-12T07:00:05.942583-04:00",
     "sports_included": [
       "mlb"
     ],
@@ -4702,6 +4702,6 @@
     "mlb_pushes": 26,
     "mlb_positions_graded": 3537,
     "note": "MLB-only receipt projection. Settled=W+L+P; tracked=settled+VOID+PENDING+OTHER. No all-sport claim.",
-    "canonical_receipt_sha256": "78d00687854d21b1458347ef7c9c4df763974513029352431147b871989d9c56"
+    "canonical_receipt_sha256": "3f4da3cfe639a3b686f7173abbdf8512fba23812dc891ff62ffb2b2e60d76958"
   }
 }
