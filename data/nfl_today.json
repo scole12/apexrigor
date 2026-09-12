@@ -1,8 +1,8 @@
 {
   "capture_health": {
     "NEXT_GRADER": {
-      "at_et": "2026-09-11T07:00:00-04:00",
-      "at_utc": "2026-09-11T11:00:00Z",
+      "at_et": "2026-09-14T07:00:00-04:00",
+      "at_utc": "2026-09-14T11:00:00Z",
       "state": "SCHEDULED"
     },
     "NEXT_T2": {
@@ -55,7 +55,7 @@
     "completion_ledger_present": true,
     "critical_missed_capture_count": 0,
     "expected_capture_slot_count": 330,
-    "measured_at": "2026-09-11T10:05:04.053007Z",
+    "measured_at": "2026-09-12T10:06:02.414084Z",
     "missing_or_duplicate_slot_cohorts": [],
     "postseason_state": "AWAITING_PUBLISHED_GAMES",
     "reg_gamedays": 57,
@@ -73,21 +73,21 @@
     ],
     "super_bowl_included_as": "POST"
   },
-  "generated_at_utc": "2026-09-11T10:05:04.2998Z",
+  "generated_at_utc": "2026-09-12T10:06:02.9478Z",
   "hydration": {
-    "completed_at_utc": "2026-09-11T10:03:56.428Z",
+    "completed_at_utc": "2026-09-12T10:05:30.582Z",
     "cross_authority_completion": "PASS",
-    "raw_set_sha256": "3fc505e5fbe3a5635bb26a1d34de79e51cc8f8ad980108de1c81ae843ec5f354",
-    "receipt_sha256": "eb827713aa728ba469c48879b2a181d9989cfe7f1a27317bea6cd6c27c75bb31",
+    "raw_set_sha256": "1c3a143bbef83489e24e95921808277f32e5e73bf5cb8cef176b7c2159fec3aa",
+    "receipt_sha256": "6ff270d26b493096200cc67e79123618195870705ad0dce2daa56e0a9bd60258",
     "retrieval_mode": "LIVE_NETWORK_RETRIEVAL",
-    "retrieved_at_utc": "2026-09-11T10:00:01.381Z",
+    "retrieved_at_utc": "2026-09-12T10:00:01.650Z",
     "source_to_target_parity": "PASS",
     "status": "PASS"
   },
   "next_up": {
     "NEXT_GRADER": {
-      "at_et": "2026-09-11T07:00:00-04:00",
-      "at_utc": "2026-09-11T11:00:00Z",
+      "at_et": "2026-09-14T07:00:00-04:00",
+      "at_utc": "2026-09-14T11:00:00Z",
       "state": "SCHEDULED"
     },
     "NEXT_T2": {
@@ -164,8 +164,8 @@
         "kickoff_utc": "2026-09-13T17:00:00Z",
         "matchup": "Atlanta Falcons at Pittsburgh Steelers",
         "positions": [],
-        "schedule_available_at_utc": "2026-09-11T10:00:01.381Z",
-        "schedule_effective_at_utc": "2026-09-11T10:00:01.381Z",
+        "schedule_available_at_utc": "2026-09-12T10:00:01.650Z",
+        "schedule_effective_at_utc": "2026-09-12T10:00:01.650Z",
         "season": 2026,
         "status": "SCHEDULED",
         "week": 1
@@ -180,8 +180,8 @@
         "kickoff_utc": "2026-09-13T17:00:00Z",
         "matchup": "Baltimore Ravens at Indianapolis Colts",
         "positions": [],
-        "schedule_available_at_utc": "2026-09-11T10:00:01.381Z",
-        "schedule_effective_at_utc": "2026-09-11T10:00:01.381Z",
+        "schedule_available_at_utc": "2026-09-12T10:00:01.650Z",
+        "schedule_effective_at_utc": "2026-09-12T10:00:01.650Z",
         "season": 2026,
         "status": "SCHEDULED",
         "week": 1
@@ -196,8 +196,8 @@
         "kickoff_utc": "2026-09-13T17:00:00Z",
         "matchup": "Buffalo Bills at Houston Texans",
         "positions": [],
-        "schedule_available_at_utc": "2026-09-11T10:00:01.381Z",
-        "schedule_effective_at_utc": "2026-09-11T10:00:01.381Z",
+        "schedule_available_at_utc": "2026-09-12T10:00:01.650Z",
+        "schedule_effective_at_utc": "2026-09-12T10:00:01.650Z",
         "season": 2026,
         "status": "SCHEDULED",
         "week": 1
@@ -212,8 +212,8 @@
         "kickoff_utc": "2026-09-13T17:00:00Z",
         "matchup": "Chicago Bears at Carolina Panthers",
         "positions": [],
-        "schedule_available_at_utc": "2026-09-11T10:00:01.381Z",
-        "schedule_effective_at_utc": "2026-09-11T10:00:01.381Z",
+        "schedule_available_at_utc": "2026-09-12T10:00:01.650Z",
+        "schedule_effective_at_utc": "2026-09-12T10:00:01.650Z",
         "season": 2026,
         "status": "SCHEDULED",
         "week": 1
@@ -228,8 +228,8 @@
         "kickoff_utc": "2026-09-13T17:00:00Z",
         "matchup": "Cleveland Browns at Jacksonville Jaguars",
         "positions": [],
-        "schedule_available_at_utc": "2026-09-11T10:00:01.381Z",
-        "schedule_effective_at_utc": "2026-09-11T10:00:01.381Z",
+        "schedule_available_at_utc": "2026-09-12T10:00:01.650Z",
+        "schedule_effective_at_utc": "2026-09-12T10:00:01.650Z",
         "season": 2026,
         "status": "SCHEDULED",
         "week": 1
@@ -244,8 +244,8 @@
         "kickoff_utc": "2026-09-13T17:00:00Z",
         "matchup": "New Orleans Saints at Detroit Lions",
         "positions": [],
-        "schedule_available_at_utc": "2026-09-11T10:00:01.381Z",
-        "schedule_effective_at_utc": "2026-09-11T10:00:01.381Z",
+        "schedule_available_at_utc": "2026-09-12T10:00:01.650Z",
+        "schedule_effective_at_utc": "2026-09-12T10:00:01.650Z",
         "season": 2026,
         "status": "SCHEDULED",
         "week": 1
@@ -260,8 +260,8 @@
         "kickoff_utc": "2026-09-13T17:00:00Z",
         "matchup": "New York Jets at Tennessee Titans",
         "positions": [],
-        "schedule_available_at_utc": "2026-09-11T10:00:01.381Z",
-        "schedule_effective_at_utc": "2026-09-11T10:00:01.381Z",
+        "schedule_available_at_utc": "2026-09-12T10:00:01.650Z",
+        "schedule_effective_at_utc": "2026-09-12T10:00:01.650Z",
         "season": 2026,
         "status": "SCHEDULED",
         "week": 1
@@ -276,8 +276,8 @@
         "kickoff_utc": "2026-09-13T17:00:00Z",
         "matchup": "Tampa Bay Buccaneers at Cincinnati Bengals",
         "positions": [],
-        "schedule_available_at_utc": "2026-09-11T10:00:01.381Z",
-        "schedule_effective_at_utc": "2026-09-11T10:00:01.381Z",
+        "schedule_available_at_utc": "2026-09-12T10:00:01.650Z",
+        "schedule_effective_at_utc": "2026-09-12T10:00:01.650Z",
         "season": 2026,
         "status": "SCHEDULED",
         "week": 1
@@ -292,8 +292,8 @@
         "kickoff_utc": "2026-09-13T20:25:00Z",
         "matchup": "Arizona Cardinals at Los Angeles Chargers",
         "positions": [],
-        "schedule_available_at_utc": "2026-09-11T10:00:01.381Z",
-        "schedule_effective_at_utc": "2026-09-11T10:00:01.381Z",
+        "schedule_available_at_utc": "2026-09-12T10:00:01.650Z",
+        "schedule_effective_at_utc": "2026-09-12T10:00:01.650Z",
         "season": 2026,
         "status": "SCHEDULED",
         "week": 1
@@ -308,8 +308,8 @@
         "kickoff_utc": "2026-09-13T20:25:00Z",
         "matchup": "Green Bay Packers at Minnesota Vikings",
         "positions": [],
-        "schedule_available_at_utc": "2026-09-11T10:00:01.381Z",
-        "schedule_effective_at_utc": "2026-09-11T10:00:01.381Z",
+        "schedule_available_at_utc": "2026-09-12T10:00:01.650Z",
+        "schedule_effective_at_utc": "2026-09-12T10:00:01.650Z",
         "season": 2026,
         "status": "SCHEDULED",
         "week": 1
@@ -324,8 +324,8 @@
         "kickoff_utc": "2026-09-13T20:25:00Z",
         "matchup": "Miami Dolphins at Las Vegas Raiders",
         "positions": [],
-        "schedule_available_at_utc": "2026-09-11T10:00:01.381Z",
-        "schedule_effective_at_utc": "2026-09-11T10:00:01.381Z",
+        "schedule_available_at_utc": "2026-09-12T10:00:01.650Z",
+        "schedule_effective_at_utc": "2026-09-12T10:00:01.650Z",
         "season": 2026,
         "status": "SCHEDULED",
         "week": 1
@@ -340,8 +340,8 @@
         "kickoff_utc": "2026-09-13T20:25:00Z",
         "matchup": "Washington Commanders at Philadelphia Eagles",
         "positions": [],
-        "schedule_available_at_utc": "2026-09-11T10:00:01.381Z",
-        "schedule_effective_at_utc": "2026-09-11T10:00:01.381Z",
+        "schedule_available_at_utc": "2026-09-12T10:00:01.650Z",
+        "schedule_effective_at_utc": "2026-09-12T10:00:01.650Z",
         "season": 2026,
         "status": "SCHEDULED",
         "week": 1
@@ -356,8 +356,8 @@
         "kickoff_utc": "2026-09-14T00:20:00Z",
         "matchup": "Dallas Cowboys at New York Giants",
         "positions": [],
-        "schedule_available_at_utc": "2026-09-11T10:00:01.381Z",
-        "schedule_effective_at_utc": "2026-09-11T10:00:01.381Z",
+        "schedule_available_at_utc": "2026-09-12T10:00:01.650Z",
+        "schedule_effective_at_utc": "2026-09-12T10:00:01.650Z",
         "season": 2026,
         "status": "SCHEDULED",
         "week": 1
