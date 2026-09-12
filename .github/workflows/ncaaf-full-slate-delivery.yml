@@ -293,11 +293,14 @@ jobs:
                       if delivery_mode in ('FINAL_CORRECTED','APEX_FINAL_CORRECTED') else
                       'APEX NCAA Football Daily Graded Results — Previous Day Slate — Corrected'
                       if delivery_mode=='CORRECTED' else
-                      f'APEX NCAA Football Results — {display_date} — Recovery'
+                      f'APEX NCAA Football Results — {display_date} — Recovery — DEGRADED EMAIL-ONLY'
                       if delivery_mode=='RECOVERY' else
                       'APEX NCAA Football Daily Graded Results — Previous Day Slate'
                   )
                   body=(
+                      ("DEGRADED EMAIL-ONLY RECOVERY. These verified attachments cover all five September 11 games and ten issued positions. Canonical site publication remains blocked by the shared checkout and later-day display handoff; this email does not certify a website update.\n\n"
+                       if delivery_mode=='RECOVERY' else '')
+                      +
                       "The previous day's APEX NCAA Football results have been graded from the immutable issuance and official full-game outcomes.\n\n"
                       f"Prior-day combined: {prior_all['W']}W-{prior_all['L']}L\n"
                       f"ATS: {prior_ats['W']}W-{prior_ats['L']}L\n"
