@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Render the official MMA card with the shared NFL/NCAAF picks chrome."""
 import json
+import html as html_lib
 
 from _mma_public import ROOT, close, head, hero, write
 from _mma_forecast_contract import validated_card, validated_positions
@@ -136,6 +137,27 @@ def main():
         or payload.get("active_model_sha256") is not None
     ):
         raise RuntimeError("unissued MMA public payload exposes a model identity")
+    if payload.get('artifact_type') == 'LATE_DATA_REPORT':
+        report=payload['late_data_report']
+        if positions or report.get('label')!='LATE DATA RECOVERY NOT PREGAME T3':
+            raise RuntimeError('INVALID_LATE_DATA_WEBSITE_REPORT')
+        esc=html_lib.escape
+        html=head('APEX — MMA Late Data Report','Factual MMA roster and fighter coverage.','/mma')+'\n'+hero()+'\n'+NAVIGATION
+        html+='<main id="games" data-render-complete="true" data-sport="MMA" data-artifact-type="LATE_DATA_REPORT">'
+        html+='<h1>'+esc(report['label'])+'</h1><p>'+esc(report['event_name'])+'</p>'
+        html+='<p>Generated UTC: '+esc(report['generated_at_utc'])+'<br>Roster source capture UTC: '+esc(report['source_captured_at_utc'])+'<br>Source read UTC: '+esc(report['read_at_utc'])+'</p>'
+        html+='<p>Cached licensed facts with original profile timestamps. No picks or betting certification. Two-engine completeness is not claimed. T2 remains unfinished: missing production Long Shot path.</p>'
+        for bout in report['official_card']['bouts']:
+            html+='<article data-source-bout-id="'+esc(bout['source_bout_id'])+'"><h2>'+esc(bout['fighter_a']+' vs '+bout['fighter_b'])+'</h2>'
+            html+='<p>'+esc(bout['source_status']+' / '+bout['roster_disposition']+' / '+str(bout['weight_class'])+' / '+str(bout['scheduled_rounds'])+' rounds')+'</p>'
+            html+='<p>Source bout ID '+esc(bout['source_bout_id'])+'; missing: '+esc(', '.join(bout['missing_signals']))+'</p>'
+            for person in bout['participants']:
+                html+='<section data-source-fighter-id="'+esc(person['source_fighter_id'])+'"><h3>'+esc(person['name'])+'</h3><p>Source fighter ID '+esc(person['source_fighter_id'])+'; canonical ID '+esc(str(person['apex_mma_fighter_id'] or 'UNRESOLVED'))+'</p><p>Profile capture UTC: '+esc(str(person['source_captured_at_utc'] or 'MISSING'))+'</p>'
+                html+='<p>'+esc(json.dumps(person['facts'],ensure_ascii=False,sort_keys=True))+'</p><p>Missing: '+esc(', '.join(person['missing_signals']) or 'NONE_IN_LISTED_PROFILE_FIELDS')+'</p></section>'
+            html+='</article>'
+        html+='<p>Report SHA-256: '+esc(report['report_sha256'])+'</p></main>'+close()
+        print('MMA_LATE_DATA_PATH='+str(write('mma/index.html',html)))
+        return 0
     html = head('APEX — MMA Picks', 'APEX MMA / UFC official card and sealed FanDuel picks.', '/mma')
     html = html.replace('/assets/apex.css?v=apex-20260825-mma', '/assets/apex.css?v=apex-20260910-mma-card-parity')
     html = html.replace('</head>', BEACON_BLOCK + '\n' + ANALYTICS_BLOCK + '\n</head>')

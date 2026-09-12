@@ -183,6 +183,15 @@ def build_public_payloads(state: dict[str, Any]) -> tuple[dict[str, Any], dict[s
         "science_blocker": public_state["science_blocker"],
         "science_gate": public_state["science_gate"],
     }
+    if public_state.get('late_data_report'):
+        report=public_state['late_data_report']
+        if public_state.get('artifact_type')!='LATE_DATA_REPORT' or report.get('sport')!='MMA' or report.get('artifact_type')!='LATE_DATA_REPORT' or report.get('picks')!=[] or report.get('positions')!=[] or positions:
+            raise RuntimeError('INVALID_LATE_DATA_PUBLIC_TYPE')
+        expected=hashlib.sha256(canonical({k:v for k,v in report.items() if k!='report_sha256'})).hexdigest()
+        if expected!=report.get('report_sha256') or report.get('event_id')!=public_state.get('event_id'):
+            raise RuntimeError('LATE_DATA_PUBLIC_REPORT_BINDING_MISMATCH')
+        today['artifact_type']='LATE_DATA_REPORT'
+        today['late_data_report']=deepcopy(report)
     with_payload_hash(today)
 
     summary = {
