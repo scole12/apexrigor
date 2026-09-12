@@ -142,7 +142,15 @@ def main():
         if positions or report.get('label')!='LATE DATA RECOVERY NOT PREGAME T3':
             raise RuntimeError('INVALID_LATE_DATA_WEBSITE_REPORT')
         esc=html_lib.escape
-        html=head('APEX — MMA Late Data Report','Factual MMA roster and fighter coverage.','/mma')+'\n'+hero()+'\n'+NAVIGATION
+        html=head('APEX — MMA Late Data Report','Factual MMA roster and fighter coverage.','/mma')
+        html=html.replace('</head>', BEACON_BLOCK+'\n'+ANALYTICS_BLOCK+'\n</head>')
+        html+='\n'+hero().replace('<div class="shell">', '<div class="shell" data-picks-state="quiet" data-public-issuance="false" data-sport="MMA">')+'\n'+NAVIGATION
+        html+='''<div class="section-head picks-board-head"><div class="title">TODAY'S CARD</div><div class="meta mono" id="slate-meta">LATE FACTUAL REPORT · NO PICKS ISSUED</div></div>'''
+        pdf_name='APEX_UFC_MMA_LATE_DATA_REPORT_'+report['event_date'].replace('-','')+'.pdf'
+        pdf_relative='mma/reports/'+pdf_name
+        if not (ROOT/pdf_relative).is_file():
+            raise RuntimeError('CAPTURED_LATE_REPORT_PDF_MISSING')
+        html+='<p><a href="/'+esc(pdf_relative)+'">Download the captured late factual report (PDF)</a></p>'
         html+='<main id="games" data-render-complete="true" data-sport="MMA" data-artifact-type="LATE_DATA_REPORT">'
         html+='<h1>'+esc(report['label'])+'</h1><p>'+esc(report['event_name'])+'</p>'
         html+='<p>Generated UTC: '+esc(report['generated_at_utc'])+'<br>Roster source capture UTC: '+esc(report['source_captured_at_utc'])+'<br>Source read UTC: '+esc(report['read_at_utc'])+'</p>'
@@ -155,7 +163,7 @@ def main():
                 html+='<section data-source-fighter-id="'+esc(person['source_fighter_id'])+'"><h3>'+esc(person['name'])+'</h3><p>Source fighter ID '+esc(person['source_fighter_id'])+'; canonical ID '+esc(str(person['apex_mma_fighter_id'] or 'UNRESOLVED'))+'</p><p>Profile capture UTC: '+esc(str(person['source_captured_at_utc'] or 'MISSING'))+'</p>'
                 html+='<p>'+esc(json.dumps(person['facts'],ensure_ascii=False,sort_keys=True))+'</p><p>Missing: '+esc(', '.join(person['missing_signals']) or 'NONE_IN_LISTED_PROFILE_FIELDS')+'</p></section>'
             html+='</article>'
-        html+='<p>Report SHA-256: '+esc(report['report_sha256'])+'</p></main>'+close()
+        html+='<p>Report SHA-256: '+esc(report['report_sha256'])+'</p></main><div class="tag">THE MATH SPEAKS.</div><div class="foot mono">APEX MMA / UFC · LATE FACTUAL REPORT · NO PICKS ISSUED</div>'+close()
         print('MMA_LATE_DATA_PATH='+str(write('mma/index.html',html)))
         return 0
     html = head('APEX — MMA Picks', 'APEX MMA / UFC official card and sealed FanDuel picks.', '/mma')
