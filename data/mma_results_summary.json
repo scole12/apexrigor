@@ -5,7 +5,7 @@
     "detail": "The scheduled T-2 time has passed, but no sealed forecast card is available. The fight schedule below is not a set of selections.",
     "headline": "No forecasts published"
   },
-  "generated_at_utc": "2026-09-12T21:42:28.189300+00:00",
+  "generated_at_utc": "2026-09-12T18:30:24.692754Z",
   "graded_scientific_object_count": 0,
   "grader": {
     "schedule": "07:00 America/New_York",
@@ -196,7 +196,7 @@
       "source": "PRODUCTION_COMMERCIAL_GRADES"
     }
   ],
-  "payload_sha256": "b47a05e35260e07ddb27040cfd7b7f3e3b263b7045ec6427deadbc84aefeae48",
+  "payload_sha256": "2ce73d41aa2c08bc360022fed9dc0e537f31e7ace8476c5edc65952dec24c27e",
   "release_state": "NO_RELEASE_SCIENTIFIC_GATE",
   "schema_version": "APEX_MMA_RESULTS_SUMMARY_V1",
   "status": "RESULTS_AVAILABLE"
