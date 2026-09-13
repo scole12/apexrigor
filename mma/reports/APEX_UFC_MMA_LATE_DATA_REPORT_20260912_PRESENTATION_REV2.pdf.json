@@ -1,0 +1,10 @@
+{
+  "event_date": "2026-09-12",
+  "official_issuance": false,
+  "original_pdf_sha256": "75ea0eafa0896ceab8c304e44f9e9c6402702dafb5c961e5ec03295a79e7313e",
+  "page_count": 17,
+  "pdf_sha256": "592505e3c86d87f4ae250d7d6f5dfaee13ef8132465140d12136146fcdd307e0",
+  "positions_rendered": 0,
+  "report_sha256": "7b75d003e1e6a5c24d0eb20430f540440cbd851bd366d145844820bacfcc7481",
+  "schema": "APEX_MMA_PRESENTATION_REVISION_V1"
+}
