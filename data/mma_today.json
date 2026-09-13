@@ -2,32 +2,32 @@
   "active_model": null,
   "active_model_sha256": null,
   "authenticity": {
-    "card_reconciliation_status": "PASS",
+    "card_reconciliation_status": "COMPLETE_WITH_EXPLICIT_PROVIDER_MISSINGNESS",
     "no_authentic_fanduel_total_means_no_total_position": true,
     "no_fabricated_positions": true
   },
   "card": [
     {
-      "fighter_a": "Jean Silva",
-      "fighter_b": "Jose Delgado",
+      "fighter_a": "Joshua Van",
+      "fighter_b": "Alexandre Pantoja",
       "is_co_main_event": false,
       "is_main_event": true,
       "official_display_order": 1,
       "segment": "MAIN",
-      "weight_class": "FEATHERWEIGHT"
+      "weight_class": "FLYWEIGHT"
     },
     {
-      "fighter_a": "Brandon Moreno",
-      "fighter_b": "Joseph Morales",
+      "fighter_a": "Arman Tsarukyan",
+      "fighter_b": "Maur\u00edcio Ruffy",
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 2,
       "segment": "MAIN",
-      "weight_class": "FLYWEIGHT"
+      "weight_class": "LIGHTWEIGHT"
     },
     {
-      "fighter_a": "Tommy McMillen",
-      "fighter_b": "Marwan Rahiki",
+      "fighter_a": "Patricio Pitbull",
+      "fighter_b": "Dooho Choi",
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 3,
@@ -35,120 +35,124 @@
       "weight_class": "FEATHERWEIGHT"
     },
     {
-      "fighter_a": "Manon Fiorot",
-      "fighter_b": "Alexa Grasso",
+      "fighter_a": "Renato Moicano",
+      "fighter_b": "Brian Ortega",
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 4,
       "segment": "MAIN",
-      "weight_class": "WOMENS_FLYWEIGHT"
+      "weight_class": "LIGHTWEIGHT"
     },
     {
-      "fighter_a": "Waldo Cortes Acosta",
-      "fighter_b": "Curtis Blaydes",
+      "fighter_a": "Alonzo Menifield",
+      "fighter_b": "Iwo Baraniewski",
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 5,
       "segment": "MAIN",
-      "weight_class": "HEAVYWEIGHT"
+      "weight_class": "LIGHT_HEAVYWEIGHT"
     },
     {
-      "fighter_a": "David Martinez",
-      "fighter_b": "Dan Ige",
+      "fighter_a": "Gable Steveson",
+      "fighter_b": "Sean Sharaf",
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 6,
-      "segment": "MAIN",
-      "weight_class": "BANTAMWEIGHT"
+      "segment": "PRELIMS",
+      "weight_class": "HEAVYWEIGHT"
     },
     {
-      "fighter_a": "Tim Elliott",
-      "fighter_b": "\u00c9dgar Ch\u00e1irez",
+      "fighter_a": "Marlon Vera",
+      "fighter_b": "Charles Jourdain",
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 7,
       "segment": "PRELIMS",
-      "weight_class": "CATCH_WEIGHT"
+      "weight_class": "BANTAMWEIGHT"
     },
     {
-      "fighter_a": "Ignacio Bahamondes",
-      "fighter_b": "Muslim Salikhov",
+      "fighter_a": "Tai Tuivasa",
+      "fighter_b": "Robelis Despaigne",
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 8,
       "segment": "PRELIMS",
-      "weight_class": "WELTERWEIGHT"
+      "weight_class": "HEAVYWEIGHT"
     },
     {
-      "fighter_a": "Yousri Belgaroui",
-      "fighter_b": "Djorden Santos",
+      "fighter_a": "Michael Aswell Jr.",
+      "fighter_b": "JooSang Yoo",
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 9,
       "segment": "PRELIMS",
-      "weight_class": "MIDDLEWEIGHT"
+      "weight_class": "FEATHERWEIGHT"
     },
     {
-      "fighter_a": "Drakkar Klose",
-      "fighter_b": "Thomas Gantt",
+      "fighter_a": "Ryan Gandra",
+      "fighter_b": "Ozzy Diaz",
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 10,
       "segment": "PRELIMS",
-      "weight_class": "LIGHTWEIGHT"
+      "weight_class": "MIDDLEWEIGHT"
     },
     {
-      "fighter_a": "Rafa Garcia",
-      "fighter_b": "Rongzhu",
+      "fighter_a": "Edmen Shahbazyan",
+      "fighter_b": "Brunno Ferreira",
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 11,
       "segment": "PRELIMS",
-      "weight_class": "LIGHTWEIGHT"
+      "weight_class": "MIDDLEWEIGHT"
     },
     {
-      "fighter_a": "Sean King",
-      "fighter_b": "Jessie Rosas",
+      "fighter_a": "Casey O'Neill",
+      "fighter_b": "Eduarda Moura",
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 12,
       "segment": "PRELIMS",
-      "weight_class": "FEATHERWEIGHT"
+      "weight_class": "WOMENS_FLYWEIGHT"
     },
     {
-      "fighter_a": "JJ Aldrich",
-      "fighter_b": "Regina Tarin",
+      "fighter_a": "Giga Chikadze",
+      "fighter_b": "Joanderson Brito",
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 13,
       "segment": "PRELIMS",
-      "weight_class": "WOMENS_FLYWEIGHT"
+      "weight_class": "FEATHERWEIGHT"
     }
   ],
   "event": {
-    "city": "Glendale",
+    "city": "Los Angeles",
     "country": "United States",
-    "display_name": "Noche UFC \u2014 Silva vs Delgado",
-    "event_date": "2026-09-12",
-    "main_card_start_et": "2026-09-12T17:00:00-04:00",
-    "main_card_start_utc": "2026-09-12T21:00:00Z",
-    "name": "Noche UFC: Silva vs Delgado",
-    "prelims_start_et": "2026-09-12T14:00:00-04:00",
-    "prelims_start_utc": "2026-09-12T18:00:00Z",
+    "display_name": "UFC 331 \u2014 Van vs Pantoja 2",
+    "early_prelims_start_et": "2026-09-19T17:00:00-04:00",
+    "early_prelims_start_utc": "2026-09-19T21:00:00Z",
+    "event_date": "2026-09-19",
+    "main_card_start_et": "2026-09-19T21:00:00-04:00",
+    "main_card_start_utc": "2026-09-20T01:00:00Z",
+    "name": "Crypto.com UFC 331: Van vs Pantoja 2",
+    "prelims_start_et": "2026-09-19T17:00:00-04:00",
+    "prelims_start_utc": "2026-09-19T21:00:00Z",
     "promotion": "UFC",
-    "region": "Arizona",
-    "venue": "Desert Diamond Arena"
+    "region": "California",
+    "regular_prelims_start_et": "2026-09-19T19:00:00-04:00",
+    "regular_prelims_start_utc": "2026-09-19T23:00:00Z",
+    "venue": "Crypto.com Arena"
   },
   "fight_count": 13,
   "forecast": {
-    "code": "NO_FORECASTS_ISSUED",
-    "detail": "The scheduled T-2 time has passed, but no sealed forecast card is available. The fight schedule below is not a set of selections.",
-    "headline": "No forecasts published"
+    "code": "AWAITING_T2",
+    "detail": "No forecasts have been issued yet. Any published card will show the selection, captured FanDuel price, APEX probability, rating and full model-supported rationale.",
+    "headline": "Awaiting the T-2 forecast run"
   },
-  "generated_at_utc": "2026-09-12T18:30:24.692754Z",
+  "generated_at_utc": "2026-09-13T11:00:22.638567Z",
   "issuance_id": null,
   "issuance_status": null,
-  "payload_sha256": "409de2762497e194ecff8d27e27959ba8a4b3335a5943ec4ff7dbe159dc84187",
+  "payload_sha256": "aa9197a1592159d6af409c3c500d07740204d11c0017719b52114cddfa03b124",
   "picks_published": false,
   "positions": [],
   "positions_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
@@ -167,14 +171,14 @@
   "t2": {
     "actual_utc": null,
     "anchor": "EARLIEST_PUBLISHED_SCHEDULED_BOUT_MINUS_2_HOURS",
-    "scheduled_utc": "2026-09-12T16:00:00Z",
-    "status": "T2_DUE_NO_RECEIPT",
+    "scheduled_utc": "2026-09-19T19:00:00Z",
+    "status": "AWAITING_T2",
     "timeliness": null
   },
   "t3": {
     "anchor": "EARLIEST_PUBLISHED_SCHEDULED_BOUT_MINUS_3_HOURS",
     "bout_count": null,
-    "scheduled_utc": "2026-09-12T15:00:00Z",
+    "scheduled_utc": "2026-09-19T18:00:00Z",
     "status": "SCHEDULED"
   }
 }
