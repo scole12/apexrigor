@@ -1014,13 +1014,42 @@ def dispatch_ncaaf_email(request: Request, receipt: dict[str, Any]) -> dict[str,
     return complete
 
 
+def prepare_due_ncaaf_records() -> list[dict[str, Any]]:
+    """Prepare shared output without writing any sport's authority or queue."""
+    state = NCAAF_QUEUE.parent
+    outcomes = []
+    for path in sorted((state / 'grader_completion_state').glob('????-??-??.json')):
+        record = load_json(path)
+        if not record.get('PRODUCTS_COMPLETE') or record.get('RESULTS_SHARED_HANDOFF_COMPLETE'):
+            continue
+        try:
+            output = run([sys.executable, str(ROOT / 'bin/apex_prepare_ncaaf_record.py'),
+                          '--date', path.stem, '--state', str(state),
+                          '--site-data', str(ROOT / 'data'),
+                          '--output-root', str(STATE_ROOT / 'derived_results/ncaaf')],
+                         cwd=ROOT, timeout=90)
+            outcome = json.loads(output)
+            if outcome.get('status') not in {'GENERATED_VERIFIED_ARTIFACT', 'REUSED_VERIFIED_ARTIFACT'}:
+                raise RuntimeError('NCAA shared record producer did not verify its artifact')
+        except Exception as error:
+            outcome = {'status': 'BLOCKED', 'slate_date': path.stem,
+                       'error': type(error).__name__ + ':' + str(error)[-1400:]}
+        outcomes.append(outcome)
+    atomic_json(STATE_ROOT / 'derived_results/ncaaf/preparation_status.json', {
+        'checked_at_utc': datetime.now(timezone.utc).isoformat(), 'outcomes': outcomes,
+        'status': 'BLOCKED' if any(r['status'] == 'BLOCKED' for r in outcomes) else 'PASS'})
+    return outcomes
+
+
 def execute(*, dry_run: bool, sport: str | None = None) -> dict[str, Any]:
     LOCK_PATH.parent.mkdir(parents=True, exist_ok=True)
     with LOCK_PATH.open("a+", encoding="utf-8") as lock:
         fcntl.flock(lock.fileno(), fcntl.LOCK_EX)
+        prepared = prepare_due_ncaaf_records() if not dry_run and sport is None else []
         pending = discover_nfl() if sport == "NFL" else discover()
         if not pending:
-            return {"status": "NO_PENDING_REQUEST", "pending_count": 0}
+            return {"status": "NO_PENDING_REQUEST", "pending_count": 0,
+                    "shared_results_preparation": prepared}
         request = pending[0]
         result = publish(request, dry_run=dry_run)
         result["pending_count_before"] = len(pending)
