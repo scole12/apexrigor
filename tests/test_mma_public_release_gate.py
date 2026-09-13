@@ -202,7 +202,16 @@ class MmaPublicReleaseGateTests(unittest.TestCase):
         today = json.loads((ROOT / "data" / "mma_today.json").read_text(encoding="utf-8"))
 
         self.assertIn("TODAY'S CARD", picks)
-        self.assertIn("Unsupported MMA public market", picks)
+        if today.get("artifact_type") == "LATE_DATA_REPORT":
+            self.assertEqual(today["positions"], [])
+            self.assertIs(today["picks_published"], False)
+            self.assertIn('data-public-issuance="false"', picks)
+            self.assertIn("No picks were issued for this event.", picks)
+            self.assertIn('data-artifact-type="LATE_DATA_REPORT"', picks)
+            self.assertNotIn('data-position-state="SEALED"', picks)
+        else:
+            self.assertIn("Unsupported MMA public market", picks)
+            self.assertIn("forecast.code", picks)
         self.assertNotIn("return rows.filter", picks)
         self.assertNotIn("Four boxes for each fight", about)
         self.assertNotIn("daily grader", about)
@@ -211,7 +220,6 @@ class MmaPublicReleaseGateTests(unittest.TestCase):
         self.assertIn("7:00 AM Eastern the next morning", about)
         self.assertIn('id="science-state"', about)
         self.assertIn("P(WINNER, METHOD, TIME)", about)
-        self.assertIn("forecast.code", picks)
         if not today["positions"]:
             self.assertIsNone(today["active_model"])
             self.assertIsNone(today["active_model_sha256"])

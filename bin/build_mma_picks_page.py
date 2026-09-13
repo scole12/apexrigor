@@ -2,9 +2,11 @@
 """Render the official MMA card with the shared NFL/NCAAF picks chrome."""
 import json
 import html as html_lib
+import hashlib
+from datetime import date, datetime, timezone
 
 from _mma_public import ROOT, close, head, hero, write
-from _mma_forecast_contract import validated_card, validated_positions
+from _mma_forecast_contract import _fighter_pair, validated_card, validated_positions
 from apply_cloudflare_web_analytics import BEACON_BLOCK
 from apply_vercel_web_analytics import ANALYTICS_BLOCK
 
@@ -127,6 +129,86 @@ fetch("/data/mma_today.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw new Err
 '''
 
 
+def late_report_page(payload):
+    """Project the captured roster into the existing customer card components.
+
+    Detailed source facts remain in the original linked PDF. This projection
+    neither refreshes the report nor creates an issuance or a live bout status.
+    """
+    report = payload['late_data_report']
+    if (report.get('label') != 'LATE DATA RECOVERY NOT PREGAME T3'
+            or report.get('sport') != 'MMA'
+            or report.get('artifact_type') != 'LATE_DATA_REPORT'
+            or report.get('picks') != [] or report.get('positions') != []
+            or report.get('picks_published') is not False
+            or report.get('official_issuance') is not False
+            or payload.get('picks_published') is not False
+            or validated_positions(payload)
+            or payload.get('active_model') is not None
+            or payload.get('active_model_sha256') is not None):
+        raise RuntimeError('INVALID_LATE_DATA_WEBSITE_REPORT')
+    digest = hashlib.sha256(json.dumps(
+        {k: v for k, v in report.items() if k != 'report_sha256'},
+        sort_keys=True, separators=(',', ':'), default=str).encode()).hexdigest()
+    if (digest != report.get('report_sha256')
+            # The public Today contract omits raw event IDs; its builder already
+            # checks the report ID against the canonical state before projection.
+            or report.get('event_name') != payload['event'].get('name')
+            or report.get('event_date') != payload['event'].get('event_date')):
+        raise RuntimeError('LATE_DATA_WEBSITE_REPORT_BINDING_MISMATCH')
+    event_date = date.fromisoformat(report['event_date'])
+    pdf_relative = 'mma/reports/APEX_UFC_MMA_LATE_DATA_REPORT_' + event_date.strftime('%Y%m%d') + '.pdf'
+    if not (ROOT / pdf_relative).is_file():
+        raise RuntimeError('CAPTURED_LATE_REPORT_PDF_MISSING')
+
+    roster, cancelled = {}, []
+    for bout in report['official_card']['bouts']:
+        pair = _fighter_pair(bout, 'Captured MMA roster')
+        if bout.get('roster_disposition') == 'EXCLUDED_CANCELLED' and bout.get('source_status') == 'CANCELLED':
+            cancelled.append(bout)
+        elif bout.get('roster_disposition') == 'CURRENT_ROSTER' and bout.get('source_status') != 'CANCELLED':
+            if pair in roster:
+                raise RuntimeError('DUPLICATE_LATE_DATA_ROSTER_PAIR')
+            roster[pair] = bout
+        else:
+            raise RuntimeError('UNVERIFIED_LATE_DATA_ROSTER_DISPOSITION')
+    card = sorted(validated_card(payload), key=lambda b: b['official_display_order'])
+    if (set(roster) != {_fighter_pair(b, 'Official MMA card') for b in card}
+            or len(roster) != report.get('current_roster_bout_count')
+            or len(cancelled) != report.get('excluded_bout_count')
+            or any(_fighter_pair(b, 'Cancelled MMA pairing') in roster for b in cancelled)):
+        raise RuntimeError('LATE_DATA_ROSTER_RECONCILIATION_MISMATCH')
+
+    esc = lambda value: html_lib.escape(str(value), quote=True)
+    capture = datetime.fromisoformat(report['source_captured_at_utc'].replace('Z', '+00:00'))
+    if capture.tzinfo is None:
+        raise RuntimeError('LATE_DATA_CAPTURE_TIMEZONE_REQUIRED')
+    capture_label = capture.astimezone(timezone.utc).strftime('%B %d, %Y at %H:%M UTC')
+    page = head('APEX — MMA Picks', 'MMA event roster and late factual report. No picks issued.', '/mma')
+    page = page.replace('</head>', BEACON_BLOCK + '\n' + ANALYTICS_BLOCK + '\n</head>')
+    page += '\n' + hero().replace('<div class="shell">', '<div class="shell" data-picks-state="quiet" data-public-issuance="false" data-sport="MMA">')
+    page += '\n' + NAVIGATION
+    page += '<div class="section-head picks-board-head"><div class="title">TODAY\'S CARD</div><div class="meta mono" id="slate-meta">' + esc(event_date.strftime('%B %d, %Y').upper()) + ' · ' + str(len(card)) + ' BOUTS · NO PICKS ISSUED</div></div>'
+    page += '<main class="picks-page"><section aria-labelledby="report-heading"><h1 class="game-matchup" id="report-heading">' + esc(report['event_name']) + '</h1>'
+    page += '<div class="rationale-copy"><p>No picks were issued for this event. The late factual report contains the captured roster and fighter information.</p><p>Roster captured <time datetime="' + esc(report['source_captured_at_utc']) + '">' + esc(capture_label) + '</time>. This is a saved report; bout status may have changed.</p>'
+    page += '<p><a href="/' + esc(pdf_relative) + '">Read the full late factual report (PDF)</a></p></div></section>'
+    page += '<section aria-labelledby="roster-heading"><h2 class="market-label" id="roster-heading">EVENT ROSTER</h2><div class="picks-board" id="games" data-render-complete="true" data-sport="MMA" data-artifact-type="LATE_DATA_REPORT">'
+    for number, bout in enumerate(card, 1):
+        captured = roster[_fighter_pair(bout, 'Official MMA card')]
+        context = [captured.get('weight_class'), payload['event'].get('venue')]
+        segment = {'MAIN': 'MAIN CARD', 'MAIN_CARD': 'MAIN CARD', 'PRELIMS': 'PRELIMS', 'EARLY_PRELIMS': 'EARLY PRELIMS'}.get(str(bout.get('segment', '')).upper(), 'EVENT ROSTER')
+        page += '<article class="game-module" data-game-state="UNISSUED"><header class="game-header"><div class="game-num mono">F' + f'{number:02d}' + '</div><div class="game-meta"><h3 class="game-matchup">' + esc(bout['fighter_a'] + ' vs ' + bout['fighter_b']) + '</h3><p class="game-pitchers mono">' + esc(' · '.join(str(v) for v in context if v)) + '</p></div><div class="game-time mono">' + esc(segment) + '</div></header>'
+        page += '<div class="market-grid"><section class="market-panel" data-position-state="UNISSUED"><div class="market-label">STATUS</div><div class="rationale-copy"><p>No picks issued for this bout.</p></div></section></div></article>'
+    page += '</div></section>'
+    if cancelled:
+        page += '<section aria-labelledby="cancelled-heading"><h2 class="market-label" id="cancelled-heading">CANCELLED PAIRINGS</h2><div class="rationale-copy"><p>These pairings were cancelled and are excluded from the event roster above.</p><ul>'
+        for bout in cancelled:
+            page += '<li>' + esc(bout['fighter_a'] + ' vs ' + bout['fighter_b']) + ' — Cancelled</li>'
+        page += '</ul></div></section>'
+    page += '</main><div class="tag">THE MATH SPEAKS.</div><div class="foot mono">APEX MMA / UFC · LATE FACTUAL REPORT · NO PICKS ISSUED</div>' + close()
+    return page
+
+
 def main():
     # The existing contract validates the authoritative fields without changing them.
     payload = json.loads((ROOT / "data/mma_today.json").read_text())
@@ -138,33 +220,7 @@ def main():
     ):
         raise RuntimeError("unissued MMA public payload exposes a model identity")
     if payload.get('artifact_type') == 'LATE_DATA_REPORT':
-        report=payload['late_data_report']
-        if positions or report.get('label')!='LATE DATA RECOVERY NOT PREGAME T3':
-            raise RuntimeError('INVALID_LATE_DATA_WEBSITE_REPORT')
-        esc=html_lib.escape
-        html=head('APEX — MMA Late Data Report','Factual MMA roster and fighter coverage.','/mma')
-        html=html.replace('</head>', BEACON_BLOCK+'\n'+ANALYTICS_BLOCK+'\n</head>')
-        html+='\n'+hero().replace('<div class="shell">', '<div class="shell" data-picks-state="quiet" data-public-issuance="false" data-sport="MMA">')+'\n'+NAVIGATION
-        html+='''<div class="section-head picks-board-head"><div class="title">TODAY'S CARD</div><div class="meta mono" id="slate-meta">LATE FACTUAL REPORT · NO PICKS ISSUED</div></div>'''
-        pdf_name='APEX_UFC_MMA_LATE_DATA_REPORT_'+report['event_date'].replace('-','')+'.pdf'
-        pdf_relative='mma/reports/'+pdf_name
-        if not (ROOT/pdf_relative).is_file():
-            raise RuntimeError('CAPTURED_LATE_REPORT_PDF_MISSING')
-        html+='<p><a href="/'+esc(pdf_relative)+'">Download the captured late factual report (PDF)</a></p>'
-        html+='<main id="games" data-render-complete="true" data-sport="MMA" data-artifact-type="LATE_DATA_REPORT">'
-        html+='<h1>'+esc(report['label'])+'</h1><p>'+esc(report['event_name'])+'</p>'
-        html+='<p>Generated UTC: '+esc(report['generated_at_utc'])+'<br>Roster source capture UTC: '+esc(report['source_captured_at_utc'])+'<br>Source read UTC: '+esc(report['read_at_utc'])+'</p>'
-        html+='<p>Cached licensed facts with original profile timestamps. No picks or betting certification. Two-engine completeness is not claimed. T2 remains unfinished: missing production Long Shot path.</p>'
-        for bout in report['official_card']['bouts']:
-            html+='<article data-source-bout-id="'+esc(bout['source_bout_id'])+'"><h2>'+esc(bout['fighter_a']+' vs '+bout['fighter_b'])+'</h2>'
-            html+='<p>'+esc(bout['source_status']+' / '+bout['roster_disposition']+' / '+str(bout['weight_class'])+' / '+str(bout['scheduled_rounds'])+' rounds')+'</p>'
-            html+='<p>Source bout ID '+esc(bout['source_bout_id'])+'; missing: '+esc(', '.join(bout['missing_signals']))+'</p>'
-            for person in bout['participants']:
-                html+='<section data-source-fighter-id="'+esc(person['source_fighter_id'])+'"><h3>'+esc(person['name'])+'</h3><p>Source fighter ID '+esc(person['source_fighter_id'])+'; canonical ID '+esc(str(person['apex_mma_fighter_id'] or 'UNRESOLVED'))+'</p><p>Profile capture UTC: '+esc(str(person['source_captured_at_utc'] or 'MISSING'))+'</p>'
-                html+='<p>'+esc(json.dumps(person['facts'],ensure_ascii=False,sort_keys=True))+'</p><p>Missing: '+esc(', '.join(person['missing_signals']) or 'NONE_IN_LISTED_PROFILE_FIELDS')+'</p></section>'
-            html+='</article>'
-        html+='<p>Report SHA-256: '+esc(report['report_sha256'])+'</p></main><div class="tag">THE MATH SPEAKS.</div><div class="foot mono">APEX MMA / UFC · LATE FACTUAL REPORT · NO PICKS ISSUED</div>'+close()
-        print('MMA_LATE_DATA_PATH='+str(write('mma/index.html',html)))
+        print('MMA_LATE_DATA_PATH=' + str(write('mma/index.html', late_report_page(payload))))
         return 0
     html = head('APEX — MMA Picks', 'APEX MMA / UFC official card and sealed FanDuel picks.', '/mma')
     html = html.replace('/assets/apex.css?v=apex-20260825-mma', '/assets/apex.css?v=apex-20260910-mma-card-parity')
