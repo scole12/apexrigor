@@ -1,91 +1,91 @@
 {
   "contract_version": "apex_results_summary_from_grader_receipt_v1",
-  "generated_at_et": "2026-09-12T07:00:41.493945-04:00",
+  "generated_at_et": "2026-09-13T00:29:10.297365-04:00",
   "sports_included": [
     "mlb",
     "nfl",
     "mma",
     "ncaaf"
   ],
-  "latest_graded_date": "2026-09-11",
-  "latest_graded_date_display": "September 11, 2026",
-  "daily_archive_count": 123,
-  "overall_wins": 1953,
-  "overall_losses": 1786,
+  "latest_graded_date": "2026-09-12",
+  "latest_graded_date_display": "September 12, 2026",
+  "daily_archive_count": 124,
+  "overall_wins": 1967,
+  "overall_losses": 1802,
   "overall_pushes": 26,
   "overall_win_rate": 52.2,
   "overall_win_rate_display": "52.2%",
-  "positions_graded": 3789,
+  "positions_graded": 3819,
   "overall": {
-    "wins": 1953,
-    "losses": 1786,
+    "wins": 1967,
+    "losses": 1802,
     "pushes": 26,
     "voids": 13,
     "pending": 11,
     "other": 0,
     "win_rate": 52.2,
     "win_rate_display": "52.2%",
-    "positions_tracked": 3789,
-    "positions_settled": 3765,
-    "positions_graded": 3789,
-    "decided_n": 3739,
-    "settled_n": 3765,
-    "tracked_n": 3789,
-    "slates_graded": 123,
-    "f5_spread": "920-851-4P",
-    "f5_total": "912-839-22P",
+    "positions_tracked": 3819,
+    "positions_settled": 3795,
+    "positions_graded": 3819,
+    "decided_n": 3769,
+    "settled_n": 3795,
+    "tracked_n": 3819,
+    "slates_graded": 124,
+    "f5_spread": "927-859-4P",
+    "f5_total": "919-847-22P",
     "f5_spread_raw": {
-      "W": 920,
-      "L": 851,
+      "W": 927,
+      "L": 859,
       "PUSH": 4,
       "VOID": 7,
       "PENDING": 3
     },
     "f5_total_raw": {
-      "W": 912,
-      "L": 839,
+      "W": 919,
+      "L": 847,
       "PUSH": 22,
       "VOID": 6,
       "PENDING": 3
     },
-    "latest_graded_date": "2026-09-11",
-    "latest_graded_date_display": "September 11, 2026"
+    "latest_graded_date": "2026-09-12",
+    "latest_graded_date_display": "September 12, 2026"
   },
   "sports": {
     "mlb": {
-      "wins": 1832,
-      "losses": 1690,
+      "wins": 1846,
+      "losses": 1706,
       "pushes": 26,
       "voids": 13,
       "pending": 6,
       "other": 0,
       "win_rate": 52.0,
       "win_rate_display": "52.0%",
-      "positions_tracked": 3567,
-      "positions_settled": 3548,
-      "positions_graded": 3567,
-      "decided_n": 3522,
-      "settled_n": 3548,
-      "tracked_n": 3567,
-      "slates_graded": 114,
-      "f5_spread": "920-851-4P",
-      "f5_total": "912-839-22P",
+      "positions_tracked": 3597,
+      "positions_settled": 3578,
+      "positions_graded": 3597,
+      "decided_n": 3552,
+      "settled_n": 3578,
+      "tracked_n": 3597,
+      "slates_graded": 115,
+      "f5_spread": "927-859-4P",
+      "f5_total": "919-847-22P",
       "f5_spread_raw": {
-        "W": 920,
-        "L": 851,
+        "W": 927,
+        "L": 859,
         "PUSH": 4,
         "VOID": 7,
         "PENDING": 3
       },
       "f5_total_raw": {
-        "W": 912,
-        "L": 839,
+        "W": 919,
+        "L": 847,
         "PUSH": 22,
         "VOID": 6,
         "PENDING": 3
       },
-      "latest_graded_date": "2026-09-11",
-      "latest_graded_date_display": "September 11, 2026"
+      "latest_graded_date": "2026-09-12",
+      "latest_graded_date_display": "September 12, 2026"
     },
     "nfl": {
       "wins": 2,
@@ -182,7 +182,7 @@
         },
         {
           "path": "data/mma_results_summary.json",
-          "sha256": "808029f6bb25a1217a94a66c62687876234c77031913c9a0e8897762cedd45fa",
+          "sha256": "0fac483089a71d22d4d548739d1e5a5e857daa044f913f6257c1a9fcd2d74ca4",
           "field": "latest_event_results"
         }
       ],
@@ -221,14 +221,14 @@
       "source_scope": "OFFICIAL_NCAA_PRODUCTION_POSITIONS_ONLY"
     }
   },
-  "mlb_wins": 1832,
-  "mlb_losses": 1690,
+  "mlb_wins": 1846,
+  "mlb_losses": 1706,
   "mlb_pushes": 26,
-  "mlb_positions_graded": 3567,
+  "mlb_positions_graded": 3597,
   "note": "Overall = sum of included sport graded books. Settled=W+L+P; tracked=settled+VOID+PENDING+OTHER.",
-  "canonical_receipt_sha256": "e4907f470e921d21712ed76f50e9e087ac3195307542cc1bc7c69a6d42acecb1",
+  "canonical_receipt_sha256": "9d2260fab3d86fba48b7003d829368dc123b0f127518b730c2d3e833b2f70421",
   "source_summary_path": "data/results_archive.json",
-  "source_summary_sha256": "99ee57b2e5cd5d6d03df3ab7ae31089729c52af875bff3ee0de3f44784ed54c8",
+  "source_summary_sha256": "74852cc6d8e669c3a8bf695a9523c9edc48ebdf8effcebbda7921c63dd95b0d5",
   "calculation_authority": "CANONICAL_SPORT_GRADED_BOOKS",
   "total_apex_fuse": {
     "version": "total_apex_fuse_v2",
@@ -237,8 +237,8 @@
       "mlb": [
         {
           "path": "data/results_archive.json",
-          "sha256": "99ee57b2e5cd5d6d03df3ab7ae31089729c52af875bff3ee0de3f44784ed54c8",
-          "canonical_receipt_sha256": "e4907f470e921d21712ed76f50e9e087ac3195307542cc1bc7c69a6d42acecb1",
+          "sha256": "74852cc6d8e669c3a8bf695a9523c9edc48ebdf8effcebbda7921c63dd95b0d5",
+          "canonical_receipt_sha256": "9d2260fab3d86fba48b7003d829368dc123b0f127518b730c2d3e833b2f70421",
           "field": "_canonical_grader_receipt_projection.sports.mlb"
         }
       ],
@@ -257,7 +257,7 @@
         },
         {
           "path": "data/mma_results_summary.json",
-          "sha256": "808029f6bb25a1217a94a66c62687876234c77031913c9a0e8897762cedd45fa",
+          "sha256": "0fac483089a71d22d4d548739d1e5a5e857daa044f913f6257c1a9fcd2d74ca4",
           "field": "latest_event_results"
         }
       ],
