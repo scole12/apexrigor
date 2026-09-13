@@ -266,10 +266,13 @@ jobs:
                       )
                   attachments=[f'NCAAF_T2_FULL_SLATE_{date_token}.pdf',f'NCAAF_T2_PICKS_CARD_{date_token}.png']
               else:
-                  results=json.loads(pathlib.Path('data/ncaaf_results_cumulative.json').read_text())
+                  results_path=pathlib.Path(manifest.get('results_cumulative_path','data/ncaaf_results_cumulative.json'))
+                  assert str(results_path) in manifest['results_files'], 'Results snapshot is not hash-bound'
+                  results=json.loads(results_path.read_text())
                   archive=results['positions']
                   assert results['graded_position_count']>0
                   prior=[row for row in archive if row.get('slate_date')==slate_date]
+                  assert prior, 'Requested graded slate is absent from the dated results snapshot'
                   def counts(rows):
                       return {key:sum(row.get('result')==key for row in rows) for key in ('W','L','PUSH','VOID','PENDING')}
                   prior_all=counts(prior)
@@ -287,7 +290,7 @@ jobs:
                   tier_rank={'WEAK':1,'MODERATE':2,'STRONG':3,'ELITE':4}
                   ordered=sorted((float(position['issued_probability']),tier_rank[position['tier']]) for position in archive)
                   mismatch_count=sum(right[1]<left[1] for left,right in zip(ordered,ordered[1:]))
-                  results_receipt=hashlib.sha256(pathlib.Path('data/ncaaf_results_cumulative.json').read_bytes()).hexdigest()
+                  results_receipt=hashlib.sha256(results_path.read_bytes()).hexdigest()
                   subject=(
                       'APEX NCAA Football Daily Graded Results — Previous Day Slate — Final Corrected'
                       if delivery_mode in ('FINAL_CORRECTED','APEX_FINAL_CORRECTED') else
@@ -295,11 +298,11 @@ jobs:
                       if delivery_mode=='CORRECTED' else
                       f'APEX NCAA Football Results — {display_date} — Recovery'
                       if delivery_mode=='RECOVERY' else
-                      'APEX NCAA Football Daily Graded Results — Previous Day Slate'
+                      f'APEX NCAA Football Graded Results — {display_date}'
                   )
                   body=(
-                      "The previous day's APEX NCAA Football results have been graded from the immutable issuance and official full-game outcomes.\n\n"
-                      f"Prior-day combined: {prior_all['W']}W-{prior_all['L']}L\n"
+                      f"The APEX NCAA Football results for {display_date} have been graded from the immutable issuance and official full-game outcomes.\n\n"
+                      f"Slate combined: {prior_all['W']}W-{prior_all['L']}L\n"
                       f"ATS: {prior_ats['W']}W-{prior_ats['L']}L\n"
                       f"Totals: {prior_totals['W']}W-{prior_totals['L']}L\n"
                       "\nNCAA Football cumulative record:\n"
@@ -387,6 +390,10 @@ jobs:
                   'sha256':hashlib.sha256(payload).hexdigest(),
               })
 
+          if delivery_mode=='NORMAL':
+              assert len(request_id)==64 and all(c in '0123456789abcdef' for c in request_id), 'Immutable request identity required'
+              assert os.environ.get('GITHUB_RUN_ATTEMPT','1')=='1', 'Reconcile the original send before any workflow rerun'
+
           mime_bytes=message.as_bytes(policy=SMTP)
           evidence_stem=f'NCAAF_{product}_{delivery_mode}'
           pathlib.Path(evidence_stem+'_MESSAGE.eml').write_bytes(mime_bytes)
@@ -472,6 +479,7 @@ jobs:
           print('PUBLIC_PAYLOAD_SHA256='+public_sha)
           PY
       - name: Preserve NCAA provider transaction evidence
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: ncaaf-${{ inputs.product }}-${{ inputs.delivery_mode }}-${{ inputs.slate_date }}-${{ github.run_id }}

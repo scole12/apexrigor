@@ -17,5 +17,12 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - name: Check NCAA delivery and publication regressions
+        env:
+          PUBLISHER_SOURCE: bin/apex_shared_site_publisher.py
+        run: |
+          python3 tests/test_ncaaf_email_reconciliation.py
+          python3 tests/test_ncaaf_publisher_isolation.py
+          python3 tests/test_ncaaf_results_backlog.py
       - name: Build and audit the Vercel output
         run: python3 bin/build_vercel_output.py
