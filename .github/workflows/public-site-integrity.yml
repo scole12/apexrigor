@@ -26,3 +26,5 @@ jobs:
           python3 tests/test_ncaaf_results_backlog.py
       - name: Build and audit the Vercel output
         run: python3 bin/build_vercel_output.py
+      - name: Verify shared NCAA record scheduling
+        run: python3 tests/test_ncaaf_shared_record_scheduling.py
