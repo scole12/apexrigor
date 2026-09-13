@@ -132,6 +132,24 @@ def archive_segment(path, sport):
     payload, source = _read(path)
     if payload.get("sport") != sport.upper():
         raise ValueError(f"Wrong sport archive: {path}")
+    if sport=='nfl':
+        if not payload.get('canonical_result'):raise ValueError('Canonical NFL result required')
+        rows=[];seen=set()
+        for row in payload['rows']:
+            key=(row['sport'],row['issuance_id'],row['position_id'])
+            if key[0]!='NFL' or key in seen:raise ValueError('Invalid canonical NFL identity')
+            seen.add(key);rows.append({**row,'date':row['game_date']})
+        for pending in payload['pending']:
+            key=tuple(pending['key'])
+            if key in seen:raise ValueError('Duplicate canonical NFL coverage')
+            seen.add(key);rows.append({'result':'PENDING','date':pending['game_date']})
+        if len(rows)!=sum(c['issued'] for c in payload['coverage'].values()):raise ValueError('NFL coverage mismatch')
+        segment=_segment(rows)
+        segment['positions_graded']=len(payload['rows'])
+        segment.update(source_row_count=len(rows),source_files=[{**source,'field':'canonical rows + pending'}])
+        for market,field in (('ATS','ats_record'),('TOTALS','totals_record'),('PROPS','props_record')):
+            segment[field]=_record_text(_segment([r for r in rows if r.get('market')==market]))
+        return segment
     issued = {}
     for issuance in payload["issuances"]:
         for position in issuance.get("positions", []):
@@ -195,6 +213,8 @@ def fuse_summary(summary, *, data_dir, previous=None):
         archive = data_dir / f"{sport}_results_archive.json"
         if sport == "mma":
             segment = mma_segment(data_dir)
+        elif sport == 'nfl':
+            segment = archive_segment(archive, sport)
         elif cumulative.exists():
             segment = cumulative_segment(cumulative)
         elif sport in {"nfl", "nhl"} and archive.exists():

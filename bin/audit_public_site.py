@@ -365,7 +365,7 @@ def main() -> int:
         "nfl_today.json": {"APEX_NFL_TODAY_V1", "apex.nfl.public_today.v1"},
         "nfl_system_state.json": {"APEX_NFL_PUBLIC_STATE_V1", "apex.nfl.public_state.v1", "apex.nfl.system_state.v1"},
         "nfl_results_summary.json": {"APEX_NFL_RESULTS_SUMMARY_V1", "apex.nfl.results_summary.v1"},
-        "nfl_results_archive.json": {"APEX_NFL_RESULTS_ARCHIVE_V1", "apex.nfl.results_archive.v1"},
+        "nfl_results_archive.json": {"APEX_NFL_RESULTS_ARCHIVE_V1", "APEX_NFL_RESULTS_ARCHIVE_V2", "apex.nfl.results_archive.v1"},
     }
     nfl_payloads: dict[str, dict[str, object]] = {}
     if nfl_route_established:
@@ -383,6 +383,16 @@ def main() -> int:
         nfl_today = nfl_payloads.get("nfl_today.json", {})
         nfl_state = nfl_payloads.get("nfl_system_state.json", {})
         nfl_results = nfl_payloads.get("nfl_results_summary.json", {})
+        archive=nfl_payloads.get('nfl_results_archive.json',{})
+        if archive.get('schema_version')=='APEX_NFL_RESULTS_ARCHIVE_V2':
+            try:
+                rows=archive['rows'];keys=[(r['sport'],r['issuance_id'],r['position_id']) for r in rows]
+                assert all(k[0]=='NFL' and all(k) for k in keys) and len(keys)==len(set(keys))
+                assert archive['canonical_result']==nfl_results['canonical_result']
+                assert len(rows)==nfl_results['graded_position_count']
+                assert sum(c['issued'] for c in archive['coverage'].values())==nfl_results['issued_position_count']
+                assert len(rows)+len(archive['pending'])==nfl_results['issued_position_count']
+            except (KeyError,TypeError,AssertionError):errors.append('NFL canonical result coverage/binding mismatch')
         if nfl_today:
             games = nfl_today.get("slate", {}).get("games") or nfl_today.get("games") or []
             positions = nfl_today.get("positions") or []
