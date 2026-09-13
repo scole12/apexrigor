@@ -2,7 +2,7 @@
   "active_model": null,
   "active_model_sha256": null,
   "authenticity": {
-    "card_reconciliation_status": "COMPLETE_WITH_EXPLICIT_PROVIDER_MISSINGNESS",
+    "card_reconciliation_status": "PASS",
     "no_authentic_fanduel_total_means_no_total_position": true,
     "no_fabricated_positions": true
   },
@@ -149,10 +149,10 @@
     "detail": "No forecasts have been issued yet. Any published card will show the selection, captured FanDuel price, APEX probability, rating and full model-supported rationale.",
     "headline": "Awaiting the T-2 forecast run"
   },
-  "generated_at_utc": "2026-09-13T11:00:22.638567Z",
+  "generated_at_utc": "2026-09-13T16:00:23.178842Z",
   "issuance_id": null,
   "issuance_status": null,
-  "payload_sha256": "aa9197a1592159d6af409c3c500d07740204d11c0017719b52114cddfa03b124",
+  "payload_sha256": "70562971e8a36785a1a551e6e14e3fa9e4e0cf09dde1ca00575e88afd68cc686",
   "picks_published": false,
   "positions": [],
   "positions_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",

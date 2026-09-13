@@ -130,7 +130,7 @@
     "scorecards": 37,
     "weigh_ins": 5442
   },
-  "generated_at_utc": "2026-09-13T11:00:22.638567Z",
+  "generated_at_utc": "2026-09-13T16:00:23.178842Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "GRADED_COMMERCIAL_AND_OR_SCIENTIFIC"
@@ -341,7 +341,7 @@
     "regular_prelims_start_utc": "2026-09-19T23:00:00Z",
     "venue": "Crypto.com Arena"
   },
-  "payload_sha256": "9c0bc8560888d262f926dca32d8e23d0ed2a566b076c07b6755c09d7dc38d19e",
+  "payload_sha256": "bf8b4ed8832d5067ac45720aa96d9a548dfa6711368768cb81d75233371160d3",
   "production_isolation": "PASS",
   "schema_version": "APEX_MMA_OPS_SNAPSHOT_V1",
   "science_blocker": "FAIL_CLOSED_KEEP_NONE_EDGE_CERT_NO",

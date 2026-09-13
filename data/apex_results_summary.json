@@ -9,29 +9,29 @@
   ],
   "latest_graded_date": "2026-09-12",
   "latest_graded_date_display": "September 12, 2026",
-  "daily_archive_count": 125,
-  "overall_wins": 1972,
-  "overall_losses": 1807,
+  "daily_archive_count": 127,
+  "overall_wins": 2062,
+  "overall_losses": 1882,
   "overall_pushes": 26,
-  "overall_win_rate": 52.2,
-  "overall_win_rate_display": "52.2%",
-  "positions_graded": 3829,
+  "overall_win_rate": 52.3,
+  "overall_win_rate_display": "52.3%",
+  "positions_graded": 4054,
   "overall": {
-    "wins": 1972,
-    "losses": 1807,
+    "wins": 2062,
+    "losses": 1882,
     "pushes": 26,
     "voids": 13,
-    "pending": 11,
+    "pending": 71,
     "other": 0,
-    "win_rate": 52.2,
-    "win_rate_display": "52.2%",
-    "positions_tracked": 3829,
-    "positions_settled": 3805,
-    "positions_graded": 3829,
-    "decided_n": 3779,
-    "settled_n": 3805,
-    "tracked_n": 3829,
-    "slates_graded": 125,
+    "win_rate": 52.3,
+    "win_rate_display": "52.3%",
+    "positions_tracked": 4054,
+    "positions_settled": 3970,
+    "positions_graded": 4054,
+    "decided_n": 3944,
+    "settled_n": 3970,
+    "tracked_n": 4054,
+    "slates_graded": 127,
     "f5_spread": "927-859-4P",
     "f5_total": "919-847-22P",
     "f5_spread_raw": {
@@ -88,34 +88,34 @@
       "latest_graded_date_display": "September 12, 2026"
     },
     "nfl": {
-      "wins": 2,
-      "losses": 3,
+      "wins": 5,
+      "losses": 5,
       "pushes": 0,
       "voids": 0,
-      "pending": 5,
+      "pending": 65,
       "other": 0,
-      "win_rate": 40.0,
-      "positions_tracked": 10,
-      "positions_settled": 5,
+      "win_rate": 50.0,
+      "positions_tracked": 75,
+      "positions_settled": 10,
       "positions_graded": 10,
-      "ats_record": "0W-1L-0P",
-      "totals_record": "0W-1L-0P",
-      "props_record": "2W-1L-0P",
-      "latest_graded_date": "2026-09-09",
-      "graded_slate_count": 1,
-      "win_rate_display": "40.0%",
-      "decided_n": 5,
-      "settled_n": 5,
-      "tracked_n": 10,
-      "slates_graded": 1,
-      "latest_graded_date_display": "September 09, 2026",
+      "ats_record": "1W-1L-0P",
+      "totals_record": "0W-2L-0P",
+      "props_record": "4W-2L-0P",
+      "latest_graded_date": "2026-09-10",
+      "graded_slate_count": 2,
+      "win_rate_display": "50.0%",
+      "decided_n": 10,
+      "settled_n": 10,
+      "tracked_n": 75,
+      "slates_graded": 2,
+      "latest_graded_date_display": "September 10, 2026",
       "status": "ACTIVE",
-      "source_row_count": 10,
+      "source_row_count": 75,
       "source_files": [
         {
           "path": "data/nfl_results_archive.json",
-          "sha256": "8d83ea1cfb67780c837eed8496bc755821817eda451295fc2d457b86fd092eac",
-          "field": "issuances[].positions + active grades[].settlements"
+          "sha256": "3e533675dc4598b42dbd3631ef4f18b3e2c837d240bd4a225abbc3c71bb13948",
+          "field": "canonical rows + pending"
         }
       ],
       "underdog_plus_1_5_record": "0W-0L-0P"
@@ -177,12 +177,12 @@
       "source_files": [
         {
           "path": "data/mma_results_archive.json",
-          "sha256": "1febaa2c8487d6bfb70a4ea7c8f51426c2f793f7d21d6913cca885e3f61a4e56",
+          "sha256": "41026a7334225f2231a00a5639006051a0b8939303085364488a35f5bd059baa",
           "field": "events[].latest_results"
         },
         {
           "path": "data/mma_results_summary.json",
-          "sha256": "f9c6448fce4e16ef6067b0546ee3e564634273f313dcfb0683a6515df943b4d7",
+          "sha256": "b44fb13106dccb3963730583e6bdc52b4376c031eb88c7dc1519c7e84ae82a7f",
           "field": "latest_event_results"
         }
       ],
@@ -191,33 +191,33 @@
       "deduplication_key": "issuance_id + bout_id + WINNER"
     },
     "ncaaf": {
-      "wins": 114,
-      "losses": 94,
+      "wins": 201,
+      "losses": 167,
       "pushes": 0,
       "voids": 0,
       "pending": 0,
       "other": 0,
-      "win_rate": 54.8,
-      "win_rate_display": "54.8%",
-      "positions_tracked": 208,
-      "positions_graded": 208,
-      "positions_settled": 208,
-      "decided_n": 208,
-      "settled_n": 208,
-      "tracked_n": 208,
-      "slates_graded": 8,
-      "graded_slate_count": 8,
-      "latest_graded_date": "2026-09-11",
-      "latest_graded_date_display": "September 11, 2026",
+      "win_rate": 54.6,
+      "win_rate_display": "54.6%",
+      "positions_tracked": 368,
+      "positions_graded": 368,
+      "positions_settled": 368,
+      "decided_n": 368,
+      "settled_n": 368,
+      "tracked_n": 368,
+      "slates_graded": 9,
+      "graded_slate_count": 9,
+      "latest_graded_date": "2026-09-12",
+      "latest_graded_date_display": "September 12, 2026",
       "source_files": [
         {
           "path": "data/ncaaf_results_cumulative.json",
-          "sha256": "6c74d18afdfdeec3976a9ed9034baaef825b04f61daf18d98da59dbc9bc812e1",
+          "sha256": "2a0b08ea4406bb4f37acfe3bbbb6e25b2da58895abc07e22b5d56e09c91ac801",
           "field": "positions",
           "aggregate_check": "lifetime_record"
         }
       ],
-      "source_row_count": 208,
+      "source_row_count": 368,
       "source_scope": "OFFICIAL_NCAA_PRODUCTION_POSITIONS_ONLY"
     }
   },
@@ -245,26 +245,26 @@
       "nfl": [
         {
           "path": "data/nfl_results_archive.json",
-          "sha256": "8d83ea1cfb67780c837eed8496bc755821817eda451295fc2d457b86fd092eac",
-          "field": "issuances[].positions + active grades[].settlements"
+          "sha256": "3e533675dc4598b42dbd3631ef4f18b3e2c837d240bd4a225abbc3c71bb13948",
+          "field": "canonical rows + pending"
         }
       ],
       "mma": [
         {
           "path": "data/mma_results_archive.json",
-          "sha256": "1febaa2c8487d6bfb70a4ea7c8f51426c2f793f7d21d6913cca885e3f61a4e56",
+          "sha256": "41026a7334225f2231a00a5639006051a0b8939303085364488a35f5bd059baa",
           "field": "events[].latest_results"
         },
         {
           "path": "data/mma_results_summary.json",
-          "sha256": "f9c6448fce4e16ef6067b0546ee3e564634273f313dcfb0683a6515df943b4d7",
+          "sha256": "b44fb13106dccb3963730583e6bdc52b4376c031eb88c7dc1519c7e84ae82a7f",
           "field": "latest_event_results"
         }
       ],
       "ncaaf": [
         {
           "path": "data/ncaaf_results_cumulative.json",
-          "sha256": "6c74d18afdfdeec3976a9ed9034baaef825b04f61daf18d98da59dbc9bc812e1",
+          "sha256": "2a0b08ea4406bb4f37acfe3bbbb6e25b2da58895abc07e22b5d56e09c91ac801",
           "field": "positions",
           "aggregate_check": "lifetime_record"
         }
