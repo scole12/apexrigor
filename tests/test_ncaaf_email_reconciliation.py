@@ -124,6 +124,26 @@ class EmailReconciliation(unittest.TestCase):
 
 
 class HistoryCoverage(unittest.TestCase):
+    def test_other_request_for_same_date_blocks_new_send(self):
+        request = p.Request('NCAAF', 'a' * 64,
+                            {'requested_at_utc': '2026-09-20T01:00:00Z'}, None,
+                            '2026-09-11', 'RESULTS')
+        row = {'id': 7, 'display_title': 'NCAA RESULTS 2026-09-11 ' + 'c' * 64}
+        with patch.object(p, 'run', return_value=json.dumps({'total_count': 1, 'workflow_runs': [row]})) as shell:
+            with self.assertRaisesRegex(RuntimeError, 'another request exists'):
+                p.matching_ncaaf_workflow_runs(request)
+            self.assertIn('created=>=2026-09-11', shell.call_args.args[0][-1])
+
+    def test_pinned_recovery_identity_is_returned(self):
+        request = p.Request('NCAAF', 'a' * 64,
+                            {'requested_at_utc': '2026-09-13T01:00:00Z',
+                             'prior_email_delivery': {'request_id': 'c' * 64}}, None,
+                            '2026-09-11', 'RESULTS')
+        row = {'id': 7, 'display_title': 'NCAA RESULTS 2026-09-11 ' + 'c' * 64,
+               'status': 'completed', 'conclusion': 'success', 'run_attempt': 1,
+               'html_url': 'https://example.invalid/run/7', 'head_sha': 'd' * 40}
+        with patch.object(p, 'run', return_value=json.dumps({'total_count': 1, 'workflow_runs': [row]})):
+            self.assertEqual(p.matching_ncaaf_workflow_runs(request)[0]['databaseId'], 7)
     def test_attempt_on_second_page_is_found(self):
         request = p.Request('NCAAF', 'a' * 64,
                             {'requested_at_utc': '2026-09-12T01:00:00Z'}, None,
@@ -205,6 +225,67 @@ class PhysicalEmailEvidence(unittest.TestCase):
     def test_rerun_cannot_claim_one_send(self):
         with self.assertRaises(RuntimeError):
             self.preserve(attempt=2)
+
+
+class RecoveryAdoption(unittest.TestCase):
+    def setUp(self):
+        PhysicalEmailEvidence.setUp(self)
+        from email.parser import BytesParser
+        from email import policy
+        self.request.manifest['source_hashes']['data/ncaaf_results_cumulative.json'] = 'e' * 64
+        message = BytesParser(policy=policy.default).parsebytes(self.eml)
+        message.replace_header('Message-ID', '<ncaaf-20260911-results-recovery-123@apexrigor.com>')
+        message['X-APEX-NCAA-Public-Payload-SHA256'] = 'e' * 64
+        message['X-APEX-NCAA-Delivery-Mode'] = 'RECOVERY'
+        self.eml = message.as_bytes(policy=SMTP)
+        self.transaction.update(request_id='c' * 64, delivery_mode='RECOVERY',
+                                message_id=str(message['Message-ID']),
+                                mime_sha256=hashlib.sha256(self.eml).hexdigest())
+        self.evidence_root = self.root / 'email_evidence/ncaaf' / ('c' * 64)
+        self.evidence_root.mkdir(parents=True)
+        self.transaction_bytes = json.dumps(self.transaction).encode()
+        (self.evidence_root / 'transaction.json').write_bytes(self.transaction_bytes)
+        (self.evidence_root / 'message.eml').write_bytes(self.eml)
+        self.request.manifest['prior_email_delivery'] = {
+            'request_id': 'c' * 64, 'delivery_mode': 'RECOVERY', 'workflow_run_id': 123,
+            'transaction_sha256': hashlib.sha256(self.transaction_bytes).hexdigest(),
+            'message_sha256': hashlib.sha256(self.eml).hexdigest(),
+            'canonical_results_sha256': 'e' * 64,
+        }
+
+    def verify(self, run_id=123):
+        return p.preserve_ncaaf_email_evidence(self.request, {'databaseId': run_id, 'attempt': 1})
+
+    def test_matching_prior_delivery_is_adopted_without_new_send(self):
+        with patch.object(p, 'run', side_effect=AssertionError('external call forbidden')):
+            result = self.verify()
+        self.assertTrue(result['adopted_without_resend'])
+        self.assertEqual(result['original_request_id'], 'c' * 64)
+
+    def test_different_current_attachment_cannot_be_adopted(self):
+        self.request.manifest['source_hashes']['data/ncaaf/2026-09-11/results/APEX_TOTAL_RECORD_20260911.png'] = 'f' * 64
+        with self.assertRaises(RuntimeError):
+            self.verify()
+
+    def test_different_cumulative_book_cannot_be_adopted(self):
+        self.request.manifest['source_hashes']['data/ncaaf_results_cumulative.json'] = 'f' * 64
+        with self.assertRaises(RuntimeError):
+            self.verify()
+
+    def test_changed_prior_transaction_cannot_be_adopted(self):
+        (self.evidence_root / 'transaction.json').write_bytes(self.transaction_bytes + b' ')
+        with self.assertRaisesRegex(RuntimeError, 'PHYSICAL_PROOF_CHANGED'):
+            self.verify()
+
+    def test_other_workflow_cannot_supply_prior_evidence(self):
+        with self.assertRaisesRegex(RuntimeError, 'RUN_MISMATCH'):
+            self.verify(run_id=124)
+
+    def test_missing_prior_run_blocks_dispatch(self):
+        with patch.object(p, 'matching_ncaaf_workflow_runs', return_value=[]), patch.object(p, 'run') as shell:
+            with self.assertRaisesRegex(RuntimeError, 'no new send is permitted'):
+                p.dispatch_ncaaf_email(self.request, {'status': 'PUBLISHED'})
+            shell.assert_not_called()
 
 
 if __name__ == '__main__':

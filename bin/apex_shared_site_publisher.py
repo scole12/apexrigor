@@ -720,7 +720,7 @@ def matching_ncaaf_workflow_runs(request: Request) -> list[dict[str, Any]]:
     created = datetime.fromisoformat(str(request.manifest.get("requested_at_utc") or "").replace("Z", "+00:00"))
     if created.tzinfo is None:
         raise RuntimeError("NCAA_EMAIL_HISTORY_SCOPE_MISSING")
-    since = (created.astimezone(timezone.utc) - timedelta(days=1)).date().isoformat()
+    since = min(str(request.slate_date), (created.astimezone(timezone.utc) - timedelta(days=1)).date().isoformat())
     endpoint = (
         "repos/scole12/apexrigor/actions/workflows/ncaaf-full-slate-delivery.yml/runs"
         "?event=workflow_dispatch&per_page=100&created=>=" + since
@@ -747,7 +747,15 @@ def matching_ncaaf_workflow_runs(request: Request) -> list[dict[str, Any]]:
             rows[int(row["id"])] = row
     if len(rows) < expected:
         raise RuntimeError("NCAA_EMAIL_HISTORY_INCOMPLETE")
-    title = ncaaf_workflow_title(request)
+    prior_delivery = request.manifest.get("prior_email_delivery") or {}
+    expected_id = str(prior_delivery.get("request_id") or request.request_id)
+    title = f"NCAA {request.product} {request.slate_date} {expected_id}"
+    prefix = f"NCAA {request.product} {request.slate_date} "
+    # Recovery and normal requests can have different content identities for
+    # the same obligation. An earlier transaction must never be forgotten.
+    if any(str(row.get("display_title") or "").startswith(prefix)
+           and row.get("display_title") != title for row in rows.values()):
+        raise RuntimeError("NCAA_EMAIL_RECONCILIATION_REQUIRED: another request exists for this stage/date")
     return [
         {"databaseId": row["id"], "displayTitle": row["display_title"],
          "status": row["status"], "conclusion": row["conclusion"],
@@ -800,7 +808,11 @@ def preserve_ncaaf_email_evidence(
     workflow: dict[str, Any],
 ) -> dict[str, Any]:
     run_id = int(workflow["databaseId"])
-    evidence_root = STATE_ROOT / "email_evidence" / "ncaaf" / request.request_id
+    adoption = request.manifest.get("prior_email_delivery") or {}
+    original_request = str(adoption.get("request_id") or request.request_id)
+    if not re.fullmatch(r"[a-f0-9]{64}", original_request):
+        raise RuntimeError("NCAA_PRIOR_EMAIL_IDENTITY_INVALID")
+    evidence_root = STATE_ROOT / "email_evidence" / "ncaaf" / original_request
     transaction_path = evidence_root / "transaction.json"
     message_path = evidence_root / "message.eml"
     if transaction_path.is_file() and message_path.is_file():
@@ -835,6 +847,17 @@ def preserve_ncaaf_email_evidence(
         f"<ncaaf-{request.slate_date.replace('-', '')}-{request.product.lower()}-"
         f"{str(request.manifest['canonical_public_payload_sha256'])[:20]}@apexrigor.com>"
     )
+    expected_mode = "NORMAL"
+    if adoption:
+        if request.product != "RESULTS" or adoption.get("delivery_mode") != "RECOVERY":
+            raise RuntimeError("NCAA_PRIOR_EMAIL_SCOPE_INVALID")
+        if int(adoption.get("workflow_run_id") or 0) != run_id:
+            raise RuntimeError("NCAA_PRIOR_EMAIL_RUN_MISMATCH")
+        expected_mode = "RECOVERY"
+        expected_message_id = f"<ncaaf-{request.slate_date.replace('-', '')}-results-recovery-{run_id}@apexrigor.com>"
+        if (sha256_file(transaction_path) != adoption.get("transaction_sha256")
+                or sha256_file(message_path) != adoption.get("message_sha256")):
+            raise RuntimeError("NCAA_PRIOR_EMAIL_PHYSICAL_PROOF_CHANGED")
     expected_attachment_count = {"T3": 1, "T2": 2, "RESULTS": 3}[request.product]
     recipient_rows = list(transaction.get("smtp_recipient_responses") or [])
     message_bytes = message_path.read_bytes()
@@ -854,14 +877,14 @@ def preserve_ncaaf_email_evidence(
     recorded = list(transaction.get("attachments") or [])
     recorded_files = {item.get("filename"): item.get("sha256") for item in recorded}
     checks = {
-        "request_id": transaction.get("request_id") == request.request_id,
+        "request_id": transaction.get("request_id") == original_request,
         "single_workflow_attempt": workflow.get("attempt") == 1,
         "mime_hash": hashlib.sha256(message_bytes).hexdigest() == transaction.get("mime_sha256"),
         "mime_message_id": str(message.get("Message-ID") or "") == expected_message_id,
         "source_attachment_binding": all(expected_files.values()) and physical_files == expected_files == recorded_files,
         "attachment_membership": len(parts) == len(recorded) == len(expected_files) == expected_attachment_count,
         "slate_date": transaction.get("slate_date") == request.slate_date,
-        "delivery_mode": transaction.get("delivery_mode") == "NORMAL",
+        "delivery_mode": transaction.get("delivery_mode") == expected_mode,
         "message_id": transaction.get("message_id") == expected_message_id,
         "attachment_count": int(transaction.get("attachment_count") or -1)
         == expected_attachment_count,
@@ -872,6 +895,13 @@ def preserve_ncaaf_email_evidence(
         "delivery_state": transaction.get("delivery_state") == "PROVIDER_ACCEPTED",
         "credentials_absent": transaction.get("credentials_recorded") is False,
     }
+    if adoption:
+        expected_cumulative = source_hashes.get("data/ncaaf_results_cumulative.json")
+        checks["prior_results_snapshot_binding"] = bool(expected_cumulative) and (
+            adoption.get("canonical_results_sha256") == expected_cumulative
+            == str(message.get("X-APEX-NCAA-Public-Payload-SHA256") or "").strip()
+        )
+        checks["prior_delivery_mode_header"] = str(message.get("X-APEX-NCAA-Delivery-Mode") or "") == "RECOVERY"
     if not all(checks.values()):
         raise RuntimeError(f"NCAA provider transaction verification failed: {checks}")
     return {
@@ -886,6 +916,9 @@ def preserve_ncaaf_email_evidence(
         "transaction_sha256": sha256_file(transaction_path),
         "message_path": str(message_path),
         "message_sha256": sha256_file(message_path),
+        "original_request_id": original_request,
+        "delivery_mode": expected_mode,
+        "adopted_without_resend": bool(adoption),
     }
 
 
@@ -911,6 +944,8 @@ def dispatch_ncaaf_email(request: Request, receipt: dict[str, Any]) -> dict[str,
         raise RuntimeError("NCAA_EMAIL_RECONCILIATION_REQUIRED: persisted workflow absent from read-back")
     if saved_run_id is None and matches:
         saved_run_id = int(matches[0]["databaseId"])
+    if request.manifest.get("prior_email_delivery") and saved_run_id is None:
+        raise RuntimeError("NCAA_PRIOR_EMAIL_NOT_FOUND: no new send is permitted")
     if saved_run_id is None and prior.get("email_dispatch_at_utc"):
         raise RuntimeError("NCAA_EMAIL_RECONCILIATION_REQUIRED: earlier dispatch outcome is unknown")
     prior_attempt_ids = sorted(by_id)
