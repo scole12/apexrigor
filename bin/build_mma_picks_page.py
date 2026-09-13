@@ -9,6 +9,7 @@ from _mma_public import ROOT, close, head, hero, write
 from _mma_forecast_contract import _fighter_pair, validated_card, validated_positions
 from apply_cloudflare_web_analytics import BEACON_BLOCK
 from apply_vercel_web_analytics import ANALYTICS_BLOCK
+from apex_mma_late_presentation import COMPARISON_CSS, comparison_html, intro_paragraphs
 
 
 NAVIGATION = '''  <div class="apex-nav-stack">
@@ -132,7 +133,7 @@ fetch("/data/mma_today.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw new Err
 def late_report_page(payload):
     """Project the captured roster into the existing customer card components.
 
-    Detailed source facts remain in the original linked PDF. This projection
+    Comparisons use the same frozen facts as the linked report. This projection
     neither refreshes the report nor creates an issuance or a live bout status.
     """
     report = payload['late_data_report']
@@ -160,6 +161,20 @@ def late_report_page(payload):
     pdf_relative = 'mma/reports/APEX_UFC_MMA_LATE_DATA_REPORT_' + event_date.strftime('%Y%m%d') + '.pdf'
     if not (ROOT / pdf_relative).is_file():
         raise RuntimeError('CAPTURED_LATE_REPORT_PDF_MISSING')
+    # A presentation revision is an additional artifact, never an overwrite of
+    # the PDF already accepted by the mail provider. Bind it to this exact report.
+    revised_relative = pdf_relative[:-4] + '_PRESENTATION_REV2.pdf'
+    revision_manifest = ROOT / (revised_relative + '.json')
+    if revision_manifest.is_file():
+        binding = json.loads(revision_manifest.read_text())
+        revised_path = ROOT / revised_relative
+        if (binding.get('report_sha256') != report['report_sha256']
+                or binding.get('event_date') != report['event_date']
+                or binding.get('original_pdf_sha256') != hashlib.sha256((ROOT / pdf_relative).read_bytes()).hexdigest()
+                or not revised_path.is_file()
+                or binding.get('pdf_sha256') != hashlib.sha256(revised_path.read_bytes()).hexdigest()):
+            raise RuntimeError('LATE_REPORT_PRESENTATION_REVISION_BINDING_MISMATCH')
+        pdf_relative = revised_relative
 
     roster, cancelled = {}, []
     for bout in report['official_card']['bouts']:
@@ -185,26 +200,28 @@ def late_report_page(payload):
         raise RuntimeError('LATE_DATA_CAPTURE_TIMEZONE_REQUIRED')
     capture_label = capture.astimezone(timezone.utc).strftime('%B %d, %Y at %H:%M UTC')
     page = head('APEX — MMA Picks', 'MMA event roster and late factual report. No picks issued.', '/mma')
-    page = page.replace('</head>', BEACON_BLOCK + '\n' + ANALYTICS_BLOCK + '\n</head>')
+    page = page.replace('</head>', '<style>' + COMPARISON_CSS + '</style>\n' + BEACON_BLOCK + '\n' + ANALYTICS_BLOCK + '\n</head>')
     page += '\n' + hero().replace('<div class="shell">', '<div class="shell" data-picks-state="quiet" data-public-issuance="false" data-sport="MMA">')
     page += '\n' + NAVIGATION
     page += '<div class="section-head picks-board-head"><div class="title">TODAY\'S CARD</div><div class="meta mono" id="slate-meta">' + esc(event_date.strftime('%B %d, %Y').upper()) + ' · ' + str(len(card)) + ' BOUTS · NO PICKS ISSUED</div></div>'
     page += '<main class="picks-page"><section aria-labelledby="report-heading"><h1 class="game-matchup" id="report-heading">' + esc(report['event_name']) + '</h1>'
-    page += '<div class="rationale-copy"><p>No picks were issued for this event. The late factual report contains the captured roster and fighter information.</p><p>Roster captured <time datetime="' + esc(report['source_captured_at_utc']) + '">' + esc(capture_label) + '</time>. This is a saved report; bout status may have changed.</p>'
-    page += '<p><a href="/' + esc(pdf_relative) + '">Read the full late factual report (PDF)</a></p></div></section>'
+    page += '<div class="rationale-copy mma-report-intro">' + ''.join('<p>' + esc(text) + '</p>' for text in intro_paragraphs(report))
+    page += '<p><a href="/' + esc(pdf_relative) + '">Read the fighter comparison report (PDF)</a></p></div></section>'
     page += '<section aria-labelledby="roster-heading"><h2 class="market-label" id="roster-heading">EVENT ROSTER</h2><div class="picks-board" id="games" data-render-complete="true" data-sport="MMA" data-artifact-type="LATE_DATA_REPORT">'
     for number, bout in enumerate(card, 1):
         captured = roster[_fighter_pair(bout, 'Official MMA card')]
         context = [captured.get('weight_class'), payload['event'].get('venue')]
         segment = {'MAIN': 'MAIN CARD', 'MAIN_CARD': 'MAIN CARD', 'PRELIMS': 'PRELIMS', 'EARLY_PRELIMS': 'EARLY PRELIMS'}.get(str(bout.get('segment', '')).upper(), 'EVENT ROSTER')
         page += '<article class="game-module" data-game-state="UNISSUED"><header class="game-header"><div class="game-num mono">F' + f'{number:02d}' + '</div><div class="game-meta"><h3 class="game-matchup">' + esc(bout['fighter_a'] + ' vs ' + bout['fighter_b']) + '</h3><p class="game-pitchers mono">' + esc(' · '.join(str(v) for v in context if v)) + '</p></div><div class="game-time mono">' + esc(segment) + '</div></header>'
-        page += '<div class="market-grid"><section class="market-panel" data-position-state="UNISSUED"><div class="market-label">STATUS</div><div class="rationale-copy"><p>No picks issued for this bout.</p></div></section></div></article>'
+        page += '<div class="market-grid market-grid--single"><section class="market-panel" data-position-state="UNISSUED"><div class="market-label">STATUS</div><div class="rationale-copy"><p>No picks issued for this bout.</p></div></section></div>'
+        page += comparison_html(captured, report['event_date']) + '</article>'
     page += '</div></section>'
     if cancelled:
-        page += '<section aria-labelledby="cancelled-heading"><h2 class="market-label" id="cancelled-heading">CANCELLED PAIRINGS</h2><div class="rationale-copy"><p>These pairings were cancelled and are excluded from the event roster above.</p><ul>'
+        page += '<section class="mma-cancelled" aria-labelledby="cancelled-heading"><h2 class="market-label" id="cancelled-heading">CANCELLED PAIRINGS</h2><div class="rationale-copy"><p>These pairings were cancelled and are excluded from the event roster above. The captured fighter profiles are retained below for completeness.</p></div>'
         for bout in cancelled:
-            page += '<li>' + esc(bout['fighter_a'] + ' vs ' + bout['fighter_b']) + ' — Cancelled</li>'
-        page += '</ul></div></section>'
+            page += '<details class="game-module"><summary class="game-matchup">' + esc(bout['fighter_a'] + ' vs ' + bout['fighter_b']) + ' — Cancelled</summary>'
+            page += comparison_html(bout, report['event_date']) + '</details>'
+        page += '</section>'
     page += '</main><div class="tag">THE MATH SPEAKS.</div><div class="foot mono">APEX MMA / UFC · LATE FACTUAL REPORT · NO PICKS ISSUED</div>' + close()
     return page
 
