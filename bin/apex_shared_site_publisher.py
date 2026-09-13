@@ -1020,6 +1020,13 @@ def prepare_due_ncaaf_records() -> list[dict[str, Any]]:
     outcomes = []
     for path in sorted((state / 'grader_completion_state').glob('????-??-??.json')):
         record = load_json(path)
+        # Preserve explicit historical dispositions; these are not pending
+        # requests under the newer shared-handoff schema.
+        if record.get('historical_migration') == 'OWNER_LOCKED_COMPLETE_NO_RECOMPUTE_NO_REDELIVERY':
+            continue
+        if (record.get('completion_disposition') == 'NOT_APPLICABLE_NO_SEALED_ISSUANCE'
+                and record.get('grade_count') == 0 and record.get('final_grade_count') == 0):
+            continue
         if not record.get('PRODUCTS_COMPLETE') or record.get('RESULTS_SHARED_HANDOFF_COMPLETE'):
             continue
         try:

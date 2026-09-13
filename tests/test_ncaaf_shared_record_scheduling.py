@@ -47,6 +47,25 @@ class Scheduling(unittest.TestCase):
         self.assertEqual(before, {f.name: f.read_bytes() for f in self.flags.iterdir()})
         self.assertEqual(result['shared_results_preparation'][0]['status'], 'GENERATED_VERIFIED_ARTIFACT')
 
+    def test_explicit_legacy_dispositions_do_not_reopen_delivery(self):
+        self.record('2026-08-29', True, False)
+        p = self.flags / '2026-08-29.json'
+        obj = json.loads(p.read_text())
+        obj['historical_migration'] = 'OWNER_LOCKED_COMPLETE_NO_RECOMPUTE_NO_REDELIVERY'
+        p.write_text(json.dumps(obj))
+        for day in ('2026-08-30', '2026-08-31', '2026-09-01', '2026-09-02'):
+            self.record(day, True, False)
+            p = self.flags / (day + '.json')
+            obj = json.loads(p.read_text())
+            obj.update(completion_disposition='NOT_APPLICABLE_NO_SEALED_ISSUANCE', grade_count=0, final_grade_count=0)
+            p.write_text(json.dumps(obj))
+        before = {p.name: p.read_bytes() for p in self.flags.iterdir()}
+        with patch.object(m, 'run') as run:
+            result = m.execute(dry_run=False)
+        run.assert_not_called()
+        self.assertEqual(result['shared_results_preparation'], [])
+        self.assertEqual(before, {p.name: p.read_bytes() for p in self.flags.iterdir()})
+
     def test_dry_run_and_other_sport_never_generate(self):
         self.record('2026-09-12', True, False)
         with patch.object(m, 'run') as run:
