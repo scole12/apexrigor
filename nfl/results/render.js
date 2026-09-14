@@ -24,6 +24,12 @@
     const owr=overall.win_rate===null ? '—' : `${(100*overall.win_rate).toFixed(1)}%`;
     const atsBanner=fmtRecord(nflSport.ats_record.W,nflSport.ats_record.L,nflSport.ats_record.PUSH);
     const totBanner=fmtRecord(nflSport.totals_record.W,nflSport.totals_record.L,nflSport.totals_record.PUSH);
+    const props = nflSport.props_record;
+    if (!props || ![props.W, props.L, props.PUSH].every(n => Number.isSafeInteger(n) && n >= 0))
+      throw new Error('Canonical NFL Player Props record required');
+    const propsBanner=fmtRecord(props.W,props.L,props.PUSH);
+    const rate = record => record.W+record.L ? `${(100*record.W/(record.W+record.L)).toFixed(1)}%` : '—';
+    const propsRate=rate(props), atsRate=rate(nflSport.ats_record), totRate=rate(nflSport.totals_record);
     const keys = new Set();
     const rows = archive.rows.map(r => {
       const key=JSON.stringify([r.sport,r.issuance_id,r.position_id]);
@@ -52,13 +58,12 @@
     let html = "";
     // NFL record and coverage from the one canonical payload.
     html += `<div class="section-head"><div class="title">SEASON RECORD</div><div class="meta mono">${esc(today)} · ${Number(tracked).toLocaleString("en-US")} POSITIONS TRACKED</div></div>`;
-    html += `<div class="banner" data-apex-season-record="${esc(fmtRecord(ow,ol,op))}" data-apex-season-win-rate="${esc(owr)}" data-apex-ats-record="${esc(atsBanner)}" data-apex-totals-record="${esc(totBanner)}">
-      <div class="cell"><div class="label">Overall</div><div class="val mono">${esc(fmtRecord(ow,ol,op))}</div></div>
-      <div class="cell"><div class="label">Win Rate</div><div class="val mono">${esc(owr)}</div></div>
-      <div class="cell"><div class="label">NFL ATS</div><div class="val mono">${esc(atsBanner)}</div></div>
-      <div class="cell"><div class="label">NFL Totals</div><div class="val mono">${esc(totBanner)}</div></div>
+    html += `<div class="banner" data-apex-season-record="${esc(fmtRecord(ow,ol,op))}" data-apex-season-win-rate="${esc(owr)}" data-apex-ats-record="${esc(atsBanner)}" data-apex-totals-record="${esc(totBanner)}" data-apex-props-record="${esc(propsBanner)}" data-apex-props-win-rate="${esc(propsRate)}">
+      <div class="cell"><div class="label">NFL Overall</div><div class="val mono">${esc(fmtRecord(ow,ol,op))}</div><div class="label mono">${esc(owr)} WIN RATE</div></div>
+      <div class="cell"><div class="label">NFL ATS</div><div class="val mono">${esc(atsBanner)}</div><div class="label mono">${esc(atsRate)} WIN RATE</div></div>
+      <div class="cell"><div class="label">NFL Totals</div><div class="val mono">${esc(totBanner)}</div><div class="label mono">${esc(totRate)} WIN RATE</div></div>
+      <div class="cell"><div class="label">NFL Player Props</div><div class="val mono">${esc(propsBanner)}</div><div class="label mono">${esc(propsRate)} WIN RATE</div></div>
     </div>`;
-    html += `<p class="muted">${tracked} issued · ${rows.length} graded · ${pending} pending/not final</p>`;
 
     // AS-ISSUED TIER PERFORMANCE — ATS | TOTALS side by side like MLB
     html += `<div class="section-head"><div class="title">AS-ISSUED TIER PERFORMANCE</div><div class="meta mono">NFL FULL-GAME · AS ISSUED</div></div>`;
