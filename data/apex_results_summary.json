@@ -1,6 +1,6 @@
 {
   "contract_version": "apex_results_summary_from_grader_receipt_v1",
-  "generated_at_et": "2026-09-14T17:55:22.988858-04:00",
+  "generated_at_et": "2026-09-14T18:10:25.583514-04:00",
   "sports_included": [
     "mlb",
     "nfl",
@@ -9,29 +9,29 @@
   ],
   "latest_graded_date": "2026-09-13",
   "latest_graded_date_display": "September 13, 2026",
-  "daily_archive_count": 127,
-  "overall_wins": 2016,
-  "overall_losses": 1853,
+  "daily_archive_count": 129,
+  "overall_wins": 2108,
+  "overall_losses": 1931,
   "overall_pushes": 26,
-  "overall_win_rate": 52.1,
-  "overall_win_rate_display": "52.1%",
-  "positions_graded": 3914,
+  "overall_win_rate": 52.2,
+  "overall_win_rate_display": "52.2%",
+  "positions_graded": 4084,
   "overall": {
-    "wins": 2016,
-    "losses": 1853,
+    "wins": 2108,
+    "losses": 1931,
     "pushes": 26,
     "voids": 13,
     "pending": 6,
     "other": 0,
-    "win_rate": 52.1,
-    "win_rate_display": "52.1%",
-    "positions_tracked": 3914,
-    "positions_settled": 3895,
-    "positions_graded": 3914,
-    "decided_n": 3869,
-    "settled_n": 3895,
-    "tracked_n": 3914,
-    "slates_graded": 127,
+    "win_rate": 52.2,
+    "win_rate_display": "52.2%",
+    "positions_tracked": 4084,
+    "positions_settled": 4065,
+    "positions_graded": 4084,
+    "decided_n": 4039,
+    "settled_n": 4065,
+    "tracked_n": 4084,
+    "slates_graded": 129,
     "f5_spread": "933-868-4P",
     "f5_total": "923-858-22P",
     "f5_spread_raw": {
@@ -191,33 +191,33 @@
       "deduplication_key": "issuance_id + bout_id + WINNER"
     },
     "ncaaf": {
-      "wins": 109,
-      "losses": 89,
+      "wins": 201,
+      "losses": 167,
       "pushes": 0,
       "voids": 0,
       "pending": 0,
       "other": 0,
-      "win_rate": 55.1,
-      "win_rate_display": "55.1%",
-      "positions_tracked": 198,
-      "positions_graded": 198,
-      "positions_settled": 198,
-      "decided_n": 198,
-      "settled_n": 198,
-      "tracked_n": 198,
-      "slates_graded": 7,
-      "graded_slate_count": 7,
-      "latest_graded_date": "2026-09-10",
-      "latest_graded_date_display": "September 10, 2026",
+      "win_rate": 54.6,
+      "win_rate_display": "54.6%",
+      "positions_tracked": 368,
+      "positions_graded": 368,
+      "positions_settled": 368,
+      "decided_n": 368,
+      "settled_n": 368,
+      "tracked_n": 368,
+      "slates_graded": 9,
+      "graded_slate_count": 9,
+      "latest_graded_date": "2026-09-12",
+      "latest_graded_date_display": "September 12, 2026",
       "source_files": [
         {
           "path": "data/ncaaf_results_cumulative.json",
-          "sha256": "7c1bf7f90f0e25c0e936ce1c36f01944856bdf44142c34bfd1783519d17448d2",
+          "sha256": "2a0b08ea4406bb4f37acfe3bbbb6e25b2da58895abc07e22b5d56e09c91ac801",
           "field": "positions",
           "aggregate_check": "lifetime_record"
         }
       ],
-      "source_row_count": 198,
+      "source_row_count": 368,
       "source_scope": "OFFICIAL_NCAA_PRODUCTION_POSITIONS_ONLY"
     }
   },
@@ -226,9 +226,9 @@
   "mlb_pushes": 26,
   "mlb_positions_graded": 3627,
   "note": "Overall = sum of included sport graded books. Settled=W+L+P; tracked=settled+VOID+PENDING+OTHER.",
-  "canonical_receipt_sha256": "ed7c16f99dfcfbc558aaf5b7a13e7ee7f54f76e93ad80502c88997d9d3f6937e",
+  "canonical_receipt_sha256": "4b3930e0091d8edcf9c0763e9f7ee0c9fbef37425025bd3dbe9ed419e4d34c24",
   "source_summary_path": "data/results_archive.json",
-  "source_summary_sha256": "a132152b376cf0aa2e1c91d6ab5a9f4e6750f9da1d55ecb9ea9131094265be7a",
+  "source_summary_sha256": "f62983896ac3394df6bd4762a036ef3364b3feb0fbeea82e3d495ebc44385428",
   "calculation_authority": "CANONICAL_SPORT_GRADED_BOOKS",
   "total_apex_fuse": {
     "version": "total_apex_fuse_v2",
@@ -237,8 +237,8 @@
       "mlb": [
         {
           "path": "data/results_archive.json",
-          "sha256": "a132152b376cf0aa2e1c91d6ab5a9f4e6750f9da1d55ecb9ea9131094265be7a",
-          "canonical_receipt_sha256": "ed7c16f99dfcfbc558aaf5b7a13e7ee7f54f76e93ad80502c88997d9d3f6937e",
+          "sha256": "f62983896ac3394df6bd4762a036ef3364b3feb0fbeea82e3d495ebc44385428",
+          "canonical_receipt_sha256": "4b3930e0091d8edcf9c0763e9f7ee0c9fbef37425025bd3dbe9ed419e4d34c24",
           "field": "_canonical_grader_receipt_projection.sports.mlb"
         }
       ],
@@ -264,7 +264,7 @@
       "ncaaf": [
         {
           "path": "data/ncaaf_results_cumulative.json",
-          "sha256": "7c1bf7f90f0e25c0e936ce1c36f01944856bdf44142c34bfd1783519d17448d2",
+          "sha256": "2a0b08ea4406bb4f37acfe3bbbb6e25b2da58895abc07e22b5d56e09c91ac801",
           "field": "positions",
           "aggregate_check": "lifetime_record"
         }
