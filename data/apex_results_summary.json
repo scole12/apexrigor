@@ -1,6 +1,6 @@
 {
   "contract_version": "apex_results_summary_from_grader_receipt_v1",
-  "generated_at_et": "2026-09-15T08:05:32.067413-04:00",
+  "generated_at_et": "2026-09-15T08:21:15.084824-04:00",
   "sports_included": [
     "mlb",
     "nfl",
@@ -226,9 +226,9 @@
   "mlb_pushes": 26,
   "mlb_positions_graded": 3647,
   "note": "Overall = sum of included sport graded books. Settled=W+L+P; tracked=settled+VOID+PENDING+OTHER.",
-  "canonical_receipt_sha256": "dbe0971611097a964bd32d1ce223f9be35082fc623113c059fc0a9b8881352a1",
+  "canonical_receipt_sha256": "897eb49f6d8a33763dd855f00766077346867335ff506e6cd881e4b69fbed30c",
   "source_summary_path": "data/results_archive.json",
-  "source_summary_sha256": "8a0dfe41d8c8e883193f47085840d0f2d60f06743b006576b5f8fa5085317cc7",
+  "source_summary_sha256": "0f20c200225537344a2617ebdab2351e2539f054336bef4a5faa20c87b43dc32",
   "calculation_authority": "CANONICAL_SPORT_GRADED_BOOKS",
   "total_apex_fuse": {
     "version": "total_apex_fuse_v2",
@@ -237,8 +237,8 @@
       "mlb": [
         {
           "path": "data/results_archive.json",
-          "sha256": "8a0dfe41d8c8e883193f47085840d0f2d60f06743b006576b5f8fa5085317cc7",
-          "canonical_receipt_sha256": "dbe0971611097a964bd32d1ce223f9be35082fc623113c059fc0a9b8881352a1",
+          "sha256": "0f20c200225537344a2617ebdab2351e2539f054336bef4a5faa20c87b43dc32",
+          "canonical_receipt_sha256": "897eb49f6d8a33763dd855f00766077346867335ff506e6cd881e4b69fbed30c",
           "field": "_canonical_grader_receipt_projection.sports.mlb"
         }
       ],
