@@ -29,20 +29,11 @@
       "weight_class": "FEATHERWEIGHT"
     },
     {
-      "fighter_a": "Renato Moicano",
-      "fighter_b": "Brian Ortega",
-      "is_co_main_event": false,
-      "is_main_event": false,
-      "official_display_order": 4,
-      "segment": "MAIN",
-      "weight_class": "LIGHTWEIGHT"
-    },
-    {
       "fighter_a": "Alonzo Menifield",
       "fighter_b": "Iwo Baraniewski",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 5,
+      "official_display_order": 4,
       "segment": "MAIN",
       "weight_class": "LIGHT_HEAVYWEIGHT"
     },
@@ -51,8 +42,8 @@
       "fighter_b": "Sean Sharaf",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 6,
-      "segment": "PRELIMS",
+      "official_display_order": 5,
+      "segment": "MAIN",
       "weight_class": "HEAVYWEIGHT"
     },
     {
@@ -60,7 +51,7 @@
       "fighter_b": "Charles Jourdain",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 7,
+      "official_display_order": 6,
       "segment": "PRELIMS",
       "weight_class": "BANTAMWEIGHT"
     },
@@ -69,7 +60,7 @@
       "fighter_b": "Robelis Despaigne",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 8,
+      "official_display_order": 7,
       "segment": "PRELIMS",
       "weight_class": "HEAVYWEIGHT"
     },
@@ -78,7 +69,7 @@
       "fighter_b": "JooSang Yoo",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 9,
+      "official_display_order": 8,
       "segment": "PRELIMS",
       "weight_class": "FEATHERWEIGHT"
     },
@@ -87,7 +78,7 @@
       "fighter_b": "Ozzy Diaz",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 10,
+      "official_display_order": 9,
       "segment": "PRELIMS",
       "weight_class": "MIDDLEWEIGHT"
     },
@@ -96,7 +87,7 @@
       "fighter_b": "Brunno Ferreira",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 11,
+      "official_display_order": 10,
       "segment": "PRELIMS",
       "weight_class": "MIDDLEWEIGHT"
     },
@@ -105,7 +96,7 @@
       "fighter_b": "Eduarda Moura",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 12,
+      "official_display_order": 11,
       "segment": "PRELIMS",
       "weight_class": "WOMENS_FLYWEIGHT"
     },
@@ -114,7 +105,7 @@
       "fighter_b": "Joanderson Brito",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 13,
+      "official_display_order": 12,
       "segment": "PRELIMS",
       "weight_class": "FEATHERWEIGHT"
     }
@@ -130,7 +121,7 @@
     "scorecards": 37,
     "weigh_ins": 5442
   },
-  "generated_at_utc": "2026-09-13T16:00:23.178842Z",
+  "generated_at_utc": "2026-09-15T08:30:23.326839Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "GRADED_COMMERCIAL_AND_OR_SCIENTIFIC"
@@ -341,7 +332,7 @@
     "regular_prelims_start_utc": "2026-09-19T23:00:00Z",
     "venue": "Crypto.com Arena"
   },
-  "payload_sha256": "bf8b4ed8832d5067ac45720aa96d9a548dfa6711368768cb81d75233371160d3",
+  "payload_sha256": "427850ff666fae89cbfd7d335068ad39f6089c3df710f2d6b025c3143684cf6a",
   "production_isolation": "PASS",
   "schema_version": "APEX_MMA_OPS_SNAPSHOT_V1",
   "science_blocker": "FAIL_CLOSED_KEEP_NONE_EDGE_CERT_NO",
