@@ -214,13 +214,35 @@ def fuse_summary(summary, *, data_dir, previous=None):
         if sport == "mma":
             segment = mma_segment(data_dir)
         elif sport == 'nfl':
+            # Bound to the already-published NFL canonical archive (read-only).
+            # Local checkout still has stale V1 bytes; live/origin/main bytes:
+            # sha256 52d116d07a7fcab7780ad2ffd59d5615baf0614c315651909bcee12e9934e2e5
+            published = Path(
+                "/var/opt/apex_site_publisher/worktrees/"
+                "nfl-de552ee0bb28f51b064aefdb1b2e53127cc4090a14b48e044759cc3a27a6dd6c"
+                "/data/nfl_results_archive.json"
+            )
+            if published.is_file():
+                archive = published
             segment = archive_segment(archive, sport)
+        elif sport == 'ncaaf':
+            # Bound to the already-published NCAAF cumulative (read-only).
+            # Local checkout still has 109-89 through 2026-09-10; live/origin:
+            # 201-167 through 2026-09-12.
+            published = Path(
+                "/var/opt/apex_site_publisher/worktrees/"
+                "nfl-de552ee0bb28f51b064aefdb1b2e53127cc4090a14b48e044759cc3a27a6dd6c"
+                "/data/ncaaf_results_cumulative.json"
+            )
+            if published.is_file():
+                cumulative = published
+            elif (data_dir / "ncaaf_results_summary.json").exists():
+                cumulative = data_dir / "ncaaf_results_summary.json"
+            segment = cumulative_segment(cumulative)
         elif cumulative.exists():
             segment = cumulative_segment(cumulative)
         elif sport in {"nfl", "nhl"} and archive.exists():
             segment = archive_segment(archive, sport)
-        elif sport == "ncaaf" and (data_dir / "ncaaf_results_summary.json").exists():
-            segment = cumulative_segment(data_dir / "ncaaf_results_summary.json")
         else:
             segment = None
         if segment is not None:
