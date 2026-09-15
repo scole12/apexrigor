@@ -126,8 +126,8 @@
     "main_card_start_et": "2026-09-19T21:00:00-04:00",
     "main_card_start_utc": "2026-09-20T01:00:00Z",
     "name": "Crypto.com UFC 331: Van vs Pantoja 2",
-    "prelims_start_et": "2026-09-19T17:00:00-04:00",
-    "prelims_start_utc": "2026-09-19T21:00:00Z",
+    "prelims_start_et": "2026-09-19T17:30:00-04:00",
+    "prelims_start_utc": "2026-09-19T21:30:00Z",
     "promotion": "UFC",
     "region": "California",
     "regular_prelims_start_et": "2026-09-19T19:00:00-04:00",
@@ -140,10 +140,10 @@
     "detail": "No forecasts have been issued yet. Any published card will show the selection, captured FanDuel price, APEX probability, rating and full model-supported rationale.",
     "headline": "Awaiting the T-2 forecast run"
   },
-  "generated_at_utc": "2026-09-15T08:30:23.326839Z",
+  "generated_at_utc": "2026-09-15T19:30:27.893918Z",
   "issuance_id": null,
   "issuance_status": null,
-  "payload_sha256": "1008a65052093272df12086873b1df4122d76cf29580049f18278a3294ad42c0",
+  "payload_sha256": "cd5c8068384022db59740c16acac1e022f2cf460bb04c583af6114dfc5b93486",
   "picks_published": false,
   "positions": [],
   "positions_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
@@ -162,14 +162,14 @@
   "t2": {
     "actual_utc": null,
     "anchor": "EARLIEST_PUBLISHED_SCHEDULED_BOUT_MINUS_2_HOURS",
-    "scheduled_utc": "2026-09-19T19:00:00Z",
+    "scheduled_utc": "2026-09-19T19:30:00Z",
     "status": "AWAITING_T2",
     "timeliness": null
   },
   "t3": {
     "anchor": "EARLIEST_PUBLISHED_SCHEDULED_BOUT_MINUS_3_HOURS",
     "bout_count": null,
-    "scheduled_utc": "2026-09-19T18:00:00Z",
+    "scheduled_utc": "2026-09-19T18:30:00Z",
     "status": "SCHEDULED"
   }
 }

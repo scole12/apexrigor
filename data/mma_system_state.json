@@ -161,8 +161,8 @@
     "main_card_start_et": "2026-09-19T21:00:00-04:00",
     "main_card_start_utc": "2026-09-20T01:00:00Z",
     "name": "Crypto.com UFC 331: Van vs Pantoja 2",
-    "prelims_start_et": "2026-09-19T17:00:00-04:00",
-    "prelims_start_utc": "2026-09-19T21:00:00Z",
+    "prelims_start_et": "2026-09-19T17:30:00-04:00",
+    "prelims_start_utc": "2026-09-19T21:30:00Z",
     "promotion": "UFC",
     "region": "California",
     "regular_prelims_start_et": "2026-09-19T19:00:00-04:00",
@@ -181,7 +181,7 @@
   },
   "event_id": "b343f71c-c13a-5729-8c03-76f5b44cd603",
   "fight_count": 12,
-  "generated_at_utc": "2026-09-15T08:30:23.326839Z",
+  "generated_at_utc": "2026-09-15T19:30:27.893918Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "GRADED_COMMERCIAL_AND_OR_SCIENTIFIC"
@@ -372,7 +372,7 @@
       "source": "PRODUCTION_COMMERCIAL_GRADES"
     }
   ],
-  "payload_sha256": "76fd5c6f7168e83f4d9344a79606e6b126090ba81d834e7dbf68bdd72764a75c",
+  "payload_sha256": "ea5ac4aa65020c2954a507c49a7af81a6858d1508119c124c7602c787e6694b5",
   "picks_published": false,
   "positions": [],
   "positions_sha256": null,
@@ -1108,20 +1108,20 @@
     "production_issuance_authorized": false,
     "release_binding": "NONE"
   },
-  "semantic_state_sha256": "7ef8d205cdefa6b2aded7c83158288783107d0eddf108f95b7d6b326d5650108",
+  "semantic_state_sha256": "d81203d7b8adeb8c8d7ca652caaf82f3cfeb8dcad5a7d02a894488357ed76816",
   "source_conflicts": [],
   "system_readiness_state": "TECHNICALLY_READY_SCIENCE_BLOCKED",
   "t2": {
     "actual_utc": null,
     "anchor": "EARLIEST_PUBLISHED_SCHEDULED_BOUT_MINUS_2_HOURS",
-    "scheduled_utc": "2026-09-19T19:00:00Z",
+    "scheduled_utc": "2026-09-19T19:30:00Z",
     "status": "AWAITING_T2",
     "timeliness": null
   },
   "t3": {
     "anchor": "EARLIEST_PUBLISHED_SCHEDULED_BOUT_MINUS_3_HOURS",
     "bout_count": null,
-    "scheduled_utc": "2026-09-19T18:00:00Z",
+    "scheduled_utc": "2026-09-19T18:30:00Z",
     "status": "SCHEDULED"
   }
 }
