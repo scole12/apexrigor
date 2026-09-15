@@ -69,22 +69,22 @@
       "weight_class": "FEATHERWEIGHT"
     },
     {
-      "fighter_a": "Alonzo Menifield",
-      "fighter_b": "Iwo Baraniewski",
-      "is_co_main_event": false,
-      "is_main_event": false,
-      "official_display_order": 4,
-      "segment": "MAIN",
-      "weight_class": "LIGHT_HEAVYWEIGHT"
-    },
-    {
       "fighter_a": "Gable Steveson",
       "fighter_b": "Sean Sharaf",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 5,
+      "official_display_order": 4,
       "segment": "MAIN",
       "weight_class": "HEAVYWEIGHT"
+    },
+    {
+      "fighter_a": "Alonzo Menifield",
+      "fighter_b": "Iwo Baraniewski",
+      "is_co_main_event": false,
+      "is_main_event": false,
+      "official_display_order": 5,
+      "segment": "MAIN",
+      "weight_class": "LIGHT_HEAVYWEIGHT"
     },
     {
       "fighter_a": "Marlon Vera",
@@ -181,7 +181,7 @@
   },
   "event_id": "b343f71c-c13a-5729-8c03-76f5b44cd603",
   "fight_count": 12,
-  "generated_at_utc": "2026-09-15T19:30:27.893918Z",
+  "generated_at_utc": "2026-09-15T20:30:25.283488Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "GRADED_COMMERCIAL_AND_OR_SCIENTIFIC"
@@ -372,7 +372,7 @@
       "source": "PRODUCTION_COMMERCIAL_GRADES"
     }
   ],
-  "payload_sha256": "ea5ac4aa65020c2954a507c49a7af81a6858d1508119c124c7602c787e6694b5",
+  "payload_sha256": "84d13c06fb86db51ddae8778c3d4f3610a8b9e0d8328b71d72f56d87297bba88",
   "picks_published": false,
   "positions": [],
   "positions_sha256": null,
@@ -1108,7 +1108,7 @@
     "production_issuance_authorized": false,
     "release_binding": "NONE"
   },
-  "semantic_state_sha256": "d81203d7b8adeb8c8d7ca652caaf82f3cfeb8dcad5a7d02a894488357ed76816",
+  "semantic_state_sha256": "8023770e86bc8b26c85d0ec734107dd509740d8cbc8577be5d849f1b3ab8c404",
   "source_conflicts": [],
   "system_readiness_state": "TECHNICALLY_READY_SCIENCE_BLOCKED",
   "t2": {

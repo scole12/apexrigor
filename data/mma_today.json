@@ -35,22 +35,22 @@
       "weight_class": "FEATHERWEIGHT"
     },
     {
-      "fighter_a": "Alonzo Menifield",
-      "fighter_b": "Iwo Baraniewski",
-      "is_co_main_event": false,
-      "is_main_event": false,
-      "official_display_order": 4,
-      "segment": "MAIN",
-      "weight_class": "LIGHT_HEAVYWEIGHT"
-    },
-    {
       "fighter_a": "Gable Steveson",
       "fighter_b": "Sean Sharaf",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 5,
+      "official_display_order": 4,
       "segment": "MAIN",
       "weight_class": "HEAVYWEIGHT"
+    },
+    {
+      "fighter_a": "Alonzo Menifield",
+      "fighter_b": "Iwo Baraniewski",
+      "is_co_main_event": false,
+      "is_main_event": false,
+      "official_display_order": 5,
+      "segment": "MAIN",
+      "weight_class": "LIGHT_HEAVYWEIGHT"
     },
     {
       "fighter_a": "Marlon Vera",
@@ -140,10 +140,10 @@
     "detail": "No forecasts have been issued yet. Any published card will show the selection, captured FanDuel price, APEX probability, rating and full model-supported rationale.",
     "headline": "Awaiting the T-2 forecast run"
   },
-  "generated_at_utc": "2026-09-15T19:30:27.893918Z",
+  "generated_at_utc": "2026-09-15T20:30:25.283488Z",
   "issuance_id": null,
   "issuance_status": null,
-  "payload_sha256": "cd5c8068384022db59740c16acac1e022f2cf460bb04c583af6114dfc5b93486",
+  "payload_sha256": "dc21b21a0f0902c6cc1ceed002a4affab722b0b9abe7066d3c3e98b1e1937ac4",
   "picks_published": false,
   "positions": [],
   "positions_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
