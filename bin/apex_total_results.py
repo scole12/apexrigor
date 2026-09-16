@@ -208,35 +208,31 @@ def fuse_summary(summary, *, data_dir, previous=None):
     sports.update(deepcopy(summary["sports"]))
     if "mlb" not in sports:
         raise ValueError("Existing canonical MLB segment is required")
+    # Bind the fused book to the actual canonical MLB projection bytes.
+    mlb_archive = data_dir / "results_archive.json"
+    mlb_bytes = mlb_archive.read_bytes()
+    mlb_projection = json.loads(mlb_bytes)["_canonical_grader_receipt_projection"]
+    if mlb_projection.get("contract_version") != "apex_results_summary_from_grader_receipt_v1":
+        raise ValueError("Unsupported canonical MLB projection")
+    receipt_hash = mlb_projection.get("canonical_receipt_sha256", "")
+    if len(receipt_hash) != 64 or any(c not in "0123456789abcdef" for c in receipt_hash):
+        raise ValueError("Canonical MLB receipt binding required")
+    sports["mlb"] = deepcopy(mlb_projection["sports"]["mlb"])
+    fused["canonical_receipt_sha256"] = receipt_hash
+    fused["source_summary_path"] = _stable_source_path(mlb_archive)
+    fused["source_summary_sha256"] = hashlib.sha256(mlb_bytes).hexdigest()
+    fused["generated_at_et"] = mlb_projection["generated_at_et"]
+    for field in ("wins", "losses", "pushes", "positions_graded"):
+        fused["mlb_" + field] = sports["mlb"][field]
     for sport in ("nfl", "mma", "ncaaf", "nhl"):
         cumulative = data_dir / f"{sport}_results_cumulative.json"
         archive = data_dir / f"{sport}_results_archive.json"
         if sport == "mma":
             segment = mma_segment(data_dir)
         elif sport == 'nfl':
-            # Bound to the already-published NFL canonical archive (read-only).
-            # Local checkout still has stale V1 bytes; live/origin/main bytes:
-            # sha256 52d116d07a7fcab7780ad2ffd59d5615baf0614c315651909bcee12e9934e2e5
-            published = Path(
-                "/var/opt/apex_site_publisher/worktrees/"
-                "nfl-de552ee0bb28f51b064aefdb1b2e53127cc4090a14b48e044759cc3a27a6dd6c"
-                "/data/nfl_results_archive.json"
-            )
-            if published.is_file():
-                archive = published
             segment = archive_segment(archive, sport)
         elif sport == 'ncaaf':
-            # Bound to the already-published NCAAF cumulative (read-only).
-            # Local checkout still has 109-89 through 2026-09-10; live/origin:
-            # 201-167 through 2026-09-12.
-            published = Path(
-                "/var/opt/apex_site_publisher/worktrees/"
-                "nfl-de552ee0bb28f51b064aefdb1b2e53127cc4090a14b48e044759cc3a27a6dd6c"
-                "/data/ncaaf_results_cumulative.json"
-            )
-            if published.is_file():
-                cumulative = published
-            elif (data_dir / "ncaaf_results_summary.json").exists():
+            if (data_dir / "ncaaf_results_summary.json").exists():
                 cumulative = data_dir / "ncaaf_results_summary.json"
             segment = cumulative_segment(cumulative)
         elif cumulative.exists():
@@ -275,7 +271,7 @@ def fuse_summary(summary, *, data_dir, previous=None):
                  calculation_authority="CANONICAL_SPORT_GRADED_BOOKS",
                  note="Overall = sum of included sport graded books. Settled=W+L+P; tracked=settled+VOID+PENDING+OTHER.")
     fused["source_summary_path"] = _stable_source_path(
-        summary.get("source_summary_path", data_dir / "results_archive.json")
+        fused["source_summary_path"]
     )
     for field in ("wins", "losses", "pushes", "win_rate", "win_rate_display"):
         fused[f"overall_{field}"] = overall[field]
@@ -287,9 +283,9 @@ def fuse_summary(summary, *, data_dir, previous=None):
         "excluded_ungraded_sports": [sport for sport in sports if sport not in included],
     }
     fused["total_apex_fuse"]["sources"]["mlb"] = [{
-        "path": _stable_source_path(summary.get("source_summary_path", data_dir / "results_archive.json")),
-        "sha256": summary.get("source_summary_sha256", ""),
-        "canonical_receipt_sha256": summary.get("canonical_receipt_sha256", ""),
+        "path": _stable_source_path(fused["source_summary_path"]),
+        "sha256": fused["source_summary_sha256"],
+        "canonical_receipt_sha256": fused["canonical_receipt_sha256"],
         "field": "_canonical_grader_receipt_projection.sports.mlb",
     }]
     return fused
