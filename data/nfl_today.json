@@ -1,8 +1,8 @@
 {
   "capture_health": {
     "NEXT_GRADER": {
-      "at_et": "2026-09-15T07:00:00-04:00",
-      "at_utc": "2026-09-15T11:00:00Z",
+      "at_et": "2026-09-18T07:00:00-04:00",
+      "at_utc": "2026-09-18T11:00:00Z",
       "state": "SCHEDULED"
     },
     "NEXT_T2": {
@@ -27,15 +27,15 @@
     },
     "active_capture_slot_count": 318,
     "active_cohort_count": 53,
-    "completed_capture_slot_count": 45,
+    "completed_capture_slot_count": 47,
     "completion_ledger_present": true,
     "critical_missed_capture_count": 0,
     "expected_capture_slot_count": 318,
-    "measured_at": "2026-09-15T10:01:09.710793Z",
+    "measured_at": "2026-09-16T10:01:06.091856Z",
     "missing_or_duplicate_slot_cohorts": [],
     "postseason_state": "AWAITING_PUBLISHED_GAMES",
     "reg_gamedays": 57,
-    "retryable_incomplete_capture_count": 2,
+    "retryable_incomplete_capture_count": 0,
     "schedule_coverage_status": "PASS",
     "scheduled_games_by_season_type": {
       "REG": 272
@@ -49,7 +49,7 @@
     ],
     "super_bowl_included_as": "POST"
   },
-  "generated_at_utc": "2026-09-15T10:01:12.0361Z",
+  "generated_at_utc": "2026-09-16T10:01:08.6901Z",
   "hydration": {
     "completed_at_utc": "2026-09-14T21:19:55.488Z",
     "cross_authority_completion": "PASS",
@@ -62,8 +62,8 @@
   },
   "next_up": {
     "NEXT_GRADER": {
-      "at_et": "2026-09-15T07:00:00-04:00",
-      "at_utc": "2026-09-15T11:00:00Z",
+      "at_et": "2026-09-18T07:00:00-04:00",
+      "at_utc": "2026-09-18T11:00:00Z",
       "state": "SCHEDULED"
     },
     "NEXT_T2": {
@@ -92,8 +92,8 @@
   "public_issuance": false,
   "runtime": {
     "code_commit": "68bc967606d6fc69a334a9bd267e32e13008f3a1",
-    "manifest_sha256": "0273723b39bdbce6d42e3455e36b59e7d419548b76e704f8ae32166e4121d48d",
-    "sealed_file_hash_mismatch_count": 1
+    "manifest_sha256": "31ada0133b11d44c26712a342268c284ca27a7ff501773bae8c5d7838e4fc490",
+    "sealed_file_hash_mismatch_count": 0
   },
   "schema_version": "APEX_NFL_TODAY_V1",
   "science": {
@@ -116,8 +116,8 @@
         "kickoff_utc": "2026-09-18T00:15:00Z",
         "matchup": "Detroit Lions at Buffalo Bills",
         "positions": [],
-        "schedule_available_at_utc": "2026-09-15T10:00:01.942Z",
-        "schedule_effective_at_utc": "2026-09-15T10:00:01.942Z",
+        "schedule_available_at_utc": "2026-09-16T10:00:01.620Z",
+        "schedule_effective_at_utc": "2026-09-16T10:00:01.620Z",
         "season": 2026,
         "status": "SCHEDULED",
         "week": 2
@@ -128,5 +128,5 @@
     "week": 2
   },
   "sport": "NFL",
-  "technical_status": "TECHNICAL_RUNTIME_NOT_READY"
+  "technical_status": "TECHNICAL_RUNTIME_READY"
 }
