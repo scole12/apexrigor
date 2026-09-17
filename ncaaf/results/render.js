@@ -19,28 +19,21 @@
   }
 
   async function load() {
-    const [apex, ncaaf] = await Promise.all([
-      fetchJSON("/data/apex_results_summary.json"),
-      fetchJSON("/data/ncaaf_results_cumulative.json"),
-    ]);
-    for (const key of ["wins", "losses", "pushes"]) {
-      const value = apex[`overall_${key}`];
-      if (!Number.isSafeInteger(value) || value < 0 || apex.overall?.[key] !== value) {
-        throw new Error(`Invalid fused overall ${key}`);
-      }
-    }
-    const overall = {W:apex.overall_wins, L:apex.overall_losses, PUSH:apex.overall_pushes};
+    const ncaaf = await fetchJSON("/data/ncaaf_results_cumulative.json");
+    const overall = ncaaf.season_record || emptyRecord();
     const overallLabel = `${overall.W.toLocaleString("en-US")}-${overall.L.toLocaleString("en-US")}-${overall.PUSH}P`;
-    const overallRate = apex.overall_win_rate_display || rate(overall);
+    const overallRate = rate(overall);
     const ats = ncaaf.ats_record || emptyRecord();
     const totals = ncaaf.totals_record || emptyRecord();
-    const through = apex.latest_graded_date ? `THROUGH ${dateLabel(apex.latest_graded_date).toUpperCase()}` : "";
-    let html = section("SEASON RECORD", `${through} · ${Number((apex.overall&&apex.overall.positions_tracked)||apex.positions_graded||0).toLocaleString("en-US")} POSITIONS TRACKED`);
+    const through = ncaaf.latest_graded_date ? `THROUGH ${dateLabel(ncaaf.latest_graded_date).toUpperCase()}` : "";
+    let html = section("SEASON RECORD", `${through} · ${(ncaaf.positions || []).length.toLocaleString("en-US")} POSITIONS TRACKED`);
     html += `<div class="banner" data-apex-season-record="${esc(overallLabel)}" data-apex-season-win-rate="${esc(overallRate)}" data-apex-ats-record="${esc(record(ats))}" data-apex-totals-record="${esc(record(totals))}">
-      <div class="cell"><div class="label">Overall</div><div class="val mono">${esc(overallLabel)}</div></div>
+      <div class="cell"><div class="label">NCAAF Overall</div><div class="val mono">${esc(overallLabel)}</div></div>
       <div class="cell"><div class="label">Win Rate</div><div class="val mono">${esc(overallRate)}</div></div>
       <div class="cell"><div class="label">NCAAF ATS</div><div class="val mono">${esc(record(ats))}</div></div>
+      <div class="cell"><div class="label">ATS Win Rate</div><div class="val mono">${esc(rate(ats))}</div></div>
       <div class="cell"><div class="label">NCAAF Totals</div><div class="val mono">${esc(record(totals))}</div></div>
+      <div class="cell"><div class="label">Totals Win Rate</div><div class="val mono">${esc(rate(totals))}</div></div>
     </div>`;
     html += section("AS-ISSUED TIER PERFORMANCE", "NCAAF FULL-GAME · AS ISSUED");
     html += `<div class="tier-grid"><div class="tier-col"><div class="tier-sub">ATS BY CONFIDENCE TIER</div>${tierTable(ncaaf.ats_by_tier)}</div><div class="tier-col"><div class="tier-sub">TOTALS BY CONFIDENCE TIER</div>${tierTable(ncaaf.totals_by_tier)}</div></div>`;

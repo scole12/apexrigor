@@ -7,17 +7,16 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 sys.path.insert(0, str(RELEASE_ROOT / "bin"))
 sys.path.insert(0, str(RELEASE_ROOT / "lib" / "pipeline"))
 from _apex_head import get_head_block, verify_branding
+from apply_cloudflare_web_analytics import BEACON_BLOCK
+from apply_vercel_web_analytics import ANALYTICS_BLOCK
 
 from apex_visual_presentation_guard import guard_write
-from apex_canonical_results_summary import build_canonical_results_summary
-from apex_tier_grading_authority import (
-    SITE_TIER_SUMMARY_PATH,
-    SITE_TIER_DAILY_ARCHIVE_PATH,
-    tier_rows_for_display,
-)
+from apex_tier_grading_authority import tier_rows_for_display
 SITE_ROOT = Path(os.environ.get("APEX_SITE_ROOT", "/opt/apex_site"))
 JSON_PATH = SITE_ROOT / "data/results_archive.json"
 SITE_DATA = SITE_ROOT / "data"
+SITE_TIER_SUMMARY_PATH = SITE_DATA / "apex_tier_summary.json"
+SITE_TIER_DAILY_ARCHIVE_PATH = SITE_DATA / "apex_tier_daily_archive.json"
 OUT = SITE_ROOT / "results/index.html"
 
 
@@ -107,7 +106,7 @@ def build():
     if not JSON_PATH.exists():
         print(f"BLOCKED: missing {JSON_PATH}", file=sys.stderr); sys.exit(2)
     d = json.loads(JSON_PATH.read_text())
-    summary = build_canonical_results_summary(d)
+    summary = json.loads((SITE_DATA / "apex_results_summary.json").read_text())
     season = d.get("season", {}) or {}
     archive = d.get("archive", []) or []
     baseline = d.get("baseline", {}) or {}
@@ -121,15 +120,16 @@ def build():
         except Exception:
             return "0000-00-00"
     archive_sorted = sorted(archive, key=_date_sort_key, reverse=True)
-    overall = summary.get("overall") or {}
-    mlb = (summary.get("sports") or {}).get("mlb") or overall
-    sw = overall.get("wins", 0)
-    sl = overall.get("losses", 0)
-    sp = overall.get("pushes", 0)
-    s_rows = overall.get("positions_graded", 0)
+    total_record = f"{summary['overall_wins']:,}-{summary['overall_losses']:,}-{summary['overall_pushes']}P"
+    total_rate = summary["overall_win_rate_display"]
+    mlb = summary["sports"]["mlb"]
+    sw = mlb["wins"]
+    sl = mlb["losses"]
+    sp = mlb["pushes"]
+    s_rows = mlb.get("positions_tracked", 0)
     s_record = f"{sw:,}-{sl:,}"
     if sp: s_record += f"-{sp}P"
-    s_wr = overall.get("win_rate_display") or ""
+    s_wr = mlb.get("win_rate_display") or ""
     ats = mlb.get("f5_spread_raw") or {}
     tot = mlb.get("f5_total_raw") or {}
     def fmt_market(m):
@@ -254,11 +254,13 @@ def build():
     slate_html = build_latest_slate_detail()
 
     today_str = datetime.now().strftime("%A, %B %d, %Y").upper()
-    HEAD_BLOCK = get_head_block("APEX — Results", "/results", "APEX Quantitative Forecasting — graded daily results archive.")
+    HEAD_BLOCK = get_head_block("APEX — Results", "/results", "APEX Quantitative Forecasting — graded daily results archive.", "Quantitative forecasting for model-driven sports markets.")
     out = f"""<!doctype html>
 <html lang="en">
 <head>
 {HEAD_BLOCK}
+{BEACON_BLOCK}
+{ANALYTICS_BLOCK}
 </head>
 <body>
 <div class="shell">
@@ -273,23 +275,31 @@ def build():
   </div>
   <div class="apex-nav-stack">
   <nav class="sport-nav" aria-label="Sport selector">
-    <a href="/" class="active" aria-current="true">MLB</a>
-    <a href="/ncaaf">NCAA FOOTBALL</a>
-    <a href="/nfl">NFL</a>
-    <a href="/mma">MMA / UFC</a>
+    <a href="/results" class="active" aria-current="true">MLB</a>
+    <a href="/ncaaf/results">NCAA FOOTBALL</a>
+    <a href="/mma/results">MMA / UFC</a>
+    <a href="/nfl/results">NFL</a>
   </nav>
   <nav class="section-nav" aria-label="MLB sections">
     <a href="/">PICKS</a>
-    <a href="/results" class="active">RESULTS</a>
+    <a href="/results" class="active" aria-current="true">RESULTS</a>
     <a href="/about">ABOUT</a>
   </nav>
   </div>
   <div class="section-head">
+    <div class="title">APEX TOTAL RECORD</div>
+    <div class="meta mono">ALL LIVE SPORTS · FOREVER</div>
+  </div>
+  <div class="banner" id="apex-total-record">
+    <div class="cell"><div class="label">Overall</div><div class="val mono" id="apex-total-value">{html.escape(total_record)}</div></div>
+    <div class="cell"><div class="label">Win Rate</div><div class="val mono" id="apex-total-rate">{html.escape(total_rate)}</div></div>
+  </div>
+  <div class="section-head">
     <div class="title">SEASON RECORD</div>
-    <div class="meta mono">{html.escape(today_str)} · {s_rows} POSITIONS TRACKED</div>
+    <div class="meta mono">{html.escape(today_str)} · {s_rows:,} POSITIONS TRACKED</div>
   </div>
   <div class="banner" data-apex-season-record="{html.escape(s_record)}" data-apex-season-win-rate="{html.escape(s_wr)}" data-apex-ats-record="{html.escape(fmt_market(ats))}" data-apex-totals-record="{html.escape(fmt_market(tot))}">
-    <div class="cell"><div class="label">Overall</div><div class="val mono">{html.escape(s_record)}</div></div>
+    <div class="cell"><div class="label">MLB Overall</div><div class="val mono">{html.escape(s_record)}</div></div>
     <div class="cell"><div class="label">Win Rate</div><div class="val mono">{html.escape(s_wr)}</div></div>
     <div class="cell"><div class="label">F5 Spread</div><div class="val mono">{html.escape(fmt_market(ats))}</div></div>
     <div class="cell"><div class="label">F5 Total</div><div class="val mono">{html.escape(fmt_market(tot))}</div></div>
@@ -305,6 +315,21 @@ def build():
   </table>
 {slate_html}  <div class="tag">THE MATH SPEAKS.</div>
 </div>
+<script>
+(() => {{
+  async function refreshTotal() {{
+    const response = await fetch("/data/apex_results_summary.json", {{cache:"no-store"}});
+    if (!response.ok) throw new Error(`Total record HTTP ${{response.status}}`);
+    const summary = await response.json();
+    const counts = [summary.overall_wins, summary.overall_losses, summary.overall_pushes];
+    if (!counts.every(n => Number.isSafeInteger(n) && n >= 0) ||
+        typeof summary.overall_win_rate_display !== "string") throw new Error("Invalid total record");
+    document.getElementById("apex-total-value").textContent = `${{counts[0].toLocaleString("en-US")}}-${{counts[1].toLocaleString("en-US")}}-${{counts[2]}}P`;
+    document.getElementById("apex-total-rate").textContent = summary.overall_win_rate_display;
+  }}
+  refreshTotal().catch(console.error);
+}})();
+</script>
 </body>
 </html>
 """
@@ -314,6 +339,7 @@ def build():
         raise RuntimeError(f"BRANDING_CONTRACT_VIOLATION: results page missing tags: {_missing}")
     OUT.write_text(out)
     guard_write(OUT)
+    (SITE_ROOT / "results.html").write_text(OUT.read_text())
     print(f"STATIC_RESULTS_PAGE_BUILT: {OUT}")
 if __name__ == "__main__":
     build()

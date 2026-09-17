@@ -21,7 +21,7 @@ from apply_cloudflare_web_analytics import BEACON_BLOCK
 from apply_vercel_web_analytics import ANALYTICS_BLOCK
 
 
-CACHE = "mma-total-apex-004"
+CACHE = "mma-season-20260917"
 COMMERCIAL_SOURCE = "PRODUCTION_COMMERCIAL_GRADES"
 CANONICAL_MARKET = "WINNER"
 MARKET_ALIASES = {
@@ -404,7 +404,7 @@ HTML = f'''<!doctype html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
 <title>APEX — MMA Results</title>
-<meta name="description" content="APEX MMA / UFC graded results. Overall is Total Apex forever record.">
+<meta name="description" content="APEX MMA / UFC graded results. Season record for MMA Winner H2H.">
 <link rel="stylesheet" href="/assets/apex.css?v={CACHE}">
 <meta name="theme-color" content="#000000">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -447,60 +447,10 @@ def render_javascript(ledger: dict[str, Any]) -> str:
   const ledger = {encoded_ledger};
   const root = document.getElementById("results-root");
   const esc = (v) => String(v ?? "").replace(/[&<>"']/g, (c) => ({{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}}[c]));
-  const integer = (value, field) => {{
-    if (!Number.isSafeInteger(value) || value < 0) throw new Error(field + " is not a nonnegative integer");
-    return value;
-  }};
   const fmtRecord = (w,l,p=0) => `${{w.toLocaleString("en-US")}}-${{l.toLocaleString("en-US")}}${{p?`-${{p}}P`:""}}`;
   const table = (headers, rows) => `<table class="results"><thead><tr>${{headers.map(h=>`<th>${{esc(h)}}</th>`).join("")}}</tr></thead><tbody>${{rows.map(r=>`<tr>${{r.map((c)=>`<td class="mono">${{esc(c)}}</td>`).join("")}}</tr>`).join("")}}</tbody></table>`;
 
-  function verifiedSummary(summary) {{
-    if (!summary || !summary.sports || !summary.sports.mma || !summary.overall) throw new Error("fused results summary is incomplete");
-    const mma = summary.sports.mma;
-    const expected = {{
-      W: integer(mma.wins, "sports.mma.wins"),
-      L: integer(mma.losses, "sports.mma.losses"),
-      P: integer(mma.pushes, "sports.mma.pushes"),
-    }};
-    expected.settled = expected.W + expected.L + expected.P;
-    if (integer(mma.positions_settled, "sports.mma.positions_settled") !== expected.settled ||
-        integer(mma.settled_n, "sports.mma.settled_n") !== expected.settled ||
-        expected.W !== ledger.record.W || expected.L !== ledger.record.L ||
-        expected.P !== ledger.record.P || expected.settled !== ledger.record.settled) throw new Error("MMA archive/fused-summary parity failure");
-    if (ledger.source_proof) {{
-      const sourceRows = summary.total_apex_fuse?.sources?.mma;
-      if (!Array.isArray(sourceRows)) throw new Error("MMA fuse source proof is missing");
-      const actual = {{}};
-      for (const row of sourceRows) {{
-        if (!row || typeof row.path !== "string" || typeof row.sha256 !== "string" ||
-            Object.hasOwn(actual, row.path)) throw new Error("MMA fuse source proof is invalid");
-        actual[row.path] = row.sha256;
-      }}
-      const expectedSources = ledger.source_proof;
-      const paths = Object.keys(expectedSources).sort();
-      if (paths.length !== Object.keys(actual).length ||
-          paths.some(path => actual[path] !== expectedSources[path])) throw new Error("MMA archive/fused-summary source parity failure");
-    }}
-    const overall = summary.overall;
-    const fused = {{
-      wins: integer(overall.wins, "overall.wins"),
-      losses: integer(overall.losses, "overall.losses"),
-      pushes: integer(overall.pushes, "overall.pushes"),
-      tracked: integer(overall.positions_tracked, "overall.positions_tracked"),
-      rate: overall.win_rate_display,
-    }};
-    if (typeof fused.rate !== "string" || !fused.rate) throw new Error("overall.win_rate_display is missing");
-    for (const [nested, flat] of [["wins","overall_wins"],["losses","overall_losses"],["pushes","overall_pushes"]]) {{
-      if (Object.hasOwn(summary, flat) && integer(summary[flat], flat) !== fused[nested]) throw new Error("fused Overall mismatch");
-    }}
-    return fused;
-  }}
-
   async function load() {{
-    const response = await fetch("/data/apex_results_summary.json", {{cache:"no-store"}});
-    if (!response.ok) throw new Error("summary HTTP "+response.status);
-    const summary = await response.json();
-    const overall = verifiedSummary(summary);
     const rows = ledger.rows;
     const w = ledger.record.W, l = ledger.record.L, p = ledger.record.P;
     const winnerBanner = fmtRecord(w,l,p);
@@ -515,11 +465,9 @@ def render_javascript(ledger: dict[str, Any]) -> str:
     }});
     const today = new Intl.DateTimeFormat("en-US",{{timeZone:"America/New_York", weekday:"long", month:"long", day:"numeric", year:"numeric"}}).format(new Date()).toUpperCase();
     let html = "";
-    html += `<div class="section-head"><div class="title">APEX TOTAL RECORD</div><div class="meta mono">${{esc(today)}} · FOREVER · ${{overall.tracked.toLocaleString("en-US")}} POSITIONS TRACKED</div></div>`;
-    html += `<div class="banner" data-apex-season-record="${{esc(fmtRecord(overall.wins,overall.losses,overall.pushes))}}" data-apex-season-win-rate="${{esc(overall.rate)}}">
-      <div class="cell"><div class="label">Overall</div><div class="val mono">${{esc(fmtRecord(overall.wins,overall.losses,overall.pushes))}}</div></div>
-      <div class="cell"><div class="label">Win Rate</div><div class="val mono">${{esc(overall.rate)}}</div></div>
-      <div class="cell"><div class="label">MMA Winner</div><div class="val mono">${{esc(winnerBanner)}}</div></div>
+    html += `<div class="section-head"><div class="title">SEASON RECORD</div><div class="meta mono">${{esc(today)}} · ${{ledger.record.settled.toLocaleString("en-US")}} POSITIONS SETTLED</div></div>`;
+    html += `<div class="banner" data-apex-season-record="${{esc(winnerBanner)}}" data-apex-season-win-rate="${{esc(winnerRate)}}">
+      <div class="cell"><div class="label">MMA Winner H2H</div><div class="val mono">${{esc(winnerBanner)}}</div></div>
       <div class="cell"><div class="label">Win Rate (H2H)</div><div class="val mono">${{esc(winnerRate)}}</div></div>
     </div>`;
     html += `<div class="section-head"><div class="title">AS-ISSUED TIER PERFORMANCE</div><div class="meta mono">MMA WINNER · AS ISSUED · H2H ONLY</div></div>`;

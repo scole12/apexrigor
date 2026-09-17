@@ -266,8 +266,8 @@ class MmaResultsContractTests(unittest.TestCase):
         ledger = results_page.build_results_ledger(archive(), value)
         self.assertEqual(value, before)
         script = results_page.render_javascript(ledger)
-        self.assertIn('fetch("/data/apex_results_summary.json"', script)
-        self.assertIn("overall.positions_tracked", script)
+        self.assertNotIn('fetch("/data/apex_results_summary.json"', script)
+        self.assertNotIn("overall.positions_tracked", script)
         self.assertNotIn('fetch("/data/mma_results_archive.json"', script)
 
         value["overall_wins"] = 0
@@ -292,7 +292,7 @@ class MmaResultsContractTests(unittest.TestCase):
             archive(), value, source_proof=proof
         )
         self.assertEqual(ledger["source_proof"], proof)
-        self.assertIn("MMA archive/fused-summary source parity failure", results_page.render_javascript(ledger))
+        self.assertNotIn("verifiedSummary", results_page.render_javascript(ledger))
 
         value["total_apex_fuse"]["sources"]["mma"][0]["sha256"] = "c" * 64
         with self.assertRaisesRegex(results_page.ResultsContractError, "source parity failure"):
@@ -323,82 +323,36 @@ class MmaResultsContractTests(unittest.TestCase):
             self.assertEqual(row["tier"], issued[key]["tier"])
 
     @unittest.skipUnless(shutil.which("node"), "Node is required for generated-render proof")
-    def test_generated_render_uses_exact_live_fused_overall_and_fails_on_mma_drift(self):
+    def test_generated_render_uses_only_mma_ledger_without_summary_fetch(self):
         ledger = results_page.build_results_ledger(archive(), summary())
         render = results_page.render_javascript(ledger)
+        self.assertNotIn("apex_results_summary", render)
+        self.assertNotIn("overall_wins", render)
+        self.assertNotIn("summary.overall", render)
+        self.assertNotIn("APEX TOTAL RECORD", render)
         node_harness = r'''
 const fs=require("fs");
+const assert=require("assert");
 const root={innerHTML:""};
 global.document={getElementById:()=>root};
-const summary=JSON.parse(process.env.APEX_TEST_SUMMARY);
-global.fetch=async()=>({ok:true,status:200,json:async()=>summary});
+let requests=0;
+global.fetch=async()=>{requests++;throw new Error("No summary available")};
 const errors=[];console.error=(error)=>errors.push(String(error));
 eval(fs.readFileSync(0,"utf8"));
 setImmediate(()=>{
-  if(process.env.APEX_EXPECT_ERROR==="1"){
-    if(!root.innerHTML.includes("temporarily unavailable")||!errors.some(x=>x.includes("parity failure")))process.exit(2);
-  }else if(!root.innerHTML.includes(process.env.APEX_EXPECT_RECORD)||
-           !root.innerHTML.includes(process.env.APEX_EXPECT_TRACKED+" POSITIONS TRACKED")||
-           !root.innerHTML.includes(process.env.APEX_EXPECT_RATE)||
-           !root.innerHTML.includes("MMA Winner")||!root.innerHTML.includes(">1-0<"))process.exit(3);
+  assert.equal(requests,0);
+  assert.deepEqual(errors,[]);
+  for(const text of ["SEASON RECORD","MMA Winner H2H",">1-0<",">100.0%<","AS-ISSUED TIER PERFORMANCE","DAILY ARCHIVE"])
+    assert(root.innerHTML.includes(text),text);
+  assert(!root.innerHTML.includes("APEX TOTAL RECORD"));
+  assert(!root.innerHTML.includes("1,935"));
 });
 '''
-        valid_environment = {
-            **dict(__import__("os").environ),
-            "APEX_TEST_SUMMARY": json.dumps(summary()),
-            "APEX_EXPECT_RECORD": "1,935-1,772-26P",
-            "APEX_EXPECT_TRACKED": "3,757",
-            "APEX_EXPECT_RATE": "52.2%",
-        }
-        valid = subprocess.run(
+        result = subprocess.run(
             [shutil.which("node"), "-e", node_harness],
-            input=render,
-            text=True,
-            env=valid_environment,
-            capture_output=True,
-            check=False,
+            input=render, text=True, capture_output=True, check=False,
         )
-        self.assertEqual(valid.returncode, 0, valid.stderr)
-
-        changed_overall = summary()
-        changed_overall["overall"].update(
-            wins=2000,
-            losses=1800,
-            pushes=30,
-            positions_tracked=3900,
-            win_rate_display="52.6%",
-        )
-        changed_overall.update(overall_wins=2000, overall_losses=1800, overall_pushes=30)
-        updated = subprocess.run(
-            [shutil.which("node"), "-e", node_harness],
-            input=render,
-            text=True,
-            env={
-                **valid_environment,
-                "APEX_TEST_SUMMARY": json.dumps(changed_overall),
-                "APEX_EXPECT_RECORD": "2,000-1,800-30P",
-                "APEX_EXPECT_TRACKED": "3,900",
-                "APEX_EXPECT_RATE": "52.6%",
-            },
-            capture_output=True,
-            check=False,
-        )
-        self.assertEqual(updated.returncode, 0, updated.stderr)
-
-        drifted = summary(wins=0, losses=1)
-        failed = subprocess.run(
-            [shutil.which("node"), "-e", node_harness],
-            input=render,
-            text=True,
-            env={
-                **dict(__import__("os").environ),
-                "APEX_TEST_SUMMARY": json.dumps(drifted),
-                "APEX_EXPECT_ERROR": "1",
-            },
-            capture_output=True,
-            check=False,
-        )
-        self.assertEqual(failed.returncode, 0, failed.stderr)
+        self.assertEqual(result.returncode, 0, result.stderr)
 
     def test_builder_is_deterministic_in_an_isolated_root(self):
         with tempfile.TemporaryDirectory() as directory:

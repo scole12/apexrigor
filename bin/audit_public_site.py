@@ -233,9 +233,9 @@ def main() -> int:
             errors.append(f"/mma/about retains obsolete wording: {obsolete_text}")
     if 'id="active-model"' in mma_about:
         errors.append("/mma/about exposes an active-model field")
-    mma_results_script = root / "mma" / "results" / "render.js"
-    if not mma_results_script.is_file() or "APEX TOTAL RECORD" not in mma_results_script.read_text(encoding="utf-8"):
-        errors.append("/mma/results does not label the fused forever tally APEX TOTAL RECORD")
+    shared_results_page = root / "results" / "index.html"
+    if not shared_results_page.is_file() or shared_results_page.read_text(encoding="utf-8").count("APEX TOTAL RECORD") != 1:
+        errors.append("/results must label the fused tally APEX TOTAL RECORD exactly once")
 
     required_mma_payloads = {
         "mma_today.json": {"APEX_MMA_TODAY_V1"},
