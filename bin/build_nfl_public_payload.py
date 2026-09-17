@@ -41,23 +41,40 @@ NY = ZoneInfo("America/New_York")
 
 
 def scrub_public_rationale_paragraphs(raw):
+    """Forever strip sealed missing-context / diagnostic filler from public rationales."""
     if isinstance(raw, str):
         raw = [raw]
+    banned = [
+        r"\s*Missing captured context:[^.]*\.?",
+        r"\s*No separate injury or weather adjustment is fitted in these retained models\.?",
+        r"\s*Quarterback state, authenticated weather, and game-day availability were unpublished at seal and stay missing rather than assumed\.?",
+        r"\s*[^.]*unpublished at seal[^.]*\.?",
+        r"\s*[^.]*stay missing rather than assumed[^.]*\.?",
+        r"\s*[^.]*\bQB_STATE\b[^.]*\.?",
+        r"\s*[^.]*\bWEATHER_FORECAST\b[^.]*\.?",
+        r"\s*;?\s*structural weight [0-9.+\-eE]+\.?",
+        r"\s*[^.]*frozen-model theater[^.]*\.?",
+        r"frozen-model win probability",
+    ]
     out = []
     for para in raw or []:
         s = str(para)
-        s = re.sub(r"\s*Missing captured context:[^.]*\.?", "", s, flags=re.I)
-        s = re.sub(
-            r"\s*No separate injury or weather adjustment is fitted in these retained models\.?",
-            "",
+        for pat in banned:
+            s = re.sub(pat, " ", s, flags=re.I)
+        s = s.replace("NFL_TEAM_", "")
+        s = re.sub(r"\s+", " ", s).strip(" .;")
+        if not s:
+            continue
+        if re.search(
+            r"unpublished at seal|Missing captured context|QB_STATE|WEATHER_FORECAST|"
+            r"stay missing rather than assumed|structural weight|frozen-model theater|NFL_TEAM_",
             s,
-            flags=re.I,
-        )
-        s = re.sub(r"\s+", " ", s).strip(" .")
-        if s:
-            if not s.endswith((".", "!", "?")):
-                s += "."
-            out.append(s)
+            re.I,
+        ):
+            continue
+        if not s.endswith((".", "!", "?")):
+            s += "."
+        out.append(s)
     return out
 
 
@@ -285,12 +302,44 @@ def mlb_style_public_rationale(pos: dict) -> list[str]:
     return scrub_public_rationale_paragraphs(paras)
 
 
+def _scrub_public_position_diagnostics(pos: dict) -> None:
+    """Remove sealed diagnostic lists and raw NFL_TEAM_ ids from public position records."""
+    for nest_key in ("forecast_binding", "rationale_evidence"):
+        nest = pos.get(nest_key)
+        if isinstance(nest, dict) and "context_missing" in nest:
+            nest.pop("context_missing", None)
+    if "context_missing" in pos:
+        pos.pop("context_missing", None)
+    for key in ("team_id", "away_team_id", "home_team_id"):
+        if isinstance(pos.get(key), str) and pos[key].startswith("NFL_TEAM_"):
+            pos[key] = pos[key].replace("NFL_TEAM_", "", 1)
+    ev = pos.get("rationale_evidence")
+    if isinstance(ev, dict):
+        feats = ev.get("model_features")
+        if isinstance(feats, dict) and isinstance(feats.get("team_id"), str):
+            feats["team_id"] = str(feats["team_id"]).replace("NFL_TEAM_", "")
+        for row in ev.get("depth_rows") or []:
+            if isinstance(row, dict) and isinstance(row.get("team_id"), str):
+                row["team_id"] = str(row["team_id"]).replace("NFL_TEAM_", "")
+    for field in ("display_selection", "headline", "selection", "rationale"):
+        if isinstance(pos.get(field), str):
+            pos[field] = pos[field].replace("NFL_TEAM_", "")
+
+
 def scrub_today_positions(today):
-    for pos in today.get("positions") or []:
-        if isinstance(pos, dict) and "rationale_paragraphs" in pos:
+    def scrub_one(pos):
+        if not isinstance(pos, dict):
+            return
+        if "rationale_paragraphs" in pos:
             pos["rationale_paragraphs"] = mlb_style_public_rationale(pos) or scrub_public_rationale_paragraphs(
                 pos.get("rationale_paragraphs")
             )
+        else:
+            pos["rationale_paragraphs"] = scrub_public_rationale_paragraphs(pos.get("rationale") or [])
+        _scrub_public_position_diagnostics(pos)
+
+    for pos in today.get("positions") or []:
+        scrub_one(pos)
     games = []
     slate = today.get("slate") or {}
     if isinstance(slate, dict):
@@ -299,11 +348,11 @@ def scrub_today_positions(today):
     for game in games:
         if not isinstance(game, dict):
             continue
+        for key in ("away_team_id", "home_team_id"):
+            if isinstance(game.get(key), str) and game[key].startswith("NFL_TEAM_"):
+                game[key] = game[key].replace("NFL_TEAM_", "", 1)
         for pos in game.get("positions") or []:
-            if isinstance(pos, dict) and "rationale_paragraphs" in pos:
-                pos["rationale_paragraphs"] = mlb_style_public_rationale(pos) or scrub_public_rationale_paragraphs(
-                    pos.get("rationale_paragraphs")
-                )
+            scrub_one(pos)
     return today
 
 

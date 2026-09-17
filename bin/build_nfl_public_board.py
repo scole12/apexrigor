@@ -12,34 +12,48 @@ from zoneinfo import ZoneInfo
 ROOT = Path(__file__).resolve().parents[1]
 NY = ZoneInfo("America/New_York")
 
-def public_rationale_paragraphs(raw):
-    """Drop sealed diagnostic lines Boss banned from public NFL rationales."""
+def scrub_public_rationale_paragraphs(raw):
+    """Forever strip sealed missing-context / diagnostic filler from public rationales."""
     if isinstance(raw, str):
         raw = [raw]
+    banned = [
+        r"\s*Missing captured context:[^.]*\.?",
+        r"\s*No separate injury or weather adjustment is fitted in these retained models\.?",
+        r"\s*Quarterback state, authenticated weather, and game-day availability were unpublished at seal and stay missing rather than assumed\.?",
+        r"\s*[^.]*unpublished at seal[^.]*\.?",
+        r"\s*[^.]*stay missing rather than assumed[^.]*\.?",
+        r"\s*[^.]*\bQB_STATE\b[^.]*\.?",
+        r"\s*[^.]*\bWEATHER_FORECAST\b[^.]*\.?",
+        r"\s*;?\s*structural weight [0-9.+\-eE]+\.?",
+        r"\s*[^.]*frozen-model theater[^.]*\.?",
+        r"frozen-model win probability",
+    ]
     out = []
     for para in raw or []:
         s = str(para).strip()
         if not s:
             continue
-        s = re.sub(
-            r"\s*Missing captured context:[^.]*\.?",
-            "",
+        for pat in banned:
+            s = re.sub(pat, " ", s, flags=re.IGNORECASE)
+        s = s.replace("NFL_TEAM_", "")
+        s = re.sub(r"\s+", " ", s).strip(" .;")
+        if not s:
+            continue
+        if re.search(
+            r"unpublished at seal|Missing captured context|QB_STATE|WEATHER_FORECAST|"
+            r"stay missing rather than assumed|structural weight|frozen-model theater|NFL_TEAM_",
             s,
-            flags=re.IGNORECASE,
-        )
-        s = re.sub(
-            r"\s*No separate injury or weather adjustment is fitted in these retained models\.?",
-            "",
-            s,
-            flags=re.IGNORECASE,
-        )
-        s = re.sub(r"\s+", " ", s).strip(" .")
-        if s:
-            if not s.endswith((".", "!", "?")):
-                s += "."
-            out.append(s)
+            re.I,
+        ):
+            continue
+        if not s.endswith((".", "!", "?")):
+            s += "."
+        out.append(s)
     return out
 
+
+def public_rationale_paragraphs(raw):
+    return scrub_public_rationale_paragraphs(raw)
 
 
 def time_et(value: str) -> str:
