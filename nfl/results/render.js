@@ -65,6 +65,8 @@
       <div class="cell"><div class="label">NFL Player Props</div><div class="val mono">${esc(propsBanner)}</div><div class="label mono">${esc(propsRate)} WIN RATE</div></div>
     </div>`;
 
+    html += "<p class=\"muted\">Inherited V2 serving is active. Full-stat Props PMFs and RPS/log scores are diagnostics, not proof of calibration.</p>";
+
     // AS-ISSUED TIER PERFORMANCE — ATS | TOTALS side by side like MLB
     html += `<div class="section-head"><div class="title">AS-ISSUED MODEL RATING PERFORMANCE</div><div class="meta mono">NFL FULL-GAME · AS ISSUED. Ratings and probabilities are model estimates, not validated confidence levels or demonstrated advantage over FanDuel.</div></div>`;
     html += `<div class="tier-grid">
