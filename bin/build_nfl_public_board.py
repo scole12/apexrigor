@@ -175,6 +175,7 @@ def render_board(today: dict) -> str:
         f'<div class="title" id="slate-title">TODAY&#39;S CARD</div>'
         f'<div class="meta mono" id="slate-meta">{escape(meta)}</div>'
         f"</div>"
+        '<p class="nfl-schedule-note">Inherited V2 serving is active. Ratings and probabilities, when issued, are model estimates, not validated confidence or demonstrated FanDuel advantage.</p>'
         f'<div class="picks-board" id="games" aria-live="polite">{cards}</div>'
         f'<p class="nfl-updated mono" id="nfl-refresh-status">SCHEDULE UPDATED {escape(time_et(stamp))}</p>'
         f"</section>"
