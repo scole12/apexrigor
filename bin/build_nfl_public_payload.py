@@ -11,6 +11,7 @@ from __future__ import annotations
 from datetime import UTC, datetime
 import hashlib
 import json
+import re
 import os
 from pathlib import Path
 import sqlite3
@@ -36,6 +37,50 @@ COHORT_ROOT = Path("/var/opt/apex_nfl/state/cohorts")
 ISSUANCE_ROOT = Path("/var/opt/apex_nfl/issuance")
 GRADE_ROOT = Path("/var/opt/apex_nfl/grades")
 NY = ZoneInfo("America/New_York")
+
+
+
+def scrub_public_rationale_paragraphs(raw):
+    if isinstance(raw, str):
+        raw = [raw]
+    out = []
+    for para in raw or []:
+        s = str(para)
+        s = re.sub(r"\s*Missing captured context:[^.]*\.?", "", s, flags=re.I)
+        s = re.sub(
+            r"\s*No separate injury or weather adjustment is fitted in these retained models\.?",
+            "",
+            s,
+            flags=re.I,
+        )
+        s = re.sub(r"\s+", " ", s).strip(" .")
+        if s:
+            if not s.endswith((".", "!", "?")):
+                s += "."
+            out.append(s)
+    return out
+
+
+def scrub_today_positions(today):
+    for pos in today.get("positions") or []:
+        if isinstance(pos, dict) and "rationale_paragraphs" in pos:
+            pos["rationale_paragraphs"] = scrub_public_rationale_paragraphs(
+                pos.get("rationale_paragraphs")
+            )
+    games = []
+    slate = today.get("slate") or {}
+    if isinstance(slate, dict):
+        games = slate.get("games") or []
+    games = games or today.get("games") or []
+    for game in games:
+        if not isinstance(game, dict):
+            continue
+        for pos in game.get("positions") or []:
+            if isinstance(pos, dict) and "rationale_paragraphs" in pos:
+                pos["rationale_paragraphs"] = scrub_public_rationale_paragraphs(
+                    pos.get("rationale_paragraphs")
+                )
+    return today
 
 
 def canonical(value: object) -> bytes:
@@ -582,7 +627,7 @@ def main(output_root: Path | None = None, *, board_only: bool = False) -> int:
     archive={'schema_version':'APEX_NFL_RESULTS_ARCHIVE_V2','sport':'NFL','canonical_result':pointer,
              'rows':sealed['rows'],'coverage':sealed['coverage'],'pending':sealed['pending'],'cumulative':cumulative}
     outputs = {
-        "nfl_today.json": today,
+        "nfl_today.json": scrub_today_positions(today),
         "nfl_system_state.json": system_state,
         "nfl_results_summary.json": results,
         "nfl_results_archive.json": archive,

@@ -12,6 +12,35 @@ from zoneinfo import ZoneInfo
 ROOT = Path(__file__).resolve().parents[1]
 NY = ZoneInfo("America/New_York")
 
+def public_rationale_paragraphs(raw):
+    """Drop sealed diagnostic lines Boss banned from public NFL rationales."""
+    if isinstance(raw, str):
+        raw = [raw]
+    out = []
+    for para in raw or []:
+        s = str(para).strip()
+        if not s:
+            continue
+        s = re.sub(
+            r"\s*Missing captured context:[^.]*\.?",
+            "",
+            s,
+            flags=re.IGNORECASE,
+        )
+        s = re.sub(
+            r"\s*No separate injury or weather adjustment is fitted in these retained models\.?",
+            "",
+            s,
+            flags=re.IGNORECASE,
+        )
+        s = re.sub(r"\s+", " ", s).strip(" .")
+        if s:
+            if not s.endswith((".", "!", "?")):
+                s += "."
+            out.append(s)
+    return out
+
+
 
 def time_et(value: str) -> str:
     if not value:
@@ -47,9 +76,7 @@ def issued_panel(label: str, pos: dict) -> str:
             price_s = f" at the captured FanDuel price of {p:+d}" if p else ""
         except Exception:
             price_s = ""
-    rationale = pos.get("rationale_paragraphs") or pos.get("rationale") or []
-    if isinstance(rationale, str):
-        rationale = [rationale]
+    rationale = public_rationale_paragraphs(pos.get("rationale_paragraphs") or pos.get("rationale") or [])
     if not rationale:
         rationale = [
             f"The issued probability for {pick} is {prob_s}{price_s}; Sportsbook: FanDuel.",
