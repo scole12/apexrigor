@@ -466,7 +466,7 @@ def render_javascript(ledger: dict[str, Any]) -> str:
     const today = new Intl.DateTimeFormat("en-US",{{timeZone:"America/New_York", weekday:"long", month:"long", day:"numeric", year:"numeric"}}).format(new Date()).toUpperCase();
     let html = "";
     html += `<div class="section-head"><div class="title">SEASON RECORD</div><div class="meta mono">${{esc(today)}} · ${{ledger.record.settled.toLocaleString("en-US")}} POSITIONS SETTLED</div></div>`;
-    html += `<div class="banner" data-apex-season-record="${{esc(winnerBanner)}}" data-apex-season-win-rate="${{esc(winnerRate)}}">
+    html += `<div class="banner banner-2" data-apex-season-record="${{esc(winnerBanner)}}" data-apex-season-win-rate="${{esc(winnerRate)}}">
       <div class="cell"><div class="label">MMA Winner H2H</div><div class="val mono">${{esc(winnerBanner)}}</div></div>
       <div class="cell"><div class="label">Win Rate (H2H)</div><div class="val mono">${{esc(winnerRate)}}</div></div>
     </div>`;
