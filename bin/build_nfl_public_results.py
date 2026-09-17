@@ -48,7 +48,6 @@ def build(root: Path):
     body += '<div class="section-head"><div class="title">NFL RESULTS</div><div class="meta mono">2026 SEASON · AS ISSUED</div></div>'
     body += '<div class="nfl-results-metrics">' + ''.join(f'<div><span>{label}</span><strong class="mono">{value}</strong></div>' for label, value in [('Record', record(rows)), ('Win Rate', win_rate), ('Graded Picks', str(len(rows)))]) + '</div>'
     body += f'<p class="nfl-results-note">{issued} issued · {len(rows)} graded · {issued-len(rows)} pending/not final. Results use the selections, FanDuel prices and APEX probabilities published before kickoff. Ratings and probabilities are model estimates, not validated confidence levels or demonstrated advantage over FanDuel.</p>'
-    body += '<p class="nfl-results-note">Inherited V2 serving is active. Full-stat Props PMFs and RPS/log scores are diagnostics, not proof of calibration.</p>'
     body += '<section class="nfl-results-section"><div class="section-head"><div class="title">PERFORMANCE BY AS-ISSUED MODEL RATING</div></div>'
     tiers = []
     for tier in ('WEAK', 'MODERATE', 'STRONG', 'ELITE'):

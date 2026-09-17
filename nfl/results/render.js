@@ -65,10 +65,7 @@
       <div class="cell"><div class="label">NFL Player Props</div><div class="val mono">${esc(propsBanner)}</div><div class="label mono">${esc(propsRate)} WIN RATE</div></div>
     </div>`;
 
-    html += "<p class=\"muted\">Inherited V2 serving is active. Full-stat Props PMFs and RPS/log scores are diagnostics, not proof of calibration.</p>";
-
-    // AS-ISSUED TIER PERFORMANCE — ATS | TOTALS side by side like MLB
-    html += `<div class="section-head"><div class="title">AS-ISSUED MODEL RATING PERFORMANCE</div><div class="meta mono">NFL FULL-GAME · AS ISSUED. Ratings and probabilities are model estimates, not validated confidence levels or demonstrated advantage over FanDuel.</div></div>`;
+    // Tier tables follow Season Record directly (Scott 2026-09-17: remove Inherited V2 / AS-ISSUED head verbiage)
     html += `<div class="tier-grid">
       <div class="tier-col"><div class="tier-sub">ATS BY AS-ISSUED MODEL RATING</div>${table(["Model rating","Record","Win Rate"], byTier("ATS"))}</div>
       <div class="tier-col"><div class="tier-sub">TOTALS BY AS-ISSUED MODEL RATING</div>${table(["Model rating","Record","Win Rate"], byTier("TOTALS"))}</div>
