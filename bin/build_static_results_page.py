@@ -102,6 +102,18 @@ def build_latest_slate_detail() -> str:
     )
 
 
+
+def win_rate_excl_pushes(raw) -> str:
+    if not isinstance(raw, dict):
+        return ""
+    w = int(raw.get("W") or raw.get("wins") or 0)
+    l = int(raw.get("L") or raw.get("losses") or 0)
+    decided = w + l
+    if decided <= 0:
+        return ""
+    return f"{(100.0 * w / decided):.1f}%"
+
+
 def build():
     if not JSON_PATH.exists():
         print(f"BLOCKED: missing {JSON_PATH}", file=sys.stderr); sys.exit(2)
@@ -128,6 +140,8 @@ def build():
     s_record = f"{sw:,}-{sl:,}"
     if sp: s_record += f"-{sp}P"
     s_wr = mlb.get("win_rate_display") or ""
+    ats_wr = win_rate_excl_pushes(mlb.get("f5_spread_raw") or {})
+    tot_wr = win_rate_excl_pushes(mlb.get("f5_total_raw") or {})
     ats = mlb.get("f5_spread_raw") or {}
     tot = mlb.get("f5_total_raw") or {}
     def fmt_market(m):
@@ -288,11 +302,13 @@ def build():
     <div class="title">SEASON RECORD</div>
     <div class="meta mono">{html.escape(today_str)} · {s_rows:,} POSITIONS TRACKED</div>
   </div>
-  <div class="banner banner-4" data-apex-season-record="{html.escape(s_record)}" data-apex-season-win-rate="{html.escape(s_wr)}" data-apex-ats-record="{html.escape(fmt_market(ats))}" data-apex-totals-record="{html.escape(fmt_market(tot))}">
+  <div class="banner banner-3" data-apex-season-record="{html.escape(s_record)}" data-apex-season-win-rate="{html.escape(s_wr)}" data-apex-ats-record="{html.escape(fmt_market(ats))}" data-apex-ats-win-rate="{html.escape(ats_wr)}" data-apex-totals-record="{html.escape(fmt_market(tot))}" data-apex-totals-win-rate="{html.escape(tot_wr)}">
     <div class="cell"><div class="label">MLB Overall</div><div class="val mono">{html.escape(s_record)}</div></div>
     <div class="cell"><div class="label">Win Rate</div><div class="val mono">{html.escape(s_wr)}</div></div>
     <div class="cell"><div class="label">F5 Spread</div><div class="val mono">{html.escape(fmt_market(ats))}</div></div>
+    <div class="cell"><div class="label">Win Rate</div><div class="val mono">{html.escape(ats_wr)}</div></div>
     <div class="cell"><div class="label">F5 Total</div><div class="val mono">{html.escape(fmt_market(tot))}</div></div>
+    <div class="cell"><div class="label">Win Rate</div><div class="val mono">{html.escape(tot_wr)}</div></div>
   </div>
 {tier_html}  <div class="section-head">
     <div class="title">DAILY ARCHIVE</div>
