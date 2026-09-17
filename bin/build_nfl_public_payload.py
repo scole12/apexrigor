@@ -61,10 +61,234 @@ def scrub_public_rationale_paragraphs(raw):
     return out
 
 
+
+def mlb_style_public_rationale(pos: dict) -> list[str]:
+    """MLB/CFB-parity detailed rationale from sealed evidence signals only."""
+    ev = pos.get("rationale_evidence") or {}
+    feats = ev.get("model_features") or ev.get("model_features".replace("model_features","features")) or {}
+    if not isinstance(feats, dict):
+        feats = {}
+    engine = str(pos.get("engine") or pos.get("market") or "").upper()
+    pick = str(pos.get("display_selection") or pos.get("headline") or pos.get("selection") or "ISSUED")
+    # normalize team ids in pick for public
+    pick = pick.replace("NFL_TEAM_", "").replace("_", " ")
+    tier = str(pos.get("rating_tier") or pos.get("tier") or "MODERATE").upper()
+    # map sealed vocabulary to public WEAK/MODERATE/STRONG/ELITE
+    tier_map = {"WEAK": "WEAK", "MODERATE": "MODERATE", "STRONG": "STRONG", "ELITE": "ELITE",
+                "WEAK": "WEAK"}
+    # sealed used WEAK/MODERATE/STRONG — keep
+    if tier not in {"WEAK", "MODERATE", "STRONG", "ELITE"}:
+        tier = "MODERATE"
+    prob = pos.get("win_probability")
+    if prob is None:
+        prob = pos.get("issued_probability")
+    try:
+        prob_f = float(prob)
+        if prob_f <= 1:
+            prob_f *= 100.0
+        prob_s = f"{prob_f:.1f}%"
+    except Exception:
+        prob_s = "—"
+    price = pos.get("american_price")
+    try:
+        price_s = f"{int(price):+d}" if price is not None else "n/a"
+    except Exception:
+        price_s = str(price or "n/a")
+    book = str(pos.get("sportsbook") or "FanDuel")
+    captured = pos.get("market_captured_at") or ev.get("snapshot_as_of") or ""
+    if captured:
+        captured = str(captured).replace("T", " ").replace("+00:00", "Z")
+
+    def fnum(key, digits=2):
+        if key not in feats:
+            return None
+        try:
+            return round(float(feats[key]), digits)
+        except Exception:
+            return None
+
+    paras: list[str] = []
+    paras.append(
+        f"The issued probability for {pick} is {prob_s} at the captured {book} price of {price_s}; "
+        f"this is a {book}-identity probability, not a proprietary APEX edge. "
+        f"The {tier} label is a calibrated-probability bucket only."
+    )
+
+    if "ATS" in engine and "TOTAL" not in engine and "PROP" not in engine:
+        spread = fnum("market_spread", 1)
+        fav_home = feats.get("favorite_home")
+        fav_sc = fnum("favorite_scoring_matchup", 3)
+        dog_sc = fnum("underdog_scoring_matchup", 3)
+        margin = fnum("team_margin_state_gap", 3)
+        unc = fnum("latent_state_uncertainty_index", 3)
+        games = feats.get("admitted_completed_game_count")
+        bits = []
+        if spread is not None:
+            bits.append(f"the sealed FanDuel spread was {spread:g}")
+        if fav_home is not None:
+            bits.append("the favorite was at home" if float(fav_home) >= 0.5 else "the favorite was on the road")
+        if fav_sc is not None and dog_sc is not None:
+            bits.append(
+                f"lagged scoring-matchup states were {fav_sc:.3f} (favorite) and {dog_sc:.3f} (underdog)"
+            )
+        if margin is not None:
+            bits.append(f"the team-margin state gap was {margin:+.3f}")
+        if unc is not None:
+            bits.append(f"latent state uncertainty indexed at {unc:.3f}")
+        if games is not None:
+            bits.append(f"the frozen ATS model was trained against {int(float(games))} admitted completed games")
+        if bits:
+            paras.append("Sealed ATS engine signals: " + "; ".join(bits) + ".")
+        qb_bits = []
+        for label, key in [
+            ("YPA matchup gap", "qb_ypa_matchup_gap"),
+            ("rush matchup gap", "qb_rush_matchup_gap"),
+            ("completion matchup gap", "qb_completion_matchup_gap"),
+            ("TD-rate matchup gap", "qb_td_rate_matchup_gap"),
+            ("INT-rate matchup gap", "qb_int_rate_matchup_gap"),
+            ("sack-rate matchup gap", "qb_sack_rate_matchup_gap"),
+        ]:
+            v = fnum(key, 4)
+            if v is not None:
+                qb_bits.append(f"{label} {v:+.4f}")
+        if qb_bits:
+            paras.append(
+                "Quarterback matchup layer (strictly lagged): " + "; ".join(qb_bits) + "."
+            )
+        paras.append(
+            f"The final call remains {pick}. Selection follows the sealed ATS distribution on team, "
+            f"personnel, and market state at the T-2 cutoff"
+            + (f" ({captured})" if captured else "")
+            + "."
+        )
+
+    elif "TOTAL" in engine:
+        total_c = fnum("market_total_centered", 1)
+        spread = fnum("market_spread", 1)
+        poss_gap = fnum("possession_state_gap", 3)
+        poss_sum = fnum("possession_state_sum", 3)
+        unc = fnum("latent_state_uncertainty_index", 3)
+        over_logit = fnum("logit_over", 4)
+        games = feats.get("admitted_completed_game_count")
+        fav_home = feats.get("favorite_home")
+        bits = []
+        if total_c is not None:
+            bits.append(f"market total centered at {total_c:g} versus the model baseline")
+        if spread is not None:
+            bits.append(f"paired spread context {spread:g}")
+        if poss_gap is not None and poss_sum is not None:
+            bits.append(
+                f"possession-state gap {poss_gap:+.3f} with possession-state sum {poss_sum:+.3f}"
+            )
+        if over_logit is not None:
+            bits.append(f"over logit {over_logit:+.4f}")
+        if unc is not None:
+            bits.append(f"latent uncertainty {unc:.3f}")
+        if fav_home is not None:
+            bits.append("home favorite" if float(fav_home) >= 0.5 else "road favorite")
+        if games is not None:
+            bits.append(f"{int(float(games))} admitted completed games in the frozen TOTALS fit")
+        if bits:
+            paras.append("Sealed TOTALS engine signals: " + "; ".join(bits) + ".")
+        paras.append(
+            f"The final call remains {pick}. The sealed TOTALS distribution is conditioned on the "
+            f"captured FanDuel total and lagged team/possession state"
+            + (f" as of {captured}" if captured else "")
+            + "."
+        )
+
+    else:
+        # PROPS
+        name = str(pos.get("player_display_name") or "").strip()
+        posn = str(pos.get("player_position") or feats.get("position") or "").strip()
+        family = str(
+            pos.get("prop_family")
+            or pos.get("supported_prop_family")
+            or feats.get("supported_prop_family")
+            or feats.get("official_stat_column")
+            or "prop"
+        ).replace("_", " ")
+        n_prior = feats.get("player_n_prior_games")
+        line = pos.get("line")
+        if line is None:
+            line = feats.get("line_point")
+        try:
+            line_s = f"{float(line):g}" if line is not None else ""
+        except Exception:
+            line_s = str(line or "")
+        # Bind L5 means to sealed official_stat_column first, then family text.
+        stat = str(feats.get("official_stat_column") or "").lower()
+        fam_l = (family + " " + stat).lower()
+        if "passing_yard" in fam_l or "pass yard" in fam_l:
+            keys = ("player_passing_yards_mean_l5", "player_pass_attempts_mean_l5", "player_completions_mean_l5")
+            family = "passing yards"
+        elif "rushing_yard" in fam_l or "rush yard" in fam_l:
+            keys = ("player_rushing_yards_mean_l5", "player_rush_attempts_mean_l5", "player_targets_mean_l5")
+            family = "rushing yards"
+        elif "reception" in fam_l:
+            keys = ("player_receptions_mean_l5", "player_targets_mean_l5", "player_receiving_yards_mean_l5")
+            family = "receptions"
+        elif "receiving_yard" in fam_l or "recv yard" in fam_l:
+            keys = ("player_receiving_yards_mean_l5", "player_targets_mean_l5", "player_receptions_mean_l5")
+            family = "receiving yards"
+        else:
+            keys = ("player_passing_yards_mean_l5", "player_rushing_yards_mean_l5", "player_receptions_mean_l5")
+        who = name or pick
+        if posn:
+            who = f"{who} ({posn})"
+        bits = []
+        if n_prior is not None:
+            bits.append(f"{int(float(n_prior))} admitted completed appearances")
+        primary = fnum(keys[0], 1)
+        if primary is not None and keys[0]:
+            bits.append(f"last-five mean for the issued stat at {primary:g}")
+        if keys[1]:
+            sec = fnum(keys[1], 1)
+            if sec is not None:
+                bits.append(f"companion usage mean {sec:g}")
+        if keys[2]:
+            thr = fnum(keys[2], 1)
+            if thr is not None:
+                bits.append(f"secondary mean {thr:g}")
+        carry = fnum("board_carry_share", 3)
+        tgt = fnum("board_target_share", 3)
+        qb = fnum("board_qb_share", 3)
+        tpass = fnum("board_team_pass", 1)
+        trush = fnum("board_team_rush", 1)
+        share_bits = []
+        if carry is not None:
+            share_bits.append(f"board carry share {carry:.3f}")
+        if tgt is not None:
+            share_bits.append(f"board target share {tgt:.3f}")
+        if qb is not None:
+            share_bits.append(f"board QB share {qb:.3f}")
+        if tpass is not None and trush is not None:
+            share_bits.append(f"team pace context {tpass:g} pass / {trush:g} rush")
+        if bits:
+            paras.append(
+                f"Sealed player-state layer for {who} on {family}"
+                + (f" versus {line_s}" if line_s else "")
+                + ": "
+                + "; ".join(bits)
+                + "."
+            )
+        if share_bits:
+            paras.append("Opportunity / board signals: " + "; ".join(share_bits) + ".")
+        paras.append(
+            f"The final call remains {pick}. Selected as the top retained near-even {book} main "
+            f"in its supported pool from the sealed PROPS engine"
+            + (f" at T-2 cutoff {captured}" if captured else "")
+            + "."
+        )
+
+    # final scrub — never emit banned diagnostics
+    return scrub_public_rationale_paragraphs(paras)
+
+
 def scrub_today_positions(today):
     for pos in today.get("positions") or []:
         if isinstance(pos, dict) and "rationale_paragraphs" in pos:
-            pos["rationale_paragraphs"] = scrub_public_rationale_paragraphs(
+            pos["rationale_paragraphs"] = mlb_style_public_rationale(pos) or scrub_public_rationale_paragraphs(
                 pos.get("rationale_paragraphs")
             )
     games = []
@@ -77,7 +301,7 @@ def scrub_today_positions(today):
             continue
         for pos in game.get("positions") or []:
             if isinstance(pos, dict) and "rationale_paragraphs" in pos:
-                pos["rationale_paragraphs"] = scrub_public_rationale_paragraphs(
+                pos["rationale_paragraphs"] = mlb_style_public_rationale(pos) or scrub_public_rationale_paragraphs(
                     pos.get("rationale_paragraphs")
                 )
     return today
@@ -626,8 +850,9 @@ def main(output_root: Path | None = None, *, board_only: bool = False) -> int:
                    record={'wins':r['W'],'losses':r['L'],'pushes':r['PUSH'],'voids':r['VOID']})
     archive={'schema_version':'APEX_NFL_RESULTS_ARCHIVE_V2','sport':'NFL','canonical_result':pointer,
              'rows':sealed['rows'],'coverage':sealed['coverage'],'pending':sealed['pending'],'cumulative':cumulative}
+    today = scrub_today_positions(today)
     outputs = {
-        "nfl_today.json": scrub_today_positions(today),
+        "nfl_today.json": today,
         "nfl_system_state.json": system_state,
         "nfl_results_summary.json": results,
         "nfl_results_archive.json": archive,

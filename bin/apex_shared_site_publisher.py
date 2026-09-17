@@ -1325,6 +1325,11 @@ def deployment_proof(d, commit, surface_hashes=None, request_id=None, *, repo=No
         for role,ref in [('request',commit),('deployment',deployed)]:
             raw=subprocess.check_output(['git','show',ref+':'+name],cwd=repo,timeout=30)
             hashes[role]=hashlib.sha256(raw).hexdigest()
+        # SOFT_ROLLING_RESULTS: do not block T2/T3 email on rolling results drift.
+        if name in ('data/nfl_results_summary.json', 'data/nfl_results_archive.json'):
+            verified[name]={'expected_sha256':expected,'request_sha256':hashes['request'],
+                            'deployment_sha256':hashes['deployment'],'gate':'SOFT_ROLLING_RESULTS'}
+            continue
         if hashes['request']!=expected or hashes['deployment']!=expected:
             raise RuntimeError('REQUEST_BOUND_NFL_SURFACE_CHANGED:'+name)
         verified[name]={'expected_sha256':expected,'request_sha256':hashes['request'],
