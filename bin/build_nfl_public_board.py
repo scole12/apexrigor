@@ -53,7 +53,7 @@ def issued_panel(label: str, pos: dict) -> str:
     if not rationale:
         rationale = [
             f"The issued probability for {pick} is {prob_s}{price_s}; Sportsbook: FanDuel.",
-            f"The {tier} label is a calibrated-probability bucket only.",
+            f"The {tier} label is the as-issued model rating.",
         ]
     body = "".join(f"<p>{escape(str(p))}</p>" for p in rationale)
     return (
@@ -61,11 +61,11 @@ def issued_panel(label: str, pos: dict) -> str:
         f'<div class="market-label">{escape(label)}</div>'
         f'<div class="market-panel-head">'
         f'<span class="pick-headline">{pick}</span>'
-        f'<span class="rating-label">APEX WIN PROBABILITY RATING</span>'
+        f'<span class="rating-label">APEX AS-ISSUED MODEL RATING</span>'
         f'<span class="tier-badge tier-badge--{tier.lower()}">{escape(tier)}</span>'
         f'</div>'
         f'<div class="meta mono">APEX WIN PROBABILITY: {escape(prob_s)} · Sportsbook: FanDuel</div>'
-        f'<div class="rationale-copy">{body}</div>'
+        f'<div class="rationale-copy"><p>Ratings and probabilities are model estimates, not validated confidence levels or demonstrated advantage over FanDuel.</p>{body}</div>'
         f'</div>'
     )
 
@@ -77,14 +77,14 @@ def unissued_panel(label: str, state: str) -> str:
         f'<div class="market-label">{escape(label)}</div>'
         f'<div class="market-panel-head">'
         f'<span class="pick-headline">UNISSUED</span>'
-        f'<span class="rating-label">APEX WIN PROBABILITY RATING</span>'
+        f'<span class="rating-label">APEX MODEL RATING</span>'
         f'<span class="tier-badge">—</span>'
         f'</div>'
         f'<div class="meta mono">APEX WIN PROBABILITY: — · Sportsbook: FanDuel</div>'
         f'<div class="rationale-copy">'
         f'<p>The T-2 picks card has not been published for this game.</p>'
         f'<p>The published card will include selection, '
-        f'WEAK/MODERATE/STRONG/ELITE rating, win probability, and detailed rationale.</p>'
+        f'WEAK/MODERATE/STRONG/ELITE model rating, win probability, and detailed rationale.</p>'
         f'</div></div>'
     )
 
@@ -160,8 +160,10 @@ def render_board(today: dict) -> str:
     count = len(games)
     issued = int(today.get("position_count") or 0)
     stamp = today.get("generated_at_utc") or datetime.now(tz=NY).isoformat()
+    # The heading names the scheduled Eastern gameday, not the build day.
+    gameday = (games[0].get("kickoff_utc") or games[0].get("kickoff_et")) if games else None
     meta = (
-        f"{date_meta(stamp)} · {count} {'GAME' if count == 1 else 'GAMES'} · {issued} POSITIONS"
+        f"{date_meta(gameday) if gameday else 'SCHEDULE PENDING'} · {count} {'GAME' if count == 1 else 'GAMES'} · {issued} POSITIONS"
         f" · ATS · TOTALS · PROPS"
     )
     cards = "".join(render_card(g, i, today) for i, g in enumerate(games))
@@ -182,8 +184,7 @@ def render_board(today: dict) -> str:
 def build(root: Path = ROOT) -> None:
     today_path = root / "data/nfl_today.json"
     today = json.loads(today_path.read_text())
-    today["generated_at_utc"] = datetime.now(tz=NY).astimezone(ZoneInfo("UTC")).strftime("%Y-%m-%dT%H:%M:%S.%fZ")[:-3] + "Z"
-    today_path.write_text(json.dumps(today, indent=2) + "\n")
+    # Keep the authority builder timestamp and payload bytes intact.
     board = render_board(today)
     for relative in ("nfl/index.html",):
         path = root / relative

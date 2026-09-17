@@ -29,17 +29,14 @@ def table(headers, rows):
 def build(root: Path):
     summary = json.loads((root / 'data/nfl_results_summary.json').read_text())
     archive = json.loads((root / 'data/nfl_results_archive.json').read_text())
-    positions = {}
-    for issuance in archive['issuances']:
-        day = issuance.get('game_date') or datetime.fromisoformat(issuance['issued_at'].replace('Z', '+00:00')).astimezone(ZoneInfo('America/New_York')).date().isoformat()
-        for position in issuance['positions']:
-            positions[position['position_id']] = {**position, 'game_date': day}
-    rows = []
-    for grade in archive['grades']:
-        for settlement in grade['settlements']:
-            rows.append({**positions[settlement['position_id']], **settlement})
-    assert len(rows) == summary['graded_position_count']
-    assert len({r['position_id'] for r in rows}) == len(rows)
+    if not archive.get('canonical_result') or summary.get('canonical_result') != archive['canonical_result']:
+        raise RuntimeError('CANONICAL_RESULT_BINDING_REQUIRED')
+    rows=archive['rows']
+    keys=[(r['sport'],r['issuance_id'],r['position_id']) for r in rows]
+    if len(keys)!=len(set(keys)) or len(rows)!=summary['graded_position_count']:
+        raise RuntimeError('CANONICAL_RESULT_COVERAGE')
+    positions={str(k):r for k,r in zip(keys,rows)}
+    issued=sum(c['issued'] for c in archive['coverage'].values())
     days = defaultdict(list)
     for row in rows:
         days[row['game_date']].append(row)
@@ -50,13 +47,13 @@ def build(root: Path):
     body = '<style>.nfl-results-scroll{overflow-x:auto;margin-bottom:28px}.nfl-results-scroll table{width:100%;min-width:620px}.nfl-results-scroll td,.nfl-results-scroll th{text-align:left;padding:14px 12px}.nfl-results-section{margin:28px 0}.nfl-results-note{color:#999;line-height:1.6}.nfl-results-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#333;border:1px solid #333;margin:20px 0}.nfl-results-metrics>div{background:#000;padding:22px 15px}.nfl-results-metrics strong{display:block;font-size:25px;margin-top:8px}.nfl-results-metrics span{color:#aaa;font-size:11px;text-transform:uppercase;letter-spacing:.08em}@media(max-width:640px){.nfl-results-metrics{grid-template-columns:repeat(2,1fr)}} </style>'
     body += '<div class="section-head"><div class="title">NFL RESULTS</div><div class="meta mono">2026 SEASON · AS ISSUED</div></div>'
     body += '<div class="nfl-results-metrics">' + ''.join(f'<div><span>{label}</span><strong class="mono">{value}</strong></div>' for label, value in [('Record', record(rows)), ('Win Rate', win_rate), ('Graded Picks', str(len(rows)))]) + '</div>'
-    body += f'<p class="nfl-results-note">{len(positions)} issued · {len(rows)} graded · {len(positions)-len(rows)} pending. Results use the selections, FanDuel prices and APEX probabilities published before kickoff.</p>'
-    body += '<section class="nfl-results-section"><div class="section-head"><div class="title">PERFORMANCE BY RATING</div></div>'
+    body += f'<p class="nfl-results-note">{issued} issued · {len(rows)} graded · {issued-len(rows)} pending/not final. Results use the selections, FanDuel prices and APEX probabilities published before kickoff. Ratings and probabilities are model estimates, not validated confidence levels or demonstrated advantage over FanDuel.</p>'
+    body += '<section class="nfl-results-section"><div class="section-head"><div class="title">PERFORMANCE BY AS-ISSUED MODEL RATING</div></div>'
     tiers = []
     for tier in ('WEAK', 'MODERATE', 'STRONG', 'ELITE'):
         selected = [r for r in rows if r.get('rating_tier') == tier]
         tiers.append([tier, len(selected), record(selected)])
-    body += table(['As-issued rating', 'Graded', 'Record'], tiers) + '</section>'
+    body += table(['As-issued model rating', 'Graded', 'Record'], tiers) + '</section>'
     body += '<section class="nfl-results-section"><div class="section-head"><div class="title">DAILY ARCHIVE</div></div>'
     body += table(['Slate date (ET)', 'Graded', 'Record'], [[day, len(values), record(values)] for day, values in sorted(days.items(), reverse=True)]) + '</section>'
     for day, values in sorted(days.items(), reverse=True):
@@ -68,7 +65,7 @@ def build(root: Path):
             if actual is None:
                 actual = f"{evidence['covered_margin']:+g} vs spread"
             details.append([row.get('display_selection') or row['selection'], f"{row['issued_american_price']:+d}", f"{100*row['issued_probability']:.1f}%", row.get('rating_tier', '—'), actual, row['result']])
-        body += table(['As-issued pick', 'FanDuel', 'APEX', 'Rating', 'Actual', 'Result'], details) + '</section>'
+        body += table(['As-issued pick', 'FanDuel', 'APEX', 'As-issued model rating', 'Actual', 'Result'], details) + '</section>'
     if not rows:
         body += '<p class="nfl-results-note">No graded picks yet.</p>'
     path = root / 'nfl/results/index.html'

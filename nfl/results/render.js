@@ -66,14 +66,14 @@
     </div>`;
 
     // AS-ISSUED TIER PERFORMANCE — ATS | TOTALS side by side like MLB
-    html += `<div class="section-head"><div class="title">AS-ISSUED TIER PERFORMANCE</div><div class="meta mono">NFL FULL-GAME · AS ISSUED</div></div>`;
+    html += `<div class="section-head"><div class="title">AS-ISSUED MODEL RATING PERFORMANCE</div><div class="meta mono">NFL FULL-GAME · AS ISSUED. Ratings and probabilities are model estimates, not validated confidence levels or demonstrated advantage over FanDuel.</div></div>`;
     html += `<div class="tier-grid">
-      <div class="tier-col"><div class="tier-sub">ATS BY CONFIDENCE TIER</div>${table(["Tier","Record","Win Rate"], byTier("ATS"))}</div>
-      <div class="tier-col"><div class="tier-sub">TOTALS BY CONFIDENCE TIER</div>${table(["Tier","Record","Win Rate"], byTier("TOTALS"))}</div>
+      <div class="tier-col"><div class="tier-sub">ATS BY AS-ISSUED MODEL RATING</div>${table(["Model rating","Record","Win Rate"], byTier("ATS"))}</div>
+      <div class="tier-col"><div class="tier-sub">TOTALS BY AS-ISSUED MODEL RATING</div>${table(["Model rating","Record","Win Rate"], byTier("TOTALS"))}</div>
     </div>`;
     // PROPS tier as third optional single like combined
-    html += `<div class="tier-sub">PROPS BY CONFIDENCE TIER</div><div class="tier-single">${table(["Tier","Record","Win Rate"], byTier("PROPS"))}</div>`;
-    html += `<div class="tier-sub">COMBINED NFL BY CONFIDENCE TIER</div><div class="tier-single">${table(["Tier","Record","Win Rate"], byTier(null))}</div>`;
+    html += `<div class="tier-sub">PROPS BY AS-ISSUED MODEL RATING</div><div class="tier-single">${table(["Model rating","Record","Win Rate"], byTier("PROPS"))}</div>`;
+    html += `<div class="tier-sub">COMBINED NFL BY AS-ISSUED MODEL RATING</div><div class="tier-single">${table(["Model rating","Record","Win Rate"], byTier(null))}</div>`;
 
     // DAILY ARCHIVE — MLB style Date / Record / Win Rate / Summary
     const days = new Map();
@@ -97,7 +97,7 @@
       const details = selected.slice().sort((a,b)=>`${a.game}|${a.market}|${a.id}`.localeCompare(`${b.game}|${b.market}|${b.id}`))
         .map((row, idx) => [row.game || `G${String(idx+1).padStart(2,"0")}`, row.matchup, row.market, row.pick, row.tier, row.result]);
       html += `<div class="section-head"><div class="title">SLATE DETAIL — ${esc(date)}</div><div class="meta mono">${selected.length} POSITIONS</div></div>`;
-      html += table(["Game","Matchup","Market","Pick","Tier","Result"], details);
+      html += table(["Game","Matchup","Market","Pick","As-issued model rating","Result"], details);
     }
     root.innerHTML = html;
   }
