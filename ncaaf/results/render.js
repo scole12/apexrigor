@@ -27,7 +27,7 @@
     const totals = ncaaf.totals_record || emptyRecord();
     const through = ncaaf.latest_graded_date ? `THROUGH ${dateLabel(ncaaf.latest_graded_date).toUpperCase()}` : "";
     let html = section("SEASON RECORD", `${through} · ${(ncaaf.positions || []).length.toLocaleString("en-US")} POSITIONS TRACKED`);
-    html += `<div class="banner" data-apex-season-record="${esc(overallLabel)}" data-apex-season-win-rate="${esc(overallRate)}" data-apex-ats-record="${esc(record(ats))}" data-apex-totals-record="${esc(record(totals))}">
+    html += `<div class="banner banner-3" data-apex-season-record="${esc(overallLabel)}" data-apex-season-win-rate="${esc(overallRate)}" data-apex-ats-record="${esc(record(ats))}" data-apex-totals-record="${esc(record(totals))}">
       <div class="cell"><div class="label">NCAAF Overall</div><div class="val mono">${esc(overallLabel)}</div></div>
       <div class="cell"><div class="label">Win Rate</div><div class="val mono">${esc(overallRate)}</div></div>
       <div class="cell"><div class="label">NCAAF ATS</div><div class="val mono">${esc(record(ats))}</div></div>
