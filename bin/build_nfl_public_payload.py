@@ -17,6 +17,7 @@ import sqlite3
 import sys
 sys.path.insert(0, "/opt/apex_nfl/src")
 from apex_nfl.season_clock import season_clock
+from apex_nfl.living_seasons import roster_season
 from apex_nfl.point_in_time_capture import PARSER_VERSION
 from typing import Any
 from zoneinfo import ZoneInfo
@@ -146,18 +147,20 @@ def schedule(as_of: datetime | None = None) -> tuple[list[dict[str, Any]], dict[
     ).fetchone()
     if next_identity is None:
         history_connection.close()
-        return [], {"season": 2026, "season_type": None, "week": 0, "canonical_game_count": 0}
+        return [], {"season": roster_season(current.isoformat()), "season_type": None, "week": 0, "canonical_game_count": 0}
     rows = history_connection.execute(
-        """SELECT game_id,season,week,kickoff_ts,away_team_id,home_team_id,
+        """SELECT game_id,season,season_type,week,kickoff_ts,away_team_id,home_team_id,
                   game_status,effective_at,available_at
              FROM canonical_games
             WHERE season=? AND season_type=? AND week=?
               AND retracted_at IS NULL
+              AND game_status IN ('SCHEDULED','DELAYED','POSTPONED')
             ORDER BY kickoff_ts,game_id"""
         , tuple(next_identity)
     ).fetchall()
     canonical_game_count = int(history_connection.execute(
-        "SELECT count(*) FROM canonical_games WHERE season=2026 AND retracted_at IS NULL"
+        "SELECT count(*) FROM canonical_games WHERE season=? AND retracted_at IS NULL",
+        (next_identity[0],)
     ).fetchone()[0])
     history_connection.close()
     if not rows:
@@ -177,6 +180,7 @@ def schedule(as_of: datetime | None = None) -> tuple[list[dict[str, Any]], dict[
             {
                 "game_id": str(row["game_id"]),
                 "season": int(row["season"]),
+                "season_type": str(row["season_type"]),
                 "week": int(row["week"]),
                 "kickoff_utc": str(row["kickoff_ts"]),
                 "kickoff_et": kickoff.astimezone(NY).isoformat(),
@@ -274,9 +278,12 @@ def release_state() -> tuple[str, dict[str, Any] | None]:
         return "FAIL_CLOSED_RELEASE_HASH_MISMATCH", None
     release = json.loads(manifest.read_text(encoding="utf-8"))
     if (
-        release.get("schema") != "apex.nfl.production_release.v2"
-        or release.get("release_id") != release_id
-        or release.get("status") not in {"READY", "SCIENTIFICALLY_QUALIFIED_FOR_PRODUCTION"}
+        release.get("release_id") != release_id
+        or (release.get("schema"), release.get("status")) not in {
+            ("apex.nfl.production_release.v2", "READY"),
+            ("apex.nfl.production_release.v2", "SCIENTIFICALLY_QUALIFIED_FOR_PRODUCTION"),
+            ("apex.nfl.production_release.v3", "INHERITED_OPERATIONAL_SERVING"),
+        }
     ):
         return "INVALID_RELEASE_IDENTITY_OR_STATE", None
     engines = release.get("engines")
@@ -297,12 +304,16 @@ def release_state() -> tuple[str, dict[str, Any] | None]:
                 return "FAIL_CLOSED_RELEASE_ARTIFACT_PATH", None
             if not path.is_file() or sha256(path) != engine.get(hash_key):
                 return "FAIL_CLOSED_RELEASE_ARTIFACT_HASH", None
+    if release.get("schema") == "apex.nfl.production_release.v3":
+        return "INHERITED_MODEL_USAGE_NOT_NEW_PREDICTIVE_QUALIFICATION", release
     return "READY", release
 
 
 def sealed_history() -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
+    from nfl_publication_acceptance import accepted_issuance
     issuances: list[dict[str, Any]] = []
     by_id: dict[str, tuple[Path, dict[str, Any]]] = {}
+    unaccepted_ids: set[str] = set()
     for path in sorted(ISSUANCE_ROOT.glob("*.json")) if ISSUANCE_ROOT.is_dir() else []:
         payload = json.loads(path.read_text(encoding="utf-8"))
         if (
@@ -311,6 +322,9 @@ def sealed_history() -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
             or not isinstance(payload.get("positions"), list)
         ):
             raise RuntimeError(f"invalid NFL sealed issuance: {path}")
+        if not accepted_issuance(path, payload):
+            unaccepted_ids.add(str(payload["issuance_id"]))
+            continue
         if payload.get("schema") == "apex.nfl.published_card_issuance.v1":
             from apex_nfl.grader_runtime import _verify_issuance
             _verify_issuance(path)
@@ -329,26 +343,35 @@ def sealed_history() -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
         by_id[str(payload["issuance_id"])] = (path, payload)
         issuances.append(payload)
     grades: list[dict[str, Any]] = []
-    graded_ids: set[str] = set()
+    graded_positions: set[tuple[str, str]] = set()
     for path in sorted(GRADE_ROOT.glob("*.json")) if GRADE_ROOT.is_dir() else []:
         payload = json.loads(path.read_text(encoding="utf-8"))
         issuance_id = str(payload.get("issuance_id") or "")
+        if issuance_id in unaccepted_ids:
+            continue
         bound = by_id.get(issuance_id)
         if (
             payload.get("schema") not in {"apex.nfl.immutable_grade_receipt.v2", "apex.nfl.published_card_grade.v1"}
             or path.name != f"{payload.get('grade_id')}.json"
             or bound is None
             or payload.get("issuance_sha256") != sha256(bound[0])
-            or issuance_id in graded_ids
             or not isinstance(payload.get("settlements"), list)
         ):
             raise RuntimeError(f"invalid/duplicate NFL immutable grade: {path}")
-        graded_ids.add(issuance_id)
+        for settlement in payload["settlements"]:
+            key = (issuance_id, str(settlement.get("position_id") or ""))
+            if not key[1] or key in graded_positions:
+                raise RuntimeError(f"invalid/duplicate NFL settled position: {path}/{key}")
+            graded_positions.add(key)
         grades.append(payload)
     return issuances, grades
 
 
-def main() -> int:
+def main(output_root: Path | None = None, *, board_only: bool = False) -> int:
+    global ROOT, DATA
+    if output_root is not None:
+        ROOT = output_root.resolve()
+        DATA = ROOT / "data"
     hydration, runtime, receipt = load_verified_state()
     games, schedule_state = schedule()
     physical = physical_runtime_state()
@@ -448,7 +471,8 @@ def main() -> int:
         game["positions"] = sorted(
             by_game.get(str(game["game_id"]), []), key=lambda row: str(row["position_id"])
         )
-    settlements = [row for grade in grades for row in grade["settlements"]]
+    from apex_nfl.sealed_results import read as canonical_read
+    settlements = canonical_read()["rows"]
     counts = {
         state: sum(1 for row in settlements if row.get("result") == state)
         for state in ("WIN", "LOSS", "PUSH", "VOID")
@@ -547,21 +571,39 @@ def main() -> int:
         "issuances": public_issuances,
         "grades": grades,
     }
+    from apex_nfl.sealed_results import read, load, ROOT as RESULT_ROOT
+    from apex_nfl.grader_products import summarize
+    pointer=load(RESULT_ROOT/'current.json');sealed=read(pointer)
+    cumulative=summarize(sealed['rows']);cumulative['canonical_result']=pointer
+    r=cumulative['season_record'];issued=sum(c['issued'] for c in sealed['coverage'].values())
+    results.update(canonical_result=pointer,coverage=sealed['coverage'],graded_position_count=len(sealed['rows']),
+                   issued_position_count=issued,ungraded_position_count=issued-len(sealed['rows']),
+                   record={'wins':r['W'],'losses':r['L'],'pushes':r['PUSH'],'voids':r['VOID']})
+    archive={'schema_version':'APEX_NFL_RESULTS_ARCHIVE_V2','sport':'NFL','canonical_result':pointer,
+             'rows':sealed['rows'],'coverage':sealed['coverage'],'pending':sealed['pending'],'cumulative':cumulative}
     outputs = {
         "nfl_today.json": today,
         "nfl_system_state.json": system_state,
         "nfl_results_summary.json": results,
         "nfl_results_archive.json": archive,
     }
+    if board_only:
+        outputs = {name: outputs[name] for name in ("nfl_today.json", "nfl_system_state.json")}
     for name, payload in outputs.items():
         atomic_write(DATA / name, payload)
         print(f"NFL_PUBLIC_PAYLOAD={name} SHA256={sha256(DATA / name)}")
     from build_nfl_public_board import build as build_board
     build_board(ROOT)
-    from build_nfl_public_results import build as build_results
-    build_results(ROOT)
+    if not board_only:
+        from build_nfl_public_results import build as build_results
+        build_results(ROOT)
     return 0
 
 
 if __name__ == "__main__":
-    raise SystemExit(main())
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--output-root", type=Path)
+    parser.add_argument("--board-only", action="store_true")
+    args = parser.parse_args()
+    raise SystemExit(main(args.output_root, board_only=args.board_only))

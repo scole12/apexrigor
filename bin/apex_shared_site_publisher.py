@@ -198,6 +198,13 @@ def is_complete(request: Request) -> bool:
             "PUBLISHED_EMAIL_VERIFIED",
             "PUBLISHED_NO_CONTENT_CHANGE_EMAIL_VERIFIED",
         }
+    if request.sport == 'NFL' and request.product == 'GRADER':
+        receipt=load_json(path)
+        if receipt.get('isolated_readback',{}).get('status')=='PASS':
+            sys.path.insert(0,'/opt/apex_nfl/src')
+            from apex_nfl.acceptance_boundary import context
+            return context() is not None
+        return status in FINAL_RECEIPT_STATES and receipt.get('live_readback',{}).get('status')=='PASS'
     return status in FINAL_RECEIPT_STATES
 
 
@@ -315,36 +322,53 @@ def discover_mma() -> list[Request]:
 
 
 def discover_nfl() -> list[Request]:
+    from nfl_publication_acceptance import accepted_stage, accepted_issuance
     requests: list[Request] = []
     if not NFL_QUEUE.is_dir():
         return requests
     for path in sorted(NFL_QUEUE.glob("*.json")):
-        queue = load_json(path)
-        if queue.get('schema') == 'apex.nfl.stage_publication_queue.v2':
-            stage_path = Path(str(queue.get('stage_receipt_path') or ''))
-            valid_root = any(contained(stage_path, root) for root in (
-                Path('/var/opt/apex_nfl/state/cohorts'), Path('/var/opt/apex_nfl/state/stage_events'),
-                Path('/var/opt/apex_nfl/state/season_refresh')))
-            if (not valid_root or not stage_path.is_file()
-                or sha256_file(stage_path) != queue.get('stage_receipt_sha256')
-                or queue.get('status') != 'QUEUED' or queue.get('stage') not in {'T3', 'T2', 'GRADER', 'SCHEDULE_REFRESH'}):
-                raise RuntimeError('Invalid NFL stage publication binding')
-            request = Request('NFL', str(queue['request_id']), queue, None)
+        try:
+            queue = load_json(path)
+            if queue.get('schema') == 'apex.nfl.grader_publication_queue.v1':
+                request = Request('NFL', str(queue['request_id']), queue, None, queue['slate_date'], 'GRADER')
+                if path.stem != request.request_id:raise RuntimeError('GRADER_QUEUE_FILENAME')
+                if not is_complete(request):requests.append(request)
+                continue
+            if queue.get('schema') == 'apex.nfl.stage_publication_queue.v2':
+                stage_path = Path(str(queue.get('stage_receipt_path') or ''))
+                valid_root = any(contained(stage_path, root) for root in (
+                    Path('/var/opt/apex_nfl/state/cohorts'), Path('/var/opt/apex_nfl/state/stage_events'),
+                    Path('/var/opt/apex_nfl/state/season_refresh')))
+                if (not valid_root or not stage_path.is_file()
+                    or sha256_file(stage_path) != queue.get('stage_receipt_sha256')
+                    or queue.get('status') != 'QUEUED' or queue.get('stage') not in {'T3', 'T2', 'GRADER', 'SCHEDULE_REFRESH'}):
+                    raise RuntimeError('Invalid NFL stage publication binding')
+                if queue.get('stage') == 'GRADER':
+                    raise RuntimeError('LEGACY_GRADER_REQUEST_REQUIRES_CANONICAL_RESULT')
+                if queue.get('stage') in {'T3', 'T2'}:
+                    expected_id = hashlib.sha256(f"{queue['stage']}:{stage_path}".encode()).hexdigest()
+                    if queue.get('request_id') != expected_id or not accepted_stage(stage_path):
+                        continue
+                request = Request('NFL', str(queue['request_id']), queue, None)
+                if not is_complete(request):
+                    requests.append(request)
+                continue
+            if queue.get("schema") != "apex.nfl.publication_queue.v1" or queue.get("status") != "QUEUED":
+                raise RuntimeError(f"invalid NFL queue object: {path}")
+            issuance_path = Path(str(queue.get("issuance_path") or ""))
+            if not contained(issuance_path, NFL_ISSUANCE) or not issuance_path.is_file():
+                raise RuntimeError(f"NFL issuance escaped its authority: {issuance_path}")
+            if sha256_file(issuance_path) != queue.get("issuance_sha256"):
+                raise RuntimeError(f"NFL issuance hash mismatch: {issuance_path}")
+            issuance = load_json(issuance_path)
+            if not accepted_issuance(issuance_path, issuance):
+                continue
+            request_id = str(issuance.get("issuance_id") or path.stem)
+            request = Request("NFL", request_id, {**queue, "issuance": issuance}, None)
             if not is_complete(request):
                 requests.append(request)
-            continue
-        if queue.get("schema") != "apex.nfl.publication_queue.v1" or queue.get("status") != "QUEUED":
-            raise RuntimeError(f"invalid NFL queue object: {path}")
-        issuance_path = Path(str(queue.get("issuance_path") or ""))
-        if not contained(issuance_path, NFL_ISSUANCE) or not issuance_path.is_file():
-            raise RuntimeError(f"NFL issuance escaped its authority: {issuance_path}")
-        if sha256_file(issuance_path) != queue.get("issuance_sha256"):
-            raise RuntimeError(f"NFL issuance hash mismatch: {issuance_path}")
-        issuance = load_json(issuance_path)
-        request_id = str(issuance.get("issuance_id") or path.stem)
-        request = Request("NFL", request_id, {**queue, "issuance": issuance}, None)
-        if not is_complete(request):
-            requests.append(request)
+        except Exception as error:
+            requests.append(Request('NFL', path.stem, {'discovery_error':str(error)}, None))
     return requests
 
 
@@ -590,6 +614,10 @@ def allowed_site_change(relative: str) -> bool:
 
 
 def build_request(request: Request, worktree: Path) -> dict[str, Any]:
+    if request.manifest.get('discovery_error'):
+        raise RuntimeError(request.manifest['discovery_error'])
+    if request.sport == 'NFL' and request.product == 'GRADER':
+        return build_nfl_grader(request, worktree)
     if request.sport in {"NCAAF", "MMA"}:
         copy_queued_payload(request, worktree)
     if request.sport == "NCAAF":
@@ -601,7 +629,9 @@ def build_request(request: Request, worktree: Path) -> dict[str, Any]:
         python_tool(worktree, "build_mma_results_page.py")
         python_tool(worktree, "build_mma_about_page.py")
     elif request.sport == "NFL":
-        python_tool(worktree, "build_nfl_public_payload.py")
+        # Execute the reviewed admission gate from this publication worktree.
+        run([sys.executable, str(worktree / "bin/build_nfl_public_payload.py"),
+             "--output-root", str(worktree)], cwd=worktree)
     else:
         raise RuntimeError(f"unsupported sport publication request: {request.sport}")
     if request.sport == 'NFL':
@@ -619,7 +649,9 @@ def build_request(request: Request, worktree: Path) -> dict[str, Any]:
         changed = dirty_paths(worktree)
         if any(not (p.startswith('data/nfl_') or p.startswith('nfl/')) for p in changed):
             raise RuntimeError('NFL publication attempted a non-NFL path')
-        return {'changed_paths': sorted(changed), 'audit_tail': 'NFL authority-bound builder completed'}
+        surfaces = ('data/nfl_today.json', 'data/nfl_system_state.json', 'data/nfl_results_archive.json', 'data/nfl_results_summary.json', 'nfl/index.html')
+        return {'changed_paths': sorted(changed), 'audit_tail': 'NFL authority-bound builder completed',
+                'nfl_surface_hashes': {name: sha256_file(worktree / name) for name in surfaces}}
     if request.sport == "NCAAF" and request.product == "RESULTS":
         # Results recovery owns NCAA output paths. Shared navigation/analytics
         # rewrites are unrelated and can modify currently issued picks pages.
@@ -646,6 +678,13 @@ def build_request(request: Request, worktree: Path) -> dict[str, Any]:
 
 
 def publish(request: Request, *, dry_run: bool) -> dict[str, Any]:
+    if request.sport=='NFL' and not dry_run:
+        return publish_nfl_durable(request)
+    intent=STATE_ROOT/'publication_intents'/request.sport.lower()/(request.request_id+'.json')
+    if request.sport=='NFL' and not dry_run and intent.exists():
+        prior=load_json(intent)
+        if prior.get('request_id')!=request.request_id or (request.product=='GRADER' and prior.get('canonical_result')!=request.manifest['canonical_result']):raise RuntimeError('PUBLICATION_INTENT_DRIFT')
+        return prior
     origin = git("remote", "get-url", "origin")
     if CANONICAL_REMOTE not in origin:
         raise RuntimeError(f"noncanonical site origin: {origin}")
@@ -701,13 +740,81 @@ def publish(request: Request, *, dry_run: bool) -> dict[str, Any]:
     git("fetch", "--quiet", "origin", "main")
     if not dirty_paths(ROOT) and git("rev-parse", "HEAD") != git("rev-parse", "origin/main"):
         git("merge", "--ff-only", "origin/main")
-    return {
-        "status": publication_state,
-        "sport": request.sport,
-        "request_id": request.request_id,
-        "published_commit": commit,
-        **build,
-    }
+    result={"status":publication_state,"sport":request.sport,"request_id":request.request_id,
+            "published_commit":commit,**build}
+    if request.sport=='NFL':atomic_json(intent,result)
+    return result
+
+
+def nfl_boundary(label, artifact=None):
+    sys.path.insert(0,'/opt/apex_nfl/src')
+    from apex_nfl.acceptance_boundary import stage
+    stage(label,artifact)
+
+
+def publish_nfl_durable(request):
+    """Keep the exact request worktree and commit across each durable boundary."""
+    if not re.fullmatch('[a-f0-9]{64}', request.request_id):
+        raise RuntimeError('NFL_REQUEST_ID')
+    intent=STATE_ROOT/'publication_intents/nfl'/(request.request_id+'.json')
+    worktree=STATE_ROOT/'worktrees'/('nfl-'+request.request_id)
+    worktree.parent.mkdir(parents=True,exist_ok=True)
+    origin=git('remote','get-url','origin')
+    sys.path.insert(0,'/opt/apex_nfl/src')
+    from apex_nfl.acceptance_boundary import context
+    isolated=context()
+    if isolated:
+        if origin!='file:///var/opt/apex_site_publisher/isolated-origin.git':
+            raise RuntimeError('ISOLATED_PUBLICATION_EXTERNAL_REMOTE_REFUSED')
+    elif CANONICAL_REMOTE not in origin:
+        raise RuntimeError('NONCANONICAL_REMOTE')
+    if git('branch','--show-current')!='main':raise RuntimeError('NONCANONICAL_BRANCH')
+    if intent.exists():
+        state=load_json(intent)
+        if state['request_id']!=request.request_id or state['request_sha256']!=hashlib.sha256(canonical_json(request.manifest)).hexdigest():
+            raise RuntimeError('PUBLICATION_INTENT_DRIFT')
+    else:
+        git('fetch','--quiet','origin','main')
+        state={'request_id':request.request_id,'request_sha256':hashlib.sha256(canonical_json(request.manifest)).hexdigest(),
+               'phase':'STARTED','base_commit':git('rev-parse','origin/main'),'worktree':str(worktree)}
+        atomic_json(intent,state);nfl_boundary('PUBLISH_REQUEST_INTENT',intent)
+    if state['phase']=='STARTED':
+        if not worktree.exists():git('worktree','add','--detach',str(worktree),state['base_commit'])
+        if git('rev-parse','HEAD',cwd=worktree)!=state['base_commit']:
+            raise RuntimeError('UNEXPECTED_UNCOMMITTED_PUBLICATION')
+        build=build_request(request,worktree)
+        changed=build['changed_paths']
+        if changed:git('add','--',*changed,cwd=worktree)
+        if set(git('diff','--cached','--name-only',cwd=worktree).splitlines())!=set(changed):
+            raise RuntimeError('PUBLICATION_STAGE_DRIFT')
+        state.update(phase='BUILT',build=build,tree=git('write-tree',cwd=worktree),
+                     commit_time=datetime.now(timezone.utc).isoformat())
+        atomic_json(intent,state);nfl_boundary('PUBLISH_BUILD_DURABLE',intent)
+    if state['phase']=='BUILT':
+        if state['build']['changed_paths']:
+            # commit-tree is deterministic, including a persisted timestamp, after a crash.
+            env={**os.environ,'GIT_AUTHOR_NAME':'APEX Principal Engineer','GIT_AUTHOR_EMAIL':'ops@apexrigor.com',
+                 'GIT_COMMITTER_NAME':'APEX Principal Engineer','GIT_COMMITTER_EMAIL':'ops@apexrigor.com',
+                 'GIT_AUTHOR_DATE':state['commit_time'],'GIT_COMMITTER_DATE':state['commit_time']}
+            commit=subprocess.check_output(['git','commit-tree',state['tree'],'-p',state['base_commit'],'-m',
+                'Publish NFL production state '+request.request_id[:12]],cwd=worktree,env=env,text=True).strip()
+            git('update-ref','refs/apex-publications/'+request.request_id,commit)
+            nfl_boundary('PUBLISH_COMMIT_OBJECT_DURABLE')
+        else:commit=state['base_commit']
+        state.update(phase='COMMITTED',published_commit=commit)
+        atomic_json(intent,state);nfl_boundary('PUBLISH_COMMIT_INTENT',intent)
+    if state['phase']=='COMMITTED':
+        git('fetch','--quiet','origin','main')
+        ancestor=subprocess.run(['git','merge-base','--is-ancestor',state['published_commit'],'origin/main'],cwd=ROOT).returncode
+        if ancestor:
+            if git('rev-parse','origin/main')!=state['base_commit']:
+                raise RuntimeError('PUBLICATION_ORIGIN_ADVANCED_RECONCILIATION_REQUIRED')
+            git('push','origin',state['published_commit']+':refs/heads/main')
+        nfl_boundary('PUBLISH_REMOTE_PUSH_DURABLE')
+        state['phase']='PUSHED';atomic_json(intent,state);nfl_boundary('PUBLISH_PUSH_INTENT',intent)
+    if state['phase']!='PUSHED':raise RuntimeError('PUBLICATION_UNKNOWN_PHASE')
+    return {'status':'PUBLISHED' if state['build']['changed_paths'] else 'PUBLISHED_NO_CONTENT_CHANGE',
+            'sport':'NFL','request_id':request.request_id,'published_commit':state['published_commit'],**state['build']}
 
 
 def ncaaf_workflow_title(request: Request) -> str:
@@ -1050,26 +1157,194 @@ def prepare_due_ncaaf_records() -> list[dict[str, Any]]:
 
 def execute(*, dry_run: bool, sport: str | None = None) -> dict[str, Any]:
     LOCK_PATH.parent.mkdir(parents=True, exist_ok=True)
-    with LOCK_PATH.open("a+", encoding="utf-8") as lock:
+    with LOCK_PATH.open('a+') as lock:
         fcntl.flock(lock.fileno(), fcntl.LOCK_EX)
-        prepared = prepare_due_ncaaf_records() if not dry_run and sport is None else []
-        pending = discover_nfl() if sport == "NFL" else discover()
-        if not pending:
-            return {"status": "NO_PENDING_REQUEST", "pending_count": 0,
-                    "shared_results_preparation": prepared}
-        request = pending[0]
-        result = publish(request, dry_run=dry_run)
-        result["pending_count_before"] = len(pending)
-        if dry_run:
-            return result
-        result["published_at_utc"] = datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
-        if request.sport == "NCAAF":
-            # Keep the prior dispatch intent intact until the email reconciler
-            # has consumed it, including after a publication-process restart.
-            result = dispatch_ncaaf_email(request, result)
-        else:
-            atomic_json(receipt_path(request), result)
+        results=[]
+        try:
+            prepared=prepare_due_ncaaf_records() if not dry_run and sport is None else []
+        except Exception as error:
+            prepared=[{'status':'PREPARATION_FAILED','error':str(error)}]
+        pending=discover_nfl() if sport=='NFL' else discover_isolated()
+        for request in pending:
+            try:
+                result=publish(request,dry_run=dry_run)
+                if not dry_run:
+                    result['published_at_utc']=datetime.now(timezone.utc).isoformat()
+                    if request.sport=='NFL':
+                        result=verify_nfl_publication(request,result)
+                    if request.sport=='NCAAF':
+                        result=dispatch_ncaaf_email(request,result)
+                    else:
+                        atomic_json(receipt_path(request),result)
+                        if request.sport=='NFL':nfl_boundary('PUBLISH_RECEIPT_DURABLE',receipt_path(request))
+                results.append(result)
+            except Exception as error:
+                failure={'status':'REQUEST_FAILED','sport':request.sport,'request_id':request.request_id,
+                         'error':type(error).__name__+':'+str(error),'at':datetime.now(timezone.utc).isoformat()}
+                if not dry_run:
+                    failure_root=STATE_ROOT/'failures'/request.sport.lower()/request.request_id
+                    failure_root.mkdir(parents=True,exist_ok=True)
+                    atomic_json(failure_root/(str(time.time_ns())+'.json'),failure)
+                results.append(failure)
+        return {'status':'PASS' if results and all(r['status']!='REQUEST_FAILED' for r in results) else
+                'PARTIAL_FAILURE' if results else 'NO_PENDING_REQUEST','requests':results,'shared_results_preparation':prepared}
+
+
+def discover_isolated():
+    now=datetime.now(NY).date()
+    requests=[]
+    for sport,fn in [('NCAAF',lambda:discover_ncaaf(now.isoformat(),(now-timedelta(days=1)).isoformat())),
+                     ('MMA',discover_mma),('NFL',discover_nfl)]:
+        try:requests.extend(fn())
+        except Exception as error:
+            requests.append(Request(sport,'discovery',{'discovery_error':str(error)},None))
+    return requests
+
+
+def build_nfl_grader(request, worktree):
+    sys.path.insert(0,'/opt/apex_nfl/src')
+    from apex_nfl.sealed_results import read, canonical
+    from apex_nfl.grader_products import summarize
+    queue=request.manifest;pointer=queue['canonical_result'];payload=read(pointer)
+    expected=hashlib.sha256(canonical({'stage':'GRADER','slate_date':queue['slate_date'],'canonical_result':pointer})).hexdigest()
+    if request.request_id!=expected or queue.get('status')!='QUEUED':raise RuntimeError('GRADER_REQUEST_BINDING')
+    products=queue['products']
+    if products.get('canonical_result')!=pointer:raise RuntimeError('GRADER_PRODUCT_BINDING')
+    for field in ('pdf','png1','png2','cumulative_json'):
+        path=Path(products[field])
+        if not contained(path,Path('/var/opt/apex_nfl/grades/products')) or sha256_file(path)!=products[field+'_sha256']:
+            raise RuntimeError('GRADER_PRODUCT_HASH:'+field)
+    # Advance the NFL schedule in the same publication as the accepted grader.
+    # Board-only output preserves the detailed results surface and sealed rows.
+    run([sys.executable, str(worktree / 'bin/build_nfl_public_payload.py'),
+         '--output-root', str(worktree), '--board-only'], cwd=worktree)
+    rows=payload['rows'];cumulative=summarize(rows);cumulative['canonical_result']=pointer
+    previous=worktree/'data/nfl_results_archive.json'
+    if previous.exists():
+        old=load_json(previous)
+        old_rows=old.get('rows',[])
+        if not old_rows:
+            old_rows=[dict(r,issuance_id=g.get('issuance_id'),sport='NFL') for g in old.get('grades',[]) for r in g.get('settlements',[])]
+        incoming={(r['sport'],r['issuance_id'],r['position_id']):r for r in rows}
+        for row in old_rows:
+            key=(row.get('sport','NFL'),row.get('issuance_id'),row['position_id'])
+            if key not in incoming or incoming[key]['result']!=row['result']:
+                raise RuntimeError('NFL_RESULT_REGRESSION_OR_CONFLICT')
+
+    issued=sum(c['issued'] for c in payload['coverage'].values())
+    record=cumulative['season_record']
+    summary={'schema_version':'APEX_NFL_RESULTS_SUMMARY_V1','sport':'NFL','canonical_result':pointer,
+             'coverage':payload['coverage'],'graded_position_count':len(rows),'issued_position_count':issued,
+             'ungraded_position_count':issued-len(rows),'record':{'wins':record['W'],'losses':record['L'],'pushes':record['PUSH'],'voids':record['VOID']}}
+    archive={'schema_version':'APEX_NFL_RESULTS_ARCHIVE_V2','sport':'NFL','canonical_result':pointer,
+             'rows':rows,'coverage':payload['coverage'],'pending':payload['pending'],'cumulative':cumulative}
+    for name,value in [('nfl_results_summary.json',summary),('nfl_results_archive.json',archive)]:
+        atomic_json(worktree/'data'/name,value)
+    # Install only the NFL renderer in this same publisher-owned source commit.
+    renderer='nfl/results/render.js'
+    shutil.copy2(ROOT/renderer,worktree/renderer)
+    changed=dirty_paths(worktree)
+    surfaces={'data/nfl_results_summary.json','data/nfl_results_archive.json',renderer,
+              'data/nfl_today.json','data/nfl_system_state.json','nfl/index.html'}
+    if not changed<=surfaces:raise RuntimeError('GRADER_UNOWNED_SITE_WRITE')
+    return {'changed_paths':sorted(changed),'canonical_result':pointer,
+            'nfl_surface_hashes':{name:sha256_file(worktree/name) for name in surfaces},'audit_tail':'canonical sealed result rows only'}
+
+
+def verify_nfl_publication(request, result):
+    import urllib.request
+    sys.path.insert(0,'/opt/apex_nfl/src')
+    from apex_nfl.acceptance_boundary import context
+    isolated=context()
+    if isolated:
+        # A real local Git origin and HTTP service exercise isolated publication.
+        # No Vercel/production deployment or live-domain PASS is invented here.
+        worktree=STATE_ROOT/'worktrees'/('nfl-'+request.request_id)
+        rows=[]
+        for name,expected in result['nfl_surface_hashes'].items():
+            with urllib.request.urlopen('http://127.0.0.1:18913/'+worktree.name+'/'+name,timeout=20) as response:
+                actual=hashlib.sha256(response.read()).hexdigest()
+                if response.status!=200 or actual!=expected:raise RuntimeError('ISOLATED_HTTP_BYTES_CHANGED')
+                rows.append({'path':name,'sha256':actual,'http_status':200})
+        result['isolated_readback']={'status':'PASS','surfaces':rows,'external_publications':0,'actual_git_commit':result['published_commit']}
+        nfl_boundary('PUBLISH_ISOLATED_HTTP_VERIFIED')
         return result
+    # GitHub deployment evidence must name this exact source commit and a successful production deployment.
+    raw=git_deployment(result['published_commit'], result['nfl_surface_hashes'], request.request_id)
+    surfaces=[]
+    for name,expected in result['nfl_surface_hashes'].items():
+        url='https://apexrigor.com/'+('nfl/' if name=='nfl/index.html' else name)
+        with urllib.request.urlopen(urllib.request.Request(url,headers={'Cache-Control':'no-cache'}),timeout=20) as response:
+            actual=hashlib.sha256(response.read()).hexdigest()
+            if response.status!=200 or actual!=expected:raise RuntimeError('LIVE_BYTES_PENDING:'+name)
+            surfaces.append({'url':url,'sha256':actual,'http_status':200})
+    result['deployment']=raw
+    # Re-resolve the canonical alias after HTTP reads to reject an in-flight deployment switch.
+    current=vercel_deployment()
+    if current.get('id')!=raw['id'] or current.get('meta',{}).get('githubCommitSha')!=raw['sha']:
+        raise RuntimeError('PRODUCTION_ALIAS_CHANGED_DURING_READBACK')
+    result['live_readback']={'status':'PASS','published_commit':result['published_commit'],
+                             'deployed_commit':raw['sha'],'deployment_id':raw['id'],'surfaces':surfaces}
+    nfl_boundary('PUBLISH_PRODUCTION_LIVE_VERIFIED')
+    return result
+
+
+def vercel_deployment():
+    import urllib.request
+    credentials=load_json(Path('/root/.local/share/com.vercel.cli/auth.json'))
+    token=credentials.get('token') or credentials.get('accessToken')
+    if not token:raise RuntimeError('EXISTING_VERCEL_READ_CREDENTIAL_UNAVAILABLE')
+    url='https://api.vercel.com/v13/deployments/apexrigor.com?teamId=team_ZbMl7Z31fLqnzoCYHAY2a1rk&withGitRepoInfo=true'
+    with urllib.request.urlopen(urllib.request.Request(url,headers={'Authorization':'Bearer '+token}),timeout=30) as response:
+        return json.load(response)
+
+
+def deployment_proof(d, commit, surface_hashes=None, request_id=None, *, repo=None):
+    """An alias may advance for another sport only with unchanged request-bound NFL bytes."""
+    import re
+    repo=ROOT if repo is None else Path(repo)
+    meta=d.get('meta',{});deployed=meta.get('githubCommitSha')
+    if (d.get('readyState')!='READY' or d.get('target')!='production' or
+        d.get('projectId')!='prj_eZTtqClkwx7IcE7NhVAK6UFmBnnB' or
+        'apexrigor.com' not in d.get('alias',[]) or
+        meta.get('githubCommitOrg')!='scole12' or meta.get('githubCommitRepo')!='apexrigor' or
+        meta.get('githubCommitRef')!='main' or not re.fullmatch(r'[0-9a-f]{40}',str(commit)) or
+        not re.fullmatch(r'[0-9a-f]{40}',str(deployed))):
+        raise RuntimeError('CANONICAL_PRODUCTION_DEPLOYMENT_REQUIRED:'+str(commit))
+    if deployed!=commit and (not surface_hashes or not request_id):
+        raise RuntimeError('DESCENDANT_REQUIRES_REQUEST_BOUND_SURFACES')
+    ancestry=subprocess.run(['git','merge-base','--is-ancestor',commit,deployed],cwd=repo,
+                            stdout=subprocess.PIPE,stderr=subprocess.PIPE,timeout=30)
+    if ancestry.returncode!=0:raise RuntimeError('DEPLOYMENT_NOT_REQUEST_DESCENDANT')
+    verified={}
+    for name,expected in sorted((surface_hashes or {}).items()):
+        if safe_relative(name)!=name or not (name.startswith('data/nfl_') or name.startswith('nfl/')):
+            raise RuntimeError('INVALID_NFL_SURFACE:'+name)
+        if not re.fullmatch(r'[0-9a-f]{64}',str(expected)):raise RuntimeError('INVALID_SURFACE_HASH')
+        hashes={}
+        for role,ref in [('request',commit),('deployment',deployed)]:
+            raw=subprocess.check_output(['git','show',ref+':'+name],cwd=repo,timeout=30)
+            hashes[role]=hashlib.sha256(raw).hexdigest()
+        if hashes['request']!=expected or hashes['deployment']!=expected:
+            raise RuntimeError('REQUEST_BOUND_NFL_SURFACE_CHANGED:'+name)
+        verified[name]={'expected_sha256':expected,'request_sha256':hashes['request'],
+                        'deployment_sha256':hashes['deployment']}
+    return {'id':d['id'],'project_id':d['projectId'],'sha':deployed,'request_commit':commit,
+            'request_id':request_id,'target':'production','ready_state':'READY',
+            'alias':'apexrigor.com','url':d['url'],
+            'binding':'EXACT_COMMIT' if deployed==commit else 'VERIFIED_DESCENDANT_UNCHANGED_NFL',
+            'ancestry':{'ancestor':commit,'descendant':deployed,'merge_base_is_ancestor_exit':0},
+            'request_bound_surfaces':verified}
+
+
+def git_deployment(commit, surface_hashes=None, request_id=None):
+    if request_id:
+        intent=load_json(STATE_ROOT/'publication_intents/nfl'/(safe_relative(request_id)+'.json'))
+        if (intent.get('phase')!='PUSHED' or intent.get('request_id')!=request_id or
+            intent.get('published_commit')!=commit or
+            intent.get('build',{}).get('nfl_surface_hashes')!=surface_hashes):
+            raise RuntimeError('DURABLE_NFL_REQUEST_COMMIT_SURFACE_BINDING')
+    return deployment_proof(vercel_deployment(),commit,surface_hashes,request_id)
 
 
 def main() -> int:
