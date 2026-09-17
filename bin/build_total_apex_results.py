@@ -1,34 +1,15 @@
 #!/usr/bin/env python3
-"""Publish the shared total from saved sport books and refresh the central banner."""
+"""Publish the shared total from saved sport books for the shared site header."""
 from __future__ import annotations
 
 import argparse
-from html import escape
 import json
 import os
 from pathlib import Path
-import re
 
 from apex_total_results import fuse_summary
 
 ROOT = Path(__file__).resolve().parents[1]
-
-
-def total_banner(content, summary):
-    overall = summary["overall"]
-    record = f"{overall['wins']:,}-{overall['losses']:,}"
-    if overall["pushes"]:
-        record += f"-{overall['pushes']}P"
-    if len(re.findall(r'<div\b[^>]*\bid="apex-total-record"[^>]*>', content)) != 1:
-        raise ValueError("Missing or duplicate central results banner: apex-total-record")
-    for cell_id, value in (("apex-total-value", record),
-                           ("apex-total-rate", overall["win_rate_display"])):
-        content, count = re.subn(
-            rf'(<div\b[^>]*\bid="{cell_id}"[^>]*>)[^<]*(</div>)',
-            lambda match: match[1] + escape(value) + match[2], content)
-        if count != 1:
-            raise ValueError(f"Missing or duplicate central results cell: {cell_id}")
-    return content
 
 
 def write_full(path, content):
@@ -50,10 +31,6 @@ def build(root=ROOT):
     summary = fuse_summary(json.loads(source.read_text(encoding="utf-8")), data_dir=source.parent)
     # Prepare and validate all outputs before replacing the shared summary.
     outputs = {source: json.dumps(summary, indent=2, ensure_ascii=False) + "\n"}
-    for relative in ("results/index.html", "results.html"):
-        path = root / relative
-        if path.exists():
-            outputs[path] = total_banner(path.read_text(encoding="utf-8"), summary)
     for path, content in outputs.items():
         write_full(path, content)
     print(f"TOTAL_APEX={summary['overall_wins']}W-{summary['overall_losses']}L-{summary['overall_pushes']}P SPORTS={','.join(summary['sports_included'])}")

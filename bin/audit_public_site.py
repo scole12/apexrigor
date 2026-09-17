@@ -12,6 +12,7 @@ import sys
 from pathlib import Path
 
 from _mma_forecast_contract import validated_card, validated_positions
+from _apex_site_record import record_strip
 
 DEFAULT_ROOT = Path(__file__).resolve().parents[1]
 BEACON_URL = "https://static.cloudflareinsights.com/beacon.min.js"
@@ -233,9 +234,21 @@ def main() -> int:
             errors.append(f"/mma/about retains obsolete wording: {obsolete_text}")
     if 'id="active-model"' in mma_about:
         errors.append("/mma/about exposes an active-model field")
-    shared_results_page = root / "results" / "index.html"
-    if not shared_results_page.is_file() or shared_results_page.read_text(encoding="utf-8").count("APEX TOTAL RECORD") != 1:
-        errors.append("/results must label the fused tally APEX TOTAL RECORD exactly once")
+    expected_strip = record_strip(json.loads((root / "data/apex_results_summary.json").read_text()))
+    for route, text in route_text.items():
+        if text.count('class="apex-site-record"') != 1 or expected_strip not in text:
+            errors.append(f"{route} must contain exactly one current shared site record")
+        elif text.index(expected_strip) > text.index('<nav class="sport-nav"'):
+            errors.append(f"{route} shared record must precede sport navigation")
+    for relative in ("results/index.html", "results.html"):
+        text = (root / relative).read_text()
+        for token in ('APEX TOTAL RECORD', 'apex-total-record', 'apex-total-value',
+                      'apex-total-rate', 'fetch("/data/apex_results_summary.json"'):
+            if token in text:
+                errors.append(f"{relative} contains obsolete sport-body fused total: {token}")
+        for label in ("MLB Overall", "F5 Spread", "F5 Total"):
+            if label not in text:
+                errors.append(f"{relative} missing MLB season metric: {label}")
 
     required_mma_payloads = {
         "mma_today.json": {"APEX_MMA_TODAY_V1"},

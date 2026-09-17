@@ -28,7 +28,7 @@
 <meta name="twitter:title" content="APEX — Results">
 <meta name="twitter:description" content="Quantitative forecasting for model-driven sports markets.">
 <meta name="twitter:image" content="https://apexrigor.com/og-image.png?v=apex-20260629-tier-perf">
-<link rel="stylesheet" href="/assets/apex.css?v=apex-20260629-tier-perf">
+<link rel="stylesheet" href="/assets/apex.css?v=apex-20260917-site-record">
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "2ee12644257c4dd3b0357c59a12a109c"}'></script><!-- End Cloudflare Web Analytics -->
 <!-- Vercel Web Analytics --><script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script><script defer src="/_vercel/insights/script.js"></script><!-- End Vercel Web Analytics -->
 </head>
@@ -43,6 +43,7 @@
     <div class="hero-tag">QUANTITATIVE FORECASTING</div>
     <div class="hero-math">The Math Speaks.</div>
   </div>
+  <aside class="apex-site-record" aria-label="APEX all-sports lifetime record"><span class="site-record-label">APEX · ALL SPORTS · ALL TIME</span><span>Overall <strong class="mono">2,122-1,942-26P</strong></span><span>Win rate <strong class="mono">52.2%</strong></span></aside>
   <div class="apex-nav-stack">
   <nav class="sport-nav" aria-label="Sport selector">
     <a href="/results" class="active" aria-current="true">MLB</a>
@@ -57,18 +58,10 @@
   </nav>
   </div>
   <div class="section-head">
-    <div class="title">APEX TOTAL RECORD</div>
-    <div class="meta mono">ALL LIVE SPORTS · FOREVER</div>
-  </div>
-  <div class="banner" id="apex-total-record">
-    <div class="cell"><div class="label">Overall</div><div class="val mono" id="apex-total-value">2,122-1,942-26P</div></div>
-    <div class="cell"><div class="label">Win Rate</div><div class="val mono" id="apex-total-rate">52.2%</div></div>
-  </div>
-  <div class="section-head">
     <div class="title">SEASON RECORD</div>
     <div class="meta mono">THURSDAY, SEPTEMBER 17, 2026 · 3,647 POSITIONS TRACKED</div>
   </div>
-  <div class="banner" data-apex-season-record="1,868-1,734-26P" data-apex-season-win-rate="51.9%" data-apex-ats-record="940-871-4P" data-apex-totals-record="928-863-22P">
+  <div class="banner banner-4" data-apex-season-record="1,868-1,734-26P" data-apex-season-win-rate="51.9%" data-apex-ats-record="940-871-4P" data-apex-totals-record="928-863-22P">
     <div class="cell"><div class="label">MLB Overall</div><div class="val mono">1,868-1,734-26P</div></div>
     <div class="cell"><div class="label">Win Rate</div><div class="val mono">51.9%</div></div>
     <div class="cell"><div class="label">F5 Spread</div><div class="val mono">940-871-4P</div></div>
@@ -1125,20 +1118,5 @@
   </table>
   <div class="tag">THE MATH SPEAKS.</div>
 </div>
-<script>
-(() => {
-  async function refreshTotal() {
-    const response = await fetch("/data/apex_results_summary.json", {cache:"no-store"});
-    if (!response.ok) throw new Error(`Total record HTTP ${response.status}`);
-    const summary = await response.json();
-    const counts = [summary.overall_wins, summary.overall_losses, summary.overall_pushes];
-    if (!counts.every(n => Number.isSafeInteger(n) && n >= 0) ||
-        typeof summary.overall_win_rate_display !== "string") throw new Error("Invalid total record");
-    document.getElementById("apex-total-value").textContent = `${counts[0].toLocaleString("en-US")}-${counts[1].toLocaleString("en-US")}-${counts[2]}P`;
-    document.getElementById("apex-total-rate").textContent = summary.overall_win_rate_display;
-  }
-  refreshTotal().catch(console.error);
-})();
-</script>
 </body>
 </html>

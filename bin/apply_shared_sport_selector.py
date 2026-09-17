@@ -11,8 +11,11 @@ fabricates an NFL destination.
 from __future__ import annotations
 
 import argparse
+import json
 import re
 from pathlib import Path
+
+from _apex_site_record import apply_record_strip
 
 
 ROUTES = {
@@ -104,6 +107,7 @@ def main() -> int:
     parser.add_argument("--allow-missing", action="store_true")
     args = parser.parse_args()
     root = args.root.resolve()
+    summary = json.loads((root / "data/apex_results_summary.json").read_text())
     nfl_state = {relative: (root / relative).is_file() for relative in NFL_ROUTES}
     if any(nfl_state.values()) and not all(nfl_state.values()):
         raise RuntimeError(f"partial NFL route set is forbidden: {nfl_state}")
@@ -135,6 +139,7 @@ def main() -> int:
             )
             if hero_count != 1:
                 raise RuntimeError(f"unable to resolve NCAA hero branding: {path}")
+        updated = apply_record_strip(updated, summary)
         if updated != text:
             path.write_text(updated, encoding="utf-8")
             changed += 1

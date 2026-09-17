@@ -120,8 +120,6 @@ def build():
         except Exception:
             return "0000-00-00"
     archive_sorted = sorted(archive, key=_date_sort_key, reverse=True)
-    total_record = f"{summary['overall_wins']:,}-{summary['overall_losses']:,}-{summary['overall_pushes']}P"
-    total_rate = summary["overall_win_rate_display"]
     mlb = summary["sports"]["mlb"]
     sw = mlb["wins"]
     sl = mlb["losses"]
@@ -287,18 +285,10 @@ def build():
   </nav>
   </div>
   <div class="section-head">
-    <div class="title">APEX TOTAL RECORD</div>
-    <div class="meta mono">ALL LIVE SPORTS · FOREVER</div>
-  </div>
-  <div class="banner" id="apex-total-record">
-    <div class="cell"><div class="label">Overall</div><div class="val mono" id="apex-total-value">{html.escape(total_record)}</div></div>
-    <div class="cell"><div class="label">Win Rate</div><div class="val mono" id="apex-total-rate">{html.escape(total_rate)}</div></div>
-  </div>
-  <div class="section-head">
     <div class="title">SEASON RECORD</div>
     <div class="meta mono">{html.escape(today_str)} · {s_rows:,} POSITIONS TRACKED</div>
   </div>
-  <div class="banner" data-apex-season-record="{html.escape(s_record)}" data-apex-season-win-rate="{html.escape(s_wr)}" data-apex-ats-record="{html.escape(fmt_market(ats))}" data-apex-totals-record="{html.escape(fmt_market(tot))}">
+  <div class="banner banner-4" data-apex-season-record="{html.escape(s_record)}" data-apex-season-win-rate="{html.escape(s_wr)}" data-apex-ats-record="{html.escape(fmt_market(ats))}" data-apex-totals-record="{html.escape(fmt_market(tot))}">
     <div class="cell"><div class="label">MLB Overall</div><div class="val mono">{html.escape(s_record)}</div></div>
     <div class="cell"><div class="label">Win Rate</div><div class="val mono">{html.escape(s_wr)}</div></div>
     <div class="cell"><div class="label">F5 Spread</div><div class="val mono">{html.escape(fmt_market(ats))}</div></div>
@@ -315,21 +305,6 @@ def build():
   </table>
 {slate_html}  <div class="tag">THE MATH SPEAKS.</div>
 </div>
-<script>
-(() => {{
-  async function refreshTotal() {{
-    const response = await fetch("/data/apex_results_summary.json", {{cache:"no-store"}});
-    if (!response.ok) throw new Error(`Total record HTTP ${{response.status}}`);
-    const summary = await response.json();
-    const counts = [summary.overall_wins, summary.overall_losses, summary.overall_pushes];
-    if (!counts.every(n => Number.isSafeInteger(n) && n >= 0) ||
-        typeof summary.overall_win_rate_display !== "string") throw new Error("Invalid total record");
-    document.getElementById("apex-total-value").textContent = `${{counts[0].toLocaleString("en-US")}}-${{counts[1].toLocaleString("en-US")}}-${{counts[2]}}P`;
-    document.getElementById("apex-total-rate").textContent = summary.overall_win_rate_display;
-  }}
-  refreshTotal().catch(console.error);
-}})();
-</script>
 </body>
 </html>
 """
