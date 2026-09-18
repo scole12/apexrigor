@@ -1,0 +1,42 @@
+{
+  "attachment_count": 1,
+  "attachment_names": [
+    "T3_APEX_NCAAF_DATA_REPORT_20260918.pdf"
+  ],
+  "canonical_game_count": 3,
+  "canonical_public_payload_sha256": "637adcafff72c99d6a483b6944ee62a4b1e6323f7fc62b2901a2de7f410d9ede",
+  "count_scope": "EXPLICIT_CANONICAL_AND_DISPLAY",
+  "delivery_product": "T3",
+  "display_date": "September 18, 2026",
+  "display_game_count": 3,
+  "display_slate_date_et": "2026-09-18",
+  "files": {
+    "T3_APEX_NCAAF_DATA_REPORT_20260918.pdf": "4505e4c0e04425bbdc28e428fff927d81d1a036f1a691f6518abf6d4c93f8cd1"
+  },
+  "graded_date": null,
+  "graded_slate_date_et": null,
+  "internal_market_pending_game_count": 3,
+  "issued_game_count": 0,
+  "market_pending_game_count": 3,
+  "official_position_count": 0,
+  "queue_request_id": "3eddae4befa87ec2228743c8d481068f4aa09b4aa7de125f1e831bde666cb251",
+  "results_files": {},
+  "schema_version": "apex.ncaaf.full_slate_delivery.v5.shared_publisher",
+  "sealed_day_payload_sha256": "637adcafff72c99d6a483b6944ee62a4b1e6323f7fc62b2901a2de7f410d9ede",
+  "season_year": null,
+  "slate_date": "2026-09-18",
+  "t3_hydration_proof": {
+    "all_three_post_commit_reopen": "PASS",
+    "execution_mode": "OFFICIAL_T3",
+    "outcome_read_count": 0,
+    "path": "T3_LIVING_HYDRATION_RECEIPT_20260918.json",
+    "sha256": "30d17b64599ee995b435ef886d5d6932e5417028dd5493aa5a7da21db99b13db",
+    "status": "PASS"
+  },
+  "t3_timing": {
+    "actual_hydration_receipt_utc_ms": 1789763489286,
+    "actual_hydration_start_utc_ms": 1789763487637,
+    "execution_class": "LATE_RECOVERY",
+    "nominal_t3_utc_ms": 1789763400000
+  }
+}
