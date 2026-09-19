@@ -154,8 +154,6 @@
     "city": "Los Angeles",
     "country": "United States",
     "display_name": "UFC 331 \u2014 Van vs Pantoja 2",
-    "early_prelims_start_et": "2026-09-19T17:00:00-04:00",
-    "early_prelims_start_utc": "2026-09-19T21:00:00Z",
     "event_date": "2026-09-19",
     "main_card_start_et": "2026-09-19T21:00:00-04:00",
     "main_card_start_utc": "2026-09-20T01:00:00Z",
@@ -164,8 +162,6 @@
     "prelims_start_utc": "2026-09-19T21:30:00Z",
     "promotion": "UFC",
     "region": "California",
-    "regular_prelims_start_et": "2026-09-19T19:00:00-04:00",
-    "regular_prelims_start_utc": "2026-09-19T23:00:00Z",
     "venue": "Crypto.com Arena"
   },
   "event_controller": {
@@ -180,7 +176,7 @@
   },
   "event_id": "b343f71c-c13a-5729-8c03-76f5b44cd603",
   "fight_count": 12,
-  "generated_at_utc": "2026-09-19T15:00:28.638932Z",
+  "generated_at_utc": "2026-09-19T18:00:24.086028Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "GRADED_COMMERCIAL_AND_OR_SCIENTIFIC"
@@ -371,7 +367,7 @@
       "source": "PRODUCTION_COMMERCIAL_GRADES"
     }
   ],
-  "payload_sha256": "32074f924d236f076881f3badecdd8de3c52ee6a648d14a5a960827e291de4b1",
+  "payload_sha256": "0f891bee79f38aec3c677c3f5bc33d56544bc2b2a0f99c80b5c9421a43a72167",
   "picks_published": false,
   "positions": [],
   "positions_sha256": null,
@@ -1115,7 +1111,7 @@
     "production_issuance_authorized": true,
     "release_binding": "NONE"
   },
-  "semantic_state_sha256": "62f3e30704838920d67e6f34f0591dc9805e5d6e964f9aa9615c1e4e061dbcbd",
+  "semantic_state_sha256": "4cba89d72b076cc28ae71704acc570d4194ce62f2d7181bd7e7e1c5a0d61ed0b",
   "source_conflicts": [],
   "system_readiness_state": "AUTHORIZED_RELEASE_AWAITING_ISSUANCE",
   "t2": {

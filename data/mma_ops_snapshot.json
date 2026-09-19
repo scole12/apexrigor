@@ -121,7 +121,7 @@
     "scorecards": 37,
     "weigh_ins": 5442
   },
-  "generated_at_utc": "2026-09-19T15:00:28.638932Z",
+  "generated_at_utc": "2026-09-19T18:00:24.086028Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "GRADED_COMMERCIAL_AND_OR_SCIENTIFIC"
@@ -318,8 +318,6 @@
     "city": "Los Angeles",
     "country": "United States",
     "display_name": "UFC 331 \u2014 Van vs Pantoja 2",
-    "early_prelims_start_et": "2026-09-19T17:00:00-04:00",
-    "early_prelims_start_utc": "2026-09-19T21:00:00Z",
     "event_date": "2026-09-19",
     "main_card_start_et": "2026-09-19T21:00:00-04:00",
     "main_card_start_utc": "2026-09-20T01:00:00Z",
@@ -328,11 +326,9 @@
     "prelims_start_utc": "2026-09-19T21:30:00Z",
     "promotion": "UFC",
     "region": "California",
-    "regular_prelims_start_et": "2026-09-19T19:00:00-04:00",
-    "regular_prelims_start_utc": "2026-09-19T23:00:00Z",
     "venue": "Crypto.com Arena"
   },
-  "payload_sha256": "22a6c9848ed88141526fb756d8fc8749f1c4ba67be1a24275a2d761ac3ed3640",
+  "payload_sha256": "3885a5bb56d82d7650036578b63f88294358301bd2caf8d1b8d791bfddd0da59",
   "production_isolation": "PASS",
   "schema_version": "APEX_MMA_OPS_SNAPSHOT_V1",
   "science_blocker": "FAIL_CLOSED_KEEP_NONE_EDGE_CERT_NO",
