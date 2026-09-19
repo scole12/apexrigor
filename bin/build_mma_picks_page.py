@@ -242,7 +242,12 @@ def main():
     html = head('APEX — MMA Picks', 'APEX MMA / UFC official card and sealed FanDuel picks.', '/mma')
     html = html.replace('/assets/apex.css?v=apex-20260825-mma', '/assets/apex.css?v=apex-20260910-mma-card-parity')
     html = html.replace('</head>', BEACON_BLOCK + '\n' + ANALYTICS_BLOCK + '\n</head>')
-    html += '\n' + hero().replace('<div class="shell">', '<div class="shell" data-picks-state="quiet" data-public-issuance="false" data-sport="MMA">')
+    issuance_state = 'issued' if positions else 'quiet'
+    public_flag = 'true' if positions else 'false'
+    html += '\n' + hero().replace('<div class="shell">',
+        '<div class="shell" data-picks-state="' + issuance_state + '" data-public-issuance="' + public_flag
+        + '" data-sport="MMA" data-event-id="' + html_lib.escape(str(payload.get('event_id') or ''), quote=True)
+        + '" data-issuance-id="' + html_lib.escape(str(payload.get('issuance_id') or ''), quote=True) + '">')
     html += '\n' + NAVIGATION + '''
   <div class="section-head picks-board-head">
     <div class="title">TODAY'S CARD</div>

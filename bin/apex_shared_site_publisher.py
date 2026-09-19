@@ -193,6 +193,10 @@ def is_complete(request: Request) -> bool:
     if not path.is_file():
         return False
     status = str(load_json(path).get("status") or "")
+    if request.sport == 'MMA':
+        receipt = load_json(path)
+        return status in FINAL_RECEIPT_STATES and (not receipt.get('issuance_id')
+            or receipt.get('live_readback', {}).get('status') == 'PASS')
     if request.sport == "NCAAF":
         return status in {
             "PUBLISHED_EMAIL_VERIFIED",
@@ -616,6 +620,10 @@ def allowed_site_change(relative: str) -> bool:
 def build_request(request: Request, worktree: Path) -> dict[str, Any]:
     if request.manifest.get('discovery_error'):
         raise RuntimeError(request.manifest['discovery_error'])
+    if request.sport == 'MMA':
+        sys.path.insert(0, '/opt/apex_mma/bin')
+        from apex_mma_publication_acceptance import build
+        return build(request, worktree, sys.modules[__name__])
     if request.sport == 'NFL' and request.product == 'GRADER':
         return build_nfl_grader(request, worktree)
     if request.sport in {"NCAAF", "MMA"}:
@@ -678,9 +686,18 @@ def build_request(request: Request, worktree: Path) -> dict[str, Any]:
 
 
 def publish(request: Request, *, dry_run: bool) -> dict[str, Any]:
+    if request.sport=='MMA' and not dry_run:
+        sys.path.insert(0, '/opt/apex_mma/bin')
+        from apex_mma_publication_acceptance import publish_durable
+        return publish_durable(request, sys.modules[__name__])
     if request.sport=='NFL' and not dry_run:
         return publish_nfl_durable(request)
     intent=STATE_ROOT/'publication_intents'/request.sport.lower()/(request.request_id+'.json')
+    if request.sport == 'MMA' and not dry_run and intent.exists():
+        prior = load_json(intent)
+        if prior.get('request_id') != request.request_id:
+            raise RuntimeError('MMA_PUBLICATION_INTENT_DRIFT')
+        return prior
     if request.sport=='NFL' and not dry_run and intent.exists():
         prior=load_json(intent)
         if prior.get('request_id')!=request.request_id or (request.product=='GRADER' and prior.get('canonical_result')!=request.manifest['canonical_result']):raise RuntimeError('PUBLICATION_INTENT_DRIFT')
@@ -742,7 +759,7 @@ def publish(request: Request, *, dry_run: bool) -> dict[str, Any]:
         git("merge", "--ff-only", "origin/main")
     result={"status":publication_state,"sport":request.sport,"request_id":request.request_id,
             "published_commit":commit,**build}
-    if request.sport=='NFL':atomic_json(intent,result)
+    if request.sport in {'NFL','MMA'}:atomic_json(intent,result)
     return result
 
 
@@ -1164,7 +1181,7 @@ def execute(*, dry_run: bool, sport: str | None = None) -> dict[str, Any]:
             prepared=prepare_due_ncaaf_records() if not dry_run and sport is None else []
         except Exception as error:
             prepared=[{'status':'PREPARATION_FAILED','error':str(error)}]
-        pending=discover_nfl() if sport=='NFL' else discover_isolated()
+        pending=discover_nfl() if sport=='NFL' else discover_mma() if sport=='MMA' else discover_isolated()
         for request in pending:
             try:
                 result=publish(request,dry_run=dry_run)
@@ -1172,6 +1189,10 @@ def execute(*, dry_run: bool, sport: str | None = None) -> dict[str, Any]:
                     result['published_at_utc']=datetime.now(timezone.utc).isoformat()
                     if request.sport=='NFL':
                         result=verify_nfl_publication(request,result)
+                    if request.sport=='MMA':
+                        sys.path.insert(0, '/opt/apex_mma/bin')
+                        from apex_mma_publication_acceptance import verify
+                        result=verify(request,result,sys.modules[__name__])
                     if request.sport=='NCAAF':
                         result=dispatch_ncaaf_email(request,result)
                     else:
@@ -1369,7 +1390,7 @@ def git_deployment(commit, surface_hashes=None, request_id=None):
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--dry-run", action="store_true")
-    parser.add_argument("--sport", choices=("NFL",))
+    parser.add_argument("--sport", choices=("NFL","MMA"))
     arguments = parser.parse_args()
     try:
         print(json.dumps(execute(dry_run=arguments.dry_run, sport=arguments.sport), indent=2, sort_keys=True))

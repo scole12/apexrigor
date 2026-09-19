@@ -68,9 +68,21 @@ def science_gate_projection(state: dict[str, Any], *, issued: bool) -> dict[str,
         "production_issuance_authorized": raw.get("production_issuance_authorized") is True,
         "policy": str(raw.get("policy") or "STATUS_ONLY"),
     }
+    gate['best_available_authorized'] = bool(
+        raw.get('best_available_authorized') is True
+        and gate['policy'] == 'SCOTT_AUTHORIZED_BEST_AVAILABLE_EVENT_RELEASE'
+        and gate['keep'] == 'WINNER_RESIDUAL_BEST_AVAILABLE_V1'
+        and str(state.get('event_id')) == str(raw.get('event_id'))
+        and str(state.get('event_id')) in (raw.get('authorized_event_ids') or [])
+    )
     authorized_release_id = raw.get("authorized_release_id")
     authorized_manifest_sha256 = raw.get("authorized_release_manifest_sha256")
     authorized_model_sha256 = raw.get("authorized_model_artifact_sha256")
+    gate.update(authorized_release_id=authorized_release_id,
+                authorized_release_manifest_sha256=authorized_manifest_sha256,
+                authorized_model_artifact_sha256=authorized_model_sha256,
+                event_id=raw.get('event_id'),
+                authorized_event_ids=list(raw.get('authorized_event_ids') or []))
     try:
         uuid.UUID(str(authorized_release_id))
         release_id_valid = True
@@ -78,8 +90,8 @@ def science_gate_projection(state: dict[str, Any], *, issued: bool) -> dict[str,
         release_id_valid = False
     gate["eligible"] = bool(
         gate["keep"] != "NONE"
-        and gate["edge_cert"] == "YES"
-        and gate["ci_fully_below_0"]
+        and ((gate["edge_cert"] == "YES" and gate["ci_fully_below_0"])
+             or gate['best_available_authorized'])
         and gate["production_issuance_authorized"]
         and release_id_valid
         and isinstance(authorized_manifest_sha256, str)
@@ -133,7 +145,7 @@ def public_state_projection(state: dict[str, Any]) -> tuple[dict[str, Any], list
         public_state["active_model"] = None
         public_state["active_model_sha256"] = None
         public_state["science_blocker"] = (
-            "EDGE_CERTIFIED_RELEASE_AWAITING_EVENT_ISSUANCE"
+            "AUTHORIZED_RELEASE_AWAITING_EVENT_ISSUANCE"
             if science_gate["eligible"]
             else "FAIL_CLOSED_KEEP_NONE_EDGE_CERT_NO"
         )
@@ -165,6 +177,7 @@ def build_public_payloads(state: dict[str, Any]) -> tuple[dict[str, Any], dict[s
         "picks_published": issued,
         "active_model": public_state.get("active_model") if issued else None,
         "active_model_sha256": public_state.get("active_model_sha256") if issued else None,
+        "event_id": public_state.get("event_id"),
         "event": public_state["event"],
         "fight_count": public_state["fight_count"],
         "card": public_state["card"],
