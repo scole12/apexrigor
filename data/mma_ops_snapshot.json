@@ -115,13 +115,13 @@
     "events": 1048,
     "fight_statistics_source_aggregate": 0,
     "fighters": 3999,
-    "results": 3672,
-    "round_statistics_elemental": 11535,
+    "results": 3674,
+    "round_statistics_elemental": 11549,
     "round_stats": 0,
     "scorecards": 37,
     "weigh_ins": 5442
   },
-  "generated_at_utc": "2026-09-19T22:22:18.833569+00:00",
+  "generated_at_utc": "2026-09-19T22:30:40.695254Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "GRADED_COMMERCIAL_AND_OR_SCIENTIFIC"
@@ -328,7 +328,7 @@
     "region": "California",
     "venue": "Crypto.com Arena"
   },
-  "payload_sha256": "30785726a09de7004afd5bde488b2f75c0140eba058b4431d8fc950a0866ce1f",
+  "payload_sha256": "f95244638640598ea76a80184c24119d2687bec0fe74b51312d4c75ac0799cac",
   "production_isolation": "PASS",
   "schema_version": "APEX_MMA_OPS_SNAPSHOT_V1",
   "science_blocker": "NONE_PRODUCTION_ISSUANCE_ELIGIBLE",
