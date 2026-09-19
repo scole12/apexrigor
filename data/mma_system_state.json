@@ -176,7 +176,7 @@
   },
   "event_id": "b343f71c-c13a-5729-8c03-76f5b44cd603",
   "fight_count": 12,
-  "generated_at_utc": "2026-09-19T18:30:26.705650Z",
+  "generated_at_utc": "2026-09-19T19:30:26.744704Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "GRADED_COMMERCIAL_AND_OR_SCIENTIFIC"
@@ -367,7 +367,7 @@
       "source": "PRODUCTION_COMMERCIAL_GRADES"
     }
   ],
-  "payload_sha256": "8fe8d4c9a1468f8569d0c5a475a901f0b0611d680115b3dd362fb4155022a92d",
+  "payload_sha256": "0c0a07f2bdeca22c5c89e87009a996a159fb8b4c6b204cbffbc242da210218aa",
   "picks_published": false,
   "positions": [],
   "positions_sha256": null,
@@ -1111,14 +1111,14 @@
     "production_issuance_authorized": true,
     "release_binding": "NONE"
   },
-  "semantic_state_sha256": "c54333213e4b86e43a0490498e0ddc9b780a175f27df02066bba26729f042176",
+  "semantic_state_sha256": "db97c6927775bd449d804daadd71a4c12a92e978a4569e6c0421bab6fcc552e0",
   "source_conflicts": [],
   "system_readiness_state": "AUTHORIZED_RELEASE_AWAITING_ISSUANCE",
   "t2": {
     "actual_utc": null,
     "anchor": "EARLIEST_PUBLISHED_SCHEDULED_BOUT_MINUS_2_HOURS",
     "scheduled_utc": "2026-09-19T19:30:00Z",
-    "status": "AWAITING_T2",
+    "status": "T2_DUE_NO_RECEIPT",
     "timeliness": null
   },
   "t3": {
