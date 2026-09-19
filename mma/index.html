@@ -70,9 +70,9 @@ function clock(value){
 function boutTime(b,e){
  if(b.scheduled_start_utc||b.scheduled_start_et)return clock(b.scheduled_start_utc||b.scheduled_start_et);
  const segment=String(b.segment||"").toUpperCase();
- if(segment==="MAIN"||segment==="MAIN_CARD")return clock(e.main_card_start_utc||e.main_card_start_et)+" · MAIN CARD";
- if(segment==="PRELIMS"||segment==="PRELIM"||segment==="PRELIMINARY")return clock(e.prelims_start_utc||e.prelims_start_et)+" · PRELIMS";
- if(segment==="EARLY_PRELIMS")return clock(e.early_prelims_start_utc||e.early_prelims_start_et)+" · EARLY PRELIMS";
+ if(segment==="MAIN"||segment==="MAIN_CARD")return clock(e.main_card_start_utc||e.main_card_start_et)+" · MAIN CARD START";
+ if(segment==="PRELIMS"||segment==="PRELIM"||segment==="PRELIMINARY")return clock(e.prelims_start_utc||e.prelims_start_et)+" · PRELIMS START";
+ if(segment==="EARLY_PRELIMS")return clock(e.early_prelims_start_utc||e.early_prelims_start_et)+" · EARLY PRELIMS START";
  return "TIME TBA";
 }
 function issuedPositions(d){
@@ -136,6 +136,7 @@ function marketBreakdown(b){
 }
 function issuedPanel(p,display){
  const headline=p.display_selection||p.selection;
+ const winnerSentence=typeof display?.winner_rationale==="string"&&display.winner_rationale.trim()?display.winner_rationale:"Verified retained pre-fight history is unavailable for this matchup, so a factual winner comparison cannot be shown.";
  return '<section class="market-panel" data-market="'+esc(p.market)+'" data-position-state="SEALED" data-position-bout="'+esc(p.bout_id)+'">'
   +'<div class="market-label">'+esc(p.market==="WINNER"?"HEADS-UP WINNER":p.market)+'</div>'
   +'<div class="market-panel-head"><span class="pick-headline">'+esc(headline)+'</span>'
@@ -143,7 +144,7 @@ function issuedPanel(p,display){
   +'<span class="tier-badge tier-badge--'+esc(p.tier.toLowerCase())+'">'+esc(p.tier)+'</span></div>'
   +'<div class="meta mono">APEX WIN PROBABILITY: '+(p.probability*100).toFixed(1)+'% · Sportsbook: FanDuel · '+(p.price>0?'+':'')+esc(p.price)+'</div>'
   +moneylineHeadsUp(display)
-  +'<div class="rationale-copy">'+paragraphs(p.rationale).map(text=>'<p>'+esc(text)+'</p>').join("")+'</div></section>';
+  +'<div class="rationale-copy">'+(p.market==="WINNER"?'<p class="mma-winner-rationale">'+esc(winnerSentence)+'</p>':paragraphs(p.rationale).map(text=>'<p>'+esc(text)+'</p>').join(""))+'</div></section>';
 }
 fetch("/data/mma_today.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw new Error("HTTP "+r.status);return r.json()}).then(d=>{
  if(!d.event?.event_date||!Array.isArray(d.card)||d.card.some(b=>!b||!matchup(b)))throw new Error("Invalid official card");
