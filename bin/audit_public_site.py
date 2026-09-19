@@ -342,11 +342,24 @@ def main() -> int:
         if not isinstance(science, dict):
             errors.append(f"{name} lacks an explicit science gate")
         else:
+            # Publication authorization does not certify a market edge.
+            best_available_authorized = (
+                science.get("best_available_authorized") is True
+                and science.get("policy") == "SCOTT_AUTHORIZED_BEST_AVAILABLE_EVENT_RELEASE"
+                and science.get("keep") == "WINNER_RESIDUAL_BEST_AVAILABLE_V1"
+                and str(payload.get("event_id")) == str(science.get("event_id"))
+                and str(payload.get("event_id")) in (science.get("authorized_event_ids") or [])
+            )
             eligible = (
-                science.get("keep") not in {None, "NONE"}
-                and science.get("edge_cert") == "YES"
-                and science.get("ci_fully_below_0") is True
-                and science.get("production_issuance_authorized") is True
+                science.get("production_issuance_authorized") is True
+                and (
+                    (
+                        science.get("keep") not in {None, "NONE"}
+                        and science.get("edge_cert") == "YES"
+                        and science.get("ci_fully_below_0") is True
+                    )
+                    or best_available_authorized
+                )
             )
             if science.get("eligible") is not eligible:
                 errors.append(f"{name} science-gate eligibility is internally inconsistent")

@@ -88,13 +88,19 @@ def science_gate_projection(state: dict[str, Any], *, issued: bool) -> dict[str,
         release_id_valid = True
     except (ValueError, TypeError, AttributeError):
         release_id_valid = False
-    # eligible MUST match bin/audit_public_site.py exactly.
-    # best_available_authorized is informational and cannot greenwash eligibility.
+    # Publication eligibility MUST match bin/audit_public_site.py exactly.
+    # An expressly authorized event release does not certify a market edge;
+    # retain the supplied edge_cert and ci_fully_below_0 without changing them.
     gate["eligible"] = bool(
-        gate["keep"] not in {None, "NONE"}
-        and gate["edge_cert"] == "YES"
-        and gate["ci_fully_below_0"] is True
-        and gate["production_issuance_authorized"] is True
+        gate["production_issuance_authorized"] is True
+        and (
+            (
+                gate["keep"] not in {None, "NONE"}
+                and gate["edge_cert"] == "YES"
+                and gate["ci_fully_below_0"] is True
+            )
+            or gate["best_available_authorized"] is True
+        )
     )
     if issued and not gate["eligible"]:
         raise RuntimeError("MMA issuance is not backed by an eligible production science gate")
