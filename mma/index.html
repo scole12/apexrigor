@@ -19,7 +19,7 @@
 <meta property="og:url" content="https://apexrigor.com/mma">
 <meta property="og:image" content="https://apexrigor.com/og-image.png?v=apex-20260825-mma">
 <link rel="stylesheet" href="/assets/apex.css?v=apex-20260910-mma-card-parity">
-<style>.mma-market-breakdown{display:flex;flex-direction:column;align-self:stretch;min-width:0}.mma-market-slots{display:grid;grid-template-rows:repeat(4,minmax(0,1fr));flex:1;min-width:0}.mma-market-slot{display:flex;flex-direction:column;justify-content:flex-start;gap:12px;padding:22px 0;box-sizing:border-box;border-top:1px solid var(--hairline)}.mma-market-slot .market-label,.mma-market-slot .pick-headline,.mma-market-slot p{margin:0}.mma-market-slot .pick-headline{line-height:1.5;overflow-wrap:anywhere}.mma-slot-probability{font-size:14px;line-height:1.5}.mma-slot-probability strong{font-weight:700}.mma-slot-price{display:flex;gap:16px;flex-wrap:wrap}@media(max-width:900px){.mma-market-slots{grid-template-rows:none;grid-auto-rows:auto;flex:none}.mma-market-slot{padding:22px 0}}</style><!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "2ee12644257c4dd3b0357c59a12a109c"}'></script><!-- End Cloudflare Web Analytics -->
+<style>.mma-market-breakdown{display:flex;flex-direction:column;align-self:stretch;min-width:0}.mma-market-slots{display:grid;grid-template-rows:repeat(4,minmax(0,1fr));flex:1;min-width:0}.mma-market-slot{display:flex;flex-direction:column;justify-content:flex-start;gap:6px;padding:10px 0;box-sizing:border-box;border-top:1px solid var(--hairline)}.mma-market-slot .market-label,.mma-market-slot .pick-headline,.mma-market-slot p{margin:0}.mma-market-slot .pick-headline{line-height:1.5;overflow-wrap:anywhere}.mma-slot-probability{font-size:14px;line-height:1.5}.mma-slot-probability strong{font-weight:700}.mma-market-slot .mma-slot-rationale{font-size:14px;line-height:1.5;font-weight:400}.mma-slot-price{display:flex;gap:16px;flex-wrap:wrap}@media(max-width:900px){.mma-market-slots{grid-template-rows:none;grid-auto-rows:auto;flex:none}.mma-market-slot{padding:22px 0}}</style><!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "2ee12644257c4dd3b0357c59a12a109c"}'></script><!-- End Cloudflare Web Analytics -->
 <!-- Vercel Web Analytics --><script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script><script defer src="/_vercel/insights/script.js"></script><!-- End Vercel Web Analytics -->
 </head>
 <body>
@@ -126,6 +126,7 @@ function marketBreakdown(b){
    +'<div class="market-label">'+esc(row.slot_id)+'</div>'
    +'<h3 class="pick-headline">'+esc(row.selection)+'</h3>'
    +'<p class="meta mono mma-slot-probability">APEX PROBABILITY: <strong>'+probability+'</strong></p>'
+   +(typeof row.rationale==="string"&&row.rationale.trim()?'<p class="mma-slot-rationale">'+esc(row.rationale)+'</p>':'')
    +(price?'<div class="mma-slot-price">'+price+plusMoney+'</div>':'')+'</section>';
  }).join("");
  return '<section class="market-panel mma-market-breakdown" data-source-issuance="'+esc(b.source_issuance_id)+'" data-source-card-sha256="'+esc(b.source_card_sha256)+'">'
@@ -154,7 +155,8 @@ fetch("/data/mma_today.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw new Err
  const cardPairs=d.card.map(pair);
  const cardFighters=d.card.flatMap(b=>[norm(b.fighter_a),norm(b.fighter_b)]);
  if(cardPairs.some(value=>!value)||new Set(cardPairs).size!==cardPairs.length||new Set(cardFighters).size!==cardFighters.length)throw new Error("Duplicate official bout or fighter");
- const card=d.card.map((b,i)=>({b,order:Number.isFinite(b.official_display_order)?b.official_display_order:i+1,positions:[]})).sort((a,b)=>a.order-b.order);
+ // Official source ranks the main event first; display the opening bout first.
+ const card=d.card.map((b,i)=>({b,order:Number.isFinite(b.official_display_order)?b.official_display_order:i+1,positions:[]})).sort((a,b)=>b.order-a.order);
  for(const p of positions){
   const matches=card.filter(g=>{
    const id=g.b.bout_id||g.b.apex_mma_bout_id;

@@ -137,7 +137,7 @@
     "detail": "12 issued positions. Picks, FanDuel prices, probabilities, ratings and rationale below are read from the same sealed T-2 issuance.",
     "headline": "Forecasts issued"
   },
-  "generated_at_utc": "2026-09-19T21:31:23.873742Z",
+  "generated_at_utc": "2026-09-19T21:52:50.392464Z",
   "issuance_id": "a09387f2-6b21-4e9b-84da-cc813f8b1ee2",
   "issuance_status": "SEALED",
   "market_display": {
@@ -174,6 +174,42 @@
             "plus_money": null,
             "price": null,
             "probability": 0.15714128910810762,
+            "rationale": "Joshua Van has 4 KO/TKO wins in 11 saved pre-fight bouts; Alexandre Pantoja has 1 KO/TKO loss in 18.",
+            "rationale_source": {
+              "bout_id": "1dcf9a00-8262-5876-8840-e2b405a3bdfc",
+              "fighter_snapshot_sha256": "4c703b33b847e6f619c48edbedfb88464be195cf29a6186e860f8a1a40e8c2a5",
+              "opponent": {
+                "completed_bouts": 18,
+                "count": 1,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/0/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "Alexandre Pantoja",
+                "fighter_id": 361,
+                "terms": [
+                  {
+                    "count": 1,
+                    "field": "ko_loss_rate",
+                    "rate": 0.05555555555555555,
+                    "source_pointer": "/replay/inference_input/facts/bouts/0/elemental_feature_surface/fighter_b_state/historical_features/ko_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 11,
+                "count": 4,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/0/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Joshua Van",
+                "fighter_id": 3,
+                "terms": [
+                  {
+                    "count": 4,
+                    "field": "ko_win_rate",
+                    "rate": 0.36363636363636365,
+                    "source_pointer": "/replay/inference_input/facts/bouts/0/elemental_feature_surface/fighter_a_state/historical_features/ko_win_rate"
+                  }
+                ]
+              }
+            },
             "selection": "Joshua Van by KO/TKO",
             "slot_id": "L1"
           },
@@ -186,6 +222,42 @@
             "plus_money": null,
             "price": null,
             "probability": 0.20915955065696498,
+            "rationale": "Joshua Van has 0 submission wins in 11 saved pre-fight bouts; Alexandre Pantoja has 0 submission losses in 18.",
+            "rationale_source": {
+              "bout_id": "1dcf9a00-8262-5876-8840-e2b405a3bdfc",
+              "fighter_snapshot_sha256": "4c703b33b847e6f619c48edbedfb88464be195cf29a6186e860f8a1a40e8c2a5",
+              "opponent": {
+                "completed_bouts": 18,
+                "count": 0,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/0/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "Alexandre Pantoja",
+                "fighter_id": 361,
+                "terms": [
+                  {
+                    "count": 0,
+                    "field": "sub_loss_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/0/elemental_feature_surface/fighter_b_state/historical_features/sub_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 11,
+                "count": 0,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/0/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Joshua Van",
+                "fighter_id": 3,
+                "terms": [
+                  {
+                    "count": 0,
+                    "field": "sub_win_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/0/elemental_feature_surface/fighter_a_state/historical_features/sub_win_rate"
+                  }
+                ]
+              }
+            },
             "selection": "Joshua Van by submission",
             "slot_id": "L2"
           },
@@ -198,6 +270,78 @@
             "plus_money": null,
             "price": null,
             "probability": 0.5661756984663144,
+            "rationale": "KO/TKO or submission ended 5 of Joshua Van\u2019s 11 saved pre-fight bouts and 9 of Alexandre Pantoja\u2019s 18.",
+            "rationale_source": {
+              "bout_id": "1dcf9a00-8262-5876-8840-e2b405a3bdfc",
+              "fighter_snapshot_sha256": "4c703b33b847e6f619c48edbedfb88464be195cf29a6186e860f8a1a40e8c2a5",
+              "opponent": {
+                "completed_bouts": 18,
+                "count": 9,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/0/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "Alexandre Pantoja",
+                "fighter_id": 361,
+                "terms": [
+                  {
+                    "count": 2,
+                    "field": "ko_win_rate",
+                    "rate": 0.1111111111111111,
+                    "source_pointer": "/replay/inference_input/facts/bouts/0/elemental_feature_surface/fighter_b_state/historical_features/ko_win_rate"
+                  },
+                  {
+                    "count": 6,
+                    "field": "sub_win_rate",
+                    "rate": 0.3333333333333333,
+                    "source_pointer": "/replay/inference_input/facts/bouts/0/elemental_feature_surface/fighter_b_state/historical_features/sub_win_rate"
+                  },
+                  {
+                    "count": 1,
+                    "field": "ko_loss_rate",
+                    "rate": 0.05555555555555555,
+                    "source_pointer": "/replay/inference_input/facts/bouts/0/elemental_feature_surface/fighter_b_state/historical_features/ko_loss_rate"
+                  },
+                  {
+                    "count": 0,
+                    "field": "sub_loss_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/0/elemental_feature_surface/fighter_b_state/historical_features/sub_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 11,
+                "count": 5,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/0/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Joshua Van",
+                "fighter_id": 3,
+                "terms": [
+                  {
+                    "count": 4,
+                    "field": "ko_win_rate",
+                    "rate": 0.36363636363636365,
+                    "source_pointer": "/replay/inference_input/facts/bouts/0/elemental_feature_surface/fighter_a_state/historical_features/ko_win_rate"
+                  },
+                  {
+                    "count": 0,
+                    "field": "sub_win_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/0/elemental_feature_surface/fighter_a_state/historical_features/sub_win_rate"
+                  },
+                  {
+                    "count": 1,
+                    "field": "ko_loss_rate",
+                    "rate": 0.09090909090909091,
+                    "source_pointer": "/replay/inference_input/facts/bouts/0/elemental_feature_surface/fighter_a_state/historical_features/ko_loss_rate"
+                  },
+                  {
+                    "count": 0,
+                    "field": "sub_loss_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/0/elemental_feature_surface/fighter_a_state/historical_features/sub_loss_rate"
+                  }
+                ]
+              }
+            },
             "selection": "FIGHT DOES NOT GO THE DISTANCE",
             "slot_id": "L3"
           },
@@ -210,6 +354,42 @@
             "plus_money": null,
             "price": null,
             "probability": 0.14953410414149676,
+            "rationale": "Joshua Van has 1 first-round KO/TKO or submission win in 11 saved pre-fight bouts; Alexandre Pantoja has 1 such loss in 18.",
+            "rationale_source": {
+              "bout_id": "1dcf9a00-8262-5876-8840-e2b405a3bdfc",
+              "fighter_snapshot_sha256": "4c703b33b847e6f619c48edbedfb88464be195cf29a6186e860f8a1a40e8c2a5",
+              "opponent": {
+                "completed_bouts": 18,
+                "count": 1,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/0/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "Alexandre Pantoja",
+                "fighter_id": 361,
+                "terms": [
+                  {
+                    "count": 1,
+                    "field": "r1_finish_loss_rate",
+                    "rate": 0.05555555555555555,
+                    "source_pointer": "/replay/inference_input/facts/bouts/0/elemental_feature_surface/fighter_b_state/historical_features/r1_finish_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 11,
+                "count": 1,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/0/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Joshua Van",
+                "fighter_id": 3,
+                "terms": [
+                  {
+                    "count": 1,
+                    "field": "r1_finish_win_rate",
+                    "rate": 0.09090909090909091,
+                    "source_pointer": "/replay/inference_input/facts/bouts/0/elemental_feature_surface/fighter_a_state/historical_features/r1_finish_win_rate"
+                  }
+                ]
+              }
+            },
             "selection": "Joshua Van in round 1",
             "slot_id": "L4"
           }
@@ -247,6 +427,42 @@
             "plus_money": null,
             "price": null,
             "probability": 0.20655503896272293,
+            "rationale": "Arman Tsarukyan has 4 KO/TKO wins in 12 saved pre-fight bouts; Maur\u00edcio Ruffy has 0 KO/TKO losses in 7.",
+            "rationale_source": {
+              "bout_id": "e5dd235f-68ad-5ff4-97c7-be0a183e7c6d",
+              "fighter_snapshot_sha256": "4c703b33b847e6f619c48edbedfb88464be195cf29a6186e860f8a1a40e8c2a5",
+              "opponent": {
+                "completed_bouts": 7,
+                "count": 0,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/1/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "Maur\u00edcio Ruffy",
+                "fighter_id": 107,
+                "terms": [
+                  {
+                    "count": 0,
+                    "field": "ko_loss_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/1/elemental_feature_surface/fighter_b_state/historical_features/ko_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 12,
+                "count": 4,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/1/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Arman Tsarukyan",
+                "fighter_id": 386,
+                "terms": [
+                  {
+                    "count": 4,
+                    "field": "ko_win_rate",
+                    "rate": 0.3333333333333333,
+                    "source_pointer": "/replay/inference_input/facts/bouts/1/elemental_feature_surface/fighter_a_state/historical_features/ko_win_rate"
+                  }
+                ]
+              }
+            },
             "selection": "Arman Tsarukyan by KO/TKO",
             "slot_id": "L1"
           },
@@ -259,6 +475,42 @@
             "plus_money": null,
             "price": null,
             "probability": 0.2687241247874367,
+            "rationale": "Arman Tsarukyan has 1 submission win in 12 saved pre-fight bouts; Maur\u00edcio Ruffy has 1 submission loss in 7.",
+            "rationale_source": {
+              "bout_id": "e5dd235f-68ad-5ff4-97c7-be0a183e7c6d",
+              "fighter_snapshot_sha256": "4c703b33b847e6f619c48edbedfb88464be195cf29a6186e860f8a1a40e8c2a5",
+              "opponent": {
+                "completed_bouts": 7,
+                "count": 1,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/1/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "Maur\u00edcio Ruffy",
+                "fighter_id": 107,
+                "terms": [
+                  {
+                    "count": 1,
+                    "field": "sub_loss_rate",
+                    "rate": 0.14285714285714285,
+                    "source_pointer": "/replay/inference_input/facts/bouts/1/elemental_feature_surface/fighter_b_state/historical_features/sub_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 12,
+                "count": 1,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/1/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Arman Tsarukyan",
+                "fighter_id": 386,
+                "terms": [
+                  {
+                    "count": 1,
+                    "field": "sub_win_rate",
+                    "rate": 0.08333333333333333,
+                    "source_pointer": "/replay/inference_input/facts/bouts/1/elemental_feature_surface/fighter_a_state/historical_features/sub_win_rate"
+                  }
+                ]
+              }
+            },
             "selection": "Arman Tsarukyan by submission",
             "slot_id": "L2"
           },
@@ -271,6 +523,78 @@
             "plus_money": null,
             "price": null,
             "probability": 0.6418151971445304,
+            "rationale": "KO/TKO or submission ended 5 of Arman Tsarukyan\u2019s 12 saved pre-fight bouts and 6 of Maur\u00edcio Ruffy\u2019s 7.",
+            "rationale_source": {
+              "bout_id": "e5dd235f-68ad-5ff4-97c7-be0a183e7c6d",
+              "fighter_snapshot_sha256": "4c703b33b847e6f619c48edbedfb88464be195cf29a6186e860f8a1a40e8c2a5",
+              "opponent": {
+                "completed_bouts": 7,
+                "count": 6,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/1/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "Maur\u00edcio Ruffy",
+                "fighter_id": 107,
+                "terms": [
+                  {
+                    "count": 5,
+                    "field": "ko_win_rate",
+                    "rate": 0.7142857142857143,
+                    "source_pointer": "/replay/inference_input/facts/bouts/1/elemental_feature_surface/fighter_b_state/historical_features/ko_win_rate"
+                  },
+                  {
+                    "count": 0,
+                    "field": "sub_win_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/1/elemental_feature_surface/fighter_b_state/historical_features/sub_win_rate"
+                  },
+                  {
+                    "count": 0,
+                    "field": "ko_loss_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/1/elemental_feature_surface/fighter_b_state/historical_features/ko_loss_rate"
+                  },
+                  {
+                    "count": 1,
+                    "field": "sub_loss_rate",
+                    "rate": 0.14285714285714285,
+                    "source_pointer": "/replay/inference_input/facts/bouts/1/elemental_feature_surface/fighter_b_state/historical_features/sub_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 12,
+                "count": 5,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/1/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Arman Tsarukyan",
+                "fighter_id": 386,
+                "terms": [
+                  {
+                    "count": 4,
+                    "field": "ko_win_rate",
+                    "rate": 0.3333333333333333,
+                    "source_pointer": "/replay/inference_input/facts/bouts/1/elemental_feature_surface/fighter_a_state/historical_features/ko_win_rate"
+                  },
+                  {
+                    "count": 1,
+                    "field": "sub_win_rate",
+                    "rate": 0.08333333333333333,
+                    "source_pointer": "/replay/inference_input/facts/bouts/1/elemental_feature_surface/fighter_a_state/historical_features/sub_win_rate"
+                  },
+                  {
+                    "count": 0,
+                    "field": "ko_loss_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/1/elemental_feature_surface/fighter_a_state/historical_features/ko_loss_rate"
+                  },
+                  {
+                    "count": 0,
+                    "field": "sub_loss_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/1/elemental_feature_surface/fighter_a_state/historical_features/sub_loss_rate"
+                  }
+                ]
+              }
+            },
             "selection": "FIGHT DOES NOT GO THE DISTANCE",
             "slot_id": "L3"
           },
@@ -283,6 +607,42 @@
             "plus_money": null,
             "price": null,
             "probability": 0.15332007298482012,
+            "rationale": "Arman Tsarukyan has 2 first-round KO/TKO or submission wins in 12 saved pre-fight bouts; Maur\u00edcio Ruffy has 0 such losses in 7.",
+            "rationale_source": {
+              "bout_id": "e5dd235f-68ad-5ff4-97c7-be0a183e7c6d",
+              "fighter_snapshot_sha256": "4c703b33b847e6f619c48edbedfb88464be195cf29a6186e860f8a1a40e8c2a5",
+              "opponent": {
+                "completed_bouts": 7,
+                "count": 0,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/1/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "Maur\u00edcio Ruffy",
+                "fighter_id": 107,
+                "terms": [
+                  {
+                    "count": 0,
+                    "field": "r1_finish_loss_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/1/elemental_feature_surface/fighter_b_state/historical_features/r1_finish_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 12,
+                "count": 2,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/1/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Arman Tsarukyan",
+                "fighter_id": 386,
+                "terms": [
+                  {
+                    "count": 2,
+                    "field": "r1_finish_win_rate",
+                    "rate": 0.16666666666666666,
+                    "source_pointer": "/replay/inference_input/facts/bouts/1/elemental_feature_surface/fighter_a_state/historical_features/r1_finish_win_rate"
+                  }
+                ]
+              }
+            },
             "selection": "Arman Tsarukyan in round 1",
             "slot_id": "L4"
           }
@@ -320,6 +680,42 @@
             "plus_money": null,
             "price": null,
             "probability": 0.2127253577319269,
+            "rationale": "Dooho Choi has 6 KO/TKO wins in 9 saved pre-fight bouts; Patricio Pitbull has 0 KO/TKO losses in 3.",
+            "rationale_source": {
+              "bout_id": "16d4b19d-d2ac-5e11-afc4-2948e4488d76",
+              "fighter_snapshot_sha256": "4c703b33b847e6f619c48edbedfb88464be195cf29a6186e860f8a1a40e8c2a5",
+              "opponent": {
+                "completed_bouts": 3,
+                "count": 0,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/2/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Patricio Pitbull",
+                "fighter_id": 577,
+                "terms": [
+                  {
+                    "count": 0,
+                    "field": "ko_loss_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/2/elemental_feature_surface/fighter_a_state/historical_features/ko_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 9,
+                "count": 6,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/2/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "Dooho Choi",
+                "fighter_id": 287,
+                "terms": [
+                  {
+                    "count": 6,
+                    "field": "ko_win_rate",
+                    "rate": 0.6666666666666666,
+                    "source_pointer": "/replay/inference_input/facts/bouts/2/elemental_feature_surface/fighter_b_state/historical_features/ko_win_rate"
+                  }
+                ]
+              }
+            },
             "selection": "Dooho Choi by KO/TKO",
             "slot_id": "L1"
           },
@@ -332,6 +728,42 @@
             "plus_money": null,
             "price": null,
             "probability": 0.11104177227521739,
+            "rationale": "Dooho Choi has 0 submission wins in 9 saved pre-fight bouts; Patricio Pitbull has 0 submission losses in 3.",
+            "rationale_source": {
+              "bout_id": "16d4b19d-d2ac-5e11-afc4-2948e4488d76",
+              "fighter_snapshot_sha256": "4c703b33b847e6f619c48edbedfb88464be195cf29a6186e860f8a1a40e8c2a5",
+              "opponent": {
+                "completed_bouts": 3,
+                "count": 0,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/2/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Patricio Pitbull",
+                "fighter_id": 577,
+                "terms": [
+                  {
+                    "count": 0,
+                    "field": "sub_loss_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/2/elemental_feature_surface/fighter_a_state/historical_features/sub_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 9,
+                "count": 0,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/2/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "Dooho Choi",
+                "fighter_id": 287,
+                "terms": [
+                  {
+                    "count": 0,
+                    "field": "sub_win_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/2/elemental_feature_surface/fighter_b_state/historical_features/sub_win_rate"
+                  }
+                ]
+              }
+            },
             "selection": "Dooho Choi by submission",
             "slot_id": "L2"
           },
@@ -344,6 +776,78 @@
             "plus_money": null,
             "price": null,
             "probability": 0.47839221836342294,
+            "rationale": "KO/TKO or submission ended 8 of Dooho Choi\u2019s 9 saved pre-fight bouts and 0 of Patricio Pitbull\u2019s 3.",
+            "rationale_source": {
+              "bout_id": "16d4b19d-d2ac-5e11-afc4-2948e4488d76",
+              "fighter_snapshot_sha256": "4c703b33b847e6f619c48edbedfb88464be195cf29a6186e860f8a1a40e8c2a5",
+              "opponent": {
+                "completed_bouts": 3,
+                "count": 0,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/2/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Patricio Pitbull",
+                "fighter_id": 577,
+                "terms": [
+                  {
+                    "count": 0,
+                    "field": "ko_win_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/2/elemental_feature_surface/fighter_a_state/historical_features/ko_win_rate"
+                  },
+                  {
+                    "count": 0,
+                    "field": "sub_win_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/2/elemental_feature_surface/fighter_a_state/historical_features/sub_win_rate"
+                  },
+                  {
+                    "count": 0,
+                    "field": "ko_loss_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/2/elemental_feature_surface/fighter_a_state/historical_features/ko_loss_rate"
+                  },
+                  {
+                    "count": 0,
+                    "field": "sub_loss_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/2/elemental_feature_surface/fighter_a_state/historical_features/sub_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 9,
+                "count": 8,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/2/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "Dooho Choi",
+                "fighter_id": 287,
+                "terms": [
+                  {
+                    "count": 6,
+                    "field": "ko_win_rate",
+                    "rate": 0.6666666666666666,
+                    "source_pointer": "/replay/inference_input/facts/bouts/2/elemental_feature_surface/fighter_b_state/historical_features/ko_win_rate"
+                  },
+                  {
+                    "count": 0,
+                    "field": "sub_win_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/2/elemental_feature_surface/fighter_b_state/historical_features/sub_win_rate"
+                  },
+                  {
+                    "count": 2,
+                    "field": "ko_loss_rate",
+                    "rate": 0.2222222222222222,
+                    "source_pointer": "/replay/inference_input/facts/bouts/2/elemental_feature_surface/fighter_b_state/historical_features/ko_loss_rate"
+                  },
+                  {
+                    "count": 0,
+                    "field": "sub_loss_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/2/elemental_feature_surface/fighter_b_state/historical_features/sub_loss_rate"
+                  }
+                ]
+              }
+            },
             "selection": "FIGHT DOES NOT GO THE DISTANCE",
             "slot_id": "L3"
           },
@@ -356,6 +860,42 @@
             "plus_money": null,
             "price": null,
             "probability": 0.1779660281125599,
+            "rationale": "Dooho Choi has 3 first-round KO/TKO or submission wins in 9 saved pre-fight bouts; Patricio Pitbull has 0 such losses in 3.",
+            "rationale_source": {
+              "bout_id": "16d4b19d-d2ac-5e11-afc4-2948e4488d76",
+              "fighter_snapshot_sha256": "4c703b33b847e6f619c48edbedfb88464be195cf29a6186e860f8a1a40e8c2a5",
+              "opponent": {
+                "completed_bouts": 3,
+                "count": 0,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/2/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Patricio Pitbull",
+                "fighter_id": 577,
+                "terms": [
+                  {
+                    "count": 0,
+                    "field": "r1_finish_loss_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/2/elemental_feature_surface/fighter_a_state/historical_features/r1_finish_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 9,
+                "count": 3,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/2/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "Dooho Choi",
+                "fighter_id": 287,
+                "terms": [
+                  {
+                    "count": 3,
+                    "field": "r1_finish_win_rate",
+                    "rate": 0.3333333333333333,
+                    "source_pointer": "/replay/inference_input/facts/bouts/2/elemental_feature_surface/fighter_b_state/historical_features/r1_finish_win_rate"
+                  }
+                ]
+              }
+            },
             "selection": "Dooho Choi in round 1",
             "slot_id": "L4"
           }
@@ -393,6 +933,42 @@
             "plus_money": null,
             "price": null,
             "probability": 0.4747696364224464,
+            "rationale": "Gable Steveson has 1 KO/TKO win in 1 saved pre-fight bout; Sean Sharaf has 2 KO/TKO losses in 2.",
+            "rationale_source": {
+              "bout_id": "1c922683-c6e7-5200-bb28-10cd15a6aa12",
+              "fighter_snapshot_sha256": "4c703b33b847e6f619c48edbedfb88464be195cf29a6186e860f8a1a40e8c2a5",
+              "opponent": {
+                "completed_bouts": 2,
+                "count": 2,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/3/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "Sean Sharaf",
+                "fighter_id": 339,
+                "terms": [
+                  {
+                    "count": 2,
+                    "field": "ko_loss_rate",
+                    "rate": 1.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/3/elemental_feature_surface/fighter_b_state/historical_features/ko_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 1,
+                "count": 1,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/3/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Gable Steveson",
+                "fighter_id": 2985,
+                "terms": [
+                  {
+                    "count": 1,
+                    "field": "ko_win_rate",
+                    "rate": 1.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/3/elemental_feature_surface/fighter_a_state/historical_features/ko_win_rate"
+                  }
+                ]
+              }
+            },
             "selection": "Gable Steveson by KO/TKO",
             "slot_id": "L1"
           },
@@ -405,6 +981,42 @@
             "plus_money": null,
             "price": null,
             "probability": 0.15689948046883956,
+            "rationale": "Gable Steveson has 0 submission wins in 1 saved pre-fight bout; Sean Sharaf has 0 submission losses in 2.",
+            "rationale_source": {
+              "bout_id": "1c922683-c6e7-5200-bb28-10cd15a6aa12",
+              "fighter_snapshot_sha256": "4c703b33b847e6f619c48edbedfb88464be195cf29a6186e860f8a1a40e8c2a5",
+              "opponent": {
+                "completed_bouts": 2,
+                "count": 0,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/3/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "Sean Sharaf",
+                "fighter_id": 339,
+                "terms": [
+                  {
+                    "count": 0,
+                    "field": "sub_loss_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/3/elemental_feature_surface/fighter_b_state/historical_features/sub_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 1,
+                "count": 0,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/3/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Gable Steveson",
+                "fighter_id": 2985,
+                "terms": [
+                  {
+                    "count": 0,
+                    "field": "sub_win_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/3/elemental_feature_surface/fighter_a_state/historical_features/sub_win_rate"
+                  }
+                ]
+              }
+            },
             "selection": "Gable Steveson by submission",
             "slot_id": "L2"
           },
@@ -417,6 +1029,78 @@
             "plus_money": null,
             "price": null,
             "probability": 0.675118660030858,
+            "rationale": "KO/TKO or submission ended 1 of Gable Steveson\u2019s 1 saved pre-fight bout and 2 of Sean Sharaf\u2019s 2.",
+            "rationale_source": {
+              "bout_id": "1c922683-c6e7-5200-bb28-10cd15a6aa12",
+              "fighter_snapshot_sha256": "4c703b33b847e6f619c48edbedfb88464be195cf29a6186e860f8a1a40e8c2a5",
+              "opponent": {
+                "completed_bouts": 2,
+                "count": 2,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/3/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "Sean Sharaf",
+                "fighter_id": 339,
+                "terms": [
+                  {
+                    "count": 0,
+                    "field": "ko_win_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/3/elemental_feature_surface/fighter_b_state/historical_features/ko_win_rate"
+                  },
+                  {
+                    "count": 0,
+                    "field": "sub_win_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/3/elemental_feature_surface/fighter_b_state/historical_features/sub_win_rate"
+                  },
+                  {
+                    "count": 2,
+                    "field": "ko_loss_rate",
+                    "rate": 1.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/3/elemental_feature_surface/fighter_b_state/historical_features/ko_loss_rate"
+                  },
+                  {
+                    "count": 0,
+                    "field": "sub_loss_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/3/elemental_feature_surface/fighter_b_state/historical_features/sub_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 1,
+                "count": 1,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/3/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Gable Steveson",
+                "fighter_id": 2985,
+                "terms": [
+                  {
+                    "count": 1,
+                    "field": "ko_win_rate",
+                    "rate": 1.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/3/elemental_feature_surface/fighter_a_state/historical_features/ko_win_rate"
+                  },
+                  {
+                    "count": 0,
+                    "field": "sub_win_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/3/elemental_feature_surface/fighter_a_state/historical_features/sub_win_rate"
+                  },
+                  {
+                    "count": 0,
+                    "field": "ko_loss_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/3/elemental_feature_surface/fighter_a_state/historical_features/ko_loss_rate"
+                  },
+                  {
+                    "count": 0,
+                    "field": "sub_loss_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/3/elemental_feature_surface/fighter_a_state/historical_features/sub_loss_rate"
+                  }
+                ]
+              }
+            },
             "selection": "FIGHT DOES NOT GO THE DISTANCE",
             "slot_id": "L3"
           },
@@ -429,6 +1113,42 @@
             "plus_money": null,
             "price": null,
             "probability": 0.40399829439627055,
+            "rationale": "Gable Steveson has 1 first-round KO/TKO or submission win in 1 saved pre-fight bout; Sean Sharaf has 0 such losses in 2.",
+            "rationale_source": {
+              "bout_id": "1c922683-c6e7-5200-bb28-10cd15a6aa12",
+              "fighter_snapshot_sha256": "4c703b33b847e6f619c48edbedfb88464be195cf29a6186e860f8a1a40e8c2a5",
+              "opponent": {
+                "completed_bouts": 2,
+                "count": 0,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/3/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "Sean Sharaf",
+                "fighter_id": 339,
+                "terms": [
+                  {
+                    "count": 0,
+                    "field": "r1_finish_loss_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/3/elemental_feature_surface/fighter_b_state/historical_features/r1_finish_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 1,
+                "count": 1,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/3/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Gable Steveson",
+                "fighter_id": 2985,
+                "terms": [
+                  {
+                    "count": 1,
+                    "field": "r1_finish_win_rate",
+                    "rate": 1.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/3/elemental_feature_surface/fighter_a_state/historical_features/r1_finish_win_rate"
+                  }
+                ]
+              }
+            },
             "selection": "Gable Steveson in round 1",
             "slot_id": "L4"
           }
@@ -466,6 +1186,42 @@
             "plus_money": null,
             "price": null,
             "probability": 0.2798555021404919,
+            "rationale": "Iwo Baraniewski has 4 KO/TKO wins in 4 saved pre-fight bouts; Alonzo Menifield has 4 KO/TKO losses in 19.",
+            "rationale_source": {
+              "bout_id": "da273452-64db-561b-a54c-03fc0b2ac5f0",
+              "fighter_snapshot_sha256": "4c703b33b847e6f619c48edbedfb88464be195cf29a6186e860f8a1a40e8c2a5",
+              "opponent": {
+                "completed_bouts": 19,
+                "count": 4,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/4/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Alonzo Menifield",
+                "fighter_id": 54,
+                "terms": [
+                  {
+                    "count": 4,
+                    "field": "ko_loss_rate",
+                    "rate": 0.21052631578947367,
+                    "source_pointer": "/replay/inference_input/facts/bouts/4/elemental_feature_surface/fighter_a_state/historical_features/ko_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 4,
+                "count": 4,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/4/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "Iwo Baraniewski",
+                "fighter_id": 83,
+                "terms": [
+                  {
+                    "count": 4,
+                    "field": "ko_win_rate",
+                    "rate": 1.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/4/elemental_feature_surface/fighter_b_state/historical_features/ko_win_rate"
+                  }
+                ]
+              }
+            },
             "selection": "Iwo Baraniewski by KO/TKO",
             "slot_id": "L1"
           },
@@ -478,6 +1234,42 @@
             "plus_money": null,
             "price": null,
             "probability": 0.09248346974041347,
+            "rationale": "Iwo Baraniewski has 0 submission wins in 4 saved pre-fight bouts; Alonzo Menifield has 0 submission losses in 19.",
+            "rationale_source": {
+              "bout_id": "da273452-64db-561b-a54c-03fc0b2ac5f0",
+              "fighter_snapshot_sha256": "4c703b33b847e6f619c48edbedfb88464be195cf29a6186e860f8a1a40e8c2a5",
+              "opponent": {
+                "completed_bouts": 19,
+                "count": 0,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/4/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Alonzo Menifield",
+                "fighter_id": 54,
+                "terms": [
+                  {
+                    "count": 0,
+                    "field": "sub_loss_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/4/elemental_feature_surface/fighter_a_state/historical_features/sub_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 4,
+                "count": 0,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/4/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "Iwo Baraniewski",
+                "fighter_id": 83,
+                "terms": [
+                  {
+                    "count": 0,
+                    "field": "sub_win_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/4/elemental_feature_surface/fighter_b_state/historical_features/sub_win_rate"
+                  }
+                ]
+              }
+            },
             "selection": "Iwo Baraniewski by submission",
             "slot_id": "L2"
           },
@@ -490,6 +1282,78 @@
             "plus_money": null,
             "price": null,
             "probability": 0.6050564848278834,
+            "rationale": "KO/TKO or submission ended 4 of Iwo Baraniewski\u2019s 4 saved pre-fight bouts and 13 of Alonzo Menifield\u2019s 19.",
+            "rationale_source": {
+              "bout_id": "da273452-64db-561b-a54c-03fc0b2ac5f0",
+              "fighter_snapshot_sha256": "4c703b33b847e6f619c48edbedfb88464be195cf29a6186e860f8a1a40e8c2a5",
+              "opponent": {
+                "completed_bouts": 19,
+                "count": 13,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/4/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Alonzo Menifield",
+                "fighter_id": 54,
+                "terms": [
+                  {
+                    "count": 7,
+                    "field": "ko_win_rate",
+                    "rate": 0.3684210526315789,
+                    "source_pointer": "/replay/inference_input/facts/bouts/4/elemental_feature_surface/fighter_a_state/historical_features/ko_win_rate"
+                  },
+                  {
+                    "count": 2,
+                    "field": "sub_win_rate",
+                    "rate": 0.10526315789473684,
+                    "source_pointer": "/replay/inference_input/facts/bouts/4/elemental_feature_surface/fighter_a_state/historical_features/sub_win_rate"
+                  },
+                  {
+                    "count": 4,
+                    "field": "ko_loss_rate",
+                    "rate": 0.21052631578947367,
+                    "source_pointer": "/replay/inference_input/facts/bouts/4/elemental_feature_surface/fighter_a_state/historical_features/ko_loss_rate"
+                  },
+                  {
+                    "count": 0,
+                    "field": "sub_loss_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/4/elemental_feature_surface/fighter_a_state/historical_features/sub_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 4,
+                "count": 4,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/4/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "Iwo Baraniewski",
+                "fighter_id": 83,
+                "terms": [
+                  {
+                    "count": 4,
+                    "field": "ko_win_rate",
+                    "rate": 1.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/4/elemental_feature_surface/fighter_b_state/historical_features/ko_win_rate"
+                  },
+                  {
+                    "count": 0,
+                    "field": "sub_win_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/4/elemental_feature_surface/fighter_b_state/historical_features/sub_win_rate"
+                  },
+                  {
+                    "count": 0,
+                    "field": "ko_loss_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/4/elemental_feature_surface/fighter_b_state/historical_features/ko_loss_rate"
+                  },
+                  {
+                    "count": 0,
+                    "field": "sub_loss_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/4/elemental_feature_surface/fighter_b_state/historical_features/sub_loss_rate"
+                  }
+                ]
+              }
+            },
             "selection": "FIGHT DOES NOT GO THE DISTANCE",
             "slot_id": "L3"
           },
@@ -502,6 +1366,42 @@
             "plus_money": null,
             "price": null,
             "probability": 0.22492426399575324,
+            "rationale": "Iwo Baraniewski has 4 first-round KO/TKO or submission wins in 4 saved pre-fight bouts; Alonzo Menifield has 2 such losses in 19.",
+            "rationale_source": {
+              "bout_id": "da273452-64db-561b-a54c-03fc0b2ac5f0",
+              "fighter_snapshot_sha256": "4c703b33b847e6f619c48edbedfb88464be195cf29a6186e860f8a1a40e8c2a5",
+              "opponent": {
+                "completed_bouts": 19,
+                "count": 2,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/4/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Alonzo Menifield",
+                "fighter_id": 54,
+                "terms": [
+                  {
+                    "count": 2,
+                    "field": "r1_finish_loss_rate",
+                    "rate": 0.10526315789473684,
+                    "source_pointer": "/replay/inference_input/facts/bouts/4/elemental_feature_surface/fighter_a_state/historical_features/r1_finish_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 4,
+                "count": 4,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/4/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "Iwo Baraniewski",
+                "fighter_id": 83,
+                "terms": [
+                  {
+                    "count": 4,
+                    "field": "r1_finish_win_rate",
+                    "rate": 1.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/4/elemental_feature_surface/fighter_b_state/historical_features/r1_finish_win_rate"
+                  }
+                ]
+              }
+            },
             "selection": "Iwo Baraniewski in round 1",
             "slot_id": "L4"
           }
@@ -539,6 +1439,42 @@
             "plus_money": null,
             "price": null,
             "probability": 0.18228262194213282,
+            "rationale": "Charles Jourdain has 2 KO/TKO wins in 16 saved pre-fight bouts; Marlon Vera has 0 KO/TKO losses in 26.",
+            "rationale_source": {
+              "bout_id": "05348e07-db64-5307-9fb9-60abd93d2cf2",
+              "fighter_snapshot_sha256": "4c703b33b847e6f619c48edbedfb88464be195cf29a6186e860f8a1a40e8c2a5",
+              "opponent": {
+                "completed_bouts": 26,
+                "count": 0,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/5/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Marlon Vera",
+                "fighter_id": 152,
+                "terms": [
+                  {
+                    "count": 0,
+                    "field": "ko_loss_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/5/elemental_feature_surface/fighter_a_state/historical_features/ko_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 16,
+                "count": 2,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/5/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "Charles Jourdain",
+                "fighter_id": 154,
+                "terms": [
+                  {
+                    "count": 2,
+                    "field": "ko_win_rate",
+                    "rate": 0.125,
+                    "source_pointer": "/replay/inference_input/facts/bouts/5/elemental_feature_surface/fighter_b_state/historical_features/ko_win_rate"
+                  }
+                ]
+              }
+            },
             "selection": "Charles Jourdain by KO/TKO",
             "slot_id": "L1"
           },
@@ -551,6 +1487,42 @@
             "plus_money": null,
             "price": null,
             "probability": 0.12742156506449526,
+            "rationale": "Charles Jourdain has 4 submission wins in 16 saved pre-fight bouts; Marlon Vera has 0 submission losses in 26.",
+            "rationale_source": {
+              "bout_id": "05348e07-db64-5307-9fb9-60abd93d2cf2",
+              "fighter_snapshot_sha256": "4c703b33b847e6f619c48edbedfb88464be195cf29a6186e860f8a1a40e8c2a5",
+              "opponent": {
+                "completed_bouts": 26,
+                "count": 0,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/5/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Marlon Vera",
+                "fighter_id": 152,
+                "terms": [
+                  {
+                    "count": 0,
+                    "field": "sub_loss_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/5/elemental_feature_surface/fighter_a_state/historical_features/sub_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 16,
+                "count": 4,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/5/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "Charles Jourdain",
+                "fighter_id": 154,
+                "terms": [
+                  {
+                    "count": 4,
+                    "field": "sub_win_rate",
+                    "rate": 0.25,
+                    "source_pointer": "/replay/inference_input/facts/bouts/5/elemental_feature_surface/fighter_b_state/historical_features/sub_win_rate"
+                  }
+                ]
+              }
+            },
             "selection": "Charles Jourdain by submission",
             "slot_id": "L2"
           },
@@ -563,6 +1535,78 @@
             "plus_money": null,
             "price": null,
             "probability": 0.4711741669659547,
+            "rationale": "KO/TKO or submission ended 8 of Charles Jourdain\u2019s 16 saved pre-fight bouts and 11 of Marlon Vera\u2019s 26.",
+            "rationale_source": {
+              "bout_id": "05348e07-db64-5307-9fb9-60abd93d2cf2",
+              "fighter_snapshot_sha256": "4c703b33b847e6f619c48edbedfb88464be195cf29a6186e860f8a1a40e8c2a5",
+              "opponent": {
+                "completed_bouts": 26,
+                "count": 11,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/5/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Marlon Vera",
+                "fighter_id": 152,
+                "terms": [
+                  {
+                    "count": 7,
+                    "field": "ko_win_rate",
+                    "rate": 0.2692307692307692,
+                    "source_pointer": "/replay/inference_input/facts/bouts/5/elemental_feature_surface/fighter_a_state/historical_features/ko_win_rate"
+                  },
+                  {
+                    "count": 4,
+                    "field": "sub_win_rate",
+                    "rate": 0.15384615384615385,
+                    "source_pointer": "/replay/inference_input/facts/bouts/5/elemental_feature_surface/fighter_a_state/historical_features/sub_win_rate"
+                  },
+                  {
+                    "count": 0,
+                    "field": "ko_loss_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/5/elemental_feature_surface/fighter_a_state/historical_features/ko_loss_rate"
+                  },
+                  {
+                    "count": 0,
+                    "field": "sub_loss_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/5/elemental_feature_surface/fighter_a_state/historical_features/sub_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 16,
+                "count": 8,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/5/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "Charles Jourdain",
+                "fighter_id": 154,
+                "terms": [
+                  {
+                    "count": 2,
+                    "field": "ko_win_rate",
+                    "rate": 0.125,
+                    "source_pointer": "/replay/inference_input/facts/bouts/5/elemental_feature_surface/fighter_b_state/historical_features/ko_win_rate"
+                  },
+                  {
+                    "count": 4,
+                    "field": "sub_win_rate",
+                    "rate": 0.25,
+                    "source_pointer": "/replay/inference_input/facts/bouts/5/elemental_feature_surface/fighter_b_state/historical_features/sub_win_rate"
+                  },
+                  {
+                    "count": 1,
+                    "field": "ko_loss_rate",
+                    "rate": 0.0625,
+                    "source_pointer": "/replay/inference_input/facts/bouts/5/elemental_feature_surface/fighter_b_state/historical_features/ko_loss_rate"
+                  },
+                  {
+                    "count": 1,
+                    "field": "sub_loss_rate",
+                    "rate": 0.0625,
+                    "source_pointer": "/replay/inference_input/facts/bouts/5/elemental_feature_surface/fighter_b_state/historical_features/sub_loss_rate"
+                  }
+                ]
+              }
+            },
             "selection": "FIGHT DOES NOT GO THE DISTANCE",
             "slot_id": "L3"
           },
@@ -575,6 +1619,42 @@
             "plus_money": null,
             "price": null,
             "probability": 0.15298514703973642,
+            "rationale": "Charles Jourdain has 3 first-round KO/TKO or submission wins in 16 saved pre-fight bouts; Marlon Vera has 0 such losses in 26.",
+            "rationale_source": {
+              "bout_id": "05348e07-db64-5307-9fb9-60abd93d2cf2",
+              "fighter_snapshot_sha256": "4c703b33b847e6f619c48edbedfb88464be195cf29a6186e860f8a1a40e8c2a5",
+              "opponent": {
+                "completed_bouts": 26,
+                "count": 0,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/5/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Marlon Vera",
+                "fighter_id": 152,
+                "terms": [
+                  {
+                    "count": 0,
+                    "field": "r1_finish_loss_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/5/elemental_feature_surface/fighter_a_state/historical_features/r1_finish_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 16,
+                "count": 3,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/5/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "Charles Jourdain",
+                "fighter_id": 154,
+                "terms": [
+                  {
+                    "count": 3,
+                    "field": "r1_finish_win_rate",
+                    "rate": 0.1875,
+                    "source_pointer": "/replay/inference_input/facts/bouts/5/elemental_feature_surface/fighter_b_state/historical_features/r1_finish_win_rate"
+                  }
+                ]
+              }
+            },
             "selection": "Charles Jourdain in round 1",
             "slot_id": "L4"
           }
@@ -612,6 +1692,42 @@
             "plus_money": null,
             "price": null,
             "probability": 0.3949499612719213,
+            "rationale": "Robelis Despaigne has 1 KO/TKO win in 3 saved pre-fight bouts; Tai Tuivasa has 3 KO/TKO losses in 18.",
+            "rationale_source": {
+              "bout_id": "768e45b4-ab49-5cdb-9b0c-0980a06f99f8",
+              "fighter_snapshot_sha256": "4c703b33b847e6f619c48edbedfb88464be195cf29a6186e860f8a1a40e8c2a5",
+              "opponent": {
+                "completed_bouts": 18,
+                "count": 3,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/6/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Tai Tuivasa",
+                "fighter_id": 324,
+                "terms": [
+                  {
+                    "count": 3,
+                    "field": "ko_loss_rate",
+                    "rate": 0.16666666666666666,
+                    "source_pointer": "/replay/inference_input/facts/bouts/6/elemental_feature_surface/fighter_a_state/historical_features/ko_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 3,
+                "count": 1,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/6/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "Robelis Despaigne",
+                "fighter_id": 2842,
+                "terms": [
+                  {
+                    "count": 1,
+                    "field": "ko_win_rate",
+                    "rate": 0.3333333333333333,
+                    "source_pointer": "/replay/inference_input/facts/bouts/6/elemental_feature_surface/fighter_b_state/historical_features/ko_win_rate"
+                  }
+                ]
+              }
+            },
             "selection": "Robelis Despaigne by KO/TKO",
             "slot_id": "L1"
           },
@@ -624,6 +1740,42 @@
             "plus_money": null,
             "price": null,
             "probability": 0.07640844395840161,
+            "rationale": "Robelis Despaigne has 0 submission wins in 3 saved pre-fight bouts; Tai Tuivasa has 3 submission losses in 18.",
+            "rationale_source": {
+              "bout_id": "768e45b4-ab49-5cdb-9b0c-0980a06f99f8",
+              "fighter_snapshot_sha256": "4c703b33b847e6f619c48edbedfb88464be195cf29a6186e860f8a1a40e8c2a5",
+              "opponent": {
+                "completed_bouts": 18,
+                "count": 3,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/6/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Tai Tuivasa",
+                "fighter_id": 324,
+                "terms": [
+                  {
+                    "count": 3,
+                    "field": "sub_loss_rate",
+                    "rate": 0.16666666666666666,
+                    "source_pointer": "/replay/inference_input/facts/bouts/6/elemental_feature_surface/fighter_a_state/historical_features/sub_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 3,
+                "count": 0,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/6/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "Robelis Despaigne",
+                "fighter_id": 2842,
+                "terms": [
+                  {
+                    "count": 0,
+                    "field": "sub_win_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/6/elemental_feature_surface/fighter_b_state/historical_features/sub_win_rate"
+                  }
+                ]
+              }
+            },
             "selection": "Robelis Despaigne by submission",
             "slot_id": "L2"
           },
@@ -636,6 +1788,78 @@
             "plus_money": null,
             "price": null,
             "probability": 0.6237870486951718,
+            "rationale": "KO/TKO or submission ended 1 of Robelis Despaigne\u2019s 3 saved pre-fight bouts and 13 of Tai Tuivasa\u2019s 18.",
+            "rationale_source": {
+              "bout_id": "768e45b4-ab49-5cdb-9b0c-0980a06f99f8",
+              "fighter_snapshot_sha256": "4c703b33b847e6f619c48edbedfb88464be195cf29a6186e860f8a1a40e8c2a5",
+              "opponent": {
+                "completed_bouts": 18,
+                "count": 13,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/6/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Tai Tuivasa",
+                "fighter_id": 324,
+                "terms": [
+                  {
+                    "count": 7,
+                    "field": "ko_win_rate",
+                    "rate": 0.3888888888888889,
+                    "source_pointer": "/replay/inference_input/facts/bouts/6/elemental_feature_surface/fighter_a_state/historical_features/ko_win_rate"
+                  },
+                  {
+                    "count": 0,
+                    "field": "sub_win_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/6/elemental_feature_surface/fighter_a_state/historical_features/sub_win_rate"
+                  },
+                  {
+                    "count": 3,
+                    "field": "ko_loss_rate",
+                    "rate": 0.16666666666666666,
+                    "source_pointer": "/replay/inference_input/facts/bouts/6/elemental_feature_surface/fighter_a_state/historical_features/ko_loss_rate"
+                  },
+                  {
+                    "count": 3,
+                    "field": "sub_loss_rate",
+                    "rate": 0.16666666666666666,
+                    "source_pointer": "/replay/inference_input/facts/bouts/6/elemental_feature_surface/fighter_a_state/historical_features/sub_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 3,
+                "count": 1,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/6/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "Robelis Despaigne",
+                "fighter_id": 2842,
+                "terms": [
+                  {
+                    "count": 1,
+                    "field": "ko_win_rate",
+                    "rate": 0.3333333333333333,
+                    "source_pointer": "/replay/inference_input/facts/bouts/6/elemental_feature_surface/fighter_b_state/historical_features/ko_win_rate"
+                  },
+                  {
+                    "count": 0,
+                    "field": "sub_win_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/6/elemental_feature_surface/fighter_b_state/historical_features/sub_win_rate"
+                  },
+                  {
+                    "count": 0,
+                    "field": "ko_loss_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/6/elemental_feature_surface/fighter_b_state/historical_features/ko_loss_rate"
+                  },
+                  {
+                    "count": 0,
+                    "field": "sub_loss_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/6/elemental_feature_surface/fighter_b_state/historical_features/sub_loss_rate"
+                  }
+                ]
+              }
+            },
             "selection": "FIGHT DOES NOT GO THE DISTANCE",
             "slot_id": "L3"
           },
@@ -648,6 +1872,42 @@
             "plus_money": null,
             "price": null,
             "probability": 0.2529812747258563,
+            "rationale": "Robelis Despaigne has 1 first-round KO/TKO or submission win in 3 saved pre-fight bouts; Tai Tuivasa has 2 such losses in 18.",
+            "rationale_source": {
+              "bout_id": "768e45b4-ab49-5cdb-9b0c-0980a06f99f8",
+              "fighter_snapshot_sha256": "4c703b33b847e6f619c48edbedfb88464be195cf29a6186e860f8a1a40e8c2a5",
+              "opponent": {
+                "completed_bouts": 18,
+                "count": 2,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/6/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Tai Tuivasa",
+                "fighter_id": 324,
+                "terms": [
+                  {
+                    "count": 2,
+                    "field": "r1_finish_loss_rate",
+                    "rate": 0.1111111111111111,
+                    "source_pointer": "/replay/inference_input/facts/bouts/6/elemental_feature_surface/fighter_a_state/historical_features/r1_finish_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 3,
+                "count": 1,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/6/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "Robelis Despaigne",
+                "fighter_id": 2842,
+                "terms": [
+                  {
+                    "count": 1,
+                    "field": "r1_finish_win_rate",
+                    "rate": 0.3333333333333333,
+                    "source_pointer": "/replay/inference_input/facts/bouts/6/elemental_feature_surface/fighter_b_state/historical_features/r1_finish_win_rate"
+                  }
+                ]
+              }
+            },
             "selection": "Robelis Despaigne in round 1",
             "slot_id": "L4"
           }
@@ -685,6 +1945,42 @@
             "plus_money": null,
             "price": null,
             "probability": 0.19764277979956973,
+            "rationale": "JooSang Yoo has 1 KO/TKO win in 2 saved pre-fight bouts; Michael Aswell Jr. has 0 KO/TKO losses in 5.",
+            "rationale_source": {
+              "bout_id": "8e52cae6-27d2-5aeb-bdcc-0e89fce5ec6c",
+              "fighter_snapshot_sha256": "4c703b33b847e6f619c48edbedfb88464be195cf29a6186e860f8a1a40e8c2a5",
+              "opponent": {
+                "completed_bouts": 5,
+                "count": 0,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/7/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Michael Aswell Jr.",
+                "fighter_id": 168,
+                "terms": [
+                  {
+                    "count": 0,
+                    "field": "ko_loss_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/7/elemental_feature_surface/fighter_a_state/historical_features/ko_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 2,
+                "count": 1,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/7/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "JooSang Yoo",
+                "fighter_id": 203,
+                "terms": [
+                  {
+                    "count": 1,
+                    "field": "ko_win_rate",
+                    "rate": 0.5,
+                    "source_pointer": "/replay/inference_input/facts/bouts/7/elemental_feature_surface/fighter_b_state/historical_features/ko_win_rate"
+                  }
+                ]
+              }
+            },
             "selection": "JooSang Yoo by KO/TKO",
             "slot_id": "L1"
           },
@@ -697,6 +1993,42 @@
             "plus_money": null,
             "price": null,
             "probability": 0.1031687278862237,
+            "rationale": "JooSang Yoo has 0 submission wins in 2 saved pre-fight bouts; Michael Aswell Jr. has 0 submission losses in 5.",
+            "rationale_source": {
+              "bout_id": "8e52cae6-27d2-5aeb-bdcc-0e89fce5ec6c",
+              "fighter_snapshot_sha256": "4c703b33b847e6f619c48edbedfb88464be195cf29a6186e860f8a1a40e8c2a5",
+              "opponent": {
+                "completed_bouts": 5,
+                "count": 0,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/7/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Michael Aswell Jr.",
+                "fighter_id": 168,
+                "terms": [
+                  {
+                    "count": 0,
+                    "field": "sub_loss_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/7/elemental_feature_surface/fighter_a_state/historical_features/sub_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 2,
+                "count": 0,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/7/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "JooSang Yoo",
+                "fighter_id": 203,
+                "terms": [
+                  {
+                    "count": 0,
+                    "field": "sub_win_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/7/elemental_feature_surface/fighter_b_state/historical_features/sub_win_rate"
+                  }
+                ]
+              }
+            },
             "selection": "JooSang Yoo by submission",
             "slot_id": "L2"
           },
@@ -709,6 +2041,78 @@
             "plus_money": null,
             "price": null,
             "probability": 0.4778728135727247,
+            "rationale": "KO/TKO or submission ended 2 of JooSang Yoo\u2019s 2 saved pre-fight bouts and 1 of Michael Aswell Jr.\u2019s 5.",
+            "rationale_source": {
+              "bout_id": "8e52cae6-27d2-5aeb-bdcc-0e89fce5ec6c",
+              "fighter_snapshot_sha256": "4c703b33b847e6f619c48edbedfb88464be195cf29a6186e860f8a1a40e8c2a5",
+              "opponent": {
+                "completed_bouts": 5,
+                "count": 1,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/7/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Michael Aswell Jr.",
+                "fighter_id": 168,
+                "terms": [
+                  {
+                    "count": 1,
+                    "field": "ko_win_rate",
+                    "rate": 0.2,
+                    "source_pointer": "/replay/inference_input/facts/bouts/7/elemental_feature_surface/fighter_a_state/historical_features/ko_win_rate"
+                  },
+                  {
+                    "count": 0,
+                    "field": "sub_win_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/7/elemental_feature_surface/fighter_a_state/historical_features/sub_win_rate"
+                  },
+                  {
+                    "count": 0,
+                    "field": "ko_loss_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/7/elemental_feature_surface/fighter_a_state/historical_features/ko_loss_rate"
+                  },
+                  {
+                    "count": 0,
+                    "field": "sub_loss_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/7/elemental_feature_surface/fighter_a_state/historical_features/sub_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 2,
+                "count": 2,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/7/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "JooSang Yoo",
+                "fighter_id": 203,
+                "terms": [
+                  {
+                    "count": 1,
+                    "field": "ko_win_rate",
+                    "rate": 0.5,
+                    "source_pointer": "/replay/inference_input/facts/bouts/7/elemental_feature_surface/fighter_b_state/historical_features/ko_win_rate"
+                  },
+                  {
+                    "count": 0,
+                    "field": "sub_win_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/7/elemental_feature_surface/fighter_b_state/historical_features/sub_win_rate"
+                  },
+                  {
+                    "count": 1,
+                    "field": "ko_loss_rate",
+                    "rate": 0.5,
+                    "source_pointer": "/replay/inference_input/facts/bouts/7/elemental_feature_surface/fighter_b_state/historical_features/ko_loss_rate"
+                  },
+                  {
+                    "count": 0,
+                    "field": "sub_loss_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/7/elemental_feature_surface/fighter_b_state/historical_features/sub_loss_rate"
+                  }
+                ]
+              }
+            },
             "selection": "FIGHT DOES NOT GO THE DISTANCE",
             "slot_id": "L3"
           },
@@ -721,6 +2125,42 @@
             "plus_money": null,
             "price": null,
             "probability": 0.16534794385152735,
+            "rationale": "JooSang Yoo has 1 first-round KO/TKO or submission win in 2 saved pre-fight bouts; Michael Aswell Jr. has 0 such losses in 5.",
+            "rationale_source": {
+              "bout_id": "8e52cae6-27d2-5aeb-bdcc-0e89fce5ec6c",
+              "fighter_snapshot_sha256": "4c703b33b847e6f619c48edbedfb88464be195cf29a6186e860f8a1a40e8c2a5",
+              "opponent": {
+                "completed_bouts": 5,
+                "count": 0,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/7/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Michael Aswell Jr.",
+                "fighter_id": 168,
+                "terms": [
+                  {
+                    "count": 0,
+                    "field": "r1_finish_loss_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/7/elemental_feature_surface/fighter_a_state/historical_features/r1_finish_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 2,
+                "count": 1,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/7/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "JooSang Yoo",
+                "fighter_id": 203,
+                "terms": [
+                  {
+                    "count": 1,
+                    "field": "r1_finish_win_rate",
+                    "rate": 0.5,
+                    "source_pointer": "/replay/inference_input/facts/bouts/7/elemental_feature_surface/fighter_b_state/historical_features/r1_finish_win_rate"
+                  }
+                ]
+              }
+            },
             "selection": "JooSang Yoo in round 1",
             "slot_id": "L4"
           }
@@ -758,6 +2198,42 @@
             "plus_money": null,
             "price": null,
             "probability": 0.29872895590798804,
+            "rationale": "Ryan Gandra has 3 KO/TKO wins in 3 saved pre-fight bouts; Ozzy Diaz has 3 KO/TKO losses in 4.",
+            "rationale_source": {
+              "bout_id": "15635f37-d899-5a2b-b64b-cad7e603dd44",
+              "fighter_snapshot_sha256": "4c703b33b847e6f619c48edbedfb88464be195cf29a6186e860f8a1a40e8c2a5",
+              "opponent": {
+                "completed_bouts": 4,
+                "count": 3,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/8/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "Ozzy Diaz",
+                "fighter_id": 550,
+                "terms": [
+                  {
+                    "count": 3,
+                    "field": "ko_loss_rate",
+                    "rate": 0.75,
+                    "source_pointer": "/replay/inference_input/facts/bouts/8/elemental_feature_surface/fighter_b_state/historical_features/ko_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 3,
+                "count": 3,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/8/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Ryan Gandra",
+                "fighter_id": 478,
+                "terms": [
+                  {
+                    "count": 3,
+                    "field": "ko_win_rate",
+                    "rate": 1.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/8/elemental_feature_surface/fighter_a_state/historical_features/ko_win_rate"
+                  }
+                ]
+              }
+            },
             "selection": "Ryan Gandra by KO/TKO",
             "slot_id": "L1"
           },
@@ -770,6 +2246,42 @@
             "plus_money": null,
             "price": null,
             "probability": 0.20094706569198517,
+            "rationale": "Ryan Gandra has 0 submission wins in 3 saved pre-fight bouts; Ozzy Diaz has 0 submission losses in 4.",
+            "rationale_source": {
+              "bout_id": "15635f37-d899-5a2b-b64b-cad7e603dd44",
+              "fighter_snapshot_sha256": "4c703b33b847e6f619c48edbedfb88464be195cf29a6186e860f8a1a40e8c2a5",
+              "opponent": {
+                "completed_bouts": 4,
+                "count": 0,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/8/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "Ozzy Diaz",
+                "fighter_id": 550,
+                "terms": [
+                  {
+                    "count": 0,
+                    "field": "sub_loss_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/8/elemental_feature_surface/fighter_b_state/historical_features/sub_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 3,
+                "count": 0,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/8/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Ryan Gandra",
+                "fighter_id": 478,
+                "terms": [
+                  {
+                    "count": 0,
+                    "field": "sub_win_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/8/elemental_feature_surface/fighter_a_state/historical_features/sub_win_rate"
+                  }
+                ]
+              }
+            },
             "selection": "Ryan Gandra by submission",
             "slot_id": "L2"
           },
@@ -782,6 +2294,78 @@
             "plus_money": null,
             "price": null,
             "probability": 0.6102790973930639,
+            "rationale": "KO/TKO or submission ended 3 of Ryan Gandra\u2019s 3 saved pre-fight bouts and 3 of Ozzy Diaz\u2019s 4.",
+            "rationale_source": {
+              "bout_id": "15635f37-d899-5a2b-b64b-cad7e603dd44",
+              "fighter_snapshot_sha256": "4c703b33b847e6f619c48edbedfb88464be195cf29a6186e860f8a1a40e8c2a5",
+              "opponent": {
+                "completed_bouts": 4,
+                "count": 3,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/8/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "Ozzy Diaz",
+                "fighter_id": 550,
+                "terms": [
+                  {
+                    "count": 0,
+                    "field": "ko_win_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/8/elemental_feature_surface/fighter_b_state/historical_features/ko_win_rate"
+                  },
+                  {
+                    "count": 0,
+                    "field": "sub_win_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/8/elemental_feature_surface/fighter_b_state/historical_features/sub_win_rate"
+                  },
+                  {
+                    "count": 3,
+                    "field": "ko_loss_rate",
+                    "rate": 0.75,
+                    "source_pointer": "/replay/inference_input/facts/bouts/8/elemental_feature_surface/fighter_b_state/historical_features/ko_loss_rate"
+                  },
+                  {
+                    "count": 0,
+                    "field": "sub_loss_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/8/elemental_feature_surface/fighter_b_state/historical_features/sub_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 3,
+                "count": 3,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/8/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Ryan Gandra",
+                "fighter_id": 478,
+                "terms": [
+                  {
+                    "count": 3,
+                    "field": "ko_win_rate",
+                    "rate": 1.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/8/elemental_feature_surface/fighter_a_state/historical_features/ko_win_rate"
+                  },
+                  {
+                    "count": 0,
+                    "field": "sub_win_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/8/elemental_feature_surface/fighter_a_state/historical_features/sub_win_rate"
+                  },
+                  {
+                    "count": 0,
+                    "field": "ko_loss_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/8/elemental_feature_surface/fighter_a_state/historical_features/ko_loss_rate"
+                  },
+                  {
+                    "count": 0,
+                    "field": "sub_loss_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/8/elemental_feature_surface/fighter_a_state/historical_features/sub_loss_rate"
+                  }
+                ]
+              }
+            },
             "selection": "FIGHT DOES NOT GO THE DISTANCE",
             "slot_id": "L3"
           },
@@ -794,6 +2378,42 @@
             "plus_money": null,
             "price": null,
             "probability": 0.28206123198925237,
+            "rationale": "Ryan Gandra has 3 first-round KO/TKO or submission wins in 3 saved pre-fight bouts; Ozzy Diaz has 1 such loss in 4.",
+            "rationale_source": {
+              "bout_id": "15635f37-d899-5a2b-b64b-cad7e603dd44",
+              "fighter_snapshot_sha256": "4c703b33b847e6f619c48edbedfb88464be195cf29a6186e860f8a1a40e8c2a5",
+              "opponent": {
+                "completed_bouts": 4,
+                "count": 1,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/8/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "Ozzy Diaz",
+                "fighter_id": 550,
+                "terms": [
+                  {
+                    "count": 1,
+                    "field": "r1_finish_loss_rate",
+                    "rate": 0.25,
+                    "source_pointer": "/replay/inference_input/facts/bouts/8/elemental_feature_surface/fighter_b_state/historical_features/r1_finish_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 3,
+                "count": 3,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/8/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Ryan Gandra",
+                "fighter_id": 478,
+                "terms": [
+                  {
+                    "count": 3,
+                    "field": "r1_finish_win_rate",
+                    "rate": 1.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/8/elemental_feature_surface/fighter_a_state/historical_features/r1_finish_win_rate"
+                  }
+                ]
+              }
+            },
             "selection": "Ryan Gandra in round 1",
             "slot_id": "L4"
           }
@@ -831,6 +2451,42 @@
             "plus_money": null,
             "price": null,
             "probability": 0.2360718383899454,
+            "rationale": "Edmen Shahbazyan has 7 KO/TKO wins in 16 saved pre-fight bouts; Brunno Ferreira has 2 KO/TKO losses in 11.",
+            "rationale_source": {
+              "bout_id": "f6fcb424-fe5b-5ff6-9c5a-c536bab104db",
+              "fighter_snapshot_sha256": "4c703b33b847e6f619c48edbedfb88464be195cf29a6186e860f8a1a40e8c2a5",
+              "opponent": {
+                "completed_bouts": 11,
+                "count": 2,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/9/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "Brunno Ferreira",
+                "fighter_id": 353,
+                "terms": [
+                  {
+                    "count": 2,
+                    "field": "ko_loss_rate",
+                    "rate": 0.18181818181818182,
+                    "source_pointer": "/replay/inference_input/facts/bouts/9/elemental_feature_surface/fighter_b_state/historical_features/ko_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 16,
+                "count": 7,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/9/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Edmen Shahbazyan",
+                "fighter_id": 80,
+                "terms": [
+                  {
+                    "count": 7,
+                    "field": "ko_win_rate",
+                    "rate": 0.4375,
+                    "source_pointer": "/replay/inference_input/facts/bouts/9/elemental_feature_surface/fighter_a_state/historical_features/ko_win_rate"
+                  }
+                ]
+              }
+            },
             "selection": "Edmen Shahbazyan by KO/TKO",
             "slot_id": "L1"
           },
@@ -843,6 +2499,42 @@
             "plus_money": null,
             "price": null,
             "probability": 0.15879928034690918,
+            "rationale": "Edmen Shahbazyan has 1 submission win in 16 saved pre-fight bouts; Brunno Ferreira has 1 submission loss in 11.",
+            "rationale_source": {
+              "bout_id": "f6fcb424-fe5b-5ff6-9c5a-c536bab104db",
+              "fighter_snapshot_sha256": "4c703b33b847e6f619c48edbedfb88464be195cf29a6186e860f8a1a40e8c2a5",
+              "opponent": {
+                "completed_bouts": 11,
+                "count": 1,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/9/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "Brunno Ferreira",
+                "fighter_id": 353,
+                "terms": [
+                  {
+                    "count": 1,
+                    "field": "sub_loss_rate",
+                    "rate": 0.09090909090909091,
+                    "source_pointer": "/replay/inference_input/facts/bouts/9/elemental_feature_surface/fighter_b_state/historical_features/sub_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 16,
+                "count": 1,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/9/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Edmen Shahbazyan",
+                "fighter_id": 80,
+                "terms": [
+                  {
+                    "count": 1,
+                    "field": "sub_win_rate",
+                    "rate": 0.0625,
+                    "source_pointer": "/replay/inference_input/facts/bouts/9/elemental_feature_surface/fighter_a_state/historical_features/sub_win_rate"
+                  }
+                ]
+              }
+            },
             "selection": "Edmen Shahbazyan by submission",
             "slot_id": "L2"
           },
@@ -855,6 +2547,78 @@
             "plus_money": null,
             "price": null,
             "probability": 0.6069689880820317,
+            "rationale": "KO/TKO or submission ended 12 of Edmen Shahbazyan\u2019s 16 saved pre-fight bouts and 9 of Brunno Ferreira\u2019s 11.",
+            "rationale_source": {
+              "bout_id": "f6fcb424-fe5b-5ff6-9c5a-c536bab104db",
+              "fighter_snapshot_sha256": "4c703b33b847e6f619c48edbedfb88464be195cf29a6186e860f8a1a40e8c2a5",
+              "opponent": {
+                "completed_bouts": 11,
+                "count": 9,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/9/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "Brunno Ferreira",
+                "fighter_id": 353,
+                "terms": [
+                  {
+                    "count": 4,
+                    "field": "ko_win_rate",
+                    "rate": 0.36363636363636365,
+                    "source_pointer": "/replay/inference_input/facts/bouts/9/elemental_feature_surface/fighter_b_state/historical_features/ko_win_rate"
+                  },
+                  {
+                    "count": 2,
+                    "field": "sub_win_rate",
+                    "rate": 0.18181818181818182,
+                    "source_pointer": "/replay/inference_input/facts/bouts/9/elemental_feature_surface/fighter_b_state/historical_features/sub_win_rate"
+                  },
+                  {
+                    "count": 2,
+                    "field": "ko_loss_rate",
+                    "rate": 0.18181818181818182,
+                    "source_pointer": "/replay/inference_input/facts/bouts/9/elemental_feature_surface/fighter_b_state/historical_features/ko_loss_rate"
+                  },
+                  {
+                    "count": 1,
+                    "field": "sub_loss_rate",
+                    "rate": 0.09090909090909091,
+                    "source_pointer": "/replay/inference_input/facts/bouts/9/elemental_feature_surface/fighter_b_state/historical_features/sub_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 16,
+                "count": 12,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/9/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Edmen Shahbazyan",
+                "fighter_id": 80,
+                "terms": [
+                  {
+                    "count": 7,
+                    "field": "ko_win_rate",
+                    "rate": 0.4375,
+                    "source_pointer": "/replay/inference_input/facts/bouts/9/elemental_feature_surface/fighter_a_state/historical_features/ko_win_rate"
+                  },
+                  {
+                    "count": 1,
+                    "field": "sub_win_rate",
+                    "rate": 0.0625,
+                    "source_pointer": "/replay/inference_input/facts/bouts/9/elemental_feature_surface/fighter_a_state/historical_features/sub_win_rate"
+                  },
+                  {
+                    "count": 3,
+                    "field": "ko_loss_rate",
+                    "rate": 0.1875,
+                    "source_pointer": "/replay/inference_input/facts/bouts/9/elemental_feature_surface/fighter_a_state/historical_features/ko_loss_rate"
+                  },
+                  {
+                    "count": 1,
+                    "field": "sub_loss_rate",
+                    "rate": 0.0625,
+                    "source_pointer": "/replay/inference_input/facts/bouts/9/elemental_feature_surface/fighter_a_state/historical_features/sub_loss_rate"
+                  }
+                ]
+              }
+            },
             "selection": "FIGHT DOES NOT GO THE DISTANCE",
             "slot_id": "L3"
           },
@@ -867,6 +2631,42 @@
             "plus_money": null,
             "price": null,
             "probability": 0.22290009809007322,
+            "rationale": "Edmen Shahbazyan has 7 first-round KO/TKO or submission wins in 16 saved pre-fight bouts; Brunno Ferreira has 2 such losses in 11.",
+            "rationale_source": {
+              "bout_id": "f6fcb424-fe5b-5ff6-9c5a-c536bab104db",
+              "fighter_snapshot_sha256": "4c703b33b847e6f619c48edbedfb88464be195cf29a6186e860f8a1a40e8c2a5",
+              "opponent": {
+                "completed_bouts": 11,
+                "count": 2,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/9/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "Brunno Ferreira",
+                "fighter_id": 353,
+                "terms": [
+                  {
+                    "count": 2,
+                    "field": "r1_finish_loss_rate",
+                    "rate": 0.18181818181818182,
+                    "source_pointer": "/replay/inference_input/facts/bouts/9/elemental_feature_surface/fighter_b_state/historical_features/r1_finish_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 16,
+                "count": 7,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/9/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Edmen Shahbazyan",
+                "fighter_id": 80,
+                "terms": [
+                  {
+                    "count": 7,
+                    "field": "r1_finish_win_rate",
+                    "rate": 0.4375,
+                    "source_pointer": "/replay/inference_input/facts/bouts/9/elemental_feature_surface/fighter_a_state/historical_features/r1_finish_win_rate"
+                  }
+                ]
+              }
+            },
             "selection": "Edmen Shahbazyan in round 1",
             "slot_id": "L4"
           }
@@ -904,6 +2704,42 @@
             "plus_money": null,
             "price": null,
             "probability": 0.12469330957992483,
+            "rationale": "Casey O'Neill has 3 KO/TKO wins in 8 saved pre-fight bouts; Eduarda Moura has 0 KO/TKO losses in 6.",
+            "rationale_source": {
+              "bout_id": "95329976-4a4c-5f87-bbf0-fcf1d037b6f2",
+              "fighter_snapshot_sha256": "4c703b33b847e6f619c48edbedfb88464be195cf29a6186e860f8a1a40e8c2a5",
+              "opponent": {
+                "completed_bouts": 6,
+                "count": 0,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/10/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "Eduarda Moura",
+                "fighter_id": 493,
+                "terms": [
+                  {
+                    "count": 0,
+                    "field": "ko_loss_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/10/elemental_feature_surface/fighter_b_state/historical_features/ko_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 8,
+                "count": 3,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/10/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Casey O'Neill",
+                "fighter_id": 518,
+                "terms": [
+                  {
+                    "count": 3,
+                    "field": "ko_win_rate",
+                    "rate": 0.375,
+                    "source_pointer": "/replay/inference_input/facts/bouts/10/elemental_feature_surface/fighter_a_state/historical_features/ko_win_rate"
+                  }
+                ]
+              }
+            },
             "selection": "Casey O'Neill by KO/TKO",
             "slot_id": "L1"
           },
@@ -916,6 +2752,42 @@
             "plus_money": null,
             "price": null,
             "probability": 0.16078794761450296,
+            "rationale": "Casey O'Neill has 1 submission win in 8 saved pre-fight bouts; Eduarda Moura has 0 submission losses in 6.",
+            "rationale_source": {
+              "bout_id": "95329976-4a4c-5f87-bbf0-fcf1d037b6f2",
+              "fighter_snapshot_sha256": "4c703b33b847e6f619c48edbedfb88464be195cf29a6186e860f8a1a40e8c2a5",
+              "opponent": {
+                "completed_bouts": 6,
+                "count": 0,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/10/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "Eduarda Moura",
+                "fighter_id": 493,
+                "terms": [
+                  {
+                    "count": 0,
+                    "field": "sub_loss_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/10/elemental_feature_surface/fighter_b_state/historical_features/sub_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 8,
+                "count": 1,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/10/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Casey O'Neill",
+                "fighter_id": 518,
+                "terms": [
+                  {
+                    "count": 1,
+                    "field": "sub_win_rate",
+                    "rate": 0.125,
+                    "source_pointer": "/replay/inference_input/facts/bouts/10/elemental_feature_surface/fighter_a_state/historical_features/sub_win_rate"
+                  }
+                ]
+              }
+            },
             "selection": "Casey O'Neill by submission",
             "slot_id": "L2"
           },
@@ -928,6 +2800,78 @@
             "plus_money": null,
             "price": null,
             "probability": 0.3903894421388233,
+            "rationale": "KO/TKO or submission ended 5 of Casey O'Neill\u2019s 8 saved pre-fight bouts and 2 of Eduarda Moura\u2019s 6.",
+            "rationale_source": {
+              "bout_id": "95329976-4a4c-5f87-bbf0-fcf1d037b6f2",
+              "fighter_snapshot_sha256": "4c703b33b847e6f619c48edbedfb88464be195cf29a6186e860f8a1a40e8c2a5",
+              "opponent": {
+                "completed_bouts": 6,
+                "count": 2,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/10/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "Eduarda Moura",
+                "fighter_id": 493,
+                "terms": [
+                  {
+                    "count": 1,
+                    "field": "ko_win_rate",
+                    "rate": 0.16666666666666666,
+                    "source_pointer": "/replay/inference_input/facts/bouts/10/elemental_feature_surface/fighter_b_state/historical_features/ko_win_rate"
+                  },
+                  {
+                    "count": 1,
+                    "field": "sub_win_rate",
+                    "rate": 0.16666666666666666,
+                    "source_pointer": "/replay/inference_input/facts/bouts/10/elemental_feature_surface/fighter_b_state/historical_features/sub_win_rate"
+                  },
+                  {
+                    "count": 0,
+                    "field": "ko_loss_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/10/elemental_feature_surface/fighter_b_state/historical_features/ko_loss_rate"
+                  },
+                  {
+                    "count": 0,
+                    "field": "sub_loss_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/10/elemental_feature_surface/fighter_b_state/historical_features/sub_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 8,
+                "count": 5,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/10/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Casey O'Neill",
+                "fighter_id": 518,
+                "terms": [
+                  {
+                    "count": 3,
+                    "field": "ko_win_rate",
+                    "rate": 0.375,
+                    "source_pointer": "/replay/inference_input/facts/bouts/10/elemental_feature_surface/fighter_a_state/historical_features/ko_win_rate"
+                  },
+                  {
+                    "count": 1,
+                    "field": "sub_win_rate",
+                    "rate": 0.125,
+                    "source_pointer": "/replay/inference_input/facts/bouts/10/elemental_feature_surface/fighter_a_state/historical_features/sub_win_rate"
+                  },
+                  {
+                    "count": 0,
+                    "field": "ko_loss_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/10/elemental_feature_surface/fighter_a_state/historical_features/ko_loss_rate"
+                  },
+                  {
+                    "count": 1,
+                    "field": "sub_loss_rate",
+                    "rate": 0.125,
+                    "source_pointer": "/replay/inference_input/facts/bouts/10/elemental_feature_surface/fighter_a_state/historical_features/sub_loss_rate"
+                  }
+                ]
+              }
+            },
             "selection": "FIGHT DOES NOT GO THE DISTANCE",
             "slot_id": "L3"
           },
@@ -940,6 +2884,42 @@
             "plus_money": null,
             "price": null,
             "probability": 0.14852532910341115,
+            "rationale": "Casey O'Neill has 1 first-round KO/TKO or submission win in 8 saved pre-fight bouts; Eduarda Moura has 0 such losses in 6.",
+            "rationale_source": {
+              "bout_id": "95329976-4a4c-5f87-bbf0-fcf1d037b6f2",
+              "fighter_snapshot_sha256": "4c703b33b847e6f619c48edbedfb88464be195cf29a6186e860f8a1a40e8c2a5",
+              "opponent": {
+                "completed_bouts": 6,
+                "count": 0,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/10/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "Eduarda Moura",
+                "fighter_id": 493,
+                "terms": [
+                  {
+                    "count": 0,
+                    "field": "r1_finish_loss_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/10/elemental_feature_surface/fighter_b_state/historical_features/r1_finish_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 8,
+                "count": 1,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/10/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Casey O'Neill",
+                "fighter_id": 518,
+                "terms": [
+                  {
+                    "count": 1,
+                    "field": "r1_finish_win_rate",
+                    "rate": 0.125,
+                    "source_pointer": "/replay/inference_input/facts/bouts/10/elemental_feature_surface/fighter_a_state/historical_features/r1_finish_win_rate"
+                  }
+                ]
+              }
+            },
             "selection": "Casey O'Neill in round 1",
             "slot_id": "L4"
           }
@@ -977,6 +2957,42 @@
             "plus_money": null,
             "price": null,
             "probability": 0.23919026275052918,
+            "rationale": "Joanderson Brito has 3 KO/TKO wins in 11 saved pre-fight bouts; Giga Chikadze has 1 KO/TKO loss in 13.",
+            "rationale_source": {
+              "bout_id": "4483c65a-f7b5-51a3-bac1-bc7d185255b4",
+              "fighter_snapshot_sha256": "4c703b33b847e6f619c48edbedfb88464be195cf29a6186e860f8a1a40e8c2a5",
+              "opponent": {
+                "completed_bouts": 13,
+                "count": 1,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/11/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Giga Chikadze",
+                "fighter_id": 346,
+                "terms": [
+                  {
+                    "count": 1,
+                    "field": "ko_loss_rate",
+                    "rate": 0.07692307692307693,
+                    "source_pointer": "/replay/inference_input/facts/bouts/11/elemental_feature_surface/fighter_a_state/historical_features/ko_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 11,
+                "count": 3,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/11/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "Joanderson Brito",
+                "fighter_id": 90,
+                "terms": [
+                  {
+                    "count": 3,
+                    "field": "ko_win_rate",
+                    "rate": 0.2727272727272727,
+                    "source_pointer": "/replay/inference_input/facts/bouts/11/elemental_feature_surface/fighter_b_state/historical_features/ko_win_rate"
+                  }
+                ]
+              }
+            },
             "selection": "Joanderson Brito by KO/TKO",
             "slot_id": "L1"
           },
@@ -989,6 +3005,42 @@
             "plus_money": null,
             "price": null,
             "probability": 0.12485634514839694,
+            "rationale": "Joanderson Brito has 3 submission wins in 11 saved pre-fight bouts; Giga Chikadze has 1 submission loss in 13.",
+            "rationale_source": {
+              "bout_id": "4483c65a-f7b5-51a3-bac1-bc7d185255b4",
+              "fighter_snapshot_sha256": "4c703b33b847e6f619c48edbedfb88464be195cf29a6186e860f8a1a40e8c2a5",
+              "opponent": {
+                "completed_bouts": 13,
+                "count": 1,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/11/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Giga Chikadze",
+                "fighter_id": 346,
+                "terms": [
+                  {
+                    "count": 1,
+                    "field": "sub_loss_rate",
+                    "rate": 0.07692307692307693,
+                    "source_pointer": "/replay/inference_input/facts/bouts/11/elemental_feature_surface/fighter_a_state/historical_features/sub_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 11,
+                "count": 3,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/11/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "Joanderson Brito",
+                "fighter_id": 90,
+                "terms": [
+                  {
+                    "count": 3,
+                    "field": "sub_win_rate",
+                    "rate": 0.2727272727272727,
+                    "source_pointer": "/replay/inference_input/facts/bouts/11/elemental_feature_surface/fighter_b_state/historical_features/sub_win_rate"
+                  }
+                ]
+              }
+            },
             "selection": "Joanderson Brito by submission",
             "slot_id": "L2"
           },
@@ -1001,6 +3053,78 @@
             "plus_money": null,
             "price": null,
             "probability": 0.47930360092107904,
+            "rationale": "KO/TKO or submission ended 6 of Joanderson Brito\u2019s 11 saved pre-fight bouts and 5 of Giga Chikadze\u2019s 13.",
+            "rationale_source": {
+              "bout_id": "4483c65a-f7b5-51a3-bac1-bc7d185255b4",
+              "fighter_snapshot_sha256": "4c703b33b847e6f619c48edbedfb88464be195cf29a6186e860f8a1a40e8c2a5",
+              "opponent": {
+                "completed_bouts": 13,
+                "count": 5,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/11/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Giga Chikadze",
+                "fighter_id": 346,
+                "terms": [
+                  {
+                    "count": 3,
+                    "field": "ko_win_rate",
+                    "rate": 0.23076923076923078,
+                    "source_pointer": "/replay/inference_input/facts/bouts/11/elemental_feature_surface/fighter_a_state/historical_features/ko_win_rate"
+                  },
+                  {
+                    "count": 0,
+                    "field": "sub_win_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/11/elemental_feature_surface/fighter_a_state/historical_features/sub_win_rate"
+                  },
+                  {
+                    "count": 1,
+                    "field": "ko_loss_rate",
+                    "rate": 0.07692307692307693,
+                    "source_pointer": "/replay/inference_input/facts/bouts/11/elemental_feature_surface/fighter_a_state/historical_features/ko_loss_rate"
+                  },
+                  {
+                    "count": 1,
+                    "field": "sub_loss_rate",
+                    "rate": 0.07692307692307693,
+                    "source_pointer": "/replay/inference_input/facts/bouts/11/elemental_feature_surface/fighter_a_state/historical_features/sub_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 11,
+                "count": 6,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/11/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "Joanderson Brito",
+                "fighter_id": 90,
+                "terms": [
+                  {
+                    "count": 3,
+                    "field": "ko_win_rate",
+                    "rate": 0.2727272727272727,
+                    "source_pointer": "/replay/inference_input/facts/bouts/11/elemental_feature_surface/fighter_b_state/historical_features/ko_win_rate"
+                  },
+                  {
+                    "count": 3,
+                    "field": "sub_win_rate",
+                    "rate": 0.2727272727272727,
+                    "source_pointer": "/replay/inference_input/facts/bouts/11/elemental_feature_surface/fighter_b_state/historical_features/sub_win_rate"
+                  },
+                  {
+                    "count": 0,
+                    "field": "ko_loss_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/11/elemental_feature_surface/fighter_b_state/historical_features/ko_loss_rate"
+                  },
+                  {
+                    "count": 0,
+                    "field": "sub_loss_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/11/elemental_feature_surface/fighter_b_state/historical_features/sub_loss_rate"
+                  }
+                ]
+              }
+            },
             "selection": "FIGHT DOES NOT GO THE DISTANCE",
             "slot_id": "L3"
           },
@@ -1013,6 +3137,42 @@
             "plus_money": null,
             "price": null,
             "probability": 0.20010656688402167,
+            "rationale": "Joanderson Brito has 4 first-round KO/TKO or submission wins in 11 saved pre-fight bouts; Giga Chikadze has 0 such losses in 13.",
+            "rationale_source": {
+              "bout_id": "4483c65a-f7b5-51a3-bac1-bc7d185255b4",
+              "fighter_snapshot_sha256": "4c703b33b847e6f619c48edbedfb88464be195cf29a6186e860f8a1a40e8c2a5",
+              "opponent": {
+                "completed_bouts": 13,
+                "count": 0,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/11/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Giga Chikadze",
+                "fighter_id": 346,
+                "terms": [
+                  {
+                    "count": 0,
+                    "field": "r1_finish_loss_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/11/elemental_feature_surface/fighter_a_state/historical_features/r1_finish_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 11,
+                "count": 4,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/11/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "Joanderson Brito",
+                "fighter_id": 90,
+                "terms": [
+                  {
+                    "count": 4,
+                    "field": "r1_finish_win_rate",
+                    "rate": 0.36363636363636365,
+                    "source_pointer": "/replay/inference_input/facts/bouts/11/elemental_feature_surface/fighter_b_state/historical_features/r1_finish_win_rate"
+                  }
+                ]
+              }
+            },
             "selection": "Joanderson Brito in round 1",
             "slot_id": "L4"
           }
@@ -1027,7 +3187,7 @@
     "source_market_snapshot_sha256": "665d755bc012608398c43326e7aa1de00e98422304d864d840f55d7050c3e89b",
     "source_positions_sha256": "4801d1a00d95ce70d4e66e2448f9f3af4ca43b3a968273331c252e9a43f0c9cd"
   },
-  "payload_sha256": "2a23d1d351a2760da3523765ceb840cb6555796b127f8839583a784ebfffd89e",
+  "payload_sha256": "87228b570f38375bf5118deb5c004115730f2c9452b907a626f12f891c4be8ed",
   "picks_published": true,
   "positions": [
     {
