@@ -111,17 +111,17 @@
     }
   ],
   "fighter_authority": {
-    "bouts": 3517,
-    "events": 1031,
+    "bouts": 3529,
+    "events": 1032,
     "fight_statistics_source_aggregate": 0,
-    "fighters": 3991,
+    "fighters": 3992,
     "results": 3442,
     "round_statistics_elemental": 5046,
     "round_stats": 0,
     "scorecards": 37,
     "weigh_ins": 5442
   },
-  "generated_at_utc": "2026-09-15T20:30:25.283488Z",
+  "generated_at_utc": "2026-09-19T15:00:28.638932Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "GRADED_COMMERCIAL_AND_OR_SCIENTIFIC"
@@ -332,18 +332,26 @@
     "regular_prelims_start_utc": "2026-09-19T23:00:00Z",
     "venue": "Crypto.com Arena"
   },
-  "payload_sha256": "d02d0eb6f2c9ffb13e9cada0388f7ada9f03d187dbc2aca12295109492a00671",
+  "payload_sha256": "d52a0d310eb146d456c137bc30cfb226cf38912b480406e041463400b9b41626",
   "production_isolation": "PASS",
   "schema_version": "APEX_MMA_OPS_SNAPSHOT_V1",
-  "science_blocker": "FAIL_CLOSED_KEEP_NONE_EDGE_CERT_NO",
+  "science_blocker": "AUTHORIZED_RELEASE_AWAITING_EVENT_ISSUANCE",
   "science_gate": {
+    "authorized_event_ids": [
+      "b343f71c-c13a-5729-8c03-76f5b44cd603"
+    ],
+    "authorized_model_artifact_sha256": "c4405db96c390a3934649b9deb77c36ad510093defc2a9bcb1e01115757e2922",
+    "authorized_release_id": "ca49ab7a-16c8-44e5-8413-b619a52d8ae0",
+    "authorized_release_manifest_sha256": "ef30b802dd496c998d4bafded72d422bac4e0a5e21d28715267a2c1e29c20b8c",
+    "best_available_authorized": true,
     "ci_fully_below_0": false,
     "edge_cert": "NO",
-    "eligible": false,
-    "keep": "NONE",
-    "policy": "STATUS_ONLY",
-    "production_issuance_authorized": false,
-    "release_binding": "NONE"
+    "eligible": true,
+    "event_id": "b343f71c-c13a-5729-8c03-76f5b44cd603",
+    "keep": "WINNER_RESIDUAL_BEST_AVAILABLE_V1",
+    "policy": "SCOTT_AUTHORIZED_BEST_AVAILABLE_EVENT_RELEASE",
+    "production_issuance_authorized": true,
+    "release_binding": "AUTHORIZED_RELEASE_AWAITING_EVENT_ISSUANCE"
   },
   "system_status": "AWAITING_T2",
   "t2": {

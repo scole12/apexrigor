@@ -3,10 +3,10 @@
   "active_model_sha256": null,
   "authorities": {
     "fighter": {
-      "bouts": 3517,
-      "events": 1031,
+      "bouts": 3529,
+      "events": 1032,
       "fight_statistics_source_aggregate": 0,
-      "fighters": 3991,
+      "fighters": 3992,
       "results": 3442,
       "round_statistics_elemental": 5046,
       "round_stats": 0,
@@ -15,7 +15,7 @@
     },
     "production": {
       "commercial_grades": 14,
-      "eligible_releases": 0,
+      "eligible_releases": 1,
       "frozen_releases": 1,
       "grades": 14,
       "issuances": 1,
@@ -33,12 +33,11 @@
     }
   },
   "canonical_fighter_identity": {
-    "authority_population_permitted": false,
     "canonical_bout_count": 12,
-    "canonical_event_id": null,
+    "canonical_event_id": "1e10d6d4-b3b2-5b9a-964e-dc721513f244",
     "reference_bout_count": 12,
     "reference_event_id": "b343f71c-c13a-5729-8c03-76f5b44cd603",
-    "status": "VERIFIED_OPERATIONAL_CARD_PIT_IDENTITIES"
+    "status": "VERIFIED_COMPLETE_CANONICAL_CARD"
   },
   "card": [
     {
@@ -181,7 +180,7 @@
   },
   "event_id": "b343f71c-c13a-5729-8c03-76f5b44cd603",
   "fight_count": 12,
-  "generated_at_utc": "2026-09-15T20:30:25.283488Z",
+  "generated_at_utc": "2026-09-19T15:00:28.638932Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "GRADED_COMMERCIAL_AND_OR_SCIENTIFIC"
@@ -372,11 +371,11 @@
       "source": "PRODUCTION_COMMERCIAL_GRADES"
     }
   ],
-  "payload_sha256": "84d13c06fb86db51ddae8778c3d4f3610a8b9e0d8328b71d72f56d87297bba88",
+  "payload_sha256": "72d0b0898af61cd50d7b3be005ba6d3d3d831bf71c9c2ef16db42342714ec385",
   "picks_published": false,
   "positions": [],
   "positions_sha256": null,
-  "release_state": "NO_RELEASE_SCIENTIFIC_GATE",
+  "release_state": "AUTHORIZED_RELEASE_AWAITING_EVENT_ISSUANCE",
   "results_archive": [
     {
       "active_model": "WINNER_RESIDUAL_BEST_AVAILABLE_V1",
@@ -1098,19 +1097,27 @@
     }
   ],
   "schema_version": "APEX_MMA_PUBLIC_STATE_V2",
-  "science_blocker": "FAIL_CLOSED_KEEP_NONE_EDGE_CERT_NO",
+  "science_blocker": "AUTHORIZED_RELEASE_AWAITING_EVENT_ISSUANCE",
   "science_gate": {
+    "authorized_event_ids": [
+      "b343f71c-c13a-5729-8c03-76f5b44cd603"
+    ],
+    "authorized_model_artifact_sha256": "c4405db96c390a3934649b9deb77c36ad510093defc2a9bcb1e01115757e2922",
+    "authorized_release_id": "ca49ab7a-16c8-44e5-8413-b619a52d8ae0",
+    "authorized_release_manifest_sha256": "ef30b802dd496c998d4bafded72d422bac4e0a5e21d28715267a2c1e29c20b8c",
+    "best_available_authorized": true,
     "ci_fully_below_0": false,
     "edge_cert": "NO",
-    "eligible": false,
-    "keep": "NONE",
-    "policy": "STATUS_ONLY",
-    "production_issuance_authorized": false,
-    "release_binding": "NONE"
+    "eligible": true,
+    "event_id": "b343f71c-c13a-5729-8c03-76f5b44cd603",
+    "keep": "WINNER_RESIDUAL_BEST_AVAILABLE_V1",
+    "policy": "SCOTT_AUTHORIZED_BEST_AVAILABLE_EVENT_RELEASE",
+    "production_issuance_authorized": true,
+    "release_binding": "AUTHORIZED_RELEASE_AWAITING_EVENT_ISSUANCE"
   },
-  "semantic_state_sha256": "8023770e86bc8b26c85d0ec734107dd509740d8cbc8577be5d849f1b3ab8c404",
+  "semantic_state_sha256": "62f3e30704838920d67e6f34f0591dc9805e5d6e964f9aa9615c1e4e061dbcbd",
   "source_conflicts": [],
-  "system_readiness_state": "TECHNICALLY_READY_SCIENCE_BLOCKED",
+  "system_readiness_state": "AUTHORIZED_RELEASE_AWAITING_ISSUANCE",
   "t2": {
     "actual_utc": null,
     "anchor": "EARLIEST_PUBLISHED_SCHEDULED_BOUT_MINUS_2_HOURS",

@@ -134,30 +134,39 @@
     "regular_prelims_start_utc": "2026-09-19T23:00:00Z",
     "venue": "Crypto.com Arena"
   },
+  "event_id": "b343f71c-c13a-5729-8c03-76f5b44cd603",
   "fight_count": 12,
   "forecast": {
     "code": "AWAITING_T2",
     "detail": "No forecasts have been issued yet. Any published card will show the selection, captured FanDuel price, APEX probability, rating and full model-supported rationale.",
     "headline": "Awaiting the T-2 forecast run"
   },
-  "generated_at_utc": "2026-09-15T20:30:25.283488Z",
+  "generated_at_utc": "2026-09-19T15:00:28.638932Z",
   "issuance_id": null,
   "issuance_status": null,
-  "payload_sha256": "dc21b21a0f0902c6cc1ceed002a4affab722b0b9abe7066d3c3e98b1e1937ac4",
+  "payload_sha256": "f92b484d29c87701fafb70d351256a755ac3ccb6c99696e5a8ee716358786eed",
   "picks_published": false,
   "positions": [],
   "positions_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-  "release_state": "NO_RELEASE_SCIENTIFIC_GATE",
+  "release_state": "AUTHORIZED_RELEASE_AWAITING_EVENT_ISSUANCE",
   "schema_version": "APEX_MMA_TODAY_V1",
-  "science_blocker": "FAIL_CLOSED_KEEP_NONE_EDGE_CERT_NO",
+  "science_blocker": "AUTHORIZED_RELEASE_AWAITING_EVENT_ISSUANCE",
   "science_gate": {
+    "authorized_event_ids": [
+      "b343f71c-c13a-5729-8c03-76f5b44cd603"
+    ],
+    "authorized_model_artifact_sha256": "c4405db96c390a3934649b9deb77c36ad510093defc2a9bcb1e01115757e2922",
+    "authorized_release_id": "ca49ab7a-16c8-44e5-8413-b619a52d8ae0",
+    "authorized_release_manifest_sha256": "ef30b802dd496c998d4bafded72d422bac4e0a5e21d28715267a2c1e29c20b8c",
+    "best_available_authorized": true,
     "ci_fully_below_0": false,
     "edge_cert": "NO",
-    "eligible": false,
-    "keep": "NONE",
-    "policy": "STATUS_ONLY",
-    "production_issuance_authorized": false,
-    "release_binding": "NONE"
+    "eligible": true,
+    "event_id": "b343f71c-c13a-5729-8c03-76f5b44cd603",
+    "keep": "WINNER_RESIDUAL_BEST_AVAILABLE_V1",
+    "policy": "SCOTT_AUTHORIZED_BEST_AVAILABLE_EVENT_RELEASE",
+    "production_issuance_authorized": true,
+    "release_binding": "AUTHORIZED_RELEASE_AWAITING_EVENT_ISSUANCE"
   },
   "t2": {
     "actual_utc": null,
