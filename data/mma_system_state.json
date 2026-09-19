@@ -176,7 +176,7 @@
   },
   "event_id": "b343f71c-c13a-5729-8c03-76f5b44cd603",
   "fight_count": 12,
-  "generated_at_utc": "2026-09-19T19:33:58.730375Z",
+  "generated_at_utc": "2026-09-19T20:49:45.541678Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "GRADED_COMMERCIAL_AND_OR_SCIENTIFIC"
@@ -367,7 +367,894 @@
       "source": "PRODUCTION_COMMERCIAL_GRADES"
     }
   ],
-  "payload_sha256": "7575f17e10c0a3783c86ba83345e143a863757d03d91d6f452764d8176231623",
+  "market_display": {
+    "bouts": [
+      {
+        "bout_id": "1dcf9a00-8262-5876-8840-e2b405a3bdfc",
+        "moneylines": [
+          {
+            "fanduel_status": "POSTED",
+            "fighter": "Joshua Van",
+            "participant_slot": "A",
+            "price": -154,
+            "quote_sha256": "139bc6ef83db0b2efe1dc3a3977a1beb33feb7619847cb436abf4729206c8747",
+            "quote_time": "2026-09-19 19:31:37+00:00"
+          },
+          {
+            "fanduel_status": "POSTED",
+            "fighter": "Alexandre Pantoja",
+            "participant_slot": "B",
+            "price": 130,
+            "quote_sha256": "c54d3df369f0420000122d07e1d4e1fce6fb9a75540d9697eb527e688b85fb13",
+            "quote_time": "2026-09-19 19:31:37+00:00"
+          }
+        ],
+        "prediction_sha256": "582edc75182481d7b6c3b7110fb81874b3137bca39d6797f49d5e255dd81a5db",
+        "selected_fighter": "Joshua Van",
+        "slots": [
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_POSTED",
+            "issuance_status": "UNISSUED",
+            "market_key": "WINNER_KO_TKO",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.15714128910810762,
+            "selection": "Joshua Van by KO/TKO",
+            "slot_id": "L1"
+          },
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_POSTED",
+            "issuance_status": "UNISSUED",
+            "market_key": "WINNER_SUBMISSION",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.20915955065696498,
+            "selection": "Joshua Van by submission",
+            "slot_id": "L2"
+          },
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_POSTED",
+            "issuance_status": "UNISSUED",
+            "market_key": "ANY_FINISH",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.5661756984663144,
+            "selection": "FIGHT DOES NOT GO THE DISTANCE",
+            "slot_id": "L3"
+          },
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_POSTED",
+            "issuance_status": "UNISSUED",
+            "market_key": "WINNER_ROUND_1",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.14953410414149676,
+            "selection": "Joshua Van in round 1",
+            "slot_id": "L4"
+          }
+        ]
+      },
+      {
+        "bout_id": "e5dd235f-68ad-5ff4-97c7-be0a183e7c6d",
+        "moneylines": [
+          {
+            "fanduel_status": "POSTED",
+            "fighter": "Arman Tsarukyan",
+            "participant_slot": "A",
+            "price": -310,
+            "quote_sha256": "e84f02d2bf1e1d5c0ff45e73a62bebd76c9bf264f1dbb2db8e661bb661e926ce",
+            "quote_time": "2026-09-19 19:31:37+00:00"
+          },
+          {
+            "fanduel_status": "POSTED",
+            "fighter": "Maur\u00edcio Ruffy",
+            "participant_slot": "B",
+            "price": 250,
+            "quote_sha256": "002c72c0c4a0def7baddcf894aba1a99740c99be97a9e88e00b24f1bedfad9c3",
+            "quote_time": "2026-09-19 19:31:37+00:00"
+          }
+        ],
+        "prediction_sha256": "de754b9c779737874e8a00c53c9858f0bc9865cab24f9f900b6350ec265846db",
+        "selected_fighter": "Arman Tsarukyan",
+        "slots": [
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_POSTED",
+            "issuance_status": "UNISSUED",
+            "market_key": "WINNER_KO_TKO",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.20655503896272293,
+            "selection": "Arman Tsarukyan by KO/TKO",
+            "slot_id": "L1"
+          },
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_POSTED",
+            "issuance_status": "UNISSUED",
+            "market_key": "WINNER_SUBMISSION",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.2687241247874367,
+            "selection": "Arman Tsarukyan by submission",
+            "slot_id": "L2"
+          },
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_POSTED",
+            "issuance_status": "UNISSUED",
+            "market_key": "ANY_FINISH",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.6418151971445304,
+            "selection": "FIGHT DOES NOT GO THE DISTANCE",
+            "slot_id": "L3"
+          },
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_POSTED",
+            "issuance_status": "UNISSUED",
+            "market_key": "WINNER_ROUND_1",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.15332007298482012,
+            "selection": "Arman Tsarukyan in round 1",
+            "slot_id": "L4"
+          }
+        ]
+      },
+      {
+        "bout_id": "16d4b19d-d2ac-5e11-afc4-2948e4488d76",
+        "moneylines": [
+          {
+            "fanduel_status": "POSTED",
+            "fighter": "Patricio Pitbull",
+            "participant_slot": "A",
+            "price": 230,
+            "quote_sha256": "6158dc48bc715713b14a69d65b246bd28490fcd95280a04417df1d88f7aae333",
+            "quote_time": "2026-09-19 19:31:37+00:00"
+          },
+          {
+            "fanduel_status": "POSTED",
+            "fighter": "Dooho Choi",
+            "participant_slot": "B",
+            "price": -280,
+            "quote_sha256": "affed8b6e435374a99d7ac68ae53563d71caf4901284640b35115aa3e440263e",
+            "quote_time": "2026-09-19 19:31:37+00:00"
+          }
+        ],
+        "prediction_sha256": "f9ea24bad7e39f51c8ab28fc2b95051d01c4de77f12322750f2648b72bfa72f9",
+        "selected_fighter": "Dooho Choi",
+        "slots": [
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_POSTED",
+            "issuance_status": "UNISSUED",
+            "market_key": "WINNER_KO_TKO",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.2127253577319269,
+            "selection": "Dooho Choi by KO/TKO",
+            "slot_id": "L1"
+          },
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_POSTED",
+            "issuance_status": "UNISSUED",
+            "market_key": "WINNER_SUBMISSION",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.11104177227521739,
+            "selection": "Dooho Choi by submission",
+            "slot_id": "L2"
+          },
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_POSTED",
+            "issuance_status": "UNISSUED",
+            "market_key": "ANY_FINISH",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.47839221836342294,
+            "selection": "FIGHT DOES NOT GO THE DISTANCE",
+            "slot_id": "L3"
+          },
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_POSTED",
+            "issuance_status": "UNISSUED",
+            "market_key": "WINNER_ROUND_1",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.1779660281125599,
+            "selection": "Dooho Choi in round 1",
+            "slot_id": "L4"
+          }
+        ]
+      },
+      {
+        "bout_id": "1c922683-c6e7-5200-bb28-10cd15a6aa12",
+        "moneylines": [
+          {
+            "fanduel_status": "POSTED",
+            "fighter": "Gable Steveson",
+            "participant_slot": "A",
+            "price": -2200,
+            "quote_sha256": "1c12e0cc242ee5d9ce8ff0f3853954c6d3cf73bddf08b1f0756e393053e0b1f4",
+            "quote_time": "2026-09-19 19:31:37+00:00"
+          },
+          {
+            "fanduel_status": "POSTED",
+            "fighter": "Sean Sharaf",
+            "participant_slot": "B",
+            "price": 1100,
+            "quote_sha256": "c1edb403f68d047babf686c65808fc5e616dd100d50dda421e6f5f81a52e244e",
+            "quote_time": "2026-09-19 19:31:37+00:00"
+          }
+        ],
+        "prediction_sha256": "69e787745ce25d054e35e040922f8ef6ae1296bba8057cabeb05f2087591d3a5",
+        "selected_fighter": "Gable Steveson",
+        "slots": [
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_POSTED",
+            "issuance_status": "UNISSUED",
+            "market_key": "WINNER_KO_TKO",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.4747696364224464,
+            "selection": "Gable Steveson by KO/TKO",
+            "slot_id": "L1"
+          },
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_POSTED",
+            "issuance_status": "UNISSUED",
+            "market_key": "WINNER_SUBMISSION",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.15689948046883956,
+            "selection": "Gable Steveson by submission",
+            "slot_id": "L2"
+          },
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_POSTED",
+            "issuance_status": "UNISSUED",
+            "market_key": "ANY_FINISH",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.675118660030858,
+            "selection": "FIGHT DOES NOT GO THE DISTANCE",
+            "slot_id": "L3"
+          },
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_POSTED",
+            "issuance_status": "UNISSUED",
+            "market_key": "WINNER_ROUND_1",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.40399829439627055,
+            "selection": "Gable Steveson in round 1",
+            "slot_id": "L4"
+          }
+        ]
+      },
+      {
+        "bout_id": "da273452-64db-561b-a54c-03fc0b2ac5f0",
+        "moneylines": [
+          {
+            "fanduel_status": "POSTED",
+            "fighter": "Alonzo Menifield",
+            "participant_slot": "A",
+            "price": 198,
+            "quote_sha256": "17cd5acdf4ac04dad16e71774ffa92e320818af4636a8d80735dcb8b34ba659c",
+            "quote_time": "2026-09-19 19:31:37+00:00"
+          },
+          {
+            "fanduel_status": "POSTED",
+            "fighter": "Iwo Baraniewski",
+            "participant_slot": "B",
+            "price": -240,
+            "quote_sha256": "4cf1ca83a7c2c714ccd6e90554d87bbc72276f4397100bdfdb2641b605b7f8f2",
+            "quote_time": "2026-09-19 19:31:37+00:00"
+          }
+        ],
+        "prediction_sha256": "a12410dbbf38306671375d5c2f484fe26dbf828e911d0e59dcc26bd8215231e5",
+        "selected_fighter": "Iwo Baraniewski",
+        "slots": [
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_POSTED",
+            "issuance_status": "UNISSUED",
+            "market_key": "WINNER_KO_TKO",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.2798555021404919,
+            "selection": "Iwo Baraniewski by KO/TKO",
+            "slot_id": "L1"
+          },
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_POSTED",
+            "issuance_status": "UNISSUED",
+            "market_key": "WINNER_SUBMISSION",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.09248346974041347,
+            "selection": "Iwo Baraniewski by submission",
+            "slot_id": "L2"
+          },
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_POSTED",
+            "issuance_status": "UNISSUED",
+            "market_key": "ANY_FINISH",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.6050564848278834,
+            "selection": "FIGHT DOES NOT GO THE DISTANCE",
+            "slot_id": "L3"
+          },
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_POSTED",
+            "issuance_status": "UNISSUED",
+            "market_key": "WINNER_ROUND_1",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.22492426399575324,
+            "selection": "Iwo Baraniewski in round 1",
+            "slot_id": "L4"
+          }
+        ]
+      },
+      {
+        "bout_id": "05348e07-db64-5307-9fb9-60abd93d2cf2",
+        "moneylines": [
+          {
+            "fanduel_status": "POSTED",
+            "fighter": "Marlon Vera",
+            "participant_slot": "A",
+            "price": 176,
+            "quote_sha256": "95d1822b60518056824c723351dfb86dffca7590d5b47d1b4517cf23c3a72e26",
+            "quote_time": "2026-09-19 19:31:37+00:00"
+          },
+          {
+            "fanduel_status": "POSTED",
+            "fighter": "Charles Jourdain",
+            "participant_slot": "B",
+            "price": -210,
+            "quote_sha256": "252d59df63dad1dbdf1a4926751a2281b29cec9a9519b0241a6e56ca4a027267",
+            "quote_time": "2026-09-19 19:31:37+00:00"
+          }
+        ],
+        "prediction_sha256": "d6fde931d1c51e8efc89d899ca3921b0d43ef5999ae26494f6c102c382ccb080",
+        "selected_fighter": "Charles Jourdain",
+        "slots": [
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_POSTED",
+            "issuance_status": "UNISSUED",
+            "market_key": "WINNER_KO_TKO",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.18228262194213282,
+            "selection": "Charles Jourdain by KO/TKO",
+            "slot_id": "L1"
+          },
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_POSTED",
+            "issuance_status": "UNISSUED",
+            "market_key": "WINNER_SUBMISSION",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.12742156506449526,
+            "selection": "Charles Jourdain by submission",
+            "slot_id": "L2"
+          },
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_POSTED",
+            "issuance_status": "UNISSUED",
+            "market_key": "ANY_FINISH",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.4711741669659547,
+            "selection": "FIGHT DOES NOT GO THE DISTANCE",
+            "slot_id": "L3"
+          },
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_POSTED",
+            "issuance_status": "UNISSUED",
+            "market_key": "WINNER_ROUND_1",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.15298514703973642,
+            "selection": "Charles Jourdain in round 1",
+            "slot_id": "L4"
+          }
+        ]
+      },
+      {
+        "bout_id": "768e45b4-ab49-5cdb-9b0c-0980a06f99f8",
+        "moneylines": [
+          {
+            "fanduel_status": "POSTED",
+            "fighter": "Tai Tuivasa",
+            "participant_slot": "A",
+            "price": 360,
+            "quote_sha256": "5e3490e47dadf942477c1361d4e9c42fea5b0ea3af9eca94d11349edc90f1f3d",
+            "quote_time": "2026-09-19 19:31:37+00:00"
+          },
+          {
+            "fanduel_status": "POSTED",
+            "fighter": "Robelis Despaigne",
+            "participant_slot": "B",
+            "price": -460,
+            "quote_sha256": "327eb822664193d7b07e31b2fd0f1d116966bc2214ad6ba07c38e4ba71e0ab29",
+            "quote_time": "2026-09-19 19:31:37+00:00"
+          }
+        ],
+        "prediction_sha256": "5792cfb0013e2443b2f700c207c5cbe448a197b485f60397b21e08a01bfe6671",
+        "selected_fighter": "Robelis Despaigne",
+        "slots": [
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_POSTED",
+            "issuance_status": "UNISSUED",
+            "market_key": "WINNER_KO_TKO",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.3949499612719213,
+            "selection": "Robelis Despaigne by KO/TKO",
+            "slot_id": "L1"
+          },
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_POSTED",
+            "issuance_status": "UNISSUED",
+            "market_key": "WINNER_SUBMISSION",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.07640844395840161,
+            "selection": "Robelis Despaigne by submission",
+            "slot_id": "L2"
+          },
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_POSTED",
+            "issuance_status": "UNISSUED",
+            "market_key": "ANY_FINISH",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.6237870486951718,
+            "selection": "FIGHT DOES NOT GO THE DISTANCE",
+            "slot_id": "L3"
+          },
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_POSTED",
+            "issuance_status": "UNISSUED",
+            "market_key": "WINNER_ROUND_1",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.2529812747258563,
+            "selection": "Robelis Despaigne in round 1",
+            "slot_id": "L4"
+          }
+        ]
+      },
+      {
+        "bout_id": "8e52cae6-27d2-5aeb-bdcc-0e89fce5ec6c",
+        "moneylines": [
+          {
+            "fanduel_status": "POSTED",
+            "fighter": "Michael Aswell Jr.",
+            "participant_slot": "A",
+            "price": 162,
+            "quote_sha256": "bb0209c9daf1a6cd99d3e68beb14a02d4d78ac2cc1a30299b0d23f7d3eb33b04",
+            "quote_time": "2026-09-19 19:31:37+00:00"
+          },
+          {
+            "fanduel_status": "POSTED",
+            "fighter": "JooSang Yoo",
+            "participant_slot": "B",
+            "price": -194,
+            "quote_sha256": "4d7977005f449c96c0e8f54cc63d36f02e893024f217ec4f8046155bb1dd0b11",
+            "quote_time": "2026-09-19 19:31:37+00:00"
+          }
+        ],
+        "prediction_sha256": "a8562c41b913024bf38e5f1b11009eb007dcdbd13782ed8e62dc69b6515f2e0d",
+        "selected_fighter": "JooSang Yoo",
+        "slots": [
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_POSTED",
+            "issuance_status": "UNISSUED",
+            "market_key": "WINNER_KO_TKO",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.19764277979956973,
+            "selection": "JooSang Yoo by KO/TKO",
+            "slot_id": "L1"
+          },
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_POSTED",
+            "issuance_status": "UNISSUED",
+            "market_key": "WINNER_SUBMISSION",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.1031687278862237,
+            "selection": "JooSang Yoo by submission",
+            "slot_id": "L2"
+          },
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_POSTED",
+            "issuance_status": "UNISSUED",
+            "market_key": "ANY_FINISH",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.4778728135727247,
+            "selection": "FIGHT DOES NOT GO THE DISTANCE",
+            "slot_id": "L3"
+          },
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_POSTED",
+            "issuance_status": "UNISSUED",
+            "market_key": "WINNER_ROUND_1",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.16534794385152735,
+            "selection": "JooSang Yoo in round 1",
+            "slot_id": "L4"
+          }
+        ]
+      },
+      {
+        "bout_id": "15635f37-d899-5a2b-b64b-cad7e603dd44",
+        "moneylines": [
+          {
+            "fanduel_status": "POSTED",
+            "fighter": "Ryan Gandra",
+            "participant_slot": "A",
+            "price": -560,
+            "quote_sha256": "a07679961d97fd6cb1a9e9f4337b42b07a72d4e2a94bbeccaa59759cf1d113ef",
+            "quote_time": "2026-09-19 19:31:37+00:00"
+          },
+          {
+            "fanduel_status": "POSTED",
+            "fighter": "Ozzy Diaz",
+            "participant_slot": "B",
+            "price": 420,
+            "quote_sha256": "51b6c759076c25c1888b0950fa8aa3cd7c6e00d04b3efe3c50e31cca9b0a12f7",
+            "quote_time": "2026-09-19 19:31:37+00:00"
+          }
+        ],
+        "prediction_sha256": "fe89be2bb222f7fba6f33cbc44b36b60068e139ddceb7160bc48bec9790afc96",
+        "selected_fighter": "Ryan Gandra",
+        "slots": [
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_POSTED",
+            "issuance_status": "UNISSUED",
+            "market_key": "WINNER_KO_TKO",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.29872895590798804,
+            "selection": "Ryan Gandra by KO/TKO",
+            "slot_id": "L1"
+          },
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_POSTED",
+            "issuance_status": "UNISSUED",
+            "market_key": "WINNER_SUBMISSION",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.20094706569198517,
+            "selection": "Ryan Gandra by submission",
+            "slot_id": "L2"
+          },
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_POSTED",
+            "issuance_status": "UNISSUED",
+            "market_key": "ANY_FINISH",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.6102790973930639,
+            "selection": "FIGHT DOES NOT GO THE DISTANCE",
+            "slot_id": "L3"
+          },
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_POSTED",
+            "issuance_status": "UNISSUED",
+            "market_key": "WINNER_ROUND_1",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.28206123198925237,
+            "selection": "Ryan Gandra in round 1",
+            "slot_id": "L4"
+          }
+        ]
+      },
+      {
+        "bout_id": "f6fcb424-fe5b-5ff6-9c5a-c536bab104db",
+        "moneylines": [
+          {
+            "fanduel_status": "POSTED",
+            "fighter": "Edmen Shahbazyan",
+            "participant_slot": "A",
+            "price": -190,
+            "quote_sha256": "eb327b7dd604ce98b15fa4d73df4fba098fa28876fe8e36ceefa1f5123c7ee5d",
+            "quote_time": "2026-09-19 19:31:37+00:00"
+          },
+          {
+            "fanduel_status": "POSTED",
+            "fighter": "Brunno Ferreira",
+            "participant_slot": "B",
+            "price": 160,
+            "quote_sha256": "72b6d2896c9c4d1cf41de30d08d7c06956aafb02ee28265ace477aa7b348bc7f",
+            "quote_time": "2026-09-19 19:31:37+00:00"
+          }
+        ],
+        "prediction_sha256": "a262151890a347d2bfeec188cdd91232b98d8dfa8a50b9341225f7b4809b35fa",
+        "selected_fighter": "Edmen Shahbazyan",
+        "slots": [
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_POSTED",
+            "issuance_status": "UNISSUED",
+            "market_key": "WINNER_KO_TKO",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.2360718383899454,
+            "selection": "Edmen Shahbazyan by KO/TKO",
+            "slot_id": "L1"
+          },
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_POSTED",
+            "issuance_status": "UNISSUED",
+            "market_key": "WINNER_SUBMISSION",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.15879928034690918,
+            "selection": "Edmen Shahbazyan by submission",
+            "slot_id": "L2"
+          },
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_POSTED",
+            "issuance_status": "UNISSUED",
+            "market_key": "ANY_FINISH",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.6069689880820317,
+            "selection": "FIGHT DOES NOT GO THE DISTANCE",
+            "slot_id": "L3"
+          },
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_POSTED",
+            "issuance_status": "UNISSUED",
+            "market_key": "WINNER_ROUND_1",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.22290009809007322,
+            "selection": "Edmen Shahbazyan in round 1",
+            "slot_id": "L4"
+          }
+        ]
+      },
+      {
+        "bout_id": "95329976-4a4c-5f87-bbf0-fcf1d037b6f2",
+        "moneylines": [
+          {
+            "fanduel_status": "POSTED",
+            "fighter": "Casey O'Neill",
+            "participant_slot": "A",
+            "price": -230,
+            "quote_sha256": "7366d00f39f5cd5552c164223d6f84fd024926249839e297f0630c2f671786f5",
+            "quote_time": "2026-09-19 19:31:37+00:00"
+          },
+          {
+            "fanduel_status": "POSTED",
+            "fighter": "Eduarda Moura",
+            "participant_slot": "B",
+            "price": 190,
+            "quote_sha256": "794354b9938a60bc2775d0388ea4dbea3fe14dc9f13610b5e91e86bba6c2ba87",
+            "quote_time": "2026-09-19 19:31:37+00:00"
+          }
+        ],
+        "prediction_sha256": "1883fd0235be462cdea817ace3113b845ec9e5d38c8ebf5b4758e83d51dc470f",
+        "selected_fighter": "Casey O'Neill",
+        "slots": [
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_POSTED",
+            "issuance_status": "UNISSUED",
+            "market_key": "WINNER_KO_TKO",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.12469330957992483,
+            "selection": "Casey O'Neill by KO/TKO",
+            "slot_id": "L1"
+          },
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_POSTED",
+            "issuance_status": "UNISSUED",
+            "market_key": "WINNER_SUBMISSION",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.16078794761450296,
+            "selection": "Casey O'Neill by submission",
+            "slot_id": "L2"
+          },
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_POSTED",
+            "issuance_status": "UNISSUED",
+            "market_key": "ANY_FINISH",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.3903894421388233,
+            "selection": "FIGHT DOES NOT GO THE DISTANCE",
+            "slot_id": "L3"
+          },
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_POSTED",
+            "issuance_status": "UNISSUED",
+            "market_key": "WINNER_ROUND_1",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.14852532910341115,
+            "selection": "Casey O'Neill in round 1",
+            "slot_id": "L4"
+          }
+        ]
+      },
+      {
+        "bout_id": "4483c65a-f7b5-51a3-bac1-bc7d185255b4",
+        "moneylines": [
+          {
+            "fanduel_status": "POSTED",
+            "fighter": "Giga Chikadze",
+            "participant_slot": "A",
+            "price": 340,
+            "quote_sha256": "520177ce0c656d0c4d7841822e7d7f88f0a46b16d6aaf51c7080b023b7321196",
+            "quote_time": "2026-09-19 19:31:37+00:00"
+          },
+          {
+            "fanduel_status": "POSTED",
+            "fighter": "Joanderson Brito",
+            "participant_slot": "B",
+            "price": -430,
+            "quote_sha256": "68b8b235bffc845802b80c2b374bd643cb17adf99816fe51e3a797abd8c1e5a5",
+            "quote_time": "2026-09-19 19:31:37+00:00"
+          }
+        ],
+        "prediction_sha256": "15bbdb97abee0644d96087e3e24eaf70364a7201726f1aebaaa78544a535c03d",
+        "selected_fighter": "Joanderson Brito",
+        "slots": [
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_POSTED",
+            "issuance_status": "UNISSUED",
+            "market_key": "WINNER_KO_TKO",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.23919026275052918,
+            "selection": "Joanderson Brito by KO/TKO",
+            "slot_id": "L1"
+          },
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_POSTED",
+            "issuance_status": "UNISSUED",
+            "market_key": "WINNER_SUBMISSION",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.12485634514839694,
+            "selection": "Joanderson Brito by submission",
+            "slot_id": "L2"
+          },
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_POSTED",
+            "issuance_status": "UNISSUED",
+            "market_key": "ANY_FINISH",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.47930360092107904,
+            "selection": "FIGHT DOES NOT GO THE DISTANCE",
+            "slot_id": "L3"
+          },
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_POSTED",
+            "issuance_status": "UNISSUED",
+            "market_key": "WINNER_ROUND_1",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.20010656688402167,
+            "selection": "Joanderson Brito in round 1",
+            "slot_id": "L4"
+          }
+        ]
+      }
+    ],
+    "joint_probability_card_sha256": "e2c83768c9f5865e91b60aca45779967ff56ee55f4dc4ef31d750fd5698bfa7b",
+    "probability_basis": "EXACT_SEALED_JOINT_MARGINALS",
+    "sealed_at_utc": "2026-09-19T19:33:51.683932+00:00",
+    "source_card_sha256": "253cd5e515e7f876961cd4803ae4964430abc4cc9f30cb90a98e8eb492e8e5d6",
+    "source_issuance_id": "a09387f2-6b21-4e9b-84da-cc813f8b1ee2",
+    "source_market_snapshot_sha256": "665d755bc012608398c43326e7aa1de00e98422304d864d840f55d7050c3e89b",
+    "source_positions_sha256": "4801d1a00d95ce70d4e66e2448f9f3af4ca43b3a968273331c252e9a43f0c9cd"
+  },
+  "payload_sha256": "54bebf75734018046d795d6e0b69408259eb0a148b924167fd90fac92a1cb48d",
   "picks_published": true,
   "positions": [
     {
@@ -1695,7 +2582,7 @@
     "production_issuance_authorized": true,
     "release_binding": "EXACT_AUTHORIZED_RELEASE"
   },
-  "semantic_state_sha256": "bed916f70f1d149f03c231ce1492d3025d1dba316c18019f4d63ac836df1080a",
+  "semantic_state_sha256": "c948a6504eecad34ea4adfa3d2ac9cc8187e0d3430bdd99531664d7f7507fd88",
   "source_conflicts": [],
   "system_readiness_state": "FORECASTS_ISSUED",
   "t2": {
