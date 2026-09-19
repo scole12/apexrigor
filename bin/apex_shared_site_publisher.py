@@ -677,7 +677,12 @@ def build_request(request: Request, worktree: Path) -> dict[str, Any]:
     python_tool(worktree, "apply_shared_sport_selector.py", "--root", str(worktree))
     python_tool(worktree, "apply_cloudflare_web_analytics.py", "--root", str(worktree))
     python_tool(worktree, "apply_vercel_web_analytics.py", "--root", str(worktree))
-    audit = python_tool(worktree, "audit_public_site.py", "--root", str(worktree))
+    # Fail-closed: same gate Vercel runs. Disposable copy so generated public/
+    # and sport-page regenerations never enter this publication commit.
+    with tempfile.TemporaryDirectory(prefix="site-build-check-", dir=worktree.parent) as temporary:
+        validation = Path(temporary) / "site"
+        shutil.copytree(worktree, validation, ignore=shutil.ignore_patterns(".git", "public", "__pycache__"))
+        audit = python_tool(validation, "build_vercel_output.py")
     changed = dirty_paths(worktree)
     forbidden = sorted(path for path in changed if not allowed_site_change(path))
     if forbidden:

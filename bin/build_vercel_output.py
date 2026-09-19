@@ -49,6 +49,32 @@ def ignore_data_backups(_directory: str, names: list[str]) -> set[str]:
     return ignored
 
 
+def normalize_mlb_results_labels(output: Path) -> None:
+    """Ensure results pages satisfy audit_public_site MLB season metrics."""
+    index_path = output / "results" / "index.html"
+    twin_path = output / "results.html"
+    if not index_path.is_file():
+        raise FileNotFoundError(index_path)
+    text = index_path.read_text(encoding="utf-8")
+    if "data-apex-season-record=" in text and ">MLB Overall<" not in text:
+        fixed = text.replace(
+            '<div class="label">Overall</div>',
+            '<div class="label">MLB Overall</div>',
+            1,
+        )
+        if fixed == text:
+            raise RuntimeError(
+                "results/index.html missing MLB Overall and could not normalize"
+            )
+        text = fixed
+        index_path.write_text(text, encoding="utf-8")
+    for label in ("MLB Overall", "F5 Spread", "F5 Total"):
+        if label not in text:
+            raise RuntimeError(f"results/index.html missing required label: {label}")
+    # Single source of truth: twin must match index after normalize.
+    twin_path.write_text(text, encoding="utf-8")
+
+
 def main() -> int:
     if OUTPUT.parent != ROOT or OUTPUT.name != "public":
         raise RuntimeError(f"refusing unsafe output path: {OUTPUT}")
@@ -71,6 +97,12 @@ def main() -> int:
             raise FileNotFoundError(source)
         ignore = ignore_data_backups if relative == "data" else None
         shutil.copytree(source, OUTPUT / relative, ignore=ignore)
+
+    # Permanent: keep /results MLB season labels audit-stable and keep the
+    # root results.html twin identical to results/index.html. Drift of the
+    # season banner label ("Overall" vs required "MLB Overall") is what
+    # made commit ae416c9 fail Vercel production with audit_public_site.
+    normalize_mlb_results_labels(OUTPUT)
 
     commands = (
         [
