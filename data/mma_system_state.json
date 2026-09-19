@@ -371,7 +371,7 @@
       "source": "PRODUCTION_COMMERCIAL_GRADES"
     }
   ],
-  "payload_sha256": "72d0b0898af61cd50d7b3be005ba6d3d3d831bf71c9c2ef16db42342714ec385",
+  "payload_sha256": "32074f924d236f076881f3badecdd8de3c52ee6a648d14a5a960827e291de4b1",
   "picks_published": false,
   "positions": [],
   "positions_sha256": null,
@@ -1097,7 +1097,7 @@
     }
   ],
   "schema_version": "APEX_MMA_PUBLIC_STATE_V2",
-  "science_blocker": "AUTHORIZED_RELEASE_AWAITING_EVENT_ISSUANCE",
+  "science_blocker": "FAIL_CLOSED_KEEP_NONE_EDGE_CERT_NO",
   "science_gate": {
     "authorized_event_ids": [
       "b343f71c-c13a-5729-8c03-76f5b44cd603"
@@ -1108,12 +1108,12 @@
     "best_available_authorized": true,
     "ci_fully_below_0": false,
     "edge_cert": "NO",
-    "eligible": true,
+    "eligible": false,
     "event_id": "b343f71c-c13a-5729-8c03-76f5b44cd603",
     "keep": "WINNER_RESIDUAL_BEST_AVAILABLE_V1",
     "policy": "SCOTT_AUTHORIZED_BEST_AVAILABLE_EVENT_RELEASE",
     "production_issuance_authorized": true,
-    "release_binding": "AUTHORIZED_RELEASE_AWAITING_EVENT_ISSUANCE"
+    "release_binding": "NONE"
   },
   "semantic_state_sha256": "62f3e30704838920d67e6f34f0591dc9805e5d6e964f9aa9615c1e4e061dbcbd",
   "source_conflicts": [],

@@ -332,10 +332,10 @@
     "regular_prelims_start_utc": "2026-09-19T23:00:00Z",
     "venue": "Crypto.com Arena"
   },
-  "payload_sha256": "d52a0d310eb146d456c137bc30cfb226cf38912b480406e041463400b9b41626",
+  "payload_sha256": "22a6c9848ed88141526fb756d8fc8749f1c4ba67be1a24275a2d761ac3ed3640",
   "production_isolation": "PASS",
   "schema_version": "APEX_MMA_OPS_SNAPSHOT_V1",
-  "science_blocker": "AUTHORIZED_RELEASE_AWAITING_EVENT_ISSUANCE",
+  "science_blocker": "FAIL_CLOSED_KEEP_NONE_EDGE_CERT_NO",
   "science_gate": {
     "authorized_event_ids": [
       "b343f71c-c13a-5729-8c03-76f5b44cd603"
@@ -346,12 +346,12 @@
     "best_available_authorized": true,
     "ci_fully_below_0": false,
     "edge_cert": "NO",
-    "eligible": true,
+    "eligible": false,
     "event_id": "b343f71c-c13a-5729-8c03-76f5b44cd603",
     "keep": "WINNER_RESIDUAL_BEST_AVAILABLE_V1",
     "policy": "SCOTT_AUTHORIZED_BEST_AVAILABLE_EVENT_RELEASE",
     "production_issuance_authorized": true,
-    "release_binding": "AUTHORIZED_RELEASE_AWAITING_EVENT_ISSUANCE"
+    "release_binding": "NONE"
   },
   "system_status": "AWAITING_T2",
   "t2": {

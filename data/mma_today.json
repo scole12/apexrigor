@@ -144,13 +144,13 @@
   "generated_at_utc": "2026-09-19T15:00:28.638932Z",
   "issuance_id": null,
   "issuance_status": null,
-  "payload_sha256": "f92b484d29c87701fafb70d351256a755ac3ccb6c99696e5a8ee716358786eed",
+  "payload_sha256": "b6740070041ccfc99602ae21b40dff9c760f22edc3973645d88b51cee924e47b",
   "picks_published": false,
   "positions": [],
   "positions_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
   "release_state": "AUTHORIZED_RELEASE_AWAITING_EVENT_ISSUANCE",
   "schema_version": "APEX_MMA_TODAY_V1",
-  "science_blocker": "AUTHORIZED_RELEASE_AWAITING_EVENT_ISSUANCE",
+  "science_blocker": "FAIL_CLOSED_KEEP_NONE_EDGE_CERT_NO",
   "science_gate": {
     "authorized_event_ids": [
       "b343f71c-c13a-5729-8c03-76f5b44cd603"
@@ -161,12 +161,12 @@
     "best_available_authorized": true,
     "ci_fully_below_0": false,
     "edge_cert": "NO",
-    "eligible": true,
+    "eligible": false,
     "event_id": "b343f71c-c13a-5729-8c03-76f5b44cd603",
     "keep": "WINNER_RESIDUAL_BEST_AVAILABLE_V1",
     "policy": "SCOTT_AUTHORIZED_BEST_AVAILABLE_EVENT_RELEASE",
     "production_issuance_authorized": true,
-    "release_binding": "AUTHORIZED_RELEASE_AWAITING_EVENT_ISSUANCE"
+    "release_binding": "NONE"
   },
   "t2": {
     "actual_utc": null,
