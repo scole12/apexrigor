@@ -93,13 +93,20 @@ function moneylineHeadsUp(b){
 }
 function marketBreakdown(b){
  if(!b)return "";
- const rows=b.slots.map(row=>'<tr data-market-slot="'+esc(row.slot_id)+'" data-position-state="UNISSUED"><th scope="row">'+esc(row.slot_id+' · '+row.selection)+'</th><td>'+(row.probability==null?'NOT AVAILABLE':(row.probability*100).toFixed(1)+'%')+'</td><td>NOT CAPTURED AT T-2</td><td>—</td></tr>').join("");
+ const rows=b.slots.map(row=>{
+  const probability=row.probability==null?'NOT AVAILABLE':(row.probability*100).toFixed(1)+'%';
+  const price=Number.isFinite(row.price)&&Math.abs(row.price)>=100?'<span class="meta mono">FanDuel '+(row.price>0?'+':'')+esc(row.price)+'</span>':'';
+  const plusMoney=price&&row.plus_money===true&&row.price>0?'<span class="meta mono">PLUS MONEY</span>':'';
+  return '<section class="mma-market-slot" data-market-slot="'+esc(row.slot_id)+'" data-position-state="UNISSUED">'
+   +'<div class="market-label">'+esc(row.slot_id)+'</div>'
+   +'<h3 class="pick-headline">'+esc(row.selection)+'</h3>'
+   +'<p class="meta mono mma-slot-probability">APEX PROBABILITY: <strong>'+probability+'</strong></p>'
+   +(price?'<div class="mma-slot-price">'+price+plusMoney+'</div>':'')+'</section>';
+ }).join("");
  return '<section class="market-panel mma-market-breakdown" data-source-issuance="'+esc(b.source_issuance_id)+'" data-source-card-sha256="'+esc(b.source_card_sha256)+'">'
   +'<div class="market-label">LONGSHOT MARKETS</div>'
   +'<p class="meta mono">MODEL BREAKDOWN · ISSUED CARD '+esc(clock(b.sealed_at_utc))+'</p>'
-  +'<div class="mma-market-table"><table><thead><tr><th scope="col">Market</th><th scope="col">APEX</th><th scope="col">FanDuel</th><th scope="col">Plus-money</th></tr></thead><tbody>'+rows+'</tbody></table></div>'
-  +'<p>FanDuel values describe the saved T-2 capture, not the current sportsbook board.</p>'
-  +'<p>Finish probability covers KO/TKO or submission; no prop bet issued without a matching captured price.</p></section>';
+  +'<div class="mma-market-slots">'+rows+'</div></section>';
 }
 function issuedPanel(p,display){
  const headline=p.display_selection||p.selection;
@@ -275,7 +282,7 @@ def main():
         return 0
     html = head('APEX — MMA Picks', 'APEX MMA / UFC official card and sealed FanDuel picks.', '/mma')
     html = html.replace('/assets/apex.css?v=apex-20260825-mma', '/assets/apex.css?v=apex-20260910-mma-card-parity')
-    html = html.replace('</head>', '<style>.mma-market-breakdown{min-width:0}.mma-market-table{overflow-x:auto}.mma-market-breakdown table{width:100%;min-width:420px;border-collapse:collapse;font-size:.9rem}.mma-market-breakdown th,.mma-market-breakdown td{padding:.65rem .35rem;text-align:left;border-bottom:1px solid #284252}.mma-market-breakdown p{font-size:.8rem}.mma-market-breakdown td{white-space:nowrap}</style>' + BEACON_BLOCK + '\n' + ANALYTICS_BLOCK + '\n</head>')
+    html = html.replace('</head>', '<style>.mma-market-breakdown{display:flex;flex-direction:column;align-self:stretch;min-width:0}.mma-market-slots{display:grid;grid-template-rows:repeat(4,minmax(0,1fr));flex:1;min-width:0}.mma-market-slot{display:flex;flex-direction:column;justify-content:flex-start;gap:12px;padding:22px 0;box-sizing:border-box;border-top:1px solid var(--hairline)}.mma-market-slot .market-label,.mma-market-slot .pick-headline,.mma-market-slot p{margin:0}.mma-market-slot .pick-headline{line-height:1.5;overflow-wrap:anywhere}.mma-slot-probability{font-size:14px;line-height:1.5}.mma-slot-probability strong{font-weight:700}.mma-slot-price{display:flex;gap:16px;flex-wrap:wrap}@media(max-width:900px){.mma-market-slots{grid-template-rows:none;grid-auto-rows:auto;flex:none}.mma-market-slot{padding:22px 0}}</style>' + BEACON_BLOCK + '\n' + ANALYTICS_BLOCK + '\n</head>')
     issuance_state = 'issued' if positions else 'quiet'
     public_flag = 'true' if positions else 'false'
     html += '\n' + hero().replace('<div class="shell">',
