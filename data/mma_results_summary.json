@@ -5,7 +5,7 @@
     "detail": "12 issued positions. Picks, FanDuel prices, probabilities, ratings and rationale below are read from the same sealed T-2 issuance.",
     "headline": "Forecasts issued"
   },
-  "generated_at_utc": "2026-09-19T20:49:45.541678Z",
+  "generated_at_utc": "2026-09-19T21:31:23.873742Z",
   "graded_scientific_object_count": 0,
   "grader": {
     "schedule": "07:00 America/New_York",
@@ -196,7 +196,7 @@
       "source": "PRODUCTION_COMMERCIAL_GRADES"
     }
   ],
-  "payload_sha256": "9726d9b141f9ebc2d465153ea3130e3dc8c94d6fc2d01e3bbd066f088d3b2c43",
+  "payload_sha256": "455b1617e1827da134182482627c34ba835107635905c72193b79dc7ff3d97ed",
   "release_state": "SEALED_RELEASE_AVAILABLE",
   "schema_version": "APEX_MMA_RESULTS_SUMMARY_V1",
   "status": "RESULTS_AVAILABLE"

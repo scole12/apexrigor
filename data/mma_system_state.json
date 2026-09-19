@@ -171,12 +171,12 @@
     "persistent": true,
     "service": "apex-mma-event-controller.service",
     "timer": "apex-mma-event-controller.timer",
-    "verified_future_reference_count": 8,
+    "verified_future_reference_count": 7,
     "verified_queue_horizon": "2026-11-07"
   },
   "event_id": "b343f71c-c13a-5729-8c03-76f5b44cd603",
   "fight_count": 12,
-  "generated_at_utc": "2026-09-19T20:49:45.541678Z",
+  "generated_at_utc": "2026-09-19T21:31:23.873742Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "GRADED_COMMERCIAL_AND_OR_SCIENTIFIC"
@@ -1254,7 +1254,7 @@
     "source_market_snapshot_sha256": "665d755bc012608398c43326e7aa1de00e98422304d864d840f55d7050c3e89b",
     "source_positions_sha256": "4801d1a00d95ce70d4e66e2448f9f3af4ca43b3a968273331c252e9a43f0c9cd"
   },
-  "payload_sha256": "54bebf75734018046d795d6e0b69408259eb0a148b924167fd90fac92a1cb48d",
+  "payload_sha256": "a2feead7fdab968675847b40889936a03b13a1b1dbe46e4b77c6f8d9b9f731f8",
   "picks_published": true,
   "positions": [
     {
@@ -2582,7 +2582,7 @@
     "production_issuance_authorized": true,
     "release_binding": "EXACT_AUTHORIZED_RELEASE"
   },
-  "semantic_state_sha256": "c948a6504eecad34ea4adfa3d2ac9cc8187e0d3430bdd99531664d7f7507fd88",
+  "semantic_state_sha256": "495cc221e38ed36b332374e91a63c851ebf8acf8ef20367610285b646a60e444",
   "source_conflicts": [],
   "system_readiness_state": "FORECASTS_ISSUED",
   "t2": {
