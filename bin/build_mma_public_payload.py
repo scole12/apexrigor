@@ -7,6 +7,8 @@ import argparse
 from copy import deepcopy
 import hashlib
 import json
+import math
+from datetime import datetime
 from pathlib import Path
 from typing import Any
 import uuid
@@ -125,6 +127,77 @@ def science_gate_projection(state: dict[str, Any], *, issued: bool) -> dict[str,
     return gate
 
 
+
+def market_display_projection(state: dict[str, Any], positions: list[dict[str, Any]]) -> dict[str, Any] | None:
+    """Validate descriptive rows from the original issuance; never create positions."""
+    display = state.get("market_display")
+    if display is None:
+        return None
+    if (not isinstance(display, dict)
+            or display.get("source_issuance_id") != state.get("issuance_id")
+            or display.get("source_positions_sha256") != state.get("positions_sha256")
+            or not SHA.fullmatch(str(display.get("source_card_sha256") or ""))
+            or not SHA.fullmatch(str(display.get("joint_probability_card_sha256") or ""))
+            or not SHA.fullmatch(str(display.get("source_market_snapshot_sha256") or ""))):
+        return None
+    try:
+        sealed_at = datetime.fromisoformat(str(display["sealed_at_utc"]).replace("Z", "+00:00"))
+        if sealed_at.tzinfo is None:
+            raise ValueError("missing timezone")
+    except (KeyError, TypeError, ValueError) as exc:
+        return None
+    winners = {p["bout_id"]: p for p in positions if p["market"] == "WINNER"}
+    bouts = display.get("bouts")
+    if (not isinstance(bouts, list) or len(bouts) != len(winners)
+            or {b.get("bout_id") for b in bouts if isinstance(b, dict)} != set(winners)):
+        return None
+    keys = ["WINNER_KO_TKO", "WINNER_SUBMISSION", "ANY_FINISH", "WINNER_ROUND_1"]
+    for bout in bouts:
+        issued = winners[bout["bout_id"]]
+        if (bout.get("selected_fighter") != issued["selection"]
+                or bout.get("prediction_sha256") != issued["trace"]["prediction_sha256"]):
+            return None
+        quotes = bout.get("moneylines")
+        if (not isinstance(quotes, list) or len(quotes) != 2
+                or {q.get("fighter") for q in quotes if isinstance(q, dict)}
+                    != {issued["fighter_a"], issued["fighter_b"]}):
+            return None
+        for quote in quotes:
+            price = quote.get("price")
+            if price is None:
+                if quote.get("fanduel_status") not in {"NOT_POSTED", "NOT_AVAILABLE"}:
+                    return None
+                continue
+            if (quote.get("fanduel_status") != "POSTED" or isinstance(price, bool) or not isinstance(price, (int, float))
+                    or not math.isfinite(price) or abs(price) < 100
+                    or not SHA.fullmatch(str(quote.get("quote_sha256") or ""))
+                    or not quote.get("quote_time")):
+                return None
+            if quote["fighter"] == issued["selection"] and (
+                    price != issued["price"]
+                    or quote["quote_sha256"] != issued["trace"]["market_snapshot_sha256"]):
+                return None
+        rows = bout.get("slots")
+        if (not isinstance(rows, list) or len(rows) != 4
+                or [r.get("slot_id") for r in rows if isinstance(r, dict)] != ["L1", "L2", "L3", "L4"]
+                or [r.get("market_key") for r in rows] != keys):
+            return None
+        for row in rows:
+            probability = row.get("probability")
+            available = probability is not None
+            if (available and (isinstance(probability, bool)
+                    or not isinstance(probability, (int, float))
+                    or not math.isfinite(probability) or not 0 <= probability <= 1)):
+                return None
+            if (row.get("apex_status") != ("AVAILABLE" if available else "NOT_AVAILABLE")
+                    or row.get("price") is not None or row.get("plus_money") is not None
+                    or row.get("fanduel_status") not in {"NOT_POSTED", "NOT_AVAILABLE"}
+                    or row.get("issuance_status") != "UNISSUED" or row.get("commercial_eligible") is not False
+                    or not isinstance(row.get("selection"), str) or not row["selection"].strip()):
+                return None
+    return deepcopy(display)
+
+
 def public_state_projection(state: dict[str, Any]) -> tuple[dict[str, Any], list[dict[str, Any]]]:
     if state.get("schema_version") not in {"APEX_MMA_PUBLIC_STATE_V1", "APEX_MMA_PUBLIC_STATE_V2"}:
         raise RuntimeError("unsupported MMA public state")
@@ -140,6 +213,12 @@ def public_state_projection(state: dict[str, Any]) -> tuple[dict[str, Any], list
     public_state["picks_published"] = issued
     public_state["positions_sha256"] = positions_sha256(positions) if issued else None
     public_state["science_gate"] = science_gate
+    market_display = market_display_projection(state, positions)
+    if market_display is not None:
+        public_state["market_display"] = market_display
+    else:
+        # Missing or mismatched optional rows must not hide the valid winner card.
+        public_state.pop("market_display", None)
 
     # The queued object is validated before this public projection is built.  Do
     # not advertise an internal candidate as an active public model when there
@@ -199,6 +278,8 @@ def build_public_payloads(state: dict[str, Any]) -> tuple[dict[str, Any], dict[s
         "science_blocker": public_state["science_blocker"],
         "science_gate": public_state["science_gate"],
     }
+    if public_state.get("market_display") is not None:
+        today["market_display"] = deepcopy(public_state["market_display"])
     if public_state.get('late_data_report'):
         report=public_state['late_data_report']
         if public_state.get('artifact_type')!='LATE_DATA_REPORT' or report.get('sport')!='MMA' or report.get('artifact_type')!='LATE_DATA_REPORT' or report.get('picks')!=[] or report.get('positions')!=[] or positions:

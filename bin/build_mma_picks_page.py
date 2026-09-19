@@ -70,19 +70,51 @@ function issuedPositions(d){
  }
  return rows;
 }
-function issuedPanel(p){
+function displayRows(d,positions){
+ const display=d.market_display;
+ if(display==null)return new Map();
+ if(display.source_issuance_id!==d.issuance_id||display.source_positions_sha256!==d.positions_sha256||!Array.isArray(display.bouts))return new Map();
+ const winners=positions.filter(p=>p.market==="WINNER"),rows=new Map();
+ for(const b of display.bouts){
+  const p=winners.find(p=>p.bout_id===b.bout_id);
+  if(!p||rows.has(b.bout_id)||b.selected_fighter!==p.selection||b.prediction_sha256!==p.trace.prediction_sha256||!Array.isArray(b.moneylines)||b.moneylines.length!==2||!Array.isArray(b.slots)||b.slots.length!==4)return new Map();
+  for(const [i,row] of b.slots.entries()){
+   if(row.slot_id!=="L"+(i+1)||row.price!==null||row.plus_money!==null||!["NOT_POSTED","NOT_AVAILABLE"].includes(row.fanduel_status)||row.issuance_status!=="UNISSUED"||(row.probability!==null&&(!Number.isFinite(row.probability)||row.probability<0||row.probability>1)))return new Map();
+  }
+  rows.set(b.bout_id,{...b,sealed_at_utc:display.sealed_at_utc,source_card_sha256:display.source_card_sha256,source_issuance_id:display.source_issuance_id});
+ }
+ if(rows.size!==winners.length)return new Map();
+ return rows;
+}
+function moneylineHeadsUp(b){
+ if(!b)return "";
+ const moneylines=b.moneylines.map(q=>esc(q.fighter)+" "+(q.price==null?"NOT CAPTURED AT T-2":(q.price>0?"+":"")+esc(q.price))).join(" · ");
+ return '<p class="meta mono">FANDUEL MONEYLINES · '+moneylines+'</p>';
+}
+function marketBreakdown(b){
+ if(!b)return "";
+ const rows=b.slots.map(row=>'<tr data-market-slot="'+esc(row.slot_id)+'" data-position-state="UNISSUED"><th scope="row">'+esc(row.slot_id+' · '+row.selection)+'</th><td>'+(row.probability==null?'NOT AVAILABLE':(row.probability*100).toFixed(1)+'%')+'</td><td>NOT CAPTURED AT T-2</td><td>—</td></tr>').join("");
+ return '<section class="market-panel mma-market-breakdown" data-source-issuance="'+esc(b.source_issuance_id)+'" data-source-card-sha256="'+esc(b.source_card_sha256)+'">'
+  +'<div class="market-label">LONGSHOT MARKETS</div>'
+  +'<p class="meta mono">MODEL BREAKDOWN · ISSUED CARD '+esc(clock(b.sealed_at_utc))+'</p>'
+  +'<div class="mma-market-table"><table><thead><tr><th scope="col">Market</th><th scope="col">APEX</th><th scope="col">FanDuel</th><th scope="col">Plus-money</th></tr></thead><tbody>'+rows+'</tbody></table></div>'
+  +'<p>FanDuel values describe the saved T-2 capture, not the current sportsbook board.</p>'
+  +'<p>Finish probability covers KO/TKO or submission; no prop bet issued without a matching captured price.</p></section>';
+}
+function issuedPanel(p,display){
  const headline=p.display_selection||p.selection;
  return '<section class="market-panel" data-market="'+esc(p.market)+'" data-position-state="SEALED" data-position-bout="'+esc(p.bout_id)+'">'
-  +'<div class="market-label">'+esc(p.market)+'</div>'
+  +'<div class="market-label">'+esc(p.market==="WINNER"?"HEADS-UP WINNER":p.market)+'</div>'
   +'<div class="market-panel-head"><span class="pick-headline">'+esc(headline)+'</span>'
   +'<span class="rating-label">APEX WIN PROBABILITY RATING</span>'
   +'<span class="tier-badge tier-badge--'+esc(p.tier.toLowerCase())+'">'+esc(p.tier)+'</span></div>'
   +'<div class="meta mono">APEX WIN PROBABILITY: '+(p.probability*100).toFixed(1)+'% · Sportsbook: FanDuel · '+(p.price>0?'+':'')+esc(p.price)+'</div>'
+  +moneylineHeadsUp(display)
   +'<div class="rationale-copy">'+paragraphs(p.rationale).map(text=>'<p>'+esc(text)+'</p>').join("")+'</div></section>';
 }
 fetch("/data/mma_today.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw new Error("HTTP "+r.status);return r.json()}).then(d=>{
  if(!d.event?.event_date||!Array.isArray(d.card)||d.card.some(b=>!b||!matchup(b)))throw new Error("Invalid official card");
- const e=d.event,positions=issuedPositions(d);
+ const e=d.event,positions=issuedPositions(d),display=displayRows(d,positions);
  const forecast=d.forecast;
  if(!forecast||typeof forecast.code!=="string"||typeof forecast.headline!=="string"||typeof forecast.detail!=="string")throw new Error("Invalid forecast status");
  const displayOrders=d.card.map(b=>b.official_display_order);
@@ -102,7 +134,9 @@ fetch("/data/mma_today.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw new Err
  const meta=dateLabel(e.event_date)+" · "+card.length+" SCHEDULED BOUTS · "+positions.length+" POSITIONS"
   +(positions.length?" · MODEL "+d.active_model:" · UNISSUED · "+forecast.code.replaceAll("_"," "));
  const html=card.map(({b,positions:issued},i)=>{
-  let panels=issued.slice().sort((a,b)=>(a.market==="WINNER"?0:1)-(b.market==="WINNER"?0:1)).map(issuedPanel).join("");
+  let panels=issued.slice().sort((a,b)=>(a.market==="WINNER"?0:1)-(b.market==="WINNER"?0:1)).map(p=>issuedPanel(p,p.market==="WINNER"?display.get(p.bout_id):null)).join("");
+  const winner=issued.find(p=>p.market==="WINNER"),breakdown=winner?display.get(winner.bout_id):null;
+  if(breakdown)panels+=marketBreakdown(breakdown);
   if(!issued.length){
    const badge=forecast.code==="AWAITING_T2"?"SCHEDULED":"FAIL CLOSED";
    panels='<section class="market-panel" data-position-state="UNISSUED" data-forecast-code="'+esc(forecast.code)+'"><div class="market-label">STATUS</div><div class="market-panel-head"><span class="pick-headline">UNISSUED — '+esc(forecast.headline.toUpperCase())+'</span><span class="tier-badge tier-badge--moderate">'+badge+'</span></div><div class="rationale-copy"><p>'+esc(forecast.detail)+'</p></div></section>';
@@ -112,7 +146,7 @@ fetch("/data/mma_today.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw new Err
   return '<article class="game-module" data-game="'+esc(b.bout_id||b.apex_mma_bout_id||matchup(b))+'" data-game-state="'+(issued.length?'ISSUED':'UNISSUED')+'">'
    +'<header class="game-header"><div class="game-num mono">F'+String(i+1).padStart(2,"0")+'</div><div class="game-meta">'
    +'<h2 class="game-matchup">'+esc(matchup(b))+'</h2><p class="game-pitchers mono">'+esc(context)+'</p></div><div class="game-time mono">'+esc(boutTime(b,e))+'</div></header>'
-   +'<div class="market-grid'+(issued.length===1?' market-grid--single':'')+'">'+panels+'</div></article>';
+   +'<div class="market-grid'+(issued.length===1&&!breakdown?' market-grid--single':'')+'">'+panels+'</div></article>';
  }).join("");
  document.getElementById("slate-meta").textContent=meta;
  const shell=document.querySelector(".shell");
@@ -241,7 +275,7 @@ def main():
         return 0
     html = head('APEX — MMA Picks', 'APEX MMA / UFC official card and sealed FanDuel picks.', '/mma')
     html = html.replace('/assets/apex.css?v=apex-20260825-mma', '/assets/apex.css?v=apex-20260910-mma-card-parity')
-    html = html.replace('</head>', BEACON_BLOCK + '\n' + ANALYTICS_BLOCK + '\n</head>')
+    html = html.replace('</head>', '<style>.mma-market-breakdown{min-width:0}.mma-market-table{overflow-x:auto}.mma-market-breakdown table{width:100%;min-width:420px;border-collapse:collapse;font-size:.9rem}.mma-market-breakdown th,.mma-market-breakdown td{padding:.65rem .35rem;text-align:left;border-bottom:1px solid #284252}.mma-market-breakdown p{font-size:.8rem}.mma-market-breakdown td{white-space:nowrap}</style>' + BEACON_BLOCK + '\n' + ANALYTICS_BLOCK + '\n</head>')
     issuance_state = 'issued' if positions else 'quiet'
     public_flag = 'true' if positions else 'false'
     html += '\n' + hero().replace('<div class="shell">',
