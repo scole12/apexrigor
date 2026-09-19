@@ -146,6 +146,7 @@ def market_display_projection(state: dict[str, Any], positions: list[dict[str, A
             raise ValueError("missing timezone")
     except (KeyError, TypeError, ValueError) as exc:
         return None
+    display = deepcopy(display)
     winners = {p["bout_id"]: p for p in positions if p["market"] == "WINNER"}
     bouts = display.get("bouts")
     if (not isinstance(bouts, list) or len(bouts) != len(winners)
@@ -183,6 +184,17 @@ def market_display_projection(state: dict[str, Any], positions: list[dict[str, A
                 or [r.get("market_key") for r in rows] != keys):
             return None
         for row in rows:
+            rationale = row.get("rationale")
+            source = row.get("rationale_source")
+            if rationale is not None and (
+                    not isinstance(rationale, str) or not rationale.strip()
+                    or "\n" in rationale or "\r" in rationale
+                    or not isinstance(source, dict)
+                    or source.get("bout_id") != issued["bout_id"]
+                    or source.get("fighter_snapshot_sha256") != issued["trace"].get("feature_snapshot_sha256")):
+                # An unavailable sentence must not hide the saved probability or winner.
+                row["rationale"] = None
+                row["rationale_source"] = None
             probability = row.get("probability")
             available = probability is not None
             if (available and (isinstance(probability, bool)
