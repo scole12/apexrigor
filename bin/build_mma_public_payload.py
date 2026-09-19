@@ -8,6 +8,7 @@ from copy import deepcopy
 import hashlib
 import json
 import math
+import re
 from datetime import datetime
 from pathlib import Path
 from typing import Any
@@ -128,6 +129,68 @@ def science_gate_projection(state: dict[str, Any], *, issued: bool) -> dict[str,
 
 
 
+def winner_rationale_projection(bout: dict[str, Any], issued: dict[str, Any]) -> dict[str, Any]:
+    """Check the sealed projection's integrity, field pointers and fighter binding."""
+    unavailable = {"winner_rationale": "Verified retained pre-fight history is unavailable for this matchup, so a factual winner comparison cannot be shown.",
+                   "winner_rationale_source": None}
+    sentence, source = bout.get("winner_rationale"), bout.get("winner_rationale_source")
+    if (not isinstance(sentence, str) or not isinstance(source, dict)
+            or not isinstance(issued.get("trace"), dict)):
+        return unavailable
+    text = sentence
+    for name in (issued["fighter_a"], issued["fighter_b"]):
+        text = text.replace(name, "Fighter")
+    if ("\n" in sentence or "\r" in sentence or len(sentence.split()) > 50
+            or not text.endswith(".") or re.search(r"(?<!\d)\.|\.(?!\d)|[!?]", text[:-1])
+            or source.get("fighter_snapshot_sha256") != issued["trace"].get("feature_snapshot_sha256")
+            or not SHA.fullmatch(str(source.get("fighter_snapshot_sha256") or ""))
+            or source.get("bout_id") != issued["bout_id"]
+            or source.get("sample") != "RETAINED_RECORDED_PRE_FIGHT_BOUTS"
+            or not re.fullmatch(r"/replay/inference_input/facts/bouts/\d+", str(source.get("bout_pointer") or ""))):
+        return unavailable
+    unsigned = {k: v for k, v in source.items() if k != "projection_sha256"}
+    if source.get("projection_sha256") != hashlib.sha256(canonical({"sentence": sentence, "source": unsigned})).hexdigest():
+        return unavailable
+    allowed = {"TAKEDOWNS_AND_CONTROL": ("td_per15", "control_per15"),
+               "OUTPUT_WITH_TAKEDOWN_COUNTERPOINT": ("sig_lpm", "td_per15"),
+               "OUTPUT_AND_BALANCE": ("sig_lpm", "sig_diff_pm"),
+               "ABSORPTION_AND_OUTPUT": ("sig_abs_pm", "sig_lpm"),
+               "MIXED_RECORDED_COMPARISON": ("sig_diff_pm", "td_per15")}
+    fields = allowed.get(str(source.get("comparison")))
+    if fields is None or issued["selection"] not in (issued["fighter_a"], issued["fighter_b"]):
+        return unavailable
+    selected_side = "a" if issued["selection"] == issued["fighter_a"] else "b"
+    for role, side in (("selected_fighter", selected_side), ("opponent", "b" if selected_side == "a" else "a")):
+        evidence = source.get(role)
+        base = source["bout_pointer"] + "/elemental_feature_surface"
+        pointer = f"{base}/fighter_{side}_state"
+        if (not isinstance(evidence, dict) or evidence.get("fighter") != issued[f"fighter_{side}"]
+                or evidence.get("participant_slot") != side.upper()
+                or evidence.get("fighter_pointer") != pointer + "/name"
+                or evidence.get("fighter_id_pointer") != pointer + "/fighter_id"
+                or type(evidence.get("fighter_id")) is not int or evidence["fighter_id"] <= 0
+                or evidence.get("apex_fighter_id_pointer") != f"{base}/apex_fighter_{side}_id"):
+            return unavailable
+        try:
+            uuid.UUID(evidence["apex_mma_fighter_id"])
+        except (KeyError, ValueError, TypeError, AttributeError):
+            return unavailable
+        terms = evidence.get("fields")
+        if (not isinstance(terms, list) or any(not isinstance(t, dict) for t in terms)
+                or [t.get("field") for t in terms] != ["fights", *fields]):
+            return unavailable
+        for term in terms:
+            field, value = term["field"], term.get("value")
+            if (term.get("source_pointer") != f"{pointer}/historical_features/{field}"
+                    or type(value) not in (int, float) or not math.isfinite(value)
+                    or (field != "sig_diff_pm" and value < 0)):
+                return unavailable
+            if field == "fights" and (type(value) is not int or value <= 0
+                    or (value < 5 and f"only {value} {'bout' if value == 1 else 'bouts'}, sparse history" not in sentence)):
+                return unavailable
+    return {"winner_rationale": sentence, "winner_rationale_source": deepcopy(source)}
+
+
 def market_display_projection(state: dict[str, Any], positions: list[dict[str, Any]]) -> dict[str, Any] | None:
     """Validate descriptive rows from the original issuance; never create positions."""
     display = state.get("market_display")
@@ -158,6 +221,7 @@ def market_display_projection(state: dict[str, Any], positions: list[dict[str, A
         if (bout.get("selected_fighter") != issued["selection"]
                 or bout.get("prediction_sha256") != issued["trace"]["prediction_sha256"]):
             return None
+        bout.update(winner_rationale_projection(bout, issued))
         quotes = bout.get("moneylines")
         if (not isinstance(quotes, list) or len(quotes) != 2
                 or {q.get("fighter") for q in quotes if isinstance(q, dict)}
