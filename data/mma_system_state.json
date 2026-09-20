@@ -7,8 +7,8 @@
       "events": 1048,
       "fight_statistics_source_aggregate": 0,
       "fighters": 3999,
-      "results": 3676,
-      "round_statistics_elemental": 11549,
+      "results": 3682,
+      "round_statistics_elemental": 11689,
       "round_stats": 0,
       "scorecards": 37,
       "weigh_ins": 5442
@@ -176,7 +176,7 @@
   },
   "event_id": "b343f71c-c13a-5729-8c03-76f5b44cd603",
   "fight_count": 12,
-  "generated_at_utc": "2026-09-19T23:00:39.234730Z",
+  "generated_at_utc": "2026-09-20T01:00:47.510593Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "GRADED_COMMERCIAL_AND_OR_SCIENTIFIC"
@@ -4146,7 +4146,7 @@
     "source_market_snapshot_sha256": "665d755bc012608398c43326e7aa1de00e98422304d864d840f55d7050c3e89b",
     "source_positions_sha256": "4801d1a00d95ce70d4e66e2448f9f3af4ca43b3a968273331c252e9a43f0c9cd"
   },
-  "payload_sha256": "117f2f686f738a55495765d5140cf96b9454c7fa89a725b6e1d1b39ccab17146",
+  "payload_sha256": "7c3600abe61c1d6606f1442c605b5c25a02dd2ed61e7607514cd6366b251c63c",
   "picks_published": true,
   "positions": [
     {
@@ -5474,7 +5474,7 @@
     "production_issuance_authorized": true,
     "release_binding": "EXACT_AUTHORIZED_RELEASE"
   },
-  "semantic_state_sha256": "ee8962c37052f33c488db95fde67e0b6579aa5cfc424dfcd709eabe5fd26b67d",
+  "semantic_state_sha256": "e4d38b7580e322f167e75aae81f620b382284481f015da486c78dd574583591e",
   "source_conflicts": [],
   "system_readiness_state": "FORECASTS_ISSUED",
   "t2": {

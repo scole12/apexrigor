@@ -137,7 +137,7 @@
     "detail": "12 issued positions. Picks, FanDuel prices, probabilities, ratings and rationale below are read from the same sealed T-2 issuance.",
     "headline": "Forecasts issued"
   },
-  "generated_at_utc": "2026-09-19T23:00:39.234730Z",
+  "generated_at_utc": "2026-09-20T01:00:47.510593Z",
   "issuance_id": "a09387f2-6b21-4e9b-84da-cc813f8b1ee2",
   "issuance_status": "SEALED",
   "market_display": {
@@ -3919,7 +3919,7 @@
     "source_market_snapshot_sha256": "665d755bc012608398c43326e7aa1de00e98422304d864d840f55d7050c3e89b",
     "source_positions_sha256": "4801d1a00d95ce70d4e66e2448f9f3af4ca43b3a968273331c252e9a43f0c9cd"
   },
-  "payload_sha256": "2e7004de3ab42be98c966249fd77a86af5e82353fd07cf11d9c32c547341d208",
+  "payload_sha256": "cdcd5d9cf89250511133848009131bdf9e397e2195c3d7e6928cb581891172fc",
   "picks_published": true,
   "positions": [
     {
