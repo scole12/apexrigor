@@ -25,18 +25,6 @@
         (position.is_underdog === true || position.side_role === "UNDERDOG")) return "DOG_PLUS_1_5";
     throw new Error("Unsupported NHL market or missing underdog +1.5 evidence");
   };
-  function validateSummary(summary) {
-    const overall = summary.overall;
-    const included = summary.sports_included;
-    if (!overall || !summary.sports?.nhl || !Array.isArray(included) || !included.length || new Set(included).size !== included.length) throw new Error("Fused Overall unavailable");
-    for (const field of ["wins", "losses", "pushes"]) {
-      if (!Number.isInteger(overall[field]) || overall[field] < 0) throw new Error("Fused Overall invalid");
-      const values = included.map(sport => summary.sports[sport]?.[field]);
-      if (values.some(value => !Number.isInteger(value) || value < 0) || values.reduce((a, b) => a + b, 0) !== overall[field]) throw new Error("Fused Overall mismatch");
-    }
-    if (!included.includes("nhl") && ["wins", "losses", "pushes"].some(field => summary.sports.nhl[field])) throw new Error("NHL missing from fused Overall");
-    return overall;
-  }
   function archiveRows(archive) {
     if (archive.sport !== "NHL" || !Array.isArray(archive.issuances) || !Array.isArray(archive.grades)) throw new Error("NHL archive unavailable");
     const issued = new Map();
@@ -91,23 +79,20 @@
     return Array.from(issued.values());
   }
   async function load() {
-    const responses = await Promise.all([
-      fetch("/data/apex_results_summary.json", {cache:"no-store"}),
-      fetch("/data/nhl_results_archive.json", {cache:"no-store"})
-    ]);
-    if (responses.some(response => !response.ok)) throw new Error("Results data unavailable");
-    const [summary, archive] = await Promise.all(responses.map(response => response.json()));
-    const overall = validateSummary(summary);
+    const response = await fetch("/data/nhl_results_archive.json", {cache:"no-store"});
+    if (!response.ok) throw new Error("NHL results data unavailable");
+    const archive = await response.json();
     const rows = archiveRows(archive);
+    const overall = record(rows);
     const total = record(rows.filter(row => row.market === "TOTALS"));
     const dog = record(rows.filter(row => row.market === "DOG_PLUS_1_5"));
-    const tracked = overall.positions_tracked ?? overall.wins + overall.losses + overall.pushes;
+    const tracked = rows.length;
     const today = new Intl.DateTimeFormat("en-US", {timeZone:"America/New_York", weekday:"long", month:"long", day:"numeric", year:"numeric"}).format(new Date()).toUpperCase();
-    const overallRecord = fmtRecord(overall.wins, overall.losses, overall.pushes);
-    const overallRate = rate(overall.wins, overall.losses);
-    let output = `<div class="section-head"><div class="title">SEASON RECORD</div><div class="meta mono">${esc(today)} · ${Number(tracked).toLocaleString("en-US")} POSITIONS TRACKED</div></div>`;
+    const overallRecord = overall.label;
+    const overallRate = overall.rate;
+    let output = `<div class="section-head"><div class="title">NHL RECORD</div><div class="meta mono">${esc(today)} · ${Number(tracked).toLocaleString("en-US")} NHL POSITIONS TRACKED</div></div>`;
     output += `<div class="banner" data-apex-season-record="${esc(overallRecord)}" data-apex-season-win-rate="${esc(overallRate)}" data-apex-totals-record="${esc(total.label)}" data-apex-underdog-record="${esc(dog.label)}">
-      <div class="cell"><div class="label">Overall</div><div class="val mono">${esc(overallRecord)}</div></div>
+      <div class="cell"><div class="label">NHL Overall</div><div class="val mono">${esc(overallRecord)}</div></div>
       <div class="cell"><div class="label">Win Rate</div><div class="val mono">${esc(overallRate)}</div></div>
       <div class="cell"><div class="label">Totals O/U</div><div class="val mono">${esc(total.label)}</div></div>
       <div class="cell"><div class="label">Underdog +1.5</div><div class="val mono">${esc(dog.label)}</div></div>
