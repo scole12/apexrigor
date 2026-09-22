@@ -121,7 +121,7 @@
     "scorecards": 37,
     "weigh_ins": 5442
   },
-  "generated_at_utc": "2026-09-22T22:30:40.760084Z",
+  "generated_at_utc": "2026-09-22T23:00:40.565104Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "GRADED_COMMERCIAL_AND_OR_SCIENTIFIC"
@@ -485,7 +485,7 @@
     "schedule_status": "ANNOUNCED",
     "venue": "Meta Apex"
   },
-  "payload_sha256": "944ac384f7a5919fd35f345fbd9e6e416acbb7970efff8315aeac65febcb01ac",
+  "payload_sha256": "03d7326d8682f01fa68aa528ea02dd24411a6237c1516a0632979fd739389a42",
   "production_isolation": "PASS",
   "schema_version": "APEX_MMA_OPS_SNAPSHOT_V1",
   "science_blocker": "FAIL_CLOSED_KEEP_NONE_EDGE_CERT_NO",
