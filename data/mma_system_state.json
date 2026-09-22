@@ -46,9 +46,9 @@
       ]
     ],
     "reason": "REFERENCE_PROVIDER_PAIR_RECONCILIATION_INCOMPLETE",
-    "reference_bout_count": 11,
+    "reference_bout_count": 12,
     "reference_event_id": "892b84e1-55d8-56df-bbe2-6d855db59fab",
-    "resolved_pair_count": 9,
+    "resolved_pair_count": 10,
     "status": "REFERENCE_ONLY_NO_CANONICAL_FIGHTER_EVENT"
   },
   "card": [
@@ -71,20 +71,11 @@
       "weight_class": "MIDDLEWEIGHT"
     },
     {
-      "fighter_a": "Brady Hiestand",
-      "fighter_b": "Rinya Nakamura",
-      "is_co_main_event": false,
-      "is_main_event": false,
-      "official_display_order": 3,
-      "segment": "MAIN",
-      "weight_class": "BANTAMWEIGHT"
-    },
-    {
       "fighter_a": "Mehemmedeli Osmanli",
       "fighter_b": "Ilimbek Akylbek Uulu",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 4,
+      "official_display_order": 3,
       "segment": "MAIN",
       "weight_class": "BANTAMWEIGHT"
     },
@@ -93,27 +84,36 @@
       "fighter_b": "Valesca Machado",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 5,
+      "official_display_order": 4,
       "segment": "MAIN",
       "weight_class": "WOMENS_STRAWWEIGHT"
     },
     {
-      "fighter_a": "Josiah Harrell",
-      "fighter_b": "Elves Brener",
+      "fighter_a": "Brady Hiestand",
+      "fighter_b": "Rinya Nakamura",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 6,
+      "official_display_order": 5,
       "segment": "MAIN",
-      "weight_class": "LIGHTWEIGHT"
+      "weight_class": "BANTAMWEIGHT"
     },
     {
       "fighter_a": "Rodolfo Bellato",
       "fighter_b": "Christian Edwards",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 7,
+      "official_display_order": 6,
       "segment": "PRELIMS",
       "weight_class": "LIGHT_HEAVYWEIGHT"
+    },
+    {
+      "fighter_a": "Josiah Harrell",
+      "fighter_b": "Elves Brener",
+      "is_co_main_event": false,
+      "is_main_event": false,
+      "official_display_order": 7,
+      "segment": "PRELIMS",
+      "weight_class": "LIGHTWEIGHT"
     },
     {
       "fighter_a": "Montel Jackson",
@@ -125,29 +125,38 @@
       "weight_class": "BANTAMWEIGHT"
     },
     {
-      "fighter_a": "John Castaneda",
-      "fighter_b": "Heili Alateng",
-      "is_co_main_event": false,
-      "is_main_event": false,
-      "official_display_order": 9,
-      "segment": "PRELIMS",
-      "weight_class": "BANTAMWEIGHT"
-    },
-    {
       "fighter_a": "Norma Dumont",
       "fighter_b": "Ailin Perez",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 10,
+      "official_display_order": 9,
       "segment": "PRELIMS",
       "weight_class": "WOMENS_BANTAMWEIGHT"
+    },
+    {
+      "fighter_a": "John Castaneda",
+      "fighter_b": "Heili Alateng",
+      "is_co_main_event": false,
+      "is_main_event": false,
+      "official_display_order": 10,
+      "segment": "PRELIMS",
+      "weight_class": "BANTAMWEIGHT"
+    },
+    {
+      "fighter_a": "Mickey Gall",
+      "fighter_b": "Sedriques Dumas",
+      "is_co_main_event": false,
+      "is_main_event": false,
+      "official_display_order": 11,
+      "segment": "PRELIMS",
+      "weight_class": "MIDDLEWEIGHT"
     },
     {
       "fighter_a": "Vanessa Demopoulos",
       "fighter_b": "Yazmin Jauregui",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 11,
+      "official_display_order": 12,
       "segment": "PRELIMS",
       "weight_class": "WOMENS_STRAWWEIGHT"
     }
@@ -179,8 +188,8 @@
     "verified_queue_horizon": "2026-11-14"
   },
   "event_id": "892b84e1-55d8-56df-bbe2-6d855db59fab",
-  "fight_count": 11,
-  "generated_at_utc": "2026-09-22T15:30:43.954332Z",
+  "fight_count": 12,
+  "generated_at_utc": "2026-09-22T16:00:42.817177Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "GRADED_COMMERCIAL_AND_OR_SCIENTIFIC"
@@ -527,7 +536,7 @@
       "source": "PRODUCTION_COMMERCIAL_GRADES"
     }
   ],
-  "payload_sha256": "9fbe1e957bcefc6c6b6ff3b3f6c935df5b5040d80664dfe65b966eda8d5704ad",
+  "payload_sha256": "00c37d2bf861a3d0cdfe4f0ce450539c2e2019cbbd1df8f1cf19c82d0822cc87",
   "picks_published": false,
   "positions": [],
   "positions_sha256": null,
@@ -1896,7 +1905,7 @@
     "production_issuance_authorized": true,
     "release_binding": "NONE"
   },
-  "semantic_state_sha256": "414f0e019e3b6ed4dad89328dfbeba82bd369ee1742d572d7612bede3c8316b2",
+  "semantic_state_sha256": "63ec1c5a6511c14b83d39f04535b837a5b2002d5f7cb3f828d6022d989778d2c",
   "source_conflicts": [
     {
       "capture_basis": "LATEST_LIVE_EVENTS_CAPTURE",
@@ -1911,7 +1920,7 @@
         "Ilimbek Akylbek"
       ],
       "provider_selection_slots": {},
-      "source_capture_id": "e7cc6d31-8b65-4cc4-ab1d-1cff106b3ebe",
+      "source_capture_id": "1dd03370-7486-4a67-bc5c-0f44dd17f4fb",
       "status": "ONE_SIDE_MATCH_PROVIDER_CARD_CONFLICT"
     },
     {
@@ -1927,7 +1936,7 @@
         "Elves Brenner"
       ],
       "provider_selection_slots": {},
-      "source_capture_id": "e7cc6d31-8b65-4cc4-ab1d-1cff106b3ebe",
+      "source_capture_id": "1dd03370-7486-4a67-bc5c-0f44dd17f4fb",
       "status": "ONE_SIDE_MATCH_PROVIDER_CARD_CONFLICT"
     }
   ],
