@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Fail closed on the APEX four-sport presentation boundary, assets, and RUM drift."""
+"""Fail closed on the APEX five-sport presentation boundary, assets, and RUM drift."""
 
 from __future__ import annotations
 
@@ -17,7 +17,7 @@ from _apex_site_record import record_strip
 DEFAULT_ROOT = Path(__file__).resolve().parents[1]
 BEACON_URL = "https://static.cloudflareinsights.com/beacon.min.js"
 VERCEL_INSIGHTS_SCRIPT = "/_vercel/insights/script.js"
-SPORT_LABELS = ("MLB", "NCAA FOOTBALL", "MMA / UFC", "NFL")
+SPORT_LABELS = ("MLB", "NCAA FOOTBALL", "MMA / UFC", "NFL", "NHL")
 SPORT_ITEM_RE = re.compile(
     r'<(?P<tag>a|span)\b[^>]*>\s*(?P<label>[^<]+?)\s*</(?P=tag)>',
     re.DOTALL,
@@ -58,6 +58,9 @@ def main() -> int:
         "/mma": root / "mma" / "index.html",
         "/mma/results": root / "mma" / "results" / "index.html",
         "/mma/about": root / "mma" / "about" / "index.html",
+        "/nhl": root / "nhl" / "index.html",
+        "/nhl/results": root / "nhl" / "results" / "index.html",
+        "/nhl/about": root / "nhl" / "about" / "index.html",
     }
     nfl_routes = {
         "/nfl": root / "nfl" / "index.html",
@@ -124,7 +127,6 @@ def main() -> int:
     public_world_cup_label_count = 0
     public_soccer_label_count = 0
     public_other_sport_label_counts = {
-        "nhl": 0,
         "nba": 0,
         "mls": 0,
         "liga_mx": 0,
@@ -141,6 +143,8 @@ def main() -> int:
                 errors.append(
                     f"{route} sport selector labels/order {labels}, expected {SPORT_LABELS}"
                 )
+            if 'href="/nhl' not in switcher:
+                errors.append(f"{route} does not link the NHL presentation route")
             if nfl_route_established:
                 if "sport-unavailable" in switcher or 'href="/nfl' not in switcher:
                     errors.append(f"{route} does not link the established NFL presentation route")
@@ -162,9 +166,6 @@ def main() -> int:
         )
         public_soccer_label_count += len(
             re.findall(r"(?:href=\"[^\"]*soccer|\bsoccer\b)", text, re.IGNORECASE)
-        )
-        public_other_sport_label_counts["nhl"] += len(
-            re.findall(r"\bNHL\b", text, re.IGNORECASE)
         )
         public_other_sport_label_counts["nba"] += len(
             re.findall(r"\bNBA\b", text, re.IGNORECASE)
