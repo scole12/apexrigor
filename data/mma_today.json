@@ -138,10 +138,10 @@
     "detail": "No forecasts have been issued yet. Any published card will show the selection, captured FanDuel price, APEX probability, rating and full model-supported rationale.",
     "headline": "Awaiting the T-2 forecast run"
   },
-  "generated_at_utc": "2026-09-22T18:00:51.292988Z",
+  "generated_at_utc": "2026-09-22T18:30:43.746065Z",
   "issuance_id": null,
   "issuance_status": null,
-  "payload_sha256": "0cac2fda5c5452c75d7f65f955bb224f16cd2723550120479814d07a47897822",
+  "payload_sha256": "8e6f9b3725719fab97e8b2827ad693b11140a4f9061d476c8a6ec0216768ae09",
   "picks_published": false,
   "positions": [],
   "positions_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",

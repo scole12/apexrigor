@@ -5,7 +5,7 @@
     "detail": "No forecasts have been issued yet. Any published card will show the selection, captured FanDuel price, APEX probability, rating and full model-supported rationale.",
     "headline": "Awaiting the T-2 forecast run"
   },
-  "generated_at_utc": "2026-09-22T18:00:51.292988Z",
+  "generated_at_utc": "2026-09-22T18:30:43.746065Z",
   "graded_scientific_object_count": 12,
   "grader": {
     "schedule": "07:00 America/New_York",
@@ -352,7 +352,7 @@
       "source": "PRODUCTION_COMMERCIAL_GRADES"
     }
   ],
-  "payload_sha256": "4efb9d8dfe33753b8b9a498fb02b73f64c7a6a967ff0a00eebeedca628f14da9",
+  "payload_sha256": "a0a1f5118f4fc084f5a126ae02ac99b267c5910e9086064bf49b0fc0226bcddc",
   "release_state": "NO_RELEASE_SCIENTIFIC_GATE",
   "schema_version": "APEX_MMA_RESULTS_SUMMARY_V1",
   "status": "RESULTS_AVAILABLE"
