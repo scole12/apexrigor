@@ -41,6 +41,10 @@
         "Ilimbek Akylbek Uulu"
       ],
       [
+        "Melissa Amaya",
+        "Tina Black"
+      ],
+      [
         "Elves Brener",
         "Josiah Harrell"
       ]
@@ -48,7 +52,7 @@
     "reason": "REFERENCE_PROVIDER_PAIR_RECONCILIATION_INCOMPLETE",
     "reference_bout_count": 12,
     "reference_event_id": "892b84e1-55d8-56df-bbe2-6d855db59fab",
-    "resolved_pair_count": 10,
+    "resolved_pair_count": 9,
     "status": "REFERENCE_ONLY_NO_CANONICAL_FIGHTER_EVENT"
   },
   "card": [
@@ -81,7 +85,7 @@
     },
     {
       "fighter_a": "Melissa Amaya",
-      "fighter_b": "Valesca Machado",
+      "fighter_b": "Tina Black",
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 4,
@@ -189,7 +193,7 @@
   },
   "event_id": "892b84e1-55d8-56df-bbe2-6d855db59fab",
   "fight_count": 12,
-  "generated_at_utc": "2026-09-23T21:30:41.993628Z",
+  "generated_at_utc": "2026-09-23T22:00:44.544823Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "GRADED_COMMERCIAL_AND_OR_SCIENTIFIC"
@@ -536,7 +540,7 @@
       "source": "PRODUCTION_COMMERCIAL_GRADES"
     }
   ],
-  "payload_sha256": "06a0ffa091eaa631bbee31a7f2d58def6c304c86dc711f2a301662a74e1924ea",
+  "payload_sha256": "bc097b9ef70f94294ff60549edcd631dbc9ebbd001f58e955b543c757e4e256e",
   "picks_published": false,
   "positions": [],
   "positions_sha256": null,
@@ -1905,7 +1909,7 @@
     "production_issuance_authorized": true,
     "release_binding": "NONE"
   },
-  "semantic_state_sha256": "7a3d4b41db53b07c7073add076a4d78a56359612ba58ef750bedf2ae46869584",
+  "semantic_state_sha256": "7c09ee68927d46ce6e260371f1cd2d1f7bb17688ff7ab1df20d0d0f221dbcdde",
   "source_conflicts": [
     {
       "capture_basis": "LATEST_LIVE_EVENTS_CAPTURE",
@@ -1920,7 +1924,23 @@
         "Ilimbek Akylbek"
       ],
       "provider_selection_slots": {},
-      "source_capture_id": "51e6d389-2f71-4854-ab3d-210dcdb0a939",
+      "source_capture_id": "66abfa0a-0ac3-4bbc-9a72-c6e8d36c314f",
+      "status": "ONE_SIDE_MATCH_PROVIDER_CARD_CONFLICT"
+    },
+    {
+      "capture_basis": "LATEST_LIVE_EVENTS_CAPTURE",
+      "official_pair": [
+        "Melissa Amaya",
+        "Tina Black"
+      ],
+      "provider_commence_time_utc": "2026-09-26T22:00:00Z",
+      "provider_event_id": "c456af9a78c8fa31786fa73aad7ccccc",
+      "provider_pair": [
+        "Melissa Amaya",
+        "Valesca Machado"
+      ],
+      "provider_selection_slots": {},
+      "source_capture_id": "66abfa0a-0ac3-4bbc-9a72-c6e8d36c314f",
       "status": "ONE_SIDE_MATCH_PROVIDER_CARD_CONFLICT"
     },
     {
@@ -1936,7 +1956,7 @@
         "Elves Brenner"
       ],
       "provider_selection_slots": {},
-      "source_capture_id": "51e6d389-2f71-4854-ab3d-210dcdb0a939",
+      "source_capture_id": "66abfa0a-0ac3-4bbc-9a72-c6e8d36c314f",
       "status": "ONE_SIDE_MATCH_PROVIDER_CARD_CONFLICT"
     }
   ],

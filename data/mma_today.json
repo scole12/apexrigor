@@ -36,7 +36,7 @@
     },
     {
       "fighter_a": "Melissa Amaya",
-      "fighter_b": "Valesca Machado",
+      "fighter_b": "Tina Black",
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 4,
@@ -138,10 +138,10 @@
     "detail": "No forecasts have been issued yet. Any published card will show the selection, captured FanDuel price, APEX probability, rating and full model-supported rationale.",
     "headline": "Awaiting the T-2 forecast run"
   },
-  "generated_at_utc": "2026-09-23T21:30:41.993628Z",
+  "generated_at_utc": "2026-09-23T22:00:44.544823Z",
   "issuance_id": null,
   "issuance_status": null,
-  "payload_sha256": "a9377fa7e92096c769a6550d05c20076f8890355b63a0f308c4c573c63e33f17",
+  "payload_sha256": "9f125cf2125714f72624ef0132d3310e9554abe0a776f9a5d8f759c9f97d6ee9",
   "picks_published": false,
   "positions": [],
   "positions_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
