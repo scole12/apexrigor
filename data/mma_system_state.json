@@ -37,7 +37,7 @@
     "canonical_event_id": null,
     "provider_missing_pairs": [
       [
-        "Mehemmedeli Osmanli",
+        "Mahammadali Osmanli",
         "Ilimbek Akylbek Uulu"
       ],
       [
@@ -75,7 +75,7 @@
       "weight_class": "MIDDLEWEIGHT"
     },
     {
-      "fighter_a": "Mehemmedeli Osmanli",
+      "fighter_a": "Mahammadali Osmanli",
       "fighter_b": "Ilimbek Akylbek Uulu",
       "is_co_main_event": false,
       "is_main_event": false,
@@ -193,7 +193,7 @@
   },
   "event_id": "892b84e1-55d8-56df-bbe2-6d855db59fab",
   "fight_count": 12,
-  "generated_at_utc": "2026-09-23T23:30:42.325915Z",
+  "generated_at_utc": "2026-09-24T00:00:46.589678Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "GRADED_COMMERCIAL_AND_OR_SCIENTIFIC"
@@ -540,7 +540,7 @@
       "source": "PRODUCTION_COMMERCIAL_GRADES"
     }
   ],
-  "payload_sha256": "f6826db36ba3f7ae7c7b14b952783f8dde2042fd08b19f1a9b55261946548e88",
+  "payload_sha256": "5d92b5f74d629c0c31cf240693b13c7e92b8569ceebc398099a20a451e66e4c7",
   "picks_published": false,
   "positions": [],
   "positions_sha256": null,
@@ -1909,24 +1909,8 @@
     "production_issuance_authorized": true,
     "release_binding": "NONE"
   },
-  "semantic_state_sha256": "88e1adbec6b003a747ed4f92daf63449143d24c129d1ae374121e6a13cd21798",
+  "semantic_state_sha256": "06beb3f79b12bfcdb57cff2f1a7cb6ef6157316a200eb108e7431d50bd546075",
   "source_conflicts": [
-    {
-      "capture_basis": "LATEST_LIVE_EVENTS_CAPTURE",
-      "official_pair": [
-        "Mehemmedeli Osmanli",
-        "Ilimbek Akylbek Uulu"
-      ],
-      "provider_commence_time_utc": "2026-09-26T22:00:00Z",
-      "provider_event_id": "2d70bc6a094923644fe1ff5bf1613d6e",
-      "provider_pair": [
-        "Mehemmedeli Osmanli",
-        "Ilimbek Akylbek"
-      ],
-      "provider_selection_slots": {},
-      "source_capture_id": "852b9c77-d2e5-48eb-ba82-23b9330b0ea5",
-      "status": "ONE_SIDE_MATCH_PROVIDER_CARD_CONFLICT"
-    },
     {
       "capture_basis": "LATEST_LIVE_EVENTS_CAPTURE",
       "official_pair": [
@@ -1940,7 +1924,7 @@
         "Valesca Machado"
       ],
       "provider_selection_slots": {},
-      "source_capture_id": "852b9c77-d2e5-48eb-ba82-23b9330b0ea5",
+      "source_capture_id": "748354ca-bac5-441a-8a45-ae274390cac2",
       "status": "ONE_SIDE_MATCH_PROVIDER_CARD_CONFLICT"
     },
     {
@@ -1956,8 +1940,21 @@
         "Elves Brenner"
       ],
       "provider_selection_slots": {},
-      "source_capture_id": "852b9c77-d2e5-48eb-ba82-23b9330b0ea5",
+      "source_capture_id": "748354ca-bac5-441a-8a45-ae274390cac2",
       "status": "ONE_SIDE_MATCH_PROVIDER_CARD_CONFLICT"
+    },
+    {
+      "capture_basis": null,
+      "official_pair": [
+        "Mahammadali Osmanli",
+        "Ilimbek Akylbek Uulu"
+      ],
+      "provider_commence_time_utc": null,
+      "provider_event_id": null,
+      "provider_pair": null,
+      "provider_selection_slots": {},
+      "source_capture_id": null,
+      "status": "NO_PROVIDER_MATCH"
     }
   ],
   "system_readiness_state": "DATA_BLOCKED_REFERENCE_ONLY_NO_CANONICAL_FIGHTER_EVENT",
