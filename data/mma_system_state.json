@@ -193,7 +193,7 @@
   },
   "event_id": "892b84e1-55d8-56df-bbe2-6d855db59fab",
   "fight_count": 12,
-  "generated_at_utc": "2026-09-24T05:30:42.116056Z",
+  "generated_at_utc": "2026-09-24T06:00:41.673223Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "GRADED_COMMERCIAL_AND_OR_SCIENTIFIC"
@@ -540,7 +540,7 @@
       "source": "PRODUCTION_COMMERCIAL_GRADES"
     }
   ],
-  "payload_sha256": "475424e2af0585ef32ab2371730480228740ab2e29c7f83e4ac5a6a935b2c562",
+  "payload_sha256": "d8bded73cfbfb0ab34850bf7d44792ca798d251f58ff713927ef183a0c3ae322",
   "picks_published": false,
   "positions": [],
   "positions_sha256": null,
@@ -1909,7 +1909,7 @@
     "production_issuance_authorized": true,
     "release_binding": "NONE"
   },
-  "semantic_state_sha256": "f04f1431ec9ad3acc6b47c2a71ffa2beba63e01279f81de809f110bdbde2f1e0",
+  "semantic_state_sha256": "fbf8e57f828c63907c6c2267747bc89204d2cc40dd691687214c9f334ae77c70",
   "source_conflicts": [
     {
       "capture_basis": "LATEST_LIVE_EVENTS_CAPTURE",
@@ -1924,7 +1924,7 @@
         "Valesca Machado"
       ],
       "provider_selection_slots": {},
-      "source_capture_id": "8044e3e0-9741-4ebb-881a-b415bf18cdce",
+      "source_capture_id": "2719e02d-1e46-4dde-9f98-a9b956c50b2c",
       "status": "ONE_SIDE_MATCH_PROVIDER_CARD_CONFLICT"
     },
     {
@@ -1940,7 +1940,7 @@
         "Elves Brenner"
       ],
       "provider_selection_slots": {},
-      "source_capture_id": "8044e3e0-9741-4ebb-881a-b415bf18cdce",
+      "source_capture_id": "2719e02d-1e46-4dde-9f98-a9b956c50b2c",
       "status": "ONE_SIDE_MATCH_PROVIDER_CARD_CONFLICT"
     },
     {
