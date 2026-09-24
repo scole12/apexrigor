@@ -177,12 +177,12 @@
       "source_files": [
         {
           "path": "data/mma_results_archive.json",
-          "sha256": "e64a70e904800d0140cabdb3cc11d8536a7f6d369541296ee06d5199e64a5195",
+          "sha256": "babd348311b9cfe91d8366665e5be92c816f39acfbbd9ebcbd86ef2976d07d18",
           "field": "events[].latest_results"
         },
         {
           "path": "data/mma_results_summary.json",
-          "sha256": "b43a8d4ed6505de959e017d54e3abf5a3a8b38f9fe011da61a6904d52e6ebf5f",
+          "sha256": "7669969eda42dbcafaf37caebaf8317d4968f5f7babd4cbc7387cde412647393",
           "field": "latest_event_results"
         }
       ],
@@ -252,12 +252,12 @@
       "mma": [
         {
           "path": "data/mma_results_archive.json",
-          "sha256": "e64a70e904800d0140cabdb3cc11d8536a7f6d369541296ee06d5199e64a5195",
+          "sha256": "babd348311b9cfe91d8366665e5be92c816f39acfbbd9ebcbd86ef2976d07d18",
           "field": "events[].latest_results"
         },
         {
           "path": "data/mma_results_summary.json",
-          "sha256": "b43a8d4ed6505de959e017d54e3abf5a3a8b38f9fe011da61a6904d52e6ebf5f",
+          "sha256": "7669969eda42dbcafaf37caebaf8317d4968f5f7babd4cbc7387cde412647393",
           "field": "latest_event_results"
         }
       ],
