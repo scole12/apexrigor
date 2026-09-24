@@ -17,29 +17,38 @@
       "weight_class": "BANTAMWEIGHT"
     },
     {
-      "fighter_a": "Rodolfo Vieira",
-      "fighter_b": "Robert Bryczek",
+      "fighter_a": "Norma Dumont",
+      "fighter_b": "Ailin Perez",
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 2,
       "segment": "MAIN",
-      "weight_class": "MIDDLEWEIGHT"
+      "weight_class": "WOMENS_BANTAMWEIGHT"
     },
     {
-      "fighter_a": "Mahammadali Osmanli",
-      "fighter_b": "Ilimbek Akylbek Uulu",
+      "fighter_a": "Luis Hernandez",
+      "fighter_b": "Sedriques Dumas",
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 3,
+      "segment": "MAIN",
+      "weight_class": "LIGHT_HEAVYWEIGHT"
+    },
+    {
+      "fighter_a": "Mehemmedeli Osmanli",
+      "fighter_b": "Ilimbek Akylbek Uulu",
+      "is_co_main_event": false,
+      "is_main_event": false,
+      "official_display_order": 4,
       "segment": "MAIN",
       "weight_class": "BANTAMWEIGHT"
     },
     {
       "fighter_a": "Melissa Amaya",
-      "fighter_b": "Tina Black",
+      "fighter_b": "Valesca Machado",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 4,
+      "official_display_order": 5,
       "segment": "MAIN",
       "weight_class": "WOMENS_STRAWWEIGHT"
     },
@@ -48,16 +57,25 @@
       "fighter_b": "Rinya Nakamura",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 5,
-      "segment": "MAIN",
+      "official_display_order": 6,
+      "segment": "PRELIMS",
       "weight_class": "BANTAMWEIGHT"
+    },
+    {
+      "fighter_a": "Rodolfo Vieira",
+      "fighter_b": "Robert Bryczek",
+      "is_co_main_event": false,
+      "is_main_event": false,
+      "official_display_order": 7,
+      "segment": "PRELIMS",
+      "weight_class": "MIDDLEWEIGHT"
     },
     {
       "fighter_a": "Rodolfo Bellato",
       "fighter_b": "Christian Edwards",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 6,
+      "official_display_order": 8,
       "segment": "PRELIMS",
       "weight_class": "LIGHT_HEAVYWEIGHT"
     },
@@ -66,7 +84,7 @@
       "fighter_b": "Josiah Harrell",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 7,
+      "official_display_order": 9,
       "segment": "PRELIMS",
       "weight_class": "LIGHTWEIGHT"
     },
@@ -75,36 +93,18 @@
       "fighter_b": "Ricky Simon",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 8,
+      "official_display_order": 10,
       "segment": "PRELIMS",
       "weight_class": "BANTAMWEIGHT"
-    },
-    {
-      "fighter_a": "Norma Dumont",
-      "fighter_b": "Ailin Perez",
-      "is_co_main_event": false,
-      "is_main_event": false,
-      "official_display_order": 9,
-      "segment": "PRELIMS",
-      "weight_class": "WOMENS_BANTAMWEIGHT"
     },
     {
       "fighter_a": "John Castaneda",
       "fighter_b": "Heili Alateng",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 10,
-      "segment": "PRELIMS",
-      "weight_class": "BANTAMWEIGHT"
-    },
-    {
-      "fighter_a": "Mickey Gall",
-      "fighter_b": "Sedriques Dumas",
-      "is_co_main_event": false,
-      "is_main_event": false,
       "official_display_order": 11,
       "segment": "PRELIMS",
-      "weight_class": "MIDDLEWEIGHT"
+      "weight_class": "BANTAMWEIGHT"
     },
     {
       "fighter_a": "Vanessa Demopoulos",
@@ -138,10 +138,10 @@
     "detail": "No forecasts have been issued yet. Any published card will show the selection, captured FanDuel price, APEX probability, rating and full model-supported rationale.",
     "headline": "Awaiting the T-2 forecast run"
   },
-  "generated_at_utc": "2026-09-24T19:30:40.288855Z",
+  "generated_at_utc": "2026-09-24T21:00:46.313677Z",
   "issuance_id": null,
   "issuance_status": null,
-  "payload_sha256": "48d8dd339260af332bc61ad206ed68a8d2ab6317f9a014536b944620125393ea",
+  "payload_sha256": "85716c4ce1797a70cd7a99e68271e100bf70a453a4a1bae803f72396b04366a1",
   "picks_published": false,
   "positions": [],
   "positions_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
