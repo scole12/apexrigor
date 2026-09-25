@@ -189,7 +189,7 @@
   },
   "event_id": "892b84e1-55d8-56df-bbe2-6d855db59fab",
   "fight_count": 12,
-  "generated_at_utc": "2026-09-25T06:30:41.104072Z",
+  "generated_at_utc": "2026-09-25T07:00:39.420519Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "GRADED_COMMERCIAL_AND_OR_SCIENTIFIC"
@@ -536,7 +536,7 @@
       "source": "PRODUCTION_COMMERCIAL_GRADES"
     }
   ],
-  "payload_sha256": "bfa3b7f7344b6d5cd8e57aa87999cdbb471c68e1243e96f231a80b09771679b5",
+  "payload_sha256": "d87c9d14873288a93037a1d412d5e9d1b794631c4b1ca7212f1eb9f639f5f404",
   "picks_published": false,
   "positions": [],
   "positions_sha256": null,
@@ -1905,7 +1905,7 @@
     "production_issuance_authorized": true,
     "release_binding": "NONE"
   },
-  "semantic_state_sha256": "9e3056dfbd3c587a99f552a85c2df3dc88f867e27b842d75bc0b523a5cdc8dbb",
+  "semantic_state_sha256": "a93592ad4433ce3373fba8411f4351d7cae95288626292bbd94e027de2c38ef0",
   "source_conflicts": [
     {
       "capture_basis": "LATEST_LIVE_EVENTS_CAPTURE",
@@ -1920,7 +1920,7 @@
         "Ilimbek Akylbek"
       ],
       "provider_selection_slots": {},
-      "source_capture_id": "efd92fe9-81ec-440a-a97c-165f3a8b3c2a",
+      "source_capture_id": "4115c1ca-4ea5-405c-9679-09f50992f10f",
       "status": "ONE_SIDE_MATCH_PROVIDER_CARD_CONFLICT"
     },
     {
@@ -1936,7 +1936,7 @@
         "Elves Brenner"
       ],
       "provider_selection_slots": {},
-      "source_capture_id": "efd92fe9-81ec-440a-a97c-165f3a8b3c2a",
+      "source_capture_id": "4115c1ca-4ea5-405c-9679-09f50992f10f",
       "status": "ONE_SIDE_MATCH_PROVIDER_CARD_CONFLICT"
     }
   ],
