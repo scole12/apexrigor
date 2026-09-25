@@ -1,16 +1,19 @@
 {
-  "attachment_count": 1,
+  "attachment_count": 2,
   "attachment_names": [
-    "T3_APEX_NCAAF_DATA_REPORT_20260925.pdf"
+    "NCAAF_T2_FULL_SLATE_20260925.pdf",
+    "NCAAF_T2_PICKS_CARD_20260925.png"
   ],
   "canonical_game_count": 6,
-  "canonical_public_payload_sha256": "6f56b556938c615c1a0130f15744e6d912b1a183843dcdf7a6f96a4a52a31996",
+  "canonical_public_payload_sha256": "a6d3ed418e86e1883fd5d412949c10d556635106c4e252f7f239b3f2d465b818",
   "count_scope": "EXPLICIT_CANONICAL_AND_DISPLAY",
-  "delivery_product": "T3",
+  "delivery_product": "T2",
   "display_date": "September 25, 2026",
   "display_game_count": 6,
   "display_slate_date_et": "2026-09-25",
   "files": {
+    "NCAAF_T2_FULL_SLATE_20260925.pdf": "461377d43be52c470bf0d8c8f6cf93961344153f73b66603349b4adcf22da331",
+    "NCAAF_T2_PICKS_CARD_20260925.png": "47fc853af5cee5d1eabd8277c1a0096a96e27e1c6d2ee29ff99a5140a082f496",
     "T3_APEX_NCAAF_DATA_REPORT_20260925.pdf": "9458882f7ae66b3d134ce1631a5bddad8af4704547b47338865b25c2f62fb195"
   },
   "graded_date": null,
@@ -19,24 +22,10 @@
   "issued_game_count": 0,
   "market_pending_game_count": 6,
   "official_position_count": 0,
-  "queue_request_id": "7e636cb71ec4420a0a3b4588ab2b44ef0205579bdd3c46253746d4344c23d25e",
+  "queue_request_id": "736f03b18d4a95bcc05cdb031f36c64c350ea9a926e1ba09a892b192ebbdb4d0",
   "results_files": {},
   "schema_version": "apex.ncaaf.full_slate_delivery.v5.shared_publisher",
-  "sealed_day_payload_sha256": "6f56b556938c615c1a0130f15744e6d912b1a183843dcdf7a6f96a4a52a31996",
+  "sealed_day_payload_sha256": "7b62bdb8edb253af4f69c9d8fa929925d842f90e76dc110e1cbef879beee51cf",
   "season_year": null,
-  "slate_date": "2026-09-25",
-  "t3_hydration_proof": {
-    "all_three_post_commit_reopen": "PASS",
-    "execution_mode": "OFFICIAL_T3",
-    "outcome_read_count": 0,
-    "path": "T3_LIVING_HYDRATION_RECEIPT_20260925.json",
-    "sha256": "f2e89ee98d7ce5cdc59554ef5aa621751539bd5d90977c55b74401d42a5a2127",
-    "status": "PASS"
-  },
-  "t3_timing": {
-    "actual_hydration_receipt_utc_ms": 1790365846085,
-    "actual_hydration_start_utc_ms": 1790365846085,
-    "execution_class": "ON_TIME",
-    "nominal_t3_utc_ms": 1790365846085
-  }
+  "slate_date": "2026-09-25"
 }
