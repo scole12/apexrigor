@@ -134,14 +134,14 @@
   "event_id": "892b84e1-55d8-56df-bbe2-6d855db59fab",
   "fight_count": 12,
   "forecast": {
-    "code": "AWAITING_T2",
-    "detail": "No forecasts have been issued yet. Any published card will show the selection, captured FanDuel price, APEX probability, rating and full model-supported rationale.",
-    "headline": "Awaiting the T-2 forecast run"
+    "code": "NO_FORECASTS_ISSUED",
+    "detail": "The scheduled T-2 time has passed, but no sealed forecast card is available. The fight schedule below is not a set of selections.",
+    "headline": "No forecasts published"
   },
-  "generated_at_utc": "2026-09-26T18:30:41.956147Z",
+  "generated_at_utc": "2026-09-26T19:02:31.952426Z",
   "issuance_id": null,
   "issuance_status": null,
-  "payload_sha256": "e4fd92718460e7463ce9ec4c6bf610177689f436c0ddd3dedf79fcb42adf6252",
+  "payload_sha256": "cbaaad80a4ded870398297843f2a1755f38079e3d73c937e48dadc1e40ee32ed",
   "picks_published": false,
   "positions": [],
   "positions_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
@@ -169,7 +169,7 @@
     "actual_utc": null,
     "anchor": "EARLIEST_PUBLISHED_SCHEDULED_BOUT_MINUS_2_HOURS",
     "scheduled_utc": "2026-09-26T19:00:00Z",
-    "status": "AWAITING_T2",
+    "status": "T2_DUE_NO_RECEIPT",
     "timeliness": null
   },
   "t3": {
