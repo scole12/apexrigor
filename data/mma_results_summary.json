@@ -2,10 +2,10 @@
   "commercial_settlement_count": 26,
   "current_event_forecast": {
     "code": "NO_FORECASTS_ISSUED",
-    "detail": "The scheduled T-2 time has passed, but no sealed forecast card is available. The fight schedule below is not a set of selections.",
-    "headline": "No forecasts published"
+    "detail": "The T-2 run did not produce an approved forecast card. There are no issued picks or pick rationales for this event. The fight schedule below is not a set of selections.",
+    "headline": "No forecasts issued"
   },
-  "generated_at_utc": "2026-09-26T20:30:46.451682Z",
+  "generated_at_utc": "2026-09-26T21:01:48.532135Z",
   "graded_scientific_object_count": 12,
   "grader": {
     "schedule": "07:00 America/New_York",
@@ -352,8 +352,8 @@
       "source": "PRODUCTION_COMMERCIAL_GRADES"
     }
   ],
-  "payload_sha256": "b5dabceb5c3b915924b343d1c4742eda843624fe4862b7532dd49c1f6aa67361",
-  "release_state": "NO_RELEASE_SCIENTIFIC_GATE",
+  "payload_sha256": "580f407a46aec9d1b252b809bf14c5527d31d3e050cc6584ef1f6a5afc140bed",
+  "release_state": "AUTHORIZED_RELEASE_AWAITING_EVENT_ISSUANCE",
   "schema_version": "APEX_MMA_RESULTS_SUMMARY_V1",
   "status": "RESULTS_AVAILABLE"
 }

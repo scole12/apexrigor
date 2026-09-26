@@ -15,7 +15,7 @@
     },
     "production": {
       "commercial_grades": 26,
-      "eligible_releases": 0,
+      "eligible_releases": 1,
       "frozen_releases": 1,
       "grades": 38,
       "issuances": 2,
@@ -184,12 +184,12 @@
     "persistent": true,
     "service": "apex-mma-event-controller.service",
     "timer": "apex-mma-event-controller.timer",
-    "verified_future_reference_count": 8,
+    "verified_future_reference_count": 7,
     "verified_queue_horizon": "2026-11-14"
   },
   "event_id": "892b84e1-55d8-56df-bbe2-6d855db59fab",
   "fight_count": 12,
-  "generated_at_utc": "2026-09-26T20:30:46.451682Z",
+  "generated_at_utc": "2026-09-26T21:01:48.532135Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "GRADED_COMMERCIAL_AND_OR_SCIENTIFIC"
@@ -536,11 +536,11 @@
       "source": "PRODUCTION_COMMERCIAL_GRADES"
     }
   ],
-  "payload_sha256": "fb4f89b820007729d553f6b42cbc27604058591ecb233e9fbaeb10d81bd72a78",
+  "payload_sha256": "dc064993cff721ecd8ded3fe38c43e05a9a887122f9efa85598b573f6e694735",
   "picks_published": false,
   "positions": [],
   "positions_sha256": null,
-  "release_state": "NO_RELEASE_SCIENTIFIC_GATE",
+  "release_state": "AUTHORIZED_RELEASE_AWAITING_EVENT_ISSUANCE",
   "results_archive": [
     {
       "active_model": "WINNER_RESIDUAL_BEST_AVAILABLE_V1",
@@ -1905,7 +1905,7 @@
     "production_issuance_authorized": true,
     "release_binding": "NONE"
   },
-  "semantic_state_sha256": "5e1bd54be6fec6a750b3028986b456bfdfc18ea40fb6594b98c5c405de0b9a04",
+  "semantic_state_sha256": "ecc0900bc43178072c1467daef2271af33227e5411ae5e22da13d228abf2cc87",
   "source_conflicts": [
     {
       "capture_basis": "LATEST_LIVE_EVENTS_CAPTURE",
@@ -1920,7 +1920,7 @@
         "Ilimbek Akylbek"
       ],
       "provider_selection_slots": {},
-      "source_capture_id": "c0f45333-88e8-47e6-8768-013639958d8c",
+      "source_capture_id": "c5e2f328-b37f-4ec1-bd9d-fc4195f63b1e",
       "status": "ONE_SIDE_MATCH_PROVIDER_CARD_CONFLICT"
     },
     {
@@ -1936,22 +1936,22 @@
         "Elves Brenner"
       ],
       "provider_selection_slots": {},
-      "source_capture_id": "c0f45333-88e8-47e6-8768-013639958d8c",
+      "source_capture_id": "c5e2f328-b37f-4ec1-bd9d-fc4195f63b1e",
       "status": "ONE_SIDE_MATCH_PROVIDER_CARD_CONFLICT"
     }
   ],
   "system_readiness_state": "DATA_BLOCKED_REFERENCE_ONLY_NO_CANONICAL_FIGHTER_EVENT",
   "t2": {
-    "actual_utc": null,
+    "actual_utc": "2026-09-26T20:54:29.145581Z",
     "anchor": "EARLIEST_PUBLISHED_SCHEDULED_BOUT_MINUS_2_HOURS",
     "scheduled_utc": "2026-09-26T19:00:00Z",
-    "status": "T2_DUE_NO_RECEIPT",
-    "timeliness": null
+    "status": "BLOCKED_INFERENCE:RuntimeError",
+    "timeliness": "NOT_EVALUABLE"
   },
   "t3": {
     "anchor": "EARLIEST_PUBLISHED_SCHEDULED_BOUT_MINUS_3_HOURS",
-    "bout_count": null,
+    "bout_count": 12,
     "scheduled_utc": "2026-09-26T18:00:00Z",
-    "status": "SCHEDULED"
+    "status": "CANONICAL_SNAPSHOT_COMPLETE"
   }
 }

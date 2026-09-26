@@ -135,17 +135,17 @@
   "fight_count": 12,
   "forecast": {
     "code": "NO_FORECASTS_ISSUED",
-    "detail": "The scheduled T-2 time has passed, but no sealed forecast card is available. The fight schedule below is not a set of selections.",
-    "headline": "No forecasts published"
+    "detail": "The T-2 run did not produce an approved forecast card. There are no issued picks or pick rationales for this event. The fight schedule below is not a set of selections.",
+    "headline": "No forecasts issued"
   },
-  "generated_at_utc": "2026-09-26T20:30:46.451682Z",
+  "generated_at_utc": "2026-09-26T21:01:48.532135Z",
   "issuance_id": null,
   "issuance_status": null,
-  "payload_sha256": "3b19e8a87b819acb63c51a66835d88008a5fbc09d0209355db4c0204d8a45daf",
+  "payload_sha256": "6e332e3531347d3f6abd4ac99b0bc2b222f347aa164ecd0019e2eca2e8d245b7",
   "picks_published": false,
   "positions": [],
   "positions_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-  "release_state": "NO_RELEASE_SCIENTIFIC_GATE",
+  "release_state": "AUTHORIZED_RELEASE_AWAITING_EVENT_ISSUANCE",
   "schema_version": "APEX_MMA_TODAY_V1",
   "science_blocker": "FAIL_CLOSED_KEEP_NONE_EDGE_CERT_NO",
   "science_gate": {
@@ -166,16 +166,16 @@
     "release_binding": "NONE"
   },
   "t2": {
-    "actual_utc": null,
+    "actual_utc": "2026-09-26T20:54:29.145581Z",
     "anchor": "EARLIEST_PUBLISHED_SCHEDULED_BOUT_MINUS_2_HOURS",
     "scheduled_utc": "2026-09-26T19:00:00Z",
-    "status": "T2_DUE_NO_RECEIPT",
-    "timeliness": null
+    "status": "BLOCKED_INFERENCE:RuntimeError",
+    "timeliness": "NOT_EVALUABLE"
   },
   "t3": {
     "anchor": "EARLIEST_PUBLISHED_SCHEDULED_BOUT_MINUS_3_HOURS",
-    "bout_count": null,
+    "bout_count": 12,
     "scheduled_utc": "2026-09-26T18:00:00Z",
-    "status": "SCHEDULED"
+    "status": "CANONICAL_SNAPSHOT_COMPLETE"
   }
 }
