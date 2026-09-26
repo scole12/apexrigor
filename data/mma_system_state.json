@@ -189,7 +189,7 @@
   },
   "event_id": "892b84e1-55d8-56df-bbe2-6d855db59fab",
   "fight_count": 12,
-  "generated_at_utc": "2026-09-26T22:30:42.221350Z",
+  "generated_at_utc": "2026-09-26T23:00:41.491855Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "GRADED_COMMERCIAL_AND_OR_SCIENTIFIC"
@@ -536,7 +536,7 @@
       "source": "PRODUCTION_COMMERCIAL_GRADES"
     }
   ],
-  "payload_sha256": "f93e3e008666d594bdf4aced391348e6541c7bc8f96b3703ed8a1f20aa21e4ec",
+  "payload_sha256": "bb363345d967c058c45d2467bf0305aa5effa49494bbcce3034fab85e1052389",
   "picks_published": false,
   "positions": [],
   "positions_sha256": null,
@@ -1905,7 +1905,7 @@
     "production_issuance_authorized": true,
     "release_binding": "NONE"
   },
-  "semantic_state_sha256": "99503d24c58ca46c205b6055a4904afc1700242289d7a8d2f57987713efaec8c",
+  "semantic_state_sha256": "4890340fa397a38349b772648e6e7ae6d82a0cbec7b5946cec4bbd57e702ae4c",
   "source_conflicts": [
     {
       "capture_basis": "LATEST_LIVE_EVENTS_CAPTURE",
@@ -1920,11 +1920,11 @@
         "Ilimbek Akylbek"
       ],
       "provider_selection_slots": {},
-      "source_capture_id": "ffd67040-120d-4a52-b913-209e401d7836",
+      "source_capture_id": "5273eab5-e277-40c9-8454-ab775896b830",
       "status": "ONE_SIDE_MATCH_PROVIDER_CARD_CONFLICT"
     },
     {
-      "capture_basis": "LATEST_LIVE_EVENTS_CAPTURE",
+      "capture_basis": "LATEST_PROVIDER_EVENT_NOT_IN_CURRENT_LIVE_CAPTURE",
       "official_pair": [
         "Elves Brener",
         "Josiah Harrell"
@@ -1936,17 +1936,17 @@
         "Elves Brenner"
       ],
       "provider_selection_slots": {},
-      "source_capture_id": "ffd67040-120d-4a52-b913-209e401d7836",
+      "source_capture_id": "ed240c99-f2e7-4e02-a30c-dccda8032b0f",
       "status": "ONE_SIDE_MATCH_PROVIDER_CARD_CONFLICT"
     }
   ],
   "system_readiness_state": "DATA_BLOCKED_REFERENCE_ONLY_NO_CANONICAL_FIGHTER_EVENT",
   "t2": {
-    "actual_utc": "2026-09-26T22:30:21.758678Z",
+    "actual_utc": "2026-09-26T22:43:21.284860Z",
     "anchor": "EARLIEST_PUBLISHED_SCHEDULED_BOUT_MINUS_2_HOURS",
     "scheduled_utc": "2026-09-26T19:00:00Z",
-    "status": "BLOCKED_NO_ELIGIBLE_UNSTARTED_BOUT",
-    "timeliness": "FAIL"
+    "status": "BLOCKED_INFERENCE:RuntimeError",
+    "timeliness": "NOT_EVALUABLE"
   },
   "t3": {
     "anchor": "EARLIEST_PUBLISHED_SCHEDULED_BOUT_MINUS_3_HOURS",
