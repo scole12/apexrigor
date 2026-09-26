@@ -138,10 +138,10 @@
     "detail": "The T-2 run did not produce an approved forecast card. There are no issued picks or pick rationales for this event. The fight schedule below is not a set of selections.",
     "headline": "No forecasts issued"
   },
-  "generated_at_utc": "2026-09-26T21:30:42.623997Z",
+  "generated_at_utc": "2026-09-26T22:01:05.757118Z",
   "issuance_id": null,
   "issuance_status": null,
-  "payload_sha256": "efe16aa88c6b8fc1926e18171b90871452eb62801a376971f45a274ba66165c2",
+  "payload_sha256": "9579e64e675bfa0a762ec7ac52b73cd3325af18d9a5d0524ae2a5bd3bdd1b214",
   "picks_published": false,
   "positions": [],
   "positions_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
@@ -166,7 +166,7 @@
     "release_binding": "NONE"
   },
   "t2": {
-    "actual_utc": "2026-09-26T21:14:33.654954Z",
+    "actual_utc": "2026-09-26T21:59:44.965284Z",
     "anchor": "EARLIEST_PUBLISHED_SCHEDULED_BOUT_MINUS_2_HOURS",
     "scheduled_utc": "2026-09-26T19:00:00Z",
     "status": "BLOCKED_NO_ELIGIBLE_UNSTARTED_BOUT",
