@@ -29,12 +29,16 @@ def save(path, obj):
 
 def validate_book(book, receipt, slate_date):
     rows = [r for r in book['positions'] if r.get('slate_date') == slate_date]
+    eligible = [r for r in rows if r.get('result') in ('W', 'L', 'PUSH', 'VOID')]
+    excluded = [r for r in rows if r.get('result') == 'EXCLUDED_POST_KICKOFF']
     if (receipt.get('status') != 'PASS' or receipt.get('slate_date_et') != slate_date
             or book.get('latest_graded_slate') != slate_date
             or book.get('season_year') != receipt.get('season_year')
             or len(rows) == 0 or len(rows) != receipt.get('position_count')
-            or len(rows) != receipt.get('final_position_count')
-            or any(r.get('result') not in ('W', 'L', 'PUSH', 'VOID') for r in rows)
+            or len(eligible) != receipt.get('final_position_count')
+            or len(excluded) != receipt.get('excluded_post_kickoff_position_count', 0)
+            or len(eligible) + len(excluded) != len(rows)
+            or receipt.get('pending_position_count', 0) != 0
             or len({r['position_id'] for r in rows}) != len(rows)):
         raise RuntimeError('NCAA_SHARED_RECORD_GRADED_BOOK_MISMATCH')
 
@@ -89,7 +93,7 @@ def prepare(slate_date, *, state, site_data, output_root, fuse, render, implemen
         own = fused['sports']['ncaaf']
         if (int(own['wins']) != int(book['season_record']['W'])
                 or int(own['losses']) != int(book['season_record']['L'])
-                or int(own['positions_tracked']) != len(book['positions'])):
+                or int(own['positions_tracked']) != len(book['positions']) - int(book.get('excluded_post_kickoff_position_count', 0))):
             raise RuntimeError('NCAA_SHARED_RECORD_NCAA_CONTRIBUTION_MISMATCH')
         snapshot = temporary / 'APEX_TOTAL_RECORD_SOURCE.json'; save(snapshot, fused)
         image = temporary / f'APEX_TOTAL_RECORD_{slate_date.replace("-", "")}.png'

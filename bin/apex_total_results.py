@@ -110,12 +110,18 @@ def mma_segment(data_dir):
 def cumulative_segment(path):
     payload, source = _read(path)
     rows, identities = [], set()
+    excluded_post_kickoff = 0
     for item in payload["positions"]:
         identity = item.get(payload.get("deduplication_key", "position_id")) or item.get("position_id")
         if not identity or identity in identities:
             raise ValueError(f"Missing or duplicate cumulative position: {path}: {identity}")
         identities.add(identity)
+        if item.get("result") == "EXCLUDED_POST_KICKOFF":
+            excluded_post_kickoff += 1
+            continue
         rows.append({**item, "date": item.get("slate_date") or item.get("date")})
+    if excluded_post_kickoff != int(payload.get("excluded_post_kickoff_position_count", 0)):
+        raise ValueError(f"Excluded post-kickoff count mismatch: {path}")
     segment = _segment(rows)
     # A season-only aggregate must not silently stand in for a lifetime book.
     expected = payload["lifetime_record"]
@@ -123,7 +129,8 @@ def cumulative_segment(path):
         if segment[field] != _count(expected.get(result, 0)):
             raise ValueError(f"Lifetime ledger/count mismatch: {path}: {result}")
     segment.update(source_files=[{**source, "field": "positions", "aggregate_check": "lifetime_record"}],
-                   source_row_count=len(rows), source_scope=payload.get("source_scope"))
+                   source_row_count=len(rows), excluded_post_kickoff_position_count=excluded_post_kickoff,
+                   source_scope=payload.get("source_scope"))
     return segment
 
 
