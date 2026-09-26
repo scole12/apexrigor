@@ -5,7 +5,7 @@
     "detail": "The T-2 run did not produce an approved forecast card. There are no issued picks or pick rationales for this event. The fight schedule below is not a set of selections.",
     "headline": "No forecasts issued"
   },
-  "generated_at_utc": "2026-09-26T21:01:48.532135Z",
+  "generated_at_utc": "2026-09-26T21:30:42.623997Z",
   "graded_scientific_object_count": 12,
   "grader": {
     "schedule": "07:00 America/New_York",
@@ -352,7 +352,7 @@
       "source": "PRODUCTION_COMMERCIAL_GRADES"
     }
   ],
-  "payload_sha256": "580f407a46aec9d1b252b809bf14c5527d31d3e050cc6584ef1f6a5afc140bed",
+  "payload_sha256": "1c55e620fa135c2fbede7c467d94ffa436534c9ccdc3201446e21c24607cf3a6",
   "release_state": "AUTHORIZED_RELEASE_AWAITING_EVENT_ISSUANCE",
   "schema_version": "APEX_MMA_RESULTS_SUMMARY_V1",
   "status": "RESULTS_AVAILABLE"
