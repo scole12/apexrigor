@@ -5,47 +5,47 @@
     "positions": "1,986 positions",
     "slates": "111 slates",
     "active_sports": "4 active sports",
-    "updated_through": "September 24, 2026"
+    "updated_through": "September 25, 2026"
   },
   "latest": {
-    "date": "September 24, 2026",
-    "record": "12W-12L",
-    "win_rate": "50.0%",
-    "summary": "MLB 12-12",
+    "date": "September 25, 2026",
+    "record": "18W-16L",
+    "win_rate": "52.9%",
+    "summary": "MLB 18-16",
     "has_summary": true,
     "_apex_raw": {
-      "w": 12,
-      "l": 12,
+      "w": 18,
+      "l": 16,
       "push": 0,
       "void": 0,
       "pending": 0,
       "other": 0,
-      "settled_rows": 24,
-      "rows": 24,
+      "settled_rows": 34,
+      "rows": 34,
       "by_market": {
         "F5_ATS": {
-          "W": 7,
-          "L": 5,
+          "W": 10,
+          "L": 7,
           "PUSH": 0,
           "VOID": 0,
           "PENDING": 0,
           "OTHER": 0
         },
         "F5_TOT": {
-          "W": 5,
-          "L": 7,
+          "W": 8,
+          "L": 9,
           "PUSH": 0,
           "VOID": 0,
           "PENDING": 0,
           "OTHER": 0
         }
       },
-      "date_iso": "2026-09-24",
+      "date_iso": "2026-09-25",
       "source": "apex_canonical_grader_receipt_v1",
       "canonical_only": true,
-      "canonical_positions": 24,
-      "canonical_source_sha256": "b0afb5efe428d50d9d1f5853f766d351ba9b6087d70ac42862c4b078a7bd0962",
-      "canonical_receipt_sha256": "21155b3d2a3ab8ba0db5c139277a3242a5b0f4b0ee65edc9fdd8bb30a26e4aa4",
+      "canonical_positions": 34,
+      "canonical_source_sha256": "9a82d9689aaef99321c3d4e1b9d0af02466e615341dda80325c1efa90a40aca5",
+      "canonical_receipt_sha256": "857e2dac1d2097796e0325f8329c20f8b92eb3f6a97257121c1a6d749bdd4d56",
       "issuance_data_quality": {
         "status": "VALID_NO_INVALIDATION_REGISTERED",
         "data_quality_invalidated_for_scientific_forward_grade": false
@@ -54,11 +54,63 @@
         "void": 0,
         "pending": 0,
         "other": 0,
-        "issued_rows": 24
+        "issued_rows": 34
       }
     }
   },
   "archive": [
+    {
+      "date": "September 25, 2026",
+      "date_iso": "2026-09-25",
+      "record": "18W-16L",
+      "win_rate": "52.9%",
+      "summary": "MLB 18-16",
+      "has_summary": true,
+      "_apex_raw": {
+        "w": 18,
+        "l": 16,
+        "push": 0,
+        "void": 0,
+        "pending": 0,
+        "other": 0,
+        "settled_rows": 34,
+        "rows": 34,
+        "by_market": {
+          "F5_ATS": {
+            "W": 10,
+            "L": 7,
+            "PUSH": 0,
+            "VOID": 0,
+            "PENDING": 0,
+            "OTHER": 0
+          },
+          "F5_TOT": {
+            "W": 8,
+            "L": 9,
+            "PUSH": 0,
+            "VOID": 0,
+            "PENDING": 0,
+            "OTHER": 0
+          }
+        },
+        "date_iso": "2026-09-25",
+        "source": "apex_canonical_grader_receipt_v1",
+        "canonical_only": true,
+        "canonical_positions": 34,
+        "canonical_source_sha256": "9a82d9689aaef99321c3d4e1b9d0af02466e615341dda80325c1efa90a40aca5",
+        "canonical_receipt_sha256": "857e2dac1d2097796e0325f8329c20f8b92eb3f6a97257121c1a6d749bdd4d56",
+        "issuance_data_quality": {
+          "status": "VALID_NO_INVALIDATION_REGISTERED",
+          "data_quality_invalidated_for_scientific_forward_grade": false
+        },
+        "_internal": {
+          "void": 0,
+          "pending": 0,
+          "other": 0,
+          "issued_rows": 34
+        }
+      }
+    },
     {
       "date": "September 24, 2026",
       "date_iso": "2026-09-24",
@@ -5340,96 +5392,96 @@
   "_apex_public_excluded_note": "PUBLIC_EXCLUDED_DUE_TO_CANONICAL_RESULTS_RESET",
   "_canonical_grader_receipt_projection": {
     "contract_version": "apex_results_summary_from_grader_receipt_v1",
-    "generated_at_et": "2026-09-25T07:09:55.020716-04:00",
+    "generated_at_et": "2026-09-26T07:01:48.606941-04:00",
     "sports_included": [
       "mlb"
     ],
-    "latest_graded_date": "2026-09-24",
-    "latest_graded_date_display": "September 24, 2026",
-    "daily_archive_count": 127,
-    "overall_wins": 2004,
-    "overall_losses": 1858,
+    "latest_graded_date": "2026-09-25",
+    "latest_graded_date_display": "September 25, 2026",
+    "daily_archive_count": 128,
+    "overall_wins": 2022,
+    "overall_losses": 1874,
     "overall_pushes": 26,
     "overall_win_rate": 51.9,
     "overall_win_rate_display": "51.9%",
-    "positions_graded": 3909,
+    "positions_graded": 3943,
     "overall": {
-      "wins": 2004,
-      "losses": 1858,
+      "wins": 2022,
+      "losses": 1874,
       "pushes": 26,
       "voids": 15,
       "pending": 6,
       "other": 0,
       "win_rate": 51.9,
       "win_rate_display": "51.9%",
-      "positions_tracked": 3909,
-      "positions_settled": 3888,
-      "positions_graded": 3909,
-      "decided_n": 3862,
-      "settled_n": 3888,
-      "tracked_n": 3909,
-      "slates_graded": 127,
-      "f5_spread": "1004-937-4P",
-      "f5_total": "1000-921-22P",
+      "positions_tracked": 3943,
+      "positions_settled": 3922,
+      "positions_graded": 3943,
+      "decided_n": 3896,
+      "settled_n": 3922,
+      "tracked_n": 3943,
+      "slates_graded": 128,
+      "f5_spread": "1014-944-4P",
+      "f5_total": "1008-930-22P",
       "f5_spread_raw": {
-        "W": 1004,
-        "L": 937,
+        "W": 1014,
+        "L": 944,
         "PUSH": 4,
         "VOID": 8,
         "PENDING": 3
       },
       "f5_total_raw": {
-        "W": 1000,
-        "L": 921,
+        "W": 1008,
+        "L": 930,
         "PUSH": 22,
         "VOID": 7,
         "PENDING": 3
       },
-      "latest_graded_date": "2026-09-24",
-      "latest_graded_date_display": "September 24, 2026"
+      "latest_graded_date": "2026-09-25",
+      "latest_graded_date_display": "September 25, 2026"
     },
     "sports": {
       "mlb": {
-        "wins": 2004,
-        "losses": 1858,
+        "wins": 2022,
+        "losses": 1874,
         "pushes": 26,
         "voids": 15,
         "pending": 6,
         "other": 0,
         "win_rate": 51.9,
         "win_rate_display": "51.9%",
-        "positions_tracked": 3909,
-        "positions_settled": 3888,
-        "positions_graded": 3909,
-        "decided_n": 3862,
-        "settled_n": 3888,
-        "tracked_n": 3909,
-        "slates_graded": 127,
-        "f5_spread": "1004-937-4P",
-        "f5_total": "1000-921-22P",
+        "positions_tracked": 3943,
+        "positions_settled": 3922,
+        "positions_graded": 3943,
+        "decided_n": 3896,
+        "settled_n": 3922,
+        "tracked_n": 3943,
+        "slates_graded": 128,
+        "f5_spread": "1014-944-4P",
+        "f5_total": "1008-930-22P",
         "f5_spread_raw": {
-          "W": 1004,
-          "L": 937,
+          "W": 1014,
+          "L": 944,
           "PUSH": 4,
           "VOID": 8,
           "PENDING": 3
         },
         "f5_total_raw": {
-          "W": 1000,
-          "L": 921,
+          "W": 1008,
+          "L": 930,
           "PUSH": 22,
           "VOID": 7,
           "PENDING": 3
         },
-        "latest_graded_date": "2026-09-24",
-        "latest_graded_date_display": "September 24, 2026"
+        "latest_graded_date": "2026-09-25",
+        "latest_graded_date_display": "September 25, 2026"
       }
     },
-    "mlb_wins": 2004,
-    "mlb_losses": 1858,
+    "mlb_wins": 2022,
+    "mlb_losses": 1874,
     "mlb_pushes": 26,
-    "mlb_positions_graded": 3909,
+    "mlb_positions_graded": 3943,
     "note": "MLB-only receipt projection. Settled=W+L+P; tracked=settled+VOID+PENDING+OTHER. No all-sport claim.",
-    "canonical_receipt_sha256": "21155b3d2a3ab8ba0db5c139277a3242a5b0f4b0ee65edc9fdd8bb30a26e4aa4"
+    "canonical_receipt_sha256": "857e2dac1d2097796e0325f8329c20f8b92eb3f6a97257121c1a6d749bdd4d56"
   }
 }
