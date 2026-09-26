@@ -138,10 +138,10 @@
     "detail": "The scheduled T-2 time has passed, but no sealed forecast card is available. The fight schedule below is not a set of selections.",
     "headline": "No forecasts published"
   },
-  "generated_at_utc": "2026-09-26T19:02:31.952426Z",
+  "generated_at_utc": "2026-09-26T19:31:03.122397Z",
   "issuance_id": null,
   "issuance_status": null,
-  "payload_sha256": "cbaaad80a4ded870398297843f2a1755f38079e3d73c937e48dadc1e40ee32ed",
+  "payload_sha256": "9943c542f035108fbda17f980878b270e853ac22dec96ba185b89747f07f27bf",
   "picks_published": false,
   "positions": [],
   "positions_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
