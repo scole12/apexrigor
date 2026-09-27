@@ -127,13 +127,13 @@
     "events": 1049,
     "fight_statistics_source_aggregate": 0,
     "fighters": 4008,
-    "results": 3779,
-    "round_statistics_elemental": 12137,
+    "results": 3800,
+    "round_statistics_elemental": 12193,
     "round_stats": 0,
     "scorecards": 37,
     "weigh_ins": 5442
   },
-  "generated_at_utc": "2026-09-27T01:12:45.864602Z",
+  "generated_at_utc": "2026-09-27T02:14:19.372941Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "GRADED_COMMERCIAL_AND_OR_SCIENTIFIC"
@@ -497,7 +497,7 @@
     "schedule_status": "ANNOUNCED",
     "venue": "Meta Apex"
   },
-  "payload_sha256": "2e9b0d26300c6f4b2d7b17489c2535cd23c23cdffbf7d093bdae787ef632fca7",
+  "payload_sha256": "1c64e9e1365a1ea3971b71ee13af1a94cf9db7429334ab91fc857f88cd4748b1",
   "production_isolation": "PASS",
   "schema_version": "APEX_MMA_OPS_SNAPSHOT_V1",
   "science_blocker": "NONE_PRODUCTION_ISSUANCE_ELIGIBLE",
