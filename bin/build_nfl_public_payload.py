@@ -80,8 +80,12 @@ def scrub_public_rationale_paragraphs(raw):
 
 
 
+_CURRENT_RATIONALES = {}
+
 def mlb_style_public_rationale(pos: dict) -> list[str]:
     """MLB/CFB-parity detailed rationale from sealed evidence signals only."""
+    if pos.get("position_id") in _CURRENT_RATIONALES:
+        return _CURRENT_RATIONALES[pos["position_id"]]
     if pos.get("rating_policy_version") == "NFL_CONDITIONAL_WIN_BANDS_V1":
         pick=pos.get("display_selection") or pos.get("selection")
         price=pos.get("american_price")
@@ -693,6 +697,13 @@ def main(output_root: Path | None = None, *, board_only: bool = False) -> int:
     generated_at = datetime.now(UTC).isoformat().replace("+00:00", "Z")
     scientific_state, release = release_state()
     issuances, grades = sealed_history()
+    from apex_nfl.single_source_card_renderer import detailed_rationales
+    _CURRENT_RATIONALES.clear()
+    for issuance in issuances:
+        if not issuance.get("t2_receipt_path"):
+            continue
+        source = json.loads(Path(issuance["t2_receipt_path"]).read_text())
+        _CURRENT_RATIONALES.update(detailed_rationales(source))
     team_connection = ro(TEAM)
     try:
         all_team_names = {
