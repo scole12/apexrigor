@@ -10,6 +10,7 @@ import re
 import unicodedata
 
 TIERS = {'WEAK', 'MODERATE', 'STRONG', 'ELITE'}
+SPORTSBOOKS = {'DraftKings', 'FanDuel', 'BetMGM', 'Caesars', 'BetRivers', 'Fanatics', 'ESPN BET', 'Bovada'}
 SHA = re.compile(r'^[0-9a-f]{64}$')
 SEALED_RELEASE_STATE = 'SEALED_RELEASE_AVAILABLE'
 PUBLIC_MARKETS = frozenset({'WINNER', 'METHOD', 'TIME'})
@@ -106,7 +107,7 @@ def validated_positions(state):
             raise ValueError('MMA position issuance identity mismatch')
         if str(trace.get('model_sha256') or row.get('model_sha256') or '')!=model_sha:
             raise ValueError('MMA position model identity mismatch')
-        if row.get('sportsbook')!='FanDuel' or row.get('tier') not in TIERS:
+        if row.get('sportsbook') not in SPORTSBOOKS or row.get('tier') not in TIERS:
             raise ValueError('MMA position has invalid bookmaker or issued rating')
         p=row.get('probability'); price=row.get('price')
         if isinstance(p,bool) or not isinstance(p,(int,float)) or not math.isfinite(p) or not 0<=p<=1:
@@ -137,7 +138,7 @@ def forecast_status(state,positions,now=None):
             return {'code':'FORECASTS_ISSUED','headline':'Forecasts issued — late recovery',
                     'detail':f'{len(positions)} issued positions from the sealed recovery run {when}. The original T-2 deadline was missed; these are not backdated picks. Prices, probabilities, ratings and detailed rationale below match the sealed issuance. A statistically proven market edge has not been established.'}
         return {'code':'FORECASTS_ISSUED','headline':'Forecasts issued',
-                'detail':f'{len(positions)} issued positions. Picks, FanDuel prices, probabilities, ratings and rationale below are read from the same sealed T-2 issuance.'}
+                'detail':f'{len(positions)} issued positions. Picks, sportsbook prices, probabilities, ratings and rationale below are read from the same sealed T-2 issuance.'}
     t2=state.get('t2') or {}; status=str(t2.get('status') or '')
     if any(term in status for term in ['FAIL','BLOCKED','NO_RELEASE']) and 'AWAITING_TARGET' not in status:
         return {'code':'NO_FORECASTS_ISSUED','headline':'No forecasts issued',
@@ -151,4 +152,4 @@ def forecast_status(state,positions,now=None):
     except (KeyError,TypeError,ValueError):
         pass
     return {'code':'AWAITING_T2','headline':'Awaiting the T-2 forecast run',
-            'detail':'No forecasts have been issued yet. Any published card will show the selection, captured FanDuel price, APEX probability, rating and full model-supported rationale.'}
+            'detail':'No forecasts have been issued yet. Any published card will show the selection, captured sportsbook price, APEX probability, rating and full model-supported rationale.'}

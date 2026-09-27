@@ -61,7 +61,7 @@ function issuedPositions(d){
  if(d.picks_published!==true||d.release_state!=="SEALED_RELEASE_AVAILABLE"||!d.issuance_id||!["SEALED","ALREADY_ISSUED"].includes(d.issuance_status)||!d.active_model||!/^[0-9a-f]{64}$/.test(d.active_model_sha256||""))throw new Error("Unsealed issuance");
  const seen=new Set();
  for(const p of rows){
-  if(!p||!["bout_id","matchup","fighter_a","fighter_b","market","selection","rationale"].every(k=>typeof p[k]==="string"&&p[k].trim())||!pair(p)||!paragraphs(p.rationale).length||p.sportsbook!=="FanDuel"||!["WEAK","MODERATE","STRONG","ELITE"].includes(p.tier)||!Number.isFinite(p.probability)||p.probability<0||p.probability>1||!Number.isFinite(p.price)||Math.abs(p.price)<100||(p.line!=null&&!Number.isFinite(p.line)))throw new Error("Invalid issued position");
+  if(!p||!["bout_id","matchup","fighter_a","fighter_b","market","selection","rationale"].every(k=>typeof p[k]==="string"&&p[k].trim())||!pair(p)||!paragraphs(p.rationale).length||!["DraftKings","FanDuel","BetMGM","Caesars","BetRivers","Fanatics","ESPN BET","Bovada"].includes(p.sportsbook)||!["WEAK","MODERATE","STRONG","ELITE"].includes(p.tier)||!Number.isFinite(p.probability)||p.probability<0||p.probability>1||!Number.isFinite(p.price)||Math.abs(p.price)<100||(p.line!=null&&!Number.isFinite(p.line)))throw new Error("Invalid issued position");
   if(!allowedMarkets.has(p.market))throw new Error("Unsupported MMA public market");
   if((p.trace?.issuance_id||p.issuance_id)!==d.issuance_id||(p.trace?.model_sha256||p.model_sha256)!==d.active_model_sha256)throw new Error("Foreign issuance identity");
   const key=JSON.stringify([p.bout_id,p.market,p.selection,p.line??null]);
@@ -86,10 +86,10 @@ function displayRows(d,positions){
  if(rows.size!==winners.length)return new Map();
  return rows;
 }
-function moneylineHeadsUp(b){
+function moneylineHeadsUp(b,book){
  if(!b)return "";
  const moneylines=b.moneylines.map(q=>esc(q.fighter)+" "+(q.price==null?"NOT CAPTURED AT T-2":(q.price>0?"+":"")+esc(q.price))).join(" · ");
- return '<p class="meta mono">FANDUEL MONEYLINES · '+moneylines+'</p>';
+ return '<p class="meta mono">'+esc(String(book).toUpperCase())+' MONEYLINES · '+moneylines+'</p>';
 }
 function marketBreakdown(b){
  if(!b)return "";
@@ -117,8 +117,8 @@ function issuedPanel(p,display){
   +'<div class="market-panel-head"><span class="pick-headline">'+esc(headline)+'</span>'
   +'<span class="rating-label">APEX WIN PROBABILITY RATING</span>'
   +'<span class="tier-badge tier-badge--'+esc(p.tier.toLowerCase())+'">'+esc(p.tier)+'</span></div>'
-  +'<div class="meta mono">APEX WIN PROBABILITY: '+(p.probability*100).toFixed(1)+'% · Sportsbook: FanDuel · '+(p.price>0?'+':'')+esc(p.price)+'</div>'
-  +moneylineHeadsUp(display)
+  +'<div class="meta mono">APEX WIN PROBABILITY: '+(p.probability*100).toFixed(1)+'% · Sportsbook: '+esc(p.sportsbook)+' · '+(p.price>0?'+':'')+esc(p.price)+'</div>'
+  +moneylineHeadsUp(display,p.sportsbook)
   +'<div class="rationale-copy">'+(p.market==="WINNER"?'<p class="mma-winner-rationale">'+esc(winnerSentence)+'</p>':paragraphs(p.rationale).map(text=>'<p>'+esc(text)+'</p>').join(""))+'</div></section>';
 }
 fetch("/data/mma_today.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw new Error("HTTP "+r.status);return r.json()}).then(d=>{
@@ -283,7 +283,7 @@ def main():
     if payload.get('artifact_type') == 'LATE_DATA_REPORT':
         print('MMA_LATE_DATA_PATH=' + str(write('mma/index.html', late_report_page(payload))))
         return 0
-    html = head('APEX — MMA Picks', 'APEX MMA / UFC official card and sealed FanDuel picks.', '/mma')
+    html = head('APEX — MMA Picks', 'APEX MMA / UFC official card and sealed picks.', '/mma')
     html = html.replace('/assets/apex.css?v=apex-20260825-mma', '/assets/apex.css?v=apex-20260910-mma-card-parity')
     html = html.replace('</head>', '<style>.mma-market-breakdown{display:flex;flex-direction:column;align-self:stretch;min-width:0}.mma-market-slots{display:grid;grid-template-rows:repeat(4,minmax(0,1fr));flex:1;min-width:0}.mma-market-slot{display:flex;flex-direction:column;justify-content:flex-start;gap:6px;padding:10px 0;box-sizing:border-box;border-top:1px solid var(--hairline)}.mma-market-slot .market-label,.mma-market-slot .pick-headline,.mma-market-slot p{margin:0}.mma-market-slot .pick-headline{line-height:1.5;overflow-wrap:anywhere}.mma-slot-probability{font-size:14px;line-height:1.5}.mma-slot-probability strong{font-weight:700}.mma-market-slot .mma-slot-rationale{font-size:14px;line-height:1.5;font-weight:400}.mma-slot-price{display:flex;gap:16px;flex-wrap:wrap}@media(max-width:900px){.mma-market-slots{grid-template-rows:none;grid-auto-rows:auto;flex:none}.mma-market-slot{padding:22px 0}}</style>' + BEACON_BLOCK + '\n' + ANALYTICS_BLOCK + '\n</head>')
     issuance_state = 'issued' if positions else 'quiet'
@@ -299,7 +299,7 @@ def main():
   </div>
   <main class="picks-page"><div class="picks-board" id="games" aria-live="polite"></div></main>
   <div class="tag">THE MATH SPEAKS.</div>
-  <div class="foot mono">APEX MMA / UFC · SEALED FANDUEL POSITIONS</div>
+  <div class="foot mono">APEX MMA / UFC · SEALED POSITIONS</div>
 '''
     html += SCRIPT + close()
     print('MMA_PICKS_PATH=' + str(write('mma/index.html', html)))
