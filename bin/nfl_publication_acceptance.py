@@ -137,7 +137,7 @@ def scheduled_accepted_stage(path, issuance_path=None):
                 and acceptance['status'] == 'PASS' and acceptance['receipt_path'] == str(path)
                 and acceptance['receipt_sha256'] == sha(path) and acceptance['policy_sha256'] == sha(policy_path)
                 and receipt.get('status') == 'PASS' and not receipt.get('preview_only')
-                and not receipt.get('diagnostic_not_issuance') and path.name == stage+'.json'
+                and not receipt.get('diagnostic_not_issuance') and (path.name == stage+'.json' or (stage=='T2' and path.name=='T2_CORRECTED.json' and receipt.get('replaces_issuance_id')))
                 and path.parent.name == receipt['cohort_id']):
             return False
         for name, expected in acceptance['product_files'].items():

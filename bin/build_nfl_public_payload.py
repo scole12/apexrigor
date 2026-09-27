@@ -632,7 +632,8 @@ def sealed_history() -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
     issuances: list[dict[str, Any]] = []
     by_id: dict[str, tuple[Path, dict[str, Any]]] = {}
     unaccepted_ids: set[str] = set()
-    for path in sorted(ISSUANCE_ROOT.glob("*.json")) if ISSUANCE_ROOT.is_dir() else []:
+    from apex_nfl.release_identity import active_issuance_paths
+    for path in active_issuance_paths(ISSUANCE_ROOT):
         payload = json.loads(path.read_text(encoding="utf-8"))
         if (
             payload.get("schema") not in {"apex.nfl.sealed_issuance.v2", "apex.nfl.published_card_issuance.v1"}
