@@ -189,7 +189,7 @@
   },
   "event_id": "892b84e1-55d8-56df-bbe2-6d855db59fab",
   "fight_count": 12,
-  "generated_at_utc": "2026-09-27T00:55:18.587342Z",
+  "generated_at_utc": "2026-09-27T00:58:37.319395Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "GRADED_COMMERCIAL_AND_OR_SCIENTIFIC"
@@ -542,20 +542,20 @@
         "bout_id": "656b4a3b-608a-522a-82a3-3bd8040fc8f5",
         "moneylines": [
           {
-            "fanduel_status": "NOT_POSTED",
+            "fanduel_status": "POSTED",
             "fighter": "Raul Rosas Jr.",
             "participant_slot": "A",
-            "price": null,
-            "quote_sha256": null,
-            "quote_time": null
+            "price": -142,
+            "quote_sha256": "1d00a5bc0fcad6923bb62fd2e21558de9c739b5c5dd5a861f05f99e6314f9ac7",
+            "quote_time": "2026-09-26 19:36:57-04:00"
           },
           {
-            "fanduel_status": "NOT_POSTED",
+            "fanduel_status": "POSTED",
             "fighter": "Raoni Barcelos",
             "participant_slot": "B",
-            "price": null,
-            "quote_sha256": null,
-            "quote_time": null
+            "price": 120,
+            "quote_sha256": "214407cc395cdec45258cf736b1f01d9b43046fb7a52121c2796c02851156125",
+            "quote_time": "2026-09-26 19:36:57-04:00"
           }
         ],
         "prediction_sha256": "2fb592ed3bbc691566d07e97d43c73ae0907446c3df590a7fbe021449b6bd6ec",
@@ -564,7 +564,7 @@
           {
             "apex_status": "AVAILABLE",
             "commercial_eligible": false,
-            "fanduel_status": "NOT_POSTED",
+            "fanduel_status": "NOT_AVAILABLE",
             "issuance_status": "UNISSUED",
             "market_key": "WINNER_KO_TKO",
             "plus_money": null,
@@ -612,7 +612,7 @@
           {
             "apex_status": "AVAILABLE",
             "commercial_eligible": false,
-            "fanduel_status": "NOT_POSTED",
+            "fanduel_status": "NOT_AVAILABLE",
             "issuance_status": "UNISSUED",
             "market_key": "WINNER_SUBMISSION",
             "plus_money": null,
@@ -660,7 +660,7 @@
           {
             "apex_status": "AVAILABLE",
             "commercial_eligible": false,
-            "fanduel_status": "NOT_POSTED",
+            "fanduel_status": "NOT_AVAILABLE",
             "issuance_status": "UNISSUED",
             "market_key": "ANY_FINISH",
             "plus_money": null,
@@ -744,7 +744,7 @@
           {
             "apex_status": "AVAILABLE",
             "commercial_eligible": false,
-            "fanduel_status": "NOT_POSTED",
+            "fanduel_status": "NOT_AVAILABLE",
             "issuance_status": "UNISSUED",
             "market_key": "WINNER_ROUND_1",
             "plus_money": null,
@@ -856,20 +856,20 @@
         "bout_id": "8eac2959-8da0-57fa-a01a-49d87b344da7",
         "moneylines": [
           {
-            "fanduel_status": "NOT_POSTED",
+            "fanduel_status": "POSTED",
             "fighter": "Norma Dumont",
             "participant_slot": "A",
-            "price": null,
-            "quote_sha256": null,
-            "quote_time": null
+            "price": 136,
+            "quote_sha256": "db7df6759aaa5f19c5cccf23be9fb5e099af3ad635e137b20c7eec1b744bf110",
+            "quote_time": "2026-09-26 19:36:57-04:00"
           },
           {
-            "fanduel_status": "NOT_POSTED",
+            "fanduel_status": "POSTED",
             "fighter": "Ailin Perez",
             "participant_slot": "B",
-            "price": null,
-            "quote_sha256": null,
-            "quote_time": null
+            "price": -162,
+            "quote_sha256": "590629db8d633a606f6c35057b875a5371fdf8cef3754c8444f49f3aeb487266",
+            "quote_time": "2026-09-26 19:36:57-04:00"
           }
         ],
         "prediction_sha256": "61fc326fbb54f1213bb05ce8447899dbd174c2613d0ce234bc66eee905632a96",
@@ -878,7 +878,7 @@
           {
             "apex_status": "AVAILABLE",
             "commercial_eligible": false,
-            "fanduel_status": "NOT_POSTED",
+            "fanduel_status": "NOT_AVAILABLE",
             "issuance_status": "UNISSUED",
             "market_key": "WINNER_KO_TKO",
             "plus_money": null,
@@ -926,7 +926,7 @@
           {
             "apex_status": "AVAILABLE",
             "commercial_eligible": false,
-            "fanduel_status": "NOT_POSTED",
+            "fanduel_status": "NOT_AVAILABLE",
             "issuance_status": "UNISSUED",
             "market_key": "WINNER_SUBMISSION",
             "plus_money": null,
@@ -974,7 +974,7 @@
           {
             "apex_status": "AVAILABLE",
             "commercial_eligible": false,
-            "fanduel_status": "NOT_POSTED",
+            "fanduel_status": "NOT_AVAILABLE",
             "issuance_status": "UNISSUED",
             "market_key": "ANY_FINISH",
             "plus_money": null,
@@ -1058,7 +1058,7 @@
           {
             "apex_status": "AVAILABLE",
             "commercial_eligible": false,
-            "fanduel_status": "NOT_POSTED",
+            "fanduel_status": "NOT_AVAILABLE",
             "issuance_status": "UNISSUED",
             "market_key": "WINNER_ROUND_1",
             "plus_money": null,
@@ -1170,20 +1170,20 @@
         "bout_id": "5af935fe-bd02-5450-95fd-61c668ec31e6",
         "moneylines": [
           {
-            "fanduel_status": "NOT_POSTED",
+            "fanduel_status": "POSTED",
             "fighter": "Luis Hernandez",
             "participant_slot": "A",
-            "price": null,
-            "quote_sha256": null,
-            "quote_time": null
+            "price": -225,
+            "quote_sha256": "5f8a30242a02a672dabc8291bab6f299e3c6ee745ba25e2a0ba6944c0b6fef63",
+            "quote_time": "2026-09-26 19:36:57-04:00"
           },
           {
-            "fanduel_status": "NOT_POSTED",
+            "fanduel_status": "POSTED",
             "fighter": "Sedriques Dumas",
             "participant_slot": "B",
-            "price": null,
-            "quote_sha256": null,
-            "quote_time": null
+            "price": 185,
+            "quote_sha256": "a4ebf2dbef3239078f438cffddbb1de992e888830b4ca7153aa47969590b9780",
+            "quote_time": "2026-09-26 19:36:57-04:00"
           }
         ],
         "prediction_sha256": "8c13617b35c66ffda0c710f447a9ee995eea75f3497152216432eb242c9dd533",
@@ -1192,7 +1192,7 @@
           {
             "apex_status": "AVAILABLE",
             "commercial_eligible": false,
-            "fanduel_status": "NOT_POSTED",
+            "fanduel_status": "NOT_AVAILABLE",
             "issuance_status": "UNISSUED",
             "market_key": "WINNER_KO_TKO",
             "plus_money": null,
@@ -1240,7 +1240,7 @@
           {
             "apex_status": "AVAILABLE",
             "commercial_eligible": false,
-            "fanduel_status": "NOT_POSTED",
+            "fanduel_status": "NOT_AVAILABLE",
             "issuance_status": "UNISSUED",
             "market_key": "WINNER_SUBMISSION",
             "plus_money": null,
@@ -1288,7 +1288,7 @@
           {
             "apex_status": "AVAILABLE",
             "commercial_eligible": false,
-            "fanduel_status": "NOT_POSTED",
+            "fanduel_status": "NOT_AVAILABLE",
             "issuance_status": "UNISSUED",
             "market_key": "ANY_FINISH",
             "plus_money": null,
@@ -1372,7 +1372,7 @@
           {
             "apex_status": "AVAILABLE",
             "commercial_eligible": false,
-            "fanduel_status": "NOT_POSTED",
+            "fanduel_status": "NOT_AVAILABLE",
             "issuance_status": "UNISSUED",
             "market_key": "WINNER_ROUND_1",
             "plus_money": null,
@@ -1489,7 +1489,7 @@
     "source_market_snapshot_sha256": "9d29c4b8885bbdc1ff6e273f455f1448243460c1e8bb5f165116f43a3cf12415",
     "source_positions_sha256": "ca1f7c86b123a9c2c50a6c3c0d11c800c3c844a8f3d994b429569da6643a5277"
   },
-  "payload_sha256": "a20bff984e335d61634be81aba16affe47f404caf279e31be64f1055df48bab3",
+  "payload_sha256": "182236c480b830816ec489a3c5d25f00bbaad65bd2f28855639cd0cbf80e57ae",
   "picks_published": true,
   "positions": [
     {
@@ -3030,7 +3030,7 @@
     "production_issuance_authorized": true,
     "release_binding": "EXACT_AUTHORIZED_RELEASE"
   },
-  "semantic_state_sha256": "8b6dcdda280f667c75ad80ba79f66f0179085b18197e70c1c7f87741c6b15e7f",
+  "semantic_state_sha256": "3048bd5054a2ab58716511957dccebdd5521aec3d2530c8ac20561c1e4097f0a",
   "source_conflicts": [
     {
       "capture_basis": "LATEST_LIVE_EVENTS_CAPTURE",
