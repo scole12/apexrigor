@@ -98,7 +98,7 @@ def issued_panel(label: str, pos: dict) -> str:
             f"The {tier} label is the as-issued model rating.",
         ]
     if pos.get("market") == "PROPS":
-        rationale = [re.sub(r"\s*Rank \d+ among this game's eligible player props\.", "", str(text)) for text in rationale]
+        rationale = [str(text) for text in rationale if not re.search(r"expected return|units? (?:per|staked)|Rank \d+ among", str(text), re.I)]
     body = "".join(f"<p>{escape(str(p))}</p>" for p in rationale)
     return (
         f'<div class="market-panel">'
@@ -221,7 +221,7 @@ def render_board(today: dict) -> str:
         f'<div class="title" id="slate-title">TODAY&#39;S CARD</div>'
         f'<div class="meta mono" id="slate-meta">{escape(meta)}</div>'
         f"</div>"
-        '<p class="nfl-schedule-note">Ratings describe predicted win percentage. Expected return accounts for the offered odds.</p>'
+        '<p class="nfl-schedule-note">Ratings describe predicted win percentage: Weak, Moderate, Strong, Elite.</p>'
         f'<div class="picks-board" id="games" aria-live="polite">{cards}</div>'
         f'<p class="nfl-updated mono" id="nfl-refresh-status">SCHEDULE UPDATED {escape(time_et(stamp))}</p>'
         f"</section>"

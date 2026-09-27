@@ -87,9 +87,6 @@ def mlb_style_public_rationale(pos: dict) -> list[str]:
         price=pos.get("american_price")
         paragraphs=[f"{pick}: predicted win percentage {probability_text(pos)}, FanDuel odds {int(price):+d}.",
                     f"Rating: {pos['rating_tier']}. Win percentage excludes pushes."]
-        if pos.get("expected_profit_per_unit") is not None:
-            value=float(pos["expected_profit_per_unit"])
-            paragraphs.append(f"Expected return: {value:+.3f} units per 1 unit staked.")
         return paragraphs
     ev = pos.get("rationale_evidence") or {}
     feats = ev.get("model_features") or ev.get("model_features".replace("model_features","features")) or {}
