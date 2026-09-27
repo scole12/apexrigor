@@ -3,7 +3,7 @@ import math
 import re
 
 def probability_text(row):
-    if row.get("rating_policy_version") == "NFL_CONDITIONAL_WIN_BANDS_V1":
+    if row.get("rating_policy_version") in ("NFL_CONDITIONAL_WIN_BANDS_V1", "NFL_PROP_RELATIVE_QUARTILES_V1"):
         w=float(row["issued_probability"]);s=float(row.get("push_probability",0))
         p=float(row["rating_probability"])
         if not all(map(math.isfinite,(w,s,p))) or min(w,s)<0 or s>=1 or w+s>1+1e-12:
@@ -11,7 +11,7 @@ def probability_text(row):
         expected=min(1.,w/(1-s))
         if p!=expected or row.get("rating_probability_basis")!="WIN_CONDITIONAL_ON_NON_PUSH_V1":
             raise ValueError("Displayed percentage differs from saved prediction")
-        tier=("WEAK","MODERATE","STRONG","ELITE")[sum(p>=x for x in (.52,.54,.58))]
+        tier=("WEAK","MODERATE","STRONG","ELITE")[min(3,int(4*float(row["relative_rating_percentile"])))] if row.get("rating_policy_version")=="NFL_PROP_RELATIVE_QUARTILES_V1" else ("WEAK","MODERATE","STRONG","ELITE")[sum(p>=x for x in (.52,.54,.58))]
         if row.get("rating_tier",row.get("tier"))!=tier:
             raise ValueError("Displayed rating differs from saved prediction")
         return f"{math.floor(p*1000)/10:.1f}%"

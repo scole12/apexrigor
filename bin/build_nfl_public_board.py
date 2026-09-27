@@ -100,16 +100,19 @@ def issued_panel(label: str, pos: dict) -> str:
     rationale = [str(text) for text in rationale if not re.search(
         r"^Rating:|expected return|units? (?:per|staked)|Rank \d+ among", str(text).strip(), re.I)]
     body = "".join(f"<p>{escape(str(p))}</p>" for p in rationale)
+    relative = pos.get("rating_policy_version") == "NFL_PROP_RELATIVE_QUARTILES_V1"
+    rating_label = "APEX PROP CONFIDENCE" if relative else "PREDICTED WIN RATING"
+    rating_note = "Prop confidence is relative to today’s selected props, ordered by predicted winning percentage." if relative else "Ratings describe predicted win percentage."
     return (
         f'<div class="market-panel">'
         f'<div class="market-label">{escape(label)}</div>'
         f'<div class="market-panel-head">'
         f'<span class="pick-headline">{pick}</span>'
-        f'<span class="rating-label">PREDICTED WIN RATING</span>'
+        f'<span class="rating-label">{rating_label}</span>'
         f'<span class="tier-badge tier-badge--{tier.lower()}">{escape(tier)}</span>'
         f'</div>'
         f'<div class="meta mono">APEX WIN PROBABILITY: {escape(prob_s)} · Sportsbook: FanDuel</div>'
-        f'<div class="rationale-copy"><p>Ratings describe predicted win percentage.</p>{body}</div>'
+        f'<div class="rationale-copy"><p>{rating_note}</p>{body}</div>'
         f'</div>'
     )
 
@@ -221,7 +224,7 @@ def render_board(today: dict) -> str:
         f'<div class="title" id="slate-title">TODAY&#39;S CARD</div>'
         f'<div class="meta mono" id="slate-meta">{escape(meta)}</div>'
         f"</div>"
-        '<p class="nfl-schedule-note">Ratings describe predicted win percentage: Weak, Moderate, Strong, Elite.</p>'
+        '<p class="nfl-schedule-note">ATS and totals use win-percentage bands. Props use balanced relative confidence: Weak, Moderate, Strong, Elite.</p>'
         f'<div class="picks-board" id="games" aria-live="polite">{cards}</div>'
         f'<p class="nfl-updated mono" id="nfl-refresh-status">SCHEDULE UPDATED {escape(time_et(stamp))}</p>'
         f"</section>"
