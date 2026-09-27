@@ -189,7 +189,7 @@
   },
   "event_id": "892b84e1-55d8-56df-bbe2-6d855db59fab",
   "fight_count": 12,
-  "generated_at_utc": "2026-09-26T23:30:42.063839Z",
+  "generated_at_utc": "2026-09-27T00:00:49.363633Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "GRADED_COMMERCIAL_AND_OR_SCIENTIFIC"
@@ -536,7 +536,7 @@
       "source": "PRODUCTION_COMMERCIAL_GRADES"
     }
   ],
-  "payload_sha256": "c0c5e492e75fefb52cd582cdb7718609cfd0b34f38a197626b39ffffc0bf6898",
+  "payload_sha256": "635046e4358e1ea1192e7d9990de8ca30f2de93f1ef83c997dbc7b95c803e413",
   "picks_published": false,
   "positions": [],
   "positions_sha256": null,
@@ -1905,7 +1905,7 @@
     "production_issuance_authorized": true,
     "release_binding": "NONE"
   },
-  "semantic_state_sha256": "2e3cfe2448114d13e1d04f70af00fb0cdcea5415e2321584a229e136fc504ec8",
+  "semantic_state_sha256": "06b1e703c7a7e730b0b8b90bd22568a9e1c0ec3f44738c28769b1f3da09a15fd",
   "source_conflicts": [
     {
       "capture_basis": "LATEST_LIVE_EVENTS_CAPTURE",
@@ -1920,7 +1920,7 @@
         "Ilimbek Akylbek"
       ],
       "provider_selection_slots": {},
-      "source_capture_id": "52bc2488-7d0d-4cac-a197-a5c2f07cff97",
+      "source_capture_id": "54cb885a-fee1-47c8-a0d5-8012ea38fd91",
       "status": "ONE_SIDE_MATCH_PROVIDER_CARD_CONFLICT"
     },
     {
@@ -1942,7 +1942,7 @@
   ],
   "system_readiness_state": "DATA_BLOCKED_REFERENCE_ONLY_NO_CANONICAL_FIGHTER_EVENT",
   "t2": {
-    "actual_utc": "2026-09-26T23:20:31.613748Z",
+    "actual_utc": "2026-09-26T23:36:32.878362Z",
     "anchor": "EARLIEST_PUBLISHED_SCHEDULED_BOUT_MINUS_2_HOURS",
     "scheduled_utc": "2026-09-26T19:00:00Z",
     "status": "INFERENCE_COMPLETE",
