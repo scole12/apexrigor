@@ -112,7 +112,7 @@ def issued_panel(label: str, pos: dict) -> str:
         f'<span class="tier-badge tier-badge--{tier.lower()}">{escape(tier)}</span>'
         f'</div>'
         f'<div class="meta mono">APEX WIN PROBABILITY: {escape(prob_s)} · Sportsbook: FanDuel</div>'
-        f'<div class="rationale-copy"><p>{rating_note}</p>{body}</div>'
+        f'<div class="rationale-copy">{body}</div>'
         f'</div>'
     )
 
