@@ -97,8 +97,8 @@ def issued_panel(label: str, pos: dict) -> str:
             f"The issued probability for {pick} is {prob_s}{price_s}; Sportsbook: FanDuel.",
             f"The {tier} label is the as-issued model rating.",
         ]
-    if pos.get("market") == "PROPS":
-        rationale = [str(text) for text in rationale if not re.search(r"expected return|units? (?:per|staked)|Rank \d+ among", str(text), re.I)]
+    rationale = [str(text) for text in rationale if not re.search(
+        r"^Rating:|expected return|units? (?:per|staked)|Rank \d+ among", str(text).strip(), re.I)]
     body = "".join(f"<p>{escape(str(p))}</p>" for p in rationale)
     return (
         f'<div class="market-panel">'

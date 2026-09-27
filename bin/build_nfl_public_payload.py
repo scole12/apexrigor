@@ -85,8 +85,7 @@ def mlb_style_public_rationale(pos: dict) -> list[str]:
     if pos.get("rating_policy_version") == "NFL_CONDITIONAL_WIN_BANDS_V1":
         pick=pos.get("display_selection") or pos.get("selection")
         price=pos.get("american_price")
-        paragraphs=[f"{pick}: predicted win percentage {probability_text(pos)}, FanDuel odds {int(price):+d}.",
-                    f"Rating: {pos['rating_tier']}. Win percentage excludes pushes."]
+        paragraphs=[f"{pick}: predicted win percentage {probability_text(pos)}, FanDuel odds {int(price):+d}."]
         return paragraphs
     ev = pos.get("rationale_evidence") or {}
     feats = ev.get("model_features") or ev.get("model_features".replace("model_features","features")) or {}
