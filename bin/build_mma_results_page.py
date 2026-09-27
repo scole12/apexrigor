@@ -136,8 +136,9 @@ def _validate_position(
     tier = _text(row, "tier", context)
     if tier not in TIERS:
         raise ResultsContractError(f"{context} has foreign tier {tier!r}")
-    if row.get("sportsbook") != "FanDuel":
-        raise ResultsContractError(f"{context} is not an issued FanDuel position")
+    from _mma_forecast_contract import SPORTSBOOKS
+    if row.get("sportsbook") not in SPORTSBOOKS:
+        raise ResultsContractError(f"{context} is not an issued position from an authorized sportsbook")
     trace = row.get("trace")
     if not isinstance(trace, dict):
         raise ResultsContractError(f"{context} lacks an issuance trace")

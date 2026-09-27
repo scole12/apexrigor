@@ -52,7 +52,7 @@ window.ApexMmaDisplay=(()=>{
   if(d.picks_published!==true||d.release_state!=='SEALED_RELEASE_AVAILABLE'||!d.issuance_id||!['SEALED','ALREADY_ISSUED'].includes(d.issuance_status)||!d.active_model||!/^[0-9a-f]{64}$/.test(d.active_model_sha256||''))throw new Error('Issued forecast identity is incomplete');
   const seen=new Set();
   for(const p of rows){
-   if(!p||!['bout_id','matchup','market','selection','rationale'].every(k=>typeof p[k]==='string'&&p[k].trim())||!paragraphs(p.rationale).length||p.sportsbook!=='FanDuel'||!['WEAK','MODERATE','STRONG','ELITE'].includes(p.tier)||!Number.isFinite(p.probability)||p.probability<0||p.probability>1||!Number.isFinite(p.price)||Math.abs(p.price)<100||(p.line!=null&&!Number.isFinite(p.line)))throw new Error('Issued forecast fields are incomplete');
+   if(!p||!['bout_id','matchup','market','selection','rationale'].every(k=>typeof p[k]==='string'&&p[k].trim())||!paragraphs(p.rationale).length||!['DraftKings','FanDuel','BetMGM','Caesars','BetRivers','Fanatics','ESPN BET','Bovada'].includes(p.sportsbook)||!['WEAK','MODERATE','STRONG','ELITE'].includes(p.tier)||!Number.isFinite(p.probability)||p.probability<0||p.probability>1||!Number.isFinite(p.price)||Math.abs(p.price)<100||(p.line!=null&&!Number.isFinite(p.line)))throw new Error('Issued forecast fields are incomplete');
    if(!allowedMarkets.has(p.market))throw new Error('Unsupported MMA public market');
    if((p.trace?.issuance_id||p.issuance_id)!==d.issuance_id||(p.trace?.model_sha256||p.model_sha256)!==d.active_model_sha256)throw new Error('Issued forecast identity mismatch');
    const key=JSON.stringify([p.bout_id,p.market,p.selection,p.line??null]);
@@ -71,7 +71,7 @@ window.ApexMmaDisplay=(()=>{
   const issued=p.trace?.issuance_id||p.issuance_id||'';
   const rating=research?'UNRATED':p.tier;
   const boxes=box('pick','APEX Pick',esc(headline),label(p.market||'WINNER'))
-   +box('price','FanDuel Price',esc(odds(p.price)),research?'Original T-2 capture':'Price at issuance')
+   +box('price',esc(p.sportsbook)+' Price',esc(odds(p.price)),research?'Original T-2 capture':'Price at issuance')
    +box('probability','APEX Probability',(p.probability*100).toFixed(1)+'%',research?'Research estimate':'Model estimate')
    +box('rating','APEX Rating',research?'<span style="font-size:16px">UNRATED</span>':`<span class="tier-badge tier-badge--${esc(String(rating).toLowerCase())}">${esc(rating)}</span>`,research?'Unvalidated research':'Probability tier, not betting value');
   const rationale=`<div class="mma-rationale rationale-copy" aria-label="${research?'Research pick rationale':'Pick rationale'}">${paragraphs(p.rationale).map(x=>'<p>'+esc(x)+'</p>').join('')}</div>`;
