@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
 <title>APEX — MMA Picks</title>
-<meta name="description" content="APEX MMA / UFC official card and sealed FanDuel picks.">
+<meta name="description" content="APEX MMA / UFC official card and sealed picks.">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=apex-20260825-mma">
 <link rel="icon" type="image/x-icon" href="/favicon.ico?v=apex-20260825-mma" sizes="32x32">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=apex-20260825-mma">
@@ -15,7 +15,7 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="APEX">
 <meta property="og:title" content="APEX — MMA Picks">
-<meta property="og:description" content="APEX MMA / UFC official card and sealed FanDuel picks.">
+<meta property="og:description" content="APEX MMA / UFC official card and sealed picks.">
 <meta property="og:url" content="https://apexrigor.com/mma">
 <meta property="og:image" content="https://apexrigor.com/og-image.png?v=apex-20260825-mma">
 <link rel="stylesheet" href="/assets/apex.css?v=apex-20260910-mma-card-parity">
@@ -23,7 +23,7 @@
 <!-- Vercel Web Analytics --><script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script><script defer src="/_vercel/insights/script.js"></script><!-- End Vercel Web Analytics -->
 </head>
 <body>
-<div class="shell" data-picks-state="quiet" data-public-issuance="false" data-sport="MMA" data-event-id="892b84e1-55d8-56df-bbe2-6d855db59fab" data-issuance-id="">
+<div class="shell" data-picks-state="issued" data-public-issuance="true" data-sport="MMA" data-event-id="892b84e1-55d8-56df-bbe2-6d855db59fab" data-issuance-id="4b640b98-0630-4b2b-99e2-ce38be95bbf7">
   <div class="hero">
     <div class="hero-mark"><svg viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg"><polygon points="22,6 38,36 6,36"/></svg></div>
     <div class="hero-wordmark">APEX</div>
@@ -50,7 +50,7 @@
   </div>
   <main class="picks-page"><div class="picks-board" id="games" aria-live="polite"></div></main>
   <div class="tag">THE MATH SPEAKS.</div>
-  <div class="foot mono">APEX MMA / UFC · SEALED FANDUEL POSITIONS</div>
+  <div class="foot mono">APEX MMA / UFC · SEALED POSITIONS</div>
 
 <script>
 const esc=v=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));
@@ -86,7 +86,7 @@ function issuedPositions(d){
  if(d.picks_published!==true||d.release_state!=="SEALED_RELEASE_AVAILABLE"||!d.issuance_id||!["SEALED","ALREADY_ISSUED"].includes(d.issuance_status)||!d.active_model||!/^[0-9a-f]{64}$/.test(d.active_model_sha256||""))throw new Error("Unsealed issuance");
  const seen=new Set();
  for(const p of rows){
-  if(!p||!["bout_id","matchup","fighter_a","fighter_b","market","selection","rationale"].every(k=>typeof p[k]==="string"&&p[k].trim())||!pair(p)||!paragraphs(p.rationale).length||p.sportsbook!=="FanDuel"||!["WEAK","MODERATE","STRONG","ELITE"].includes(p.tier)||!Number.isFinite(p.probability)||p.probability<0||p.probability>1||!Number.isFinite(p.price)||Math.abs(p.price)<100||(p.line!=null&&!Number.isFinite(p.line)))throw new Error("Invalid issued position");
+  if(!p||!["bout_id","matchup","fighter_a","fighter_b","market","selection","rationale"].every(k=>typeof p[k]==="string"&&p[k].trim())||!pair(p)||!paragraphs(p.rationale).length||!["DraftKings","FanDuel","BetMGM","Caesars","BetRivers","Fanatics","ESPN BET","Bovada"].includes(p.sportsbook)||!["WEAK","MODERATE","STRONG","ELITE"].includes(p.tier)||!Number.isFinite(p.probability)||p.probability<0||p.probability>1||!Number.isFinite(p.price)||Math.abs(p.price)<100||(p.line!=null&&!Number.isFinite(p.line)))throw new Error("Invalid issued position");
   if(!allowedMarkets.has(p.market))throw new Error("Unsupported MMA public market");
   if((p.trace?.issuance_id||p.issuance_id)!==d.issuance_id||(p.trace?.model_sha256||p.model_sha256)!==d.active_model_sha256)throw new Error("Foreign issuance identity");
   const key=JSON.stringify([p.bout_id,p.market,p.selection,p.line??null]);
@@ -111,10 +111,10 @@ function displayRows(d,positions){
  if(rows.size!==winners.length)return new Map();
  return rows;
 }
-function moneylineHeadsUp(b){
+function moneylineHeadsUp(b,book){
  if(!b)return "";
  const moneylines=b.moneylines.map(q=>esc(q.fighter)+" "+(q.price==null?"NOT CAPTURED AT T-2":(q.price>0?"+":"")+esc(q.price))).join(" · ");
- return '<p class="meta mono">FANDUEL MONEYLINES · '+moneylines+'</p>';
+ return '<p class="meta mono">'+esc(String(book).toUpperCase())+' MONEYLINES · '+moneylines+'</p>';
 }
 function marketBreakdown(b){
  if(!b)return "";
@@ -142,8 +142,8 @@ function issuedPanel(p,display){
   +'<div class="market-panel-head"><span class="pick-headline">'+esc(headline)+'</span>'
   +'<span class="rating-label">APEX WIN PROBABILITY RATING</span>'
   +'<span class="tier-badge tier-badge--'+esc(p.tier.toLowerCase())+'">'+esc(p.tier)+'</span></div>'
-  +'<div class="meta mono">APEX WIN PROBABILITY: '+(p.probability*100).toFixed(1)+'% · Sportsbook: FanDuel · '+(p.price>0?'+':'')+esc(p.price)+'</div>'
-  +moneylineHeadsUp(display)
+  +'<div class="meta mono">APEX WIN PROBABILITY: '+(p.probability*100).toFixed(1)+'% · Sportsbook: '+esc(p.sportsbook)+' · '+(p.price>0?'+':'')+esc(p.price)+'</div>'
+  +moneylineHeadsUp(display,p.sportsbook)
   +'<div class="rationale-copy">'+(p.market==="WINNER"?'<p class="mma-winner-rationale">'+esc(winnerSentence)+'</p>':paragraphs(p.rationale).map(text=>'<p>'+esc(text)+'</p>').join(""))+'</div></section>';
 }
 fetch("/data/mma_today.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw new Error("HTTP "+r.status);return r.json()}).then(d=>{

@@ -1,17 +1,17 @@
 {
   "commercial_settlement_count": 26,
   "current_event_forecast": {
-    "code": "NO_FORECASTS_ISSUED",
-    "detail": "The scheduled T-2 time has passed, but no sealed forecast card is available. The fight schedule below is not a set of selections.",
-    "headline": "No forecasts published"
+    "code": "FORECASTS_ISSUED",
+    "detail": "3 issued positions from the sealed recovery run at 8:29 PM EDT. The original T-2 deadline was missed; these are not backdated picks. Prices, probabilities, ratings and detailed rationale below match the sealed issuance. A statistically proven market edge has not been established.",
+    "headline": "Forecasts issued \u2014 late recovery"
   },
-  "generated_at_utc": "2026-09-27T00:00:49.363633Z",
+  "generated_at_utc": "2026-09-27T00:55:18.587342Z",
   "graded_scientific_object_count": 12,
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "GRADED_COMMERCIAL_AND_OR_SCIENTIFIC"
   },
-  "issued_event_count": 2,
+  "issued_event_count": 3,
   "latest_event_results": [
     {
       "bout_id": "0dcad387-5358-5ce3-8601-b935fc75e95a",
@@ -352,8 +352,8 @@
       "source": "PRODUCTION_COMMERCIAL_GRADES"
     }
   ],
-  "payload_sha256": "108bf97dfdf72f0da67ec5266f3a51f0f1417a7205fd1fd604f3006006aa41a2",
-  "release_state": "AUTHORIZED_RELEASE_AWAITING_EVENT_ISSUANCE",
+  "payload_sha256": "2e18317b7b3c1d07ea8978c03d2a77d18f7df94c6019fd330dd4037713de5df0",
+  "release_state": "SEALED_RELEASE_AVAILABLE",
   "schema_version": "APEX_MMA_RESULTS_SUMMARY_V1",
   "status": "RESULTS_AVAILABLE"
 }

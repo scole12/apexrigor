@@ -1342,10 +1342,111 @@
         }
       ],
       "schema_version": "APEX_MMA_TODAY_V1"
+    },
+    {
+      "active_model": "WINNER_RESIDUAL_BEST_AVAILABLE_V1",
+      "active_model_sha256": "c4405db96c390a3934649b9deb77c36ad510093defc2a9bcb1e01115757e2922",
+      "event": {
+        "city": "Las Vegas",
+        "country": "United States",
+        "display_name": "UFC Fight Night \u2014 Rosas Jr. vs Barcelos",
+        "event_date": "2026-09-26",
+        "main_card_start_et": "2026-09-26T20:00:00-04:00",
+        "main_card_start_utc": "2026-09-27T00:00:00Z",
+        "name": "UFC Fight Night: Rosas Jr. vs Barcelos",
+        "prelims_start_et": "2026-09-26T17:00:00-04:00",
+        "prelims_start_utc": "2026-09-26T21:00:00Z",
+        "promotion": "UFC",
+        "region": "Nevada",
+        "schedule_status": "ANNOUNCED",
+        "venue": "Meta Apex"
+      },
+      "event_date": "2026-09-26",
+      "event_name": "UFC Fight Night \u2014 Rosas Jr. vs Barcelos",
+      "issuance_id": "4b640b98-0630-4b2b-99e2-ce38be95bbf7",
+      "issuance_status": "SEALED",
+      "latest_results": [],
+      "official_issuance": true,
+      "picks_published": true,
+      "positions": [
+        {
+          "bout_id": "656b4a3b-608a-522a-82a3-3bd8040fc8f5",
+          "fighter_a": "Raul Rosas Jr.",
+          "fighter_b": "Raoni Barcelos",
+          "line": null,
+          "market": "WINNER",
+          "matchup": "Raul Rosas Jr. vs Raoni Barcelos",
+          "price": -142,
+          "probability": 0.607016839320171,
+          "quote_time": "2026-09-26 19:36:57-04:00",
+          "rationale": "APEX selects Raul Rosas Jr. over Raoni Barcelos. The released Winner model assigns 60.7% to Raul Rosas Jr. versus a 56.3% two-way DraftKings baseline; the captured price is -142. The model-minus-market probability difference is +4.4 percentage points.\n\nStructural form: the selected-side opponent-adjusted Elo differential is -31.2, opponent-quality differential is -48.3, and recent-three win-rate differential is +0.000. Those quantities are measured from pre-fight history only.\n\nStyle and process: selected-side significant-strike differential is -0.32 per minute, takedown-rate differential is +3.59 per 15 minutes, control differential is +5.41 per 15 minutes, and pace-decay differential is -4.50.\n\nUncertainty: Raul Rosas Jr. carries 8 prior UFC fights in the feature history with data-support score 1.00; Raoni Barcelos carries 15 with support 1.00. The selected-side layoff differential is +0.27. Sparse history or an adverse market move should therefore reduce confidence in the numeric point estimate.\n\nConclusion: this is a MODERATE APEX Winner forecast from the sealed best-available market-anchored model. It is a forecast, not a claim that APEX has statistically proven a betting edge over DraftKings; the historical superiority interval still overlaps zero.",
+          "selection": "Raul Rosas Jr.",
+          "sportsbook": "DraftKings",
+          "tier": "MODERATE",
+          "trace": {
+            "feature_snapshot_sha256": "bc181ceb378aa03d3873306c0562045d18fe80641bc620d16e49e7fc46a15f67",
+            "issuance_id": "4b640b98-0630-4b2b-99e2-ce38be95bbf7",
+            "market_snapshot_sha256": "1d00a5bc0fcad6923bb62fd2e21558de9c739b5c5dd5a861f05f99e6314f9ac7",
+            "model_sha256": "c4405db96c390a3934649b9deb77c36ad510093defc2a9bcb1e01115757e2922",
+            "prediction_sha256": "2fb592ed3bbc691566d07e97d43c73ae0907446c3df590a7fbe021449b6bd6ec",
+            "release_id": "ca49ab7a-16c8-44e5-8413-b619a52d8ae0"
+          }
+        },
+        {
+          "bout_id": "8eac2959-8da0-57fa-a01a-49d87b344da7",
+          "fighter_a": "Norma Dumont",
+          "fighter_b": "Ailin Perez",
+          "line": null,
+          "market": "WINNER",
+          "matchup": "Ailin Perez vs Norma Dumont",
+          "price": -162,
+          "probability": 0.5460242581433046,
+          "quote_time": "2026-09-26 19:36:57-04:00",
+          "rationale": "APEX selects Ailin Perez over Norma Dumont. The released Winner model assigns 54.6% to Ailin Perez versus a 59.3% two-way DraftKings baseline; the captured price is -162. The model-minus-market probability difference is -4.7 percentage points.\n\nStructural form: the selected-side opponent-adjusted Elo differential is -24.7, opponent-quality differential is -41.8, and recent-three win-rate differential is +0.333. Those quantities are measured from pre-fight history only.\n\nStyle and process: selected-side significant-strike differential is -0.21 per minute, takedown-rate differential is +3.47 per 15 minutes, control differential is +3.09 per 15 minutes, and pace-decay differential is -0.20.\n\nUncertainty: Ailin Perez carries 7 prior UFC fights in the feature history with data-support score 0.88; Norma Dumont carries 12 with support 1.00. The selected-side layoff differential is +0.31. Sparse history or an adverse market move should therefore reduce confidence in the numeric point estimate.\n\nConclusion: this is a WEAK APEX Winner forecast from the sealed best-available market-anchored model. It is a forecast, not a claim that APEX has statistically proven a betting edge over DraftKings; the historical superiority interval still overlaps zero.",
+          "selection": "Ailin Perez",
+          "sportsbook": "DraftKings",
+          "tier": "WEAK",
+          "trace": {
+            "feature_snapshot_sha256": "bc181ceb378aa03d3873306c0562045d18fe80641bc620d16e49e7fc46a15f67",
+            "issuance_id": "4b640b98-0630-4b2b-99e2-ce38be95bbf7",
+            "market_snapshot_sha256": "590629db8d633a606f6c35057b875a5371fdf8cef3754c8444f49f3aeb487266",
+            "model_sha256": "c4405db96c390a3934649b9deb77c36ad510093defc2a9bcb1e01115757e2922",
+            "prediction_sha256": "61fc326fbb54f1213bb05ce8447899dbd174c2613d0ce234bc66eee905632a96",
+            "release_id": "ca49ab7a-16c8-44e5-8413-b619a52d8ae0"
+          }
+        },
+        {
+          "bout_id": "5af935fe-bd02-5450-95fd-61c668ec31e6",
+          "fighter_a": "Luis Hernandez",
+          "fighter_b": "Sedriques Dumas",
+          "line": null,
+          "market": "WINNER",
+          "matchup": "Luis Hernandez vs Sedriques Dumas",
+          "price": -225,
+          "probability": 0.7541149549036429,
+          "quote_time": "2026-09-26 19:36:57-04:00",
+          "rationale": "APEX selects Luis Hernandez over Sedriques Dumas. The released Winner model assigns 75.4% to Luis Hernandez versus a 66.4% two-way DraftKings baseline; the captured price is -225. The model-minus-market probability difference is +9.0 percentage points.\n\nStructural form: the selected-side opponent-adjusted Elo differential is +65.0, opponent-quality differential is +14.8, and recent-three win-rate differential is +1.000. Those quantities are measured from pre-fight history only.\n\nStyle and process: selected-side significant-strike differential is +5.57 per minute, takedown-rate differential is +1.22 per 15 minutes, control differential is -1.05 per 15 minutes, and pace-decay differential is -9.61.\n\nUncertainty: Luis Hernandez carries 1 prior UFC fights in the feature history with data-support score 0.12; Sedriques Dumas carries 9 with support 1.00. The selected-side layoff differential is -2.57. Sparse history or an adverse market move should therefore reduce confidence in the numeric point estimate.\n\nConclusion: this is a STRONG APEX Winner forecast from the sealed best-available market-anchored model. It is a forecast, not a claim that APEX has statistically proven a betting edge over DraftKings; the historical superiority interval still overlaps zero.",
+          "selection": "Luis Hernandez",
+          "sportsbook": "DraftKings",
+          "tier": "STRONG",
+          "trace": {
+            "feature_snapshot_sha256": "bc181ceb378aa03d3873306c0562045d18fe80641bc620d16e49e7fc46a15f67",
+            "issuance_id": "4b640b98-0630-4b2b-99e2-ce38be95bbf7",
+            "market_snapshot_sha256": "5f8a30242a02a672dabc8291bab6f299e3c6ee745ba25e2a0ba6944c0b6fef63",
+            "model_sha256": "c4405db96c390a3934649b9deb77c36ad510093defc2a9bcb1e01115757e2922",
+            "prediction_sha256": "8c13617b35c66ffda0c710f447a9ee995eea75f3497152216432eb242c9dd533",
+            "release_id": "ca49ab7a-16c8-44e5-8413-b619a52d8ae0"
+          }
+        }
+      ],
+      "positions_sha256": "ca1f7c86b123a9c2c50a6c3c0d11c800c3c844a8f3d994b429569da6643a5277",
+      "release_state": "SEALED_RELEASE_AVAILABLE",
+      "results": [],
+      "schema_version": "APEX_MMA_TODAY_V1"
     }
   ],
-  "generated_at_utc": "2026-09-27T00:00:49.363633Z",
-  "payload_sha256": "df17d902eb4357cf3936de9d07ede473d342052edd24040ccd1ad7c3eb126a0e",
+  "generated_at_utc": "2026-09-27T00:55:18.587342Z",
+  "payload_sha256": "9c42e9f245f042724e168e4e0e83232f488eb2b5d4bede4b4ebb3bb068091450",
   "revision_policy": "APPEND_ONLY_RESULT_AND_GRADE_REVISIONS",
   "schema_version": "APEX_MMA_RESULTS_ARCHIVE_V1"
 }

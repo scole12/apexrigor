@@ -76,7 +76,7 @@
   </div>
  <main class="about-page"><div class="about-container">
  <header class="about-section about-intro"><h1 class="about-section-title">UFC / MMA Forecasts</h1><p class="about-lede" id="current-card">Reading the current published card.</p><p class="about-copy"><a href="/mma">View all picks and rationale →</a></p></header>
- <section class="about-section about-module"><h2 class="about-section-title">How an issued selection appears</h2><p class="about-copy">An issued market panel names the selection, its captured FanDuel American odds, the estimated probability and the probability rating saved at issuance. The full as-issued rationale appears in the same fight panel.</p></section>
+ <section class="about-section about-module"><h2 class="about-section-title">How an issued selection appears</h2><p class="about-copy">An issued market panel names the selection, its captured sportsbook American odds, the estimated probability and the probability rating saved at issuance. The full as-issued rationale appears in the same fight panel.</p></section>
  <section class="about-section about-module"><h2 class="about-section-title">Current market coverage</h2><p class="about-copy" id="coverage">Reading issued markets.</p></section>
  <section class="about-section about-module"><h2 class="about-section-title">Science gate</h2><p class="about-copy mono" id="science-state">Reading the sealed science-gate state.</p><p class="about-copy">MMA production is fail-closed. A joint P(WINNER, METHOD, TIME) release can publish only after it beats matched-time FanDuel on the required proper scores, its event-level confidence interval is fully below zero, and the exact release is authorized for production. Otherwise the card remains status-only.</p></section>
  <section class="about-section about-module"><h2 class="about-section-title">Probability is not betting value</h2><p class="about-copy">Weak, Moderate, Strong and Elite are probability tiers saved only for an issued position; they are not certifications of profitability. A high win probability does not establish value at a particular price. Captured prices are historical observations, not live offers.</p></section>
@@ -107,7 +107,7 @@ window.ApexMmaDisplay=(()=>{
   if(d.picks_published!==true||d.release_state!=='SEALED_RELEASE_AVAILABLE'||!d.issuance_id||!['SEALED','ALREADY_ISSUED'].includes(d.issuance_status)||!d.active_model||!/^[0-9a-f]{64}$/.test(d.active_model_sha256||''))throw new Error('Issued forecast identity is incomplete');
   const seen=new Set();
   for(const p of rows){
-   if(!p||!['bout_id','matchup','market','selection','rationale'].every(k=>typeof p[k]==='string'&&p[k].trim())||!paragraphs(p.rationale).length||p.sportsbook!=='FanDuel'||!['WEAK','MODERATE','STRONG','ELITE'].includes(p.tier)||!Number.isFinite(p.probability)||p.probability<0||p.probability>1||!Number.isFinite(p.price)||Math.abs(p.price)<100||(p.line!=null&&!Number.isFinite(p.line)))throw new Error('Issued forecast fields are incomplete');
+   if(!p||!['bout_id','matchup','market','selection','rationale'].every(k=>typeof p[k]==='string'&&p[k].trim())||!paragraphs(p.rationale).length||!['DraftKings','FanDuel','BetMGM','Caesars','BetRivers','Fanatics','ESPN BET','Bovada'].includes(p.sportsbook)||!['WEAK','MODERATE','STRONG','ELITE'].includes(p.tier)||!Number.isFinite(p.probability)||p.probability<0||p.probability>1||!Number.isFinite(p.price)||Math.abs(p.price)<100||(p.line!=null&&!Number.isFinite(p.line)))throw new Error('Issued forecast fields are incomplete');
    if(!allowedMarkets.has(p.market))throw new Error('Unsupported MMA public market');
    if((p.trace?.issuance_id||p.issuance_id)!==d.issuance_id||(p.trace?.model_sha256||p.model_sha256)!==d.active_model_sha256)throw new Error('Issued forecast identity mismatch');
    const key=JSON.stringify([p.bout_id,p.market,p.selection,p.line??null]);
@@ -126,7 +126,7 @@ window.ApexMmaDisplay=(()=>{
   const issued=p.trace?.issuance_id||p.issuance_id||'';
   const rating=research?'UNRATED':p.tier;
   const boxes=box('pick','APEX Pick',esc(headline),label(p.market||'WINNER'))
-   +box('price','FanDuel Price',esc(odds(p.price)),research?'Original T-2 capture':'Price at issuance')
+   +box('price',esc(p.sportsbook)+' Price',esc(odds(p.price)),research?'Original T-2 capture':'Price at issuance')
    +box('probability','APEX Probability',(p.probability*100).toFixed(1)+'%',research?'Research estimate':'Model estimate')
    +box('rating','APEX Rating',research?'<span style="font-size:16px">UNRATED</span>':`<span class="tier-badge tier-badge--${esc(String(rating).toLowerCase())}">${esc(rating)}</span>`,research?'Unvalidated research':'Probability tier, not betting value');
   const rationale=`<div class="mma-rationale rationale-copy" aria-label="${research?'Research pick rationale':'Pick rationale'}">${paragraphs(p.rationale).map(x=>'<p>'+esc(x)+'</p>').join('')}</div>`;
