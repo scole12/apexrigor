@@ -5,7 +5,7 @@
     "detail": "3 issued positions from the sealed recovery run at 8:29 PM EDT. The original T-2 deadline was missed; these are not backdated picks. Prices, probabilities, ratings and detailed rationale below match the sealed issuance. A statistically proven market edge has not been established.",
     "headline": "Forecasts issued \u2014 late recovery"
   },
-  "generated_at_utc": "2026-09-27T03:01:35.805493Z",
+  "generated_at_utc": "2026-09-27T03:31:36.632646Z",
   "graded_scientific_object_count": 12,
   "grader": {
     "schedule": "07:00 America/New_York",
@@ -352,7 +352,7 @@
       "source": "PRODUCTION_COMMERCIAL_GRADES"
     }
   ],
-  "payload_sha256": "0dd32ed3f18d94d0c19a472d61df79102b5046a88bfe78dbc2c3db05a746ece3",
+  "payload_sha256": "4e183e632d01e1a4ce3aa5f585746347e491d5d9d5812b66ccd5160af9e80652",
   "release_state": "SEALED_RELEASE_AVAILABLE",
   "schema_version": "APEX_MMA_RESULTS_SUMMARY_V1",
   "status": "RESULTS_AVAILABLE"
