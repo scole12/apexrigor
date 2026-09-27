@@ -8,6 +8,7 @@ import json
 from pathlib import Path
 import re
 from zoneinfo import ZoneInfo
+from nfl_display import probability_text, plain_language
 
 ROOT = Path(__file__).resolve().parents[1]
 NY = ZoneInfo("America/New_York")
@@ -48,7 +49,7 @@ def scrub_public_rationale_paragraphs(raw):
             continue
         if not s.endswith((".", "!", "?")):
             s += "."
-        out.append(s)
+        out.append(plain_language(s))
     return out
 
 
@@ -75,13 +76,7 @@ def issued_panel(label: str, pos: dict) -> str:
     tier = str(pos.get("rating_tier") or pos.get("tier") or "MODERATE").upper()
     if tier not in {"WEAK", "MODERATE", "STRONG", "ELITE"}:
         tier = "MODERATE"
-    prob = pos.get("win_probability") or pos.get("apex_win_probability") or pos.get("issued_probability")
-    if isinstance(prob, float) and prob <= 1:
-        prob_s = f"{prob * 100:.1f}%"
-    elif prob is not None:
-        prob_s = str(prob)
-    else:
-        prob_s = "—"
+    prob_s = probability_text(pos)
     price = pos.get("american_price")
     price_s = ""
     if price is not None:
@@ -102,11 +97,11 @@ def issued_panel(label: str, pos: dict) -> str:
         f'<div class="market-label">{escape(label)}</div>'
         f'<div class="market-panel-head">'
         f'<span class="pick-headline">{pick}</span>'
-        f'<span class="rating-label">APEX AS-ISSUED MODEL RATING</span>'
+        f'<span class="rating-label">PREDICTED WIN RATING</span>'
         f'<span class="tier-badge tier-badge--{tier.lower()}">{escape(tier)}</span>'
         f'</div>'
         f'<div class="meta mono">APEX WIN PROBABILITY: {escape(prob_s)} · Sportsbook: FanDuel</div>'
-        f'<div class="rationale-copy"><p>Ratings and probabilities are model estimates, not validated confidence levels or demonstrated advantage over FanDuel.</p>{body}</div>'
+        f'<div class="rationale-copy"><p>Ratings describe predicted win percentage.</p>{body}</div>'
         f'</div>'
     )
 
@@ -216,7 +211,7 @@ def render_board(today: dict) -> str:
         f'<div class="title" id="slate-title">TODAY&#39;S CARD</div>'
         f'<div class="meta mono" id="slate-meta">{escape(meta)}</div>'
         f"</div>"
-        '<p class="nfl-schedule-note">Inherited V2 serving is active. Ratings and probabilities, when issued, are model estimates, not validated confidence or demonstrated FanDuel advantage.</p>'
+        '<p class="nfl-schedule-note">Ratings describe predicted win percentage. Expected return accounts for the offered odds.</p>'
         f'<div class="picks-board" id="games" aria-live="polite">{cards}</div>'
         f'<p class="nfl-updated mono" id="nfl-refresh-status">SCHEDULE UPDATED {escape(time_et(stamp))}</p>'
         f"</section>"

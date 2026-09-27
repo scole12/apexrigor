@@ -22,6 +22,7 @@ from apex_nfl.living_seasons import roster_season
 from apex_nfl.point_in_time_capture import PARSER_VERSION
 from typing import Any
 from zoneinfo import ZoneInfo
+from nfl_display import probability_text, plain_language
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -74,13 +75,22 @@ def scrub_public_rationale_paragraphs(raw):
             continue
         if not s.endswith((".", "!", "?")):
             s += "."
-        out.append(s)
+        out.append(plain_language(s))
     return out
 
 
 
 def mlb_style_public_rationale(pos: dict) -> list[str]:
     """MLB/CFB-parity detailed rationale from sealed evidence signals only."""
+    if pos.get("rating_policy_version") == "NFL_CONDITIONAL_WIN_BANDS_V1":
+        pick=pos.get("display_selection") or pos.get("selection")
+        price=pos.get("american_price")
+        paragraphs=[f"{pick}: predicted win percentage {probability_text(pos)}, FanDuel odds {int(price):+d}.",
+                    f"Rating: {pos['rating_tier']}. Win percentage excludes pushes."]
+        if pos.get("expected_profit_per_unit") is not None:
+            value=float(pos["expected_profit_per_unit"])
+            paragraphs.append(f"Expected return: {value:+.3f} units per 1 unit staked. Rank {pos['selection_rank']} among this game's eligible player props.")
+        return paragraphs
     ev = pos.get("rationale_evidence") or {}
     feats = ev.get("model_features") or ev.get("model_features".replace("model_features","features")) or {}
     if not isinstance(feats, dict):
@@ -96,16 +106,7 @@ def mlb_style_public_rationale(pos: dict) -> list[str]:
     # sealed used WEAK/MODERATE/STRONG — keep
     if tier not in {"WEAK", "MODERATE", "STRONG", "ELITE"}:
         tier = "MODERATE"
-    prob = pos.get("win_probability")
-    if prob is None:
-        prob = pos.get("issued_probability")
-    try:
-        prob_f = float(prob)
-        if prob_f <= 1:
-            prob_f *= 100.0
-        prob_s = f"{prob_f:.1f}%"
-    except Exception:
-        prob_s = "—"
+    prob_s = probability_text(pos)
     price = pos.get("american_price")
     try:
         price_s = f"{int(price):+d}" if price is not None else "n/a"
@@ -126,9 +127,8 @@ def mlb_style_public_rationale(pos: dict) -> list[str]:
 
     paras: list[str] = []
     paras.append(
-        f"The issued probability for {pick} is {prob_s} at the captured {book} price of {price_s}; "
-        f"this is a {book}-identity probability, not a proprietary APEX edge. "
-        f"The {tier} label is a calibrated-probability bucket only."
+        f"The predicted win percentage for {pick} is {prob_s}, with {book} odds of {price_s}. "
+        f"The rating is {tier}, based on that prediction."
     )
 
     if "ATS" in engine and "TOTAL" not in engine and "PROP" not in engine:
@@ -299,7 +299,7 @@ def mlb_style_public_rationale(pos: dict) -> list[str]:
         )
 
     # final scrub — never emit banned diagnostics
-    return scrub_public_rationale_paragraphs(paras)
+    return [plain_language(p) for p in scrub_public_rationale_paragraphs(paras)]
 
 
 def _scrub_public_position_diagnostics(pos: dict) -> None:

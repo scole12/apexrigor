@@ -10,6 +10,7 @@ import json
 from pathlib import Path
 import re
 from zoneinfo import ZoneInfo
+from nfl_display import probability_text, plain_language
 
 
 def record(rows):
@@ -48,12 +49,12 @@ def build(root: Path):
     body += '<div class="section-head"><div class="title">NFL RESULTS</div><div class="meta mono">2026 SEASON · AS ISSUED</div></div>'
     body += '<div class="nfl-results-metrics">' + ''.join(f'<div><span>{label}</span><strong class="mono">{value}</strong></div>' for label, value in [('Record', record(rows)), ('Win Rate', win_rate), ('Graded Picks', str(len(rows)))]) + '</div>'
     body += f'<p class="nfl-results-note">{issued} issued · {len(rows)} graded · {issued-len(rows)} pending/not final. Results use the selections, FanDuel prices and APEX probabilities published before kickoff.</p>'
-    body += '<section class="nfl-results-section"><div class="section-head"><div class="title">PERFORMANCE BY AS-ISSUED MODEL RATING</div></div>'
+    body += '<section class="nfl-results-section"><div class="section-head"><div class="title">RESULTS BY PREDICTED WIN RATING</div></div>'
     tiers = []
     for tier in ('WEAK', 'MODERATE', 'STRONG', 'ELITE'):
         selected = [r for r in rows if r.get('rating_tier') == tier]
         tiers.append([tier, len(selected), record(selected)])
-    body += table(['As-issued model rating', 'Graded', 'Record'], tiers) + '</section>'
+    body += table(['Predicted win rating', 'Graded', 'Record'], tiers) + '</section>'
     body += '<section class="nfl-results-section"><div class="section-head"><div class="title">DAILY ARCHIVE</div></div>'
     body += table(['Slate date (ET)', 'Graded', 'Record'], [[day, len(values), record(values)] for day, values in sorted(days.items(), reverse=True)]) + '</section>'
     for day, values in sorted(days.items(), reverse=True):
@@ -64,8 +65,8 @@ def build(root: Path):
             actual = evidence.get('official_value', evidence.get('official_total'))
             if actual is None:
                 actual = f"{evidence['covered_margin']:+g} vs spread"
-            details.append([row.get('display_selection') or row['selection'], f"{row['issued_american_price']:+d}", f"{100*row['issued_probability']:.1f}%", row.get('rating_tier', '—'), actual, row['result']])
-        body += table(['As-issued pick', 'FanDuel', 'APEX', 'As-issued model rating', 'Actual', 'Result'], details) + '</section>'
+            details.append([row.get('display_selection') or row['selection'], f"{row['issued_american_price']:+d}", probability_text(row), row.get('rating_tier', '—'), actual, row['result']])
+        body += table(['As-issued pick', 'FanDuel', 'APEX', 'Predicted win rating', 'Actual', 'Result'], details) + '</section>'
     if not rows:
         body += '<p class="nfl-results-note">No graded picks yet.</p>'
     path = root / 'nfl/results/index.html'
