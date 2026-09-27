@@ -10,7 +10,8 @@ import re
 import unicodedata
 
 TIERS = {'WEAK', 'MODERATE', 'STRONG', 'ELITE'}
-SPORTSBOOKS = {'DraftKings', 'FanDuel', 'BetMGM', 'Caesars', 'BetRivers', 'Fanatics', 'ESPN BET', 'Bovada'}
+# Display names of every book in the MMA owner's best-available list (apex_mma BOOK_DISPLAY).
+SPORTSBOOKS = {'DraftKings', 'FanDuel', 'BetMGM', 'Caesars', 'BetRivers', 'Fanatics', 'ESPN BET', 'Bovada', 'PointsBet', 'Unibet', 'BetOnline', 'LowVig', 'MyBookie'}
 SHA = re.compile(r'^[0-9a-f]{64}$')
 SEALED_RELEASE_STATE = 'SEALED_RELEASE_AVAILABLE'
 PUBLIC_MARKETS = frozenset({'WINNER', 'METHOD', 'TIME'})
