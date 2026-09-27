@@ -89,7 +89,7 @@ def mlb_style_public_rationale(pos: dict) -> list[str]:
                     f"Rating: {pos['rating_tier']}. Win percentage excludes pushes."]
         if pos.get("expected_profit_per_unit") is not None:
             value=float(pos["expected_profit_per_unit"])
-            paragraphs.append(f"Expected return: {value:+.3f} units per 1 unit staked. Rank {pos['selection_rank']} among this game's eligible player props.")
+            paragraphs.append(f"Expected return: {value:+.3f} units per 1 unit staked.")
         return paragraphs
     ev = pos.get("rationale_evidence") or {}
     feats = ev.get("model_features") or ev.get("model_features".replace("model_features","features")) or {}
@@ -744,7 +744,7 @@ def main(output_root: Path | None = None, *, board_only: bool = False) -> int:
             prop_family = str(position.get("prop_family") or "PLAYER PROP").replace("_", " ")
             position["player_display_name"] = player_name
             position["display_market_label"] = prop_family
-            position["display_selection"] = f"{player_name} · {selection.upper()} {line:g}"
+            position["display_selection"] = f"{player_name} · {selection.upper()} {line:g} {prop_family.removeprefix('player ').replace('reception yds', 'receiving yards').replace('rush yds', 'rushing yards').replace('pass yds', 'passing yards')}"
         position["sportsbook"] = "FanDuel"
         return position
 

@@ -72,7 +72,13 @@ def date_meta(value: str) -> str:
 
 
 def issued_panel(label: str, pos: dict) -> str:
-    pick = escape(str(pos.get("display_selection") or pos.get("headline") or pos.get("pick") or pos.get("selection") or "ISSUED"))
+    display = str(pos.get("display_selection") or pos.get("headline") or pos.get("pick") or pos.get("selection") or "ISSUED")
+    if pos.get("market") == "PROPS":
+        family = str(pos.get("prop_family") or pos.get("display_market_label") or "").lower().replace("_", " ")
+        family = family.removeprefix("player ").replace("reception yds", "receiving yards").replace("receiving yds", "receiving yards").replace("rush yds", "rushing yards").replace("pass yds", "passing yards").replace("pass completions", "pass completions")
+        if family and family not in display.lower():
+            display += " " + family
+    pick = escape(display)
     tier = str(pos.get("rating_tier") or pos.get("tier") or "MODERATE").upper()
     if tier not in {"WEAK", "MODERATE", "STRONG", "ELITE"}:
         tier = "MODERATE"
@@ -91,6 +97,8 @@ def issued_panel(label: str, pos: dict) -> str:
             f"The issued probability for {pick} is {prob_s}{price_s}; Sportsbook: FanDuel.",
             f"The {tier} label is the as-issued model rating.",
         ]
+    if pos.get("market") == "PROPS":
+        rationale = [re.sub(r"\s*Rank \d+ among this game's eligible player props\.", "", str(text)) for text in rationale]
     body = "".join(f"<p>{escape(str(p))}</p>" for p in rationale)
     return (
         f'<div class="market-panel">'
@@ -153,6 +161,8 @@ def panels_for_game(game: dict, today: dict) -> str:
             elif engine == "PROPS" and ("PROP" in m or "QB" in m or "RB" in m or "WR" in m):
                 hits.append(p)
         if hits:
+            if engine == "PROPS":
+                hits.sort(key=lambda p: (-float(p.get("rating_probability", float(p.get("issued_probability", 0))/(1-float(p.get("push_probability", 0))))), str(p.get("position_id", ""))))
             return "".join(issued_panel(label, p) for p in hits)
         return unissued_panel(label, state)
 
