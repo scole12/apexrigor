@@ -1,11 +1,11 @@
 {
   "commercial_settlement_count": 26,
   "current_event_forecast": {
-    "code": "FORECASTS_ISSUED",
-    "detail": "3 issued positions from the sealed recovery run at 8:29 PM EDT. The original T-2 deadline was missed; these are not backdated picks. Prices, probabilities, ratings and detailed rationale below match the sealed issuance. A statistically proven market edge has not been established.",
-    "headline": "Forecasts issued \u2014 late recovery"
+    "code": "AWAITING_T2",
+    "detail": "No forecasts have been issued yet. Any published card will show the selection, captured sportsbook price, APEX probability, rating and full model-supported rationale.",
+    "headline": "Awaiting the T-2 forecast run"
   },
-  "generated_at_utc": "2026-09-27T18:30:37.851383Z",
+  "generated_at_utc": "2026-09-27T19:25:15.782799Z",
   "graded_scientific_object_count": 12,
   "grader": {
     "schedule": "07:00 America/New_York",
@@ -352,8 +352,8 @@
       "source": "PRODUCTION_COMMERCIAL_GRADES"
     }
   ],
-  "payload_sha256": "774a8f5a5ab21fcaf6aa58e7bbca45e8c49323da375d6d41797938e5ef7c4dd6",
-  "release_state": "SEALED_RELEASE_AVAILABLE",
+  "payload_sha256": "370a81926d57a96efae424f019410ae19e11dd1a2a30d9779c75189ecd894525",
+  "release_state": "AUTHORIZED_RELEASE_AWAITING_EVENT_ISSUANCE",
   "schema_version": "APEX_MMA_RESULTS_SUMMARY_V1",
   "status": "RESULTS_AVAILABLE"
 }

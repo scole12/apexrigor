@@ -1,125 +1,135 @@
 {
-  "active_engine": "WINNER_RESIDUAL_BEST_AVAILABLE_V1",
+  "active_engine": null,
   "event_card": [
     {
-      "fighter_a": "Raul Rosas Jr.",
-      "fighter_b": "Raoni Barcelos",
+      "fighter_a": "Natalia Silva",
+      "fighter_b": "Wang Cong",
       "is_co_main_event": false,
       "is_main_event": true,
       "official_display_order": 1,
-      "scheduled_start_utc": "2026-09-27T02:08:00Z",
+      "scheduled_start_utc": "2026-10-04T04:30:00Z",
       "segment": "MAIN",
-      "weight_class": "BANTAMWEIGHT"
+      "weight_class": "WOMENS_FLYWEIGHT"
     },
     {
-      "fighter_a": "Norma Dumont",
-      "fighter_b": "Ailin Perez",
+      "fighter_a": "Deiveson Figueiredo",
+      "fighter_b": "Payton Talbott",
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 2,
-      "scheduled_start_utc": "2026-09-27T01:45:00Z",
+      "scheduled_start_utc": "2026-10-04T01:00:00Z",
       "segment": "MAIN",
-      "weight_class": "WOMENS_BANTAMWEIGHT"
+      "weight_class": "BANTAMWEIGHT"
     },
     {
-      "fighter_a": "Luis Hernandez",
-      "fighter_b": "Sedriques Dumas",
+      "fighter_a": "King Green",
+      "fighter_b": "Esteban Ribovics",
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 3,
-      "scheduled_start_utc": "2026-09-27T01:15:00Z",
+      "scheduled_start_utc": "2026-10-04T00:00:00Z",
       "segment": "MAIN",
-      "weight_class": "LIGHT_HEAVYWEIGHT"
+      "weight_class": "LIGHTWEIGHT"
     },
     {
-      "fighter_a": "Mehemmedeli Osmanli",
-      "fighter_b": "Ilimbek Akylbek Uulu",
+      "fighter_a": "Roberto Soldic",
+      "fighter_b": "Khaos Williams",
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 4,
-      "scheduled_start_utc": "2026-09-27T00:48:00Z",
+      "scheduled_start_utc": null,
       "segment": "MAIN",
-      "weight_class": "BANTAMWEIGHT"
+      "weight_class": "WELTERWEIGHT"
     },
     {
-      "fighter_a": "Melissa Amaya",
-      "fighter_b": "Valesca Machado",
+      "fighter_a": "Ateba Gautier",
+      "fighter_b": "Roman Kopylov",
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 5,
-      "scheduled_start_utc": "2026-09-27T00:16:00Z",
+      "scheduled_start_utc": "2026-10-04T01:00:00Z",
       "segment": "MAIN",
-      "weight_class": "WOMENS_STRAWWEIGHT"
+      "weight_class": "MIDDLEWEIGHT"
     },
     {
-      "fighter_a": "Brady Hiestand",
-      "fighter_b": "Rinya Nakamura",
+      "fighter_a": "Imanol Rodr\u00edguez",
+      "fighter_b": "Alden Coria",
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 6,
-      "scheduled_start_utc": "2026-09-26T23:40:00Z",
+      "scheduled_start_utc": "2026-10-04T00:00:00Z",
       "segment": "PRELIMS",
-      "weight_class": "BANTAMWEIGHT"
+      "weight_class": "FLYWEIGHT"
     },
     {
-      "fighter_a": "Rodolfo Vieira",
-      "fighter_b": "Robert Bryczek",
+      "fighter_a": "Damian Pinas",
+      "fighter_b": "Andrey Pulyaev",
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 7,
-      "scheduled_start_utc": "2026-09-26T23:15:00Z",
+      "scheduled_start_utc": "2026-10-04T00:00:00Z",
       "segment": "PRELIMS",
       "weight_class": "MIDDLEWEIGHT"
     },
     {
-      "fighter_a": "Rodolfo Bellato",
-      "fighter_b": "Christian Edwards",
+      "fighter_a": "Marcus McGhee",
+      "fighter_b": "Benardo Sopaj",
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 8,
-      "scheduled_start_utc": "2026-09-26T22:47:00Z",
+      "scheduled_start_utc": "2026-10-04T00:00:00Z",
       "segment": "PRELIMS",
-      "weight_class": "LIGHT_HEAVYWEIGHT"
+      "weight_class": "BANTAMWEIGHT"
     },
     {
-      "fighter_a": "Elves Brener",
-      "fighter_b": "Josiah Harrell",
+      "fighter_a": "Anthony Wint",
+      "fighter_b": "Lucas Armand",
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 9,
-      "scheduled_start_utc": "2026-09-26T22:22:00Z",
+      "scheduled_start_utc": null,
+      "segment": "PRELIMS",
+      "weight_class": "HEAVYWEIGHT"
+    },
+    {
+      "fighter_a": "Johnny Walker",
+      "fighter_b": "Mick Parkin",
+      "is_co_main_event": false,
+      "is_main_event": false,
+      "official_display_order": 10,
+      "scheduled_start_utc": "2026-10-04T00:00:00Z",
+      "segment": "PRELIMS",
+      "weight_class": "HEAVYWEIGHT"
+    },
+    {
+      "fighter_a": "Rafael Dos Anjos",
+      "fighter_b": "Alexander Hernandez",
+      "is_co_main_event": false,
+      "is_main_event": false,
+      "official_display_order": 11,
+      "scheduled_start_utc": "2026-10-04T00:00:00Z",
       "segment": "PRELIMS",
       "weight_class": "LIGHTWEIGHT"
     },
     {
-      "fighter_a": "Montel Jackson",
-      "fighter_b": "Ricky Simon",
-      "is_co_main_event": false,
-      "is_main_event": false,
-      "official_display_order": 10,
-      "scheduled_start_utc": "2026-09-26T22:00:00Z",
-      "segment": "PRELIMS",
-      "weight_class": "BANTAMWEIGHT"
-    },
-    {
-      "fighter_a": "John Castaneda",
-      "fighter_b": "Heili Alateng",
-      "is_co_main_event": false,
-      "is_main_event": false,
-      "official_display_order": 11,
-      "scheduled_start_utc": "2026-09-26T21:25:00Z",
-      "segment": "PRELIMS",
-      "weight_class": "BANTAMWEIGHT"
-    },
-    {
-      "fighter_a": "Vanessa Demopoulos",
-      "fighter_b": "Yazmin Jauregui",
+      "fighter_a": "Marvin Vettori",
+      "fighter_b": "Ismail Naurdiev",
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 12,
-      "scheduled_start_utc": "2026-09-26T21:10:00Z",
+      "scheduled_start_utc": "2026-10-04T00:00:00Z",
       "segment": "PRELIMS",
-      "weight_class": "WOMENS_STRAWWEIGHT"
+      "weight_class": "MIDDLEWEIGHT"
+    },
+    {
+      "fighter_a": "Court McGee",
+      "fighter_b": "Eric Nolan",
+      "is_co_main_event": false,
+      "is_main_event": false,
+      "official_display_order": 13,
+      "scheduled_start_utc": "2026-10-04T00:00:00Z",
+      "segment": "PRELIMS",
+      "weight_class": "WELTERWEIGHT"
     }
   ],
   "fighter_authority": {
@@ -133,7 +143,7 @@
     "scorecards": 37,
     "weigh_ins": 5442
   },
-  "generated_at_utc": "2026-09-27T18:30:37.851383Z",
+  "generated_at_utc": "2026-09-27T19:25:15.782799Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "GRADED_COMMERCIAL_AND_OR_SCIENTIFIC"
@@ -481,30 +491,31 @@
   "market_outcomes_authority": {
     "status": "POPULATED_H2H_ONLY"
   },
-  "model_sha256": "c4405db96c390a3934649b9deb77c36ad510093defc2a9bcb1e01115757e2922",
+  "model_sha256": null,
   "next_event": {
-    "city": "Las Vegas",
+    "city": "Salt Lake City",
     "country": "United States",
-    "display_name": "UFC Fight Night \u2014 Rosas Jr. vs Barcelos",
-    "event_date": "2026-09-26",
-    "main_card_start_et": "2026-09-26T20:00:00-04:00",
-    "main_card_start_utc": "2026-09-27T00:00:00Z",
-    "name": "UFC Fight Night: Rosas Jr. vs Barcelos",
-    "prelims_start_et": "2026-09-26T17:00:00-04:00",
-    "prelims_start_utc": "2026-09-26T21:00:00Z",
+    "display_name": "UFC 332 \u2014 Silva vs Wang",
+    "event_date": "2026-10-03",
+    "main_card_start_et": "2026-10-03T20:00:00-04:00",
+    "main_card_start_utc": "2026-10-04T00:00:00Z",
+    "name": "UFC 332: Silva vs Wang",
+    "prelims_start_et": "2026-10-03T16:00:00-04:00",
+    "prelims_start_utc": "2026-10-03T20:00:00Z",
     "promotion": "UFC",
-    "region": "Nevada",
+    "region": "UT",
     "schedule_status": "ANNOUNCED",
-    "venue": "Meta Apex"
+    "venue": "Delta Center"
   },
-  "payload_sha256": "9f3439f01f24a12c6e14422036bc6d6f6ab6ccb7368b632343092a6d7828e091",
+  "payload_sha256": "b2d8e0b9551f5b3a8d2fb135e0861f8478b654200cdb160b59d9b947acdcec62",
   "production_isolation": "PASS",
   "schema_version": "APEX_MMA_OPS_SNAPSHOT_V1",
-  "science_blocker": "NONE_PRODUCTION_ISSUANCE_ELIGIBLE",
+  "science_blocker": "AUTHORIZED_RELEASE_AWAITING_EVENT_ISSUANCE",
   "science_gate": {
     "authorized_event_ids": [
       "b343f71c-c13a-5729-8c03-76f5b44cd603",
-      "892b84e1-55d8-56df-bbe2-6d855db59fab"
+      "892b84e1-55d8-56df-bbe2-6d855db59fab",
+      "fb5421ef-66a8-520c-8651-62f2e4a7f5fa"
     ],
     "authorized_model_artifact_sha256": "c4405db96c390a3934649b9deb77c36ad510093defc2a9bcb1e01115757e2922",
     "authorized_release_id": "ca49ab7a-16c8-44e5-8413-b619a52d8ae0",
@@ -513,28 +524,28 @@
     "ci_fully_below_0": false,
     "edge_cert": "NO",
     "eligible": true,
-    "event_id": "892b84e1-55d8-56df-bbe2-6d855db59fab",
+    "event_id": "fb5421ef-66a8-520c-8651-62f2e4a7f5fa",
     "keep": "WINNER_RESIDUAL_BEST_AVAILABLE_V1",
     "policy": "SCOTT_AUTHORIZED_BEST_AVAILABLE_EVENT_RELEASE",
     "production_issuance_authorized": true,
-    "release_binding": "EXACT_AUTHORIZED_RELEASE"
+    "release_binding": "AUTHORIZED_RELEASE_AWAITING_EVENT_ISSUANCE"
   },
-  "system_status": "FORECASTS_ISSUED",
+  "system_status": "AWAITING_T2",
   "t2": {
-    "actual_utc": "2026-09-27T00:29:57.726306Z",
+    "actual_utc": null,
     "anchor": "EARLIEST_PUBLISHED_SCHEDULED_BOUT_MINUS_2_HOURS",
-    "scheduled_utc": "2026-09-26T19:00:00Z",
-    "status": "SEALED_LATE_RECOVERY",
-    "timeliness": "FAIL"
+    "scheduled_utc": "2026-10-03T18:00:00Z",
+    "status": "AWAITING_T2",
+    "timeliness": null
   },
-  "t2_issued_position_count": 3,
+  "t2_issued_position_count": 0,
   "t3": {
     "anchor": "EARLIEST_PUBLISHED_SCHEDULED_BOUT_MINUS_3_HOURS",
-    "bout_count": 12,
-    "scheduled_utc": "2026-09-26T18:00:00Z",
-    "status": "CANONICAL_SNAPSHOT_COMPLETE"
+    "bout_count": null,
+    "scheduled_utc": "2026-10-03T17:00:00Z",
+    "status": "SCHEDULED"
   },
-  "t3_fight_count": 12,
+  "t3_fight_count": null,
   "testing_authority": {
     "experiments": 22,
     "feature_matrices": 1,
