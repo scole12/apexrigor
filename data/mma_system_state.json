@@ -7,7 +7,7 @@
       "events": 1049,
       "fight_statistics_source_aggregate": 0,
       "fighters": 4008,
-      "results": 3800,
+      "results": 3811,
       "round_statistics_elemental": 12193,
       "round_stats": 0,
       "scorecards": 37,
@@ -58,7 +58,7 @@
       "is_co_main_event": false,
       "is_main_event": true,
       "official_display_order": 1,
-      "scheduled_start_utc": "2026-09-27T02:15:00Z",
+      "scheduled_start_utc": "2026-09-27T02:08:00Z",
       "segment": "MAIN",
       "weight_class": "BANTAMWEIGHT"
     },
@@ -201,7 +201,7 @@
   },
   "event_id": "892b84e1-55d8-56df-bbe2-6d855db59fab",
   "fight_count": 12,
-  "generated_at_utc": "2026-09-27T02:14:19.372941Z",
+  "generated_at_utc": "2026-09-27T02:31:35.501741Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "GRADED_COMMERCIAL_AND_OR_SCIENTIFIC"
@@ -1501,7 +1501,7 @@
     "source_market_snapshot_sha256": "9d29c4b8885bbdc1ff6e273f455f1448243460c1e8bb5f165116f43a3cf12415",
     "source_positions_sha256": "ca1f7c86b123a9c2c50a6c3c0d11c800c3c844a8f3d994b429569da6643a5277"
   },
-  "payload_sha256": "8a4ea3bd38342d135886e0bef0b78050d894e61320ef605d64f49da69030a377",
+  "payload_sha256": "17102f1cffb377090d44c808fb449cb11fae1ddbe156b7d1c86caa8a9c67fa8b",
   "picks_published": true,
   "positions": [
     {
@@ -3042,10 +3042,10 @@
     "production_issuance_authorized": true,
     "release_binding": "EXACT_AUTHORIZED_RELEASE"
   },
-  "semantic_state_sha256": "c56e0944d10887832c9106771c1f9df37d8efa2d4675cd45467cc0d44d918126",
+  "semantic_state_sha256": "314c1fb0d2f9b7ef183774104d5bbc750db5cf523d546c245c371f4a24f31a7d",
   "source_conflicts": [
     {
-      "capture_basis": "LATEST_LIVE_EVENTS_CAPTURE",
+      "capture_basis": "LATEST_PROVIDER_EVENT_NOT_IN_CURRENT_LIVE_CAPTURE",
       "official_pair": [
         "Mehemmedeli Osmanli",
         "Ilimbek Akylbek Uulu"

@@ -7,7 +7,7 @@
       "is_co_main_event": false,
       "is_main_event": true,
       "official_display_order": 1,
-      "scheduled_start_utc": "2026-09-27T02:15:00Z",
+      "scheduled_start_utc": "2026-09-27T02:08:00Z",
       "segment": "MAIN",
       "weight_class": "BANTAMWEIGHT"
     },
@@ -127,13 +127,13 @@
     "events": 1049,
     "fight_statistics_source_aggregate": 0,
     "fighters": 4008,
-    "results": 3800,
+    "results": 3811,
     "round_statistics_elemental": 12193,
     "round_stats": 0,
     "scorecards": 37,
     "weigh_ins": 5442
   },
-  "generated_at_utc": "2026-09-27T02:14:19.372941Z",
+  "generated_at_utc": "2026-09-27T02:31:35.501741Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "GRADED_COMMERCIAL_AND_OR_SCIENTIFIC"
@@ -497,7 +497,7 @@
     "schedule_status": "ANNOUNCED",
     "venue": "Meta Apex"
   },
-  "payload_sha256": "1c64e9e1365a1ea3971b71ee13af1a94cf9db7429334ab91fc857f88cd4748b1",
+  "payload_sha256": "8ca4c021ede82f71b0b351b7dbf91c829625a38c78bdd0803d47157cd132b28e",
   "production_isolation": "PASS",
   "schema_version": "APEX_MMA_OPS_SNAPSHOT_V1",
   "science_blocker": "NONE_PRODUCTION_ISSUANCE_ELIGIBLE",
