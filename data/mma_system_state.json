@@ -7,8 +7,8 @@
       "events": 1049,
       "fight_statistics_source_aggregate": 0,
       "fighters": 4008,
-      "results": 3770,
-      "round_statistics_elemental": 11885,
+      "results": 3779,
+      "round_statistics_elemental": 12137,
       "round_stats": 0,
       "scorecards": 37,
       "weigh_ins": 5442
@@ -58,6 +58,7 @@
       "is_co_main_event": false,
       "is_main_event": true,
       "official_display_order": 1,
+      "scheduled_start_utc": "2026-09-27T02:15:00Z",
       "segment": "MAIN",
       "weight_class": "BANTAMWEIGHT"
     },
@@ -67,6 +68,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 2,
+      "scheduled_start_utc": "2026-09-27T01:45:00Z",
       "segment": "MAIN",
       "weight_class": "WOMENS_BANTAMWEIGHT"
     },
@@ -76,6 +78,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 3,
+      "scheduled_start_utc": "2026-09-27T01:15:00Z",
       "segment": "MAIN",
       "weight_class": "LIGHT_HEAVYWEIGHT"
     },
@@ -85,6 +88,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 4,
+      "scheduled_start_utc": "2026-09-27T00:48:00Z",
       "segment": "MAIN",
       "weight_class": "BANTAMWEIGHT"
     },
@@ -94,6 +98,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 5,
+      "scheduled_start_utc": "2026-09-27T00:16:00Z",
       "segment": "MAIN",
       "weight_class": "WOMENS_STRAWWEIGHT"
     },
@@ -103,6 +108,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 6,
+      "scheduled_start_utc": "2026-09-26T23:40:00Z",
       "segment": "PRELIMS",
       "weight_class": "BANTAMWEIGHT"
     },
@@ -112,6 +118,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 7,
+      "scheduled_start_utc": "2026-09-26T23:15:00Z",
       "segment": "PRELIMS",
       "weight_class": "MIDDLEWEIGHT"
     },
@@ -121,6 +128,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 8,
+      "scheduled_start_utc": "2026-09-26T22:47:00Z",
       "segment": "PRELIMS",
       "weight_class": "LIGHT_HEAVYWEIGHT"
     },
@@ -130,6 +138,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 9,
+      "scheduled_start_utc": "2026-09-26T22:22:00Z",
       "segment": "PRELIMS",
       "weight_class": "LIGHTWEIGHT"
     },
@@ -139,6 +148,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 10,
+      "scheduled_start_utc": "2026-09-26T22:00:00Z",
       "segment": "PRELIMS",
       "weight_class": "BANTAMWEIGHT"
     },
@@ -148,6 +158,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 11,
+      "scheduled_start_utc": "2026-09-26T21:25:00Z",
       "segment": "PRELIMS",
       "weight_class": "BANTAMWEIGHT"
     },
@@ -157,6 +168,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 12,
+      "scheduled_start_utc": "2026-09-26T21:10:00Z",
       "segment": "PRELIMS",
       "weight_class": "WOMENS_STRAWWEIGHT"
     }
@@ -189,7 +201,7 @@
   },
   "event_id": "892b84e1-55d8-56df-bbe2-6d855db59fab",
   "fight_count": 12,
-  "generated_at_utc": "2026-09-27T00:58:37.319395Z",
+  "generated_at_utc": "2026-09-27T01:12:45.864602Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "GRADED_COMMERCIAL_AND_OR_SCIENTIFIC"
@@ -1489,7 +1501,7 @@
     "source_market_snapshot_sha256": "9d29c4b8885bbdc1ff6e273f455f1448243460c1e8bb5f165116f43a3cf12415",
     "source_positions_sha256": "ca1f7c86b123a9c2c50a6c3c0d11c800c3c844a8f3d994b429569da6643a5277"
   },
-  "payload_sha256": "182236c480b830816ec489a3c5d25f00bbaad65bd2f28855639cd0cbf80e57ae",
+  "payload_sha256": "ef8aec1f7660a5c244e822e08cc759dae9f11e8ce68758d28ce650003786a2c1",
   "picks_published": true,
   "positions": [
     {
@@ -3030,7 +3042,7 @@
     "production_issuance_authorized": true,
     "release_binding": "EXACT_AUTHORIZED_RELEASE"
   },
-  "semantic_state_sha256": "3048bd5054a2ab58716511957dccebdd5521aec3d2530c8ac20561c1e4097f0a",
+  "semantic_state_sha256": "02c1623e55deb6c8e2dc03fae35725569052b6b6b4ae3b4372a29ffed4f1c1bf",
   "source_conflicts": [
     {
       "capture_basis": "LATEST_LIVE_EVENTS_CAPTURE",
@@ -3038,14 +3050,14 @@
         "Mehemmedeli Osmanli",
         "Ilimbek Akylbek Uulu"
       ],
-      "provider_commence_time_utc": "2026-09-27T00:45:00Z",
+      "provider_commence_time_utc": "2026-09-27T00:48:00Z",
       "provider_event_id": "2d70bc6a094923644fe1ff5bf1613d6e",
       "provider_pair": [
         "Mehemmedeli Osmanli",
         "Ilimbek Akylbek"
       ],
       "provider_selection_slots": {},
-      "source_capture_id": "4dbc8190-a839-4657-a56e-a36d7633fc5a",
+      "source_capture_id": "375fc3e2-3a50-40ba-bda8-e5e581b21256",
       "status": "ONE_SIDE_MATCH_PROVIDER_CARD_CONFLICT"
     },
     {

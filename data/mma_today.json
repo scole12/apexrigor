@@ -13,6 +13,7 @@
       "is_co_main_event": false,
       "is_main_event": true,
       "official_display_order": 1,
+      "scheduled_start_utc": "2026-09-27T02:15:00Z",
       "segment": "MAIN",
       "weight_class": "BANTAMWEIGHT"
     },
@@ -22,6 +23,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 2,
+      "scheduled_start_utc": "2026-09-27T01:45:00Z",
       "segment": "MAIN",
       "weight_class": "WOMENS_BANTAMWEIGHT"
     },
@@ -31,6 +33,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 3,
+      "scheduled_start_utc": "2026-09-27T01:15:00Z",
       "segment": "MAIN",
       "weight_class": "LIGHT_HEAVYWEIGHT"
     },
@@ -40,6 +43,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 4,
+      "scheduled_start_utc": "2026-09-27T00:48:00Z",
       "segment": "MAIN",
       "weight_class": "BANTAMWEIGHT"
     },
@@ -49,6 +53,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 5,
+      "scheduled_start_utc": "2026-09-27T00:16:00Z",
       "segment": "MAIN",
       "weight_class": "WOMENS_STRAWWEIGHT"
     },
@@ -58,6 +63,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 6,
+      "scheduled_start_utc": "2026-09-26T23:40:00Z",
       "segment": "PRELIMS",
       "weight_class": "BANTAMWEIGHT"
     },
@@ -67,6 +73,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 7,
+      "scheduled_start_utc": "2026-09-26T23:15:00Z",
       "segment": "PRELIMS",
       "weight_class": "MIDDLEWEIGHT"
     },
@@ -76,6 +83,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 8,
+      "scheduled_start_utc": "2026-09-26T22:47:00Z",
       "segment": "PRELIMS",
       "weight_class": "LIGHT_HEAVYWEIGHT"
     },
@@ -85,6 +93,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 9,
+      "scheduled_start_utc": "2026-09-26T22:22:00Z",
       "segment": "PRELIMS",
       "weight_class": "LIGHTWEIGHT"
     },
@@ -94,6 +103,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 10,
+      "scheduled_start_utc": "2026-09-26T22:00:00Z",
       "segment": "PRELIMS",
       "weight_class": "BANTAMWEIGHT"
     },
@@ -103,6 +113,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 11,
+      "scheduled_start_utc": "2026-09-26T21:25:00Z",
       "segment": "PRELIMS",
       "weight_class": "BANTAMWEIGHT"
     },
@@ -112,6 +123,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 12,
+      "scheduled_start_utc": "2026-09-26T21:10:00Z",
       "segment": "PRELIMS",
       "weight_class": "WOMENS_STRAWWEIGHT"
     }
@@ -138,7 +150,7 @@
     "detail": "3 issued positions from the sealed recovery run at 8:29 PM EDT. The original T-2 deadline was missed; these are not backdated picks. Prices, probabilities, ratings and detailed rationale below match the sealed issuance. A statistically proven market edge has not been established.",
     "headline": "Forecasts issued \u2014 late recovery"
   },
-  "generated_at_utc": "2026-09-27T00:58:37.319395Z",
+  "generated_at_utc": "2026-09-27T01:12:45.864602Z",
   "issuance_id": "4b640b98-0630-4b2b-99e2-ce38be95bbf7",
   "issuance_status": "SEALED",
   "market_display": {
@@ -1094,7 +1106,7 @@
     "source_market_snapshot_sha256": "9d29c4b8885bbdc1ff6e273f455f1448243460c1e8bb5f165116f43a3cf12415",
     "source_positions_sha256": "ca1f7c86b123a9c2c50a6c3c0d11c800c3c844a8f3d994b429569da6643a5277"
   },
-  "payload_sha256": "e646d2454f1b50bd10ee41f05ae4b5beb924088e9dbc8cac128f42353485fb13",
+  "payload_sha256": "7bb2a12c32ae8fdb31386f99a62cd36533ff49dc7ac46aaf220bb2e22923b81e",
   "picks_published": true,
   "positions": [
     {

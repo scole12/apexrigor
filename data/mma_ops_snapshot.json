@@ -7,6 +7,7 @@
       "is_co_main_event": false,
       "is_main_event": true,
       "official_display_order": 1,
+      "scheduled_start_utc": "2026-09-27T02:15:00Z",
       "segment": "MAIN",
       "weight_class": "BANTAMWEIGHT"
     },
@@ -16,6 +17,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 2,
+      "scheduled_start_utc": "2026-09-27T01:45:00Z",
       "segment": "MAIN",
       "weight_class": "WOMENS_BANTAMWEIGHT"
     },
@@ -25,6 +27,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 3,
+      "scheduled_start_utc": "2026-09-27T01:15:00Z",
       "segment": "MAIN",
       "weight_class": "LIGHT_HEAVYWEIGHT"
     },
@@ -34,6 +37,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 4,
+      "scheduled_start_utc": "2026-09-27T00:48:00Z",
       "segment": "MAIN",
       "weight_class": "BANTAMWEIGHT"
     },
@@ -43,6 +47,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 5,
+      "scheduled_start_utc": "2026-09-27T00:16:00Z",
       "segment": "MAIN",
       "weight_class": "WOMENS_STRAWWEIGHT"
     },
@@ -52,6 +57,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 6,
+      "scheduled_start_utc": "2026-09-26T23:40:00Z",
       "segment": "PRELIMS",
       "weight_class": "BANTAMWEIGHT"
     },
@@ -61,6 +67,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 7,
+      "scheduled_start_utc": "2026-09-26T23:15:00Z",
       "segment": "PRELIMS",
       "weight_class": "MIDDLEWEIGHT"
     },
@@ -70,6 +77,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 8,
+      "scheduled_start_utc": "2026-09-26T22:47:00Z",
       "segment": "PRELIMS",
       "weight_class": "LIGHT_HEAVYWEIGHT"
     },
@@ -79,6 +87,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 9,
+      "scheduled_start_utc": "2026-09-26T22:22:00Z",
       "segment": "PRELIMS",
       "weight_class": "LIGHTWEIGHT"
     },
@@ -88,6 +97,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 10,
+      "scheduled_start_utc": "2026-09-26T22:00:00Z",
       "segment": "PRELIMS",
       "weight_class": "BANTAMWEIGHT"
     },
@@ -97,6 +107,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 11,
+      "scheduled_start_utc": "2026-09-26T21:25:00Z",
       "segment": "PRELIMS",
       "weight_class": "BANTAMWEIGHT"
     },
@@ -106,6 +117,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 12,
+      "scheduled_start_utc": "2026-09-26T21:10:00Z",
       "segment": "PRELIMS",
       "weight_class": "WOMENS_STRAWWEIGHT"
     }
@@ -115,13 +127,13 @@
     "events": 1049,
     "fight_statistics_source_aggregate": 0,
     "fighters": 4008,
-    "results": 3770,
-    "round_statistics_elemental": 11885,
+    "results": 3779,
+    "round_statistics_elemental": 12137,
     "round_stats": 0,
     "scorecards": 37,
     "weigh_ins": 5442
   },
-  "generated_at_utc": "2026-09-27T00:58:37.319395Z",
+  "generated_at_utc": "2026-09-27T01:12:45.864602Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "GRADED_COMMERCIAL_AND_OR_SCIENTIFIC"
@@ -485,7 +497,7 @@
     "schedule_status": "ANNOUNCED",
     "venue": "Meta Apex"
   },
-  "payload_sha256": "562556157fb1d9fc0f38a9433cb90198a0d384cf8ea0d947264a81f33d50baa9",
+  "payload_sha256": "2e9b0d26300c6f4b2d7b17489c2535cd23c23cdffbf7d093bdae787ef632fca7",
   "production_isolation": "PASS",
   "schema_version": "APEX_MMA_OPS_SNAPSHOT_V1",
   "science_blocker": "NONE_PRODUCTION_ISSUANCE_ELIGIBLE",
