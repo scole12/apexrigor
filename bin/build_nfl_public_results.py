@@ -64,7 +64,8 @@ def build(root: Path):
             evidence = row['settlement_evidence']
             actual = evidence.get('official_value', evidence.get('official_total'))
             if actual is None:
-                actual = f"{evidence['covered_margin']:+g} vs spread"
+                margin = evidence.get('covered_margin')
+                actual = f"{margin:+g} vs spread" if isinstance(margin, (int, float)) else (row.get('result') if row.get('result') in ('VOID', 'PUSH') else '—')
             details.append([row.get('display_selection') or row['selection'], f"{row['issued_american_price']:+d}", probability_text(row), row.get('rating_tier', '—'), actual, row['result']])
         body += table(['As-issued pick', 'FanDuel', 'APEX', 'Predicted win rating', 'Actual', 'Result'], details) + '</section>'
     if not rows:
