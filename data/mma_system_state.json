@@ -33,11 +33,19 @@
     }
   },
   "canonical_fighter_identity": {
-    "canonical_bout_count": 13,
-    "canonical_event_id": "4954008c-9dd0-5c44-9991-af463efa63f0",
-    "reference_bout_count": 13,
+    "authority_population_permitted": false,
+    "canonical_event_id": null,
+    "provider_missing_pairs": [
+      [
+        "Anthony Wint",
+        "Lucas Armand"
+      ]
+    ],
+    "reason": "REFERENCE_PROVIDER_PAIR_RECONCILIATION_INCOMPLETE",
+    "reference_bout_count": 14,
     "reference_event_id": "fb5421ef-66a8-520c-8651-62f2e4a7f5fa",
-    "status": "VERIFIED_COMPLETE_CANONICAL_CARD"
+    "resolved_pair_count": 13,
+    "status": "REFERENCE_ONLY_NO_CANONICAL_FIGHTER_EVENT"
   },
   "card": [
     {
@@ -161,11 +169,21 @@
       "weight_class": "MIDDLEWEIGHT"
     },
     {
+      "fighter_a": "Jacobe Smith",
+      "fighter_b": "Bruce Whitehead",
+      "is_co_main_event": false,
+      "is_main_event": false,
+      "official_display_order": 13,
+      "scheduled_start_utc": "2026-10-04T00:00:00Z",
+      "segment": "PRELIMS",
+      "weight_class": "WELTERWEIGHT"
+    },
+    {
       "fighter_a": "Court McGee",
       "fighter_b": "Eric Nolan",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 13,
+      "official_display_order": 14,
       "scheduled_start_utc": "2026-10-04T00:00:00Z",
       "segment": "PRELIMS",
       "weight_class": "WELTERWEIGHT"
@@ -198,8 +216,8 @@
     "verified_queue_horizon": "2026-11-14"
   },
   "event_id": "fb5421ef-66a8-520c-8651-62f2e4a7f5fa",
-  "fight_count": 13,
-  "generated_at_utc": "2026-09-28T16:30:51.917641Z",
+  "fight_count": 14,
+  "generated_at_utc": "2026-09-28T22:00:49.533209Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "GRADED_COMMERCIAL_AND_OR_SCIENTIFIC"
@@ -546,7 +564,7 @@
       "source": "PRODUCTION_COMMERCIAL_GRADES"
     }
   ],
-  "payload_sha256": "211e2d8424412bb26b5b23fe6b1891bac3a3dff8206e332f7ccdd732de17e038",
+  "payload_sha256": "0630386e11da5cdda16cd553fa939eeede6473bcbfcbb2bd6075c5f85107f061",
   "picks_published": false,
   "positions": [],
   "positions_sha256": null,
@@ -2018,7 +2036,7 @@
     "production_issuance_authorized": true,
     "release_binding": "AUTHORIZED_RELEASE_AWAITING_EVENT_ISSUANCE"
   },
-  "semantic_state_sha256": "660ac06ec6d742b495fbeb13ad7b1ce6120ec0f29233a71bba1891fabded0395",
+  "semantic_state_sha256": "0b7f757065eba4347aba007b29fef618ebe4b3283cf8d286ed5ebc2aacac4e61",
   "source_conflicts": [
     {
       "capture_basis": null,
@@ -2034,7 +2052,7 @@
       "status": "NO_PROVIDER_MATCH"
     }
   ],
-  "system_readiness_state": "AUTHORIZED_RELEASE_AWAITING_ISSUANCE",
+  "system_readiness_state": "DATA_BLOCKED_REFERENCE_ONLY_NO_CANONICAL_FIGHTER_EVENT",
   "t2": {
     "actual_utc": null,
     "anchor": "EARLIEST_PUBLISHED_SCHEDULED_BOUT_MINUS_2_HOURS",
