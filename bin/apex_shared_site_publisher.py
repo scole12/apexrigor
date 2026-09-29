@@ -1548,8 +1548,19 @@ def deployment_proof(d, commit, surface_hashes=None, request_id=None, *, repo=No
             verified[name]={'expected_sha256':expected,'request_sha256':hashes['request'],
                             'deployment_sha256':hashes['deployment'],'gate':'SOFT_ROLLING_RESULTS'}
             continue
-        if hashes['request']!=expected or hashes['deployment']!=expected:
+        if hashes['request']!=expected:
             raise RuntimeError('REQUEST_BOUND_NFL_SURFACE_CHANGED:'+name)
+        if hashes['deployment']!=expected:
+            # A later NFL publish (e.g. the schedule refresh's next-game board) may update the same file.
+            # Accept that; any change to an NFL file by anything else is still a failure.
+            later=[s for s in subprocess.check_output(['git','log','--format=%s',commit+'..'+deployed,'--',name],
+                   cwd=repo,timeout=30,text=True).splitlines() if s.strip()]
+            if not later or not all(s.startswith('Publish NFL production state') for s in later):
+                raise RuntimeError('REQUEST_BOUND_NFL_SURFACE_CHANGED:'+name)
+            verified[name]={'expected_sha256':expected,'request_sha256':hashes['request'],
+                            'deployment_sha256':hashes['deployment'],'gate':'UPDATED_BY_LATER_NFL_PUBLISH',
+                            'later_nfl_publish_count':len(later)}
+            continue
         verified[name]={'expected_sha256':expected,'request_sha256':hashes['request'],
                         'deployment_sha256':hashes['deployment']}
     return {'id':d['id'],'project_id':d['projectId'],'sha':deployed,'request_commit':commit,
