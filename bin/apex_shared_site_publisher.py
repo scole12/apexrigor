@@ -46,7 +46,7 @@ NY = ZoneInfo("America/New_York")
 # first failure and at the 10th). "Waiting" errors (deployment not live yet) are
 # retried every minute without a cap; one alert after 30 waiting tries.
 MAX_FAILURES_PER_DAY = 10
-WAIT_ERROR_MARKERS = ('PENDING', 'NOT_DEPLOYED')
+WAIT_ERROR_MARKERS = ('PENDING', 'NOT_DEPLOYED', 'DEPLOYMENT_NOT_REQUEST_DESCENDANT')  # Vercel has not deployed the pushed commit yet
 WAIT_ALERT_AFTER = 30
 NOTIFY = '/opt/apex_ops/bin/apex_notify.py'
 FINAL_RECEIPT_STATES = {
