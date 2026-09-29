@@ -13,7 +13,7 @@
       "is_co_main_event": false,
       "is_main_event": true,
       "official_display_order": 1,
-      "scheduled_start_utc": "2026-10-04T04:30:00Z",
+      "scheduled_start_utc": "2026-10-04T02:15:00Z",
       "segment": "MAIN",
       "weight_class": "WOMENS_FLYWEIGHT"
     },
@@ -23,7 +23,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 2,
-      "scheduled_start_utc": "2026-10-04T01:00:00Z",
+      "scheduled_start_utc": "2026-10-04T01:45:00Z",
       "segment": "MAIN",
       "weight_class": "BANTAMWEIGHT"
     },
@@ -53,7 +53,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 5,
-      "scheduled_start_utc": "2026-10-04T01:00:00Z",
+      "scheduled_start_utc": "2026-10-04T00:15:00Z",
       "segment": "MAIN",
       "weight_class": "MIDDLEWEIGHT"
     },
@@ -170,10 +170,10 @@
     "detail": "No forecasts have been issued yet. Any published card will show the selection, captured sportsbook price, APEX probability, rating and full model-supported rationale.",
     "headline": "Awaiting the T-2 forecast run"
   },
-  "generated_at_utc": "2026-09-28T22:00:49.533209Z",
+  "generated_at_utc": "2026-09-29T09:00:40.298938Z",
   "issuance_id": null,
   "issuance_status": null,
-  "payload_sha256": "cd6cd1ad50eb82c548e588cc123c65579bc9c6c641742067d01c961e6f166544",
+  "payload_sha256": "054344d6377ea8ec8220e42c30e320e9a05b093a3521434dd3550c2e0b6a8ada",
   "picks_published": false,
   "positions": [],
   "positions_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",

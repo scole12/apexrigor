@@ -7,7 +7,7 @@
       "is_co_main_event": false,
       "is_main_event": true,
       "official_display_order": 1,
-      "scheduled_start_utc": "2026-10-04T04:30:00Z",
+      "scheduled_start_utc": "2026-10-04T02:15:00Z",
       "segment": "MAIN",
       "weight_class": "WOMENS_FLYWEIGHT"
     },
@@ -17,7 +17,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 2,
-      "scheduled_start_utc": "2026-10-04T01:00:00Z",
+      "scheduled_start_utc": "2026-10-04T01:45:00Z",
       "segment": "MAIN",
       "weight_class": "BANTAMWEIGHT"
     },
@@ -47,7 +47,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 5,
-      "scheduled_start_utc": "2026-10-04T01:00:00Z",
+      "scheduled_start_utc": "2026-10-04T00:15:00Z",
       "segment": "MAIN",
       "weight_class": "MIDDLEWEIGHT"
     },
@@ -153,7 +153,7 @@
     "scorecards": 37,
     "weigh_ins": 5442
   },
-  "generated_at_utc": "2026-09-28T22:00:49.533209Z",
+  "generated_at_utc": "2026-09-29T09:00:40.298938Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "GRADED_COMMERCIAL_AND_OR_SCIENTIFIC"
@@ -517,7 +517,7 @@
     "schedule_status": "ANNOUNCED",
     "venue": "Delta Center"
   },
-  "payload_sha256": "826040d9676ab789e0e097fca8d09c5942a3f4a1b792f10381a326ea17585418",
+  "payload_sha256": "f015c8081b6206241666c6e4abd7c5480e1f3274ced0d34ebbe202eb4335e522",
   "production_isolation": "PASS",
   "schema_version": "APEX_MMA_OPS_SNAPSHOT_V1",
   "science_blocker": "AUTHORIZED_RELEASE_AWAITING_EVENT_ISSUANCE",
