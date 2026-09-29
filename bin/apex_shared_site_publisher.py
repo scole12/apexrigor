@@ -42,6 +42,13 @@ NFL_QUEUE = Path("/var/opt/apex_nfl/production/publication_queue")
 NFL_ISSUANCE = Path("/var/opt/apex_nfl/issuance")
 CANONICAL_REMOTE = "github.com/scole12/apexrigor.git"
 NY = ZoneInfo("America/New_York")
+# A request that fails 10 times in 24 hours is left alone (one alert each at the
+# first failure and at the 10th). "Waiting" errors (deployment not live yet) are
+# retried every minute without a cap; one alert after 30 waiting tries.
+MAX_FAILURES_PER_DAY = 10
+WAIT_ERROR_MARKERS = ('PENDING', 'NOT_DEPLOYED')
+WAIT_ALERT_AFTER = 30
+NOTIFY = '/opt/apex_ops/bin/apex_notify.py'
 FINAL_RECEIPT_STATES = {
     "PUBLISHED",
     "PUBLISHED_NO_CONTENT_CHANGE",
@@ -66,6 +73,9 @@ ROUTE_PATHS = {
     "nfl/index.html",
     "nfl/results/index.html",
     "nfl/about/index.html",
+    "nhl/index.html",
+    "nhl/results/index.html",
+    "nhl/about/index.html",
 }
 
 
@@ -798,7 +808,8 @@ def publish_nfl_durable(request):
     else:
         git('fetch','--quiet','origin','main')
         state={'request_id':request.request_id,'request_sha256':hashlib.sha256(canonical_json(request.manifest)).hexdigest(),
-               'phase':'STARTED','base_commit':git('rev-parse','origin/main'),'worktree':str(worktree)}
+               'phase':'STARTED','base_commit':git('rev-parse','origin/main'),'worktree':str(worktree),
+               'first_seen_utc':datetime.now(timezone.utc).isoformat()}
         atomic_json(intent,state);nfl_boundary('PUBLISH_REQUEST_INTENT',intent)
     if state['phase']=='STARTED':
         if not worktree.exists():git('worktree','add','--detach',str(worktree),state['base_commit'])
@@ -830,13 +841,35 @@ def publish_nfl_durable(request):
         ancestor=subprocess.run(['git','merge-base','--is-ancestor',state['published_commit'],'origin/main'],cwd=ROOT).returncode
         if ancestor:
             if git('rev-parse','origin/main')!=state['base_commit']:
-                raise RuntimeError('PUBLICATION_ORIGIN_ADVANCED_RECONCILIATION_REQUIRED')
+                return rebuild_nfl_on_new_origin(request, intent, worktree, state)
             git('push','origin',state['published_commit']+':refs/heads/main')
         nfl_boundary('PUBLISH_REMOTE_PUSH_DURABLE')
         state['phase']='PUSHED';atomic_json(intent,state);nfl_boundary('PUBLISH_PUSH_INTENT',intent)
     if state['phase']!='PUSHED':raise RuntimeError('PUBLICATION_UNKNOWN_PHASE')
     return {'status':'PUBLISHED' if state['build']['changed_paths'] else 'PUBLISHED_NO_CONTENT_CHANGE',
             'sport':'NFL','request_id':request.request_id,'published_commit':state['published_commit'],**state['build']}
+
+
+def rebuild_nfl_on_new_origin(request, intent, worktree, state):
+    """Another sport pushed first: rebuild this same queued request on the new origin/main.
+
+    Only for requests first seen in the last 24 hours, at most 5 rebuilds, so an old
+    request can never overwrite newer NFL pages."""
+    first_seen = state.get('first_seen_utc')
+    if not first_seen or (datetime.now(timezone.utc) - datetime.fromisoformat(first_seen)).total_seconds() > 86400:
+        raise RuntimeError('PUBLICATION_ORIGIN_ADVANCED_REQUEST_OLDER_THAN_24H')
+    if int(state.get('rebuild_count', 0)) >= 5:
+        raise RuntimeError('PUBLICATION_ORIGIN_ADVANCED_REBUILD_LIMIT')
+    if worktree.exists():
+        remove_worktree(worktree)
+    git('worktree', 'prune', timeout=60)
+    subprocess.run(['git', 'update-ref', '-d', 'refs/apex-publications/' + request.request_id], cwd=ROOT, check=False)
+    git('fetch', '--quiet', 'origin', 'main')
+    fresh = {'request_id': state['request_id'], 'request_sha256': state['request_sha256'], 'phase': 'STARTED',
+             'base_commit': git('rev-parse', 'origin/main'), 'worktree': str(worktree), 'first_seen_utc': first_seen,
+             'rebuild_count': int(state.get('rebuild_count', 0)) + 1, 'rebuilt_from_base': state['base_commit']}
+    atomic_json(intent, fresh)
+    return publish_nfl_durable(request)
 
 
 def ncaaf_workflow_title(request: Request) -> str:
@@ -1052,6 +1085,37 @@ def preserve_ncaaf_email_evidence(
 
 
 def dispatch_ncaaf_email(request: Request, receipt: dict[str, Any]) -> dict[str, Any]:
+    if request.product != 'RESULTS':
+        return _dispatch_ncaaf_email_workflow(request, receipt)
+    sys.path.insert(0, '/opt/apex_ncaaf/operations')
+    import ncaaf_results_email as results_email
+    # Serialize the old workflow transport with the independent products email.
+    # An accepted local email is adopted after publish, never sent a second time.
+    with results_email.delivery_lock(request.slate_date):
+        email_root = NCAAF_QUEUE.parent / 'results_email' / request.slate_date
+        if (email_root / 'receipt.json').is_file() or (email_root / 'transaction.json').is_file():
+            evidence = results_email.confirmed_email(request.slate_date, state=NCAAF_QUEUE.parent)
+            prefix = f'data/ncaaf/{request.slate_date}/results/'
+            expected = {Path(k).name: v for k, v in request.manifest['source_hashes'].items() if k.startswith(prefix)}
+            if evidence['source_files'] != expected:
+                raise RuntimeError('NCAA_RESULTS_EMAIL_ALREADY_SENT_WITH_DIFFERENT_PRODUCTS')
+            state_path = receipt_path(request)
+            prior = load_json(state_path) if state_path.is_file() else {}
+            publication_status = receipt.get('publication_status') or str(receipt['status']).split('_EMAIL_', 1)[0]
+            complete = {**prior, **receipt, 'publication_status': publication_status,
+                        'status': publication_status + '_EMAIL_VERIFIED',
+                        'email_provider_evidence': evidence, 'email_dispatch_accepted': True,
+                        'email_external_action_count': 1, 'duplicate_email_workflow_count': 0,
+                        'email_adopted_from_products': True,
+                        'verified_at_utc': datetime.now(timezone.utc).isoformat()}
+            atomic_json(state_path, complete)
+            return complete
+        if (email_root / 'intent.json').is_file() and load_json(email_root / 'intent.json').get('status') != 'REJECTED_BEFORE_ACCEPTANCE':
+            raise RuntimeError('NCAA_EMAIL_RECONCILIATION_REQUIRED: products email outcome unknown')
+        return _dispatch_ncaaf_email_workflow(request, receipt)
+
+
+def _dispatch_ncaaf_email_workflow(request: Request, receipt: dict[str, Any]) -> dict[str, Any]:
     if request.slate_date is None or request.product is None:
         raise RuntimeError("NCAAF email handoff identity is incomplete")
     state_path = receipt_path(request)
@@ -1177,6 +1241,89 @@ def prepare_due_ncaaf_records() -> list[dict[str, Any]]:
     return outcomes
 
 
+def _is_wait_error(text: str) -> bool:
+    return any(marker in text for marker in WAIT_ERROR_MARKERS)
+
+
+def failure_counts(request: Request) -> tuple[int, int]:
+    """(hard failures, waiting failures) recorded for this request in the last 24 hours."""
+    root = STATE_ROOT / 'failures' / request.sport.lower() / request.request_id
+    hard = wait = 0
+    cutoff = time.time() - 86400
+    if root.is_dir():
+        for path in root.glob('*.json'):
+            try:
+                if path.stat().st_mtime < cutoff:
+                    continue
+                text = str(load_json(path).get('error', ''))
+            except Exception:
+                continue
+            if _is_wait_error(text):
+                wait += 1
+            else:
+                hard += 1
+    return hard, wait
+
+
+def owner_notice(key: str, subject: str, body: str) -> None:
+    try:
+        subprocess.run(['/usr/bin/python3', NOTIFY, 'notice', key, subject, '-'], input=body, text=True,
+                       capture_output=True, timeout=60, check=False)
+    except Exception:
+        pass
+
+
+def remove_worktree(path: Path) -> None:
+    try:
+        git('worktree', 'remove', '--force', str(path), timeout=120)
+    except Exception:
+        shutil.rmtree(path, ignore_errors=True)
+
+
+def remove_request_worktree(request: Request) -> None:
+    path = STATE_ROOT / 'worktrees' / (request.sport.lower() + '-' + request.request_id)
+    if path.exists():
+        remove_worktree(path)
+        git('worktree', 'prune', timeout=60)
+
+
+def hourly_cleanup(pending_ids: set[str]) -> dict[str, int]:
+    """Drop worktrees of finished (or 2-day-old) requests and failure files older than 7 days."""
+    now = time.time()
+    removed = pruned = 0
+    root = STATE_ROOT / 'worktrees'
+    if root.is_dir():
+        for path in sorted(root.iterdir()):
+            match = re.fullmatch(r'(mma|nfl)-([0-9a-f]{64})', path.name)
+            if not match or match.group(2) in pending_ids:
+                continue
+            receipt = STATE_ROOT / 'receipts' / match.group(1) / (match.group(2) + '.json')
+            try:
+                done = receipt.is_file() and str(load_json(receipt).get('status')) in FINAL_RECEIPT_STATES
+            except Exception:
+                done = False
+            if done or now - path.stat().st_mtime > 2 * 86400:
+                remove_worktree(path)
+                removed += 1
+    if removed:
+        git('worktree', 'prune', timeout=60)
+    failures = STATE_ROOT / 'failures'
+    if failures.is_dir():
+        for path in failures.glob('*/*/*.json'):
+            try:
+                if now - path.stat().st_mtime > 7 * 86400:
+                    path.unlink()
+                    pruned += 1
+            except OSError:
+                pass
+        for folder in failures.glob('*/*'):
+            try:
+                folder.rmdir()
+            except OSError:
+                pass
+    return {'worktrees_removed': removed, 'failure_files_removed': pruned}
+
+
 def execute(*, dry_run: bool, sport: str | None = None) -> dict[str, Any]:
     LOCK_PATH.parent.mkdir(parents=True, exist_ok=True)
     with LOCK_PATH.open('a+') as lock:
@@ -1186,8 +1333,13 @@ def execute(*, dry_run: bool, sport: str | None = None) -> dict[str, Any]:
             prepared=prepare_due_ncaaf_records() if not dry_run and sport is None else []
         except Exception as error:
             prepared=[{'status':'PREPARATION_FAILED','error':str(error)}]
-        pending=discover_nfl() if sport=='NFL' else discover_mma() if sport=='MMA' else discover_isolated()
+        pending=discover_nfl() if sport=='NFL' else discover_mma() if sport=='MMA' else [request for request in discover_isolated() if request.sport != 'NFL']
         for request in pending:
+            hard_failures = failure_counts(request)[0] if not dry_run else 0
+            if hard_failures >= MAX_FAILURES_PER_DAY:
+                results.append({'status':'SKIPPED_AFTER_REPEATED_FAILURES','sport':request.sport,
+                                'request_id':request.request_id,'failures_last_24h':hard_failures})
+                continue
             try:
                 result=publish(request,dry_run=dry_run)
                 if not dry_run:
@@ -1203,6 +1355,8 @@ def execute(*, dry_run: bool, sport: str | None = None) -> dict[str, Any]:
                     else:
                         atomic_json(receipt_path(request),result)
                         if request.sport=='NFL':nfl_boundary('PUBLISH_RECEIPT_DURABLE',receipt_path(request))
+                    if request.sport in {'NFL','MMA'} and is_complete(request):
+                        remove_request_worktree(request)
                 results.append(result)
             except Exception as error:
                 failure={'status':'REQUEST_FAILED','sport':request.sport,'request_id':request.request_id,
@@ -1211,9 +1365,33 @@ def execute(*, dry_run: bool, sport: str | None = None) -> dict[str, Any]:
                     failure_root=STATE_ROOT/'failures'/request.sport.lower()/request.request_id
                     failure_root.mkdir(parents=True,exist_ok=True)
                     atomic_json(failure_root/(str(time.time_ns())+'.json'),failure)
+                    hard_now, wait_now = failure_counts(request)
+                    label = ' '.join(x for x in (request.sport, request.product, request.slate_date) if x) + ' request ' + request.request_id[:12]
+                    body = ('Error:\n' + failure['error'][:3000] + '\n\nFailures in last 24 h: ' + str(hard_now)
+                            + ' (waiting tries: ' + str(wait_now) + ')\nFailure files: ' + str(failure_root)
+                            + '\n\nTo let the publisher try again right away after fixing the cause:\n  rm -rf ' + str(failure_root) + '\n')
+                    if not _is_wait_error(failure['error']):
+                        if hard_now == 1:
+                            owner_notice('publisher-fail:' + request.request_id, 'APEX ALERT: site publish failed - ' + label, body)
+                        elif hard_now == MAX_FAILURES_PER_DAY:
+                            owner_notice('publisher-stop:' + request.request_id,
+                                         'APEX ALERT: site publish stopped after ' + str(MAX_FAILURES_PER_DAY) + ' failures - ' + label, body)
+                    elif wait_now == WAIT_ALERT_AFTER:
+                        owner_notice('publisher-wait:' + request.request_id, 'APEX ALERT: site publish still waiting after '
+                                     + str(WAIT_ALERT_AFTER) + ' tries - ' + label, body)
                 results.append(failure)
-        return {'status':'PASS' if results and all(r['status']!='REQUEST_FAILED' for r in results) else
-                'PARTIAL_FAILURE' if results else 'NO_PENDING_REQUEST','requests':results,'shared_results_preparation':prepared}
+        failed=[r for r in results if r['status']=='REQUEST_FAILED']
+        hard=[r for r in failed if not _is_wait_error(str(r.get('error','')))]
+        skipped=[r for r in results if r['status']=='SKIPPED_AFTER_REPEATED_FAILURES']
+        cleanup=None
+        if not dry_run and datetime.now(NY).minute == 7:
+            try:
+                cleanup=hourly_cleanup({r.request_id for r in pending})
+            except Exception as error:
+                cleanup={'error':type(error).__name__+':'+str(error)}
+        return {'status':'PARTIAL_FAILURE' if failed else 'SKIPPED_STUCK_REQUESTS' if skipped else
+                'PASS' if results else 'NO_PENDING_REQUEST','hard_failure_count':len(hard),
+                'requests':results,'shared_results_preparation':prepared,'cleanup':cleanup}
 
 
 def discover_isolated():
@@ -1398,8 +1576,10 @@ def main() -> int:
     parser.add_argument("--sport", choices=("NFL","MMA"))
     arguments = parser.parse_args()
     try:
-        print(json.dumps(execute(dry_run=arguments.dry_run, sport=arguments.sport), indent=2, sort_keys=True))
-        return 0
+        outcome = execute(dry_run=arguments.dry_run, sport=arguments.sport)
+        print(json.dumps(outcome, indent=2, sort_keys=True))
+        # Non-zero only for real failures; "waiting for deployment" and skipped stuck requests exit 0.
+        return 1 if outcome.get('hard_failure_count') else 0
     except Exception as error:
         print(
             json.dumps(

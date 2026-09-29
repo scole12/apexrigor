@@ -15,7 +15,7 @@ import shutil
 import sys
 import tempfile
 
-SOURCE_NAMES = ('apex_results_summary.json', 'nfl_results_archive.json',
+SOURCE_NAMES = ('apex_results_summary.json', 'results_archive.json', 'nfl_results_archive.json',
                 'nhl_results_archive.json', 'mma_results_archive.json', 'mma_results_summary.json')
 
 

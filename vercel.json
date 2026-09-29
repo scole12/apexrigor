@@ -1,6 +1,18 @@
 {
   "buildCommand": "python3 bin/build_vercel_output.py",
   "outputDirectory": "public",
+  "redirects": [
+    {
+      "source": "/mlb",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/mlb/",
+      "destination": "/",
+      "permanent": false
+    }
+  ],
   "headers": [
     {
       "source": "/data/mlb_today.json",
