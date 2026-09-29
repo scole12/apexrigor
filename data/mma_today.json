@@ -2,7 +2,7 @@
   "active_model": null,
   "active_model_sha256": null,
   "authenticity": {
-    "card_reconciliation_status": "COMPLETE_WITH_EXPLICIT_PROVIDER_MISSINGNESS",
+    "card_reconciliation_status": "PASS",
     "no_authentic_fanduel_total_means_no_total_position": true,
     "no_fabricated_positions": true
   },
@@ -93,7 +93,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 9,
-      "scheduled_start_utc": null,
+      "scheduled_start_utc": "2026-10-03T21:00:00Z",
       "segment": "PRELIMS",
       "weight_class": "HEAVYWEIGHT"
     },
@@ -170,10 +170,10 @@
     "detail": "No forecasts have been issued yet. Any published card will show the selection, captured sportsbook price, APEX probability, rating and full model-supported rationale.",
     "headline": "Awaiting the T-2 forecast run"
   },
-  "generated_at_utc": "2026-09-29T09:00:40.298938Z",
+  "generated_at_utc": "2026-09-29T17:00:42.292103Z",
   "issuance_id": null,
   "issuance_status": null,
-  "payload_sha256": "054344d6377ea8ec8220e42c30e320e9a05b093a3521434dd3550c2e0b6a8ada",
+  "payload_sha256": "7f77b6c85ccd2a4b84f168aeee99bca0586cf8fe5b8f890d2f14c62093016240",
   "picks_published": false,
   "positions": [],
   "positions_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",

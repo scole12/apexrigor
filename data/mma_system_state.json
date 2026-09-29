@@ -34,18 +34,11 @@
   },
   "canonical_fighter_identity": {
     "authority_population_permitted": false,
+    "canonical_bout_count": 14,
     "canonical_event_id": null,
-    "provider_missing_pairs": [
-      [
-        "Anthony Wint",
-        "Lucas Armand"
-      ]
-    ],
-    "reason": "REFERENCE_PROVIDER_PAIR_RECONCILIATION_INCOMPLETE",
     "reference_bout_count": 14,
     "reference_event_id": "fb5421ef-66a8-520c-8651-62f2e4a7f5fa",
-    "resolved_pair_count": 13,
-    "status": "REFERENCE_ONLY_NO_CANONICAL_FIGHTER_EVENT"
+    "status": "VERIFIED_OPERATIONAL_CARD_PIT_IDENTITIES"
   },
   "card": [
     {
@@ -134,7 +127,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 9,
-      "scheduled_start_utc": null,
+      "scheduled_start_utc": "2026-10-03T21:00:00Z",
       "segment": "PRELIMS",
       "weight_class": "HEAVYWEIGHT"
     },
@@ -189,7 +182,7 @@
       "weight_class": "WELTERWEIGHT"
     }
   ],
-  "card_reconciliation_status": "COMPLETE_WITH_EXPLICIT_PROVIDER_MISSINGNESS",
+  "card_reconciliation_status": "PASS",
   "event": {
     "city": "Salt Lake City",
     "country": "United States",
@@ -217,7 +210,7 @@
   },
   "event_id": "fb5421ef-66a8-520c-8651-62f2e4a7f5fa",
   "fight_count": 14,
-  "generated_at_utc": "2026-09-29T09:00:40.298938Z",
+  "generated_at_utc": "2026-09-29T17:00:42.292103Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "GRADED_COMMERCIAL_AND_OR_SCIENTIFIC"
@@ -564,7 +557,7 @@
       "source": "PRODUCTION_COMMERCIAL_GRADES"
     }
   ],
-  "payload_sha256": "90c9d21ef268ee9c41543c6e0469b3dcd98d37b89d79b3f4b3a87ef39cd847d6",
+  "payload_sha256": "e8d4fe05258c31ca4da0d0e951c424b3540e47795b7b633e901cee15c5ae5a64",
   "picks_published": false,
   "positions": [],
   "positions_sha256": null,
@@ -2036,23 +2029,9 @@
     "production_issuance_authorized": true,
     "release_binding": "AUTHORIZED_RELEASE_AWAITING_EVENT_ISSUANCE"
   },
-  "semantic_state_sha256": "2092becf6f97ab372870399ebcdc794f08f1eb96d322679349fc7286783454da",
-  "source_conflicts": [
-    {
-      "capture_basis": null,
-      "official_pair": [
-        "Anthony Wint",
-        "Lucas Armand"
-      ],
-      "provider_commence_time_utc": null,
-      "provider_event_id": null,
-      "provider_pair": null,
-      "provider_selection_slots": {},
-      "source_capture_id": null,
-      "status": "NO_PROVIDER_MATCH"
-    }
-  ],
-  "system_readiness_state": "DATA_BLOCKED_REFERENCE_ONLY_NO_CANONICAL_FIGHTER_EVENT",
+  "semantic_state_sha256": "231c06af60e8cca462c737874180d5759ad596cffb608f8b127e818272a5f7ae",
+  "source_conflicts": [],
+  "system_readiness_state": "AUTHORIZED_RELEASE_AWAITING_ISSUANCE",
   "t2": {
     "actual_utc": null,
     "anchor": "EARLIEST_PUBLISHED_SCHEDULED_BOUT_MINUS_2_HOURS",
