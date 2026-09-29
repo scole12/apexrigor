@@ -1494,7 +1494,14 @@ def verify_nfl_publication(request, result):
             if name in ('data/nfl_results_summary.json','data/nfl_results_archive.json'):
                 surfaces.append({'url':url,'sha256':actual,'http_status':200,'gate':'SOFT_ROLLING_RESULTS','source_sha256':expected})
                 continue
-            if actual!=expected:raise RuntimeError('LIVE_BYTES_PENDING:'+name)
+            if actual!=expected:
+                # Accept only when the live file equals the deployed commit's file and the deployment
+                # check already proved the change came from a later NFL publish (or rolling results).
+                bound=(raw.get('request_bound_surfaces') or {}).get(name) or {}
+                if bound.get('gate') in ('UPDATED_BY_LATER_NFL_PUBLISH','SOFT_ROLLING_RESULTS') and actual==bound.get('deployment_sha256'):
+                    surfaces.append({'url':url,'sha256':actual,'http_status':200,'gate':bound['gate'],'source_sha256':expected})
+                    continue
+                raise RuntimeError('LIVE_BYTES_PENDING:'+name)
             surfaces.append({'url':url,'sha256':actual,'http_status':200})
     result['deployment']=raw
     # Re-resolve the canonical alias after HTTP reads to reject an in-flight deployment switch.
