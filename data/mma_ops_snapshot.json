@@ -153,7 +153,7 @@
     "scorecards": 37,
     "weigh_ins": 5442
   },
-  "generated_at_utc": "2026-09-30T20:00:44.619163Z",
+  "generated_at_utc": "2026-09-30T20:30:42.910206Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "GRADED_COMMERCIAL_AND_OR_SCIENTIFIC"
@@ -517,7 +517,7 @@
     "schedule_status": "ANNOUNCED",
     "venue": "Delta Center"
   },
-  "payload_sha256": "8764c9134e9052e51ed783002b75a1a5daa46e974b4597bffe4fb7981bd13f10",
+  "payload_sha256": "eff599d32602339634ce43858056c15aab4304ad580cb2e40716795214565953",
   "production_isolation": "PASS",
   "schema_version": "APEX_MMA_OPS_SNAPSHOT_V1",
   "science_blocker": "AUTHORIZED_RELEASE_AWAITING_EVENT_ISSUANCE",
