@@ -34,11 +34,18 @@
   },
   "canonical_fighter_identity": {
     "authority_population_permitted": false,
-    "canonical_bout_count": 14,
     "canonical_event_id": null,
+    "provider_missing_pairs": [
+      [
+        "Marcus McGhee",
+        "Anthony Romero"
+      ]
+    ],
+    "reason": "REFERENCE_PROVIDER_PAIR_RECONCILIATION_INCOMPLETE",
     "reference_bout_count": 14,
     "reference_event_id": "fb5421ef-66a8-520c-8651-62f2e4a7f5fa",
-    "status": "VERIFIED_OPERATIONAL_CARD_PIT_IDENTITIES"
+    "resolved_pair_count": 13,
+    "status": "REFERENCE_ONLY_NO_CANONICAL_FIGHTER_EVENT"
   },
   "card": [
     {
@@ -113,13 +120,13 @@
     },
     {
       "fighter_a": "Marcus McGhee",
-      "fighter_b": "Benardo Sopaj",
+      "fighter_b": "Anthony Romero",
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 8,
       "scheduled_start_utc": "2026-10-04T00:00:00Z",
       "segment": "PRELIMS",
-      "weight_class": "BANTAMWEIGHT"
+      "weight_class": "FEATHERWEIGHT"
     },
     {
       "fighter_a": "Anthony Wint",
@@ -142,11 +149,21 @@
       "weight_class": "HEAVYWEIGHT"
     },
     {
+      "fighter_a": "Jacobe Smith",
+      "fighter_b": "Bruce Whitehead",
+      "is_co_main_event": false,
+      "is_main_event": false,
+      "official_display_order": 11,
+      "scheduled_start_utc": "2026-10-04T00:00:00Z",
+      "segment": "PRELIMS",
+      "weight_class": "WELTERWEIGHT"
+    },
+    {
       "fighter_a": "Rafael Dos Anjos",
       "fighter_b": "Alexander Hernandez",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 11,
+      "official_display_order": 12,
       "scheduled_start_utc": "2026-10-04T00:00:00Z",
       "segment": "PRELIMS",
       "weight_class": "LIGHTWEIGHT"
@@ -156,20 +173,10 @@
       "fighter_b": "Ismail Naurdiev",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 12,
-      "scheduled_start_utc": "2026-10-04T00:00:00Z",
-      "segment": "PRELIMS",
-      "weight_class": "MIDDLEWEIGHT"
-    },
-    {
-      "fighter_a": "Jacobe Smith",
-      "fighter_b": "Bruce Whitehead",
-      "is_co_main_event": false,
-      "is_main_event": false,
       "official_display_order": 13,
       "scheduled_start_utc": "2026-10-04T00:00:00Z",
       "segment": "PRELIMS",
-      "weight_class": "WELTERWEIGHT"
+      "weight_class": "MIDDLEWEIGHT"
     },
     {
       "fighter_a": "Court McGee",
@@ -182,7 +189,7 @@
       "weight_class": "WELTERWEIGHT"
     }
   ],
-  "card_reconciliation_status": "PASS",
+  "card_reconciliation_status": "OPEN_PROVIDER_IDENTITY_CONFLICT",
   "event": {
     "city": "Salt Lake City",
     "country": "United States",
@@ -210,7 +217,7 @@
   },
   "event_id": "fb5421ef-66a8-520c-8651-62f2e4a7f5fa",
   "fight_count": 14,
-  "generated_at_utc": "2026-09-30T18:00:40.996444Z",
+  "generated_at_utc": "2026-09-30T20:00:44.619163Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "GRADED_COMMERCIAL_AND_OR_SCIENTIFIC"
@@ -557,7 +564,7 @@
       "source": "PRODUCTION_COMMERCIAL_GRADES"
     }
   ],
-  "payload_sha256": "9923f345f23fea8e105bab103dc2d2282aaa7c12a97c560429a9f35e97d9d0de",
+  "payload_sha256": "ad7f6c23df898957ace02ef18d205b37d43603885f077585c1b50927e3fa98f2",
   "picks_published": false,
   "positions": [],
   "positions_sha256": null,
@@ -2029,9 +2036,26 @@
     "production_issuance_authorized": true,
     "release_binding": "AUTHORIZED_RELEASE_AWAITING_EVENT_ISSUANCE"
   },
-  "semantic_state_sha256": "cb66879548b4e73fa50a87c3a3a8c8a1d386b2b21ac7700f29eff5ee802898ee",
-  "source_conflicts": [],
-  "system_readiness_state": "AUTHORIZED_RELEASE_AWAITING_ISSUANCE",
+  "semantic_state_sha256": "613d5450eac8e2f28af6c9389277c961000075dff9b1f2f59ee5ad688f0a8f7f",
+  "source_conflicts": [
+    {
+      "capture_basis": "LATEST_LIVE_EVENTS_CAPTURE",
+      "official_pair": [
+        "Marcus McGhee",
+        "Anthony Romero"
+      ],
+      "provider_commence_time_utc": "2026-10-04T00:00:00Z",
+      "provider_event_id": "a835a9c619b6366ce8aa5050386b16d5",
+      "provider_pair": [
+        "Marcus McGhee",
+        "Benardo Sopaj"
+      ],
+      "provider_selection_slots": {},
+      "source_capture_id": "17232c55-bc87-406e-bb15-3e0124df5f7b",
+      "status": "ONE_SIDE_MATCH_PROVIDER_CARD_CONFLICT"
+    }
+  ],
+  "system_readiness_state": "DATA_BLOCKED_REFERENCE_ONLY_NO_CANONICAL_FIGHTER_EVENT",
   "t2": {
     "actual_utc": null,
     "anchor": "EARLIEST_PUBLISHED_SCHEDULED_BOUT_MINUS_2_HOURS",

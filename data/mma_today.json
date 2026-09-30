@@ -2,7 +2,7 @@
   "active_model": null,
   "active_model_sha256": null,
   "authenticity": {
-    "card_reconciliation_status": "PASS",
+    "card_reconciliation_status": "OPEN_PROVIDER_IDENTITY_CONFLICT",
     "no_authentic_fanduel_total_means_no_total_position": true,
     "no_fabricated_positions": true
   },
@@ -79,13 +79,13 @@
     },
     {
       "fighter_a": "Marcus McGhee",
-      "fighter_b": "Benardo Sopaj",
+      "fighter_b": "Anthony Romero",
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 8,
       "scheduled_start_utc": "2026-10-04T00:00:00Z",
       "segment": "PRELIMS",
-      "weight_class": "BANTAMWEIGHT"
+      "weight_class": "FEATHERWEIGHT"
     },
     {
       "fighter_a": "Anthony Wint",
@@ -108,11 +108,21 @@
       "weight_class": "HEAVYWEIGHT"
     },
     {
+      "fighter_a": "Jacobe Smith",
+      "fighter_b": "Bruce Whitehead",
+      "is_co_main_event": false,
+      "is_main_event": false,
+      "official_display_order": 11,
+      "scheduled_start_utc": "2026-10-04T00:00:00Z",
+      "segment": "PRELIMS",
+      "weight_class": "WELTERWEIGHT"
+    },
+    {
       "fighter_a": "Rafael Dos Anjos",
       "fighter_b": "Alexander Hernandez",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 11,
+      "official_display_order": 12,
       "scheduled_start_utc": "2026-10-04T00:00:00Z",
       "segment": "PRELIMS",
       "weight_class": "LIGHTWEIGHT"
@@ -122,20 +132,10 @@
       "fighter_b": "Ismail Naurdiev",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 12,
-      "scheduled_start_utc": "2026-10-04T00:00:00Z",
-      "segment": "PRELIMS",
-      "weight_class": "MIDDLEWEIGHT"
-    },
-    {
-      "fighter_a": "Jacobe Smith",
-      "fighter_b": "Bruce Whitehead",
-      "is_co_main_event": false,
-      "is_main_event": false,
       "official_display_order": 13,
       "scheduled_start_utc": "2026-10-04T00:00:00Z",
       "segment": "PRELIMS",
-      "weight_class": "WELTERWEIGHT"
+      "weight_class": "MIDDLEWEIGHT"
     },
     {
       "fighter_a": "Court McGee",
@@ -170,10 +170,10 @@
     "detail": "No forecasts have been issued yet. Any published card will show the selection, captured sportsbook price, APEX probability, rating and full model-supported rationale.",
     "headline": "Awaiting the T-2 forecast run"
   },
-  "generated_at_utc": "2026-09-30T18:00:40.996444Z",
+  "generated_at_utc": "2026-09-30T20:00:44.619163Z",
   "issuance_id": null,
   "issuance_status": null,
-  "payload_sha256": "23448677f731839b43224d47a383e8eaca8bfb1c1383d58c20a0ce6e9f3f39b6",
+  "payload_sha256": "7198a6b671aab9c920252ca7de57934cb6a16cc0c820ea36eda022e1bbca6f74",
   "picks_published": false,
   "positions": [],
   "positions_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",

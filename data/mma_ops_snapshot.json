@@ -73,13 +73,13 @@
     },
     {
       "fighter_a": "Marcus McGhee",
-      "fighter_b": "Benardo Sopaj",
+      "fighter_b": "Anthony Romero",
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 8,
       "scheduled_start_utc": "2026-10-04T00:00:00Z",
       "segment": "PRELIMS",
-      "weight_class": "BANTAMWEIGHT"
+      "weight_class": "FEATHERWEIGHT"
     },
     {
       "fighter_a": "Anthony Wint",
@@ -102,11 +102,21 @@
       "weight_class": "HEAVYWEIGHT"
     },
     {
+      "fighter_a": "Jacobe Smith",
+      "fighter_b": "Bruce Whitehead",
+      "is_co_main_event": false,
+      "is_main_event": false,
+      "official_display_order": 11,
+      "scheduled_start_utc": "2026-10-04T00:00:00Z",
+      "segment": "PRELIMS",
+      "weight_class": "WELTERWEIGHT"
+    },
+    {
       "fighter_a": "Rafael Dos Anjos",
       "fighter_b": "Alexander Hernandez",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 11,
+      "official_display_order": 12,
       "scheduled_start_utc": "2026-10-04T00:00:00Z",
       "segment": "PRELIMS",
       "weight_class": "LIGHTWEIGHT"
@@ -116,20 +126,10 @@
       "fighter_b": "Ismail Naurdiev",
       "is_co_main_event": false,
       "is_main_event": false,
-      "official_display_order": 12,
-      "scheduled_start_utc": "2026-10-04T00:00:00Z",
-      "segment": "PRELIMS",
-      "weight_class": "MIDDLEWEIGHT"
-    },
-    {
-      "fighter_a": "Jacobe Smith",
-      "fighter_b": "Bruce Whitehead",
-      "is_co_main_event": false,
-      "is_main_event": false,
       "official_display_order": 13,
       "scheduled_start_utc": "2026-10-04T00:00:00Z",
       "segment": "PRELIMS",
-      "weight_class": "WELTERWEIGHT"
+      "weight_class": "MIDDLEWEIGHT"
     },
     {
       "fighter_a": "Court McGee",
@@ -153,7 +153,7 @@
     "scorecards": 37,
     "weigh_ins": 5442
   },
-  "generated_at_utc": "2026-09-30T18:00:40.996444Z",
+  "generated_at_utc": "2026-09-30T20:00:44.619163Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "GRADED_COMMERCIAL_AND_OR_SCIENTIFIC"
@@ -517,7 +517,7 @@
     "schedule_status": "ANNOUNCED",
     "venue": "Delta Center"
   },
-  "payload_sha256": "89b65a891c4f0637312287012a0b133628bf03ce9ddbcb3ccd9499f790ab640d",
+  "payload_sha256": "8764c9134e9052e51ed783002b75a1a5daa46e974b4597bffe4fb7981bd13f10",
   "production_isolation": "PASS",
   "schema_version": "APEX_MMA_OPS_SNAPSHOT_V1",
   "science_blocker": "AUTHORIZED_RELEASE_AWAITING_EVENT_ISSUANCE",
