@@ -34,18 +34,11 @@
   },
   "canonical_fighter_identity": {
     "authority_population_permitted": false,
+    "canonical_bout_count": 14,
     "canonical_event_id": null,
-    "provider_missing_pairs": [
-      [
-        "Marcus McGhee",
-        "Anthony Romero"
-      ]
-    ],
-    "reason": "REFERENCE_PROVIDER_PAIR_RECONCILIATION_INCOMPLETE",
     "reference_bout_count": 14,
     "reference_event_id": "fb5421ef-66a8-520c-8651-62f2e4a7f5fa",
-    "resolved_pair_count": 13,
-    "status": "REFERENCE_ONLY_NO_CANONICAL_FIGHTER_EVENT"
+    "status": "VERIFIED_OPERATIONAL_CARD_PIT_IDENTITIES"
   },
   "card": [
     {
@@ -124,7 +117,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 8,
-      "scheduled_start_utc": "2026-10-04T00:00:00Z",
+      "scheduled_start_utc": "2026-10-03T22:45:00Z",
       "segment": "PRELIMS",
       "weight_class": "FEATHERWEIGHT"
     },
@@ -189,7 +182,7 @@
       "weight_class": "WELTERWEIGHT"
     }
   ],
-  "card_reconciliation_status": "OPEN_PROVIDER_IDENTITY_CONFLICT",
+  "card_reconciliation_status": "PASS",
   "event": {
     "city": "Salt Lake City",
     "country": "United States",
@@ -217,7 +210,7 @@
   },
   "event_id": "fb5421ef-66a8-520c-8651-62f2e4a7f5fa",
   "fight_count": 14,
-  "generated_at_utc": "2026-09-30T20:30:42.910206Z",
+  "generated_at_utc": "2026-09-30T21:00:45.083207Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "GRADED_COMMERCIAL_AND_OR_SCIENTIFIC"
@@ -564,7 +557,7 @@
       "source": "PRODUCTION_COMMERCIAL_GRADES"
     }
   ],
-  "payload_sha256": "ecdb4504ac790ed7c7240b5cf5ba7093d7f68d23f1ab78c2d4de63a584d3744a",
+  "payload_sha256": "cfe72b0a02d0a30eaff2cf50e6f13d74c3819dd8ad3cf1b1e91306b296c1533e",
   "picks_published": false,
   "positions": [],
   "positions_sha256": null,
@@ -2036,26 +2029,9 @@
     "production_issuance_authorized": true,
     "release_binding": "AUTHORIZED_RELEASE_AWAITING_EVENT_ISSUANCE"
   },
-  "semantic_state_sha256": "6db35d327ae6b618bc4ecddcddacdd6ee7b8c500440764d187f7129729121700",
-  "source_conflicts": [
-    {
-      "capture_basis": "LATEST_PROVIDER_EVENT_NOT_IN_CURRENT_LIVE_CAPTURE",
-      "official_pair": [
-        "Marcus McGhee",
-        "Anthony Romero"
-      ],
-      "provider_commence_time_utc": "2026-10-04T00:00:00Z",
-      "provider_event_id": "a835a9c619b6366ce8aa5050386b16d5",
-      "provider_pair": [
-        "Marcus McGhee",
-        "Benardo Sopaj"
-      ],
-      "provider_selection_slots": {},
-      "source_capture_id": "17232c55-bc87-406e-bb15-3e0124df5f7b",
-      "status": "ONE_SIDE_MATCH_PROVIDER_CARD_CONFLICT"
-    }
-  ],
-  "system_readiness_state": "DATA_BLOCKED_REFERENCE_ONLY_NO_CANONICAL_FIGHTER_EVENT",
+  "semantic_state_sha256": "b0af5824aef5346da9fc39d2cd6f383ac3ef4b1673bd49dce7acac2d79f8a57f",
+  "source_conflicts": [],
+  "system_readiness_state": "AUTHORIZED_RELEASE_AWAITING_ISSUANCE",
   "t2": {
     "actual_utc": null,
     "anchor": "EARLIEST_PUBLISHED_SCHEDULED_BOUT_MINUS_2_HOURS",
