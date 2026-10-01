@@ -405,6 +405,16 @@ HTML = f'''<!doctype html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
 <title>APEX — MMA Results</title>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="APEX">
+<meta property="og:title" content="APEX — MMA Results">
+<meta property="og:description" content="Quantitative forecasting for model-driven sports markets.">
+<meta property="og:url" content="https://apexrigor.com/mma/results/">
+<meta property="og:image" content="https://apexrigor.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://apexrigor.com/og-image.png">
 <meta name="description" content="APEX MMA / UFC graded results. Season record for MMA Winner H2H.">
 <link rel="stylesheet" href="/assets/apex.css?v={CACHE}">
 <meta name="theme-color" content="#000000">
