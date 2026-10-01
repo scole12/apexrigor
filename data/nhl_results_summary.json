@@ -1,1 +1,1 @@
-{"latest_graded_date":"2026-09-30","overall":{"losses":4,"positions_settled":9,"positions_tracked":9,"pushes":0,"voids":0,"wins":5},"sport":"NHL","sports":{"nhl":{"losses":4,"positions_settled":9,"positions_tracked":9,"pushes":0,"voids":0,"wins":5}},"sports_included":["nhl"]}
+{"latest_graded_date":"2026-09-30","overall":{"losses":4,"positions_settled":9,"positions_tracked":20,"pushes":0,"voids":0,"wins":5},"sport":"NHL","sports":{"nhl":{"losses":4,"positions_settled":9,"positions_tracked":20,"pushes":0,"voids":0,"wins":5}},"sports_included":["nhl"]}
