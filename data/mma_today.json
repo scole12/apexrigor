@@ -113,7 +113,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 11,
-      "scheduled_start_utc": "2026-10-04T00:00:00Z",
+      "scheduled_start_utc": "2026-10-03T21:20:00Z",
       "segment": "PRELIMS",
       "weight_class": "WELTERWEIGHT"
     },
@@ -170,10 +170,10 @@
     "detail": "No forecasts have been issued yet. Any published card will show the selection, captured sportsbook price, APEX probability, rating and full model-supported rationale.",
     "headline": "Awaiting the T-2 forecast run"
   },
-  "generated_at_utc": "2026-10-01T14:00:39.840537Z",
+  "generated_at_utc": "2026-10-01T21:30:45.447165Z",
   "issuance_id": null,
   "issuance_status": null,
-  "payload_sha256": "59ed588959c77d96cc5b1d388af0e89bf5a5da81a8499222bd1083693d537b3f",
+  "payload_sha256": "6b55a25b92652a7f85ab8fe1d5c0196cfba1e8ef7fbfcbc9f8afca7a8fc06109",
   "picks_published": false,
   "positions": [],
   "positions_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
