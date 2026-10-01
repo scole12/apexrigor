@@ -1368,8 +1368,11 @@ def execute(*, dry_run: bool, sport: str | None = None) -> dict[str, Any]:
                         remove_request_worktree(request)
                 results.append(result)
             except Exception as error:
-                failure={'status':'REQUEST_FAILED','sport':request.sport,'request_id':request.request_id,
-                         'error':type(error).__name__+':'+str(error),'at':datetime.now(timezone.utc).isoformat()}
+                error_text=type(error).__name__+':'+str(error)
+                # 2026-10-01: a request waiting for Vercel to build its commit is not a failure.
+                failure={'status':'WAITING_FOR_DEPLOYMENT' if _is_wait_error(error_text) else 'REQUEST_FAILED',
+                         'sport':request.sport,'request_id':request.request_id,
+                         'error':error_text,'at':datetime.now(timezone.utc).isoformat()}
                 if not dry_run:
                     failure_root=STATE_ROOT/'failures'/request.sport.lower()/request.request_id
                     failure_root.mkdir(parents=True,exist_ok=True)
@@ -1390,6 +1393,7 @@ def execute(*, dry_run: bool, sport: str | None = None) -> dict[str, Any]:
                                      + str(WAIT_ALERT_AFTER) + ' tries - ' + label, body)
                 results.append(failure)
         failed=[r for r in results if r['status']=='REQUEST_FAILED']
+        waiting=[r for r in results if r['status']=='WAITING_FOR_DEPLOYMENT']
         hard=[r for r in failed if not _is_wait_error(str(r.get('error','')))]
         skipped=[r for r in results if r['status']=='SKIPPED_AFTER_REPEATED_FAILURES']
         cleanup=None
@@ -1399,7 +1403,8 @@ def execute(*, dry_run: bool, sport: str | None = None) -> dict[str, Any]:
             except Exception as error:
                 cleanup={'error':type(error).__name__+':'+str(error)}
         return {'status':'PARTIAL_FAILURE' if failed else 'SKIPPED_STUCK_REQUESTS' if skipped else
-                'PASS' if results else 'NO_PENDING_REQUEST','hard_failure_count':len(hard),
+                'WAITING_FOR_DEPLOYMENT' if waiting else 'PASS' if results else 'NO_PENDING_REQUEST','hard_failure_count':len(hard),
+                'waiting_count':len(waiting),
                 'requests':results,'shared_results_preparation':prepared,'cleanup':cleanup}
 
 
