@@ -1329,6 +1329,15 @@ def execute(*, dry_run: bool, sport: str | None = None) -> dict[str, Any]:
     with LOCK_PATH.open('a+') as lock:
         fcntl.flock(lock.fileno(), fcntl.LOCK_EX)
         results=[]
+        if not dry_run and sport is None:
+            # 2026-10-01: GitHub->Vercel started no build for any push from 10:03 to 18:11 ET (5 pushes).
+            # Every sport pushes to the same main branch, so check main here once a minute and ask
+            # Vercel to build it if it has had no build for 2 minutes.
+            try:
+                head=subprocess.run(['git','ls-remote','origin','refs/heads/main'],cwd=ROOT,capture_output=True,text=True,timeout=30).stdout.split()
+                if head:_catch_up_vercel(head[0])
+            except Exception:
+                pass
         try:
             prepared=prepare_due_ncaaf_records() if not dry_run and sport is None else []
         except Exception as error:
@@ -1524,6 +1533,17 @@ def vercel_deployment():
         return json.load(response)
 
 
+def _catch_up_vercel(commit):
+    """Ask Vercel to build a pushed commit it never started (see apex_vercel_catchup.py)."""
+    try:
+        import importlib.util
+        spec = importlib.util.spec_from_file_location('apex_vercel_catchup', '/opt/apex_site/bin/apex_vercel_catchup.py')
+        module = importlib.util.module_from_spec(spec); spec.loader.exec_module(module)
+        return module.ensure_deployment(commit)
+    except Exception as exc:
+        return {'status': 'CATCHUP_ERROR', 'error': type(exc).__name__ + ': ' + str(exc)[:200]}
+
+
 def deployment_proof(d, commit, surface_hashes=None, request_id=None, *, repo=None):
     """An alias may advance for another sport only with unchanged request-bound NFL bytes."""
     import re
@@ -1540,7 +1560,9 @@ def deployment_proof(d, commit, surface_hashes=None, request_id=None, *, repo=No
         raise RuntimeError('DESCENDANT_REQUIRES_REQUEST_BOUND_SURFACES')
     ancestry=subprocess.run(['git','merge-base','--is-ancestor',commit,deployed],cwd=repo,
                             stdout=subprocess.PIPE,stderr=subprocess.PIPE,timeout=30)
-    if ancestry.returncode!=0:raise RuntimeError('DEPLOYMENT_NOT_REQUEST_DESCENDANT')
+    if ancestry.returncode!=0:
+        _catch_up_vercel(commit)
+        raise RuntimeError('DEPLOYMENT_NOT_REQUEST_DESCENDANT')
     verified={}
     for name,expected in sorted((surface_hashes or {}).items()):
         if safe_relative(name)!=name or not (name.startswith('data/nfl_') or name.startswith('nfl/')):
