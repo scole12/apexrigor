@@ -4,7 +4,7 @@ Measured 2026-10-01: GitHub main 0ee9f75 (NHL T-2, 17:00:20 ET) got no Vercel
 deployment at all, so the live site kept the 07:00 board and the NHL post step
 failed 3 times waiting for it. 3 of 196 commits since 2026-09-24 had no
 deployment. This asks Vercel to build that exact commit, once, after it has
-been missing for at least 2 minutes. It never edits files, never pushes, and
+been missing for at least 4 minutes. It never edits files, never pushes, and
 never deploys anything other than the commit already on GitHub main.
 """
 import json
@@ -17,8 +17,8 @@ PROJECT = 'prj_eZTtqClkwx7IcE7NhVAK6UFmBnnB'
 TEAM = 'team_ZbMl7Z31fLqnzoCYHAY2a1rk'
 REPO_ID = 1234114306
 AUTH = Path('/root/.local/share/com.vercel.cli/auth.json')
-STATE = Path('/var/opt/apex_site_ops/vercel_catchup')
-WAIT_SECONDS = 120  # Vercel normally starts a git build within ~10 s of a push
+STATE = Path('/var/opt/apex_site_publisher/vercel_catchup')  
+WAIT_SECONDS = 240  # 18:17-18:26 on 10/01 Vercel took ~3 min to start git builds; do not double-build
 
 
 def _call(url, body=None):

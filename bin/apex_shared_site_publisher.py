@@ -1332,7 +1332,7 @@ def execute(*, dry_run: bool, sport: str | None = None) -> dict[str, Any]:
         if not dry_run and sport is None:
             # 2026-10-01: GitHub->Vercel started no build for any push from 10:03 to 18:11 ET (5 pushes).
             # Every sport pushes to the same main branch, so check main here once a minute and ask
-            # Vercel to build it if it has had no build for 2 minutes.
+            # Vercel to build it if it has had no build for 4 minutes.
             try:
                 head=subprocess.run(['git','ls-remote','origin','refs/heads/main'],cwd=ROOT,capture_output=True,text=True,timeout=30).stdout.split()
                 if head:_catch_up_vercel(head[0])
