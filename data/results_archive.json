@@ -3143,36 +3143,42 @@
     {
       "date": "July 27, 2026",
       "date_iso": "2026-07-27",
-      "record": "12W-10L",
-      "win_rate": "54.5%",
-      "summary": "MLB 12-10",
+      "record": "10W-12L",
+      "win_rate": "45.5%",
+      "summary": "MLB 10-12",
       "has_summary": true,
       "_apex_raw": {
-        "w": 12,
-        "l": 10,
+        "w": 10,
+        "l": 12,
         "push": 0,
+        "void": 2,
+        "pending": 0,
+        "other": 0,
         "settled_rows": 22,
         "rows": 24,
         "by_market": {
           "F5_ATS": {
-            "W": 7,
-            "L": 4
+            "W": 6,
+            "L": 5,
+            "PUSH": 0,
+            "VOID": 1,
+            "PENDING": 0,
+            "OTHER": 0
           },
           "F5_TOT": {
-            "W": 5,
-            "L": 6
+            "W": 4,
+            "L": 7,
+            "PUSH": 0,
+            "VOID": 1,
+            "PENDING": 0,
+            "OTHER": 0
           }
         },
         "date_iso": "2026-07-27",
-        "source": "apex_results_archive_publish",
+        "source": "apex_canonical_position_grades",
         "canonical_only": true,
         "canonical_positions": 24,
-        "canonical_source_sha256": "85507886c8676f8e5701ea34e80603480d5cd1b61e20de6d6fa3df8a2606d630",
-        "_internal": {
-          "void": 2,
-          "pending": 0,
-          "issued_rows": 24
-        }
+        "canonical_grade_run_id": "2026-07-27:345cf53ca27d201f13ae49a35920c0ba6f099c43ba72cf8bdb0896a96ec9f42f"
       }
     },
     {
@@ -3214,36 +3220,42 @@
     {
       "date": "July 25, 2026",
       "date_iso": "2026-07-25",
-      "record": "19W-11L",
-      "win_rate": "63.3%",
-      "summary": "MLB 19-11",
+      "record": "17W-13L",
+      "win_rate": "56.7%",
+      "summary": "MLB 17-13",
       "has_summary": true,
       "_apex_raw": {
-        "w": 19,
-        "l": 11,
+        "w": 17,
+        "l": 13,
         "push": 0,
+        "void": 0,
+        "pending": 0,
+        "other": 0,
         "settled_rows": 30,
         "rows": 30,
         "by_market": {
           "F5_ATS": {
             "W": 10,
-            "L": 5
+            "L": 5,
+            "PUSH": 0,
+            "VOID": 0,
+            "PENDING": 0,
+            "OTHER": 0
           },
           "F5_TOT": {
-            "L": 6,
-            "W": 9
+            "W": 7,
+            "L": 8,
+            "PUSH": 0,
+            "VOID": 0,
+            "PENDING": 0,
+            "OTHER": 0
           }
         },
         "date_iso": "2026-07-25",
-        "source": "apex_results_archive_publish",
+        "source": "apex_canonical_position_grades",
         "canonical_only": true,
         "canonical_positions": 30,
-        "canonical_source_sha256": "8de8f989db2b01be971836f8c8a5da492fe170274083d3fa2cad3c92e28b7ccb",
-        "_internal": {
-          "void": 0,
-          "pending": 0,
-          "issued_rows": 30
-        }
+        "canonical_grade_run_id": "C02_RECONCILIATION:2026-07-25:ad5060d8e5019bc5c2b5c4fed4beb8cf48c6074be47b8094a88dfd988a05eb73"
       }
     },
     {
@@ -3349,6 +3361,47 @@
           "pending": 0,
           "issued_rows": 34
         }
+      }
+    },
+    {
+      "date": "July 21, 2026",
+      "date_iso": "2026-07-21",
+      "record": "10W-16L",
+      "win_rate": "38.5%",
+      "summary": "MLB 10-16",
+      "has_summary": true,
+      "_apex_raw": {
+        "w": 10,
+        "l": 16,
+        "push": 0,
+        "void": 0,
+        "pending": 0,
+        "other": 0,
+        "settled_rows": 26,
+        "rows": 26,
+        "by_market": {
+          "F5_ATS": {
+            "W": 3,
+            "L": 10,
+            "PUSH": 0,
+            "VOID": 0,
+            "PENDING": 0,
+            "OTHER": 0
+          },
+          "F5_TOT": {
+            "W": 7,
+            "L": 6,
+            "PUSH": 0,
+            "VOID": 0,
+            "PENDING": 0,
+            "OTHER": 0
+          }
+        },
+        "date_iso": "2026-07-21",
+        "source": "apex_canonical_position_grades",
+        "canonical_only": true,
+        "canonical_positions": 26,
+        "canonical_grade_run_id": "july21_authorized_grader_recovery_v1"
       }
     },
     {
