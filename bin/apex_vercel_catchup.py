@@ -6,6 +6,10 @@ failed 3 times waiting for it. 3 of 196 commits since 2026-09-24 had no
 deployment. This asks Vercel to build that exact commit, once, after it has
 been missing for at least 4 minutes. It never edits files, never pushes, and
 never deploys anything other than the commit already on GitHub main.
+
+Measured 2026-10-02: the Vercel GitHub app is no longer installed for scole12/apexrigor
+(relink returns 400 "install the GitHub integration first"), so no push builds by itself.
+While the project has no Git link there is nothing to wait for: deploy on the first check.
 """
 import json
 import time
@@ -31,6 +35,14 @@ def _call(url, body=None):
         return json.load(response)
 
 
+def _git_linked():
+    """True when the Vercel project is linked to GitHub (pushes build by themselves)."""
+    try:
+        return bool(_call(f'https://api.vercel.com/v9/projects/{PROJECT}?teamId={TEAM}').get('link'))
+    except Exception:
+        return True  # unknown: keep the 4-minute wait
+
+
 def ensure_deployment(commit):
     """Return a short status dict. Safe to call on every verification retry."""
     if not isinstance(commit, str) or len(commit) != 40:
@@ -43,14 +55,16 @@ def ensure_deployment(commit):
     marker = STATE / (commit + '.json')
     record = json.loads(marker.read_text()) if marker.exists() else {}
     now = time.time()
+    wait = WAIT_SECONDS if _git_linked() else 0
     if 'first_missing_at' not in record:
         record['first_missing_at'] = now
         marker.write_text(json.dumps(record, indent=2) + '\n')
-        return {'status': 'MISSING_WAITING', 'seconds_missing': 0}
+        if wait:
+            return {'status': 'MISSING_WAITING', 'seconds_missing': 0}
     if record.get('requested_deployment_id'):
         return {'status': 'ALREADY_REQUESTED', 'deployment_id': record['requested_deployment_id']}
     waited = now - record['first_missing_at']
-    if waited < WAIT_SECONDS:
+    if waited < wait:
         return {'status': 'MISSING_WAITING', 'seconds_missing': int(waited)}
     created = _call(f'https://api.vercel.com/v13/deployments?teamId={TEAM}', {
         'name': 'apexrigor', 'project': PROJECT, 'target': 'production',
