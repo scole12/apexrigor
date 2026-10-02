@@ -11,6 +11,7 @@ on:
         options:
           - T3
           - T2
+          - RESULTS
       slate_date:
         description: NHL slate date (YYYY-MM-DD)
         required: true
