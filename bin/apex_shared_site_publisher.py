@@ -1084,6 +1084,98 @@ def preserve_ncaaf_email_evidence(
     }
 
 
+NCAAF_LIVE_POLL_SECONDS = 60
+
+
+def ncaaf_first_kickoff_ms(request: Request) -> int | None:
+    """Earliest kickoff at or after the request time on the published NCAAF slate
+    (data/ncaaf_today.json in the request payload). Falls back to request time + 2 h,
+    since T-2 runs at first kickoff minus 2 h. None when neither is known."""
+    requested_ms = None
+    try:
+        stamp = str(request.manifest.get('requested_at_utc') or '').replace('Z', '+00:00')
+        requested_ms = int(datetime.fromisoformat(stamp).timestamp() * 1000)
+    except (TypeError, ValueError):
+        pass
+    kickoffs: list[int] = []
+
+    def walk(node: Any) -> None:
+        if isinstance(node, dict):
+            for key, value in node.items():
+                if key == 'kickoff_utc_ms' and isinstance(value, (int, float)) and not isinstance(value, bool):
+                    kickoffs.append(int(value))
+                else:
+                    walk(value)
+        elif isinstance(node, list):
+            for item in node:
+                walk(item)
+
+    try:
+        if request.payload_root is not None:
+            walk(load_json(request.payload_root / 'data' / 'ncaaf_today.json'))
+    except (OSError, ValueError):
+        pass
+    upcoming = [k for k in kickoffs if requested_ms is None or k >= requested_ms]
+    if upcoming:
+        return min(upcoming)
+    return None if requested_ms is None else requested_ms + 2 * 3600 * 1000
+
+
+def ncaaf_deployment_serves(commit: str) -> tuple[bool, dict[str, Any]]:
+    """True when the apexrigor.com production deployment is READY and contains `commit`."""
+    d = vercel_deployment()
+    deployed = str((d.get('meta') or {}).get('githubCommitSha') or '')
+    detail = {'deployment_url': d.get('url'), 'deployed_commit': deployed, 'ready_state': d.get('readyState')}
+    if (d.get('readyState') != 'READY' or d.get('target') != 'production'
+            or 'apexrigor.com' not in (d.get('alias') or [])
+            or not re.fullmatch(r'[0-9a-f]{40}', deployed) or not re.fullmatch(r'[0-9a-f]{40}', str(commit))):
+        return False, detail
+    if deployed != commit:
+        subprocess.run(['git', 'fetch', '--quiet', 'origin', 'main'], cwd=ROOT, capture_output=True, timeout=60)
+        ancestry = subprocess.run(['git', 'merge-base', '--is-ancestor', commit, deployed], cwd=ROOT,
+                                  capture_output=True, timeout=30)
+        if ancestry.returncode != 0:
+            return False, detail
+    return True, detail
+
+
+def ncaaf_t2_site_live_before_email(request: Request, result: dict[str, Any], *,
+                                    now_ms: int | None = None, poll_seconds: float | None = None) -> dict[str, Any]:
+    """NCAAF T-2 order: picks published, apexrigor.com serving them, then the email with the live link.
+    If the site is still not serving them at first kickoff, the email goes out then and the receipt
+    records it (site_live_check). T-3 and results emails are not held, and an email already started
+    is never held. While waiting, the request is WAITING_FOR_DEPLOYMENT and is checked again next minute."""
+    if request.sport != 'NCAAF' or request.product != 'T2':
+        return result
+    state_path = receipt_path(request)
+    prior = load_json(state_path) if state_path.is_file() else {}
+    if prior.get('email_dispatch_at_utc') or prior.get('email_workflow_run_id') is not None:
+        return result
+    commit = str(result.get('published_commit') or '')
+    first_kick = ncaaf_first_kickoff_ms(request)
+    stop = time.time() + (NCAAF_LIVE_POLL_SECONDS if poll_seconds is None else poll_seconds)
+    while True:
+        try:
+            live, detail = ncaaf_deployment_serves(commit)
+        except Exception as error:  # noqa: BLE001
+            live, detail = False, {'check_error': type(error).__name__ + ':' + str(error)[:300]}
+        check = {'published_commit': commit, 'first_kickoff_utc_ms': first_kick,
+                 'checked_at_utc': datetime.now(timezone.utc).isoformat(), **detail}
+        if live:
+            return {**result, 'site_live_check': {'status': 'SITE_LIVE_BEFORE_EMAIL', **check}}
+        current_ms = int(time.time() * 1000) if now_ms is None else int(now_ms)
+        if first_kick is None or current_ms >= first_kick:
+            return {**result, 'site_live_check': {'status': 'EMAIL_SENT_AT_FIRST_KICKOFF_SITE_NOT_LIVE', **check}}
+        if time.time() >= stop:
+            break
+        time.sleep(10)
+    try:
+        _catch_up_vercel(commit)
+    except Exception:  # noqa: BLE001
+        pass
+    raise RuntimeError('DEPLOYMENT_NOT_REQUEST_DESCENDANT: NCAAF T-2 email waits for apexrigor.com to serve ' + commit)
+
+
 def dispatch_ncaaf_email(request: Request, receipt: dict[str, Any]) -> dict[str, Any]:
     if request.product != 'RESULTS':
         return _dispatch_ncaaf_email_workflow(request, receipt)
@@ -1363,6 +1455,7 @@ def execute(*, dry_run: bool, sport: str | None = None) -> dict[str, Any]:
                         from apex_mma_publication_acceptance import verify
                         result=verify(request,result,sys.modules[__name__])
                     if request.sport=='NCAAF':
+                        result=ncaaf_t2_site_live_before_email(request,result)
                         result=dispatch_ncaaf_email(request,result)
                     else:
                         atomic_json(receipt_path(request),result)
