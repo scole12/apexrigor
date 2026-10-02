@@ -500,10 +500,15 @@ def ncaaf_delivery_manifest(request: Request, worktree: Path) -> None:
             or actual_start_ms <= 0
         ):
             raise RuntimeError("NCAAF T3 timing receipt is invalid")
+        # A scheduled T-3 runs its current-stats stage before living hydration, so the
+        # hydration request always starts minutes after the nominal time. Only the stage
+        # runner's own late marker (`run-late` writes t3_late_<day>.json) means late.
+        late_marker = NCAAF_QUEUE.parent / "independent_scheduler" / f"t3_late_{request.slate_date}.json"
         manifest["t3_timing"] = {
             "execution_class": (
-                "LATE_RECOVERY" if actual_start_ms > nominal_ms else "ON_TIME"
+                "LATE_RECOVERY" if late_marker.is_file() and load_json(late_marker).get("late") else "ON_TIME"
             ),
+            "late_marker_present": late_marker.is_file(),
             "nominal_t3_utc_ms": nominal_ms,
             "actual_hydration_start_utc_ms": actual_start_ms,
             "actual_hydration_receipt_utc_ms": int(
