@@ -1342,7 +1342,10 @@ def execute(*, dry_run: bool, sport: str | None = None) -> dict[str, Any]:
             prepared=prepare_due_ncaaf_records() if not dry_run and sport is None else []
         except Exception as error:
             prepared=[{'status':'PREPARATION_FAILED','error':str(error)}]
-        pending=discover_nfl() if sport=='NFL' else discover_mma() if sport=='MMA' else [request for request in discover_isolated() if request.sport != 'NFL']
+        # 2026-10-02: an NFL request already pushed to GitHub is only waiting for Vercel. The NFL lane runs
+        # this publisher once per stage, so its check stayed WAITING until the next NFL stage (days later).
+        # The once-a-minute run now finishes that check; it never builds or pushes NFL content.
+        pending=discover_nfl() if sport=='NFL' else discover_mma() if sport=='MMA' else [request for request in discover_isolated() if request.sport != 'NFL' or _nfl_request_pushed(request)]
         for request in pending:
             hard_failures = failure_counts(request)[0] if not dry_run else 0
             if hard_failures >= MAX_FAILURES_PER_DAY:
@@ -1406,6 +1409,12 @@ def execute(*, dry_run: bool, sport: str | None = None) -> dict[str, Any]:
                 'WAITING_FOR_DEPLOYMENT' if waiting else 'PASS' if results else 'NO_PENDING_REQUEST','hard_failure_count':len(hard),
                 'waiting_count':len(waiting),
                 'requests':results,'shared_results_preparation':prepared,'cleanup':cleanup}
+
+
+def _nfl_request_pushed(request):
+    intent=STATE_ROOT/'publication_intents/nfl'/(str(request.request_id)+'.json')
+    try:return intent.is_file() and load_json(intent).get('phase')=='PUSHED'
+    except Exception:return False
 
 
 def discover_isolated():
