@@ -1,0 +1,50 @@
+{
+ "T2": {
+  "body": "The APEX NHL T-minus-2 Picks Card for October 2, 2026 is attached.\n\nThe full slate has been published to the live Picks page for human review:\nhttps://apexrigor.com/nhl\n\nSlate summary: 5 games \u2014 7 positions.\n\nAttached in order:\n1. APEX NHL T-2 Picks Card PDF\n2. APEX NHL T-2 Picks Card PNG\n\nEvery official NHL game on today's slate is represented. Every game carries one Totals position; an underdog +1.5 position is issued only when it passes the underdog filter, and games without one are marked Not Issued.",
+  "delivery_key": "nhl/t2_picks/2026-10-02",
+  "files": [
+   {
+    "bytes": 53179,
+    "filename": "NHL_T2_FULL_SLATE_2026-10-02.pdf",
+    "sha256": "f97b9c9f0ca7753c2f42e23e0b72e4cf331cb4f4fa668952542f73c3af9419bd"
+   },
+   {
+    "bytes": 78373,
+    "filename": "NHL_T2_PICKS_CARD_2026-10-02.png",
+    "sha256": "b703f6c51e727a8fbd03130a384b045099a0585af4abf75e73fe7b6bd6861ff6"
+   }
+  ],
+  "from": "scliuna@gmail.com",
+  "original_sendgrid_accepted_at": "2026-10-02T20:30:33.475903Z",
+  "original_sendgrid_message_id": "plGPCKJXRmeFUdj3yU-FUQ",
+  "reason": "Original SendGrid-accepted message never reached the owner mailbox; one recovery delivery of the identical sealed artifacts.",
+  "subject": "APEX NHL T-2 Picks Card \u2014 October 2, 2026 \u2014 T2_FULL_SLATE_20261002",
+  "to": [
+   "scliuna@gmail.com",
+   "debbiemille@gmail.com",
+   "jabellard@gmail.com",
+   "raydevincent@hotmail.com"
+  ]
+ },
+ "T3": {
+  "body": "NHL T-3 hydration receipt \u2014 2026-10-02\nOfficial schedule, player and team hydration completed.\nRoster captures: 32\nReceipt SHA256: bee38aee29f51c2be1adf33e157a0f71e90136364610bd169dee71b09ff34478\nThis is a hydration receipt. No picks are issued at T-3.",
+  "delivery_key": "nhl/t3_receipt/2026-10-02",
+  "files": [
+   {
+    "bytes": 775184,
+    "filename": "NHL_T3_DATA_REPORT_2026-10-02.pdf",
+    "sha256": "0217551b17f5b86e8bac50f81352c3d97e4061e178742c9443cff92e96dd141a"
+   }
+  ],
+  "from": "scliuna@gmail.com",
+  "original_sendgrid_accepted_at": "2026-10-02T19:40:44.521433Z",
+  "original_sendgrid_message_id": "hBg-WH5ATgONVvR30FCfgA",
+  "reason": "Original SendGrid-accepted message never reached the owner mailbox; one recovery delivery of the identical sealed artifacts.",
+  "subject": "APEX NHL \u2014 T-3 hydration \u2014 2026-10-02",
+  "to": [
+   "scliuna@gmail.com",
+   "raydevincent@hotmail.com",
+   "jabellard@gmail.com"
+  ]
+ }
+}
