@@ -147,13 +147,13 @@
     "events": 1050,
     "fight_statistics_source_aggregate": 0,
     "fighters": 4018,
-    "results": 3847,
+    "results": 3850,
     "round_statistics_elemental": 12263,
     "round_stats": 0,
     "scorecards": 37,
     "weigh_ins": 5442
   },
-  "generated_at_utc": "2026-10-01T21:30:45.447165Z",
+  "generated_at_utc": "2026-10-02T10:40:20.766210Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "GRADED_COMMERCIAL_AND_OR_SCIENTIFIC"
@@ -517,7 +517,7 @@
     "schedule_status": "ANNOUNCED",
     "venue": "Delta Center"
   },
-  "payload_sha256": "cbd4541e89293441f79f5ff483cb6e2eca39e41350aa76e4d025857b86dfa56f",
+  "payload_sha256": "c0d2236eb75a48839150b0d7ff8d8bf940be22481c5f906531644b575e6fa387",
   "production_isolation": "PASS",
   "schema_version": "APEX_MMA_OPS_SNAPSHOT_V1",
   "science_blocker": "AUTHORIZED_RELEASE_AWAITING_EVENT_ISSUANCE",
