@@ -35,6 +35,8 @@
       "selected_probability": 0.44282834101382496,
       "issued_tier": "WEAK",
       "tier": "WEAK",
+      "market_devig_probability": 0.44282834101382496,
+      "calibration_method": "IDENTITY",
       "tier_rule_id": "APEX_CALIBRATED_SELECTED_SIDE_WIN_PROBABILITY_RATING_CONTRACT_V4",
       "rating_contract_version": "APEX_CALIBRATED_SELECTED_SIDE_WIN_PROBABILITY_RATING_CONTRACT_V4",
       "tier_rule_sha256": "130c06cff55a55e136452bbc6bf3c6d73d0774a9a7876be2a1d0b16e13f258df",
@@ -80,6 +82,8 @@
       "selected_probability": 0.557171658986175,
       "issued_tier": "STRONG",
       "tier": "STRONG",
+      "market_devig_probability": 0.557171658986175,
+      "calibration_method": "IDENTITY",
       "tier_rule_id": "APEX_CALIBRATED_SELECTED_SIDE_WIN_PROBABILITY_RATING_CONTRACT_V4",
       "rating_contract_version": "APEX_CALIBRATED_SELECTED_SIDE_WIN_PROBABILITY_RATING_CONTRACT_V4",
       "tier_rule_sha256": "130c06cff55a55e136452bbc6bf3c6d73d0774a9a7876be2a1d0b16e13f258df",
@@ -99,7 +103,7 @@
       "source_era": "CANONICAL_DB_ISSUANCE_AND_GRADE"
     }
   ],
-  "built_at_et": "2026-10-02T07:01:59.540693-04:00",
+  "built_at_et": "2026-10-02T15:11:17.821732-04:00",
   "_internal": {
     "void": 0,
     "pending": 0,

@@ -45,7 +45,7 @@
       "canonical_only": true,
       "canonical_positions": 2,
       "canonical_source_sha256": "6f0a0c728c8268c9daf2548414c351ef3988ff846e6bffb4ddf4510c0636e6fc",
-      "canonical_receipt_sha256": "e8c0b4af1ddbd7c2de2c5e8c0931ecb9941f58d12b9964caa275db0f3b8cc6d1",
+      "canonical_receipt_sha256": "31c4346989f0495d4f48baa758963a3739c887bdf77da28c5dc80ca9252dd570",
       "issuance_data_quality": {
         "status": "VALID_NO_INVALIDATION_REGISTERED",
         "data_quality_invalidated_for_scientific_forward_grade": false
@@ -98,7 +98,7 @@
         "canonical_only": true,
         "canonical_positions": 2,
         "canonical_source_sha256": "6f0a0c728c8268c9daf2548414c351ef3988ff846e6bffb4ddf4510c0636e6fc",
-        "canonical_receipt_sha256": "e8c0b4af1ddbd7c2de2c5e8c0931ecb9941f58d12b9964caa275db0f3b8cc6d1",
+        "canonical_receipt_sha256": "31c4346989f0495d4f48baa758963a3739c887bdf77da28c5dc80ca9252dd570",
         "issuance_data_quality": {
           "status": "VALID_NO_INVALIDATION_REGISTERED",
           "data_quality_invalidated_for_scientific_forward_grade": false
@@ -3116,27 +3116,64 @@
         "w": 14,
         "l": 16,
         "push": 0,
+        "void": 2,
+        "pending": 0,
+        "other": 0,
         "settled_rows": 30,
         "rows": 32,
         "by_market": {
           "F5_ATS": {
             "W": 7,
-            "L": 8
+            "L": 8,
+            "PUSH": 0,
+            "VOID": 1,
+            "PENDING": 0,
+            "OTHER": 0
           },
           "F5_TOT": {
             "W": 7,
-            "L": 8
+            "L": 8,
+            "PUSH": 0,
+            "VOID": 1,
+            "PENDING": 0,
+            "OTHER": 0
           }
         },
         "date_iso": "2026-07-28",
-        "source": "apex_results_archive_publish",
+        "source": "apex_canonical_grader_receipt_legacy_ledger_v1",
         "canonical_only": true,
         "canonical_positions": 32,
-        "canonical_source_sha256": "548cb64c63e796a6dccba7cef05d7b86ac05e2086e0b4a2cd8acf20e21af94df",
+        "canonical_source_sha256": "b82c0c15b3ee8dfef16a40c316977b6a8c63b143097b9b2482e91d654c0c4d6c",
+        "result_sources": {
+          "CANONICAL_DB_GRADE": 32
+        },
         "_internal": {
           "void": 2,
           "pending": 0,
+          "other": 0,
           "issued_rows": 32
+        },
+        "_apex_prior": {
+          "w": 14,
+          "l": 16,
+          "push": 0,
+          "void": null,
+          "pending": null,
+          "other": null,
+          "settled_rows": 30,
+          "rows": 32,
+          "by_market": {
+            "F5_ATS": {
+              "W": 7,
+              "L": 8
+            },
+            "F5_TOT": {
+              "W": 7,
+              "L": 8
+            }
+          },
+          "source": "apex_results_archive_publish",
+          "record": "14W-16L"
         }
       }
     },
@@ -3485,27 +3522,66 @@
         "w": 14,
         "l": 16,
         "push": 0,
+        "void": 2,
+        "pending": 0,
+        "other": 0,
         "settled_rows": 30,
         "rows": 32,
         "by_market": {
           "F5_ATS": {
+            "W": 5,
             "L": 10,
-            "W": 5
+            "PUSH": 0,
+            "VOID": 1,
+            "PENDING": 0,
+            "OTHER": 0
           },
           "F5_TOT": {
             "W": 9,
-            "L": 6
+            "L": 6,
+            "PUSH": 0,
+            "VOID": 1,
+            "PENDING": 0,
+            "OTHER": 0
           }
         },
         "date_iso": "2026-07-18",
-        "source": "apex_results_archive_publish",
+        "source": "apex_canonical_grader_receipt_legacy_ledger_v1",
         "canonical_only": true,
         "canonical_positions": 32,
-        "canonical_source_sha256": "e6c59f8c635f329313be879721a5f4824ada0d5a4b841fad1fb591bf40d0a5e9",
+        "canonical_source_sha256": "ccfd52074e4d9bfb9894ff81b7cd9669053bd1989b702dc55b2308b012b62bf8",
+        "result_sources": {
+          "CANONICAL_OFFICIAL_F5_OUTCOME_AUTHORITY_SELECTION_LINE_CONFLICT_SAME_OUTCOME": 6,
+          "CANONICAL_OFFICIAL_F5_OUTCOME_AUTHORITY": 24,
+          "POSTPONED_OFFICIAL_ROW_ON_LATER_DATE": 2
+        },
         "_internal": {
-          "void": 0,
-          "pending": 2,
+          "void": 2,
+          "pending": 0,
+          "other": 0,
           "issued_rows": 32
+        },
+        "_apex_prior": {
+          "w": 14,
+          "l": 16,
+          "push": 0,
+          "void": null,
+          "pending": null,
+          "other": null,
+          "settled_rows": 30,
+          "rows": 32,
+          "by_market": {
+            "F5_ATS": {
+              "L": 10,
+              "W": 5
+            },
+            "F5_TOT": {
+              "W": 9,
+              "L": 6
+            }
+          },
+          "source": "apex_results_archive_publish",
+          "record": "14W-16L"
         }
       }
     },
@@ -3591,27 +3667,65 @@
         "w": 18,
         "l": 10,
         "push": 0,
+        "void": 2,
+        "pending": 0,
+        "other": 0,
         "settled_rows": 28,
         "rows": 30,
         "by_market": {
           "F5_ATS": {
             "W": 9,
-            "L": 5
+            "L": 5,
+            "PUSH": 0,
+            "VOID": 1,
+            "PENDING": 0,
+            "OTHER": 0
           },
           "F5_TOT": {
             "W": 9,
-            "L": 5
+            "L": 5,
+            "PUSH": 0,
+            "VOID": 1,
+            "PENDING": 0,
+            "OTHER": 0
           }
         },
         "date_iso": "2026-07-10",
-        "source": "apex_results_archive_publish",
+        "source": "apex_canonical_grader_receipt_legacy_ledger_v1",
         "canonical_only": true,
         "canonical_positions": 30,
-        "canonical_source_sha256": "d3fa55163e482f126d469c546a347c5f222fe8889ea10122cf9565a1c4d8372e",
+        "canonical_source_sha256": "bd6a405bc29a288613cc24e53e2cae97c64841369cc246a3b83034a778859e4e",
+        "result_sources": {
+          "CANONICAL_OFFICIAL_F5_OUTCOME_AUTHORITY": 28,
+          "POSTPONED_OFFICIAL_ROW_ON_LATER_DATE": 2
+        },
         "_internal": {
-          "void": 0,
-          "pending": 2,
+          "void": 2,
+          "pending": 0,
+          "other": 0,
           "issued_rows": 30
+        },
+        "_apex_prior": {
+          "w": 18,
+          "l": 10,
+          "push": 0,
+          "void": null,
+          "pending": null,
+          "other": null,
+          "settled_rows": 28,
+          "rows": 30,
+          "by_market": {
+            "F5_ATS": {
+              "W": 9,
+              "L": 5
+            },
+            "F5_TOT": {
+              "W": 9,
+              "L": 5
+            }
+          },
+          "source": "apex_results_archive_publish",
+          "record": "18W-10L"
         }
       }
     },
@@ -4116,62 +4230,137 @@
         "w": 11,
         "l": 5,
         "push": 0,
+        "void": 2,
+        "pending": 0,
+        "other": 0,
         "settled_rows": 16,
-        "rows": 16,
+        "rows": 18,
         "by_market": {
           "F5_ATS": {
+            "W": 5,
             "L": 3,
-            "W": 5
+            "PUSH": 0,
+            "VOID": 1,
+            "PENDING": 0,
+            "OTHER": 0
           },
           "F5_TOT": {
             "W": 6,
-            "L": 2
+            "L": 2,
+            "PUSH": 0,
+            "VOID": 1,
+            "PENDING": 0,
+            "OTHER": 0
           }
         },
         "date_iso": "2026-06-25",
-        "source": "apex_results_archive_publish",
+        "source": "apex_canonical_grader_receipt_legacy_ledger_v1",
         "canonical_only": true,
         "canonical_positions": 18,
-        "canonical_source_sha256": "382a7c99a9b2db5884c728d2322533ca803dcee741d89e2992544e5e44ec620f",
+        "canonical_source_sha256": "f5813a59c78835153dd646d2e2dc172fbd72c345866517885c9d51d6ad691bdc",
+        "result_sources": {
+          "CANONICAL_OFFICIAL_F5_OUTCOME_AUTHORITY": 16,
+          "POSTPONED_OFFICIAL_ROW_ON_LATER_DATE": 2
+        },
         "_internal": {
-          "void": 0,
-          "pending": 2,
+          "void": 2,
+          "pending": 0,
+          "other": 0,
           "issued_rows": 18
+        },
+        "_apex_prior": {
+          "w": 11,
+          "l": 5,
+          "push": 0,
+          "void": null,
+          "pending": null,
+          "other": null,
+          "settled_rows": 16,
+          "rows": 16,
+          "by_market": {
+            "F5_ATS": {
+              "L": 3,
+              "W": 5
+            },
+            "F5_TOT": {
+              "W": 6,
+              "L": 2
+            }
+          },
+          "source": "apex_results_archive_publish",
+          "record": "11W-5L"
         }
       }
     },
     {
       "date": "June 24, 2026",
       "date_iso": "2026-06-24",
-      "record": "13W-19L",
-      "win_rate": "40.6%",
-      "summary": "MLB 13-19",
+      "record": "14W-18L",
+      "win_rate": "43.8%",
+      "summary": "MLB 14-18",
       "has_summary": true,
       "_apex_raw": {
-        "w": 13,
-        "l": 19,
+        "w": 14,
+        "l": 18,
         "push": 0,
+        "void": 0,
+        "pending": 0,
+        "other": 0,
         "settled_rows": 32,
         "rows": 32,
         "by_market": {
-          "F5_TOT": {
-            "L": 8,
-            "W": 8
-          },
           "F5_ATS": {
-            "W": 5,
-            "L": 11
+            "W": 6,
+            "L": 10,
+            "PUSH": 0,
+            "VOID": 0,
+            "PENDING": 0,
+            "OTHER": 0
+          },
+          "F5_TOT": {
+            "W": 8,
+            "L": 8,
+            "PUSH": 0,
+            "VOID": 0,
+            "PENDING": 0,
+            "OTHER": 0
           }
         },
         "date_iso": "2026-06-24",
-        "source": "apex_results_archive_publish",
+        "source": "apex_canonical_grader_receipt_legacy_ledger_v1",
         "canonical_only": true,
         "canonical_positions": 32,
-        "canonical_source_sha256": "499bd392419b44b9cb0916aa0adeafba6fb82663e51ccba40ce8bb0557060b8e",
+        "canonical_source_sha256": "ab6f1a4a324838fb7aa8e6187eaa26129b9f6c52dec9c1da8aaffc3fb1fdd9f5",
+        "result_sources": {
+          "CANONICAL_OFFICIAL_F5_OUTCOME_AUTHORITY": 32
+        },
         "_internal": {
           "void": 0,
           "pending": 0,
+          "other": 0,
           "issued_rows": 32
+        },
+        "_apex_prior": {
+          "w": 13,
+          "l": 19,
+          "push": 0,
+          "void": null,
+          "pending": null,
+          "other": null,
+          "settled_rows": 32,
+          "rows": 32,
+          "by_market": {
+            "F5_TOT": {
+              "L": 8,
+              "W": 8
+            },
+            "F5_ATS": {
+              "W": 5,
+              "L": 11
+            }
+          },
+          "source": "apex_results_archive_publish",
+          "record": "13W-19L"
         }
       }
     },
@@ -4216,34 +4405,72 @@
       "date_iso": "2026-06-22",
       "record": "17W-6L-1P",
       "win_rate": "73.9%",
-      "summary": "MLB 17-6",
+      "summary": "MLB 17-6-1P",
       "has_summary": true,
       "_apex_raw": {
         "w": 17,
         "l": 6,
         "push": 1,
+        "void": 2,
+        "pending": 0,
+        "other": 0,
         "settled_rows": 24,
-        "rows": 24,
+        "rows": 26,
         "by_market": {
-          "F5_TOT": {
-            "L": 2,
-            "W": 9,
-            "PUSH": 1
-          },
           "F5_ATS": {
+            "W": 8,
             "L": 4,
-            "W": 8
+            "PUSH": 0,
+            "VOID": 1,
+            "PENDING": 0,
+            "OTHER": 0
+          },
+          "F5_TOT": {
+            "W": 9,
+            "L": 2,
+            "PUSH": 1,
+            "VOID": 1,
+            "PENDING": 0,
+            "OTHER": 0
           }
         },
         "date_iso": "2026-06-22",
-        "source": "apex_results_archive_publish",
+        "source": "apex_canonical_grader_receipt_legacy_ledger_v1",
         "canonical_only": true,
         "canonical_positions": 26,
-        "canonical_source_sha256": "4f9fe91de06e065cc39daf0128360563a2c25a9e92a5361a9b618fac3f73a71d",
+        "canonical_source_sha256": "0c63ac406df1b15bf132f16e3941e8ddac3286200dc2458e5d6476590060bb0f",
+        "result_sources": {
+          "CANONICAL_OFFICIAL_F5_OUTCOME_AUTHORITY": 24,
+          "POSTPONED_OFFICIAL_ROW_ON_LATER_DATE": 2
+        },
         "_internal": {
-          "void": 0,
-          "pending": 2,
+          "void": 2,
+          "pending": 0,
+          "other": 0,
           "issued_rows": 26
+        },
+        "_apex_prior": {
+          "w": 17,
+          "l": 6,
+          "push": 1,
+          "void": null,
+          "pending": null,
+          "other": null,
+          "settled_rows": 24,
+          "rows": 24,
+          "by_market": {
+            "F5_TOT": {
+              "L": 2,
+              "W": 9,
+              "PUSH": 1
+            },
+            "F5_ATS": {
+              "L": 4,
+              "W": 8
+            }
+          },
+          "source": "apex_results_archive_publish",
+          "record": "17W-6L-1P"
         }
       }
     },
@@ -4258,27 +4485,65 @@
         "w": 18,
         "l": 10,
         "push": 0,
+        "void": 2,
+        "pending": 0,
+        "other": 0,
         "settled_rows": 28,
-        "rows": 28,
+        "rows": 30,
         "by_market": {
-          "F5_TOT": {
-            "L": 6,
-            "W": 8
-          },
           "F5_ATS": {
             "W": 10,
-            "L": 4
+            "L": 4,
+            "PUSH": 0,
+            "VOID": 1,
+            "PENDING": 0,
+            "OTHER": 0
+          },
+          "F5_TOT": {
+            "W": 8,
+            "L": 6,
+            "PUSH": 0,
+            "VOID": 1,
+            "PENDING": 0,
+            "OTHER": 0
           }
         },
         "date_iso": "2026-06-21",
-        "source": "apex_results_archive_publish",
+        "source": "apex_canonical_grader_receipt_legacy_ledger_v1",
         "canonical_only": true,
         "canonical_positions": 30,
-        "canonical_source_sha256": "ee41caa6b7702fd511c3e7d4fdb80451e849710dd45c98c0d113df9224e8ed5c",
+        "canonical_source_sha256": "b3199fd37694e09dee1638985be8f571bc25a563e84fc171dfabc3bdbc0186a2",
+        "result_sources": {
+          "CANONICAL_OFFICIAL_F5_OUTCOME_AUTHORITY": 28,
+          "POSTPONED_OFFICIAL_ROW_ON_LATER_DATE": 2
+        },
         "_internal": {
-          "void": 0,
-          "pending": 2,
+          "void": 2,
+          "pending": 0,
+          "other": 0,
           "issued_rows": 30
+        },
+        "_apex_prior": {
+          "w": 18,
+          "l": 10,
+          "push": 0,
+          "void": null,
+          "pending": null,
+          "other": null,
+          "settled_rows": 28,
+          "rows": 28,
+          "by_market": {
+            "F5_TOT": {
+              "L": 6,
+              "W": 8
+            },
+            "F5_ATS": {
+              "W": 10,
+              "L": 4
+            }
+          },
+          "source": "apex_results_archive_publish",
+          "record": "18W-10L"
         }
       }
     },
@@ -4363,27 +4628,65 @@
         "w": 10,
         "l": 6,
         "push": 0,
+        "void": 2,
+        "pending": 0,
+        "other": 0,
         "settled_rows": 16,
-        "rows": 16,
+        "rows": 18,
         "by_market": {
+          "F5_ATS": {
+            "W": 3,
+            "L": 5,
+            "PUSH": 0,
+            "VOID": 1,
+            "PENDING": 0,
+            "OTHER": 0
+          },
           "F5_TOT": {
             "W": 7,
-            "L": 1
-          },
-          "F5_ATS": {
-            "L": 5,
-            "W": 3
+            "L": 1,
+            "PUSH": 0,
+            "VOID": 1,
+            "PENDING": 0,
+            "OTHER": 0
           }
         },
         "date_iso": "2026-06-18",
-        "source": "apex_results_archive_publish",
+        "source": "apex_canonical_grader_receipt_legacy_ledger_v1",
         "canonical_only": true,
         "canonical_positions": 18,
-        "canonical_source_sha256": "f56bb5ad97e4797f4644a61ff69ff589b5002261dae63d17e3f68920ca70f6c3",
+        "canonical_source_sha256": "8d530d12f6de0d0d7f6853eeff3744e88f69f41571819a9ed50838dd413eb473",
+        "result_sources": {
+          "CANONICAL_OFFICIAL_F5_OUTCOME_AUTHORITY": 16,
+          "POSTPONED_OFFICIAL_ROW_ON_LATER_DATE": 2
+        },
         "_internal": {
-          "void": 0,
-          "pending": 2,
+          "void": 2,
+          "pending": 0,
+          "other": 0,
           "issued_rows": 18
+        },
+        "_apex_prior": {
+          "w": 10,
+          "l": 6,
+          "push": 0,
+          "void": null,
+          "pending": null,
+          "other": null,
+          "settled_rows": 16,
+          "rows": 16,
+          "by_market": {
+            "F5_TOT": {
+              "W": 7,
+              "L": 1
+            },
+            "F5_ATS": {
+              "L": 5,
+              "W": 3
+            }
+          },
+          "source": "apex_results_archive_publish",
+          "record": "10W-6L"
         }
       }
     },
@@ -4425,35 +4728,72 @@
     {
       "date": "June 16, 2026",
       "date_iso": "2026-06-16",
-      "record": "19W-9L",
-      "win_rate": "67.9%",
-      "summary": "MLB 19-9",
+      "record": "19W-11L",
+      "win_rate": "63.3%",
+      "summary": "MLB 19-11",
       "has_summary": true,
       "_apex_raw": {
         "w": 19,
-        "l": 9,
+        "l": 11,
         "push": 0,
-        "settled_rows": 28,
-        "rows": 28,
+        "void": 0,
+        "pending": 0,
+        "other": 0,
+        "settled_rows": 30,
+        "rows": 30,
         "by_market": {
+          "F5_ATS": {
+            "W": 8,
+            "L": 7,
+            "PUSH": 0,
+            "VOID": 0,
+            "PENDING": 0,
+            "OTHER": 0
+          },
           "F5_TOT": {
             "W": 11,
-            "L": 3
-          },
-          "F5_ATS": {
-            "L": 6,
-            "W": 8
+            "L": 4,
+            "PUSH": 0,
+            "VOID": 0,
+            "PENDING": 0,
+            "OTHER": 0
           }
         },
         "date_iso": "2026-06-16",
-        "source": "apex_results_archive_publish",
+        "source": "apex_canonical_grader_receipt_legacy_ledger_v1",
         "canonical_only": true,
         "canonical_positions": 30,
-        "canonical_source_sha256": "3ed99b53235bc39ebb44e2bda709453d6461d00cf477e42f8aca63f1e6968232",
+        "canonical_source_sha256": "1a5379770d739f5759b343ffb683ec10b274db674c4c146e752ba3781fa7322b",
+        "result_sources": {
+          "CANONICAL_OFFICIAL_F5_OUTCOME_AUTHORITY": 30
+        },
         "_internal": {
-          "void": 2,
+          "void": 0,
           "pending": 0,
+          "other": 0,
           "issued_rows": 30
+        },
+        "_apex_prior": {
+          "w": 19,
+          "l": 9,
+          "push": 0,
+          "void": null,
+          "pending": null,
+          "other": null,
+          "settled_rows": 28,
+          "rows": 28,
+          "by_market": {
+            "F5_TOT": {
+              "W": 11,
+              "L": 3
+            },
+            "F5_ATS": {
+              "L": 6,
+              "W": 8
+            }
+          },
+          "source": "apex_results_archive_publish",
+          "record": "19W-9L"
         }
       }
     },
@@ -4503,27 +4843,65 @@
         "w": 18,
         "l": 10,
         "push": 0,
+        "void": 2,
+        "pending": 0,
+        "other": 0,
         "settled_rows": 28,
-        "rows": 28,
+        "rows": 30,
         "by_market": {
-          "F5_TOT": {
-            "L": 5,
-            "W": 9
-          },
           "F5_ATS": {
             "W": 9,
-            "L": 5
+            "L": 5,
+            "PUSH": 0,
+            "VOID": 1,
+            "PENDING": 0,
+            "OTHER": 0
+          },
+          "F5_TOT": {
+            "W": 9,
+            "L": 5,
+            "PUSH": 0,
+            "VOID": 1,
+            "PENDING": 0,
+            "OTHER": 0
           }
         },
         "date_iso": "2026-06-14",
-        "source": "apex_results_archive_publish",
+        "source": "apex_canonical_grader_receipt_legacy_ledger_v1",
         "canonical_only": true,
         "canonical_positions": 30,
-        "canonical_source_sha256": "dceeda6fa18aaf5a10c9ad99863f10b40fbd5d40034143233216ed3a9ce1bfa8",
+        "canonical_source_sha256": "73cf17daf6910a4a64369729f284c624f21a59c7a86fcb75c033cd294168f11d",
+        "result_sources": {
+          "CANONICAL_OFFICIAL_F5_OUTCOME_AUTHORITY": 28,
+          "POSTPONED_OFFICIAL_ROW_ON_LATER_DATE": 2
+        },
         "_internal": {
-          "void": 0,
-          "pending": 2,
+          "void": 2,
+          "pending": 0,
+          "other": 0,
           "issued_rows": 30
+        },
+        "_apex_prior": {
+          "w": 18,
+          "l": 10,
+          "push": 0,
+          "void": null,
+          "pending": null,
+          "other": null,
+          "settled_rows": 28,
+          "rows": 28,
+          "by_market": {
+            "F5_TOT": {
+              "L": 5,
+              "W": 9
+            },
+            "F5_ATS": {
+              "W": 9,
+              "L": 5
+            }
+          },
+          "source": "apex_results_archive_publish",
+          "record": "18W-10L"
         }
       }
     },
@@ -4603,33 +4981,75 @@
       "date_iso": "2026-06-11",
       "record": "5W-8L-1P",
       "win_rate": "38.5%",
-      "summary": "MLB 5-8",
+      "summary": "MLB 5-8-1P",
       "has_summary": true,
       "_apex_raw": {
         "w": 5,
         "l": 8,
         "push": 1,
-        "void": 0,
-        "pending": 2,
+        "void": 2,
+        "pending": 0,
+        "other": 0,
+        "settled_rows": 14,
         "rows": 16,
         "by_market": {
-          "F5_TOT": {
-            "W": 3,
-            "PUSH": 1,
-            "L": 3,
-            "PENDING": 1
-          },
           "F5_ATS": {
             "W": 2,
             "L": 5,
-            "PENDING": 1
+            "PUSH": 0,
+            "VOID": 1,
+            "PENDING": 0,
+            "OTHER": 0
+          },
+          "F5_TOT": {
+            "W": 3,
+            "L": 3,
+            "PUSH": 1,
+            "VOID": 1,
+            "PENDING": 0,
+            "OTHER": 0
           }
         },
         "date_iso": "2026-06-11",
-        "source": "apex_results_archive_publish",
+        "source": "apex_canonical_grader_receipt_legacy_ledger_v1",
         "canonical_only": true,
         "canonical_positions": 16,
-        "canonical_source_sha256": "6c926d6b3f1254ec5b22de7a98a00ca940b135acb934b3e3719da0c9b284b3a5"
+        "canonical_source_sha256": "33273d20b01f93069604ee8d237d8a9ce6483e6128225d0799c2a8ad4b76a5a2",
+        "result_sources": {
+          "CANONICAL_OFFICIAL_F5_OUTCOME_AUTHORITY": 14,
+          "POSTPONED_OFFICIAL_ROW_ON_LATER_DATE": 2
+        },
+        "_internal": {
+          "void": 2,
+          "pending": 0,
+          "other": 0,
+          "issued_rows": 16
+        },
+        "_apex_prior": {
+          "w": 5,
+          "l": 8,
+          "push": 1,
+          "void": 0,
+          "pending": 2,
+          "other": null,
+          "settled_rows": null,
+          "rows": 16,
+          "by_market": {
+            "F5_TOT": {
+              "W": 3,
+              "PUSH": 1,
+              "L": 3,
+              "PENDING": 1
+            },
+            "F5_ATS": {
+              "W": 2,
+              "L": 5,
+              "PENDING": 1
+            }
+          },
+          "source": "apex_results_archive_publish",
+          "record": "5W-8L-1P"
+        }
       }
     },
     {
@@ -5705,96 +6125,96 @@
   "_apex_public_excluded_note": "PUBLIC_EXCLUDED_DUE_TO_CANONICAL_RESULTS_RESET",
   "_canonical_grader_receipt_projection": {
     "contract_version": "apex_results_summary_from_grader_receipt_v1",
-    "generated_at_et": "2026-10-02T07:01:59.540693-04:00",
+    "generated_at_et": "2026-10-02T15:11:17.821732-04:00",
     "sports_included": [
       "mlb"
     ],
     "latest_graded_date": "2026-10-01",
     "latest_graded_date_display": "October 01, 2026",
-    "daily_archive_count": 133,
-    "overall_wins": 2056,
-    "overall_losses": 1912,
+    "daily_archive_count": 134,
+    "overall_wins": 2063,
+    "overall_losses": 1933,
     "overall_pushes": 26,
-    "overall_win_rate": 51.8,
-    "overall_win_rate_display": "51.8%",
-    "positions_graded": 4017,
+    "overall_win_rate": 51.6,
+    "overall_win_rate_display": "51.6%",
+    "positions_graded": 4055,
     "overall": {
-      "wins": 2056,
-      "losses": 1912,
+      "wins": 2063,
+      "losses": 1933,
       "pushes": 26,
-      "voids": 17,
-      "pending": 6,
+      "voids": 33,
+      "pending": 0,
       "other": 0,
-      "win_rate": 51.8,
-      "win_rate_display": "51.8%",
-      "positions_tracked": 4017,
-      "positions_settled": 3994,
-      "positions_graded": 4017,
-      "decided_n": 3968,
-      "settled_n": 3994,
-      "tracked_n": 4017,
-      "slates_graded": 133,
-      "f5_spread": "1034-960-4P",
-      "f5_total": "1022-952-22P",
+      "win_rate": 51.6,
+      "win_rate_display": "51.6%",
+      "positions_tracked": 4055,
+      "positions_settled": 4022,
+      "positions_graded": 4055,
+      "decided_n": 3996,
+      "settled_n": 4022,
+      "tracked_n": 4055,
+      "slates_graded": 134,
+      "f5_spread": "1037-971-4P",
+      "f5_total": "1026-962-22P",
       "f5_spread_raw": {
-        "W": 1034,
-        "L": 960,
+        "W": 1037,
+        "L": 971,
         "PUSH": 4,
-        "VOID": 9,
-        "PENDING": 3
+        "VOID": 17,
+        "PENDING": 0
       },
       "f5_total_raw": {
-        "W": 1022,
-        "L": 952,
+        "W": 1026,
+        "L": 962,
         "PUSH": 22,
-        "VOID": 8,
-        "PENDING": 3
+        "VOID": 16,
+        "PENDING": 0
       },
       "latest_graded_date": "2026-10-01",
       "latest_graded_date_display": "October 01, 2026"
     },
     "sports": {
       "mlb": {
-        "wins": 2056,
-        "losses": 1912,
+        "wins": 2063,
+        "losses": 1933,
         "pushes": 26,
-        "voids": 17,
-        "pending": 6,
+        "voids": 33,
+        "pending": 0,
         "other": 0,
-        "win_rate": 51.8,
-        "win_rate_display": "51.8%",
-        "positions_tracked": 4017,
-        "positions_settled": 3994,
-        "positions_graded": 4017,
-        "decided_n": 3968,
-        "settled_n": 3994,
-        "tracked_n": 4017,
-        "slates_graded": 133,
-        "f5_spread": "1034-960-4P",
-        "f5_total": "1022-952-22P",
+        "win_rate": 51.6,
+        "win_rate_display": "51.6%",
+        "positions_tracked": 4055,
+        "positions_settled": 4022,
+        "positions_graded": 4055,
+        "decided_n": 3996,
+        "settled_n": 4022,
+        "tracked_n": 4055,
+        "slates_graded": 134,
+        "f5_spread": "1037-971-4P",
+        "f5_total": "1026-962-22P",
         "f5_spread_raw": {
-          "W": 1034,
-          "L": 960,
+          "W": 1037,
+          "L": 971,
           "PUSH": 4,
-          "VOID": 9,
-          "PENDING": 3
+          "VOID": 17,
+          "PENDING": 0
         },
         "f5_total_raw": {
-          "W": 1022,
-          "L": 952,
+          "W": 1026,
+          "L": 962,
           "PUSH": 22,
-          "VOID": 8,
-          "PENDING": 3
+          "VOID": 16,
+          "PENDING": 0
         },
         "latest_graded_date": "2026-10-01",
         "latest_graded_date_display": "October 01, 2026"
       }
     },
-    "mlb_wins": 2056,
-    "mlb_losses": 1912,
+    "mlb_wins": 2063,
+    "mlb_losses": 1933,
     "mlb_pushes": 26,
-    "mlb_positions_graded": 4017,
+    "mlb_positions_graded": 4055,
     "note": "MLB-only receipt projection. Settled=W+L+P; tracked=settled+VOID+PENDING+OTHER. No all-sport claim.",
-    "canonical_receipt_sha256": "e8c0b4af1ddbd7c2de2c5e8c0931ecb9941f58d12b9964caa275db0f3b8cc6d1"
+    "canonical_receipt_sha256": "31c4346989f0495d4f48baa758963a3739c887bdf77da28c5dc80ca9252dd570"
   }
 }
