@@ -14,12 +14,12 @@
       "weigh_ins": 5442
     },
     "production": {
-      "commercial_grades": 26,
+      "commercial_grades": 29,
       "eligible_releases": 1,
       "frozen_releases": 1,
-      "grades": 38,
+      "grades": 44,
       "issuances": 3,
-      "scientific_grades": 12
+      "scientific_grades": 15
     },
     "testing": {
       "experiments": 22,
@@ -210,7 +210,7 @@
   },
   "event_id": "fb5421ef-66a8-520c-8651-62f2e4a7f5fa",
   "fight_count": 14,
-  "generated_at_utc": "2026-10-02T10:40:20.766210Z",
+  "generated_at_utc": "2026-10-02T11:15:42.171561Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "GRADED_COMMERCIAL_AND_OR_SCIENTIFIC"
@@ -555,9 +555,48 @@
       "result": "W",
       "selection": "Joshua Van",
       "source": "PRODUCTION_COMMERCIAL_GRADES"
+    },
+    {
+      "bout_id": "5af935fe-bd02-5450-95fd-61c668ec31e6",
+      "commercial_grade_id": "507e9bcc-595e-589d-b32a-0f11f43289c9",
+      "graded_at_utc": "2026-10-02T11:03:23.910370Z",
+      "issuance_id": "4b640b98-0630-4b2b-99e2-ce38be95bbf7",
+      "line": null,
+      "market": "WINNER",
+      "price": -225,
+      "profit_loss": "0.444444",
+      "result": "W",
+      "selection": "Luis Hernandez",
+      "source": "PRODUCTION_COMMERCIAL_GRADES"
+    },
+    {
+      "bout_id": "656b4a3b-608a-522a-82a3-3bd8040fc8f5",
+      "commercial_grade_id": "d47c0edf-2af3-5086-b488-6ba0778d7722",
+      "graded_at_utc": "2026-10-02T11:03:23.910370Z",
+      "issuance_id": "4b640b98-0630-4b2b-99e2-ce38be95bbf7",
+      "line": null,
+      "market": "WINNER",
+      "price": -142,
+      "profit_loss": "0.704225",
+      "result": "W",
+      "selection": "Raul Rosas Jr.",
+      "source": "PRODUCTION_COMMERCIAL_GRADES"
+    },
+    {
+      "bout_id": "8eac2959-8da0-57fa-a01a-49d87b344da7",
+      "commercial_grade_id": "13869cad-5346-5060-9622-6cfccaafed65",
+      "graded_at_utc": "2026-10-02T11:03:23.910370Z",
+      "issuance_id": "4b640b98-0630-4b2b-99e2-ce38be95bbf7",
+      "line": null,
+      "market": "WINNER",
+      "price": -162,
+      "profit_loss": "0.617284",
+      "result": "W",
+      "selection": "Ailin Perez",
+      "source": "PRODUCTION_COMMERCIAL_GRADES"
     }
   ],
-  "payload_sha256": "abecf3f30f8d5928d1b1370424ee0ec979510711f0a350358593cb2da123bbb3",
+  "payload_sha256": "351d618807496e78025815f509c416321d35b813d419de30bdb2c26fced72f86",
   "picks_published": false,
   "positions": [],
   "positions_sha256": null,
@@ -1928,7 +1967,47 @@
       "event_name": "UFC Fight Night \u2014 Rosas Jr. vs Barcelos",
       "issuance_id": "4b640b98-0630-4b2b-99e2-ce38be95bbf7",
       "issuance_status": "SEALED",
-      "latest_results": [],
+      "latest_results": [
+        {
+          "bout_id": "5af935fe-bd02-5450-95fd-61c668ec31e6",
+          "commercial_grade_id": "507e9bcc-595e-589d-b32a-0f11f43289c9",
+          "graded_at_utc": "2026-10-02T11:03:23.910370Z",
+          "issuance_id": "4b640b98-0630-4b2b-99e2-ce38be95bbf7",
+          "line": null,
+          "market": "WINNER",
+          "price": -225,
+          "profit_loss": "0.444444",
+          "result": "W",
+          "selection": "Luis Hernandez",
+          "source": "PRODUCTION_COMMERCIAL_GRADES"
+        },
+        {
+          "bout_id": "656b4a3b-608a-522a-82a3-3bd8040fc8f5",
+          "commercial_grade_id": "d47c0edf-2af3-5086-b488-6ba0778d7722",
+          "graded_at_utc": "2026-10-02T11:03:23.910370Z",
+          "issuance_id": "4b640b98-0630-4b2b-99e2-ce38be95bbf7",
+          "line": null,
+          "market": "WINNER",
+          "price": -142,
+          "profit_loss": "0.704225",
+          "result": "W",
+          "selection": "Raul Rosas Jr.",
+          "source": "PRODUCTION_COMMERCIAL_GRADES"
+        },
+        {
+          "bout_id": "8eac2959-8da0-57fa-a01a-49d87b344da7",
+          "commercial_grade_id": "13869cad-5346-5060-9622-6cfccaafed65",
+          "graded_at_utc": "2026-10-02T11:03:23.910370Z",
+          "issuance_id": "4b640b98-0630-4b2b-99e2-ce38be95bbf7",
+          "line": null,
+          "market": "WINNER",
+          "price": -162,
+          "profit_loss": "0.617284",
+          "result": "W",
+          "selection": "Ailin Perez",
+          "source": "PRODUCTION_COMMERCIAL_GRADES"
+        }
+      ],
       "official_issuance": true,
       "picks_published": true,
       "positions": [
@@ -2004,7 +2083,47 @@
       ],
       "positions_sha256": "ca1f7c86b123a9c2c50a6c3c0d11c800c3c844a8f3d994b429569da6643a5277",
       "release_state": "SEALED_RELEASE_AVAILABLE",
-      "results": [],
+      "results": [
+        {
+          "bout_id": "5af935fe-bd02-5450-95fd-61c668ec31e6",
+          "commercial_grade_id": "507e9bcc-595e-589d-b32a-0f11f43289c9",
+          "graded_at_utc": "2026-10-02T11:03:23.910370Z",
+          "issuance_id": "4b640b98-0630-4b2b-99e2-ce38be95bbf7",
+          "line": null,
+          "market": "WINNER",
+          "price": -225,
+          "profit_loss": "0.444444",
+          "result": "W",
+          "selection": "Luis Hernandez",
+          "source": "PRODUCTION_COMMERCIAL_GRADES"
+        },
+        {
+          "bout_id": "656b4a3b-608a-522a-82a3-3bd8040fc8f5",
+          "commercial_grade_id": "d47c0edf-2af3-5086-b488-6ba0778d7722",
+          "graded_at_utc": "2026-10-02T11:03:23.910370Z",
+          "issuance_id": "4b640b98-0630-4b2b-99e2-ce38be95bbf7",
+          "line": null,
+          "market": "WINNER",
+          "price": -142,
+          "profit_loss": "0.704225",
+          "result": "W",
+          "selection": "Raul Rosas Jr.",
+          "source": "PRODUCTION_COMMERCIAL_GRADES"
+        },
+        {
+          "bout_id": "8eac2959-8da0-57fa-a01a-49d87b344da7",
+          "commercial_grade_id": "13869cad-5346-5060-9622-6cfccaafed65",
+          "graded_at_utc": "2026-10-02T11:03:23.910370Z",
+          "issuance_id": "4b640b98-0630-4b2b-99e2-ce38be95bbf7",
+          "line": null,
+          "market": "WINNER",
+          "price": -162,
+          "profit_loss": "0.617284",
+          "result": "W",
+          "selection": "Ailin Perez",
+          "source": "PRODUCTION_COMMERCIAL_GRADES"
+        }
+      ],
       "schema_version": "APEX_MMA_TODAY_V1"
     }
   ],
@@ -2029,7 +2148,7 @@
     "production_issuance_authorized": true,
     "release_binding": "AUTHORIZED_RELEASE_AWAITING_EVENT_ISSUANCE"
   },
-  "semantic_state_sha256": "bed286e5b82d3171e608716c36520fc6a979c6bdcc7695afeecb661d6718aea0",
+  "semantic_state_sha256": "22990029ab4d9b9923466fe7aa7ccc2b2d3fef2a0b936ca1a79b08175978b0e7",
   "source_conflicts": [],
   "system_readiness_state": "AUTHORIZED_RELEASE_AWAITING_ISSUANCE",
   "t2": {

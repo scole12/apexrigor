@@ -1,12 +1,12 @@
 {
-  "commercial_settlement_count": 26,
+  "commercial_settlement_count": 29,
   "current_event_forecast": {
     "code": "AWAITING_T2",
     "detail": "No forecasts have been issued yet. Any published card will show the selection, captured sportsbook price, APEX probability, rating and full model-supported rationale.",
     "headline": "Awaiting the T-2 forecast run"
   },
-  "generated_at_utc": "2026-10-02T10:40:20.766210Z",
-  "graded_scientific_object_count": 12,
+  "generated_at_utc": "2026-10-02T11:15:42.171561Z",
+  "graded_scientific_object_count": 15,
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "GRADED_COMMERCIAL_AND_OR_SCIENTIFIC"
@@ -350,9 +350,48 @@
       "result": "W",
       "selection": "Joshua Van",
       "source": "PRODUCTION_COMMERCIAL_GRADES"
+    },
+    {
+      "bout_id": "5af935fe-bd02-5450-95fd-61c668ec31e6",
+      "commercial_grade_id": "507e9bcc-595e-589d-b32a-0f11f43289c9",
+      "graded_at_utc": "2026-10-02T11:03:23.910370Z",
+      "issuance_id": "4b640b98-0630-4b2b-99e2-ce38be95bbf7",
+      "line": null,
+      "market": "WINNER",
+      "price": -225,
+      "profit_loss": "0.444444",
+      "result": "W",
+      "selection": "Luis Hernandez",
+      "source": "PRODUCTION_COMMERCIAL_GRADES"
+    },
+    {
+      "bout_id": "656b4a3b-608a-522a-82a3-3bd8040fc8f5",
+      "commercial_grade_id": "d47c0edf-2af3-5086-b488-6ba0778d7722",
+      "graded_at_utc": "2026-10-02T11:03:23.910370Z",
+      "issuance_id": "4b640b98-0630-4b2b-99e2-ce38be95bbf7",
+      "line": null,
+      "market": "WINNER",
+      "price": -142,
+      "profit_loss": "0.704225",
+      "result": "W",
+      "selection": "Raul Rosas Jr.",
+      "source": "PRODUCTION_COMMERCIAL_GRADES"
+    },
+    {
+      "bout_id": "8eac2959-8da0-57fa-a01a-49d87b344da7",
+      "commercial_grade_id": "13869cad-5346-5060-9622-6cfccaafed65",
+      "graded_at_utc": "2026-10-02T11:03:23.910370Z",
+      "issuance_id": "4b640b98-0630-4b2b-99e2-ce38be95bbf7",
+      "line": null,
+      "market": "WINNER",
+      "price": -162,
+      "profit_loss": "0.617284",
+      "result": "W",
+      "selection": "Ailin Perez",
+      "source": "PRODUCTION_COMMERCIAL_GRADES"
     }
   ],
-  "payload_sha256": "700d010ca19768baa24f9ef6ad5dec0ce884d470507f50609c3cdc1eb473de91",
+  "payload_sha256": "719538ec2672af541cc035fce806e926e87426d5d18e5a86aaaf60c82a282fb2",
   "release_state": "AUTHORIZED_RELEASE_AWAITING_EVENT_ISSUANCE",
   "schema_version": "APEX_MMA_RESULTS_SUMMARY_V1",
   "status": "RESULTS_AVAILABLE"

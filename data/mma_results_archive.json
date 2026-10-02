@@ -1365,7 +1365,47 @@
       "event_name": "UFC Fight Night \u2014 Rosas Jr. vs Barcelos",
       "issuance_id": "4b640b98-0630-4b2b-99e2-ce38be95bbf7",
       "issuance_status": "SEALED",
-      "latest_results": [],
+      "latest_results": [
+        {
+          "bout_id": "5af935fe-bd02-5450-95fd-61c668ec31e6",
+          "commercial_grade_id": "507e9bcc-595e-589d-b32a-0f11f43289c9",
+          "graded_at_utc": "2026-10-02T11:03:23.910370Z",
+          "issuance_id": "4b640b98-0630-4b2b-99e2-ce38be95bbf7",
+          "line": null,
+          "market": "WINNER",
+          "price": -225,
+          "profit_loss": "0.444444",
+          "result": "W",
+          "selection": "Luis Hernandez",
+          "source": "PRODUCTION_COMMERCIAL_GRADES"
+        },
+        {
+          "bout_id": "656b4a3b-608a-522a-82a3-3bd8040fc8f5",
+          "commercial_grade_id": "d47c0edf-2af3-5086-b488-6ba0778d7722",
+          "graded_at_utc": "2026-10-02T11:03:23.910370Z",
+          "issuance_id": "4b640b98-0630-4b2b-99e2-ce38be95bbf7",
+          "line": null,
+          "market": "WINNER",
+          "price": -142,
+          "profit_loss": "0.704225",
+          "result": "W",
+          "selection": "Raul Rosas Jr.",
+          "source": "PRODUCTION_COMMERCIAL_GRADES"
+        },
+        {
+          "bout_id": "8eac2959-8da0-57fa-a01a-49d87b344da7",
+          "commercial_grade_id": "13869cad-5346-5060-9622-6cfccaafed65",
+          "graded_at_utc": "2026-10-02T11:03:23.910370Z",
+          "issuance_id": "4b640b98-0630-4b2b-99e2-ce38be95bbf7",
+          "line": null,
+          "market": "WINNER",
+          "price": -162,
+          "profit_loss": "0.617284",
+          "result": "W",
+          "selection": "Ailin Perez",
+          "source": "PRODUCTION_COMMERCIAL_GRADES"
+        }
+      ],
       "official_issuance": true,
       "picks_published": true,
       "positions": [
@@ -1441,12 +1481,52 @@
       ],
       "positions_sha256": "ca1f7c86b123a9c2c50a6c3c0d11c800c3c844a8f3d994b429569da6643a5277",
       "release_state": "SEALED_RELEASE_AVAILABLE",
-      "results": [],
+      "results": [
+        {
+          "bout_id": "5af935fe-bd02-5450-95fd-61c668ec31e6",
+          "commercial_grade_id": "507e9bcc-595e-589d-b32a-0f11f43289c9",
+          "graded_at_utc": "2026-10-02T11:03:23.910370Z",
+          "issuance_id": "4b640b98-0630-4b2b-99e2-ce38be95bbf7",
+          "line": null,
+          "market": "WINNER",
+          "price": -225,
+          "profit_loss": "0.444444",
+          "result": "W",
+          "selection": "Luis Hernandez",
+          "source": "PRODUCTION_COMMERCIAL_GRADES"
+        },
+        {
+          "bout_id": "656b4a3b-608a-522a-82a3-3bd8040fc8f5",
+          "commercial_grade_id": "d47c0edf-2af3-5086-b488-6ba0778d7722",
+          "graded_at_utc": "2026-10-02T11:03:23.910370Z",
+          "issuance_id": "4b640b98-0630-4b2b-99e2-ce38be95bbf7",
+          "line": null,
+          "market": "WINNER",
+          "price": -142,
+          "profit_loss": "0.704225",
+          "result": "W",
+          "selection": "Raul Rosas Jr.",
+          "source": "PRODUCTION_COMMERCIAL_GRADES"
+        },
+        {
+          "bout_id": "8eac2959-8da0-57fa-a01a-49d87b344da7",
+          "commercial_grade_id": "13869cad-5346-5060-9622-6cfccaafed65",
+          "graded_at_utc": "2026-10-02T11:03:23.910370Z",
+          "issuance_id": "4b640b98-0630-4b2b-99e2-ce38be95bbf7",
+          "line": null,
+          "market": "WINNER",
+          "price": -162,
+          "profit_loss": "0.617284",
+          "result": "W",
+          "selection": "Ailin Perez",
+          "source": "PRODUCTION_COMMERCIAL_GRADES"
+        }
+      ],
       "schema_version": "APEX_MMA_TODAY_V1"
     }
   ],
-  "generated_at_utc": "2026-10-02T10:40:20.766210Z",
-  "payload_sha256": "7859d5fe56f36b75f4ef4267dfb67020da76a2bd4c2375529503a107cc6ecbc1",
+  "generated_at_utc": "2026-10-02T11:15:42.171561Z",
+  "payload_sha256": "3a0eeb698bf968dcaaa0b8867f3a31e0fd2a28ecd97789631449e40ec8ad3521",
   "revision_policy": "APPEND_ONLY_RESULT_AND_GRADE_REVISIONS",
   "schema_version": "APEX_MMA_RESULTS_ARCHIVE_V1"
 }
