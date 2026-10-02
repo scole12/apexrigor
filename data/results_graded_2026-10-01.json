@@ -10,6 +10,7 @@
   "position_rows": [
     {
       "position_id": "T2_FULL_SLATE_20261001:849844:F5_ATS",
+      "issuance_id": "T2_FULL_SLATE_20261001",
       "game_pk": 849844,
       "slate_date": "2026-10-01",
       "engine": "ATS",
@@ -57,6 +58,7 @@
     },
     {
       "position_id": "T2_FULL_SLATE_20261001:849844:F5_TOT",
+      "issuance_id": "T2_FULL_SLATE_20261001",
       "game_pk": 849844,
       "slate_date": "2026-10-01",
       "engine": "TOTALS",
@@ -103,7 +105,7 @@
       "source_era": "CANONICAL_DB_ISSUANCE_AND_GRADE"
     }
   ],
-  "built_at_et": "2026-10-02T15:11:17.821732-04:00",
+  "built_at_et": "2026-10-02T15:51:31.620150-04:00",
   "_internal": {
     "void": 0,
     "pending": 0,
