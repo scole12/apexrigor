@@ -1,31 +1,38 @@
 {
-  "attachment_count": 2,
+  "attachment_count": 3,
   "attachment_names": [
-    "NCAAF_T2_FULL_SLATE_20261001.pdf",
-    "NCAAF_T2_PICKS_CARD_20261001.png"
+    "results/APEX_TOTAL_RECORD_20261001.png",
+    "results/NCAAF_PRIOR_DAY_SLATE_20261001.png",
+    "results/NCAAF_DETAILED_RESULTS_20261001.pdf"
   ],
-  "canonical_game_count": 2,
-  "canonical_public_payload_sha256": "9f92effae6ae985df5dcc0d6d3a1149d748070cd2a0115e828bcf52ca62e07fc",
+  "canonical_game_count": 4,
+  "canonical_public_payload_sha256": "1f2fc264166f19483a4559475a4d377611b883b02639e29efca17baee3071a17",
   "count_scope": "EXPLICIT_CANONICAL_AND_DISPLAY",
-  "delivery_product": "T2",
-  "display_date": "October 1, 2026",
-  "display_game_count": 2,
-  "display_slate_date_et": "2026-10-01",
+  "delivery_product": "RESULTS",
+  "display_date": "October 2, 2026",
+  "display_game_count": 4,
+  "display_slate_date_et": "2026-10-02",
   "files": {
     "NCAAF_T2_FULL_SLATE_20261001.pdf": "a7aa5e9b4502896c0ce85a9b7793273aa24e980d072f72eac7ed27a91ef4cbf7",
     "NCAAF_T2_PICKS_CARD_20261001.png": "19681f7e60b95f24e50a5552a35b9d9ec3c918667e5d83556f192587b3082090",
     "T3_APEX_NCAAF_DATA_REPORT_20261001.pdf": "4fc54b8f162d8ff389b1c0f72aae6e3fc6e51cc45479257836b6d458d6e4078f"
   },
-  "graded_date": null,
-  "graded_slate_date_et": null,
-  "internal_market_pending_game_count": 0,
-  "issued_game_count": 2,
-  "market_pending_game_count": 0,
-  "official_position_count": 4,
-  "queue_request_id": "f9c3531090415fc754a4baf983949f3058303378db303dc198ef0af25f7f6963",
-  "results_files": {},
+  "graded_date": "October 1, 2026",
+  "graded_slate_date_et": "2026-10-01",
+  "internal_market_pending_game_count": 4,
+  "issued_game_count": 0,
+  "market_pending_game_count": 4,
+  "official_position_count": 0,
+  "queue_request_id": "c116a5a6cc7a808d7796aa78b5ce747168e283c2eeb4f356dd1fc161d7d15f63",
+  "results_cumulative_path": "data/ncaaf/2026-10-01/results/NCAAF_CUMULATIVE_RESULTS.json",
+  "results_files": {
+    "data/ncaaf/2026-10-01/results/APEX_TOTAL_RECORD_20261001.png": "0a879fb5a2f06334d7c47ec697ea1c17f51b0c082cec28f473f7958df1266a45",
+    "data/ncaaf/2026-10-01/results/NCAAF_CUMULATIVE_RESULTS.json": "873e8f71ccbad4de2c5d68680bfb2e72824fd3d3b050f36102faa9109089bbc2",
+    "data/ncaaf/2026-10-01/results/NCAAF_DETAILED_RESULTS_20261001.pdf": "95081d53e71fd72351fc7940e4187fcf40bec46b5de3111e8e82ee0458459b3f",
+    "data/ncaaf/2026-10-01/results/NCAAF_PRIOR_DAY_SLATE_20261001.png": "b76eb411ddc29a8201fa3a7180caf4a61f3ba58149efd50384b68883d969d0ea"
+  },
   "schema_version": "apex.ncaaf.full_slate_delivery.v5.shared_publisher",
   "sealed_day_payload_sha256": "c9600af3a712d48018b5407d6ba4202c31e35f0131b1bea2bf64919a2a11955d",
-  "season_year": null,
+  "season_year": 2026,
   "slate_date": "2026-10-01"
 }
