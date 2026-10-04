@@ -53,7 +53,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 5,
-      "scheduled_start_utc": "2026-10-04T00:15:00Z",
+      "scheduled_start_utc": "2026-10-04T00:20:00Z",
       "segment": "MAIN",
       "weight_class": "MIDDLEWEIGHT"
     },
@@ -170,7 +170,7 @@
     "detail": "14 issued positions. Picks, sportsbook prices, probabilities, ratings and rationale below are read from the same sealed T-2 issuance.",
     "headline": "Forecasts issued"
   },
-  "generated_at_utc": "2026-10-03T23:45:37.711869Z",
+  "generated_at_utc": "2026-10-04T00:15:39.994871Z",
   "issuance_id": "6acb3c73-5683-4c82-b8ef-16d4d52d62b8",
   "issuance_status": "SEALED",
   "market_display": {
@@ -3656,7 +3656,7 @@
     "source_market_snapshot_sha256": "613686bcd3be2059504e63d430f18544059ca21b0d349f0104ed152836f089d9",
     "source_positions_sha256": "13e0c4589a2219eb73d732054cbaa9d7ac83fb214860e3c8542e8dc238598a3b"
   },
-  "payload_sha256": "c14d816966639026f1f114193ce7b0ff59807090b39f946ec0d2240ff056baae",
+  "payload_sha256": "8f58fc8dd74d810fc129f3fd4b6954a1113d91664fdb31d322f70671c2c5b96a",
   "picks_published": true,
   "positions": [
     {
