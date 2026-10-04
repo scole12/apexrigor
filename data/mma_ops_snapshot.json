@@ -37,7 +37,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 4,
-      "scheduled_start_utc": "2026-10-04T00:50:00Z",
+      "scheduled_start_utc": "2026-10-04T00:45:00Z",
       "segment": "MAIN",
       "weight_class": "WELTERWEIGHT"
     },
@@ -153,7 +153,7 @@
     "scorecards": 37,
     "weigh_ins": 5442
   },
-  "generated_at_utc": "2026-10-04T00:15:39.994871Z",
+  "generated_at_utc": "2026-10-04T01:15:39.923406Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "GRADED_COMMERCIAL_AND_OR_SCIENTIFIC"
@@ -556,7 +556,7 @@
     "schedule_status": "ANNOUNCED",
     "venue": "Delta Center"
   },
-  "payload_sha256": "c03b0a0714927183c7c744ac40012237d741a48aaba8a60e58f796d9330df82b",
+  "payload_sha256": "bbf9469d5b4958116fc91a560d6bd5080abd2bd2a890294086100dbc34312b19",
   "production_isolation": "PASS",
   "schema_version": "APEX_MMA_OPS_SNAPSHOT_V1",
   "science_blocker": "NONE_PRODUCTION_ISSUANCE_ELIGIBLE",
