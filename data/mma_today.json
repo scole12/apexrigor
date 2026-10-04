@@ -13,7 +13,7 @@
       "is_co_main_event": false,
       "is_main_event": true,
       "official_display_order": 1,
-      "scheduled_start_utc": "2026-10-04T02:15:00Z",
+      "scheduled_start_utc": "2026-10-04T02:20:00Z",
       "segment": "MAIN",
       "weight_class": "WOMENS_FLYWEIGHT"
     },
@@ -170,7 +170,7 @@
     "detail": "14 issued positions. Picks, sportsbook prices, probabilities, ratings and rationale below are read from the same sealed T-2 issuance.",
     "headline": "Forecasts issued"
   },
-  "generated_at_utc": "2026-10-04T01:45:39.622221Z",
+  "generated_at_utc": "2026-10-04T02:15:38.403873Z",
   "issuance_id": "6acb3c73-5683-4c82-b8ef-16d4d52d62b8",
   "issuance_status": "SEALED",
   "market_display": {
@@ -3656,7 +3656,7 @@
     "source_market_snapshot_sha256": "613686bcd3be2059504e63d430f18544059ca21b0d349f0104ed152836f089d9",
     "source_positions_sha256": "13e0c4589a2219eb73d732054cbaa9d7ac83fb214860e3c8542e8dc238598a3b"
   },
-  "payload_sha256": "c102bade8155d94d0a847813c1229faa28a3283423d37a72045f0562bef18067",
+  "payload_sha256": "6aeb9c43f498f738e95f06a8c20e9df338bddecd08373c2f20015a8a2edf7e62",
   "picks_published": true,
   "positions": [
     {
