@@ -194,18 +194,18 @@
     "venue": "Meta Apex"
   },
   "event_controller": {
-    "autonomous_discovery_status": "VERIFIED_OFFICIAL_REFERENCE_QUEUE_PRELOADED_THROUGH_2026-11-21",
+    "autonomous_discovery_status": "VERIFIED_OFFICIAL_REFERENCE_QUEUE_PRELOADED_THROUGH_2026-12-12",
     "human_weekly_trigger_required": false,
     "interval": "30 minutes",
     "persistent": true,
     "service": "apex-mma-event-controller.service",
     "timer": "apex-mma-event-controller.timer",
-    "verified_future_reference_count": 7,
-    "verified_queue_horizon": "2026-11-21"
+    "verified_future_reference_count": 8,
+    "verified_queue_horizon": "2026-12-12"
   },
   "event_id": "c2f35774-e944-5e8e-a93b-babacd38a48c",
   "fight_count": 12,
-  "generated_at_utc": "2026-10-04T11:15:39.871858Z",
+  "generated_at_utc": "2026-10-05T00:45:36.761662Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "GRADED_COMMERCIAL_AND_OR_SCIENTIFIC"
@@ -773,7 +773,7 @@
       "source": "PRODUCTION_COMMERCIAL_GRADES"
     }
   ],
-  "payload_sha256": "c2b890c33116b9533430326b98383c23401d1d32da2f495fc3a0c748ff81d22b",
+  "payload_sha256": "b414c99ad8f98b246ee9db4019245807f976e1a127b394204b0be4313905a0db",
   "picks_published": false,
   "positions": [],
   "positions_sha256": null,
@@ -3045,7 +3045,7 @@
     "production_issuance_authorized": true,
     "release_binding": "AUTHORIZED_RELEASE_AWAITING_EVENT_ISSUANCE"
   },
-  "semantic_state_sha256": "813432bb0581f4f13bcca3d8d1eb83d7f6e697a3ac1b68822a142fe0df6f9cce",
+  "semantic_state_sha256": "2521098f68ffd284f8dcc9e92bd9af7cd1c888be4be0ab57978daae1e40bee97",
   "source_conflicts": [
     {
       "capture_basis": "LATEST_LIVE_EVENTS_CAPTURE",
