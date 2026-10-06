@@ -205,7 +205,7 @@
   },
   "event_id": "c2f35774-e944-5e8e-a93b-babacd38a48c",
   "fight_count": 12,
-  "generated_at_utc": "2026-10-06T16:15:39.335299Z",
+  "generated_at_utc": "2026-10-06T19:15:38.913726Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "GRADED_COMMERCIAL_AND_OR_SCIENTIFIC"
@@ -773,7 +773,7 @@
       "source": "PRODUCTION_COMMERCIAL_GRADES"
     }
   ],
-  "payload_sha256": "d770702225f41197b713a3ced9e35e8e47dba2bf28b942d9e1771438d43fd40c",
+  "payload_sha256": "ae999a186453fcd5852ec16d8a191eb4caf23ef156f980c598e44dd2455312b5",
   "picks_published": false,
   "positions": [],
   "positions_sha256": null,
@@ -3045,7 +3045,7 @@
     "production_issuance_authorized": true,
     "release_binding": "AUTHORIZED_RELEASE_AWAITING_EVENT_ISSUANCE"
   },
-  "semantic_state_sha256": "1f2a240a1faa79df7bab24b48c24ba6853ac39d17249d1ed4d1502b80712ebdb",
+  "semantic_state_sha256": "b686c7ed7fe62c41f8fe0accbb8f664242ddd6de89412f89e39ab75146f66f26",
   "source_conflicts": [
     {
       "capture_basis": "LATEST_LIVE_EVENTS_CAPTURE",
@@ -3060,7 +3060,7 @@
         "Ketlen Souza"
       ],
       "provider_selection_slots": {},
-      "source_capture_id": "c629d7fd-c4e4-44d2-a1a4-5d330a1d8d6c",
+      "source_capture_id": "2cc9a6e0-094a-4d9a-b5a9-e24a46f2f48f",
       "status": "ONE_SIDE_MATCH_PROVIDER_CARD_CONFLICT"
     },
     {
@@ -3076,7 +3076,7 @@
         "Kai Kamaka"
       ],
       "provider_selection_slots": {},
-      "source_capture_id": "c629d7fd-c4e4-44d2-a1a4-5d330a1d8d6c",
+      "source_capture_id": "2cc9a6e0-094a-4d9a-b5a9-e24a46f2f48f",
       "status": "ONE_SIDE_MATCH_PROVIDER_CARD_CONFLICT"
     },
     {
@@ -3092,7 +3092,7 @@
         "Darya Zheleznyakova"
       ],
       "provider_selection_slots": {},
-      "source_capture_id": "c629d7fd-c4e4-44d2-a1a4-5d330a1d8d6c",
+      "source_capture_id": "2cc9a6e0-094a-4d9a-b5a9-e24a46f2f48f",
       "status": "ONE_SIDE_MATCH_PROVIDER_CARD_CONFLICT"
     }
   ],
