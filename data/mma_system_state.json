@@ -62,7 +62,7 @@
       "is_co_main_event": false,
       "is_main_event": true,
       "official_display_order": 1,
-      "scheduled_start_utc": "2026-10-11T00:00:00Z",
+      "scheduled_start_utc": "2026-10-11T01:00:00Z",
       "segment": "MAIN",
       "weight_class": "MIDDLEWEIGHT"
     },
@@ -112,7 +112,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 6,
-      "scheduled_start_utc": "2026-10-11T00:00:00Z",
+      "scheduled_start_utc": "2026-10-10T21:00:00Z",
       "segment": "PRELIMS",
       "weight_class": "LIGHT_HEAVYWEIGHT"
     },
@@ -122,7 +122,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 7,
-      "scheduled_start_utc": "2026-10-11T00:00:00Z",
+      "scheduled_start_utc": "2026-10-10T21:00:00Z",
       "segment": "PRELIMS",
       "weight_class": "LIGHTWEIGHT"
     },
@@ -132,7 +132,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 8,
-      "scheduled_start_utc": "2026-10-11T00:00:00Z",
+      "scheduled_start_utc": "2026-10-10T21:00:00Z",
       "segment": "PRELIMS",
       "weight_class": "WELTERWEIGHT"
     },
@@ -142,7 +142,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 9,
-      "scheduled_start_utc": "2026-10-11T00:00:00Z",
+      "scheduled_start_utc": "2026-10-10T21:00:00Z",
       "segment": "PRELIMS",
       "weight_class": "LIGHT_HEAVYWEIGHT"
     },
@@ -152,7 +152,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 10,
-      "scheduled_start_utc": "2026-10-11T00:00:00Z",
+      "scheduled_start_utc": "2026-10-10T21:00:00Z",
       "segment": "PRELIMS",
       "weight_class": "HEAVYWEIGHT"
     },
@@ -162,7 +162,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 11,
-      "scheduled_start_utc": "2026-10-11T00:00:00Z",
+      "scheduled_start_utc": "2026-10-10T21:00:00Z",
       "segment": "PRELIMS",
       "weight_class": "WOMENS_BANTAMWEIGHT"
     },
@@ -172,7 +172,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 12,
-      "scheduled_start_utc": "2026-10-11T00:00:00Z",
+      "scheduled_start_utc": "2026-10-10T21:00:00Z",
       "segment": "PRELIMS",
       "weight_class": "WOMENS_FLYWEIGHT"
     }
@@ -205,7 +205,7 @@
   },
   "event_id": "c2f35774-e944-5e8e-a93b-babacd38a48c",
   "fight_count": 12,
-  "generated_at_utc": "2026-10-06T19:15:38.913726Z",
+  "generated_at_utc": "2026-10-08T18:45:44.647146Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "GRADED_COMMERCIAL_AND_OR_SCIENTIFIC"
@@ -773,7 +773,7 @@
       "source": "PRODUCTION_COMMERCIAL_GRADES"
     }
   ],
-  "payload_sha256": "ae999a186453fcd5852ec16d8a191eb4caf23ef156f980c598e44dd2455312b5",
+  "payload_sha256": "4ed556ce6e6d0d34bed65939b1b53ba8dba45ad2abc432e94d79c074a52cd8a7",
   "picks_published": false,
   "positions": [],
   "positions_sha256": null,
@@ -3045,7 +3045,7 @@
     "production_issuance_authorized": true,
     "release_binding": "AUTHORIZED_RELEASE_AWAITING_EVENT_ISSUANCE"
   },
-  "semantic_state_sha256": "b686c7ed7fe62c41f8fe0accbb8f664242ddd6de89412f89e39ab75146f66f26",
+  "semantic_state_sha256": "a16b314c07dc5251de08a056b6e5bf8333f3e505bb9f900c9f4d9cdd150e2597",
   "source_conflicts": [
     {
       "capture_basis": "LATEST_LIVE_EVENTS_CAPTURE",
@@ -3060,7 +3060,7 @@
         "Ketlen Souza"
       ],
       "provider_selection_slots": {},
-      "source_capture_id": "2cc9a6e0-094a-4d9a-b5a9-e24a46f2f48f",
+      "source_capture_id": "7f7470fe-56ae-4484-aff9-9d0a78b67f16",
       "status": "ONE_SIDE_MATCH_PROVIDER_CARD_CONFLICT"
     },
     {
@@ -3076,7 +3076,7 @@
         "Kai Kamaka"
       ],
       "provider_selection_slots": {},
-      "source_capture_id": "2cc9a6e0-094a-4d9a-b5a9-e24a46f2f48f",
+      "source_capture_id": "7f7470fe-56ae-4484-aff9-9d0a78b67f16",
       "status": "ONE_SIDE_MATCH_PROVIDER_CARD_CONFLICT"
     },
     {
@@ -3085,14 +3085,14 @@
         "Alice Pereira",
         "Daria Zhelezniakova"
       ],
-      "provider_commence_time_utc": "2026-10-11T00:00:00Z",
+      "provider_commence_time_utc": "2026-10-10T21:00:00Z",
       "provider_event_id": "87552145280ee8da5dc5ce22d35a9a83",
       "provider_pair": [
-        "Alice Pereira",
-        "Darya Zheleznyakova"
+        "Darya Zheleznyakova",
+        "Alice Pereira"
       ],
       "provider_selection_slots": {},
-      "source_capture_id": "2cc9a6e0-094a-4d9a-b5a9-e24a46f2f48f",
+      "source_capture_id": "7f7470fe-56ae-4484-aff9-9d0a78b67f16",
       "status": "ONE_SIDE_MATCH_PROVIDER_CARD_CONFLICT"
     }
   ],
