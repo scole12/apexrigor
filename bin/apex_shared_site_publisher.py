@@ -271,7 +271,10 @@ def discover_ncaaf(today_et: str, yesterday_et: str) -> list[Request]:
     for pointer_path in sorted(NCAAF_QUEUE.glob("????-??-??/*/current.json")):
         slate_date = pointer_path.parent.parent.name
         product = pointer_path.parent.name
-        if product in {"T3", "T2"} and slate_date != today_et:
+        # Owner rule 2026-10-09: a T-3/T-2 handoff for tomorrow's slate (early issuance) publishes today.
+        from datetime import date as _d, timedelta as _td
+        tomorrow_et = (_d.fromisoformat(today_et) + _td(days=1)).isoformat()
+        if product in {"T3", "T2"} and slate_date not in {today_et, tomorrow_et}:
             continue
         if product == "RESULTS" and slate_date > today_et:
             continue
@@ -1661,9 +1664,12 @@ def deployment_proof(d, commit, surface_hashes=None, request_id=None, *, repo=No
     import re
     repo=ROOT if repo is None else Path(repo)
     meta=d.get('meta',{});deployed=meta.get('githubCommitSha')
-    if (d.get('readyState')!='READY' or d.get('target')!='production' or
+    # 2026-10-05: Vercel marks a build READY about a second before it moves the apexrigor.com alias.
+    # Inside that window the site is not live yet: wait and check next minute (no owner email).
+    if d.get('readyState')!='READY' or 'apexrigor.com' not in d.get('alias',[]):
+        raise RuntimeError('NOT_DEPLOYED:alias_or_build_pending:'+str(commit))
+    if (d.get('target')!='production' or
         d.get('projectId')!='prj_eZTtqClkwx7IcE7NhVAK6UFmBnnB' or
-        'apexrigor.com' not in d.get('alias',[]) or
         meta.get('githubCommitOrg')!='scole12' or meta.get('githubCommitRepo')!='apexrigor' or
         meta.get('githubCommitRef')!='main' or not re.fullmatch(r'[0-9a-f]{40}',str(commit)) or
         not re.fullmatch(r'[0-9a-f]{40}',str(deployed))):
@@ -1731,7 +1737,9 @@ def main() -> int:
         outcome = execute(dry_run=arguments.dry_run, sport=arguments.sport)
         print(json.dumps(outcome, indent=2, sort_keys=True))
         # Non-zero only for real failures; "waiting for deployment" and skipped stuck requests exit 0.
-        return 1 if outcome.get('hard_failure_count') else 0
+        # 3 = a request failed and the owner was already emailed by owner_notice(); the unit's
+        # SuccessExitStatus=3 keeps OnFailure from sending a second email. Crashes still return 1.
+        return 3 if outcome.get('hard_failure_count') else 0
     except Exception as error:
         print(
             json.dumps(

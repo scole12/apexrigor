@@ -200,7 +200,7 @@ jobs:
                       assert hashlib.sha256(hydration_path.read_bytes()).hexdigest()==hydration_proof['sha256']
                       hydration=json.loads(hydration_path.read_text(encoding='utf-8'))
                       assert hydration['slate_date_et']==slate_date
-                      assert hydration['as_of_et']==slate_date
+                      assert hydration['as_of_et']<=slate_date  # owner 2026-10-09: early issuance allowed
                       assert set(hydration['authorities'])=={'PLAYER','TEAM_LINEUP','HISTORICAL'}
                       for authority in hydration['authorities'].values():
                           assert str(authority['transaction']).startswith('PASS_')
