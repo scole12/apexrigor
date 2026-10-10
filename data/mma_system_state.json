@@ -205,7 +205,7 @@
   },
   "event_id": "c2f35774-e944-5e8e-a93b-babacd38a48c",
   "fight_count": 12,
-  "generated_at_utc": "2026-10-09T16:15:39.370506Z",
+  "generated_at_utc": "2026-10-10T01:15:42.649036Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "GRADED_COMMERCIAL_AND_OR_SCIENTIFIC"
@@ -773,7 +773,7 @@
       "source": "PRODUCTION_COMMERCIAL_GRADES"
     }
   ],
-  "payload_sha256": "f12384f2861a85f6631bacd7d08ca3bd01cedcc9095eaf515ed1d5260ddd803c",
+  "payload_sha256": "74bc82470059bf123d5b1bbf2520114871eebbf0d0e958f729fcffd40dd58090",
   "picks_published": false,
   "positions": [],
   "positions_sha256": null,
@@ -3045,7 +3045,7 @@
     "production_issuance_authorized": true,
     "release_binding": "AUTHORIZED_RELEASE_AWAITING_EVENT_ISSUANCE"
   },
-  "semantic_state_sha256": "958fc0324d3fe31d798749756fb69b57e97c2972dafaddda0ddf42f0c5784b98",
+  "semantic_state_sha256": "fbc5dd5fa6c07e92f0267307f454455db80d67f71c03f2420c6e197be368044e",
   "source_conflicts": [
     {
       "capture_basis": "LATEST_LIVE_EVENTS_CAPTURE",
@@ -3060,7 +3060,7 @@
         "Ketlen Souza"
       ],
       "provider_selection_slots": {},
-      "source_capture_id": "3d89198c-1cd0-4d96-ab38-72aa9b8ab70a",
+      "source_capture_id": "68a0bae9-b4a6-4b32-b8ed-a939b0f896b0",
       "status": "ONE_SIDE_MATCH_PROVIDER_CARD_CONFLICT"
     },
     {
@@ -3076,7 +3076,7 @@
         "Kai Kamaka"
       ],
       "provider_selection_slots": {},
-      "source_capture_id": "3d89198c-1cd0-4d96-ab38-72aa9b8ab70a",
+      "source_capture_id": "68a0bae9-b4a6-4b32-b8ed-a939b0f896b0",
       "status": "ONE_SIDE_MATCH_PROVIDER_CARD_CONFLICT"
     },
     {
@@ -3092,7 +3092,7 @@
         "Alice Pereira"
       ],
       "provider_selection_slots": {},
-      "source_capture_id": "3d89198c-1cd0-4d96-ab38-72aa9b8ab70a",
+      "source_capture_id": "68a0bae9-b4a6-4b32-b8ed-a939b0f896b0",
       "status": "ONE_SIDE_MATCH_PROVIDER_CARD_CONFLICT"
     }
   ],
