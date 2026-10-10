@@ -1,6 +1,6 @@
 {
-  "active_model": null,
-  "active_model_sha256": null,
+  "active_model": "WINNER_RESIDUAL_BEST_AVAILABLE_V1",
+  "active_model_sha256": "c4405db96c390a3934649b9deb77c36ad510093defc2a9bcb1e01115757e2922",
   "authorities": {
     "fighter": {
       "bouts": 3708,
@@ -18,7 +18,7 @@
       "eligible_releases": 1,
       "frozen_releases": 1,
       "grades": 72,
-      "issuances": 4,
+      "issuances": 5,
       "scientific_grades": 29
     },
     "testing": {
@@ -205,13 +205,13 @@
   },
   "event_id": "c2f35774-e944-5e8e-a93b-babacd38a48c",
   "fight_count": 12,
-  "generated_at_utc": "2026-10-10T19:15:39.428365Z",
+  "generated_at_utc": "2026-10-10T20:07:46.555852Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "GRADED_COMMERCIAL_AND_OR_SCIENTIFIC"
   },
-  "issuance_id": null,
-  "issuance_status": null,
+  "issuance_id": "950105fb-6838-4f44-805b-e2e50dd50ea0",
+  "issuance_status": "SEALED",
   "latest_results": [
     {
       "bout_id": "0dcad387-5358-5ce3-8601-b935fc75e95a",
@@ -773,11 +773,3056 @@
       "source": "PRODUCTION_COMMERCIAL_GRADES"
     }
   ],
-  "payload_sha256": "07fb23ffd6807bcbb9c98d9f14d2e3b8d83bea5ffc2d093fd73b3d4e5f440a3c",
-  "picks_published": false,
-  "positions": [],
-  "positions_sha256": null,
-  "release_state": "AUTHORIZED_RELEASE_AWAITING_EVENT_ISSUANCE",
+  "market_display": {
+    "bouts": [
+      {
+        "bout_id": "f1dcb0a2-0b02-515f-b129-332151773d25",
+        "moneylines": [
+          {
+            "fanduel_status": "POSTED",
+            "fighter": "Brendan Allen",
+            "participant_slot": "A",
+            "price": -118,
+            "quote_sha256": "ce68bb6573f46b0223fffe980c3c2e0af51019e30caa376d7a46ff90d8c38d0c",
+            "quote_time": "2026-10-10 15:00:10-04:00"
+          },
+          {
+            "fanduel_status": "POSTED",
+            "fighter": "Christian Leroy Duncan",
+            "participant_slot": "B",
+            "price": -102,
+            "quote_sha256": "b41ed0357a123d21379b7465ea198b0fdc161609b7bc85bd2f25bf79d28f0a49",
+            "quote_time": "2026-10-10 15:00:10-04:00"
+          }
+        ],
+        "prediction_sha256": "55c0dbc3c7dad1f29614e17b3d1bc61115cd54aab4deb38624a746ccd23dd2f2",
+        "selected_fighter": "Brendan Allen",
+        "slots": [
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_AVAILABLE",
+            "issuance_status": "UNISSUED",
+            "market_key": "WINNER_KO_TKO",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.22756555617861254,
+            "rationale": "Brendan Allen has 6 KO/TKO wins in 34 saved pre-fight bouts; Christian Leroy Duncan has 0 KO/TKO losses in 17.",
+            "rationale_source": {
+              "bout_id": "f1dcb0a2-0b02-515f-b129-332151773d25",
+              "fighter_snapshot_sha256": "be6772b0438ff119e9298ce6105b110fa88d25305e96ab0e682c5d4605aeaaf3",
+              "opponent": {
+                "completed_bouts": 17,
+                "count": 0,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/0/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "Christian Leroy Duncan",
+                "fighter_id": 426,
+                "terms": [
+                  {
+                    "count": 0,
+                    "field": "ko_loss_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/0/elemental_feature_surface/fighter_b_state/historical_features/ko_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 34,
+                "count": 6,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/0/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Brendan Allen",
+                "fighter_id": 79,
+                "terms": [
+                  {
+                    "count": 6,
+                    "field": "ko_win_rate",
+                    "rate": 0.17647058823529413,
+                    "source_pointer": "/replay/inference_input/facts/bouts/0/elemental_feature_surface/fighter_a_state/historical_features/ko_win_rate"
+                  }
+                ]
+              }
+            },
+            "selection": "Brendan Allen by KO/TKO",
+            "slot_id": "L1"
+          },
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_AVAILABLE",
+            "issuance_status": "UNISSUED",
+            "market_key": "WINNER_SUBMISSION",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.09117872234094465,
+            "rationale": "Brendan Allen has 8 submission wins in 34 saved pre-fight bouts; Christian Leroy Duncan has 0 submission losses in 17.",
+            "rationale_source": {
+              "bout_id": "f1dcb0a2-0b02-515f-b129-332151773d25",
+              "fighter_snapshot_sha256": "be6772b0438ff119e9298ce6105b110fa88d25305e96ab0e682c5d4605aeaaf3",
+              "opponent": {
+                "completed_bouts": 17,
+                "count": 0,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/0/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "Christian Leroy Duncan",
+                "fighter_id": 426,
+                "terms": [
+                  {
+                    "count": 0,
+                    "field": "sub_loss_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/0/elemental_feature_surface/fighter_b_state/historical_features/sub_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 34,
+                "count": 8,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/0/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Brendan Allen",
+                "fighter_id": 79,
+                "terms": [
+                  {
+                    "count": 8,
+                    "field": "sub_win_rate",
+                    "rate": 0.23529411764705882,
+                    "source_pointer": "/replay/inference_input/facts/bouts/0/elemental_feature_surface/fighter_a_state/historical_features/sub_win_rate"
+                  }
+                ]
+              }
+            },
+            "selection": "Brendan Allen by submission",
+            "slot_id": "L2"
+          },
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_AVAILABLE",
+            "issuance_status": "UNISSUED",
+            "market_key": "ANY_FINISH",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.5942661881775491,
+            "rationale": "KO/TKO or submission ended 16 of Brendan Allen\u2019s 34 saved pre-fight bouts and 11 of Christian Leroy Duncan\u2019s 17.",
+            "rationale_source": {
+              "bout_id": "f1dcb0a2-0b02-515f-b129-332151773d25",
+              "fighter_snapshot_sha256": "be6772b0438ff119e9298ce6105b110fa88d25305e96ab0e682c5d4605aeaaf3",
+              "opponent": {
+                "completed_bouts": 17,
+                "count": 11,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/0/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "Christian Leroy Duncan",
+                "fighter_id": 426,
+                "terms": [
+                  {
+                    "count": 10,
+                    "field": "ko_win_rate",
+                    "rate": 0.5882352941176471,
+                    "source_pointer": "/replay/inference_input/facts/bouts/0/elemental_feature_surface/fighter_b_state/historical_features/ko_win_rate"
+                  },
+                  {
+                    "count": 1,
+                    "field": "sub_win_rate",
+                    "rate": 0.058823529411764705,
+                    "source_pointer": "/replay/inference_input/facts/bouts/0/elemental_feature_surface/fighter_b_state/historical_features/sub_win_rate"
+                  },
+                  {
+                    "count": 0,
+                    "field": "ko_loss_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/0/elemental_feature_surface/fighter_b_state/historical_features/ko_loss_rate"
+                  },
+                  {
+                    "count": 0,
+                    "field": "sub_loss_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/0/elemental_feature_surface/fighter_b_state/historical_features/sub_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 34,
+                "count": 16,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/0/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Brendan Allen",
+                "fighter_id": 79,
+                "terms": [
+                  {
+                    "count": 6,
+                    "field": "ko_win_rate",
+                    "rate": 0.17647058823529413,
+                    "source_pointer": "/replay/inference_input/facts/bouts/0/elemental_feature_surface/fighter_a_state/historical_features/ko_win_rate"
+                  },
+                  {
+                    "count": 8,
+                    "field": "sub_win_rate",
+                    "rate": 0.23529411764705882,
+                    "source_pointer": "/replay/inference_input/facts/bouts/0/elemental_feature_surface/fighter_a_state/historical_features/sub_win_rate"
+                  },
+                  {
+                    "count": 2,
+                    "field": "ko_loss_rate",
+                    "rate": 0.058823529411764705,
+                    "source_pointer": "/replay/inference_input/facts/bouts/0/elemental_feature_surface/fighter_a_state/historical_features/ko_loss_rate"
+                  },
+                  {
+                    "count": 0,
+                    "field": "sub_loss_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/0/elemental_feature_surface/fighter_a_state/historical_features/sub_loss_rate"
+                  }
+                ]
+              }
+            },
+            "selection": "FIGHT DOES NOT GO THE DISTANCE",
+            "slot_id": "L3"
+          },
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_AVAILABLE",
+            "issuance_status": "UNISSUED",
+            "market_key": "WINNER_ROUND_1",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.13775318797977817,
+            "rationale": "Brendan Allen has 9 first-round KO/TKO or submission wins in 34 saved pre-fight bouts; Christian Leroy Duncan has 0 such losses in 17.",
+            "rationale_source": {
+              "bout_id": "f1dcb0a2-0b02-515f-b129-332151773d25",
+              "fighter_snapshot_sha256": "be6772b0438ff119e9298ce6105b110fa88d25305e96ab0e682c5d4605aeaaf3",
+              "opponent": {
+                "completed_bouts": 17,
+                "count": 0,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/0/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "Christian Leroy Duncan",
+                "fighter_id": 426,
+                "terms": [
+                  {
+                    "count": 0,
+                    "field": "r1_finish_loss_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/0/elemental_feature_surface/fighter_b_state/historical_features/r1_finish_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 34,
+                "count": 9,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/0/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Brendan Allen",
+                "fighter_id": 79,
+                "terms": [
+                  {
+                    "count": 9,
+                    "field": "r1_finish_win_rate",
+                    "rate": 0.2647058823529412,
+                    "source_pointer": "/replay/inference_input/facts/bouts/0/elemental_feature_surface/fighter_a_state/historical_features/r1_finish_win_rate"
+                  }
+                ]
+              }
+            },
+            "selection": "Brendan Allen in round 1",
+            "slot_id": "L4"
+          }
+        ],
+        "winner_rationale": "In retained samples of recorded pre-fight bouts, Brendan Allen (34 bouts) averaged 1.52 takedowns and 4.39 minutes of control per 15 minutes, versus Christian Leroy Duncan (17 bouts) at 0.43 takedowns and 3.05 minutes of control.",
+        "winner_rationale_source": {
+          "bout_id": "f1dcb0a2-0b02-515f-b129-332151773d25",
+          "bout_pointer": "/replay/inference_input/facts/bouts/0",
+          "comparison": "TAKEDOWNS_AND_CONTROL",
+          "fighter_snapshot_sha256": "be6772b0438ff119e9298ce6105b110fa88d25305e96ab0e682c5d4605aeaaf3",
+          "opponent": {
+            "apex_fighter_id_pointer": "/replay/inference_input/facts/bouts/0/elemental_feature_surface/apex_fighter_b_id",
+            "apex_mma_fighter_id": "759283b8-8d6c-5d56-bbbd-6c05dad51b98",
+            "fields": [
+              {
+                "field": "fights",
+                "source_pointer": "/replay/inference_input/facts/bouts/0/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "value": 17
+              },
+              {
+                "field": "td_per15",
+                "source_pointer": "/replay/inference_input/facts/bouts/0/elemental_feature_surface/fighter_b_state/historical_features/td_per15",
+                "value": 0.4268099905153335
+              },
+              {
+                "field": "control_per15",
+                "source_pointer": "/replay/inference_input/facts/bouts/0/elemental_feature_surface/fighter_b_state/historical_features/control_per15",
+                "value": 3.0516914321846347
+              }
+            ],
+            "fighter": "Christian Leroy Duncan",
+            "fighter_id": 426,
+            "fighter_id_pointer": "/replay/inference_input/facts/bouts/0/elemental_feature_surface/fighter_b_state/fighter_id",
+            "fighter_pointer": "/replay/inference_input/facts/bouts/0/elemental_feature_surface/fighter_b_state/name",
+            "participant_slot": "B"
+          },
+          "projection_sha256": "13cd0cc5d13d840d721a1a8581c2988f653677612e521c4a749a519dbff8b6c7",
+          "sample": "RETAINED_RECORDED_PRE_FIGHT_BOUTS",
+          "selected_fighter": {
+            "apex_fighter_id_pointer": "/replay/inference_input/facts/bouts/0/elemental_feature_surface/apex_fighter_a_id",
+            "apex_mma_fighter_id": "e9268956-8c96-5808-8f64-9c89cf8a9e0d",
+            "fields": [
+              {
+                "field": "fights",
+                "source_pointer": "/replay/inference_input/facts/bouts/0/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "value": 34
+              },
+              {
+                "field": "td_per15",
+                "source_pointer": "/replay/inference_input/facts/bouts/0/elemental_feature_surface/fighter_a_state/historical_features/td_per15",
+                "value": 1.5240759829185686
+              },
+              {
+                "field": "control_per15",
+                "source_pointer": "/replay/inference_input/facts/bouts/0/elemental_feature_surface/fighter_a_state/historical_features/control_per15",
+                "value": 4.386688263878663
+              }
+            ],
+            "fighter": "Brendan Allen",
+            "fighter_id": 79,
+            "fighter_id_pointer": "/replay/inference_input/facts/bouts/0/elemental_feature_surface/fighter_a_state/fighter_id",
+            "fighter_pointer": "/replay/inference_input/facts/bouts/0/elemental_feature_surface/fighter_a_state/name",
+            "participant_slot": "A"
+          }
+        }
+      },
+      {
+        "bout_id": "c9e7d8a2-71ee-5f8f-bfce-f6b0e8434483",
+        "moneylines": [
+          {
+            "fanduel_status": "POSTED",
+            "fighter": "Matheus Camilo",
+            "participant_slot": "A",
+            "price": -205,
+            "quote_sha256": "53f93e1373181f24094c1ee468c82b0a62f33d908b64fdbecf273b66f75dec9a",
+            "quote_time": "2026-10-10 15:00:10-04:00"
+          },
+          {
+            "fanduel_status": "POSTED",
+            "fighter": "Jai Herbert",
+            "participant_slot": "B",
+            "price": 170,
+            "quote_sha256": "ff20341e331583e77321947b07ff68f3dee5c9f557f02de609cee8b624552bdc",
+            "quote_time": "2026-10-10 15:00:10-04:00"
+          }
+        ],
+        "prediction_sha256": "eb4721f7082ed62d24094d56bfcac62c4b207776c8baa43b741dba8ab18cd3b8",
+        "selected_fighter": "Matheus Camilo",
+        "slots": [
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_AVAILABLE",
+            "issuance_status": "UNISSUED",
+            "market_key": "WINNER_KO_TKO",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.2116307452937992,
+            "rationale": "Matheus Camilo has 5 KO/TKO wins in 15 saved pre-fight bouts; Jai Herbert has 3 KO/TKO losses in 20.",
+            "rationale_source": {
+              "bout_id": "c9e7d8a2-71ee-5f8f-bfce-f6b0e8434483",
+              "fighter_snapshot_sha256": "be6772b0438ff119e9298ce6105b110fa88d25305e96ab0e682c5d4605aeaaf3",
+              "opponent": {
+                "completed_bouts": 20,
+                "count": 3,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/1/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "Jai Herbert",
+                "fighter_id": 572,
+                "terms": [
+                  {
+                    "count": 3,
+                    "field": "ko_loss_rate",
+                    "rate": 0.15,
+                    "source_pointer": "/replay/inference_input/facts/bouts/1/elemental_feature_surface/fighter_b_state/historical_features/ko_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 15,
+                "count": 5,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/1/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Matheus Camilo",
+                "fighter_id": 304,
+                "terms": [
+                  {
+                    "count": 5,
+                    "field": "ko_win_rate",
+                    "rate": 0.3333333333333333,
+                    "source_pointer": "/replay/inference_input/facts/bouts/1/elemental_feature_surface/fighter_a_state/historical_features/ko_win_rate"
+                  }
+                ]
+              }
+            },
+            "selection": "Matheus Camilo by KO/TKO",
+            "slot_id": "L1"
+          },
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_AVAILABLE",
+            "issuance_status": "UNISSUED",
+            "market_key": "WINNER_SUBMISSION",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.16516468658240424,
+            "rationale": "Matheus Camilo has 2 submission wins in 15 saved pre-fight bouts; Jai Herbert has 1 submission loss in 20.",
+            "rationale_source": {
+              "bout_id": "c9e7d8a2-71ee-5f8f-bfce-f6b0e8434483",
+              "fighter_snapshot_sha256": "be6772b0438ff119e9298ce6105b110fa88d25305e96ab0e682c5d4605aeaaf3",
+              "opponent": {
+                "completed_bouts": 20,
+                "count": 1,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/1/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "Jai Herbert",
+                "fighter_id": 572,
+                "terms": [
+                  {
+                    "count": 1,
+                    "field": "sub_loss_rate",
+                    "rate": 0.05,
+                    "source_pointer": "/replay/inference_input/facts/bouts/1/elemental_feature_surface/fighter_b_state/historical_features/sub_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 15,
+                "count": 2,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/1/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Matheus Camilo",
+                "fighter_id": 304,
+                "terms": [
+                  {
+                    "count": 2,
+                    "field": "sub_win_rate",
+                    "rate": 0.13333333333333333,
+                    "source_pointer": "/replay/inference_input/facts/bouts/1/elemental_feature_surface/fighter_a_state/historical_features/sub_win_rate"
+                  }
+                ]
+              }
+            },
+            "selection": "Matheus Camilo by submission",
+            "slot_id": "L2"
+          },
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_AVAILABLE",
+            "issuance_status": "UNISSUED",
+            "market_key": "ANY_FINISH",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.5234618442737969,
+            "rationale": "KO/TKO or submission ended 11 of Matheus Camilo\u2019s 15 saved pre-fight bouts and 15 of Jai Herbert\u2019s 20.",
+            "rationale_source": {
+              "bout_id": "c9e7d8a2-71ee-5f8f-bfce-f6b0e8434483",
+              "fighter_snapshot_sha256": "be6772b0438ff119e9298ce6105b110fa88d25305e96ab0e682c5d4605aeaaf3",
+              "opponent": {
+                "completed_bouts": 20,
+                "count": 15,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/1/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "Jai Herbert",
+                "fighter_id": 572,
+                "terms": [
+                  {
+                    "count": 10,
+                    "field": "ko_win_rate",
+                    "rate": 0.5,
+                    "source_pointer": "/replay/inference_input/facts/bouts/1/elemental_feature_surface/fighter_b_state/historical_features/ko_win_rate"
+                  },
+                  {
+                    "count": 1,
+                    "field": "sub_win_rate",
+                    "rate": 0.05,
+                    "source_pointer": "/replay/inference_input/facts/bouts/1/elemental_feature_surface/fighter_b_state/historical_features/sub_win_rate"
+                  },
+                  {
+                    "count": 3,
+                    "field": "ko_loss_rate",
+                    "rate": 0.15,
+                    "source_pointer": "/replay/inference_input/facts/bouts/1/elemental_feature_surface/fighter_b_state/historical_features/ko_loss_rate"
+                  },
+                  {
+                    "count": 1,
+                    "field": "sub_loss_rate",
+                    "rate": 0.05,
+                    "source_pointer": "/replay/inference_input/facts/bouts/1/elemental_feature_surface/fighter_b_state/historical_features/sub_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 15,
+                "count": 11,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/1/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Matheus Camilo",
+                "fighter_id": 304,
+                "terms": [
+                  {
+                    "count": 5,
+                    "field": "ko_win_rate",
+                    "rate": 0.3333333333333333,
+                    "source_pointer": "/replay/inference_input/facts/bouts/1/elemental_feature_surface/fighter_a_state/historical_features/ko_win_rate"
+                  },
+                  {
+                    "count": 2,
+                    "field": "sub_win_rate",
+                    "rate": 0.13333333333333333,
+                    "source_pointer": "/replay/inference_input/facts/bouts/1/elemental_feature_surface/fighter_a_state/historical_features/sub_win_rate"
+                  },
+                  {
+                    "count": 0,
+                    "field": "ko_loss_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/1/elemental_feature_surface/fighter_a_state/historical_features/ko_loss_rate"
+                  },
+                  {
+                    "count": 4,
+                    "field": "sub_loss_rate",
+                    "rate": 0.26666666666666666,
+                    "source_pointer": "/replay/inference_input/facts/bouts/1/elemental_feature_surface/fighter_a_state/historical_features/sub_loss_rate"
+                  }
+                ]
+              }
+            },
+            "selection": "FIGHT DOES NOT GO THE DISTANCE",
+            "slot_id": "L3"
+          },
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_AVAILABLE",
+            "issuance_status": "UNISSUED",
+            "market_key": "WINNER_ROUND_1",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.19319819490654835,
+            "rationale": "Matheus Camilo has 4 first-round KO/TKO or submission wins in 15 saved pre-fight bouts; Jai Herbert has 1 such loss in 20.",
+            "rationale_source": {
+              "bout_id": "c9e7d8a2-71ee-5f8f-bfce-f6b0e8434483",
+              "fighter_snapshot_sha256": "be6772b0438ff119e9298ce6105b110fa88d25305e96ab0e682c5d4605aeaaf3",
+              "opponent": {
+                "completed_bouts": 20,
+                "count": 1,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/1/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "Jai Herbert",
+                "fighter_id": 572,
+                "terms": [
+                  {
+                    "count": 1,
+                    "field": "r1_finish_loss_rate",
+                    "rate": 0.05,
+                    "source_pointer": "/replay/inference_input/facts/bouts/1/elemental_feature_surface/fighter_b_state/historical_features/r1_finish_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 15,
+                "count": 4,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/1/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Matheus Camilo",
+                "fighter_id": 304,
+                "terms": [
+                  {
+                    "count": 4,
+                    "field": "r1_finish_win_rate",
+                    "rate": 0.26666666666666666,
+                    "source_pointer": "/replay/inference_input/facts/bouts/1/elemental_feature_surface/fighter_a_state/historical_features/r1_finish_win_rate"
+                  }
+                ]
+              }
+            },
+            "selection": "Matheus Camilo in round 1",
+            "slot_id": "L4"
+          }
+        ],
+        "winner_rationale": "In retained samples of recorded pre-fight bouts, Matheus Camilo (15 bouts) averaged 3.09 takedowns and 2.61 minutes of control per 15 minutes, versus Jai Herbert (20 bouts) at 0.33 takedowns and 2.42 minutes of control.",
+        "winner_rationale_source": {
+          "bout_id": "c9e7d8a2-71ee-5f8f-bfce-f6b0e8434483",
+          "bout_pointer": "/replay/inference_input/facts/bouts/1",
+          "comparison": "TAKEDOWNS_AND_CONTROL",
+          "fighter_snapshot_sha256": "be6772b0438ff119e9298ce6105b110fa88d25305e96ab0e682c5d4605aeaaf3",
+          "opponent": {
+            "apex_fighter_id_pointer": "/replay/inference_input/facts/bouts/1/elemental_feature_surface/apex_fighter_b_id",
+            "apex_mma_fighter_id": "73059356-8aa7-5fd3-8570-6930457da090",
+            "fields": [
+              {
+                "field": "fights",
+                "source_pointer": "/replay/inference_input/facts/bouts/1/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "value": 20
+              },
+              {
+                "field": "td_per15",
+                "source_pointer": "/replay/inference_input/facts/bouts/1/elemental_feature_surface/fighter_b_state/historical_features/td_per15",
+                "value": 0.3259098316132537
+              },
+              {
+                "field": "control_per15",
+                "source_pointer": "/replay/inference_input/facts/bouts/1/elemental_feature_surface/fighter_b_state/historical_features/control_per15",
+                "value": 2.417164584464965
+              }
+            ],
+            "fighter": "Jai Herbert",
+            "fighter_id": 572,
+            "fighter_id_pointer": "/replay/inference_input/facts/bouts/1/elemental_feature_surface/fighter_b_state/fighter_id",
+            "fighter_pointer": "/replay/inference_input/facts/bouts/1/elemental_feature_surface/fighter_b_state/name",
+            "participant_slot": "B"
+          },
+          "projection_sha256": "f868fb557541e140f214ae6c7baade1e5534315926a58b5fee4befba2bbf454a",
+          "sample": "RETAINED_RECORDED_PRE_FIGHT_BOUTS",
+          "selected_fighter": {
+            "apex_fighter_id_pointer": "/replay/inference_input/facts/bouts/1/elemental_feature_surface/apex_fighter_a_id",
+            "apex_mma_fighter_id": "7f1fe7e7-a5e6-5bb7-971a-ee0b9363fafb",
+            "fields": [
+              {
+                "field": "fights",
+                "source_pointer": "/replay/inference_input/facts/bouts/1/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "value": 15
+              },
+              {
+                "field": "td_per15",
+                "source_pointer": "/replay/inference_input/facts/bouts/1/elemental_feature_surface/fighter_a_state/historical_features/td_per15",
+                "value": 3.092783505154639
+              },
+              {
+                "field": "control_per15",
+                "source_pointer": "/replay/inference_input/facts/bouts/1/elemental_feature_surface/fighter_a_state/historical_features/control_per15",
+                "value": 2.614138438880707
+              }
+            ],
+            "fighter": "Matheus Camilo",
+            "fighter_id": 304,
+            "fighter_id_pointer": "/replay/inference_input/facts/bouts/1/elemental_feature_surface/fighter_a_state/fighter_id",
+            "fighter_pointer": "/replay/inference_input/facts/bouts/1/elemental_feature_surface/fighter_a_state/name",
+            "participant_slot": "A"
+          }
+        }
+      },
+      {
+        "bout_id": "c1adb76c-e493-56a9-83f7-e26c2cebd406",
+        "moneylines": [
+          {
+            "fanduel_status": "POSTED",
+            "fighter": "Malcolm Wellmaker",
+            "participant_slot": "A",
+            "price": -218,
+            "quote_sha256": "0fe22d4d39bb14982e94d632f68aac92cadfd5cf2ebd9297600b7f3f05358804",
+            "quote_time": "2026-10-10 15:00:10-04:00"
+          },
+          {
+            "fanduel_status": "POSTED",
+            "fighter": "Otari Tanzilovi",
+            "participant_slot": "B",
+            "price": 180,
+            "quote_sha256": "8d1b2de6e9da7aa4a0e45e2d16d11ced1e1a5551ebe1ef45b362a98a8feabe5f",
+            "quote_time": "2026-10-10 15:00:10-04:00"
+          }
+        ],
+        "prediction_sha256": "c760343e2b5d1e053654c9a896ca2c42568bd045721827dee1d772abab85e6fb",
+        "selected_fighter": "Malcolm Wellmaker",
+        "slots": [
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_AVAILABLE",
+            "issuance_status": "UNISSUED",
+            "market_key": "WINNER_KO_TKO",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.17594248570473342,
+            "rationale": "Malcolm Wellmaker has 6 KO/TKO wins in 12 saved pre-fight bouts; Otari Tanzilovi has 0 KO/TKO losses in 12.",
+            "rationale_source": {
+              "bout_id": "c1adb76c-e493-56a9-83f7-e26c2cebd406",
+              "fighter_snapshot_sha256": "be6772b0438ff119e9298ce6105b110fa88d25305e96ab0e682c5d4605aeaaf3",
+              "opponent": {
+                "completed_bouts": 12,
+                "count": 0,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/2/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "Otari Tanzilovi",
+                "fighter_id": 33159,
+                "terms": [
+                  {
+                    "count": 0,
+                    "field": "ko_loss_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/2/elemental_feature_surface/fighter_b_state/historical_features/ko_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 12,
+                "count": 6,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/2/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Malcolm Wellmaker",
+                "fighter_id": 31,
+                "terms": [
+                  {
+                    "count": 6,
+                    "field": "ko_win_rate",
+                    "rate": 0.5,
+                    "source_pointer": "/replay/inference_input/facts/bouts/2/elemental_feature_surface/fighter_a_state/historical_features/ko_win_rate"
+                  }
+                ]
+              }
+            },
+            "selection": "Malcolm Wellmaker by KO/TKO",
+            "slot_id": "L1"
+          },
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_AVAILABLE",
+            "issuance_status": "UNISSUED",
+            "market_key": "WINNER_SUBMISSION",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.14663275763443617,
+            "rationale": "Malcolm Wellmaker has 2 submission wins in 12 saved pre-fight bouts; Otari Tanzilovi has 0 submission losses in 12.",
+            "rationale_source": {
+              "bout_id": "c1adb76c-e493-56a9-83f7-e26c2cebd406",
+              "fighter_snapshot_sha256": "be6772b0438ff119e9298ce6105b110fa88d25305e96ab0e682c5d4605aeaaf3",
+              "opponent": {
+                "completed_bouts": 12,
+                "count": 0,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/2/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "Otari Tanzilovi",
+                "fighter_id": 33159,
+                "terms": [
+                  {
+                    "count": 0,
+                    "field": "sub_loss_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/2/elemental_feature_surface/fighter_b_state/historical_features/sub_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 12,
+                "count": 2,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/2/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Malcolm Wellmaker",
+                "fighter_id": 31,
+                "terms": [
+                  {
+                    "count": 2,
+                    "field": "sub_win_rate",
+                    "rate": 0.16666666666666666,
+                    "source_pointer": "/replay/inference_input/facts/bouts/2/elemental_feature_surface/fighter_a_state/historical_features/sub_win_rate"
+                  }
+                ]
+              }
+            },
+            "selection": "Malcolm Wellmaker by submission",
+            "slot_id": "L2"
+          },
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_AVAILABLE",
+            "issuance_status": "UNISSUED",
+            "market_key": "ANY_FINISH",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.4655083933311981,
+            "rationale": "KO/TKO or submission ended 9 of Malcolm Wellmaker\u2019s 12 saved pre-fight bouts and 7 of Otari Tanzilovi\u2019s 12.",
+            "rationale_source": {
+              "bout_id": "c1adb76c-e493-56a9-83f7-e26c2cebd406",
+              "fighter_snapshot_sha256": "be6772b0438ff119e9298ce6105b110fa88d25305e96ab0e682c5d4605aeaaf3",
+              "opponent": {
+                "completed_bouts": 12,
+                "count": 7,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/2/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "Otari Tanzilovi",
+                "fighter_id": 33159,
+                "terms": [
+                  {
+                    "count": 7,
+                    "field": "ko_win_rate",
+                    "rate": 0.5833333333333334,
+                    "source_pointer": "/replay/inference_input/facts/bouts/2/elemental_feature_surface/fighter_b_state/historical_features/ko_win_rate"
+                  },
+                  {
+                    "count": 0,
+                    "field": "sub_win_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/2/elemental_feature_surface/fighter_b_state/historical_features/sub_win_rate"
+                  },
+                  {
+                    "count": 0,
+                    "field": "ko_loss_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/2/elemental_feature_surface/fighter_b_state/historical_features/ko_loss_rate"
+                  },
+                  {
+                    "count": 0,
+                    "field": "sub_loss_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/2/elemental_feature_surface/fighter_b_state/historical_features/sub_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 12,
+                "count": 9,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/2/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Malcolm Wellmaker",
+                "fighter_id": 31,
+                "terms": [
+                  {
+                    "count": 6,
+                    "field": "ko_win_rate",
+                    "rate": 0.5,
+                    "source_pointer": "/replay/inference_input/facts/bouts/2/elemental_feature_surface/fighter_a_state/historical_features/ko_win_rate"
+                  },
+                  {
+                    "count": 2,
+                    "field": "sub_win_rate",
+                    "rate": 0.16666666666666666,
+                    "source_pointer": "/replay/inference_input/facts/bouts/2/elemental_feature_surface/fighter_a_state/historical_features/sub_win_rate"
+                  },
+                  {
+                    "count": 0,
+                    "field": "ko_loss_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/2/elemental_feature_surface/fighter_a_state/historical_features/ko_loss_rate"
+                  },
+                  {
+                    "count": 1,
+                    "field": "sub_loss_rate",
+                    "rate": 0.08333333333333333,
+                    "source_pointer": "/replay/inference_input/facts/bouts/2/elemental_feature_surface/fighter_a_state/historical_features/sub_loss_rate"
+                  }
+                ]
+              }
+            },
+            "selection": "FIGHT DOES NOT GO THE DISTANCE",
+            "slot_id": "L3"
+          },
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_AVAILABLE",
+            "issuance_status": "UNISSUED",
+            "market_key": "WINNER_ROUND_1",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.14981892431113716,
+            "rationale": "Malcolm Wellmaker has 6 first-round KO/TKO or submission wins in 12 saved pre-fight bouts; Otari Tanzilovi has 0 such losses in 12.",
+            "rationale_source": {
+              "bout_id": "c1adb76c-e493-56a9-83f7-e26c2cebd406",
+              "fighter_snapshot_sha256": "be6772b0438ff119e9298ce6105b110fa88d25305e96ab0e682c5d4605aeaaf3",
+              "opponent": {
+                "completed_bouts": 12,
+                "count": 0,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/2/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "Otari Tanzilovi",
+                "fighter_id": 33159,
+                "terms": [
+                  {
+                    "count": 0,
+                    "field": "r1_finish_loss_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/2/elemental_feature_surface/fighter_b_state/historical_features/r1_finish_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 12,
+                "count": 6,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/2/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Malcolm Wellmaker",
+                "fighter_id": 31,
+                "terms": [
+                  {
+                    "count": 6,
+                    "field": "r1_finish_win_rate",
+                    "rate": 0.5,
+                    "source_pointer": "/replay/inference_input/facts/bouts/2/elemental_feature_surface/fighter_a_state/historical_features/r1_finish_win_rate"
+                  }
+                ]
+              }
+            },
+            "selection": "Malcolm Wellmaker in round 1",
+            "slot_id": "L4"
+          }
+        ],
+        "winner_rationale": "In retained samples of recorded pre-fight bouts, Malcolm Wellmaker (12 bouts) landed 4.58 significant strikes per minute versus Otari Tanzilovi (12 bouts) at 1.93, although the opponent averaged more takedowns per 15 minutes (2.50 versus 0.00).",
+        "winner_rationale_source": {
+          "bout_id": "c1adb76c-e493-56a9-83f7-e26c2cebd406",
+          "bout_pointer": "/replay/inference_input/facts/bouts/2",
+          "comparison": "OUTPUT_WITH_TAKEDOWN_COUNTERPOINT",
+          "fighter_snapshot_sha256": "be6772b0438ff119e9298ce6105b110fa88d25305e96ab0e682c5d4605aeaaf3",
+          "opponent": {
+            "apex_fighter_id_pointer": "/replay/inference_input/facts/bouts/2/elemental_feature_surface/apex_fighter_b_id",
+            "apex_mma_fighter_id": "18a45bbe-d005-5593-8d80-688c9b83ecac",
+            "fields": [
+              {
+                "field": "fights",
+                "source_pointer": "/replay/inference_input/facts/bouts/2/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "value": 12
+              },
+              {
+                "field": "sig_lpm",
+                "source_pointer": "/replay/inference_input/facts/bouts/2/elemental_feature_surface/fighter_b_state/historical_features/sig_lpm",
+                "value": 1.9333333333333333
+              },
+              {
+                "field": "td_per15",
+                "source_pointer": "/replay/inference_input/facts/bouts/2/elemental_feature_surface/fighter_b_state/historical_features/td_per15",
+                "value": 2.5
+              }
+            ],
+            "fighter": "Otari Tanzilovi",
+            "fighter_id": 33159,
+            "fighter_id_pointer": "/replay/inference_input/facts/bouts/2/elemental_feature_surface/fighter_b_state/fighter_id",
+            "fighter_pointer": "/replay/inference_input/facts/bouts/2/elemental_feature_surface/fighter_b_state/name",
+            "participant_slot": "B"
+          },
+          "projection_sha256": "91a43d052fa0852e55345ecab190bbd9e4cc79e97c24acadbbb60f55ebba7394",
+          "sample": "RETAINED_RECORDED_PRE_FIGHT_BOUTS",
+          "selected_fighter": {
+            "apex_fighter_id_pointer": "/replay/inference_input/facts/bouts/2/elemental_feature_surface/apex_fighter_a_id",
+            "apex_mma_fighter_id": "3d3ba752-857d-5cd1-a49c-388b5ad55306",
+            "fields": [
+              {
+                "field": "fights",
+                "source_pointer": "/replay/inference_input/facts/bouts/2/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "value": 12
+              },
+              {
+                "field": "sig_lpm",
+                "source_pointer": "/replay/inference_input/facts/bouts/2/elemental_feature_surface/fighter_a_state/historical_features/sig_lpm",
+                "value": 4.578441835645678
+              },
+              {
+                "field": "td_per15",
+                "source_pointer": "/replay/inference_input/facts/bouts/2/elemental_feature_surface/fighter_a_state/historical_features/td_per15",
+                "value": 0.0
+              }
+            ],
+            "fighter": "Malcolm Wellmaker",
+            "fighter_id": 31,
+            "fighter_id_pointer": "/replay/inference_input/facts/bouts/2/elemental_feature_surface/fighter_a_state/fighter_id",
+            "fighter_pointer": "/replay/inference_input/facts/bouts/2/elemental_feature_surface/fighter_a_state/name",
+            "participant_slot": "A"
+          }
+        }
+      },
+      {
+        "bout_id": "38b47c61-d07a-5b14-bded-3f3d7c581ae2",
+        "moneylines": [
+          {
+            "fanduel_status": "POSTED",
+            "fighter": "Julius Walker",
+            "participant_slot": "A",
+            "price": -305,
+            "quote_sha256": "28e3c57c4ced07bf6527e73a3f54848334260778153f71afdb18a7003aacd9b0",
+            "quote_time": "2026-10-10 15:00:10-04:00"
+          },
+          {
+            "fanduel_status": "POSTED",
+            "fighter": "Gerald Meerschaert",
+            "participant_slot": "B",
+            "price": 245,
+            "quote_sha256": "a484db03164876eaae580ec2b24ad001f545645249131acbfab7136f4802fb05",
+            "quote_time": "2026-10-10 15:00:10-04:00"
+          }
+        ],
+        "prediction_sha256": "ae5f47713366b38dbe6519ef9670609262460a6324843b94817441bbf09b9f3d",
+        "selected_fighter": "Julius Walker",
+        "slots": [
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_AVAILABLE",
+            "issuance_status": "UNISSUED",
+            "market_key": "WINNER_KO_TKO",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.36240444338953226,
+            "rationale": "Julius Walker has 4 KO/TKO wins in 10 saved pre-fight bouts; Gerald Meerschaert has 5 KO/TKO losses in 59.",
+            "rationale_source": {
+              "bout_id": "38b47c61-d07a-5b14-bded-3f3d7c581ae2",
+              "fighter_snapshot_sha256": "be6772b0438ff119e9298ce6105b110fa88d25305e96ab0e682c5d4605aeaaf3",
+              "opponent": {
+                "completed_bouts": 59,
+                "count": 5,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/3/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "Gerald Meerschaert",
+                "fighter_id": 391,
+                "terms": [
+                  {
+                    "count": 5,
+                    "field": "ko_loss_rate",
+                    "rate": 0.0847457627118644,
+                    "source_pointer": "/replay/inference_input/facts/bouts/3/elemental_feature_surface/fighter_b_state/historical_features/ko_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 10,
+                "count": 4,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/3/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Julius Walker",
+                "fighter_id": 498,
+                "terms": [
+                  {
+                    "count": 4,
+                    "field": "ko_win_rate",
+                    "rate": 0.4,
+                    "source_pointer": "/replay/inference_input/facts/bouts/3/elemental_feature_surface/fighter_a_state/historical_features/ko_win_rate"
+                  }
+                ]
+              }
+            },
+            "selection": "Julius Walker by KO/TKO",
+            "slot_id": "L1"
+          },
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_AVAILABLE",
+            "issuance_status": "UNISSUED",
+            "market_key": "WINNER_SUBMISSION",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.15588810969085362,
+            "rationale": "Julius Walker has 2 submission wins in 10 saved pre-fight bouts; Gerald Meerschaert has 10 submission losses in 59.",
+            "rationale_source": {
+              "bout_id": "38b47c61-d07a-5b14-bded-3f3d7c581ae2",
+              "fighter_snapshot_sha256": "be6772b0438ff119e9298ce6105b110fa88d25305e96ab0e682c5d4605aeaaf3",
+              "opponent": {
+                "completed_bouts": 59,
+                "count": 10,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/3/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "Gerald Meerschaert",
+                "fighter_id": 391,
+                "terms": [
+                  {
+                    "count": 10,
+                    "field": "sub_loss_rate",
+                    "rate": 0.1694915254237288,
+                    "source_pointer": "/replay/inference_input/facts/bouts/3/elemental_feature_surface/fighter_b_state/historical_features/sub_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 10,
+                "count": 2,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/3/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Julius Walker",
+                "fighter_id": 498,
+                "terms": [
+                  {
+                    "count": 2,
+                    "field": "sub_win_rate",
+                    "rate": 0.2,
+                    "source_pointer": "/replay/inference_input/facts/bouts/3/elemental_feature_surface/fighter_a_state/historical_features/sub_win_rate"
+                  }
+                ]
+              }
+            },
+            "selection": "Julius Walker by submission",
+            "slot_id": "L2"
+          },
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_AVAILABLE",
+            "issuance_status": "UNISSUED",
+            "market_key": "ANY_FINISH",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.6504931787795147,
+            "rationale": "KO/TKO or submission ended 8 of Julius Walker\u2019s 10 saved pre-fight bouts and 50 of Gerald Meerschaert\u2019s 59.",
+            "rationale_source": {
+              "bout_id": "38b47c61-d07a-5b14-bded-3f3d7c581ae2",
+              "fighter_snapshot_sha256": "be6772b0438ff119e9298ce6105b110fa88d25305e96ab0e682c5d4605aeaaf3",
+              "opponent": {
+                "completed_bouts": 59,
+                "count": 50,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/3/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "Gerald Meerschaert",
+                "fighter_id": 391,
+                "terms": [
+                  {
+                    "count": 6,
+                    "field": "ko_win_rate",
+                    "rate": 0.1016949152542373,
+                    "source_pointer": "/replay/inference_input/facts/bouts/3/elemental_feature_surface/fighter_b_state/historical_features/ko_win_rate"
+                  },
+                  {
+                    "count": 29,
+                    "field": "sub_win_rate",
+                    "rate": 0.4915254237288136,
+                    "source_pointer": "/replay/inference_input/facts/bouts/3/elemental_feature_surface/fighter_b_state/historical_features/sub_win_rate"
+                  },
+                  {
+                    "count": 5,
+                    "field": "ko_loss_rate",
+                    "rate": 0.0847457627118644,
+                    "source_pointer": "/replay/inference_input/facts/bouts/3/elemental_feature_surface/fighter_b_state/historical_features/ko_loss_rate"
+                  },
+                  {
+                    "count": 10,
+                    "field": "sub_loss_rate",
+                    "rate": 0.1694915254237288,
+                    "source_pointer": "/replay/inference_input/facts/bouts/3/elemental_feature_surface/fighter_b_state/historical_features/sub_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 10,
+                "count": 8,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/3/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Julius Walker",
+                "fighter_id": 498,
+                "terms": [
+                  {
+                    "count": 4,
+                    "field": "ko_win_rate",
+                    "rate": 0.4,
+                    "source_pointer": "/replay/inference_input/facts/bouts/3/elemental_feature_surface/fighter_a_state/historical_features/ko_win_rate"
+                  },
+                  {
+                    "count": 2,
+                    "field": "sub_win_rate",
+                    "rate": 0.2,
+                    "source_pointer": "/replay/inference_input/facts/bouts/3/elemental_feature_surface/fighter_a_state/historical_features/sub_win_rate"
+                  },
+                  {
+                    "count": 2,
+                    "field": "ko_loss_rate",
+                    "rate": 0.2,
+                    "source_pointer": "/replay/inference_input/facts/bouts/3/elemental_feature_surface/fighter_a_state/historical_features/ko_loss_rate"
+                  },
+                  {
+                    "count": 0,
+                    "field": "sub_loss_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/3/elemental_feature_surface/fighter_a_state/historical_features/sub_loss_rate"
+                  }
+                ]
+              }
+            },
+            "selection": "FIGHT DOES NOT GO THE DISTANCE",
+            "slot_id": "L3"
+          },
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_AVAILABLE",
+            "issuance_status": "UNISSUED",
+            "market_key": "WINNER_ROUND_1",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.3318146374902934,
+            "rationale": "Julius Walker has 5 first-round KO/TKO or submission wins in 10 saved pre-fight bouts; Gerald Meerschaert has 9 such losses in 59.",
+            "rationale_source": {
+              "bout_id": "38b47c61-d07a-5b14-bded-3f3d7c581ae2",
+              "fighter_snapshot_sha256": "be6772b0438ff119e9298ce6105b110fa88d25305e96ab0e682c5d4605aeaaf3",
+              "opponent": {
+                "completed_bouts": 59,
+                "count": 9,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/3/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "Gerald Meerschaert",
+                "fighter_id": 391,
+                "terms": [
+                  {
+                    "count": 9,
+                    "field": "r1_finish_loss_rate",
+                    "rate": 0.15254237288135594,
+                    "source_pointer": "/replay/inference_input/facts/bouts/3/elemental_feature_surface/fighter_b_state/historical_features/r1_finish_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 10,
+                "count": 5,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/3/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Julius Walker",
+                "fighter_id": 498,
+                "terms": [
+                  {
+                    "count": 5,
+                    "field": "r1_finish_win_rate",
+                    "rate": 0.5,
+                    "source_pointer": "/replay/inference_input/facts/bouts/3/elemental_feature_surface/fighter_a_state/historical_features/r1_finish_win_rate"
+                  }
+                ]
+              }
+            },
+            "selection": "Julius Walker in round 1",
+            "slot_id": "L4"
+          }
+        ],
+        "winner_rationale": "In retained samples of recorded pre-fight bouts, Julius Walker (10 bouts) averaged 4.07 takedowns and 8.17 minutes of control per 15 minutes, versus Gerald Meerschaert (59 bouts) at 1.70 takedowns and 3.35 minutes of control.",
+        "winner_rationale_source": {
+          "bout_id": "38b47c61-d07a-5b14-bded-3f3d7c581ae2",
+          "bout_pointer": "/replay/inference_input/facts/bouts/3",
+          "comparison": "TAKEDOWNS_AND_CONTROL",
+          "fighter_snapshot_sha256": "be6772b0438ff119e9298ce6105b110fa88d25305e96ab0e682c5d4605aeaaf3",
+          "opponent": {
+            "apex_fighter_id_pointer": "/replay/inference_input/facts/bouts/3/elemental_feature_surface/apex_fighter_b_id",
+            "apex_mma_fighter_id": "1d990476-5ea4-547d-a7de-071e593d3a78",
+            "fields": [
+              {
+                "field": "fights",
+                "source_pointer": "/replay/inference_input/facts/bouts/3/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "value": 59
+              },
+              {
+                "field": "td_per15",
+                "source_pointer": "/replay/inference_input/facts/bouts/3/elemental_feature_surface/fighter_b_state/historical_features/td_per15",
+                "value": 1.6976007243096423
+              },
+              {
+                "field": "control_per15",
+                "source_pointer": "/replay/inference_input/facts/bouts/3/elemental_feature_surface/fighter_b_state/historical_features/control_per15",
+                "value": 3.353327297419647
+              }
+            ],
+            "fighter": "Gerald Meerschaert",
+            "fighter_id": 391,
+            "fighter_id_pointer": "/replay/inference_input/facts/bouts/3/elemental_feature_surface/fighter_b_state/fighter_id",
+            "fighter_pointer": "/replay/inference_input/facts/bouts/3/elemental_feature_surface/fighter_b_state/name",
+            "participant_slot": "B"
+          },
+          "projection_sha256": "8f00d7b86c6fe9f78e7bc3259fbce98fd6ec3d7050a69ce4bfff2c9d19984823",
+          "sample": "RETAINED_RECORDED_PRE_FIGHT_BOUTS",
+          "selected_fighter": {
+            "apex_fighter_id_pointer": "/replay/inference_input/facts/bouts/3/elemental_feature_surface/apex_fighter_a_id",
+            "apex_mma_fighter_id": "9373282f-cb59-5458-a442-5304be4c185f",
+            "fields": [
+              {
+                "field": "fights",
+                "source_pointer": "/replay/inference_input/facts/bouts/3/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "value": 10
+              },
+              {
+                "field": "td_per15",
+                "source_pointer": "/replay/inference_input/facts/bouts/3/elemental_feature_surface/fighter_a_state/historical_features/td_per15",
+                "value": 4.072398190045249
+              },
+              {
+                "field": "control_per15",
+                "source_pointer": "/replay/inference_input/facts/bouts/3/elemental_feature_surface/fighter_a_state/historical_features/control_per15",
+                "value": 8.171945701357465
+              }
+            ],
+            "fighter": "Julius Walker",
+            "fighter_id": 498,
+            "fighter_id_pointer": "/replay/inference_input/facts/bouts/3/elemental_feature_surface/fighter_a_state/fighter_id",
+            "fighter_pointer": "/replay/inference_input/facts/bouts/3/elemental_feature_surface/fighter_a_state/name",
+            "participant_slot": "A"
+          }
+        }
+      },
+      {
+        "bout_id": "092bf53b-fa25-5c0a-9853-b11c48e38a50",
+        "moneylines": [
+          {
+            "fanduel_status": "POSTED",
+            "fighter": "Francisco Prado",
+            "participant_slot": "A",
+            "price": -155,
+            "quote_sha256": "8e5b4a51f5667094f4f65364a0ac6a0b8ebb6eaba0ca0529be3d9b3f54188cdb",
+            "quote_time": "2026-10-10 15:00:10-04:00"
+          },
+          {
+            "fanduel_status": "POSTED",
+            "fighter": "Ismael Bonfim",
+            "participant_slot": "B",
+            "price": 130,
+            "quote_sha256": "221b0c5ebaf3a41d7a2c0e87720a1ecd291440d1e265ce8d17e1563de3919a7b",
+            "quote_time": "2026-10-10 15:00:10-04:00"
+          }
+        ],
+        "prediction_sha256": "597a0ba66c50bcb1b15ea72507f51cf356701cd7356118e0fdb592e83701f767",
+        "selected_fighter": "Francisco Prado",
+        "slots": [
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_AVAILABLE",
+            "issuance_status": "UNISSUED",
+            "market_key": "WINNER_KO_TKO",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.17778023160230794,
+            "rationale": "Francisco Prado has 6 KO/TKO wins in 17 saved pre-fight bouts; Ismael Bonfim has 2 KO/TKO losses in 27.",
+            "rationale_source": {
+              "bout_id": "092bf53b-fa25-5c0a-9853-b11c48e38a50",
+              "fighter_snapshot_sha256": "be6772b0438ff119e9298ce6105b110fa88d25305e96ab0e682c5d4605aeaaf3",
+              "opponent": {
+                "completed_bouts": 27,
+                "count": 2,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/4/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "Ismael Bonfim",
+                "fighter_id": 427,
+                "terms": [
+                  {
+                    "count": 2,
+                    "field": "ko_loss_rate",
+                    "rate": 0.07407407407407407,
+                    "source_pointer": "/replay/inference_input/facts/bouts/4/elemental_feature_surface/fighter_b_state/historical_features/ko_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 17,
+                "count": 6,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/4/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Francisco Prado",
+                "fighter_id": 542,
+                "terms": [
+                  {
+                    "count": 6,
+                    "field": "ko_win_rate",
+                    "rate": 0.35294117647058826,
+                    "source_pointer": "/replay/inference_input/facts/bouts/4/elemental_feature_surface/fighter_a_state/historical_features/ko_win_rate"
+                  }
+                ]
+              }
+            },
+            "selection": "Francisco Prado by KO/TKO",
+            "slot_id": "L1"
+          },
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_AVAILABLE",
+            "issuance_status": "UNISSUED",
+            "market_key": "WINNER_SUBMISSION",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.13874645762069604,
+            "rationale": "Francisco Prado has 6 submission wins in 17 saved pre-fight bouts; Ismael Bonfim has 5 submission losses in 27.",
+            "rationale_source": {
+              "bout_id": "092bf53b-fa25-5c0a-9853-b11c48e38a50",
+              "fighter_snapshot_sha256": "be6772b0438ff119e9298ce6105b110fa88d25305e96ab0e682c5d4605aeaaf3",
+              "opponent": {
+                "completed_bouts": 27,
+                "count": 5,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/4/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "Ismael Bonfim",
+                "fighter_id": 427,
+                "terms": [
+                  {
+                    "count": 5,
+                    "field": "sub_loss_rate",
+                    "rate": 0.18518518518518517,
+                    "source_pointer": "/replay/inference_input/facts/bouts/4/elemental_feature_surface/fighter_b_state/historical_features/sub_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 17,
+                "count": 6,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/4/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Francisco Prado",
+                "fighter_id": 542,
+                "terms": [
+                  {
+                    "count": 6,
+                    "field": "sub_win_rate",
+                    "rate": 0.35294117647058826,
+                    "source_pointer": "/replay/inference_input/facts/bouts/4/elemental_feature_surface/fighter_a_state/historical_features/sub_win_rate"
+                  }
+                ]
+              }
+            },
+            "selection": "Francisco Prado by submission",
+            "slot_id": "L2"
+          },
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_AVAILABLE",
+            "issuance_status": "UNISSUED",
+            "market_key": "ANY_FINISH",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.5180681635802755,
+            "rationale": "KO/TKO or submission ended 12 of Francisco Prado\u2019s 17 saved pre-fight bouts and 20 of Ismael Bonfim\u2019s 27.",
+            "rationale_source": {
+              "bout_id": "092bf53b-fa25-5c0a-9853-b11c48e38a50",
+              "fighter_snapshot_sha256": "be6772b0438ff119e9298ce6105b110fa88d25305e96ab0e682c5d4605aeaaf3",
+              "opponent": {
+                "completed_bouts": 27,
+                "count": 20,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/4/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "Ismael Bonfim",
+                "fighter_id": 427,
+                "terms": [
+                  {
+                    "count": 9,
+                    "field": "ko_win_rate",
+                    "rate": 0.3333333333333333,
+                    "source_pointer": "/replay/inference_input/facts/bouts/4/elemental_feature_surface/fighter_b_state/historical_features/ko_win_rate"
+                  },
+                  {
+                    "count": 4,
+                    "field": "sub_win_rate",
+                    "rate": 0.14814814814814814,
+                    "source_pointer": "/replay/inference_input/facts/bouts/4/elemental_feature_surface/fighter_b_state/historical_features/sub_win_rate"
+                  },
+                  {
+                    "count": 2,
+                    "field": "ko_loss_rate",
+                    "rate": 0.07407407407407407,
+                    "source_pointer": "/replay/inference_input/facts/bouts/4/elemental_feature_surface/fighter_b_state/historical_features/ko_loss_rate"
+                  },
+                  {
+                    "count": 5,
+                    "field": "sub_loss_rate",
+                    "rate": 0.18518518518518517,
+                    "source_pointer": "/replay/inference_input/facts/bouts/4/elemental_feature_surface/fighter_b_state/historical_features/sub_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 17,
+                "count": 12,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/4/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Francisco Prado",
+                "fighter_id": 542,
+                "terms": [
+                  {
+                    "count": 6,
+                    "field": "ko_win_rate",
+                    "rate": 0.35294117647058826,
+                    "source_pointer": "/replay/inference_input/facts/bouts/4/elemental_feature_surface/fighter_a_state/historical_features/ko_win_rate"
+                  },
+                  {
+                    "count": 6,
+                    "field": "sub_win_rate",
+                    "rate": 0.35294117647058826,
+                    "source_pointer": "/replay/inference_input/facts/bouts/4/elemental_feature_surface/fighter_a_state/historical_features/sub_win_rate"
+                  },
+                  {
+                    "count": 0,
+                    "field": "ko_loss_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/4/elemental_feature_surface/fighter_a_state/historical_features/ko_loss_rate"
+                  },
+                  {
+                    "count": 0,
+                    "field": "sub_loss_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/4/elemental_feature_surface/fighter_a_state/historical_features/sub_loss_rate"
+                  }
+                ]
+              }
+            },
+            "selection": "FIGHT DOES NOT GO THE DISTANCE",
+            "slot_id": "L3"
+          },
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_AVAILABLE",
+            "issuance_status": "UNISSUED",
+            "market_key": "WINNER_ROUND_1",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.16229598297710274,
+            "rationale": "Francisco Prado has 9 first-round KO/TKO or submission wins in 17 saved pre-fight bouts; Ismael Bonfim has 4 such losses in 27.",
+            "rationale_source": {
+              "bout_id": "092bf53b-fa25-5c0a-9853-b11c48e38a50",
+              "fighter_snapshot_sha256": "be6772b0438ff119e9298ce6105b110fa88d25305e96ab0e682c5d4605aeaaf3",
+              "opponent": {
+                "completed_bouts": 27,
+                "count": 4,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/4/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "Ismael Bonfim",
+                "fighter_id": 427,
+                "terms": [
+                  {
+                    "count": 4,
+                    "field": "r1_finish_loss_rate",
+                    "rate": 0.14814814814814814,
+                    "source_pointer": "/replay/inference_input/facts/bouts/4/elemental_feature_surface/fighter_b_state/historical_features/r1_finish_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 17,
+                "count": 9,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/4/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Francisco Prado",
+                "fighter_id": 542,
+                "terms": [
+                  {
+                    "count": 9,
+                    "field": "r1_finish_win_rate",
+                    "rate": 0.5294117647058824,
+                    "source_pointer": "/replay/inference_input/facts/bouts/4/elemental_feature_surface/fighter_a_state/historical_features/r1_finish_win_rate"
+                  }
+                ]
+              }
+            },
+            "selection": "Francisco Prado in round 1",
+            "slot_id": "L4"
+          }
+        ],
+        "winner_rationale": "In retained samples of recorded pre-fight bouts, Francisco Prado (17 bouts) recorded a landed-minus-absorbed significant-strike balance of -0.63 per minute and 0.76 takedowns per 15 minutes, versus Ismael Bonfim (27 bouts) at +1.14 and 1.22, respectively.",
+        "winner_rationale_source": {
+          "bout_id": "092bf53b-fa25-5c0a-9853-b11c48e38a50",
+          "bout_pointer": "/replay/inference_input/facts/bouts/4",
+          "comparison": "MIXED_RECORDED_COMPARISON",
+          "fighter_snapshot_sha256": "be6772b0438ff119e9298ce6105b110fa88d25305e96ab0e682c5d4605aeaaf3",
+          "opponent": {
+            "apex_fighter_id_pointer": "/replay/inference_input/facts/bouts/4/elemental_feature_surface/apex_fighter_b_id",
+            "apex_mma_fighter_id": "7642f436-c9b0-52a2-b8d1-704c7c70dbbb",
+            "fields": [
+              {
+                "field": "fights",
+                "source_pointer": "/replay/inference_input/facts/bouts/4/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "value": 27
+              },
+              {
+                "field": "sig_diff_pm",
+                "source_pointer": "/replay/inference_input/facts/bouts/4/elemental_feature_surface/fighter_b_state/historical_features/sig_diff_pm",
+                "value": 1.1403746945424926
+              },
+              {
+                "field": "td_per15",
+                "source_pointer": "/replay/inference_input/facts/bouts/4/elemental_feature_surface/fighter_b_state/historical_features/td_per15",
+                "value": 1.2218300298669562
+              }
+            ],
+            "fighter": "Ismael Bonfim",
+            "fighter_id": 427,
+            "fighter_id_pointer": "/replay/inference_input/facts/bouts/4/elemental_feature_surface/fighter_b_state/fighter_id",
+            "fighter_pointer": "/replay/inference_input/facts/bouts/4/elemental_feature_surface/fighter_b_state/name",
+            "participant_slot": "B"
+          },
+          "projection_sha256": "cf8446081db6f37f4366744dd07c4d23d0333875be47a653af3dd00995c75ae6",
+          "sample": "RETAINED_RECORDED_PRE_FIGHT_BOUTS",
+          "selected_fighter": {
+            "apex_fighter_id_pointer": "/replay/inference_input/facts/bouts/4/elemental_feature_surface/apex_fighter_a_id",
+            "apex_mma_fighter_id": "b1acf880-da18-5f27-ab3f-c05e3392141c",
+            "fields": [
+              {
+                "field": "fights",
+                "source_pointer": "/replay/inference_input/facts/bouts/4/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "value": 17
+              },
+              {
+                "field": "sig_diff_pm",
+                "source_pointer": "/replay/inference_input/facts/bouts/4/elemental_feature_surface/fighter_a_state/historical_features/sig_diff_pm",
+                "value": -0.6322444678609063
+              },
+              {
+                "field": "td_per15",
+                "source_pointer": "/replay/inference_input/facts/bouts/4/elemental_feature_surface/fighter_a_state/historical_features/td_per15",
+                "value": 0.7586933614330874
+              }
+            ],
+            "fighter": "Francisco Prado",
+            "fighter_id": 542,
+            "fighter_id_pointer": "/replay/inference_input/facts/bouts/4/elemental_feature_surface/fighter_a_state/fighter_id",
+            "fighter_pointer": "/replay/inference_input/facts/bouts/4/elemental_feature_surface/fighter_a_state/name",
+            "participant_slot": "A"
+          }
+        }
+      },
+      {
+        "bout_id": "e3dc233a-8682-550b-a1be-8aa3486be8f3",
+        "moneylines": [
+          {
+            "fanduel_status": "POSTED",
+            "fighter": "Niko Price",
+            "participant_slot": "A",
+            "price": 114,
+            "quote_sha256": "19077409cb316af720c93504ca6eee72c50c602824b7b89c36e6abc6f63cf4c7",
+            "quote_time": "2026-10-10 15:00:10-04:00"
+          },
+          {
+            "fanduel_status": "POSTED",
+            "fighter": "Leon Shahbazyan",
+            "participant_slot": "B",
+            "price": -135,
+            "quote_sha256": "a424e1354547d79728c20a996122cddbbb6ab2fd39a1cd4aa20ee59fe545732c",
+            "quote_time": "2026-10-10 15:00:10-04:00"
+          }
+        ],
+        "prediction_sha256": "faa8d5fb0401b1f2ae8058152d05f342a40fec6ce107f81bf0e21a14365d6ee5",
+        "selected_fighter": "Leon Shahbazyan",
+        "slots": [
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_AVAILABLE",
+            "issuance_status": "UNISSUED",
+            "market_key": "WINNER_KO_TKO",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.19772577320223803,
+            "rationale": "Leon Shahbazyan has 1 KO/TKO win in 17 saved pre-fight bouts; Niko Price has 6 KO/TKO losses in 27.",
+            "rationale_source": {
+              "bout_id": "e3dc233a-8682-550b-a1be-8aa3486be8f3",
+              "fighter_snapshot_sha256": "be6772b0438ff119e9298ce6105b110fa88d25305e96ab0e682c5d4605aeaaf3",
+              "opponent": {
+                "completed_bouts": 27,
+                "count": 6,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/5/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Niko Price",
+                "fighter_id": 496,
+                "terms": [
+                  {
+                    "count": 6,
+                    "field": "ko_loss_rate",
+                    "rate": 0.2222222222222222,
+                    "source_pointer": "/replay/inference_input/facts/bouts/5/elemental_feature_surface/fighter_a_state/historical_features/ko_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 17,
+                "count": 1,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/5/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "Leon Shahbazyan",
+                "fighter_id": 15132,
+                "terms": [
+                  {
+                    "count": 1,
+                    "field": "ko_win_rate",
+                    "rate": 0.058823529411764705,
+                    "source_pointer": "/replay/inference_input/facts/bouts/5/elemental_feature_surface/fighter_b_state/historical_features/ko_win_rate"
+                  }
+                ]
+              }
+            },
+            "selection": "Leon Shahbazyan by KO/TKO",
+            "slot_id": "L1"
+          },
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_AVAILABLE",
+            "issuance_status": "UNISSUED",
+            "market_key": "WINNER_SUBMISSION",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.08001632174435278,
+            "rationale": "Leon Shahbazyan has 11 submission wins in 17 saved pre-fight bouts; Niko Price has 3 submission losses in 27.",
+            "rationale_source": {
+              "bout_id": "e3dc233a-8682-550b-a1be-8aa3486be8f3",
+              "fighter_snapshot_sha256": "be6772b0438ff119e9298ce6105b110fa88d25305e96ab0e682c5d4605aeaaf3",
+              "opponent": {
+                "completed_bouts": 27,
+                "count": 3,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/5/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Niko Price",
+                "fighter_id": 496,
+                "terms": [
+                  {
+                    "count": 3,
+                    "field": "sub_loss_rate",
+                    "rate": 0.1111111111111111,
+                    "source_pointer": "/replay/inference_input/facts/bouts/5/elemental_feature_surface/fighter_a_state/historical_features/sub_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 17,
+                "count": 11,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/5/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "Leon Shahbazyan",
+                "fighter_id": 15132,
+                "terms": [
+                  {
+                    "count": 11,
+                    "field": "sub_win_rate",
+                    "rate": 0.6470588235294118,
+                    "source_pointer": "/replay/inference_input/facts/bouts/5/elemental_feature_surface/fighter_b_state/historical_features/sub_win_rate"
+                  }
+                ]
+              }
+            },
+            "selection": "Leon Shahbazyan by submission",
+            "slot_id": "L2"
+          },
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_AVAILABLE",
+            "issuance_status": "UNISSUED",
+            "market_key": "ANY_FINISH",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.5327747371051506,
+            "rationale": "KO/TKO or submission ended 17 of Leon Shahbazyan\u2019s 17 saved pre-fight bouts and 22 of Niko Price\u2019s 27.",
+            "rationale_source": {
+              "bout_id": "e3dc233a-8682-550b-a1be-8aa3486be8f3",
+              "fighter_snapshot_sha256": "be6772b0438ff119e9298ce6105b110fa88d25305e96ab0e682c5d4605aeaaf3",
+              "opponent": {
+                "completed_bouts": 27,
+                "count": 22,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/5/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Niko Price",
+                "fighter_id": 496,
+                "terms": [
+                  {
+                    "count": 10,
+                    "field": "ko_win_rate",
+                    "rate": 0.37037037037037035,
+                    "source_pointer": "/replay/inference_input/facts/bouts/5/elemental_feature_surface/fighter_a_state/historical_features/ko_win_rate"
+                  },
+                  {
+                    "count": 3,
+                    "field": "sub_win_rate",
+                    "rate": 0.1111111111111111,
+                    "source_pointer": "/replay/inference_input/facts/bouts/5/elemental_feature_surface/fighter_a_state/historical_features/sub_win_rate"
+                  },
+                  {
+                    "count": 6,
+                    "field": "ko_loss_rate",
+                    "rate": 0.2222222222222222,
+                    "source_pointer": "/replay/inference_input/facts/bouts/5/elemental_feature_surface/fighter_a_state/historical_features/ko_loss_rate"
+                  },
+                  {
+                    "count": 3,
+                    "field": "sub_loss_rate",
+                    "rate": 0.1111111111111111,
+                    "source_pointer": "/replay/inference_input/facts/bouts/5/elemental_feature_surface/fighter_a_state/historical_features/sub_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 17,
+                "count": 17,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/5/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "Leon Shahbazyan",
+                "fighter_id": 15132,
+                "terms": [
+                  {
+                    "count": 1,
+                    "field": "ko_win_rate",
+                    "rate": 0.058823529411764705,
+                    "source_pointer": "/replay/inference_input/facts/bouts/5/elemental_feature_surface/fighter_b_state/historical_features/ko_win_rate"
+                  },
+                  {
+                    "count": 11,
+                    "field": "sub_win_rate",
+                    "rate": 0.6470588235294118,
+                    "source_pointer": "/replay/inference_input/facts/bouts/5/elemental_feature_surface/fighter_b_state/historical_features/sub_win_rate"
+                  },
+                  {
+                    "count": 5,
+                    "field": "ko_loss_rate",
+                    "rate": 0.29411764705882354,
+                    "source_pointer": "/replay/inference_input/facts/bouts/5/elemental_feature_surface/fighter_b_state/historical_features/ko_loss_rate"
+                  },
+                  {
+                    "count": 0,
+                    "field": "sub_loss_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/5/elemental_feature_surface/fighter_b_state/historical_features/sub_loss_rate"
+                  }
+                ]
+              }
+            },
+            "selection": "FIGHT DOES NOT GO THE DISTANCE",
+            "slot_id": "L3"
+          },
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_AVAILABLE",
+            "issuance_status": "UNISSUED",
+            "market_key": "WINNER_ROUND_1",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.15502294525488344,
+            "rationale": "Leon Shahbazyan has 11 first-round KO/TKO or submission wins in 17 saved pre-fight bouts; Niko Price has 4 such losses in 27.",
+            "rationale_source": {
+              "bout_id": "e3dc233a-8682-550b-a1be-8aa3486be8f3",
+              "fighter_snapshot_sha256": "be6772b0438ff119e9298ce6105b110fa88d25305e96ab0e682c5d4605aeaaf3",
+              "opponent": {
+                "completed_bouts": 27,
+                "count": 4,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/5/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Niko Price",
+                "fighter_id": 496,
+                "terms": [
+                  {
+                    "count": 4,
+                    "field": "r1_finish_loss_rate",
+                    "rate": 0.14814814814814814,
+                    "source_pointer": "/replay/inference_input/facts/bouts/5/elemental_feature_surface/fighter_a_state/historical_features/r1_finish_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 17,
+                "count": 11,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/5/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "Leon Shahbazyan",
+                "fighter_id": 15132,
+                "terms": [
+                  {
+                    "count": 11,
+                    "field": "r1_finish_win_rate",
+                    "rate": 0.6470588235294118,
+                    "source_pointer": "/replay/inference_input/facts/bouts/5/elemental_feature_surface/fighter_b_state/historical_features/r1_finish_win_rate"
+                  }
+                ]
+              }
+            },
+            "selection": "Leon Shahbazyan in round 1",
+            "slot_id": "L4"
+          }
+        ],
+        "winner_rationale": "In retained samples of recorded pre-fight bouts, Leon Shahbazyan (17 bouts) absorbed fewer significant strikes per minute than Niko Price (27 bouts), 0.56 versus 5.44, while their respective landed rates were 0.00 and 4.80 per minute.",
+        "winner_rationale_source": {
+          "bout_id": "e3dc233a-8682-550b-a1be-8aa3486be8f3",
+          "bout_pointer": "/replay/inference_input/facts/bouts/5",
+          "comparison": "ABSORPTION_AND_OUTPUT",
+          "fighter_snapshot_sha256": "be6772b0438ff119e9298ce6105b110fa88d25305e96ab0e682c5d4605aeaaf3",
+          "opponent": {
+            "apex_fighter_id_pointer": "/replay/inference_input/facts/bouts/5/elemental_feature_surface/apex_fighter_a_id",
+            "apex_mma_fighter_id": "5778e619-255b-522d-b046-0c130087a4d0",
+            "fields": [
+              {
+                "field": "fights",
+                "source_pointer": "/replay/inference_input/facts/bouts/5/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "value": 27
+              },
+              {
+                "field": "sig_abs_pm",
+                "source_pointer": "/replay/inference_input/facts/bouts/5/elemental_feature_surface/fighter_a_state/historical_features/sig_abs_pm",
+                "value": 5.444533669840541
+              },
+              {
+                "field": "sig_lpm",
+                "source_pointer": "/replay/inference_input/facts/bouts/5/elemental_feature_surface/fighter_a_state/historical_features/sig_lpm",
+                "value": 4.797522083285534
+              }
+            ],
+            "fighter": "Niko Price",
+            "fighter_id": 496,
+            "fighter_id_pointer": "/replay/inference_input/facts/bouts/5/elemental_feature_surface/fighter_a_state/fighter_id",
+            "fighter_pointer": "/replay/inference_input/facts/bouts/5/elemental_feature_surface/fighter_a_state/name",
+            "participant_slot": "A"
+          },
+          "projection_sha256": "c10510dc1827c13fa80b7ace811e3d402e8cab93fe9b4a3cfdaa2e931617268f",
+          "sample": "RETAINED_RECORDED_PRE_FIGHT_BOUTS",
+          "selected_fighter": {
+            "apex_fighter_id_pointer": "/replay/inference_input/facts/bouts/5/elemental_feature_surface/apex_fighter_b_id",
+            "apex_mma_fighter_id": "aca1a56e-d385-500e-9fe4-7c6cd790b247",
+            "fields": [
+              {
+                "field": "fights",
+                "source_pointer": "/replay/inference_input/facts/bouts/5/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "value": 17
+              },
+              {
+                "field": "sig_abs_pm",
+                "source_pointer": "/replay/inference_input/facts/bouts/5/elemental_feature_surface/fighter_b_state/historical_features/sig_abs_pm",
+                "value": 0.5633802816901409
+              },
+              {
+                "field": "sig_lpm",
+                "source_pointer": "/replay/inference_input/facts/bouts/5/elemental_feature_surface/fighter_b_state/historical_features/sig_lpm",
+                "value": 0.0
+              }
+            ],
+            "fighter": "Leon Shahbazyan",
+            "fighter_id": 15132,
+            "fighter_id_pointer": "/replay/inference_input/facts/bouts/5/elemental_feature_surface/fighter_b_state/fighter_id",
+            "fighter_pointer": "/replay/inference_input/facts/bouts/5/elemental_feature_surface/fighter_b_state/name",
+            "participant_slot": "B"
+          }
+        }
+      },
+      {
+        "bout_id": "70691538-81e6-557c-91c5-ae6a134380d3",
+        "moneylines": [
+          {
+            "fanduel_status": "POSTED",
+            "fighter": "Felipe Franco",
+            "participant_slot": "A",
+            "price": -410,
+            "quote_sha256": "cb3413c27f4aeca4fea8b9ac1f0c1dee41fb30996875a60928a64a77d2bd5f8d",
+            "quote_time": "2026-10-10 15:00:10-04:00"
+          },
+          {
+            "fanduel_status": "POSTED",
+            "fighter": "Brendson Ribeiro",
+            "participant_slot": "B",
+            "price": 320,
+            "quote_sha256": "25bb0d2b9223399159eab8fa450f65ff3afc2bfd2717e422a561626cc16ba832",
+            "quote_time": "2026-10-10 15:00:10-04:00"
+          }
+        ],
+        "prediction_sha256": "3bb97541946f7010a0937db54991d8d9976633ff5a61d89054b79d6b35f3a62f",
+        "selected_fighter": "Felipe Franco",
+        "slots": [
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_AVAILABLE",
+            "issuance_status": "UNISSUED",
+            "market_key": "WINNER_KO_TKO",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.3819412375746396,
+            "rationale": "Felipe Franco has 7 KO/TKO wins in 13 saved pre-fight bouts; Brendson Ribeiro has 5 KO/TKO losses in 28.",
+            "rationale_source": {
+              "bout_id": "70691538-81e6-557c-91c5-ae6a134380d3",
+              "fighter_snapshot_sha256": "be6772b0438ff119e9298ce6105b110fa88d25305e96ab0e682c5d4605aeaaf3",
+              "opponent": {
+                "completed_bouts": 28,
+                "count": 5,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/6/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "Brendson Ribeiro",
+                "fighter_id": 263,
+                "terms": [
+                  {
+                    "count": 5,
+                    "field": "ko_loss_rate",
+                    "rate": 0.17857142857142858,
+                    "source_pointer": "/replay/inference_input/facts/bouts/6/elemental_feature_surface/fighter_b_state/historical_features/ko_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 13,
+                "count": 7,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/6/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Felipe Franco",
+                "fighter_id": 528,
+                "terms": [
+                  {
+                    "count": 7,
+                    "field": "ko_win_rate",
+                    "rate": 0.5384615384615384,
+                    "source_pointer": "/replay/inference_input/facts/bouts/6/elemental_feature_surface/fighter_a_state/historical_features/ko_win_rate"
+                  }
+                ]
+              }
+            },
+            "selection": "Felipe Franco by KO/TKO",
+            "slot_id": "L1"
+          },
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_AVAILABLE",
+            "issuance_status": "UNISSUED",
+            "market_key": "WINNER_SUBMISSION",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.16429185299612575,
+            "rationale": "Felipe Franco has 4 submission wins in 13 saved pre-fight bouts; Brendson Ribeiro has 3 submission losses in 28.",
+            "rationale_source": {
+              "bout_id": "70691538-81e6-557c-91c5-ae6a134380d3",
+              "fighter_snapshot_sha256": "be6772b0438ff119e9298ce6105b110fa88d25305e96ab0e682c5d4605aeaaf3",
+              "opponent": {
+                "completed_bouts": 28,
+                "count": 3,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/6/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "Brendson Ribeiro",
+                "fighter_id": 263,
+                "terms": [
+                  {
+                    "count": 3,
+                    "field": "sub_loss_rate",
+                    "rate": 0.10714285714285714,
+                    "source_pointer": "/replay/inference_input/facts/bouts/6/elemental_feature_surface/fighter_b_state/historical_features/sub_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 13,
+                "count": 4,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/6/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Felipe Franco",
+                "fighter_id": 528,
+                "terms": [
+                  {
+                    "count": 4,
+                    "field": "sub_win_rate",
+                    "rate": 0.3076923076923077,
+                    "source_pointer": "/replay/inference_input/facts/bouts/6/elemental_feature_surface/fighter_a_state/historical_features/sub_win_rate"
+                  }
+                ]
+              }
+            },
+            "selection": "Felipe Franco by submission",
+            "slot_id": "L2"
+          },
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_AVAILABLE",
+            "issuance_status": "UNISSUED",
+            "market_key": "ANY_FINISH",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.6549386851171882,
+            "rationale": "KO/TKO or submission ended 12 of Felipe Franco\u2019s 13 saved pre-fight bouts and 24 of Brendson Ribeiro\u2019s 28.",
+            "rationale_source": {
+              "bout_id": "70691538-81e6-557c-91c5-ae6a134380d3",
+              "fighter_snapshot_sha256": "be6772b0438ff119e9298ce6105b110fa88d25305e96ab0e682c5d4605aeaaf3",
+              "opponent": {
+                "completed_bouts": 28,
+                "count": 24,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/6/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "Brendson Ribeiro",
+                "fighter_id": 263,
+                "terms": [
+                  {
+                    "count": 9,
+                    "field": "ko_win_rate",
+                    "rate": 0.32142857142857145,
+                    "source_pointer": "/replay/inference_input/facts/bouts/6/elemental_feature_surface/fighter_b_state/historical_features/ko_win_rate"
+                  },
+                  {
+                    "count": 7,
+                    "field": "sub_win_rate",
+                    "rate": 0.25,
+                    "source_pointer": "/replay/inference_input/facts/bouts/6/elemental_feature_surface/fighter_b_state/historical_features/sub_win_rate"
+                  },
+                  {
+                    "count": 5,
+                    "field": "ko_loss_rate",
+                    "rate": 0.17857142857142858,
+                    "source_pointer": "/replay/inference_input/facts/bouts/6/elemental_feature_surface/fighter_b_state/historical_features/ko_loss_rate"
+                  },
+                  {
+                    "count": 3,
+                    "field": "sub_loss_rate",
+                    "rate": 0.10714285714285714,
+                    "source_pointer": "/replay/inference_input/facts/bouts/6/elemental_feature_surface/fighter_b_state/historical_features/sub_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 13,
+                "count": 12,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/6/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Felipe Franco",
+                "fighter_id": 528,
+                "terms": [
+                  {
+                    "count": 7,
+                    "field": "ko_win_rate",
+                    "rate": 0.5384615384615384,
+                    "source_pointer": "/replay/inference_input/facts/bouts/6/elemental_feature_surface/fighter_a_state/historical_features/ko_win_rate"
+                  },
+                  {
+                    "count": 4,
+                    "field": "sub_win_rate",
+                    "rate": 0.3076923076923077,
+                    "source_pointer": "/replay/inference_input/facts/bouts/6/elemental_feature_surface/fighter_a_state/historical_features/sub_win_rate"
+                  },
+                  {
+                    "count": 0,
+                    "field": "ko_loss_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/6/elemental_feature_surface/fighter_a_state/historical_features/ko_loss_rate"
+                  },
+                  {
+                    "count": 1,
+                    "field": "sub_loss_rate",
+                    "rate": 0.07692307692307693,
+                    "source_pointer": "/replay/inference_input/facts/bouts/6/elemental_feature_surface/fighter_a_state/historical_features/sub_loss_rate"
+                  }
+                ]
+              }
+            },
+            "selection": "FIGHT DOES NOT GO THE DISTANCE",
+            "slot_id": "L3"
+          },
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_AVAILABLE",
+            "issuance_status": "UNISSUED",
+            "market_key": "WINNER_ROUND_1",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.34970237148059113,
+            "rationale": "Felipe Franco has 10 first-round KO/TKO or submission wins in 13 saved pre-fight bouts; Brendson Ribeiro has 7 such losses in 28.",
+            "rationale_source": {
+              "bout_id": "70691538-81e6-557c-91c5-ae6a134380d3",
+              "fighter_snapshot_sha256": "be6772b0438ff119e9298ce6105b110fa88d25305e96ab0e682c5d4605aeaaf3",
+              "opponent": {
+                "completed_bouts": 28,
+                "count": 7,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/6/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "Brendson Ribeiro",
+                "fighter_id": 263,
+                "terms": [
+                  {
+                    "count": 7,
+                    "field": "r1_finish_loss_rate",
+                    "rate": 0.25,
+                    "source_pointer": "/replay/inference_input/facts/bouts/6/elemental_feature_surface/fighter_b_state/historical_features/r1_finish_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 13,
+                "count": 10,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/6/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Felipe Franco",
+                "fighter_id": 528,
+                "terms": [
+                  {
+                    "count": 10,
+                    "field": "r1_finish_win_rate",
+                    "rate": 0.7692307692307693,
+                    "source_pointer": "/replay/inference_input/facts/bouts/6/elemental_feature_surface/fighter_a_state/historical_features/r1_finish_win_rate"
+                  }
+                ]
+              }
+            },
+            "selection": "Felipe Franco in round 1",
+            "slot_id": "L4"
+          }
+        ],
+        "winner_rationale": "In retained samples of recorded pre-fight bouts, Felipe Franco (13 bouts) averaged 3.70 takedowns and 4.08 minutes of control per 15 minutes, versus Brendson Ribeiro (28 bouts) at 0.66 takedowns and 0.87 minutes of control.",
+        "winner_rationale_source": {
+          "bout_id": "70691538-81e6-557c-91c5-ae6a134380d3",
+          "bout_pointer": "/replay/inference_input/facts/bouts/6",
+          "comparison": "TAKEDOWNS_AND_CONTROL",
+          "fighter_snapshot_sha256": "be6772b0438ff119e9298ce6105b110fa88d25305e96ab0e682c5d4605aeaaf3",
+          "opponent": {
+            "apex_fighter_id_pointer": "/replay/inference_input/facts/bouts/6/elemental_feature_surface/apex_fighter_b_id",
+            "apex_mma_fighter_id": "e8c2aff5-39e3-50dd-b38f-6b977666184b",
+            "fields": [
+              {
+                "field": "fights",
+                "source_pointer": "/replay/inference_input/facts/bouts/6/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "value": 28
+              },
+              {
+                "field": "td_per15",
+                "source_pointer": "/replay/inference_input/facts/bouts/6/elemental_feature_surface/fighter_b_state/historical_features/td_per15",
+                "value": 0.6616025483950012
+              },
+              {
+                "field": "control_per15",
+                "source_pointer": "/replay/inference_input/facts/bouts/6/elemental_feature_surface/fighter_b_state/historical_features/control_per15",
+                "value": 0.8711100220534184
+              }
+            ],
+            "fighter": "Brendson Ribeiro",
+            "fighter_id": 263,
+            "fighter_id_pointer": "/replay/inference_input/facts/bouts/6/elemental_feature_surface/fighter_b_state/fighter_id",
+            "fighter_pointer": "/replay/inference_input/facts/bouts/6/elemental_feature_surface/fighter_b_state/name",
+            "participant_slot": "B"
+          },
+          "projection_sha256": "e8bbe79306d05859a052aa5020c2e142aa344ee426dda61d230ee740d7a06ae3",
+          "sample": "RETAINED_RECORDED_PRE_FIGHT_BOUTS",
+          "selected_fighter": {
+            "apex_fighter_id_pointer": "/replay/inference_input/facts/bouts/6/elemental_feature_surface/apex_fighter_a_id",
+            "apex_mma_fighter_id": "764222df-2a85-580f-902a-483d6f00f2ea",
+            "fields": [
+              {
+                "field": "fights",
+                "source_pointer": "/replay/inference_input/facts/bouts/6/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "value": 13
+              },
+              {
+                "field": "td_per15",
+                "source_pointer": "/replay/inference_input/facts/bouts/6/elemental_feature_surface/fighter_a_state/historical_features/td_per15",
+                "value": 3.7020109689213894
+              },
+              {
+                "field": "control_per15",
+                "source_pointer": "/replay/inference_input/facts/bouts/6/elemental_feature_surface/fighter_a_state/historical_features/control_per15",
+                "value": 4.079067641681901
+              }
+            ],
+            "fighter": "Felipe Franco",
+            "fighter_id": 528,
+            "fighter_id_pointer": "/replay/inference_input/facts/bouts/6/elemental_feature_surface/fighter_a_state/fighter_id",
+            "fighter_pointer": "/replay/inference_input/facts/bouts/6/elemental_feature_surface/fighter_a_state/name",
+            "participant_slot": "A"
+          }
+        }
+      },
+      {
+        "bout_id": "8a43b981-4c4b-5d5b-bd43-6b19766ee357",
+        "moneylines": [
+          {
+            "fanduel_status": "POSTED",
+            "fighter": "Allen Frye Jr.",
+            "participant_slot": "A",
+            "price": 280,
+            "quote_sha256": "f10d2d6231e6efa8108f403b97609a6451aacd71097be160b83070d25c3b750f",
+            "quote_time": "2026-10-10 15:00:10-04:00"
+          },
+          {
+            "fanduel_status": "POSTED",
+            "fighter": "RJ Harris",
+            "participant_slot": "B",
+            "price": -355,
+            "quote_sha256": "2be0efe54ffd26ff309ca8d9fcb2e45eaefee98b4bde440841081ef2e4fc44db",
+            "quote_time": "2026-10-10 15:00:10-04:00"
+          }
+        ],
+        "prediction_sha256": "9f17e309bd301824ea317ebe88e7be802acd532fbdad9b078fce2f1625738ec2",
+        "selected_fighter": "RJ Harris",
+        "slots": [
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_AVAILABLE",
+            "issuance_status": "UNISSUED",
+            "market_key": "WINNER_KO_TKO",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.3676228140453364,
+            "rationale": "RJ Harris has 2 KO/TKO wins in 6 saved pre-fight bouts; Allen Frye Jr. has 0 KO/TKO losses in 7.",
+            "rationale_source": {
+              "bout_id": "8a43b981-4c4b-5d5b-bd43-6b19766ee357",
+              "fighter_snapshot_sha256": "be6772b0438ff119e9298ce6105b110fa88d25305e96ab0e682c5d4605aeaaf3",
+              "opponent": {
+                "completed_bouts": 7,
+                "count": 0,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/7/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Allen Frye Jr.",
+                "fighter_id": 343,
+                "terms": [
+                  {
+                    "count": 0,
+                    "field": "ko_loss_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/7/elemental_feature_surface/fighter_a_state/historical_features/ko_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 6,
+                "count": 2,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/7/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "RJ Harris",
+                "fighter_id": 48658,
+                "terms": [
+                  {
+                    "count": 2,
+                    "field": "ko_win_rate",
+                    "rate": 0.3333333333333333,
+                    "source_pointer": "/replay/inference_input/facts/bouts/7/elemental_feature_surface/fighter_b_state/historical_features/ko_win_rate"
+                  }
+                ]
+              }
+            },
+            "selection": "RJ Harris by KO/TKO",
+            "slot_id": "L1"
+          },
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_AVAILABLE",
+            "issuance_status": "UNISSUED",
+            "market_key": "WINNER_SUBMISSION",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.07112163549618251,
+            "rationale": "RJ Harris has 3 submission wins in 6 saved pre-fight bouts; Allen Frye Jr. has 0 submission losses in 7.",
+            "rationale_source": {
+              "bout_id": "8a43b981-4c4b-5d5b-bd43-6b19766ee357",
+              "fighter_snapshot_sha256": "be6772b0438ff119e9298ce6105b110fa88d25305e96ab0e682c5d4605aeaaf3",
+              "opponent": {
+                "completed_bouts": 7,
+                "count": 0,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/7/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Allen Frye Jr.",
+                "fighter_id": 343,
+                "terms": [
+                  {
+                    "count": 0,
+                    "field": "sub_loss_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/7/elemental_feature_surface/fighter_a_state/historical_features/sub_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 6,
+                "count": 3,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/7/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "RJ Harris",
+                "fighter_id": 48658,
+                "terms": [
+                  {
+                    "count": 3,
+                    "field": "sub_win_rate",
+                    "rate": 0.5,
+                    "source_pointer": "/replay/inference_input/facts/bouts/7/elemental_feature_surface/fighter_b_state/historical_features/sub_win_rate"
+                  }
+                ]
+              }
+            },
+            "selection": "RJ Harris by submission",
+            "slot_id": "L2"
+          },
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_AVAILABLE",
+            "issuance_status": "UNISSUED",
+            "market_key": "ANY_FINISH",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.6276993932289056,
+            "rationale": "KO/TKO or submission ended 5 of RJ Harris\u2019s 6 saved pre-fight bouts and 6 of Allen Frye Jr.\u2019s 7.",
+            "rationale_source": {
+              "bout_id": "8a43b981-4c4b-5d5b-bd43-6b19766ee357",
+              "fighter_snapshot_sha256": "be6772b0438ff119e9298ce6105b110fa88d25305e96ab0e682c5d4605aeaaf3",
+              "opponent": {
+                "completed_bouts": 7,
+                "count": 6,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/7/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Allen Frye Jr.",
+                "fighter_id": 343,
+                "terms": [
+                  {
+                    "count": 6,
+                    "field": "ko_win_rate",
+                    "rate": 0.8571428571428571,
+                    "source_pointer": "/replay/inference_input/facts/bouts/7/elemental_feature_surface/fighter_a_state/historical_features/ko_win_rate"
+                  },
+                  {
+                    "count": 0,
+                    "field": "sub_win_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/7/elemental_feature_surface/fighter_a_state/historical_features/sub_win_rate"
+                  },
+                  {
+                    "count": 0,
+                    "field": "ko_loss_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/7/elemental_feature_surface/fighter_a_state/historical_features/ko_loss_rate"
+                  },
+                  {
+                    "count": 0,
+                    "field": "sub_loss_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/7/elemental_feature_surface/fighter_a_state/historical_features/sub_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 6,
+                "count": 5,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/7/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "RJ Harris",
+                "fighter_id": 48658,
+                "terms": [
+                  {
+                    "count": 2,
+                    "field": "ko_win_rate",
+                    "rate": 0.3333333333333333,
+                    "source_pointer": "/replay/inference_input/facts/bouts/7/elemental_feature_surface/fighter_b_state/historical_features/ko_win_rate"
+                  },
+                  {
+                    "count": 3,
+                    "field": "sub_win_rate",
+                    "rate": 0.5,
+                    "source_pointer": "/replay/inference_input/facts/bouts/7/elemental_feature_surface/fighter_b_state/historical_features/sub_win_rate"
+                  },
+                  {
+                    "count": 0,
+                    "field": "ko_loss_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/7/elemental_feature_surface/fighter_b_state/historical_features/ko_loss_rate"
+                  },
+                  {
+                    "count": 0,
+                    "field": "sub_loss_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/7/elemental_feature_surface/fighter_b_state/historical_features/sub_loss_rate"
+                  }
+                ]
+              }
+            },
+            "selection": "FIGHT DOES NOT GO THE DISTANCE",
+            "slot_id": "L3"
+          },
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_AVAILABLE",
+            "issuance_status": "UNISSUED",
+            "market_key": "WINNER_ROUND_1",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.2354771420055018,
+            "rationale": "RJ Harris has 3 first-round KO/TKO or submission wins in 6 saved pre-fight bouts; Allen Frye Jr. has 0 such losses in 7.",
+            "rationale_source": {
+              "bout_id": "8a43b981-4c4b-5d5b-bd43-6b19766ee357",
+              "fighter_snapshot_sha256": "be6772b0438ff119e9298ce6105b110fa88d25305e96ab0e682c5d4605aeaaf3",
+              "opponent": {
+                "completed_bouts": 7,
+                "count": 0,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/7/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Allen Frye Jr.",
+                "fighter_id": 343,
+                "terms": [
+                  {
+                    "count": 0,
+                    "field": "r1_finish_loss_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/7/elemental_feature_surface/fighter_a_state/historical_features/r1_finish_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 6,
+                "count": 3,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/7/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "RJ Harris",
+                "fighter_id": 48658,
+                "terms": [
+                  {
+                    "count": 3,
+                    "field": "r1_finish_win_rate",
+                    "rate": 0.5,
+                    "source_pointer": "/replay/inference_input/facts/bouts/7/elemental_feature_surface/fighter_b_state/historical_features/r1_finish_win_rate"
+                  }
+                ]
+              }
+            },
+            "selection": "RJ Harris in round 1",
+            "slot_id": "L4"
+          }
+        ],
+        "winner_rationale": "In retained samples of recorded pre-fight bouts, RJ Harris (6 bouts) landed 9.00 significant strikes per minute versus Allen Frye Jr. (7 bouts) at 2.20, with a landed-minus-absorbed balance of +2.40 versus -2.07 per minute.",
+        "winner_rationale_source": {
+          "bout_id": "8a43b981-4c4b-5d5b-bd43-6b19766ee357",
+          "bout_pointer": "/replay/inference_input/facts/bouts/7",
+          "comparison": "OUTPUT_AND_BALANCE",
+          "fighter_snapshot_sha256": "be6772b0438ff119e9298ce6105b110fa88d25305e96ab0e682c5d4605aeaaf3",
+          "opponent": {
+            "apex_fighter_id_pointer": "/replay/inference_input/facts/bouts/7/elemental_feature_surface/apex_fighter_a_id",
+            "apex_mma_fighter_id": "a6fadae1-9d21-59c8-8e40-d25ba48cf64e",
+            "fields": [
+              {
+                "field": "fights",
+                "source_pointer": "/replay/inference_input/facts/bouts/7/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "value": 7
+              },
+              {
+                "field": "sig_lpm",
+                "source_pointer": "/replay/inference_input/facts/bouts/7/elemental_feature_surface/fighter_a_state/historical_features/sig_lpm",
+                "value": 2.2
+              },
+              {
+                "field": "sig_diff_pm",
+                "source_pointer": "/replay/inference_input/facts/bouts/7/elemental_feature_surface/fighter_a_state/historical_features/sig_diff_pm",
+                "value": -2.066666666666667
+              }
+            ],
+            "fighter": "Allen Frye Jr.",
+            "fighter_id": 343,
+            "fighter_id_pointer": "/replay/inference_input/facts/bouts/7/elemental_feature_surface/fighter_a_state/fighter_id",
+            "fighter_pointer": "/replay/inference_input/facts/bouts/7/elemental_feature_surface/fighter_a_state/name",
+            "participant_slot": "A"
+          },
+          "projection_sha256": "fc19553f7c77547d922442ebe3998642f4a2221de28ed3c101ca086ac9b93804",
+          "sample": "RETAINED_RECORDED_PRE_FIGHT_BOUTS",
+          "selected_fighter": {
+            "apex_fighter_id_pointer": "/replay/inference_input/facts/bouts/7/elemental_feature_surface/apex_fighter_b_id",
+            "apex_mma_fighter_id": "b523f11f-7ef8-52fa-8b70-ed6a387de9dc",
+            "fields": [
+              {
+                "field": "fights",
+                "source_pointer": "/replay/inference_input/facts/bouts/7/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "value": 6
+              },
+              {
+                "field": "sig_lpm",
+                "source_pointer": "/replay/inference_input/facts/bouts/7/elemental_feature_surface/fighter_b_state/historical_features/sig_lpm",
+                "value": 9.0
+              },
+              {
+                "field": "sig_diff_pm",
+                "source_pointer": "/replay/inference_input/facts/bouts/7/elemental_feature_surface/fighter_b_state/historical_features/sig_diff_pm",
+                "value": 2.4
+              }
+            ],
+            "fighter": "RJ Harris",
+            "fighter_id": 48658,
+            "fighter_id_pointer": "/replay/inference_input/facts/bouts/7/elemental_feature_surface/fighter_b_state/fighter_id",
+            "fighter_pointer": "/replay/inference_input/facts/bouts/7/elemental_feature_surface/fighter_b_state/name",
+            "participant_slot": "B"
+          }
+        }
+      },
+      {
+        "bout_id": "8ef8a7c8-e51f-5693-ad99-dfff56fcd83a",
+        "moneylines": [
+          {
+            "fanduel_status": "POSTED",
+            "fighter": "Ernesta Kareckaite",
+            "participant_slot": "A",
+            "price": 105,
+            "quote_sha256": "e73689465f91a384d9d928abc3d0d4c3807e83e4f24b127354e14c09f1a51892",
+            "quote_time": "2026-10-10 15:00:10-04:00"
+          },
+          {
+            "fanduel_status": "POSTED",
+            "fighter": "Melissa Gatto",
+            "participant_slot": "B",
+            "price": -125,
+            "quote_sha256": "7db803940855d011311c41197cf50c6e97f4f867078a90c37868501777704b88",
+            "quote_time": "2026-10-10 15:00:10-04:00"
+          }
+        ],
+        "prediction_sha256": "2c6221e9044a06a59a9781f03bf6a49bf90a075efba12d5409d6a158674ab1ee",
+        "selected_fighter": "Melissa Gatto",
+        "slots": [
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_AVAILABLE",
+            "issuance_status": "UNISSUED",
+            "market_key": "WINNER_KO_TKO",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.09291405310122809,
+            "rationale": "Melissa Gatto has 3 KO/TKO wins in 12 saved pre-fight bouts; Ernesta Kareckaite has 0 KO/TKO losses in 8.",
+            "rationale_source": {
+              "bout_id": "8ef8a7c8-e51f-5693-ad99-dfff56fcd83a",
+              "fighter_snapshot_sha256": "be6772b0438ff119e9298ce6105b110fa88d25305e96ab0e682c5d4605aeaaf3",
+              "opponent": {
+                "completed_bouts": 8,
+                "count": 0,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/8/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Ernesta Kareckaite",
+                "fighter_id": 468,
+                "terms": [
+                  {
+                    "count": 0,
+                    "field": "ko_loss_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/8/elemental_feature_surface/fighter_a_state/historical_features/ko_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 12,
+                "count": 3,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/8/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "Melissa Gatto",
+                "fighter_id": 582,
+                "terms": [
+                  {
+                    "count": 3,
+                    "field": "ko_win_rate",
+                    "rate": 0.25,
+                    "source_pointer": "/replay/inference_input/facts/bouts/8/elemental_feature_surface/fighter_b_state/historical_features/ko_win_rate"
+                  }
+                ]
+              }
+            },
+            "selection": "Melissa Gatto by KO/TKO",
+            "slot_id": "L1"
+          },
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_AVAILABLE",
+            "issuance_status": "UNISSUED",
+            "market_key": "WINNER_SUBMISSION",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.0878955750048338,
+            "rationale": "Melissa Gatto has 4 submission wins in 12 saved pre-fight bouts; Ernesta Kareckaite has 0 submission losses in 8.",
+            "rationale_source": {
+              "bout_id": "8ef8a7c8-e51f-5693-ad99-dfff56fcd83a",
+              "fighter_snapshot_sha256": "be6772b0438ff119e9298ce6105b110fa88d25305e96ab0e682c5d4605aeaaf3",
+              "opponent": {
+                "completed_bouts": 8,
+                "count": 0,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/8/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Ernesta Kareckaite",
+                "fighter_id": 468,
+                "terms": [
+                  {
+                    "count": 0,
+                    "field": "sub_loss_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/8/elemental_feature_surface/fighter_a_state/historical_features/sub_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 12,
+                "count": 4,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/8/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "Melissa Gatto",
+                "fighter_id": 582,
+                "terms": [
+                  {
+                    "count": 4,
+                    "field": "sub_win_rate",
+                    "rate": 0.3333333333333333,
+                    "source_pointer": "/replay/inference_input/facts/bouts/8/elemental_feature_surface/fighter_b_state/historical_features/sub_win_rate"
+                  }
+                ]
+              }
+            },
+            "selection": "Melissa Gatto by submission",
+            "slot_id": "L2"
+          },
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_AVAILABLE",
+            "issuance_status": "UNISSUED",
+            "market_key": "ANY_FINISH",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.3803597472173894,
+            "rationale": "KO/TKO or submission ended 7 of Melissa Gatto\u2019s 12 saved pre-fight bouts and 2 of Ernesta Kareckaite\u2019s 8.",
+            "rationale_source": {
+              "bout_id": "8ef8a7c8-e51f-5693-ad99-dfff56fcd83a",
+              "fighter_snapshot_sha256": "be6772b0438ff119e9298ce6105b110fa88d25305e96ab0e682c5d4605aeaaf3",
+              "opponent": {
+                "completed_bouts": 8,
+                "count": 2,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/8/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Ernesta Kareckaite",
+                "fighter_id": 468,
+                "terms": [
+                  {
+                    "count": 2,
+                    "field": "ko_win_rate",
+                    "rate": 0.25,
+                    "source_pointer": "/replay/inference_input/facts/bouts/8/elemental_feature_surface/fighter_a_state/historical_features/ko_win_rate"
+                  },
+                  {
+                    "count": 0,
+                    "field": "sub_win_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/8/elemental_feature_surface/fighter_a_state/historical_features/sub_win_rate"
+                  },
+                  {
+                    "count": 0,
+                    "field": "ko_loss_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/8/elemental_feature_surface/fighter_a_state/historical_features/ko_loss_rate"
+                  },
+                  {
+                    "count": 0,
+                    "field": "sub_loss_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/8/elemental_feature_surface/fighter_a_state/historical_features/sub_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 12,
+                "count": 7,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/8/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "Melissa Gatto",
+                "fighter_id": 582,
+                "terms": [
+                  {
+                    "count": 3,
+                    "field": "ko_win_rate",
+                    "rate": 0.25,
+                    "source_pointer": "/replay/inference_input/facts/bouts/8/elemental_feature_surface/fighter_b_state/historical_features/ko_win_rate"
+                  },
+                  {
+                    "count": 4,
+                    "field": "sub_win_rate",
+                    "rate": 0.3333333333333333,
+                    "source_pointer": "/replay/inference_input/facts/bouts/8/elemental_feature_surface/fighter_b_state/historical_features/sub_win_rate"
+                  },
+                  {
+                    "count": 0,
+                    "field": "ko_loss_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/8/elemental_feature_surface/fighter_b_state/historical_features/ko_loss_rate"
+                  },
+                  {
+                    "count": 0,
+                    "field": "sub_loss_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/8/elemental_feature_surface/fighter_b_state/historical_features/sub_loss_rate"
+                  }
+                ]
+              }
+            },
+            "selection": "FIGHT DOES NOT GO THE DISTANCE",
+            "slot_id": "L3"
+          },
+          {
+            "apex_status": "AVAILABLE",
+            "commercial_eligible": false,
+            "fanduel_status": "NOT_AVAILABLE",
+            "issuance_status": "UNISSUED",
+            "market_key": "WINNER_ROUND_1",
+            "plus_money": null,
+            "price": null,
+            "probability": 0.06998114262746227,
+            "rationale": "Melissa Gatto has 2 first-round KO/TKO or submission wins in 12 saved pre-fight bouts; Ernesta Kareckaite has 0 such losses in 8.",
+            "rationale_source": {
+              "bout_id": "8ef8a7c8-e51f-5693-ad99-dfff56fcd83a",
+              "fighter_snapshot_sha256": "be6772b0438ff119e9298ce6105b110fa88d25305e96ab0e682c5d4605aeaaf3",
+              "opponent": {
+                "completed_bouts": 8,
+                "count": 0,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/8/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "fighter": "Ernesta Kareckaite",
+                "fighter_id": 468,
+                "terms": [
+                  {
+                    "count": 0,
+                    "field": "r1_finish_loss_rate",
+                    "rate": 0.0,
+                    "source_pointer": "/replay/inference_input/facts/bouts/8/elemental_feature_surface/fighter_a_state/historical_features/r1_finish_loss_rate"
+                  }
+                ]
+              },
+              "sample": "RETAINED_RESOLVED_PRIOR_BOUTS",
+              "selected_fighter": {
+                "completed_bouts": 12,
+                "count": 2,
+                "denominator_pointer": "/replay/inference_input/facts/bouts/8/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "fighter": "Melissa Gatto",
+                "fighter_id": 582,
+                "terms": [
+                  {
+                    "count": 2,
+                    "field": "r1_finish_win_rate",
+                    "rate": 0.16666666666666666,
+                    "source_pointer": "/replay/inference_input/facts/bouts/8/elemental_feature_surface/fighter_b_state/historical_features/r1_finish_win_rate"
+                  }
+                ]
+              }
+            },
+            "selection": "Melissa Gatto in round 1",
+            "slot_id": "L4"
+          }
+        ],
+        "winner_rationale": "In retained samples of recorded pre-fight bouts, Melissa Gatto (12 bouts) averaged 1.77 takedowns and 4.50 minutes of control per 15 minutes, versus Ernesta Kareckaite (8 bouts) at 0.75 takedowns and 1.73 minutes of control.",
+        "winner_rationale_source": {
+          "bout_id": "8ef8a7c8-e51f-5693-ad99-dfff56fcd83a",
+          "bout_pointer": "/replay/inference_input/facts/bouts/8",
+          "comparison": "TAKEDOWNS_AND_CONTROL",
+          "fighter_snapshot_sha256": "be6772b0438ff119e9298ce6105b110fa88d25305e96ab0e682c5d4605aeaaf3",
+          "opponent": {
+            "apex_fighter_id_pointer": "/replay/inference_input/facts/bouts/8/elemental_feature_surface/apex_fighter_a_id",
+            "apex_mma_fighter_id": "763ffc36-942e-5af6-b67b-307c1e56c2c4",
+            "fields": [
+              {
+                "field": "fights",
+                "source_pointer": "/replay/inference_input/facts/bouts/8/elemental_feature_surface/fighter_a_state/historical_features/fights",
+                "value": 8
+              },
+              {
+                "field": "td_per15",
+                "source_pointer": "/replay/inference_input/facts/bouts/8/elemental_feature_surface/fighter_a_state/historical_features/td_per15",
+                "value": 0.75
+              },
+              {
+                "field": "control_per15",
+                "source_pointer": "/replay/inference_input/facts/bouts/8/elemental_feature_surface/fighter_a_state/historical_features/control_per15",
+                "value": 1.7333333333333334
+              }
+            ],
+            "fighter": "Ernesta Kareckaite",
+            "fighter_id": 468,
+            "fighter_id_pointer": "/replay/inference_input/facts/bouts/8/elemental_feature_surface/fighter_a_state/fighter_id",
+            "fighter_pointer": "/replay/inference_input/facts/bouts/8/elemental_feature_surface/fighter_a_state/name",
+            "participant_slot": "A"
+          },
+          "projection_sha256": "cfe87f993128169f6b2cf35a49089f72e7fe5e1146318c69dff20cb63fa1fe42",
+          "sample": "RETAINED_RECORDED_PRE_FIGHT_BOUTS",
+          "selected_fighter": {
+            "apex_fighter_id_pointer": "/replay/inference_input/facts/bouts/8/elemental_feature_surface/apex_fighter_b_id",
+            "apex_mma_fighter_id": "986aeef1-e05c-5787-aef2-a613c4761242",
+            "fields": [
+              {
+                "field": "fights",
+                "source_pointer": "/replay/inference_input/facts/bouts/8/elemental_feature_surface/fighter_b_state/historical_features/fights",
+                "value": 12
+              },
+              {
+                "field": "td_per15",
+                "source_pointer": "/replay/inference_input/facts/bouts/8/elemental_feature_surface/fighter_b_state/historical_features/td_per15",
+                "value": 1.7677869925796597
+              },
+              {
+                "field": "control_per15",
+                "source_pointer": "/replay/inference_input/facts/bouts/8/elemental_feature_surface/fighter_b_state/historical_features/control_per15",
+                "value": 4.498035792230467
+              }
+            ],
+            "fighter": "Melissa Gatto",
+            "fighter_id": 582,
+            "fighter_id_pointer": "/replay/inference_input/facts/bouts/8/elemental_feature_surface/fighter_b_state/fighter_id",
+            "fighter_pointer": "/replay/inference_input/facts/bouts/8/elemental_feature_surface/fighter_b_state/name",
+            "participant_slot": "B"
+          }
+        }
+      }
+    ],
+    "joint_probability_card_sha256": "b134ff8140cd522b73a72b78cd781ba1769644bae2d6405c173c45c218770960",
+    "probability_basis": "EXACT_SEALED_JOINT_MARGINALS",
+    "sealed_at_utc": "2026-10-10T20:07:35.183899+00:00",
+    "source_card_sha256": "7839889aa7aebc34a3817906cd8459e3935397fb9e99a697437c20c405c4ea7a",
+    "source_issuance_id": "950105fb-6838-4f44-805b-e2e50dd50ea0",
+    "source_market_snapshot_sha256": "9b2bbeaf9763e84d5755a246cb7916caf7063c64d799beb63b57ef30a23fe56d",
+    "source_positions_sha256": "5625ffcd9853dd2646637714b0da421b3d7392f33ec41026cd0e5f303b5a3a47"
+  },
+  "payload_sha256": "710d74f1e00600e26d8b786a6d4f26e8bcebd65e85b7707cf9040d1dfb6d8a7b",
+  "picks_published": true,
+  "positions": [
+    {
+      "bout_id": "f1dcb0a2-0b02-515f-b129-332151773d25",
+      "fighter_a": "Brendan Allen",
+      "fighter_b": "Christian Leroy Duncan",
+      "line": null,
+      "market": "WINNER",
+      "matchup": "Brendan Allen vs Christian Leroy Duncan",
+      "price": -118,
+      "probability": 0.5429838851633682,
+      "quote_time": "2026-10-10 15:00:10-04:00",
+      "rationale": "APEX selects Brendan Allen over Christian Leroy Duncan. The released Winner model assigns 54.3% to Brendan Allen versus a 51.7% two-way DraftKings baseline; the captured price is -118. The model-minus-market probability difference is +2.6 percentage points.\n\nStructural form: the selected-side opponent-adjusted Elo differential is +73.5, opponent-quality differential is +26.8, and recent-three win-rate differential is +0.000. Those quantities are measured from pre-fight history only.\n\nStyle and process: selected-side significant-strike differential is -2.12 per minute, takedown-rate differential is +1.10 per 15 minutes, control differential is +1.33 per 15 minutes, and pace-decay differential is +0.18.\n\nUncertainty: Brendan Allen carries 34 prior UFC fights in the feature history with data-support score 1.00; Christian Leroy Duncan carries 17 with support 1.00. The selected-side layoff differential is +0.40. Sparse history or an adverse market move should therefore reduce confidence in the numeric point estimate.\n\nConclusion: this is a WEAK APEX Winner forecast from the sealed best-available market-anchored model. It is a forecast, not a claim that APEX has statistically proven a betting edge over DraftKings; the historical superiority interval still overlaps zero.",
+      "selection": "Brendan Allen",
+      "sportsbook": "DraftKings",
+      "tier": "WEAK",
+      "trace": {
+        "feature_snapshot_sha256": "be6772b0438ff119e9298ce6105b110fa88d25305e96ab0e682c5d4605aeaaf3",
+        "issuance_id": "950105fb-6838-4f44-805b-e2e50dd50ea0",
+        "market_snapshot_sha256": "ce68bb6573f46b0223fffe980c3c2e0af51019e30caa376d7a46ff90d8c38d0c",
+        "model_sha256": "c4405db96c390a3934649b9deb77c36ad510093defc2a9bcb1e01115757e2922",
+        "prediction_sha256": "55c0dbc3c7dad1f29614e17b3d1bc61115cd54aab4deb38624a746ccd23dd2f2",
+        "release_id": "ca49ab7a-16c8-44e5-8413-b619a52d8ae0"
+      }
+    },
+    {
+      "bout_id": "c9e7d8a2-71ee-5f8f-bfce-f6b0e8434483",
+      "fighter_a": "Matheus Camilo",
+      "fighter_b": "Jai Herbert",
+      "line": null,
+      "market": "WINNER",
+      "matchup": "Matheus Camilo vs Jai Herbert",
+      "price": -205,
+      "probability": 0.7005224819667585,
+      "quote_time": "2026-10-10 15:00:10-04:00",
+      "rationale": "APEX selects Matheus Camilo over Jai Herbert. The released Winner model assigns 70.1% to Matheus Camilo versus a 64.5% two-way DraftKings baseline; the captured price is -205. The model-minus-market probability difference is +5.6 percentage points.\n\nStructural form: the selected-side opponent-adjusted Elo differential is +4.4, opponent-quality differential is -22.0, and recent-three win-rate differential is +0.000. Those quantities are measured from pre-fight history only.\n\nStyle and process: selected-side significant-strike differential is -0.48 per minute, takedown-rate differential is +2.77 per 15 minutes, control differential is +0.20 per 15 minutes, and pace-decay differential is -2.79.\n\nUncertainty: Matheus Camilo carries 15 prior UFC fights in the feature history with data-support score 1.00; Jai Herbert carries 20 with support 1.00. The selected-side layoff differential is -0.50. Sparse history or an adverse market move should therefore reduce confidence in the numeric point estimate.\n\nConclusion: this is a STRONG APEX Winner forecast from the sealed best-available market-anchored model. It is a forecast, not a claim that APEX has statistically proven a betting edge over DraftKings; the historical superiority interval still overlaps zero.",
+      "selection": "Matheus Camilo",
+      "sportsbook": "DraftKings",
+      "tier": "STRONG",
+      "trace": {
+        "feature_snapshot_sha256": "be6772b0438ff119e9298ce6105b110fa88d25305e96ab0e682c5d4605aeaaf3",
+        "issuance_id": "950105fb-6838-4f44-805b-e2e50dd50ea0",
+        "market_snapshot_sha256": "53f93e1373181f24094c1ee468c82b0a62f33d908b64fdbecf273b66f75dec9a",
+        "model_sha256": "c4405db96c390a3934649b9deb77c36ad510093defc2a9bcb1e01115757e2922",
+        "prediction_sha256": "eb4721f7082ed62d24094d56bfcac62c4b207776c8baa43b741dba8ab18cd3b8",
+        "release_id": "ca49ab7a-16c8-44e5-8413-b619a52d8ae0"
+      }
+    },
+    {
+      "bout_id": "c1adb76c-e493-56a9-83f7-e26c2cebd406",
+      "fighter_a": "Malcolm Wellmaker",
+      "fighter_b": "Otari Tanzilovi",
+      "line": null,
+      "market": "WINNER",
+      "matchup": "Malcolm Wellmaker vs Otari Tanzilovi",
+      "price": -218,
+      "probability": 0.7002572704167637,
+      "quote_time": "2026-10-10 15:00:10-04:00",
+      "rationale": "APEX selects Malcolm Wellmaker over Otari Tanzilovi. The released Winner model assigns 70.0% to Malcolm Wellmaker versus a 65.7% two-way DraftKings baseline; the captured price is -218. The model-minus-market probability difference is +4.3 percentage points.\n\nStructural form: the selected-side opponent-adjusted Elo differential is +59.3, opponent-quality differential is +2.9, and recent-three win-rate differential is +0.333. Those quantities are measured from pre-fight history only.\n\nStyle and process: selected-side significant-strike differential is +0.95 per minute, takedown-rate differential is -2.50 per 15 minutes, control differential is -1.43 per 15 minutes, and pace-decay differential is +0.67.\n\nUncertainty: Malcolm Wellmaker carries 12 prior UFC fights in the feature history with data-support score 1.00; Otari Tanzilovi carries 12 with support 1.00. The selected-side layoff differential is +0.27. Sparse history or an adverse market move should therefore reduce confidence in the numeric point estimate.\n\nConclusion: this is a STRONG APEX Winner forecast from the sealed best-available market-anchored model. It is a forecast, not a claim that APEX has statistically proven a betting edge over DraftKings; the historical superiority interval still overlaps zero.",
+      "selection": "Malcolm Wellmaker",
+      "sportsbook": "DraftKings",
+      "tier": "STRONG",
+      "trace": {
+        "feature_snapshot_sha256": "be6772b0438ff119e9298ce6105b110fa88d25305e96ab0e682c5d4605aeaaf3",
+        "issuance_id": "950105fb-6838-4f44-805b-e2e50dd50ea0",
+        "market_snapshot_sha256": "0fe22d4d39bb14982e94d632f68aac92cadfd5cf2ebd9297600b7f3f05358804",
+        "model_sha256": "c4405db96c390a3934649b9deb77c36ad510093defc2a9bcb1e01115757e2922",
+        "prediction_sha256": "c760343e2b5d1e053654c9a896ca2c42568bd045721827dee1d772abab85e6fb",
+        "release_id": "ca49ab7a-16c8-44e5-8413-b619a52d8ae0"
+      }
+    },
+    {
+      "bout_id": "38b47c61-d07a-5b14-bded-3f3d7c581ae2",
+      "fighter_a": "Julius Walker",
+      "fighter_b": "Gerald Meerschaert",
+      "line": null,
+      "market": "WINNER",
+      "matchup": "Julius Walker vs Gerald Meerschaert",
+      "price": -305,
+      "probability": 0.7672646049810855,
+      "quote_time": "2026-10-10 15:00:10-04:00",
+      "rationale": "APEX selects Julius Walker over Gerald Meerschaert. The released Winner model assigns 76.7% to Julius Walker versus a 72.2% two-way DraftKings baseline; the captured price is -305. The model-minus-market probability difference is +4.5 percentage points.\n\nStructural form: the selected-side opponent-adjusted Elo differential is +12.5, opponent-quality differential is +14.6, and recent-three win-rate differential is +0.333. Those quantities are measured from pre-fight history only.\n\nStyle and process: selected-side significant-strike differential is +0.03 per minute, takedown-rate differential is +2.37 per 15 minutes, control differential is +4.82 per 15 minutes, and pace-decay differential is -0.02.\n\nUncertainty: Julius Walker carries 10 prior UFC fights in the feature history with data-support score 1.00; Gerald Meerschaert carries 59 with support 1.00. The selected-side layoff differential is -0.42. Sparse history or an adverse market move should therefore reduce confidence in the numeric point estimate.\n\nConclusion: this is a ELITE APEX Winner forecast from the sealed best-available market-anchored model. It is a forecast, not a claim that APEX has statistically proven a betting edge over DraftKings; the historical superiority interval still overlaps zero.",
+      "selection": "Julius Walker",
+      "sportsbook": "DraftKings",
+      "tier": "ELITE",
+      "trace": {
+        "feature_snapshot_sha256": "be6772b0438ff119e9298ce6105b110fa88d25305e96ab0e682c5d4605aeaaf3",
+        "issuance_id": "950105fb-6838-4f44-805b-e2e50dd50ea0",
+        "market_snapshot_sha256": "28e3c57c4ced07bf6527e73a3f54848334260778153f71afdb18a7003aacd9b0",
+        "model_sha256": "c4405db96c390a3934649b9deb77c36ad510093defc2a9bcb1e01115757e2922",
+        "prediction_sha256": "ae5f47713366b38dbe6519ef9670609262460a6324843b94817441bbf09b9f3d",
+        "release_id": "ca49ab7a-16c8-44e5-8413-b619a52d8ae0"
+      }
+    },
+    {
+      "bout_id": "092bf53b-fa25-5c0a-9853-b11c48e38a50",
+      "fighter_a": "Francisco Prado",
+      "fighter_b": "Ismael Bonfim",
+      "line": null,
+      "market": "WINNER",
+      "matchup": "Francisco Prado vs Ismael Bonfim",
+      "price": -155,
+      "probability": 0.5884733284560376,
+      "quote_time": "2026-10-10 15:00:10-04:00",
+      "rationale": "APEX selects Francisco Prado over Ismael Bonfim. The released Winner model assigns 58.8% to Francisco Prado versus a 58.3% two-way DraftKings baseline; the captured price is -155. The model-minus-market probability difference is +0.5 percentage points.\n\nStructural form: the selected-side opponent-adjusted Elo differential is -58.7, opponent-quality differential is -11.9, and recent-three win-rate differential is +0.000. Those quantities are measured from pre-fight history only.\n\nStyle and process: selected-side significant-strike differential is -1.77 per minute, takedown-rate differential is -0.46 per 15 minutes, control differential is +1.39 per 15 minutes, and pace-decay differential is -2.95.\n\nUncertainty: Francisco Prado carries 17 prior UFC fights in the feature history with data-support score 1.00; Ismael Bonfim carries 27 with support 1.00. The selected-side layoff differential is +0.85. Sparse history or an adverse market move should therefore reduce confidence in the numeric point estimate.\n\nConclusion: this is a MODERATE APEX Winner forecast from the sealed best-available market-anchored model. It is a forecast, not a claim that APEX has statistically proven a betting edge over DraftKings; the historical superiority interval still overlaps zero.",
+      "selection": "Francisco Prado",
+      "sportsbook": "DraftKings",
+      "tier": "MODERATE",
+      "trace": {
+        "feature_snapshot_sha256": "be6772b0438ff119e9298ce6105b110fa88d25305e96ab0e682c5d4605aeaaf3",
+        "issuance_id": "950105fb-6838-4f44-805b-e2e50dd50ea0",
+        "market_snapshot_sha256": "8e5b4a51f5667094f4f65364a0ac6a0b8ebb6eaba0ca0529be3d9b3f54188cdb",
+        "model_sha256": "c4405db96c390a3934649b9deb77c36ad510093defc2a9bcb1e01115757e2922",
+        "prediction_sha256": "597a0ba66c50bcb1b15ea72507f51cf356701cd7356118e0fdb592e83701f767",
+        "release_id": "ca49ab7a-16c8-44e5-8413-b619a52d8ae0"
+      }
+    },
+    {
+      "bout_id": "e3dc233a-8682-550b-a1be-8aa3486be8f3",
+      "fighter_a": "Niko Price",
+      "fighter_b": "Leon Shahbazyan",
+      "line": null,
+      "market": "WINNER",
+      "matchup": "Leon Shahbazyan vs Niko Price",
+      "price": -135,
+      "probability": 0.5188148828754314,
+      "quote_time": "2026-10-10 15:00:10-04:00",
+      "rationale": "APEX selects Leon Shahbazyan over Niko Price. The released Winner model assigns 51.9% to Leon Shahbazyan versus a 55.1% two-way DraftKings baseline; the captured price is -135. The model-minus-market probability difference is -3.3 percentage points.\n\nStructural form: the selected-side opponent-adjusted Elo differential is -1.8, opponent-quality differential is -56.8, and recent-three win-rate differential is -0.000. Those quantities are measured from pre-fight history only.\n\nStyle and process: selected-side significant-strike differential is +0.08 per minute, takedown-rate differential is -1.24 per 15 minutes, control differential is -2.52 per 15 minutes, and pace-decay differential is -6.01.\n\nUncertainty: Leon Shahbazyan carries 17 prior UFC fights in the feature history with data-support score 1.00; Niko Price carries 27 with support 1.00. The selected-side layoff differential is -0.56. Sparse history or an adverse market move should therefore reduce confidence in the numeric point estimate.\n\nConclusion: this is a WEAK APEX Winner forecast from the sealed best-available market-anchored model. It is a forecast, not a claim that APEX has statistically proven a betting edge over DraftKings; the historical superiority interval still overlaps zero.",
+      "selection": "Leon Shahbazyan",
+      "sportsbook": "DraftKings",
+      "tier": "WEAK",
+      "trace": {
+        "feature_snapshot_sha256": "be6772b0438ff119e9298ce6105b110fa88d25305e96ab0e682c5d4605aeaaf3",
+        "issuance_id": "950105fb-6838-4f44-805b-e2e50dd50ea0",
+        "market_snapshot_sha256": "a424e1354547d79728c20a996122cddbbb6ab2fd39a1cd4aa20ee59fe545732c",
+        "model_sha256": "c4405db96c390a3934649b9deb77c36ad510093defc2a9bcb1e01115757e2922",
+        "prediction_sha256": "faa8d5fb0401b1f2ae8058152d05f342a40fec6ce107f81bf0e21a14365d6ee5",
+        "release_id": "ca49ab7a-16c8-44e5-8413-b619a52d8ae0"
+      }
+    },
+    {
+      "bout_id": "70691538-81e6-557c-91c5-ae6a134380d3",
+      "fighter_a": "Felipe Franco",
+      "fighter_b": "Brendson Ribeiro",
+      "line": null,
+      "market": "WINNER",
+      "matchup": "Felipe Franco vs Brendson Ribeiro",
+      "price": -410,
+      "probability": 0.8086269308202344,
+      "quote_time": "2026-10-10 15:00:10-04:00",
+      "rationale": "APEX selects Felipe Franco over Brendson Ribeiro. The released Winner model assigns 80.9% to Felipe Franco versus a 77.2% two-way DraftKings baseline; the captured price is -410. The model-minus-market probability difference is +3.7 percentage points.\n\nStructural form: the selected-side opponent-adjusted Elo differential is +43.1, opponent-quality differential is +8.1, and recent-three win-rate differential is +0.333. Those quantities are measured from pre-fight history only.\n\nStyle and process: selected-side significant-strike differential is +0.80 per minute, takedown-rate differential is +3.04 per 15 minutes, control differential is +3.21 per 15 minutes, and pace-decay differential is +2.48.\n\nUncertainty: Felipe Franco carries 13 prior UFC fights in the feature history with data-support score 1.00; Brendson Ribeiro carries 28 with support 1.00. The selected-side layoff differential is +0.08. Sparse history or an adverse market move should therefore reduce confidence in the numeric point estimate.\n\nConclusion: this is a ELITE APEX Winner forecast from the sealed best-available market-anchored model. It is a forecast, not a claim that APEX has statistically proven a betting edge over DraftKings; the historical superiority interval still overlaps zero.",
+      "selection": "Felipe Franco",
+      "sportsbook": "DraftKings",
+      "tier": "ELITE",
+      "trace": {
+        "feature_snapshot_sha256": "be6772b0438ff119e9298ce6105b110fa88d25305e96ab0e682c5d4605aeaaf3",
+        "issuance_id": "950105fb-6838-4f44-805b-e2e50dd50ea0",
+        "market_snapshot_sha256": "cb3413c27f4aeca4fea8b9ac1f0c1dee41fb30996875a60928a64a77d2bd5f8d",
+        "model_sha256": "c4405db96c390a3934649b9deb77c36ad510093defc2a9bcb1e01115757e2922",
+        "prediction_sha256": "3bb97541946f7010a0937db54991d8d9976633ff5a61d89054b79d6b35f3a62f",
+        "release_id": "ca49ab7a-16c8-44e5-8413-b619a52d8ae0"
+      }
+    },
+    {
+      "bout_id": "8a43b981-4c4b-5d5b-bd43-6b19766ee357",
+      "fighter_a": "Allen Frye Jr.",
+      "fighter_b": "RJ Harris",
+      "line": null,
+      "market": "WINNER",
+      "matchup": "RJ Harris vs Allen Frye Jr.",
+      "price": -355,
+      "probability": 0.7222602085852402,
+      "quote_time": "2026-10-10 15:00:10-04:00",
+      "rationale": "APEX selects RJ Harris over Allen Frye Jr.. The released Winner model assigns 72.2% to RJ Harris versus a 74.8% two-way DraftKings baseline; the captured price is -355. The model-minus-market probability difference is -2.6 percentage points.\n\nStructural form: the selected-side opponent-adjusted Elo differential is +46.6, opponent-quality differential is -20.7, and recent-three win-rate differential is +1.000. Those quantities are measured from pre-fight history only.\n\nStyle and process: selected-side significant-strike differential is +4.47 per minute, takedown-rate differential is -0.00 per 15 minutes, control differential is -6.42 per 15 minutes, and pace-decay differential is -9.50.\n\nUncertainty: RJ Harris carries 6 prior UFC fights in the feature history with data-support score 0.75; Allen Frye Jr. carries 7 with support 0.88. The selected-side layoff differential is -1.27. Sparse history or an adverse market move should therefore reduce confidence in the numeric point estimate.\n\nConclusion: this is a STRONG APEX Winner forecast from the sealed best-available market-anchored model. It is a forecast, not a claim that APEX has statistically proven a betting edge over DraftKings; the historical superiority interval still overlaps zero.",
+      "selection": "RJ Harris",
+      "sportsbook": "DraftKings",
+      "tier": "STRONG",
+      "trace": {
+        "feature_snapshot_sha256": "be6772b0438ff119e9298ce6105b110fa88d25305e96ab0e682c5d4605aeaaf3",
+        "issuance_id": "950105fb-6838-4f44-805b-e2e50dd50ea0",
+        "market_snapshot_sha256": "2be0efe54ffd26ff309ca8d9fcb2e45eaefee98b4bde440841081ef2e4fc44db",
+        "model_sha256": "c4405db96c390a3934649b9deb77c36ad510093defc2a9bcb1e01115757e2922",
+        "prediction_sha256": "9f17e309bd301824ea317ebe88e7be802acd532fbdad9b078fce2f1625738ec2",
+        "release_id": "ca49ab7a-16c8-44e5-8413-b619a52d8ae0"
+      }
+    },
+    {
+      "bout_id": "8ef8a7c8-e51f-5693-ad99-dfff56fcd83a",
+      "fighter_a": "Ernesta Kareckaite",
+      "fighter_b": "Melissa Gatto",
+      "line": null,
+      "market": "WINNER",
+      "matchup": "Melissa Gatto vs Ernesta Kareckaite",
+      "price": -125,
+      "probability": 0.5063721120599642,
+      "quote_time": "2026-10-10 15:00:10-04:00",
+      "rationale": "APEX selects Melissa Gatto over Ernesta Kareckaite. The released Winner model assigns 50.6% to Melissa Gatto versus a 53.2% two-way DraftKings baseline; the captured price is -125. The model-minus-market probability difference is -2.6 percentage points.\n\nStructural form: the selected-side opponent-adjusted Elo differential is -0.1, opponent-quality differential is +7.8, and recent-three win-rate differential is -0.000. Those quantities are measured from pre-fight history only.\n\nStyle and process: selected-side significant-strike differential is -0.02 per minute, takedown-rate differential is +1.02 per 15 minutes, control differential is +2.76 per 15 minutes, and pace-decay differential is -0.32.\n\nUncertainty: Melissa Gatto carries 12 prior UFC fights in the feature history with data-support score 1.00; Ernesta Kareckaite carries 8 with support 1.00. The selected-side layoff differential is -0.17. Sparse history or an adverse market move should therefore reduce confidence in the numeric point estimate.\n\nConclusion: this is a WEAK APEX Winner forecast from the sealed best-available market-anchored model. It is a forecast, not a claim that APEX has statistically proven a betting edge over DraftKings; the historical superiority interval still overlaps zero.",
+      "selection": "Melissa Gatto",
+      "sportsbook": "DraftKings",
+      "tier": "WEAK",
+      "trace": {
+        "feature_snapshot_sha256": "be6772b0438ff119e9298ce6105b110fa88d25305e96ab0e682c5d4605aeaaf3",
+        "issuance_id": "950105fb-6838-4f44-805b-e2e50dd50ea0",
+        "market_snapshot_sha256": "7db803940855d011311c41197cf50c6e97f4f867078a90c37868501777704b88",
+        "model_sha256": "c4405db96c390a3934649b9deb77c36ad510093defc2a9bcb1e01115757e2922",
+        "prediction_sha256": "2c6221e9044a06a59a9781f03bf6a49bf90a075efba12d5409d6a158674ab1ee",
+        "release_id": "ca49ab7a-16c8-44e5-8413-b619a52d8ae0"
+      }
+    }
+  ],
+  "positions_sha256": "5625ffcd9853dd2646637714b0da421b3d7392f33ec41026cd0e5f303b5a3a47",
+  "release_state": "SEALED_RELEASE_AVAILABLE",
   "results_archive": [
     {
       "active_model": "WINNER_RESIDUAL_BEST_AVAILABLE_V1",
@@ -3022,10 +6067,249 @@
         }
       ],
       "schema_version": "APEX_MMA_TODAY_V1"
+    },
+    {
+      "active_model": "WINNER_RESIDUAL_BEST_AVAILABLE_V1",
+      "active_model_sha256": "c4405db96c390a3934649b9deb77c36ad510093defc2a9bcb1e01115757e2922",
+      "event": {
+        "city": "Las Vegas",
+        "country": "United States",
+        "display_name": "UFC Fight Night \u2014 Allen vs Duncan",
+        "event_date": "2026-10-10",
+        "main_card_start_et": "2026-10-10T20:00:00-04:00",
+        "main_card_start_utc": "2026-10-11T00:00:00Z",
+        "name": "UFC Fight Night: Allen vs Duncan",
+        "prelims_start_et": "2026-10-10T17:00:00-04:00",
+        "prelims_start_utc": "2026-10-10T21:00:00Z",
+        "promotion": "UFC",
+        "region": "Nevada",
+        "schedule_status": "ANNOUNCED",
+        "venue": "Meta Apex"
+      },
+      "event_date": "2026-10-10",
+      "event_name": "UFC Fight Night \u2014 Allen vs Duncan",
+      "issuance_id": "950105fb-6838-4f44-805b-e2e50dd50ea0",
+      "issuance_status": "SEALED",
+      "latest_results": [],
+      "official_issuance": true,
+      "picks_published": true,
+      "positions": [
+        {
+          "bout_id": "f1dcb0a2-0b02-515f-b129-332151773d25",
+          "fighter_a": "Brendan Allen",
+          "fighter_b": "Christian Leroy Duncan",
+          "line": null,
+          "market": "WINNER",
+          "matchup": "Brendan Allen vs Christian Leroy Duncan",
+          "price": -118,
+          "probability": 0.5429838851633682,
+          "quote_time": "2026-10-10 15:00:10-04:00",
+          "rationale": "APEX selects Brendan Allen over Christian Leroy Duncan. The released Winner model assigns 54.3% to Brendan Allen versus a 51.7% two-way DraftKings baseline; the captured price is -118. The model-minus-market probability difference is +2.6 percentage points.\n\nStructural form: the selected-side opponent-adjusted Elo differential is +73.5, opponent-quality differential is +26.8, and recent-three win-rate differential is +0.000. Those quantities are measured from pre-fight history only.\n\nStyle and process: selected-side significant-strike differential is -2.12 per minute, takedown-rate differential is +1.10 per 15 minutes, control differential is +1.33 per 15 minutes, and pace-decay differential is +0.18.\n\nUncertainty: Brendan Allen carries 34 prior UFC fights in the feature history with data-support score 1.00; Christian Leroy Duncan carries 17 with support 1.00. The selected-side layoff differential is +0.40. Sparse history or an adverse market move should therefore reduce confidence in the numeric point estimate.\n\nConclusion: this is a WEAK APEX Winner forecast from the sealed best-available market-anchored model. It is a forecast, not a claim that APEX has statistically proven a betting edge over DraftKings; the historical superiority interval still overlaps zero.",
+          "selection": "Brendan Allen",
+          "sportsbook": "DraftKings",
+          "tier": "WEAK",
+          "trace": {
+            "feature_snapshot_sha256": "be6772b0438ff119e9298ce6105b110fa88d25305e96ab0e682c5d4605aeaaf3",
+            "issuance_id": "950105fb-6838-4f44-805b-e2e50dd50ea0",
+            "market_snapshot_sha256": "ce68bb6573f46b0223fffe980c3c2e0af51019e30caa376d7a46ff90d8c38d0c",
+            "model_sha256": "c4405db96c390a3934649b9deb77c36ad510093defc2a9bcb1e01115757e2922",
+            "prediction_sha256": "55c0dbc3c7dad1f29614e17b3d1bc61115cd54aab4deb38624a746ccd23dd2f2",
+            "release_id": "ca49ab7a-16c8-44e5-8413-b619a52d8ae0"
+          }
+        },
+        {
+          "bout_id": "c9e7d8a2-71ee-5f8f-bfce-f6b0e8434483",
+          "fighter_a": "Matheus Camilo",
+          "fighter_b": "Jai Herbert",
+          "line": null,
+          "market": "WINNER",
+          "matchup": "Matheus Camilo vs Jai Herbert",
+          "price": -205,
+          "probability": 0.7005224819667585,
+          "quote_time": "2026-10-10 15:00:10-04:00",
+          "rationale": "APEX selects Matheus Camilo over Jai Herbert. The released Winner model assigns 70.1% to Matheus Camilo versus a 64.5% two-way DraftKings baseline; the captured price is -205. The model-minus-market probability difference is +5.6 percentage points.\n\nStructural form: the selected-side opponent-adjusted Elo differential is +4.4, opponent-quality differential is -22.0, and recent-three win-rate differential is +0.000. Those quantities are measured from pre-fight history only.\n\nStyle and process: selected-side significant-strike differential is -0.48 per minute, takedown-rate differential is +2.77 per 15 minutes, control differential is +0.20 per 15 minutes, and pace-decay differential is -2.79.\n\nUncertainty: Matheus Camilo carries 15 prior UFC fights in the feature history with data-support score 1.00; Jai Herbert carries 20 with support 1.00. The selected-side layoff differential is -0.50. Sparse history or an adverse market move should therefore reduce confidence in the numeric point estimate.\n\nConclusion: this is a STRONG APEX Winner forecast from the sealed best-available market-anchored model. It is a forecast, not a claim that APEX has statistically proven a betting edge over DraftKings; the historical superiority interval still overlaps zero.",
+          "selection": "Matheus Camilo",
+          "sportsbook": "DraftKings",
+          "tier": "STRONG",
+          "trace": {
+            "feature_snapshot_sha256": "be6772b0438ff119e9298ce6105b110fa88d25305e96ab0e682c5d4605aeaaf3",
+            "issuance_id": "950105fb-6838-4f44-805b-e2e50dd50ea0",
+            "market_snapshot_sha256": "53f93e1373181f24094c1ee468c82b0a62f33d908b64fdbecf273b66f75dec9a",
+            "model_sha256": "c4405db96c390a3934649b9deb77c36ad510093defc2a9bcb1e01115757e2922",
+            "prediction_sha256": "eb4721f7082ed62d24094d56bfcac62c4b207776c8baa43b741dba8ab18cd3b8",
+            "release_id": "ca49ab7a-16c8-44e5-8413-b619a52d8ae0"
+          }
+        },
+        {
+          "bout_id": "c1adb76c-e493-56a9-83f7-e26c2cebd406",
+          "fighter_a": "Malcolm Wellmaker",
+          "fighter_b": "Otari Tanzilovi",
+          "line": null,
+          "market": "WINNER",
+          "matchup": "Malcolm Wellmaker vs Otari Tanzilovi",
+          "price": -218,
+          "probability": 0.7002572704167637,
+          "quote_time": "2026-10-10 15:00:10-04:00",
+          "rationale": "APEX selects Malcolm Wellmaker over Otari Tanzilovi. The released Winner model assigns 70.0% to Malcolm Wellmaker versus a 65.7% two-way DraftKings baseline; the captured price is -218. The model-minus-market probability difference is +4.3 percentage points.\n\nStructural form: the selected-side opponent-adjusted Elo differential is +59.3, opponent-quality differential is +2.9, and recent-three win-rate differential is +0.333. Those quantities are measured from pre-fight history only.\n\nStyle and process: selected-side significant-strike differential is +0.95 per minute, takedown-rate differential is -2.50 per 15 minutes, control differential is -1.43 per 15 minutes, and pace-decay differential is +0.67.\n\nUncertainty: Malcolm Wellmaker carries 12 prior UFC fights in the feature history with data-support score 1.00; Otari Tanzilovi carries 12 with support 1.00. The selected-side layoff differential is +0.27. Sparse history or an adverse market move should therefore reduce confidence in the numeric point estimate.\n\nConclusion: this is a STRONG APEX Winner forecast from the sealed best-available market-anchored model. It is a forecast, not a claim that APEX has statistically proven a betting edge over DraftKings; the historical superiority interval still overlaps zero.",
+          "selection": "Malcolm Wellmaker",
+          "sportsbook": "DraftKings",
+          "tier": "STRONG",
+          "trace": {
+            "feature_snapshot_sha256": "be6772b0438ff119e9298ce6105b110fa88d25305e96ab0e682c5d4605aeaaf3",
+            "issuance_id": "950105fb-6838-4f44-805b-e2e50dd50ea0",
+            "market_snapshot_sha256": "0fe22d4d39bb14982e94d632f68aac92cadfd5cf2ebd9297600b7f3f05358804",
+            "model_sha256": "c4405db96c390a3934649b9deb77c36ad510093defc2a9bcb1e01115757e2922",
+            "prediction_sha256": "c760343e2b5d1e053654c9a896ca2c42568bd045721827dee1d772abab85e6fb",
+            "release_id": "ca49ab7a-16c8-44e5-8413-b619a52d8ae0"
+          }
+        },
+        {
+          "bout_id": "38b47c61-d07a-5b14-bded-3f3d7c581ae2",
+          "fighter_a": "Julius Walker",
+          "fighter_b": "Gerald Meerschaert",
+          "line": null,
+          "market": "WINNER",
+          "matchup": "Julius Walker vs Gerald Meerschaert",
+          "price": -305,
+          "probability": 0.7672646049810855,
+          "quote_time": "2026-10-10 15:00:10-04:00",
+          "rationale": "APEX selects Julius Walker over Gerald Meerschaert. The released Winner model assigns 76.7% to Julius Walker versus a 72.2% two-way DraftKings baseline; the captured price is -305. The model-minus-market probability difference is +4.5 percentage points.\n\nStructural form: the selected-side opponent-adjusted Elo differential is +12.5, opponent-quality differential is +14.6, and recent-three win-rate differential is +0.333. Those quantities are measured from pre-fight history only.\n\nStyle and process: selected-side significant-strike differential is +0.03 per minute, takedown-rate differential is +2.37 per 15 minutes, control differential is +4.82 per 15 minutes, and pace-decay differential is -0.02.\n\nUncertainty: Julius Walker carries 10 prior UFC fights in the feature history with data-support score 1.00; Gerald Meerschaert carries 59 with support 1.00. The selected-side layoff differential is -0.42. Sparse history or an adverse market move should therefore reduce confidence in the numeric point estimate.\n\nConclusion: this is a ELITE APEX Winner forecast from the sealed best-available market-anchored model. It is a forecast, not a claim that APEX has statistically proven a betting edge over DraftKings; the historical superiority interval still overlaps zero.",
+          "selection": "Julius Walker",
+          "sportsbook": "DraftKings",
+          "tier": "ELITE",
+          "trace": {
+            "feature_snapshot_sha256": "be6772b0438ff119e9298ce6105b110fa88d25305e96ab0e682c5d4605aeaaf3",
+            "issuance_id": "950105fb-6838-4f44-805b-e2e50dd50ea0",
+            "market_snapshot_sha256": "28e3c57c4ced07bf6527e73a3f54848334260778153f71afdb18a7003aacd9b0",
+            "model_sha256": "c4405db96c390a3934649b9deb77c36ad510093defc2a9bcb1e01115757e2922",
+            "prediction_sha256": "ae5f47713366b38dbe6519ef9670609262460a6324843b94817441bbf09b9f3d",
+            "release_id": "ca49ab7a-16c8-44e5-8413-b619a52d8ae0"
+          }
+        },
+        {
+          "bout_id": "092bf53b-fa25-5c0a-9853-b11c48e38a50",
+          "fighter_a": "Francisco Prado",
+          "fighter_b": "Ismael Bonfim",
+          "line": null,
+          "market": "WINNER",
+          "matchup": "Francisco Prado vs Ismael Bonfim",
+          "price": -155,
+          "probability": 0.5884733284560376,
+          "quote_time": "2026-10-10 15:00:10-04:00",
+          "rationale": "APEX selects Francisco Prado over Ismael Bonfim. The released Winner model assigns 58.8% to Francisco Prado versus a 58.3% two-way DraftKings baseline; the captured price is -155. The model-minus-market probability difference is +0.5 percentage points.\n\nStructural form: the selected-side opponent-adjusted Elo differential is -58.7, opponent-quality differential is -11.9, and recent-three win-rate differential is +0.000. Those quantities are measured from pre-fight history only.\n\nStyle and process: selected-side significant-strike differential is -1.77 per minute, takedown-rate differential is -0.46 per 15 minutes, control differential is +1.39 per 15 minutes, and pace-decay differential is -2.95.\n\nUncertainty: Francisco Prado carries 17 prior UFC fights in the feature history with data-support score 1.00; Ismael Bonfim carries 27 with support 1.00. The selected-side layoff differential is +0.85. Sparse history or an adverse market move should therefore reduce confidence in the numeric point estimate.\n\nConclusion: this is a MODERATE APEX Winner forecast from the sealed best-available market-anchored model. It is a forecast, not a claim that APEX has statistically proven a betting edge over DraftKings; the historical superiority interval still overlaps zero.",
+          "selection": "Francisco Prado",
+          "sportsbook": "DraftKings",
+          "tier": "MODERATE",
+          "trace": {
+            "feature_snapshot_sha256": "be6772b0438ff119e9298ce6105b110fa88d25305e96ab0e682c5d4605aeaaf3",
+            "issuance_id": "950105fb-6838-4f44-805b-e2e50dd50ea0",
+            "market_snapshot_sha256": "8e5b4a51f5667094f4f65364a0ac6a0b8ebb6eaba0ca0529be3d9b3f54188cdb",
+            "model_sha256": "c4405db96c390a3934649b9deb77c36ad510093defc2a9bcb1e01115757e2922",
+            "prediction_sha256": "597a0ba66c50bcb1b15ea72507f51cf356701cd7356118e0fdb592e83701f767",
+            "release_id": "ca49ab7a-16c8-44e5-8413-b619a52d8ae0"
+          }
+        },
+        {
+          "bout_id": "e3dc233a-8682-550b-a1be-8aa3486be8f3",
+          "fighter_a": "Niko Price",
+          "fighter_b": "Leon Shahbazyan",
+          "line": null,
+          "market": "WINNER",
+          "matchup": "Leon Shahbazyan vs Niko Price",
+          "price": -135,
+          "probability": 0.5188148828754314,
+          "quote_time": "2026-10-10 15:00:10-04:00",
+          "rationale": "APEX selects Leon Shahbazyan over Niko Price. The released Winner model assigns 51.9% to Leon Shahbazyan versus a 55.1% two-way DraftKings baseline; the captured price is -135. The model-minus-market probability difference is -3.3 percentage points.\n\nStructural form: the selected-side opponent-adjusted Elo differential is -1.8, opponent-quality differential is -56.8, and recent-three win-rate differential is -0.000. Those quantities are measured from pre-fight history only.\n\nStyle and process: selected-side significant-strike differential is +0.08 per minute, takedown-rate differential is -1.24 per 15 minutes, control differential is -2.52 per 15 minutes, and pace-decay differential is -6.01.\n\nUncertainty: Leon Shahbazyan carries 17 prior UFC fights in the feature history with data-support score 1.00; Niko Price carries 27 with support 1.00. The selected-side layoff differential is -0.56. Sparse history or an adverse market move should therefore reduce confidence in the numeric point estimate.\n\nConclusion: this is a WEAK APEX Winner forecast from the sealed best-available market-anchored model. It is a forecast, not a claim that APEX has statistically proven a betting edge over DraftKings; the historical superiority interval still overlaps zero.",
+          "selection": "Leon Shahbazyan",
+          "sportsbook": "DraftKings",
+          "tier": "WEAK",
+          "trace": {
+            "feature_snapshot_sha256": "be6772b0438ff119e9298ce6105b110fa88d25305e96ab0e682c5d4605aeaaf3",
+            "issuance_id": "950105fb-6838-4f44-805b-e2e50dd50ea0",
+            "market_snapshot_sha256": "a424e1354547d79728c20a996122cddbbb6ab2fd39a1cd4aa20ee59fe545732c",
+            "model_sha256": "c4405db96c390a3934649b9deb77c36ad510093defc2a9bcb1e01115757e2922",
+            "prediction_sha256": "faa8d5fb0401b1f2ae8058152d05f342a40fec6ce107f81bf0e21a14365d6ee5",
+            "release_id": "ca49ab7a-16c8-44e5-8413-b619a52d8ae0"
+          }
+        },
+        {
+          "bout_id": "70691538-81e6-557c-91c5-ae6a134380d3",
+          "fighter_a": "Felipe Franco",
+          "fighter_b": "Brendson Ribeiro",
+          "line": null,
+          "market": "WINNER",
+          "matchup": "Felipe Franco vs Brendson Ribeiro",
+          "price": -410,
+          "probability": 0.8086269308202344,
+          "quote_time": "2026-10-10 15:00:10-04:00",
+          "rationale": "APEX selects Felipe Franco over Brendson Ribeiro. The released Winner model assigns 80.9% to Felipe Franco versus a 77.2% two-way DraftKings baseline; the captured price is -410. The model-minus-market probability difference is +3.7 percentage points.\n\nStructural form: the selected-side opponent-adjusted Elo differential is +43.1, opponent-quality differential is +8.1, and recent-three win-rate differential is +0.333. Those quantities are measured from pre-fight history only.\n\nStyle and process: selected-side significant-strike differential is +0.80 per minute, takedown-rate differential is +3.04 per 15 minutes, control differential is +3.21 per 15 minutes, and pace-decay differential is +2.48.\n\nUncertainty: Felipe Franco carries 13 prior UFC fights in the feature history with data-support score 1.00; Brendson Ribeiro carries 28 with support 1.00. The selected-side layoff differential is +0.08. Sparse history or an adverse market move should therefore reduce confidence in the numeric point estimate.\n\nConclusion: this is a ELITE APEX Winner forecast from the sealed best-available market-anchored model. It is a forecast, not a claim that APEX has statistically proven a betting edge over DraftKings; the historical superiority interval still overlaps zero.",
+          "selection": "Felipe Franco",
+          "sportsbook": "DraftKings",
+          "tier": "ELITE",
+          "trace": {
+            "feature_snapshot_sha256": "be6772b0438ff119e9298ce6105b110fa88d25305e96ab0e682c5d4605aeaaf3",
+            "issuance_id": "950105fb-6838-4f44-805b-e2e50dd50ea0",
+            "market_snapshot_sha256": "cb3413c27f4aeca4fea8b9ac1f0c1dee41fb30996875a60928a64a77d2bd5f8d",
+            "model_sha256": "c4405db96c390a3934649b9deb77c36ad510093defc2a9bcb1e01115757e2922",
+            "prediction_sha256": "3bb97541946f7010a0937db54991d8d9976633ff5a61d89054b79d6b35f3a62f",
+            "release_id": "ca49ab7a-16c8-44e5-8413-b619a52d8ae0"
+          }
+        },
+        {
+          "bout_id": "8a43b981-4c4b-5d5b-bd43-6b19766ee357",
+          "fighter_a": "Allen Frye Jr.",
+          "fighter_b": "RJ Harris",
+          "line": null,
+          "market": "WINNER",
+          "matchup": "RJ Harris vs Allen Frye Jr.",
+          "price": -355,
+          "probability": 0.7222602085852402,
+          "quote_time": "2026-10-10 15:00:10-04:00",
+          "rationale": "APEX selects RJ Harris over Allen Frye Jr.. The released Winner model assigns 72.2% to RJ Harris versus a 74.8% two-way DraftKings baseline; the captured price is -355. The model-minus-market probability difference is -2.6 percentage points.\n\nStructural form: the selected-side opponent-adjusted Elo differential is +46.6, opponent-quality differential is -20.7, and recent-three win-rate differential is +1.000. Those quantities are measured from pre-fight history only.\n\nStyle and process: selected-side significant-strike differential is +4.47 per minute, takedown-rate differential is -0.00 per 15 minutes, control differential is -6.42 per 15 minutes, and pace-decay differential is -9.50.\n\nUncertainty: RJ Harris carries 6 prior UFC fights in the feature history with data-support score 0.75; Allen Frye Jr. carries 7 with support 0.88. The selected-side layoff differential is -1.27. Sparse history or an adverse market move should therefore reduce confidence in the numeric point estimate.\n\nConclusion: this is a STRONG APEX Winner forecast from the sealed best-available market-anchored model. It is a forecast, not a claim that APEX has statistically proven a betting edge over DraftKings; the historical superiority interval still overlaps zero.",
+          "selection": "RJ Harris",
+          "sportsbook": "DraftKings",
+          "tier": "STRONG",
+          "trace": {
+            "feature_snapshot_sha256": "be6772b0438ff119e9298ce6105b110fa88d25305e96ab0e682c5d4605aeaaf3",
+            "issuance_id": "950105fb-6838-4f44-805b-e2e50dd50ea0",
+            "market_snapshot_sha256": "2be0efe54ffd26ff309ca8d9fcb2e45eaefee98b4bde440841081ef2e4fc44db",
+            "model_sha256": "c4405db96c390a3934649b9deb77c36ad510093defc2a9bcb1e01115757e2922",
+            "prediction_sha256": "9f17e309bd301824ea317ebe88e7be802acd532fbdad9b078fce2f1625738ec2",
+            "release_id": "ca49ab7a-16c8-44e5-8413-b619a52d8ae0"
+          }
+        },
+        {
+          "bout_id": "8ef8a7c8-e51f-5693-ad99-dfff56fcd83a",
+          "fighter_a": "Ernesta Kareckaite",
+          "fighter_b": "Melissa Gatto",
+          "line": null,
+          "market": "WINNER",
+          "matchup": "Melissa Gatto vs Ernesta Kareckaite",
+          "price": -125,
+          "probability": 0.5063721120599642,
+          "quote_time": "2026-10-10 15:00:10-04:00",
+          "rationale": "APEX selects Melissa Gatto over Ernesta Kareckaite. The released Winner model assigns 50.6% to Melissa Gatto versus a 53.2% two-way DraftKings baseline; the captured price is -125. The model-minus-market probability difference is -2.6 percentage points.\n\nStructural form: the selected-side opponent-adjusted Elo differential is -0.1, opponent-quality differential is +7.8, and recent-three win-rate differential is -0.000. Those quantities are measured from pre-fight history only.\n\nStyle and process: selected-side significant-strike differential is -0.02 per minute, takedown-rate differential is +1.02 per 15 minutes, control differential is +2.76 per 15 minutes, and pace-decay differential is -0.32.\n\nUncertainty: Melissa Gatto carries 12 prior UFC fights in the feature history with data-support score 1.00; Ernesta Kareckaite carries 8 with support 1.00. The selected-side layoff differential is -0.17. Sparse history or an adverse market move should therefore reduce confidence in the numeric point estimate.\n\nConclusion: this is a WEAK APEX Winner forecast from the sealed best-available market-anchored model. It is a forecast, not a claim that APEX has statistically proven a betting edge over DraftKings; the historical superiority interval still overlaps zero.",
+          "selection": "Melissa Gatto",
+          "sportsbook": "DraftKings",
+          "tier": "WEAK",
+          "trace": {
+            "feature_snapshot_sha256": "be6772b0438ff119e9298ce6105b110fa88d25305e96ab0e682c5d4605aeaaf3",
+            "issuance_id": "950105fb-6838-4f44-805b-e2e50dd50ea0",
+            "market_snapshot_sha256": "7db803940855d011311c41197cf50c6e97f4f867078a90c37868501777704b88",
+            "model_sha256": "c4405db96c390a3934649b9deb77c36ad510093defc2a9bcb1e01115757e2922",
+            "prediction_sha256": "2c6221e9044a06a59a9781f03bf6a49bf90a075efba12d5409d6a158674ab1ee",
+            "release_id": "ca49ab7a-16c8-44e5-8413-b619a52d8ae0"
+          }
+        }
+      ],
+      "positions_sha256": "5625ffcd9853dd2646637714b0da421b3d7392f33ec41026cd0e5f303b5a3a47",
+      "release_state": "SEALED_RELEASE_AVAILABLE",
+      "results": [],
+      "schema_version": "APEX_MMA_TODAY_V1"
     }
   ],
   "schema_version": "APEX_MMA_PUBLIC_STATE_V2",
-  "science_blocker": "AUTHORIZED_RELEASE_AWAITING_EVENT_ISSUANCE",
+  "science_blocker": "NONE_PRODUCTION_ISSUANCE_ELIGIBLE",
   "science_gate": {
     "authorized_event_ids": [
       "b343f71c-c13a-5729-8c03-76f5b44cd603",
@@ -3043,9 +6327,9 @@
     "keep": "WINNER_RESIDUAL_BEST_AVAILABLE_V1",
     "policy": "SCOTT_AUTHORIZED_BEST_AVAILABLE_EVENT_RELEASE",
     "production_issuance_authorized": true,
-    "release_binding": "AUTHORIZED_RELEASE_AWAITING_EVENT_ISSUANCE"
+    "release_binding": "EXACT_AUTHORIZED_RELEASE"
   },
-  "semantic_state_sha256": "1528317f8e6a07ea0039b94ad268e512ba5bba4ef5181b2d4088612de8341357",
+  "semantic_state_sha256": "0421bd7944afe9f535a8a24cd368c16b52ec04f51933e363bbd26977564e295b",
   "source_conflicts": [
     {
       "capture_basis": "LATEST_LIVE_EVENTS_CAPTURE",
@@ -3101,7 +6385,7 @@
     "actual_utc": "2026-10-10T19:00:28.787235Z",
     "anchor": "EARLIEST_PUBLISHED_SCHEDULED_BOUT_MINUS_2_HOURS",
     "scheduled_utc": "2026-10-10T19:00:00Z",
-    "status": "INFERENCE_COMPLETE",
+    "status": "SEALED",
     "timeliness": "PASS"
   },
   "t3": {
