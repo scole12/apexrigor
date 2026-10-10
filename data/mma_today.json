@@ -123,7 +123,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 12,
-      "scheduled_start_utc": "2026-10-10T21:15:00Z",
+      "scheduled_start_utc": "2026-10-10T21:13:00Z",
       "segment": "PRELIMS",
       "weight_class": "WOMENS_FLYWEIGHT"
     }
@@ -150,7 +150,7 @@
     "detail": "9 issued positions. Picks, sportsbook prices, probabilities, ratings and rationale below are read from the same sealed T-2 issuance.",
     "headline": "Forecasts issued"
   },
-  "generated_at_utc": "2026-10-10T20:15:39.541334Z",
+  "generated_at_utc": "2026-10-10T21:16:41.224153Z",
   "issuance_id": "950105fb-6838-4f44-805b-e2e50dd50ea0",
   "issuance_status": "SEALED",
   "market_display": {
@@ -2990,7 +2990,7 @@
     "source_market_snapshot_sha256": "9b2bbeaf9763e84d5755a246cb7916caf7063c64d799beb63b57ef30a23fe56d",
     "source_positions_sha256": "5625ffcd9853dd2646637714b0da421b3d7392f33ec41026cd0e5f303b5a3a47"
   },
-  "payload_sha256": "3cbf871df8f90e370bd8de50908fc54a8e9b14cb3295bad15df14e5da299b8db",
+  "payload_sha256": "c937a07c95862cd23aae374af0a72e80511be25e490ea0abf5330382ce6e94e5",
   "picks_published": true,
   "positions": [
     {
