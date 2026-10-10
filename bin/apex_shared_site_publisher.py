@@ -923,6 +923,13 @@ def matching_ncaaf_workflow_runs(request: Request) -> list[dict[str, Any]]:
     prefix = f"NCAA {request.product} {request.slate_date} "
     # Recovery and normal requests can have different content identities for
     # the same obligation. An earlier transaction must never be forgotten.
+    # Requests the owner set aside (superseded issuance) are not prior attempts of this obligation.
+    superseded_path = STATE_ROOT / "superseded_request_ids.txt"
+    superseded = set()
+    if superseded_path.is_file():
+        superseded = {line.strip() for line in superseded_path.read_text(encoding="utf-8").splitlines() if line.strip()}
+    rows = {rid: row for rid, row in rows.items()
+            if not any(str(row.get("display_title") or "").endswith(" " + sid) for sid in superseded)}
     if any(str(row.get("display_title") or "").startswith(prefix)
            and row.get("display_title") != title for row in rows.values()):
         raise RuntimeError("NCAA_EMAIL_RECONCILIATION_REQUIRED: another request exists for this stage/date")
