@@ -34,26 +34,11 @@
   },
   "canonical_fighter_identity": {
     "authority_population_permitted": false,
+    "canonical_bout_count": 12,
     "canonical_event_id": null,
-    "provider_missing_pairs": [
-      [
-        "Loopy Godinez",
-        "Ketlen Souza"
-      ],
-      [
-        "Andre Fili",
-        "Kai Kamaka III"
-      ],
-      [
-        "Alice Pereira",
-        "Daria Zhelezniakova"
-      ]
-    ],
-    "reason": "REFERENCE_PROVIDER_PAIR_RECONCILIATION_INCOMPLETE",
     "reference_bout_count": 12,
     "reference_event_id": "c2f35774-e944-5e8e-a93b-babacd38a48c",
-    "resolved_pair_count": 9,
-    "status": "REFERENCE_ONLY_NO_CANONICAL_FIGHTER_EVENT"
+    "status": "VERIFIED_OPERATIONAL_CARD_PIT_IDENTITIES"
   },
   "card": [
     {
@@ -205,7 +190,7 @@
   },
   "event_id": "c2f35774-e944-5e8e-a93b-babacd38a48c",
   "fight_count": 12,
-  "generated_at_utc": "2026-10-10T21:16:41.224153Z",
+  "generated_at_utc": "2026-10-10T21:45:44.163386Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "GRADED_COMMERCIAL_AND_OR_SCIENTIFIC"
@@ -3610,7 +3595,7 @@
     "source_market_snapshot_sha256": "9b2bbeaf9763e84d5755a246cb7916caf7063c64d799beb63b57ef30a23fe56d",
     "source_positions_sha256": "5625ffcd9853dd2646637714b0da421b3d7392f33ec41026cd0e5f303b5a3a47"
   },
-  "payload_sha256": "08826481bb64d6b0cb8a97e6910f48d48fbe5d249292859d16a4a4f0d6bd94e6",
+  "payload_sha256": "1edad2e0845e938d996a0b0b30ed0e4cdcac2810963d8869afde94bc712bab38",
   "picks_published": true,
   "positions": [
     {
@@ -6329,7 +6314,7 @@
     "production_issuance_authorized": true,
     "release_binding": "EXACT_AUTHORIZED_RELEASE"
   },
-  "semantic_state_sha256": "5a1a4bb18529fc4b54f0258d43408d97ce91820a8d2844d03c75a76ebac33c81",
+  "semantic_state_sha256": "05ec1928f3eb7d915a48d978ed000df8eee3871eee00602d0be1f12b61ab9272",
   "source_conflicts": [
     {
       "capture_basis": "LATEST_LIVE_EVENTS_CAPTURE",
@@ -6380,7 +6365,7 @@
       "status": "ONE_SIDE_MATCH_PROVIDER_CARD_CONFLICT"
     }
   ],
-  "system_readiness_state": "DATA_BLOCKED_REFERENCE_ONLY_NO_CANONICAL_FIGHTER_EVENT",
+  "system_readiness_state": "FORECASTS_ISSUED",
   "t2": {
     "actual_utc": "2026-10-10T19:00:28.787235Z",
     "anchor": "EARLIEST_PUBLISHED_SCHEDULED_BOUT_MINUS_2_HOURS",
