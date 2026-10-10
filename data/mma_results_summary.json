@@ -5,7 +5,7 @@
     "detail": "9 issued positions. Picks, sportsbook prices, probabilities, ratings and rationale below are read from the same sealed T-2 issuance.",
     "headline": "Forecasts issued"
   },
-  "generated_at_utc": "2026-10-10T20:07:46.555852Z",
+  "generated_at_utc": "2026-10-10T20:15:39.541334Z",
   "graded_scientific_object_count": 29,
   "grader": {
     "schedule": "07:00 America/New_York",
@@ -573,7 +573,7 @@
       "source": "PRODUCTION_COMMERCIAL_GRADES"
     }
   ],
-  "payload_sha256": "59dbe6b966045478e41a5a7217a3902787ee46e3552940626bff0c6055c557e1",
+  "payload_sha256": "c3e5503222e8bd4f57b19387b6adb9ee4cc9cfae04b23cb14fdb9e421d57ce3d",
   "release_state": "SEALED_RELEASE_AVAILABLE",
   "schema_version": "APEX_MMA_RESULTS_SUMMARY_V1",
   "status": "RESULTS_AVAILABLE"

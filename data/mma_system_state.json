@@ -205,7 +205,7 @@
   },
   "event_id": "c2f35774-e944-5e8e-a93b-babacd38a48c",
   "fight_count": 12,
-  "generated_at_utc": "2026-10-10T20:07:46.555852Z",
+  "generated_at_utc": "2026-10-10T20:15:39.541334Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "GRADED_COMMERCIAL_AND_OR_SCIENTIFIC"
@@ -3610,7 +3610,7 @@
     "source_market_snapshot_sha256": "9b2bbeaf9763e84d5755a246cb7916caf7063c64d799beb63b57ef30a23fe56d",
     "source_positions_sha256": "5625ffcd9853dd2646637714b0da421b3d7392f33ec41026cd0e5f303b5a3a47"
   },
-  "payload_sha256": "710d74f1e00600e26d8b786a6d4f26e8bcebd65e85b7707cf9040d1dfb6d8a7b",
+  "payload_sha256": "24452472924f087c8552ca4bf64abbe0c09137d4eb911d357a2d296d4d3ab5b0",
   "picks_published": true,
   "positions": [
     {
@@ -6329,7 +6329,7 @@
     "production_issuance_authorized": true,
     "release_binding": "EXACT_AUTHORIZED_RELEASE"
   },
-  "semantic_state_sha256": "0421bd7944afe9f535a8a24cd368c16b52ec04f51933e363bbd26977564e295b",
+  "semantic_state_sha256": "84e0c5c87abe4c8f0b06bb45f4787d429607e32164b059331d9acd769dfc6aa0",
   "source_conflicts": [
     {
       "capture_basis": "LATEST_LIVE_EVENTS_CAPTURE",
@@ -6344,7 +6344,7 @@
         "Ketlen Souza"
       ],
       "provider_selection_slots": {},
-      "source_capture_id": "7267548f-2f98-4d85-bd81-f4bda74db2a9",
+      "source_capture_id": "006f5a8d-b693-492b-9553-ae42e887bdf4",
       "status": "ONE_SIDE_MATCH_PROVIDER_CARD_CONFLICT"
     },
     {
@@ -6360,7 +6360,7 @@
         "Kai Kamaka"
       ],
       "provider_selection_slots": {},
-      "source_capture_id": "7267548f-2f98-4d85-bd81-f4bda74db2a9",
+      "source_capture_id": "006f5a8d-b693-492b-9553-ae42e887bdf4",
       "status": "ONE_SIDE_MATCH_PROVIDER_CARD_CONFLICT"
     },
     {
@@ -6376,7 +6376,7 @@
         "Alice Pereira"
       ],
       "provider_selection_slots": {},
-      "source_capture_id": "7267548f-2f98-4d85-bd81-f4bda74db2a9",
+      "source_capture_id": "006f5a8d-b693-492b-9553-ae42e887bdf4",
       "status": "ONE_SIDE_MATCH_PROVIDER_CARD_CONFLICT"
     }
   ],
