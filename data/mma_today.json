@@ -146,14 +146,14 @@
   "event_id": "c2f35774-e944-5e8e-a93b-babacd38a48c",
   "fight_count": 12,
   "forecast": {
-    "code": "AWAITING_T2",
-    "detail": "No forecasts have been issued yet. Any published card will show the selection, captured sportsbook price, APEX probability, rating and full model-supported rationale.",
-    "headline": "Awaiting the T-2 forecast run"
+    "code": "NO_FORECASTS_ISSUED",
+    "detail": "The scheduled T-2 time has passed, but no sealed forecast card is available. The fight schedule below is not a set of selections.",
+    "headline": "No forecasts published"
   },
-  "generated_at_utc": "2026-10-10T18:15:38.158367Z",
+  "generated_at_utc": "2026-10-10T19:15:39.428365Z",
   "issuance_id": null,
   "issuance_status": null,
-  "payload_sha256": "7297f00a7a82d8a0cde3d4c7f47df8df1596e43d5e7d25709a99e10180c9ddee",
+  "payload_sha256": "8ca832ee3e5cc53821c9ac1408c56638e781616fd332b9c81f9861110fb7be68",
   "picks_published": false,
   "positions": [],
   "positions_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
@@ -180,11 +180,11 @@
     "release_binding": "AUTHORIZED_RELEASE_AWAITING_EVENT_ISSUANCE"
   },
   "t2": {
-    "actual_utc": null,
+    "actual_utc": "2026-10-10T19:00:28.787235Z",
     "anchor": "EARLIEST_PUBLISHED_SCHEDULED_BOUT_MINUS_2_HOURS",
     "scheduled_utc": "2026-10-10T19:00:00Z",
-    "status": "AWAITING_T2",
-    "timeliness": null
+    "status": "INFERENCE_COMPLETE",
+    "timeliness": "PASS"
   },
   "t3": {
     "anchor": "EARLIEST_PUBLISHED_SCHEDULED_BOUT_MINUS_3_HOURS",

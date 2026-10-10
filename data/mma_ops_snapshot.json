@@ -133,7 +133,7 @@
     "scorecards": 37,
     "weigh_ins": 5442
   },
-  "generated_at_utc": "2026-10-10T18:15:38.158367Z",
+  "generated_at_utc": "2026-10-10T19:15:39.428365Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "GRADED_COMMERCIAL_AND_OR_SCIENTIFIC"
@@ -718,7 +718,7 @@
     "schedule_status": "ANNOUNCED",
     "venue": "Meta Apex"
   },
-  "payload_sha256": "622c1acc2edb9421918b4421f1fd03e811d4001c868a0eeff0f6510f05168b8f",
+  "payload_sha256": "a696b0aefe090f2b7f8dffd04f52836a40fb8b9ef29df921fb496b9c7464146c",
   "production_isolation": "PASS",
   "schema_version": "APEX_MMA_OPS_SNAPSHOT_V1",
   "science_blocker": "AUTHORIZED_RELEASE_AWAITING_EVENT_ISSUANCE",
@@ -741,13 +741,13 @@
     "production_issuance_authorized": true,
     "release_binding": "AUTHORIZED_RELEASE_AWAITING_EVENT_ISSUANCE"
   },
-  "system_status": "AWAITING_T2",
+  "system_status": "NO_FORECASTS_ISSUED",
   "t2": {
-    "actual_utc": null,
+    "actual_utc": "2026-10-10T19:00:28.787235Z",
     "anchor": "EARLIEST_PUBLISHED_SCHEDULED_BOUT_MINUS_2_HOURS",
     "scheduled_utc": "2026-10-10T19:00:00Z",
-    "status": "AWAITING_T2",
-    "timeliness": null
+    "status": "INFERENCE_COMPLETE",
+    "timeliness": "PASS"
   },
   "t2_issued_position_count": 0,
   "t3": {

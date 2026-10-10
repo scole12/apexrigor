@@ -1,11 +1,11 @@
 {
   "commercial_settlement_count": 43,
   "current_event_forecast": {
-    "code": "AWAITING_T2",
-    "detail": "No forecasts have been issued yet. Any published card will show the selection, captured sportsbook price, APEX probability, rating and full model-supported rationale.",
-    "headline": "Awaiting the T-2 forecast run"
+    "code": "NO_FORECASTS_ISSUED",
+    "detail": "The scheduled T-2 time has passed, but no sealed forecast card is available. The fight schedule below is not a set of selections.",
+    "headline": "No forecasts published"
   },
-  "generated_at_utc": "2026-10-10T18:15:38.158367Z",
+  "generated_at_utc": "2026-10-10T19:15:39.428365Z",
   "graded_scientific_object_count": 29,
   "grader": {
     "schedule": "07:00 America/New_York",
@@ -573,7 +573,7 @@
       "source": "PRODUCTION_COMMERCIAL_GRADES"
     }
   ],
-  "payload_sha256": "d7088f564a4655dd8ceff6dd305359ccf4126273e4f4847c2a3de2de574ad92b",
+  "payload_sha256": "f682294cc99bf10d9e826713cdef492a905e806b9e38e57931931468d5d8f3e2",
   "release_state": "AUTHORIZED_RELEASE_AWAITING_EVENT_ISSUANCE",
   "schema_version": "APEX_MMA_RESULTS_SUMMARY_V1",
   "status": "RESULTS_AVAILABLE"

@@ -205,7 +205,7 @@
   },
   "event_id": "c2f35774-e944-5e8e-a93b-babacd38a48c",
   "fight_count": 12,
-  "generated_at_utc": "2026-10-10T18:15:38.158367Z",
+  "generated_at_utc": "2026-10-10T19:15:39.428365Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "GRADED_COMMERCIAL_AND_OR_SCIENTIFIC"
@@ -773,7 +773,7 @@
       "source": "PRODUCTION_COMMERCIAL_GRADES"
     }
   ],
-  "payload_sha256": "c9d7bfb81715ff778f86d8a74f32978dd9a0697aced29564fb21881b95ceca0c",
+  "payload_sha256": "07fb23ffd6807bcbb9c98d9f14d2e3b8d83bea5ffc2d093fd73b3d4e5f440a3c",
   "picks_published": false,
   "positions": [],
   "positions_sha256": null,
@@ -3045,7 +3045,7 @@
     "production_issuance_authorized": true,
     "release_binding": "AUTHORIZED_RELEASE_AWAITING_EVENT_ISSUANCE"
   },
-  "semantic_state_sha256": "32a88fcd2c42f23075c4938acda9934ecf3421e7e1f34c83b897905489877cca",
+  "semantic_state_sha256": "1528317f8e6a07ea0039b94ad268e512ba5bba4ef5181b2d4088612de8341357",
   "source_conflicts": [
     {
       "capture_basis": "LATEST_LIVE_EVENTS_CAPTURE",
@@ -3060,7 +3060,7 @@
         "Ketlen Souza"
       ],
       "provider_selection_slots": {},
-      "source_capture_id": "d9a5a15f-e62e-4bcd-b358-079569d150ed",
+      "source_capture_id": "7267548f-2f98-4d85-bd81-f4bda74db2a9",
       "status": "ONE_SIDE_MATCH_PROVIDER_CARD_CONFLICT"
     },
     {
@@ -3076,7 +3076,7 @@
         "Kai Kamaka"
       ],
       "provider_selection_slots": {},
-      "source_capture_id": "d9a5a15f-e62e-4bcd-b358-079569d150ed",
+      "source_capture_id": "7267548f-2f98-4d85-bd81-f4bda74db2a9",
       "status": "ONE_SIDE_MATCH_PROVIDER_CARD_CONFLICT"
     },
     {
@@ -3092,17 +3092,17 @@
         "Alice Pereira"
       ],
       "provider_selection_slots": {},
-      "source_capture_id": "d9a5a15f-e62e-4bcd-b358-079569d150ed",
+      "source_capture_id": "7267548f-2f98-4d85-bd81-f4bda74db2a9",
       "status": "ONE_SIDE_MATCH_PROVIDER_CARD_CONFLICT"
     }
   ],
   "system_readiness_state": "DATA_BLOCKED_REFERENCE_ONLY_NO_CANONICAL_FIGHTER_EVENT",
   "t2": {
-    "actual_utc": null,
+    "actual_utc": "2026-10-10T19:00:28.787235Z",
     "anchor": "EARLIEST_PUBLISHED_SCHEDULED_BOUT_MINUS_2_HOURS",
     "scheduled_utc": "2026-10-10T19:00:00Z",
-    "status": "AWAITING_T2",
-    "timeliness": null
+    "status": "INFERENCE_COMPLETE",
+    "timeliness": "PASS"
   },
   "t3": {
     "anchor": "EARLIEST_PUBLISHED_SCHEDULED_BOUT_MINUS_3_HOURS",
