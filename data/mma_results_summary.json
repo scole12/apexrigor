@@ -1,12 +1,12 @@
 {
-  "commercial_settlement_count": 43,
+  "commercial_settlement_count": 51,
   "current_event_forecast": {
     "code": "AWAITING_T2",
     "detail": "No forecasts have been issued yet. Any published card will show the selection, captured sportsbook price, APEX probability, rating and full model-supported rationale.",
     "headline": "Awaiting the T-2 forecast run"
   },
-  "generated_at_utc": "2026-10-11T11:00:26.511537Z",
-  "graded_scientific_object_count": 29,
+  "generated_at_utc": "2026-10-11T11:15:43.361799Z",
+  "graded_scientific_object_count": 37,
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "GRADED_COMMERCIAL_AND_OR_SCIENTIFIC"
@@ -571,9 +571,113 @@
       "result": "W",
       "selection": "Johnny Walker",
       "source": "PRODUCTION_COMMERCIAL_GRADES"
+    },
+    {
+      "bout_id": "092bf53b-fa25-5c0a-9853-b11c48e38a50",
+      "commercial_grade_id": "319ee4be-011f-5497-92b5-cd38020741fe",
+      "graded_at_utc": "2026-10-11T11:06:44.042671Z",
+      "issuance_id": "950105fb-6838-4f44-805b-e2e50dd50ea0",
+      "line": null,
+      "market": "WINNER",
+      "price": -155,
+      "profit_loss": "0.645161",
+      "result": "W",
+      "selection": "Francisco Prado",
+      "source": "PRODUCTION_COMMERCIAL_GRADES"
+    },
+    {
+      "bout_id": "38b47c61-d07a-5b14-bded-3f3d7c581ae2",
+      "commercial_grade_id": "d07c0910-e998-5ec5-9dbe-47ea81fec10a",
+      "graded_at_utc": "2026-10-11T11:06:44.042671Z",
+      "issuance_id": "950105fb-6838-4f44-805b-e2e50dd50ea0",
+      "line": null,
+      "market": "WINNER",
+      "price": -305,
+      "profit_loss": "0.327869",
+      "result": "W",
+      "selection": "Julius Walker",
+      "source": "PRODUCTION_COMMERCIAL_GRADES"
+    },
+    {
+      "bout_id": "70691538-81e6-557c-91c5-ae6a134380d3",
+      "commercial_grade_id": "c9db9637-040d-51dd-bb7e-25e47db1f424",
+      "graded_at_utc": "2026-10-11T11:06:44.042671Z",
+      "issuance_id": "950105fb-6838-4f44-805b-e2e50dd50ea0",
+      "line": null,
+      "market": "WINNER",
+      "price": -410,
+      "profit_loss": "-1.000000",
+      "result": "L",
+      "selection": "Felipe Franco",
+      "source": "PRODUCTION_COMMERCIAL_GRADES"
+    },
+    {
+      "bout_id": "8a43b981-4c4b-5d5b-bd43-6b19766ee357",
+      "commercial_grade_id": "48562f6c-92eb-5f4d-8c56-8a199f21dbd5",
+      "graded_at_utc": "2026-10-11T11:06:44.042671Z",
+      "issuance_id": "950105fb-6838-4f44-805b-e2e50dd50ea0",
+      "line": null,
+      "market": "WINNER",
+      "price": -355,
+      "profit_loss": "-1.000000",
+      "result": "L",
+      "selection": "RJ Harris",
+      "source": "PRODUCTION_COMMERCIAL_GRADES"
+    },
+    {
+      "bout_id": "c1adb76c-e493-56a9-83f7-e26c2cebd406",
+      "commercial_grade_id": "7ac91698-2107-5a31-9f8b-bb67cb52befa",
+      "graded_at_utc": "2026-10-11T11:06:44.042671Z",
+      "issuance_id": "950105fb-6838-4f44-805b-e2e50dd50ea0",
+      "line": null,
+      "market": "WINNER",
+      "price": -218,
+      "profit_loss": "-1.000000",
+      "result": "L",
+      "selection": "Malcolm Wellmaker",
+      "source": "PRODUCTION_COMMERCIAL_GRADES"
+    },
+    {
+      "bout_id": "c9e7d8a2-71ee-5f8f-bfce-f6b0e8434483",
+      "commercial_grade_id": "9932479a-bd60-56e0-890d-38f8222fb3eb",
+      "graded_at_utc": "2026-10-11T11:06:44.042671Z",
+      "issuance_id": "950105fb-6838-4f44-805b-e2e50dd50ea0",
+      "line": null,
+      "market": "WINNER",
+      "price": -205,
+      "profit_loss": "-1.000000",
+      "result": "L",
+      "selection": "Matheus Camilo",
+      "source": "PRODUCTION_COMMERCIAL_GRADES"
+    },
+    {
+      "bout_id": "e3dc233a-8682-550b-a1be-8aa3486be8f3",
+      "commercial_grade_id": "bb0f44a8-b056-5294-9226-cb7637cb89f0",
+      "graded_at_utc": "2026-10-11T11:06:44.042671Z",
+      "issuance_id": "950105fb-6838-4f44-805b-e2e50dd50ea0",
+      "line": null,
+      "market": "WINNER",
+      "price": -135,
+      "profit_loss": "-1.000000",
+      "result": "L",
+      "selection": "Leon Shahbazyan",
+      "source": "PRODUCTION_COMMERCIAL_GRADES"
+    },
+    {
+      "bout_id": "f1dcb0a2-0b02-515f-b129-332151773d25",
+      "commercial_grade_id": "c0260914-ac9c-58b6-bc54-844844bf112a",
+      "graded_at_utc": "2026-10-11T11:06:44.042671Z",
+      "issuance_id": "950105fb-6838-4f44-805b-e2e50dd50ea0",
+      "line": null,
+      "market": "WINNER",
+      "price": -118,
+      "profit_loss": "0.847458",
+      "result": "W",
+      "selection": "Brendan Allen",
+      "source": "PRODUCTION_COMMERCIAL_GRADES"
     }
   ],
-  "payload_sha256": "9ce31e0863da8885743d954110029571b57afc2f7417d8ae8c8d4d45f8dec74a",
+  "payload_sha256": "0983bce734a12dd82fdc095424e67d4b1a5ccfa7adc28cf5a3f6ccc48d34cabf",
   "release_state": "AUTHORIZED_RELEASE_AWAITING_EVENT_ISSUANCE",
   "schema_version": "APEX_MMA_RESULTS_SUMMARY_V1",
   "status": "RESULTS_AVAILABLE"
