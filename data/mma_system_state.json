@@ -7,7 +7,7 @@
       "events": 1051,
       "fight_statistics_source_aggregate": 0,
       "fighters": 4031,
-      "results": 3898,
+      "results": 3910,
       "round_statistics_elemental": 12963,
       "round_stats": 0,
       "scorecards": 37,
@@ -200,7 +200,7 @@
   },
   "event_id": "50feebc5-56d4-5634-889b-02e25bd19156",
   "fight_count": 13,
-  "generated_at_utc": "2026-10-12T05:45:40.075797Z",
+  "generated_at_utc": "2026-10-12T11:15:40.643575Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "GRADED_COMMERCIAL_AND_OR_SCIENTIFIC"
@@ -872,7 +872,7 @@
       "source": "PRODUCTION_COMMERCIAL_GRADES"
     }
   ],
-  "payload_sha256": "11b93b5363076a312e541ab551083cc1c7ac3e7822ac456b78c572dc51bedf9d",
+  "payload_sha256": "b3a2ad329c3b490ac25f87d18341676d42c7d777a0b5ce47474c0e7c38be6ea2",
   "picks_published": false,
   "positions": [],
   "positions_sha256": null,
@@ -3593,7 +3593,7 @@
     "production_issuance_authorized": true,
     "release_binding": "AUTHORIZED_RELEASE_AWAITING_EVENT_ISSUANCE"
   },
-  "semantic_state_sha256": "3fa8f2a8c0026e6a277a7f86c211d99d6bcccffb577a86a0129dac6b4ca69837",
+  "semantic_state_sha256": "04738c6ca20a9a64d45aba81a43f98d803c6f9e3db84e10a2cb2c56350c66e0d",
   "source_conflicts": [],
   "system_readiness_state": "AUTHORIZED_RELEASE_AWAITING_ISSUANCE",
   "t2": {

@@ -137,13 +137,13 @@
     "events": 1051,
     "fight_statistics_source_aggregate": 0,
     "fighters": 4031,
-    "results": 3898,
+    "results": 3910,
     "round_statistics_elemental": 12963,
     "round_stats": 0,
     "scorecards": 37,
     "weigh_ins": 5442
   },
-  "generated_at_utc": "2026-10-12T05:45:40.075797Z",
+  "generated_at_utc": "2026-10-12T11:15:40.643575Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "GRADED_COMMERCIAL_AND_OR_SCIENTIFIC"
@@ -832,7 +832,7 @@
     "schedule_status": "ANNOUNCED",
     "venue": "Rogers Place"
   },
-  "payload_sha256": "4424376e7a91023a484b47652fdfca0136e29ddd4ef5944373f5d6e67ec04147",
+  "payload_sha256": "3b67d9702cbab9931df5c02d09ee48cf2d727cd6da6fa6eac5226eaf06696362",
   "production_isolation": "PASS",
   "schema_version": "APEX_MMA_OPS_SNAPSHOT_V1",
   "science_blocker": "AUTHORIZED_RELEASE_AWAITING_EVENT_ISSUANCE",
