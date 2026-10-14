@@ -127,7 +127,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 9,
-      "scheduled_start_utc": "2026-10-17T21:00:00Z",
+      "scheduled_start_utc": "2026-10-17T22:50:00Z",
       "segment": "PRELIMS",
       "weight_class": "HEAVYWEIGHT"
     },
@@ -137,7 +137,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 10,
-      "scheduled_start_utc": "2026-10-17T21:00:00Z",
+      "scheduled_start_utc": "2026-10-17T22:25:00Z",
       "segment": "PRELIMS",
       "weight_class": "WOMENS_FLYWEIGHT"
     },
@@ -200,7 +200,7 @@
   },
   "event_id": "50feebc5-56d4-5634-889b-02e25bd19156",
   "fight_count": 13,
-  "generated_at_utc": "2026-10-14T19:45:53.875116Z",
+  "generated_at_utc": "2026-10-14T21:15:42.103075Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "GRADED_COMMERCIAL_AND_OR_SCIENTIFIC"
@@ -872,7 +872,7 @@
       "source": "PRODUCTION_COMMERCIAL_GRADES"
     }
   ],
-  "payload_sha256": "9b847164428a96844b0106f3e1960b66a057b2f092c4e3687cff3aa1d58b7a69",
+  "payload_sha256": "2da1ae6c4084564f25a51466856616232d87f2e5eb7eaa41b5979733e3a56ccb",
   "picks_published": false,
   "positions": [],
   "positions_sha256": null,
@@ -3593,7 +3593,7 @@
     "production_issuance_authorized": true,
     "release_binding": "AUTHORIZED_RELEASE_AWAITING_EVENT_ISSUANCE"
   },
-  "semantic_state_sha256": "6ea93ee600571c9fd7501a79c07a64271ae8eb35f9a26e6e275b80a67631d288",
+  "semantic_state_sha256": "6e66a3cc86032214939a03629bd2bdfff59b99c255df224504ab056243eaf2ff",
   "source_conflicts": [],
   "system_readiness_state": "AUTHORIZED_RELEASE_AWAITING_ISSUANCE",
   "t2": {
