@@ -7,7 +7,7 @@
       "is_co_main_event": false,
       "is_main_event": true,
       "official_display_order": 1,
-      "scheduled_start_utc": "2026-10-17T21:00:00Z",
+      "scheduled_start_utc": "2026-10-18T02:45:00Z",
       "segment": "MAIN",
       "weight_class": "WELTERWEIGHT"
     },
@@ -17,7 +17,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 2,
-      "scheduled_start_utc": "2026-10-17T21:00:00Z",
+      "scheduled_start_utc": "2026-10-18T02:15:00Z",
       "segment": "MAIN",
       "weight_class": "WOMENS_FLYWEIGHT"
     },
@@ -27,7 +27,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 3,
-      "scheduled_start_utc": "2026-10-18T02:00:00Z",
+      "scheduled_start_utc": "2026-10-18T01:45:00Z",
       "segment": "MAIN",
       "weight_class": "LIGHTWEIGHT"
     },
@@ -37,7 +37,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 4,
-      "scheduled_start_utc": "2026-10-17T21:00:00Z",
+      "scheduled_start_utc": "2026-10-18T01:15:00Z",
       "segment": "MAIN",
       "weight_class": "MIDDLEWEIGHT"
     },
@@ -47,7 +47,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 5,
-      "scheduled_start_utc": "2026-10-17T21:00:00Z",
+      "scheduled_start_utc": "2026-10-18T00:45:00Z",
       "segment": "MAIN",
       "weight_class": "BANTAMWEIGHT"
     },
@@ -57,7 +57,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 6,
-      "scheduled_start_utc": "2026-10-17T21:00:00Z",
+      "scheduled_start_utc": "2026-10-18T00:15:00Z",
       "segment": "MAIN",
       "weight_class": "LIGHTWEIGHT"
     },
@@ -67,7 +67,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 7,
-      "scheduled_start_utc": "2026-10-18T02:00:00Z",
+      "scheduled_start_utc": "2026-10-17T23:40:00Z",
       "segment": "PRELIMS",
       "weight_class": "HEAVYWEIGHT"
     },
@@ -77,7 +77,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 8,
-      "scheduled_start_utc": "2026-10-18T02:00:00Z",
+      "scheduled_start_utc": "2026-10-17T23:15:00Z",
       "segment": "PRELIMS",
       "weight_class": "MIDDLEWEIGHT"
     },
@@ -107,7 +107,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 11,
-      "scheduled_start_utc": "2026-10-18T02:00:00Z",
+      "scheduled_start_utc": "2026-10-17T22:00:00Z",
       "segment": "PRELIMS",
       "weight_class": "BANTAMWEIGHT"
     },
@@ -127,7 +127,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 13,
-      "scheduled_start_utc": "2026-10-18T02:00:00Z",
+      "scheduled_start_utc": "2026-10-17T21:10:00Z",
       "segment": "PRELIMS",
       "weight_class": "BANTAMWEIGHT"
     }
@@ -143,7 +143,7 @@
     "scorecards": 37,
     "weigh_ins": 5442
   },
-  "generated_at_utc": "2026-10-12T11:15:40.643575Z",
+  "generated_at_utc": "2026-10-14T19:45:53.875116Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "GRADED_COMMERCIAL_AND_OR_SCIENTIFIC"
@@ -832,7 +832,7 @@
     "schedule_status": "ANNOUNCED",
     "venue": "Rogers Place"
   },
-  "payload_sha256": "3b67d9702cbab9931df5c02d09ee48cf2d727cd6da6fa6eac5226eaf06696362",
+  "payload_sha256": "4b784d548dd8bea8274bc6b014d0e3812e243af77ead64956ee14312b5d1963b",
   "production_isolation": "PASS",
   "schema_version": "APEX_MMA_OPS_SNAPSHOT_V1",
   "science_blocker": "AUTHORIZED_RELEASE_AWAITING_EVENT_ISSUANCE",
