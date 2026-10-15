@@ -1,1 +1,253 @@
-{"active_engine_epoch":{"ATS":{"binding_sha256":"37b5e950024a505d2c9070db379dceeb690cd9d5e2b258765a7798fded78b382","feature_count":348,"forward_object_sha256":"d03d9d2bfb24688b6dd2e6d02f3f47b8fe855dc7b1150dcad5150e9ba63a48e7","model_id":"D2"},"TOTALS":{"binding_sha256":"d8045af89578178b2922e6bf8105005cac053fcfc357e6fb0ddeb6081686668a","feature_count":353,"forward_object_sha256":"f4750f40659217dd9161f17490bcc5b93a6cf0937df8c5370ef07b3f311c032d","model_id":"TOTALS-V5-RECONCILED-POOL"},"activation_epoch_utc":"2026-09-01T03:30:00Z","active_ats_engine_count":1,"active_totals_engine_count":1,"schema_version":"apex.ncaaf.public_active_engine_epoch.v1"},"display_bind":{"mode":"UNISSUED_NEXT_FULL_PRODUCTION_SLATE","next_live_t2_et":"2026-10-15 5:30 PM ET","next_live_t2_utc":"2026-10-15T21:30:00.000000Z","schema_version":"apex.ncaaf.picks_display_bind.v1","sealed_t2_held":false},"generated_at_utc":"2026-10-15T11:01:42.732024Z","presentation_contract":{"rating_policy":{"assignment_precision":"FULL_PRECISION_BEFORE_DISPLAY_ROUNDING","bands":{"ELITE":0.546,"MODERATE":0.512,"STRONG":0.5318,"WEAK":0.0},"bands_by_engine":{"ATS":{"ELITE":0.546,"MODERATE":0.512,"STRONG":0.5318,"WEAK":0.0},"TOTALS":{"ELITE":0.5209,"MODERATE":0.5044,"STRONG":0.5111,"WEAK":0.0}},"metric":"p_selected","path":"/opt/apex_ncaaf/current/runtime/ncaaf_tier_policy.json","sealed_issuance_mutated":false,"sha256":"a7acf120b9b1c88943723212ec5bfd8134ca00d79079551547bd6fe627b70b06"}},"public_contract_fields":["matchup","market_type","selection","line","price","rating","rationale"],"public_projection":{"canonical_game_count":3,"canonical_position_count":0,"canonical_state_mutated":false,"internal_market_pending_game_count":3,"public_market_pending_panel_count":3,"public_visible_game_count":3,"public_visible_position_count":0,"public_zero_position_game_count":3,"rule":"PUBLIC_LISTS_UNISSUED_NEXT_SCHEDULE_GAMES;POSITIONS_ONLY_WHEN_SEALED","schema_version":"apex.ncaaf.unissued_schedule_public_projection.v1","sealed_issuance_mutated":false,"source_is_immutable_issuance_derived":true},"schema_version":"apex.public.ncaaf_today.v5","slate":{"current_fanduel_spread_available_count":0,"current_fanduel_total_available_count":0,"current_fully_issuable_game_count":0,"d1_vs_lower_division_game_count":0,"display_state":"UNISSUED","excluded_game_count":0,"expired_post_issuance_market_count":0,"fanduel_spread_available_count":0,"fanduel_total_available_count":0,"fbs_game_count":3,"fcs_game_count":0,"fully_issuable_game_count":0,"game_count":3,"games":[{"ats_market":{"available":false,"captured_at_utc_ms":null,"line":null,"price_a":null,"price_b":null},"away_program_id":"01a007de-3c00-76d2-92b4-3f40b9cf739f","away_subdivision":"FBS","date":"2026-10-15","fanduel_ats_current_market_status":"NOT_AVAILABLE","fanduel_ats_market_status":"NOT_AVAILABLE","fanduel_total_current_market_status":"NOT_AVAILABLE","fanduel_total_market_status":"NOT_AVAILABLE","fbs_fcs_classification":"FBS_V_FBS","final_status":"SCHEDULED","game_id":"01a007de-3c00-7acc-bf7d-58164d65ffe0","home_program_id":"01a007de-3c00-7a5d-bf5a-8d05b8c7d855","home_subdivision":"FBS","international":false,"kickoff_display_et":"7:30 PM ET","kickoff_et":"2026-10-15T19:30:00-04:00","kickoff_utc_ms":1792107000000,"market_status":"GAME_LISTED_AWAITING_T2_FORECAST","matchup":"East Carolina at UAB","neutral_site":false,"positions":[],"schedule_time_status":"RESOLVED","scope_class":"D1_VS_D1_ELIGIBLE","t2_utc_ms":1792099800000,"t3_utc_ms":1792096200000,"totals_market":{"available":false,"captured_at_utc_ms":null,"line":null,"price_a":null,"price_b":null},"venue":"Protective Stadium"},{"ats_market":{"available":false,"captured_at_utc_ms":null,"line":null,"price_a":null,"price_b":null},"away_program_id":"01a007de-3c00-7700-8d32-aad9a095b48d","away_subdivision":"FBS","date":"2026-10-15","fanduel_ats_current_market_status":"NOT_AVAILABLE","fanduel_ats_market_status":"NOT_AVAILABLE","fanduel_total_current_market_status":"NOT_AVAILABLE","fanduel_total_market_status":"NOT_AVAILABLE","fbs_fcs_classification":"FBS_V_FBS","final_status":"SCHEDULED","game_id":"01a007de-3c00-7c65-874b-11127c00695e","home_program_id":"01a007de-3c00-7d0f-a404-ad644ff17ee0","home_subdivision":"FBS","international":false,"kickoff_display_et":"7:30 PM ET","kickoff_et":"2026-10-15T19:30:00-04:00","kickoff_utc_ms":1792107000000,"market_status":"GAME_LISTED_AWAITING_T2_FORECAST","matchup":"Georgia Southern at Old Dominion","neutral_site":false,"positions":[],"schedule_time_status":"RESOLVED","scope_class":"D1_VS_D1_ELIGIBLE","t2_utc_ms":1792099800000,"t3_utc_ms":1792096200000,"totals_market":{"available":false,"captured_at_utc_ms":null,"line":null,"price_a":null,"price_b":null},"venue":"S.B. Ballard Stadium"},{"ats_market":{"available":false,"captured_at_utc_ms":null,"line":null,"price_a":null,"price_b":null},"away_program_id":"01a007de-3c00-7352-b45f-43379240d0b9","away_subdivision":"FBS","date":"2026-10-15","fanduel_ats_current_market_status":"NOT_AVAILABLE","fanduel_ats_market_status":"NOT_AVAILABLE","fanduel_total_current_market_status":"NOT_AVAILABLE","fanduel_total_market_status":"NOT_AVAILABLE","fbs_fcs_classification":"FBS_V_FBS","final_status":"SCHEDULED","game_id":"01a007de-3c00-706d-af7b-0b888682d090","home_program_id":"01a007de-3c00-715e-b57c-330f6d387ed7","home_subdivision":"FBS","international":false,"kickoff_display_et":"8:00 PM ET","kickoff_et":"2026-10-15T20:00:00-04:00","kickoff_utc_ms":1792108800000,"market_status":"GAME_LISTED_AWAITING_T2_FORECAST","matchup":"Colorado State at Texas State","neutral_site":false,"positions":[],"schedule_time_status":"RESOLVED","scope_class":"D1_VS_D1_ELIGIBLE","t2_utc_ms":1792101600000,"t3_utc_ms":1792098000000,"totals_market":{"available":false,"captured_at_utc_ms":null,"line":null,"price_a":null,"price_b":null},"venue":"Bobcat Stadium (TX)"}],"issued_game_count":0,"market_pending_game_count":3,"official_position_count":0,"public_visible_game_count":3,"public_visible_position_count":0,"public_zero_position_game_count":3,"schema_version":"apex.ncaaf.public_slate.v5","slate_date_et":"2026-10-15","transition_game_count":0,"unresolved_game_count":0},"sources":{"market_capture_receipt":null,"schedule_authority":"/var/opt/apex_ncaaf/authorities/HISTORICAL_OUTCOMES_WITH_ODDS.db","sealed_slate_issuance":null},"sport":"NCAA_DIVISION_I_FOOTBALL"}
+{
+  "slate": {
+    "slate_date_et": "2026-10-15",
+    "display_state": "ISSUED",
+    "games": [
+      {
+        "game_id": "01a007de-3c00-7acc-bf7d-58164d65ffe0",
+        "matchup": "East Carolina at UAB",
+        "date": "2026-10-15",
+        "kickoff_display_et": "7:30 PM ET",
+        "venue": "Protective Stadium",
+        "fbs_fcs_classification": "FBS_V_FBS",
+        "schedule_time_status": "RESOLVED",
+        "positions": [
+          {
+            "direction": "UNDERDOG",
+            "display_selection": "UAB +5.5",
+            "line": "+5.5",
+            "price": -110,
+            "rating": "WEAK",
+            "p_selected": 0.509372103631704,
+            "p_win": 0.509372103631704,
+            "p_loss": 0.4906278963682959,
+            "p_push": 0.0,
+            "p_favorite_cover": 0.4906278963682959,
+            "p_underdog_cover": 0.509372103631704,
+            "p_over": null,
+            "p_under": null,
+            "fair_price": -104,
+            "probability_edge": -0.014437420177819793,
+            "expected_return": -0.027562347612201332,
+            "market_type": "ATS",
+            "model_id": "D2",
+            "market_captured_at_utc_ms": 1792104476460,
+            "distribution_summary": {
+              "mean": 4.560039056931603,
+              "median": 5,
+              "mode": 3,
+              "central_80_low": -15,
+              "central_80_high": 24
+            },
+            "rationale": [
+              "APEX selects UAB +5.5 with a 50.9% full-game ATS cover probability at the captured FanDuel price of -110, an established WEAK rating from the locked D2 engine.",
+              "D2 full Favorite-minus-Underdog margin distribution centers at 4.6 points, with median 5, mode 3, and a central 80% interval from -15 to 24. The 5.5-point FanDuel hurdle leaves 49.1% on favorite cover, 0.0% on push, and 50.9% on underdog cover.",
+              "The selected FanDuel spread and price were captured at 6:47 PM ET on October 15, 2026, from the FanDuel market pull.",
+              "Apex calls UAB +5.5 at -110."
+            ]
+          },
+          {
+            "direction": "OVER",
+            "display_selection": "OVER 48.5",
+            "line": "48.5",
+            "price": -115,
+            "rating": "WEAK",
+            "p_selected": 0.5041352718820454,
+            "p_win": 0.5041352718820454,
+            "p_loss": 0.4958647281179545,
+            "p_push": 0.0,
+            "p_over": 0.5041352718820454,
+            "p_under": 0.4958647281179545,
+            "p_favorite_cover": null,
+            "p_underdog_cover": null,
+            "fair_price": -102,
+            "probability_edge": -0.030748449048187076,
+            "expected_return": -0.05748623082921939,
+            "market_type": "TOTALS",
+            "model_id": "TOTALS-V5-RECONCILED-POOL",
+            "market_captured_at_utc_ms": 1792104476460,
+            "distribution_summary": {
+              "mean": 49.264474304748155,
+              "median": 49,
+              "mode": 41,
+              "central_80_low": 30,
+              "central_80_high": 70
+            },
+            "rationale": [
+              "APEX selects OVER 48.5 with a 50.4% full-game totals probability at the captured FanDuel price of -115, an established WEAK rating from the locked TOTALS-V5-RECONCILED-POOL engine.",
+              "V5 complete discrete total-points distribution has mean 49.3, median 49, mode 41, standard deviation n/a, and a central 80% interval from 30 to 70. Against FanDuel 48.5, it assigns 50.4% to Over, 0.0% to push, and 49.6% to Under.",
+              "The selected FanDuel total and price were captured at 6:47 PM ET on October 15, 2026, from the FanDuel market pull.",
+              "Apex calls OVER 48.5 at -115."
+            ]
+          }
+        ]
+      },
+      {
+        "game_id": "01a007de-3c00-7c65-874b-11127c00695e",
+        "matchup": "Georgia Southern at Old Dominion",
+        "date": "2026-10-15",
+        "kickoff_display_et": "7:30 PM ET",
+        "venue": "S.B. Ballard Stadium",
+        "fbs_fcs_classification": "FBS_V_FBS",
+        "schedule_time_status": "RESOLVED",
+        "positions": [
+          {
+            "direction": "UNDERDOG",
+            "display_selection": "Old Dominion +3.5",
+            "line": "+3.5",
+            "price": -120,
+            "rating": "MODERATE",
+            "p_selected": 0.5217374704994961,
+            "p_win": 0.5217374704994961,
+            "p_loss": 0.47826252950050396,
+            "p_push": 0.0,
+            "p_favorite_cover": 0.47826252950050396,
+            "p_underdog_cover": 0.5217374704994961,
+            "p_over": null,
+            "p_under": null,
+            "fair_price": -109,
+            "probability_edge": -0.023717074955049267,
+            "expected_return": -0.043481304084257155,
+            "market_type": "ATS",
+            "model_id": "D2",
+            "market_captured_at_utc_ms": 1792104476460,
+            "distribution_summary": {
+              "mean": 2.7180646641757864,
+              "median": 3,
+              "mode": 3,
+              "central_80_low": -17,
+              "central_80_high": 22
+            },
+            "rationale": [
+              "APEX selects Old Dominion +3.5 with a 52.2% full-game ATS cover probability at the captured FanDuel price of -120, an established MODERATE rating from the locked D2 engine.",
+              "D2 full Favorite-minus-Underdog margin distribution centers at 2.7 points, with median 3, mode 3, and a central 80% interval from -17 to 22. The 3.5-point FanDuel hurdle leaves 47.8% on favorite cover, 0.0% on push, and 52.2% on underdog cover.",
+              "The selected FanDuel spread and price were captured at 6:47 PM ET on October 15, 2026, from the FanDuel market pull.",
+              "Apex calls Old Dominion +3.5 at -120."
+            ]
+          },
+          {
+            "direction": "UNDER",
+            "display_selection": "UNDER 45.5",
+            "line": "45.5",
+            "price": -115,
+            "rating": "WEAK",
+            "p_selected": 0.5012575669979826,
+            "p_win": 0.5012575669979826,
+            "p_loss": 0.4987424330020174,
+            "p_push": 0.0,
+            "p_over": 0.4987424330020174,
+            "p_under": 0.5012575669979826,
+            "p_favorite_cover": null,
+            "p_underdog_cover": null,
+            "fair_price": -101,
+            "probability_edge": -0.03362615393224988,
+            "expected_return": -0.06286628778638037,
+            "market_type": "TOTALS",
+            "model_id": "TOTALS-V5-RECONCILED-POOL",
+            "market_captured_at_utc_ms": 1792104476460,
+            "distribution_summary": {
+              "mean": 46.38736023492389,
+              "median": 45,
+              "mode": 41,
+              "central_80_low": 27,
+              "central_80_high": 67
+            },
+            "rationale": [
+              "APEX selects UNDER 45.5 with a 50.1% full-game totals probability at the captured FanDuel price of -115, an established WEAK rating from the locked TOTALS-V5-RECONCILED-POOL engine.",
+              "V5 complete discrete total-points distribution has mean 46.4, median 45, mode 41, standard deviation n/a, and a central 80% interval from 27 to 67. Against FanDuel 45.5, it assigns 49.9% to Over, 0.0% to push, and 50.1% to Under.",
+              "The selected FanDuel total and price were captured at 6:47 PM ET on October 15, 2026, from the FanDuel market pull.",
+              "Apex calls UNDER 45.5 at -115."
+            ]
+          }
+        ]
+      },
+      {
+        "game_id": "01a007de-3c00-706d-af7b-0b888682d090",
+        "matchup": "Colorado State at Texas State",
+        "date": "2026-10-15",
+        "kickoff_display_et": "8:00 PM ET",
+        "venue": "Bobcat Stadium (TX)",
+        "fbs_fcs_classification": "FBS_V_FBS",
+        "schedule_time_status": "RESOLVED",
+        "positions": [
+          {
+            "direction": "FAVORITE",
+            "display_selection": "Texas State -14.5",
+            "line": "-14.5",
+            "price": -105,
+            "rating": "WEAK",
+            "p_selected": 0.5092800950308443,
+            "p_win": 0.5092800950308443,
+            "p_loss": 0.4907199049691558,
+            "p_push": 0.0,
+            "p_favorite_cover": 0.5092800950308443,
+            "p_underdog_cover": 0.4907199049691558,
+            "p_over": null,
+            "p_under": null,
+            "fair_price": -104,
+            "probability_edge": -0.0029150269203752632,
+            "expected_return": -0.005691243035018445,
+            "market_type": "ATS",
+            "model_id": "D2",
+            "market_captured_at_utc_ms": 1792104476460,
+            "distribution_summary": {
+              "mean": 15.058903873646043,
+              "median": 15,
+              "mode": 17,
+              "central_80_low": -3,
+              "central_80_high": 33
+            },
+            "rationale": [
+              "APEX selects Texas State -14.5 with a 50.9% full-game ATS cover probability at the captured FanDuel price of -105, an established WEAK rating from the locked D2 engine.",
+              "D2 full Favorite-minus-Underdog margin distribution centers at 15.1 points, with median 15, mode 17, and a central 80% interval from -3 to 33. The 14.5-point FanDuel hurdle leaves 50.9% on favorite cover, 0.0% on push, and 49.1% on underdog cover.",
+              "The selected FanDuel spread and price were captured at 6:47 PM ET on October 15, 2026, from the FanDuel market pull.",
+              "Apex calls Texas State -14.5 at -105."
+            ]
+          },
+          {
+            "direction": "OVER",
+            "display_selection": "OVER 69.5",
+            "line": "69.5",
+            "price": -115,
+            "rating": "WEAK",
+            "p_selected": 0.5041844022612756,
+            "p_win": 0.5041844022612756,
+            "p_loss": 0.4958155977387244,
+            "p_push": 0.0,
+            "p_over": 0.5041844022612756,
+            "p_under": 0.4958155977387244,
+            "p_favorite_cover": null,
+            "p_underdog_cover": null,
+            "fair_price": -102,
+            "probability_edge": -0.03069931866895692,
+            "expected_return": -0.05739437838109346,
+            "market_type": "TOTALS",
+            "model_id": "TOTALS-V5-RECONCILED-POOL",
+            "market_captured_at_utc_ms": 1792104476460,
+            "distribution_summary": {
+              "mean": 70.25915810040401,
+              "median": 70,
+              "mode": 69,
+              "central_80_low": 48,
+              "central_80_high": 93
+            },
+            "rationale": [
+              "APEX selects OVER 69.5 with a 50.4% full-game totals probability at the captured FanDuel price of -115, an established WEAK rating from the locked TOTALS-V5-RECONCILED-POOL engine.",
+              "V5 complete discrete total-points distribution has mean 70.3, median 70, mode 69, standard deviation n/a, and a central 80% interval from 48 to 93. Against FanDuel 69.5, it assigns 50.4% to Over, 0.0% to push, and 49.6% to Under.",
+              "The selected FanDuel total and price were captured at 6:47 PM ET on October 15, 2026, from the FanDuel market pull.",
+              "Apex calls OVER 69.5 at -115."
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "active_engine_epoch": {
+    "ATS": {
+      "model_id": "D2"
+    },
+    "TOTALS": {
+      "model_id": "TOTALS-V5-RECONCILED-POOL"
+    }
+  }
+}
