@@ -1472,7 +1472,7 @@ def hourly_cleanup(pending_ids: set[str]) -> dict[str, int]:
     root = STATE_ROOT / 'worktrees'
     if root.is_dir():
         for path in sorted(root.iterdir()):
-            if re.fullmatch(r'ncaaf-record-[a-z0-9_]+', path.name):
+            if re.fullmatch(r'ncaaf-record-[a-z0-9_]{8}', path.name):
                 # Only prepare_due_ncaaf_records() makes these, under this same lock, and it removes
                 # its own before returning; one still here was left by an interrupted run.
                 remove_worktree(path / 'site')

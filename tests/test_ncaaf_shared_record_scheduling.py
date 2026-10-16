@@ -170,6 +170,15 @@ class RecordSource(unittest.TestCase):
         self.assertEqual(list(worktrees.iterdir()), [active])
         self.assertEqual(registered(), 1)
 
+    def test_hourly_cleanup_keeps_names_mkdtemp_cannot_make(self):
+        worktrees = self.root / 'shared/worktrees'; worktrees.mkdir(parents=True, exist_ok=True)
+        kept = [worktrees / 'ncaaf-record-abc', worktrees / 'ncaaf-record-backup_long']
+        for path in kept:
+            path.mkdir(); (path / 'sentinel').write_text('keep')
+        self.assertEqual(m.hourly_cleanup(set())['worktrees_removed'], 0)
+        for path in kept:
+            self.assertEqual((path / 'sentinel').read_text(), 'keep')
+
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)
