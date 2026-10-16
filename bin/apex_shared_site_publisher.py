@@ -208,6 +208,9 @@ def is_complete(request: Request) -> bool:
         return status in FINAL_RECEIPT_STATES and (not receipt.get('issuance_id')
             or receipt.get('live_readback', {}).get('status') == 'PASS')
     if request.sport == "NCAAF":
+        if request.product == "DISPLAY":
+            # Display-only picks rollover (owner rule 2026-10-16): published means complete, no email.
+            return status in FINAL_RECEIPT_STATES
         return status in {
             "PUBLISHED_EMAIL_VERIFIED",
             "PUBLISHED_NO_CONTENT_CHANGE_EMAIL_VERIFIED",
@@ -277,6 +280,9 @@ def discover_ncaaf(today_et: str, yesterday_et: str) -> list[Request]:
         if product in {"T3", "T2"} and slate_date not in {today_et, tomorrow_et}:
             continue
         if product == "RESULTS" and slate_date > today_et:
+            continue
+        # A display rollover may name a slate days ahead; a past one is stale and never published.
+        if product == "DISPLAY" and slate_date < today_et:
             continue
         pointer = load_json(pointer_path)
         if pointer.get("status") != "PASS" or pointer.get("publication_state") != "QUEUED_FOR_SHARED_PUBLISHER":
@@ -394,7 +400,7 @@ def discover() -> list[Request]:
     requests = discover_ncaaf(now_et.isoformat(), (now_et - timedelta(days=1)).isoformat())
     requests.extend(discover_mma())
     requests.extend(discover_nfl())
-    product_order = {"RESULTS": 0, "T3": 1, "T2": 2, None: 3}
+    product_order = {"RESULTS": 0, "DISPLAY": 1, "T3": 2, "T2": 3, None: 4}
     return sorted(
         requests,
         key=lambda item: (
@@ -531,7 +537,7 @@ def results_cumulative_snapshot(request: Request) -> str:
 
 def publication_skip_paths(request: Request, worktree: Path) -> set[str]:
     """Backlog recovery must preserve a later issued card and newer results."""
-    if request.sport != "NCAAF" or request.product != "RESULTS":
+    if request.sport != "NCAAF" or request.product not in {"RESULTS", "DISPLAY"}:
         return set()
     assert request.payload_root is not None
     skipped: set[str] = set()
@@ -543,6 +549,8 @@ def publication_skip_paths(request: Request, worktree: Path) -> set[str]:
             raise RuntimeError("NCAA_RESULTS_DISPLAY_IDENTITY_ABSENT")
         if current_date >= incoming_date:
             skipped.update({"data/ncaaf_today.json", "ncaaf/index.html"})
+    if request.product == "DISPLAY":
+        return skipped
     incoming = load_json(request.payload_root / "data/ncaaf_results_cumulative.json")
     current = worktree / "data/ncaaf_results_cumulative.json"
     if current.is_file():
@@ -647,7 +655,8 @@ def build_request(request: Request, worktree: Path) -> dict[str, Any]:
     if request.sport in {"NCAAF", "MMA"}:
         copy_queued_payload(request, worktree)
     if request.sport == "NCAAF":
-        ncaaf_delivery_manifest(request, worktree)
+        if request.product != "DISPLAY":  # display-only: no stage delivery manifest, no email
+            ncaaf_delivery_manifest(request, worktree)
     elif request.sport == "MMA":
         python_tool(worktree, "build_mma_public_payload.py")
         python_tool(worktree, "build_total_apex_results.py")
@@ -678,6 +687,16 @@ def build_request(request: Request, worktree: Path) -> dict[str, Any]:
         surfaces = ('data/nfl_today.json', 'data/nfl_system_state.json', 'data/nfl_results_archive.json', 'data/nfl_results_summary.json', 'nfl/index.html')
         return {'changed_paths': sorted(changed), 'audit_tail': 'NFL authority-bound builder completed',
                 'nfl_surface_hashes': {name: sha256_file(worktree / name) for name in surfaces}}
+    if request.sport == "NCAAF" and request.product == "DISPLAY":
+        # Display-only rollover carries the same picks files as RESULTS and is validated the same way.
+        with tempfile.TemporaryDirectory(prefix="ncaaf-build-check-", dir=worktree.parent) as temporary:
+            validation = Path(temporary) / "site"
+            shutil.copytree(worktree, validation, ignore=shutil.ignore_patterns(".git", "public", "__pycache__"))
+            audit = python_tool(validation, "build_vercel_output.py")
+        changed = dirty_paths(worktree)
+        if any(name not in {"data/ncaaf_today.json", "ncaaf/index.html"} for name in changed):
+            raise RuntimeError("NCAA display publication attempted an unrelated path")
+        return {"changed_paths": sorted(changed), "audit_tail": audit[-1600:]}
     if request.sport == "NCAAF" and request.product == "RESULTS":
         # Results recovery owns NCAA output paths. Shared navigation/analytics
         # rewrites are unrelated and can modify currently issued picks pages.
@@ -1469,7 +1488,11 @@ def execute(*, dry_run: bool, sport: str | None = None) -> dict[str, Any]:
                         sys.path.insert(0, '/opt/apex_mma/bin')
                         from apex_mma_publication_acceptance import verify
                         result=verify(request,result,sys.modules[__name__])
-                    if request.sport=='NCAAF':
+                    if request.sport=='NCAAF' and request.product=='DISPLAY':
+                        # Display-only picks rollover: never an email.
+                        result={**result,'email_external_action_count':0,'email_dispatch':'NOT_APPLICABLE_DISPLAY_ONLY'}
+                        atomic_json(receipt_path(request),result)
+                    elif request.sport=='NCAAF':
                         result=ncaaf_t2_site_live_before_email(request,result)
                         result=dispatch_ncaaf_email(request,result)
                     else:
