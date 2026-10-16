@@ -154,6 +154,22 @@ class RecordSource(unittest.TestCase):
         self.assertIn('fetch', source['error'])
         self.assertEqual(self.status()['status'], 'PASS')
 
+    def test_hourly_cleanup_recovers_abandoned_record_worktree(self):
+        pid = os.fork()
+        if pid == 0:  # killed mid-preparation: the context manager's cleanup never runs
+            with m.ncaaf_record_site_data() as (_, source):
+                os._exit(23 if source['mode'] == 'ORIGIN_MAIN_WORKTREE' else 1)
+        self.assertEqual(os.waitstatus_to_exitcode(os.waitpid(pid, 0)[1]), 23)
+        worktrees = self.root / 'shared/worktrees'
+        registered = lambda: self.sh('git', 'worktree', 'list', '--porcelain', cwd=self.site).count('worktree ')
+        self.assertEqual(len([p for p in worktrees.iterdir() if (p / 'site/data/book.json').is_file()]), 1)
+        self.assertEqual(registered(), 2)
+        active = worktrees / ('mma-' + 'a' * 64); active.mkdir()
+        result = m.hourly_cleanup({'a' * 64})
+        self.assertEqual(result['worktrees_removed'], 1)
+        self.assertEqual(list(worktrees.iterdir()), [active])
+        self.assertEqual(registered(), 1)
+
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)
