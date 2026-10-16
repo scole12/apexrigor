@@ -11,6 +11,7 @@ position.
 from __future__ import annotations
 
 import argparse
+import contextlib
 import fcntl
 import hashlib
 import json
@@ -1333,10 +1334,52 @@ def _dispatch_ncaaf_email_workflow(request: Request, receipt: dict[str, Any]) ->
     return complete
 
 
+@contextlib.contextmanager
+def ncaaf_record_site_data():
+    """Yield the sport books Vercel fuses: data/ of a fresh detached origin/main worktree.
+
+    The checkout lags origin/main whenever another sport writes into it, so its data/
+    is only the fallback. A fetch or worktree failure is recorded, never raised.
+    """
+    worktree = None
+    try:
+        git("fetch", "--quiet", "origin", "main")
+        commit = git("rev-parse", "origin/main")
+        worktree_parent = STATE_ROOT / "worktrees"
+        worktree_parent.mkdir(parents=True, exist_ok=True, mode=0o750)
+        worktree = Path(tempfile.mkdtemp(prefix="ncaaf-record-", dir=worktree_parent)) / "site"
+        git("worktree", "add", "--detach", str(worktree), commit)
+        if git("rev-parse", "HEAD", cwd=worktree) != commit:
+            raise RuntimeError("NCAA record worktree is not at origin/main")
+        site_data = worktree / "data"
+        source = {"mode": "ORIGIN_MAIN_WORKTREE", "commit": commit}
+    except Exception as error:
+        if worktree is not None:
+            discard_ncaaf_record_worktree(worktree)
+            worktree = None
+        site_data = ROOT / "data"
+        source = {"mode": "CHECKOUT_FALLBACK", "site_data": str(site_data),
+                  "error": type(error).__name__ + ":" + str(error)[-1400:]}
+    try:
+        yield site_data, source
+    finally:
+        if worktree is not None:
+            discard_ncaaf_record_worktree(worktree)
+
+
+def discard_ncaaf_record_worktree(worktree: Path) -> None:
+    remove_worktree(worktree)
+    try:
+        git("worktree", "prune", timeout=60)
+    except Exception:
+        pass
+    shutil.rmtree(worktree.parent, ignore_errors=True)
+
+
 def prepare_due_ncaaf_records() -> list[dict[str, Any]]:
     """Prepare shared output without writing any sport's authority or queue."""
     state = NCAAF_QUEUE.parent
-    outcomes = []
+    due = []
     for path in sorted((state / 'grader_completion_state').glob('????-??-??.json')):
         record = load_json(path)
         # Preserve explicit historical dispositions; these are not pending
@@ -1348,21 +1391,30 @@ def prepare_due_ncaaf_records() -> list[dict[str, Any]]:
             continue
         if not record.get('PRODUCTS_COMPLETE') or record.get('RESULTS_SHARED_HANDOFF_COMPLETE'):
             continue
-        try:
-            output = run([sys.executable, str(ROOT / 'bin/apex_prepare_ncaaf_record.py'),
-                          '--date', path.stem, '--state', str(state),
-                          '--site-data', str(ROOT / 'data'),
-                          '--output-root', str(STATE_ROOT / 'derived_results/ncaaf')],
-                         cwd=ROOT, timeout=90)
-            outcome = json.loads(output)
-            if outcome.get('status') not in {'GENERATED_VERIFIED_ARTIFACT', 'REUSED_VERIFIED_ARTIFACT'}:
-                raise RuntimeError('NCAA shared record producer did not verify its artifact')
-        except Exception as error:
-            outcome = {'status': 'BLOCKED', 'slate_date': path.stem,
-                       'error': type(error).__name__ + ':' + str(error)[-1400:]}
-        outcomes.append(outcome)
+        due.append(path)
+    outcomes = []
+    source = {'mode': 'NOT_NEEDED'}
+    if due:
+        # 2026-10-16: the email graphic read the lagging checkout (2780-2577-27) while the
+        # site fused origin/main (2856-2646-28). Read the books the Vercel build fuses.
+        with ncaaf_record_site_data() as (site_data, source):
+            for path in due:
+                try:
+                    output = run([sys.executable, str(ROOT / 'bin/apex_prepare_ncaaf_record.py'),
+                                  '--date', path.stem, '--state', str(state),
+                                  '--site-data', str(site_data),
+                                  '--output-root', str(STATE_ROOT / 'derived_results/ncaaf')],
+                                 cwd=ROOT, timeout=90)
+                    outcome = json.loads(output)
+                    if outcome.get('status') not in {'GENERATED_VERIFIED_ARTIFACT', 'REUSED_VERIFIED_ARTIFACT'}:
+                        raise RuntimeError('NCAA shared record producer did not verify its artifact')
+                except Exception as error:
+                    outcome = {'status': 'BLOCKED', 'slate_date': path.stem,
+                               'error': type(error).__name__ + ':' + str(error)[-1400:]}
+                outcomes.append(outcome)
     atomic_json(STATE_ROOT / 'derived_results/ncaaf/preparation_status.json', {
         'checked_at_utc': datetime.now(timezone.utc).isoformat(), 'outcomes': outcomes,
+        'site_data_source': source,
         'status': 'BLOCKED' if any(r['status'] == 'BLOCKED' for r in outcomes) else 'PASS'})
     return outcomes
 
