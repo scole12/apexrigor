@@ -1,0 +1,5 @@
+---
+description: Current APEX quantitative forecasting agent practice
+alwaysApply: true
+---
+Read AGENTS.md and docs/AGENT_OPERATING_STANDARD.md. They supersede all earlier agent workflows. Follow docs/PROJECT_REQUIREMENTS.md for domain constraints.
