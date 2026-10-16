@@ -41,9 +41,12 @@
             },
             "rationale": [
               "APEX selects UAB +5.5 with a 50.9% full-game ATS cover probability at the captured FanDuel price of -110, an established WEAK rating from the locked D2 engine.",
+              "The sealed lagged team-state profile put East Carolina at 1.94 points per drive for and 1.49 allowed across 43 prior drive-stat game samples, versus UAB at 2.03 for and 2.49 allowed across 42. Their scoring-drive rates were 31.6% and 39.2%; these are pregame state summaries, not isolated causal attributions.",
+              "The sealed player-state layer retained 18 known offensive players for East Carolina and 18 for UAB; expected-prior quarterback state was present for East Carolina and present for UAB. Unpublished state remains missing rather than being treated as confirmation.",
+              "Prior pace state carried East Carolina at 13.2 drives and 5.3 plays per drive, and UAB at 11.3 drives and 6.4 plays per drive. The schedule classified the matchup as FBS V FBS.",
               "D2 full Favorite-minus-Underdog margin distribution centers at 4.6 points, with median 5, mode 3, and a central 80% interval from -15 to 24. The 5.5-point FanDuel hurdle leaves 49.1% on favorite cover, 0.0% on push, and 50.9% on underdog cover.",
-              "The selected FanDuel spread and price were captured at 6:47 PM ET on October 15, 2026, from the FanDuel market pull.",
-              "Apex calls UAB +5.5 at -110."
+              "The selected FanDuel quote was captured at 6:47 PM ET on October 15, 2026, from the FanDuel market pull. This explanation makes no unsupported movement or reversal claim and uses no later or closing-market value.",
+              "The final call remains UAB +5.5. The selection is determined by the D2 distribution at the actual spread; the disclosed team, personnel, pace, and missingness state supplies issue-time context without claiming unretained feature attribution or certainty."
             ]
           },
           {
@@ -75,9 +78,12 @@
             },
             "rationale": [
               "APEX selects OVER 48.5 with a 50.4% full-game totals probability at the captured FanDuel price of -115, an established WEAK rating from the locked TOTALS-V5-RECONCILED-POOL engine.",
+              "The sealed lagged team-state profile put East Carolina at 1.94 points per drive for and 1.49 allowed across 43 prior drive-stat game samples, versus UAB at 2.03 for and 2.49 allowed across 42. Their scoring-drive rates were 31.6% and 39.2%; these are pregame state summaries, not isolated causal attributions.",
+              "The sealed player-state layer retained 18 known offensive players for East Carolina and 18 for UAB; expected-prior quarterback state was present for East Carolina and present for UAB. Unpublished state remains missing rather than being treated as confirmation.",
+              "Prior pace state carried East Carolina at 13.2 drives and 5.3 plays per drive, and UAB at 11.3 drives and 6.4 plays per drive. The schedule classified the matchup as FBS V FBS.",
               "V5 complete discrete total-points distribution has mean 49.3, median 49, mode 41, standard deviation n/a, and a central 80% interval from 30 to 70. Against FanDuel 48.5, it assigns 50.4% to Over, 0.0% to push, and 49.6% to Under.",
-              "The selected FanDuel total and price were captured at 6:47 PM ET on October 15, 2026, from the FanDuel market pull.",
-              "Apex calls OVER 48.5 at -115."
+              "The selected FanDuel total and price were captured at 6:47 PM ET on October 15, 2026, from the FanDuel market pull. This explanation makes no unsupported path claim and uses no post-cutoff or closing quote.",
+              "The final call remains OVER 48.5. The selection follows the V5 probability mass around the posted total; the disclosed scoring, personnel, environment, and missingness state supplies issue-time context without claiming unretained feature attribution or certainty."
             ]
           }
         ]
@@ -120,9 +126,12 @@
             },
             "rationale": [
               "APEX selects Old Dominion +3.5 with a 52.2% full-game ATS cover probability at the captured FanDuel price of -120, an established MODERATE rating from the locked D2 engine.",
+              "The sealed lagged team-state profile put Georgia Southern at 2.32 points per drive for and 2.71 allowed across 43 prior drive-stat game samples, versus Old Dominion at 1.36 for and 1.73 allowed across 44. Their scoring-drive rates were 38.9% and 23.9%; these are pregame state summaries, not isolated causal attributions.",
+              "The sealed player-state layer retained 19 known offensive players for Georgia Southern and 16 for Old Dominion; expected-prior quarterback state was present for Georgia Southern and present for Old Dominion. Unpublished state remains missing rather than being treated as confirmation.",
+              "Prior pace state carried Georgia Southern at 11.0 drives and 6.5 plays per drive, and Old Dominion at 13.5 drives and 5.2 plays per drive. The schedule classified the matchup as FBS V FBS.",
               "D2 full Favorite-minus-Underdog margin distribution centers at 2.7 points, with median 3, mode 3, and a central 80% interval from -17 to 22. The 3.5-point FanDuel hurdle leaves 47.8% on favorite cover, 0.0% on push, and 52.2% on underdog cover.",
-              "The selected FanDuel spread and price were captured at 6:47 PM ET on October 15, 2026, from the FanDuel market pull.",
-              "Apex calls Old Dominion +3.5 at -120."
+              "The selected FanDuel quote was captured at 6:47 PM ET on October 15, 2026, from the FanDuel market pull. This explanation makes no unsupported movement or reversal claim and uses no later or closing-market value.",
+              "The final call remains Old Dominion +3.5. The selection is determined by the D2 distribution at the actual spread; the disclosed team, personnel, pace, and missingness state supplies issue-time context without claiming unretained feature attribution or certainty."
             ]
           },
           {
@@ -154,9 +163,12 @@
             },
             "rationale": [
               "APEX selects UNDER 45.5 with a 50.1% full-game totals probability at the captured FanDuel price of -115, an established WEAK rating from the locked TOTALS-V5-RECONCILED-POOL engine.",
+              "The sealed lagged team-state profile put Georgia Southern at 2.32 points per drive for and 2.71 allowed across 43 prior drive-stat game samples, versus Old Dominion at 1.36 for and 1.73 allowed across 44. Their scoring-drive rates were 38.9% and 23.9%; these are pregame state summaries, not isolated causal attributions.",
+              "The sealed player-state layer retained 19 known offensive players for Georgia Southern and 16 for Old Dominion; expected-prior quarterback state was present for Georgia Southern and present for Old Dominion. Unpublished state remains missing rather than being treated as confirmation.",
+              "Prior pace state carried Georgia Southern at 11.0 drives and 6.5 plays per drive, and Old Dominion at 13.5 drives and 5.2 plays per drive. The schedule classified the matchup as FBS V FBS.",
               "V5 complete discrete total-points distribution has mean 46.4, median 45, mode 41, standard deviation n/a, and a central 80% interval from 27 to 67. Against FanDuel 45.5, it assigns 49.9% to Over, 0.0% to push, and 50.1% to Under.",
-              "The selected FanDuel total and price were captured at 6:47 PM ET on October 15, 2026, from the FanDuel market pull.",
-              "Apex calls UNDER 45.5 at -115."
+              "The selected FanDuel total and price were captured at 6:47 PM ET on October 15, 2026, from the FanDuel market pull. This explanation makes no unsupported path claim and uses no post-cutoff or closing quote.",
+              "The final call remains UNDER 45.5. The selection follows the V5 probability mass around the posted total; the disclosed scoring, personnel, environment, and missingness state supplies issue-time context without claiming unretained feature attribution or certainty."
             ]
           }
         ]
@@ -199,9 +211,12 @@
             },
             "rationale": [
               "APEX selects Texas State -14.5 with a 50.9% full-game ATS cover probability at the captured FanDuel price of -105, an established WEAK rating from the locked D2 engine.",
+              "The sealed lagged team-state profile put Texas State at 2.74 points per drive for and 2.45 allowed across 44 prior drive-stat game samples, versus Colorado State at 2.50 for and 2.72 allowed across 41. Their scoring-drive rates were 44.7% and 39.0%; these are pregame state summaries, not isolated causal attributions.",
+              "The sealed player-state layer retained 21 known offensive players for Texas State and 19 for Colorado State; expected-prior quarterback state was present for Texas State and present for Colorado State. Unpublished state remains missing rather than being treated as confirmation.",
+              "Prior pace state carried Texas State at 12.3 drives and 6.4 plays per drive, and Colorado State at 12.3 drives and 5.7 plays per drive. The schedule classified the matchup as FBS V FBS.",
               "D2 full Favorite-minus-Underdog margin distribution centers at 15.1 points, with median 15, mode 17, and a central 80% interval from -3 to 33. The 14.5-point FanDuel hurdle leaves 50.9% on favorite cover, 0.0% on push, and 49.1% on underdog cover.",
-              "The selected FanDuel spread and price were captured at 6:47 PM ET on October 15, 2026, from the FanDuel market pull.",
-              "Apex calls Texas State -14.5 at -105."
+              "The selected FanDuel quote was captured at 6:47 PM ET on October 15, 2026, from the FanDuel market pull. This explanation makes no unsupported movement or reversal claim and uses no later or closing-market value.",
+              "The final call remains Texas State -14.5. The selection is determined by the D2 distribution at the actual spread; the disclosed team, personnel, pace, and missingness state supplies issue-time context without claiming unretained feature attribution or certainty."
             ]
           },
           {
@@ -233,9 +248,12 @@
             },
             "rationale": [
               "APEX selects OVER 69.5 with a 50.4% full-game totals probability at the captured FanDuel price of -115, an established WEAK rating from the locked TOTALS-V5-RECONCILED-POOL engine.",
+              "The sealed lagged team-state profile put Texas State at 2.74 points per drive for and 2.45 allowed across 44 prior drive-stat game samples, versus Colorado State at 2.50 for and 2.72 allowed across 41. Their scoring-drive rates were 44.7% and 39.0%; these are pregame state summaries, not isolated causal attributions.",
+              "The sealed player-state layer retained 21 known offensive players for Texas State and 19 for Colorado State; expected-prior quarterback state was present for Texas State and present for Colorado State. Unpublished state remains missing rather than being treated as confirmation.",
+              "Prior pace state carried Texas State at 12.3 drives and 6.4 plays per drive, and Colorado State at 12.3 drives and 5.7 plays per drive. The schedule classified the matchup as FBS V FBS.",
               "V5 complete discrete total-points distribution has mean 70.3, median 70, mode 69, standard deviation n/a, and a central 80% interval from 48 to 93. Against FanDuel 69.5, it assigns 50.4% to Over, 0.0% to push, and 49.6% to Under.",
-              "The selected FanDuel total and price were captured at 6:47 PM ET on October 15, 2026, from the FanDuel market pull.",
-              "Apex calls OVER 69.5 at -115."
+              "The selected FanDuel total and price were captured at 6:47 PM ET on October 15, 2026, from the FanDuel market pull. This explanation makes no unsupported path claim and uses no post-cutoff or closing quote.",
+              "The final call remains OVER 69.5. The selection follows the V5 probability mass around the posted total; the disclosed scoring, personnel, environment, and missingness state supplies issue-time context without claiming unretained feature attribution or certainty."
             ]
           }
         ]
