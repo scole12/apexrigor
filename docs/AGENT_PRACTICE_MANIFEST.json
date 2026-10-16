@@ -1,0 +1,16 @@
+{
+  "version": "2026-10-16.1",
+  "effective_date": "2026-10-16",
+  "canonical_repository": "scole12/apex2-nba",
+  "managed_files": {
+    "docs/AGENT_OPERATING_STANDARD.md": "3c98269b327ca2b270db6c7b980be57e36450ee57c996309521dfb8c0aa93acd",
+    "AGENTS.md": "69411f89210ccdfaa64295afbd1a133d0e37acba0e4cc288bdf65a739b084afa",
+    "CLAUDE.md": "336cc4fbf19beaada7ccf9986414fa91851a8d7a07dfb3ccbe800a69eed0ab49",
+    "CURSOR.md": "122cd718806641d990968aca46d6ea30bec5245c80dc370fe68234682993641e",
+    ".github/copilot-instructions.md": "ec9f10258fa6b070f113fa94a6fe6aa8574de435d0d9db6c03a2dddc86563d9a",
+    ".cursor/rules/apex-practice.mdc": "2d2ee1da347a594f68fc53cd607bf51446a756b4d129ea6e09ffae8ef42701fa",
+    "tools/check_agent_practice.py": "0affbebe8c7d8f5c736a84a83f04f6f0836c2dcb767d7e1792dbd4be00a0ddfc",
+    ".github/workflows/apex-agent-practice.yml": "736d721803f8151a3938ec808581fd05050363d452efa5d2663161cecabacfb8"
+  },
+  "removed_files": []
+}
