@@ -200,7 +200,7 @@
   },
   "event_id": "50feebc5-56d4-5634-889b-02e25bd19156",
   "fight_count": 13,
-  "generated_at_utc": "2026-10-17T18:15:41.386121Z",
+  "generated_at_utc": "2026-10-17T18:46:04.931622Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "GRADED_COMMERCIAL_AND_OR_SCIENTIFIC"
@@ -872,7 +872,7 @@
       "source": "PRODUCTION_COMMERCIAL_GRADES"
     }
   ],
-  "payload_sha256": "ddcaa13d885ed71d449e01de0aa818ce196498fc9d3910a4ed1ffb1341f834f5",
+  "payload_sha256": "fbe5dcf81aa93d627f350e2087c7c865366dbc0075f748cdec92eded95511823",
   "picks_published": false,
   "positions": [],
   "positions_sha256": null,
@@ -3593,7 +3593,7 @@
     "production_issuance_authorized": true,
     "release_binding": "AUTHORIZED_RELEASE_AWAITING_EVENT_ISSUANCE"
   },
-  "semantic_state_sha256": "5753a567e4d021be60d2743703821ccd7d6606fb8188c9d2c3dbacd10110fa5a",
+  "semantic_state_sha256": "335f521fda55dc4573bb4818b0948652bc3d60d98994ed45aad077c4015f91ec",
   "source_conflicts": [
     {
       "capture_basis": "LATEST_LIVE_EVENTS_CAPTURE",
@@ -3609,7 +3609,7 @@
         "Timothy Cuamba"
       ],
       "provider_selection_slots": {},
-      "source_capture_id": "e26ccc75-fb07-4993-97e4-23ebf1eac9fb",
+      "source_capture_id": "45b26745-e491-476c-b9d0-fc69d2e2c555",
       "status": "ONE_SIDE_MATCH_PROVIDER_CARD_CONFLICT"
     }
   ],
