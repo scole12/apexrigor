@@ -112,7 +112,8 @@
       if (!days.has(row.date)) days.set(row.date, []);
       days.get(row.date).push(row);
     }
-    const sortedDays = Array.from(days).sort(([a], [b]) => b.localeCompare(a));
+    // A day appears in the results only once it has graded results (an issued card waiting for its games is not a 0-0 day).
+    const sortedDays = Array.from(days).filter(([, selected]) => selected.some(row => row.result !== "PENDING")).sort(([a], [b]) => b.localeCompare(a));
     const daily = sortedDays.map(([day, selected]) => {
       const rec = record(selected);
       return [day, rec.label, rec.rate, `NHL ${rec.label}`];
