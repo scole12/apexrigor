@@ -1,17 +1,17 @@
 {
   "commercial_settlement_count": 51,
   "current_event_forecast": {
-    "code": "AWAITING_T2",
-    "detail": "No forecasts have been issued yet. Any published card will show the selection, captured sportsbook price, APEX probability, rating and full model-supported rationale.",
-    "headline": "Awaiting the T-2 forecast run"
+    "code": "FORECASTS_ISSUED",
+    "detail": "12 issued positions. Picks, sportsbook prices, probabilities, ratings and rationale below are read from the same sealed T-2 issuance.",
+    "headline": "Forecasts issued"
   },
-  "generated_at_utc": "2026-10-17T18:46:04.931622Z",
+  "generated_at_utc": "2026-10-17T19:05:41.343542Z",
   "graded_scientific_object_count": 37,
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "GRADED_COMMERCIAL_AND_OR_SCIENTIFIC"
   },
-  "issued_event_count": 5,
+  "issued_event_count": 6,
   "latest_event_results": [
     {
       "bout_id": "0dcad387-5358-5ce3-8601-b935fc75e95a",
@@ -677,8 +677,8 @@
       "source": "PRODUCTION_COMMERCIAL_GRADES"
     }
   ],
-  "payload_sha256": "39735cd104bd8ccc30341aa12fd611fce522d1ea1d2a30e8bb2e73ad979774f8",
-  "release_state": "AUTHORIZED_RELEASE_AWAITING_EVENT_ISSUANCE",
+  "payload_sha256": "0a0327812b507f1dfbc34db7dc67888cdf440e1f9ffffba1b1218dbe600960d0",
+  "release_state": "SEALED_RELEASE_AVAILABLE",
   "schema_version": "APEX_MMA_RESULTS_SUMMARY_V1",
   "status": "RESULTS_AVAILABLE"
 }
