@@ -536,6 +536,47 @@ def results_cumulative_snapshot(request: Request) -> str:
     return f"data/ncaaf/{request.slate_date}/results/NCAAF_CUMULATIVE_RESULTS.json"
 
 
+
+
+def ncaaf_today_position_issuance_ids(payload: dict[str, Any]) -> set[str] | None:
+    slate = payload.get("slate") or {}
+    if not slate.get("slate_date_et"):
+        return None
+    ids: set[str] = set()
+    for game in slate.get("games") or []:
+        for position in game.get("positions") or []:
+            issuance_id = position.get("issuance_id")
+            if not issuance_id:
+                return None
+            ids.add(str(issuance_id))
+    return ids
+
+
+def ncaaf_same_slate_issuance_identity(current: dict[str, Any], incoming: dict[str, Any]) -> bool:
+    current_slate = str((current.get("slate") or {}).get("slate_date_et") or "")
+    incoming_slate = str((incoming.get("slate") or {}).get("slate_date_et") or "")
+    if not current_slate or not incoming_slate or current_slate != incoming_slate:
+        return False
+    current_ids = ncaaf_today_position_issuance_ids(current)
+    incoming_ids = ncaaf_today_position_issuance_ids(incoming)
+    if current_ids is None or incoming_ids is None:
+        return False
+    return current_ids == incoming_ids
+
+
+def ncaaf_allow_same_date_display_revision(
+    request: Request, current: dict[str, Any], incoming: dict[str, Any]
+) -> bool:
+    if request.product != "DISPLAY":
+        return False
+    manifest_sha = str(request.manifest.get("public_rating_revision_sha256") or "")
+    if not re.fullmatch(r"[a-f0-9]{64}", manifest_sha):
+        return False
+    revision = incoming.get("public_rating_revision") or {}
+    if str(revision.get("sha256") or "") != manifest_sha:
+        return False
+    return ncaaf_same_slate_issuance_identity(current, incoming)
+
 def publication_skip_paths(request: Request, worktree: Path) -> set[str]:
     """Backlog recovery must preserve a later issued card and newer results."""
     if request.sport != "NCAAF" or request.product not in {"RESULTS", "DISPLAY"}:
@@ -548,8 +589,19 @@ def publication_skip_paths(request: Request, worktree: Path) -> set[str]:
         incoming_date = str(request.manifest.get("display_slate_date_et") or "")
         if not current_date or not incoming_date:
             raise RuntimeError("NCAA_RESULTS_DISPLAY_IDENTITY_ABSENT")
-        if current_date >= incoming_date:
+        if current_date > incoming_date:
             skipped.update({"data/ncaaf_today.json", "ncaaf/index.html"})
+        elif current_date == incoming_date:
+            incoming_picks = request.payload_root / "data/ncaaf_today.json"
+            if not incoming_picks.is_file():
+                skipped.update({"data/ncaaf_today.json", "ncaaf/index.html"})
+            else:
+                current_payload = load_json(current_picks)
+                incoming_payload = load_json(incoming_picks)
+                if not ncaaf_allow_same_date_display_revision(
+                    request, current_payload, incoming_payload
+                ):
+                    skipped.update({"data/ncaaf_today.json", "ncaaf/index.html"})
     if request.product == "DISPLAY":
         return skipped
     incoming = load_json(request.payload_root / "data/ncaaf_results_cumulative.json")
