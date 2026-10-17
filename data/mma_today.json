@@ -2,7 +2,7 @@
   "active_model": null,
   "active_model_sha256": null,
   "authenticity": {
-    "card_reconciliation_status": "PASS",
+    "card_reconciliation_status": "OPEN_PROVIDER_IDENTITY_CONFLICT",
     "no_authentic_fanduel_total_means_no_total_position": true,
     "no_fabricated_positions": true
   },
@@ -160,10 +160,10 @@
     "detail": "No forecasts have been issued yet. Any published card will show the selection, captured sportsbook price, APEX probability, rating and full model-supported rationale.",
     "headline": "Awaiting the T-2 forecast run"
   },
-  "generated_at_utc": "2026-10-16T20:15:41.432825Z",
+  "generated_at_utc": "2026-10-17T18:15:41.386121Z",
   "issuance_id": null,
   "issuance_status": null,
-  "payload_sha256": "a0ab54e84952a46d21b473f6be7a91c7559b7ebdaa90c79824ab48f18df382cc",
+  "payload_sha256": "605a9ffcf6cbe25007aeae42b9eae9b4246d513517f1f360ea53eea11a3dc890",
   "picks_published": false,
   "positions": [],
   "positions_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
@@ -198,8 +198,8 @@
   },
   "t3": {
     "anchor": "EARLIEST_PUBLISHED_SCHEDULED_BOUT_MINUS_3_HOURS",
-    "bout_count": null,
+    "bout_count": 13,
     "scheduled_utc": "2026-10-17T18:00:00Z",
-    "status": "SCHEDULED"
+    "status": "CANONICAL_SNAPSHOT_COMPLETE"
   }
 }
