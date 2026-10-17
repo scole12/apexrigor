@@ -15,12 +15,12 @@ test('separates versions, keeps original tier and uses revised public tier', asy
   const html=await render([base,{...base,game_id:'game000002',tier:'MODERATE',as_issued_tier:'MODERATE',tier_policy_sha256:'oldhash',rating_version:'ENGINE-V2',result:'L'}]);
   assert.match(html,/SLATE-QUARTILES-V3/); assert.match(html,/ENGINE-V2/);
   const v3=html.slice(html.indexOf('SLATE-QUARTILES-V3'),html.indexOf('ENGINE-V2'));
-  assert.match(v3,/Elite<\/td><td class="mono">1-0-0P/);
-  assert.match(html,/>ELITE<\/td><td class="mono">WEAK<\/td><td class="mono">SLATE-QUARTILES-V3/);
+  assert.match(v3,/Elite<\/td><td[^>]*>1-0-0P/);
+  assert.match(html,/>ELITE<\/td><td[^>]*>WEAK<\/td><td[^>]*>SLATE-QUARTILES-V3/);
 });
 test('preserves push, excludes post-kickoff records from tier results, retains archive rows', async()=>{
   const html=await render([{...base,result:'PUSH'},{...base,result:'EXCLUDED_POST_KICKOFF',daily_record_eligible:false}]);
-  assert.match(html,/Elite<\/td><td class="mono">0-0-1P/);
+  assert.match(html,/Elite<\/td><td[^>]*>0-0-1P/);
   assert.match(html,/EXCLUDED_POST_KICKOFF/); assert.match(html,/2 POSITIONS/);
   assert.match(html,/data-apex-season-record="2-1-1P"/);
 });
@@ -37,5 +37,12 @@ test('escapes source labels and keeps all four tiers even with zero observations
 
 test('shows pending tier population before results arrive', async()=>{
   const html=await render([{...base,result:'PENDING'}]);
-  assert.match(html,/Elite<\/td><td class="mono">0-0-0P<\/td><td class="mono">—<\/td><td class="mono">1<\/td>/);
+  assert.match(html,/Elite<\/td><td[^>]*>0-0-0P<\/td><td[^>]*>—<\/td><td[^>]*>1<\/td>/);
+});
+
+test('mobile cells carry their actual column label', async()=>{
+  const html=await render([base]);
+  assert.match(html,/data-label="Public Tier">ELITE/);
+  assert.match(html,/data-label="Original Tier">WEAK/);
+  assert.match(html,/data-label="Pending">0/);
 });
