@@ -6,7 +6,7 @@
   const record = r => `${r.W}-${r.L}-${r.PUSH}P`;
   const rate = r => r.W + r.L ? `${(100 * r.W / (r.W + r.L)).toFixed(1)}%` : "—";
   const dateLabel = value => new Intl.DateTimeFormat("en-US", {timeZone:"UTC", year:"numeric", month:"long", day:"numeric"}).format(new Date(`${value}T00:00:00Z`));
-  const table = (headers, rows) => `<table class="results"><thead><tr>${headers.map(h => `<th>${esc(h)}</th>`).join("")}</tr></thead><tbody>${rows.map(row => `<tr>${row.map(cell => `<td class="mono">${esc(cell)}</td>`).join("")}</tr>`).join("")}</tbody></table>`;
+  const table = (headers, rows) => `<table class="results"><thead><tr>${headers.map(h => `<th>${esc(h)}</th>`).join("")}</tr></thead><tbody>${rows.map(row => `<tr>${row.map((cell, index) => `<td class="mono" data-label="${esc(headers[index])}">${esc(cell)}</td>`).join("")}</tr>`).join("")}</tbody></table>`;
   const section = (title, meta = "") => `<div class="section-head"><div class="title">${esc(title)}</div><div class="meta mono">${esc(meta)}</div></div>`;
   const tierTable = groups => table(["Tier", "Record", "Win Rate", "Pending", "Void"], ["WEAK", "MODERATE", "STRONG", "ELITE"].map(tier => {
     const r = groups?.[tier] || emptyRecord();
