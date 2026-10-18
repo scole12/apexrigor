@@ -5,3 +5,4 @@ Agent workflow is governed solely by AGENT_OPERATING_STANDARD.md.
 - Use the existing build/test/deployment commands after verifying they exist at the target commit. Preserve scheduled operations and delivery contracts.
 - Report win-loss record and win percentage; no betting units or stake sizing. No moneyline modeling or output.
 - Never print secrets or change Scott's access. No extra timers, schedulers or databases for this instruction migration.
+- The public results and picks pages keep their approved presentation. Data, ratings and grading work never changes page layout, sections, tables or columns. A layout change needs Scott's explicit written request for that page; the approved NCAA results layout is `tests/fixtures/ncaaf_results_layout.reference.json` and its check in `tests/ncaaf_results_layout.test.cjs`, which agents do not edit or replace without that request.
