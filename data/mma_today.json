@@ -140,10 +140,10 @@
     "detail": "No forecasts have been issued yet. Any published card will show the selection, captured sportsbook price, APEX probability, rating and full model-supported rationale.",
     "headline": "Awaiting the T-2 forecast run"
   },
-  "generated_at_utc": "2026-10-18T11:00:29.158569Z",
+  "generated_at_utc": "2026-10-18T11:15:45.277128Z",
   "issuance_id": null,
   "issuance_status": null,
-  "payload_sha256": "102a15e43fb9cb5c0110f39dc0391973c7eec20a9794268ca02260930362dda0",
+  "payload_sha256": "246ec48b38d77fb5c798a1c8b02d61c37553e9fa125c84232475985038757a8b",
   "picks_published": false,
   "positions": [],
   "positions_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",

@@ -7,31 +7,31 @@
     "mma",
     "ncaaf"
   ],
-  "latest_graded_date": "2026-10-10",
-  "latest_graded_date_display": "October 10, 2026",
-  "daily_archive_count": 135,
-  "overall_wins": 2147,
-  "overall_losses": 1954,
+  "latest_graded_date": "2026-10-17",
+  "latest_graded_date_display": "October 17, 2026",
+  "daily_archive_count": 136,
+  "overall_wins": 2153,
+  "overall_losses": 1960,
   "overall_pushes": 26,
-  "overall_win_rate": 52.4,
-  "overall_win_rate_display": "52.4%",
-  "positions_graded": 4146,
+  "overall_win_rate": 52.3,
+  "overall_win_rate_display": "52.3%",
+  "positions_graded": 4158,
   "overall": {
-    "wins": 2147,
-    "losses": 1954,
+    "wins": 2153,
+    "losses": 1960,
     "pushes": 26,
     "voids": 13,
     "pending": 6,
     "other": 0,
-    "win_rate": 52.4,
-    "win_rate_display": "52.4%",
-    "positions_tracked": 4146,
-    "positions_settled": 4127,
-    "positions_graded": 4146,
-    "decided_n": 4101,
-    "settled_n": 4127,
-    "tracked_n": 4146,
-    "slates_graded": 135,
+    "win_rate": 52.3,
+    "win_rate_display": "52.3%",
+    "positions_tracked": 4158,
+    "positions_settled": 4139,
+    "positions_graded": 4158,
+    "decided_n": 4113,
+    "settled_n": 4139,
+    "tracked_n": 4158,
+    "slates_graded": 136,
     "f5_spread": "940-871-4P",
     "f5_total": "928-863-22P",
     "f5_spread_raw": {
@@ -48,8 +48,8 @@
       "VOID": 6,
       "PENDING": 3
     },
-    "latest_graded_date": "2026-10-10",
-    "latest_graded_date_display": "October 10, 2026"
+    "latest_graded_date": "2026-10-17",
+    "latest_graded_date_display": "October 17, 2026"
   },
   "sports": {
     "mlb": {
@@ -154,40 +154,40 @@
       "props_record": "0W-0L-0P"
     },
     "mma": {
-      "wins": 35,
-      "losses": 16,
+      "wins": 41,
+      "losses": 22,
       "pushes": 0,
       "voids": 0,
       "pending": 0,
       "other": 0,
-      "win_rate": 68.6,
-      "win_rate_display": "68.6%",
-      "positions_tracked": 51,
-      "positions_graded": 51,
-      "positions_settled": 51,
-      "decided_n": 51,
-      "settled_n": 51,
-      "tracked_n": 51,
-      "slates_graded": 5,
-      "graded_slate_count": 5,
-      "latest_graded_date": "2026-10-10",
-      "latest_graded_date_display": "October 10, 2026",
-      "winner_record": "35W-16L-0P",
+      "win_rate": 65.1,
+      "win_rate_display": "65.1%",
+      "positions_tracked": 63,
+      "positions_graded": 63,
+      "positions_settled": 63,
+      "decided_n": 63,
+      "settled_n": 63,
+      "tracked_n": 63,
+      "slates_graded": 6,
+      "graded_slate_count": 6,
+      "latest_graded_date": "2026-10-17",
+      "latest_graded_date_display": "October 17, 2026",
+      "winner_record": "41W-22L-0P",
       "source_scope": "PRODUCTION_COMMERCIAL_WINNER_H2H",
       "source_files": [
         {
           "path": "data/mma_results_archive.json",
-          "sha256": "86839b05adf952d5216b23651f40aca7ef2dfc6d6bdd53fbf69cb6a3c51b1668",
+          "sha256": "3915c604cc8461f49032135c17a9ef6fd42736d69d8594b5de2dd55d28030f51",
           "field": "events[].latest_results"
         },
         {
           "path": "data/mma_results_summary.json",
-          "sha256": "de43953b04ca6077179f9c383ab374dc8d301227d187005a99872ae40b27cfca",
+          "sha256": "9c267907019348e0434c2b10aa0d3cc4b1d899ddf94c3a0d5814c6dbabc896c1",
           "field": "latest_event_results"
         }
       ],
-      "source_row_count": 51,
-      "duplicate_rows_ignored": 51,
+      "source_row_count": 63,
+      "duplicate_rows_ignored": 63,
       "deduplication_key": "issuance_id + bout_id + WINNER"
     },
     "ncaaf": {
@@ -252,12 +252,12 @@
       "mma": [
         {
           "path": "data/mma_results_archive.json",
-          "sha256": "86839b05adf952d5216b23651f40aca7ef2dfc6d6bdd53fbf69cb6a3c51b1668",
+          "sha256": "3915c604cc8461f49032135c17a9ef6fd42736d69d8594b5de2dd55d28030f51",
           "field": "events[].latest_results"
         },
         {
           "path": "data/mma_results_summary.json",
-          "sha256": "de43953b04ca6077179f9c383ab374dc8d301227d187005a99872ae40b27cfca",
+          "sha256": "9c267907019348e0434c2b10aa0d3cc4b1d899ddf94c3a0d5814c6dbabc896c1",
           "field": "latest_event_results"
         }
       ],
