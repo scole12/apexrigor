@@ -25,6 +25,8 @@ jobs:
           if [ -f /opt/apex_ncaaf/operations/ncaaf_results_email.py ]; then python3 tests/test_ncaaf_email_reconciliation.py; else echo 'skipped: NCAAF email module is on the droplet only'; fi
           python3 tests/test_ncaaf_publisher_isolation.py
           python3 tests/test_ncaaf_results_backlog.py
+      - name: Verify approved NCAA results layout
+        run: node tests/ncaaf_results_layout.test.cjs
       - name: Build and audit the Vercel output
         run: python3 bin/build_vercel_output.py
       - name: Verify shared NCAA record scheduling
