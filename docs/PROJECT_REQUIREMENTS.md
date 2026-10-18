@@ -14,3 +14,5 @@ Agent workflow is governed solely by AGENT_OPERATING_STANDARD.md.
 - Verify the affected behavior and required existing checks. Add or repeat testing only for a concrete remaining risk; do not make optional audits or tooling improvements prerequisites for delivering a working repair.
 - Continue authorized steps without returning routine implementation choices to Scott. Report a real blocker promptly with the exact failure and necessary next step.
 - Finish with the changed files/commit, direct proof of the requested outcome and any actual unresolved limitation. Once the scoped outcome is verified, stop; no unsolicited follow-on work.
+
+- Before NCAA results changes, read `docs/incidents/2026-10-17-ncaaf-results-presentation.md`. Preserve its corrective requirements; attach original task/session evidence before assigning responsibility for that incident. Document subsequent verified incidents with their cause, correction and remaining uncertainty.
