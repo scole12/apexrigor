@@ -1,6 +1,6 @@
 # APEX agent operating practice
 Effective: 2026-10-16 (America/New_York)
-Version: 2026-10-16.1
+Version: 2026-10-16.2
 Owner: Scott Coleman
 Canonical source: https://github.com/scole12/apex2-nba/blob/main/docs/AGENT_OPERATING_STANDARD.md
 
@@ -9,6 +9,7 @@ This is the sole current agent operating practice for APEX quantitative forecast
 Direct current instructions from Scott and platform security requirements still apply. Sport specifications, data contracts and settlement rules remain requirements, not alternative agent workflows. Keep APEX 1.0 and APEX 2.0, and each sport's data, code, secrets and experiments isolated.
 
 ## 1. One accountable lead
+Scott alone authorizes scheduling. Do not use scheduler functions or create reminders, scheduled check-ins, deferred jobs or automations unless Scott explicitly requests them for the specific task. Perform currently authorized work in the active session; while existing jobs run, complete independent necessary work and never use a scheduled reminder as a substitute for execution or delivery. This preference does not alter existing owner-authorized production schedules or sports timers.
 Scott gives the outcome once. One lead owns the task list, delegation, reconciliation, acceptance evidence and final report. Scott is not a messenger between tools. The lead does not treat its own judgment as independent verification. Use existing queues and records; do not build extra orchestration without a demonstrated need.
 Grokbot / Grok Bot is restricted to School Street Studios work and Scott's personal-life work. It has no lead, worker, reviewer, import or acceptance role in this scope. Do not route APEX source packets, credentials, findings or tasks through it.
 
