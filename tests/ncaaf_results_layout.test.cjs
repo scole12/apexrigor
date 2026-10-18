@@ -3,12 +3,46 @@ const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
 const vm = require("node:vm");
+const os = require("node:os");
+const {execFileSync} = require("node:child_process");
 const {createHash} = require("node:crypto");
 const base = path.join(__dirname, "..");
 const reference = JSON.parse(fs.readFileSync(path.join(__dirname, "fixtures/ncaaf_results_layout.reference.json"), "utf8"));
 const source = fs.readFileSync(path.join(base, "ncaaf/results/render.js"), "utf8");
-for (const [file, expected] of [["render.js", reference.render_js_sha256], ["index.html", reference.index_html_sha256]]) {
-  assert.equal(createHash("sha256").update(fs.readFileSync(path.join(base, "ncaaf/results", file))).digest("hex"), expected, `${file} must match the approved layout`);
+const normalizeIndex = html => html.replace(/(<aside class="apex-site-record"[\s\S]*?<\/aside>)/, aside => aside.replace(/<strong class="mono">[^<]*<\/strong>/g, '<strong class="mono">#</strong>'));
+const checkLayout = directory => {
+  const indexHtml = fs.readFileSync(path.join(directory, "index.html"), "utf8");
+  assert.equal(createHash("sha256").update(fs.readFileSync(path.join(directory, "render.js"))).digest("hex"), reference.render_js_sha256, "render.js must match the approved layout");
+  assert.equal(createHash("sha256").update(normalizeIndex(indexHtml)).digest("hex"), reference.index_html_normalized_sha256, "index.html must match the approved layout after lifetime-record normalization");
+};
+const resultsDirectory = path.join(base, "ncaaf/results");
+checkLayout(resultsDirectory);
+const temporary = fs.mkdtempSync(path.join(os.tmpdir(), "ncaaf-results-layout-"));
+try {
+  const indexHtml = fs.readFileSync(path.join(resultsDirectory, "index.html"), "utf8");
+  let replacements = 0;
+  const changedIndex = indexHtml.replace(/(<aside class="apex-site-record"[\s\S]*?<\/aside>)/, aside => aside.replace(/<strong class="mono">[^<]*<\/strong>/g, () => `<strong class="mono">${replacements++ === 0 ? "9,999-9,999-99P" : "99.9%"}</strong>`));
+  assert.equal(replacements, 2, "both lifetime-record values must be changed for the self-check");
+  fs.copyFileSync(path.join(resultsDirectory, "render.js"), path.join(temporary, "render.js"));
+  fs.writeFileSync(path.join(temporary, "index.html"), changedIndex);
+  checkLayout(temporary);
+  console.log("PASS: lifetime-record mutation 9,999-9,999-99P / 99.9% still passes layout checks.");
+  // Actions uses a shallow checkout; obtain the fixed historical object if absent.
+  const historicalCommit = "82a4653956291b30b0bbf72ca24239a8aa358481";
+  try {
+    execFileSync("git", ["cat-file", "-e", `${historicalCommit}^{commit}`], {cwd:base, stdio:"pipe"});
+  } catch {
+    execFileSync("git", ["fetch", "--depth=1", "origin", historicalCommit], {cwd:base, stdio:"pipe"});
+  }
+  for (const file of ["render.js", "index.html"]) {
+    fs.writeFileSync(path.join(temporary, file), execFileSync("git", ["show", `${historicalCommit}:ncaaf/results/${file}`], {cwd:base}));
+    // Keep the other file current so each historical regression is rejected independently.
+    assert.throws(() => checkLayout(temporary), {code:"ERR_ASSERTION"}, `${file} from Oct 17 must fail`);
+    fs.copyFileSync(path.join(resultsDirectory, file), path.join(temporary, file));
+  }
+  console.log("PASS: Oct 17 render.js and index.html each fail layout checks (assert.throws).");
+} finally {
+  fs.rmSync(temporary, {recursive:true, force:true});
 }
 const occurrences = (text, value) => text.split(value).length - 1;
 for (const section of reference.required_sections) assert.equal(occurrences(source, section), 1, section);
