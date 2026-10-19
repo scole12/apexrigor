@@ -6,9 +6,11 @@ import subprocess
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/'bin'))
 from _apex_site_record import record_strip
+import build_nba_public_payload as builder
 
 class NBAAudit(unittest.TestCase):
     def test_built_positive_and_tampered_negative(self):
@@ -20,6 +22,24 @@ class NBAAudit(unittest.TestCase):
                 return subprocess.run([sys.executable,str(ROOT/'bin/audit_public_site.py'),'--root',str(root)],capture_output=True,text=True)
             result=audit()
             self.assertEqual(result.returncode,0,result.stdout+result.stderr)
+            today_path = root/'data/nba_today.json'
+            today = json.loads(today_path.read_text())
+            for game in today['games']:
+                game['tip'] = '2026-10-20T23:30:00+00:00'
+            today['release_at'] = '2026-10-20T13:30:00-04:00'
+            today_path.write_text(json.dumps(today))
+            with patch.object(builder, 'ROOT', root):
+                builder.build()
+            result = audit()
+            self.assertEqual(result.returncode, 0, result.stdout+result.stderr)
+            about_path = root/'nba/about/index.html'
+            about = about_path.read_text(encoding='utf-8')
+            self.assertIn('1:30 PM ET release', about)
+            about_path.write_text(about.replace('1:30 PM ET release', '9:00 AM ET release'), encoding='utf-8')
+            result = audit()
+            self.assertNotEqual(result.returncode, 0)
+            self.assertIn('computed release time', result.stdout)
+            about_path.write_text(about, encoding='utf-8')
             strip=record_strip(json.loads((root/'data/apex_results_summary.json').read_text()))
             for route in ('nba/index.html','nba/results/index.html','nba/about/index.html','nhl/index.html'):
                 self.assertIn(strip,(root/route).read_text(encoding='utf-8'))
