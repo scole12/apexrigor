@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Fail closed on the APEX five-sport presentation boundary, assets, and RUM drift."""
+"""Fail closed on the APEX six-sport presentation boundary, assets, and RUM drift."""
 
 from __future__ import annotations
 
@@ -17,7 +17,7 @@ from _apex_site_record import record_strip
 DEFAULT_ROOT = Path(__file__).resolve().parents[1]
 BEACON_URL = "https://static.cloudflareinsights.com/beacon.min.js"
 VERCEL_INSIGHTS_SCRIPT = "/_vercel/insights/script.js"
-SPORT_LABELS = ("MLB", "NCAA FOOTBALL", "MMA / UFC", "NFL", "NHL")
+SPORT_LABELS = ("MLB", "NCAA FOOTBALL", "MMA / UFC", "NFL", "NHL", "NBA")
 SPORT_ITEM_RE = re.compile(
     r'<(?P<tag>a|span)\b[^>]*>\s*(?P<label>[^<]+?)\s*</(?P=tag)>',
     re.DOTALL,
@@ -61,6 +61,9 @@ def main() -> int:
         "/nhl": root / "nhl" / "index.html",
         "/nhl/results": root / "nhl" / "results" / "index.html",
         "/nhl/about": root / "nhl" / "about" / "index.html",
+        "/nba": root / "nba" / "index.html",
+        "/nba/results": root / "nba" / "results" / "index.html",
+        "/nba/about": root / "nba" / "about" / "index.html",
     }
     nfl_routes = {
         "/nfl": root / "nfl" / "index.html",
@@ -145,6 +148,10 @@ def main() -> int:
                 )
             if 'href="/nhl' not in switcher:
                 errors.append(f"{route} does not link the NHL presentation route")
+            section = 'results' if route.endswith('/results') or route == '/results' else 'about' if route.endswith('/about') else ''
+            nba_target = '/nba' + ('/' + section if section else '')
+            if f'href="{nba_target}"' not in switcher:
+                errors.append(f"{route} missing section-matched NBA anchor")
             if nfl_route_established:
                 if "sport-unavailable" in switcher or 'href="/nfl' not in switcher:
                     errors.append(f"{route} does not link the established NFL presentation route")
@@ -167,9 +174,16 @@ def main() -> int:
         public_soccer_label_count += len(
             re.findall(r"(?:href=\"[^\"]*soccer|\bsoccer\b)", text, re.IGNORECASE)
         )
+        nba_boundary_text = text
+        if switcher_count == 1:
+            permitted_switcher = re.sub(
+                r'<a\b[^>]*href="/nba(?:/results|/about)?"[^>]*>\s*NBA\s*</a>',
+                '', switcher, count=1,
+            )
+            nba_boundary_text = text.replace(switcher, permitted_switcher, 1)
         public_other_sport_label_counts["nba"] += len(
-            re.findall(r"\bNBA\b", text, re.IGNORECASE)
-        )
+            re.findall(r"\bNBA\b", nba_boundary_text, re.IGNORECASE)
+        ) if not route.startswith('/nba') else 0
         public_other_sport_label_counts["mls"] += len(
             re.findall(r"\bMLS\b", text, re.IGNORECASE)
         )
@@ -202,6 +216,60 @@ def main() -> int:
     for path in hidden_route_paths:
         if path.exists():
             errors.append(f"unlaunched sport route present in output: {path}")
+
+    nba_picks = route_text.get('/nba', '')
+    nba_results = route_text.get('/nba/results', '')
+    nba_about = route_text.get('/nba/about', '')
+    for route in ('/nba', '/nba/results', '/nba/about'):
+        text = route_text.get(route, '')
+        for marker in ('aria-label="NBA sections"', 'href="/nba"', 'href="/nba/results"', 'href="/nba/about"'):
+            if marker not in text:
+                errors.append(f'{route} missing NBA navigation: {marker}')
+    for marker in ("TODAY'S CARD", 'ATS', 'TOTALS', 'SCHEDULE UPDATED'):
+        if marker not in nba_picks:
+            errors.append(f'/nba missing {marker}')
+    try:
+        nba_today = json.loads((root / 'data/nba_today.json').read_text())
+        if nba_picks.count('<article class="game-module"') != len(nba_today['games']):
+            errors.append('NBA scheduled game card count mismatch')
+        for marker in ('Common release', 'FIRST tip', 'planned games', 'planned positions', 'AWAITING T-6'):
+            if marker in nba_picks:
+                errors.append(f'/nba obsolete release text: {marker}')
+        for position in nba_today['positions']:
+            if any(str(position.get(k, '')).startswith('baseline:') for k in ('engine', 'engine_version')):
+                errors.append('NBA baseline prediction cannot be public')
+        if nba_today['status'] != 'ISSUED':
+            if nba_today['positions'] or 'UNISSUED — AWAITING 9:00 AM RELEASE' not in nba_picks:
+                errors.append('NBA unissued state mismatch')
+        elif not nba_today['positions']:
+            errors.append('NBA issued payload has no positions')
+        else:
+            for market in ('ATS', 'TOTALS'):
+                if f'<div class="market-label">{market}</div>' not in nba_picks:
+                    errors.append(f'/nba missing issued {market} panel')
+            for marker in ('Probability:', 'FanDuel line:', 'Price:', 'tier-badge', 'rationale-copy'):
+                if marker not in nba_picks:
+                    errors.append(f'/nba missing as-issued field {marker}')
+        nba_renderer = (root / 'nba/results/render.js').read_text(encoding='utf-8')
+        for marker in ('ATS', 'TOTALS', 'AS-ISSUED TIER PERFORMANCE', 'DAILY ARCHIVE', 'SLATE DETAIL'):
+            if marker not in nba_renderer:
+                errors.append(f'/nba/results missing {marker}')
+        nba_archive = json.loads((root / 'data/nba_results_archive.json').read_text())
+        if 'id="results-root"' not in nba_results or '/nba/results/render.js' not in nba_results:
+            errors.append('/nba/results missing NHL results shell')
+        if not nba_archive['slates'] and ('UNISSUED — No NBA picks have been issued.' not in nba_renderer or '0.0%' in nba_renderer):
+            errors.append('NBA empty results must match NHL unissued state')
+    except (OSError, ValueError, KeyError) as exc:
+        errors.append(f'invalid NBA public payload: {exc}')
+    for marker in ('Two pregame engines', 'bet-all', 'No moneyline positions', 'sealed NBA picks and their grades', '9:00 AM ET'):
+        if marker not in nba_about:
+            errors.append(f'/nba/about missing {marker}')
+    if '55%' in nba_about:
+        errors.append('/nba/about contains unsupported 55% claim')
+    nba_about_main = re.search(r'<main\b[^>]*>(.*?)</main>', nba_about, re.S)
+    for marker in ('availability reports', 'manifest', 'timestamp-aligned comparators', 'residual MAE', 'log-loss', 'calibration', 'Brier', 'validation status'):
+        if nba_about_main and marker in nba_about_main.group(1):
+            errors.append(f'/nba/about obsolete technical copy: {marker}')
 
     about = route_text.get("/about", "")
     for model_id in (
