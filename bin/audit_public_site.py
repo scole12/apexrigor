@@ -13,6 +13,7 @@ from pathlib import Path
 
 from _mma_forecast_contract import validated_card, validated_positions
 from _apex_site_record import record_strip
+from build_nba_public_payload import release_label, release_time
 
 DEFAULT_ROOT = Path(__file__).resolve().parents[1]
 BEACON_URL = "https://static.cloudflareinsights.com/beacon.min.js"
@@ -230,6 +231,12 @@ def main() -> int:
             errors.append(f'/nba missing {marker}')
     try:
         nba_today = json.loads((root / 'data/nba_today.json').read_text())
+        nba_release = release_label(nba_today['games'])
+        expected_release = release_time(nba_today['games'])
+        if nba_today.get('release_at') != (expected_release.isoformat() if expected_release else None):
+            errors.append('NBA release_at must be first tip minus six hours')
+        if nba_release + ' ET release' not in nba_about:
+            errors.append('/nba/about missing computed release time')
         if nba_picks.count('<article class="game-module"') != len(nba_today['games']):
             errors.append('NBA scheduled game card count mismatch')
         for marker in ('Common release', 'FIRST tip', 'planned games', 'planned positions', 'AWAITING T-6'):
@@ -239,7 +246,7 @@ def main() -> int:
             if any(str(position.get(k, '')).startswith('baseline:') for k in ('engine', 'engine_version')):
                 errors.append('NBA baseline prediction cannot be public')
         if nba_today['status'] != 'ISSUED':
-            if nba_today['positions'] or 'UNISSUED — AWAITING 9:00 AM RELEASE' not in nba_picks:
+            if nba_today['positions'] or (nba_today['games'] and 'UNISSUED — AWAITING ' + nba_release + ' RELEASE' not in nba_picks):
                 errors.append('NBA unissued state mismatch')
         elif not nba_today['positions']:
             errors.append('NBA issued payload has no positions')
@@ -261,7 +268,7 @@ def main() -> int:
             errors.append('NBA empty results must match NHL unissued state')
     except (OSError, ValueError, KeyError) as exc:
         errors.append(f'invalid NBA public payload: {exc}')
-    for marker in ('Two pregame engines', 'bet-all', 'No moneyline positions', 'sealed NBA picks and their grades', '9:00 AM ET'):
+    for marker in ('Two pregame engines', 'bet-all', 'No moneyline positions', 'sealed NBA picks and their grades', 'six hours before the day’s first tip'):
         if marker not in nba_about:
             errors.append(f'/nba/about missing {marker}')
     if '55%' in nba_about:

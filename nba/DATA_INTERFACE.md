@@ -2,7 +2,7 @@
 
 `python bin/build_nba_public_payload.py --date 2026-10-20` refreshes the three `data/nba_*.json` files from Supabase with `APEX2_SUPABASE_READER_DB_URL`. The Windows user environment is supported when the launching shell predates the variable. The connection explicitly uses a read-only repeatable-read transaction and a statement timeout. Credentials and connection errors are never printed. Without `--date`, builds render the saved public payload; deployment does not require database credentials.
 
-Schedule facts come from `core.games` joined to `core.teams`, using the Eastern tip date (game_date if tip is unavailable). Games retain stored IDs, teams, season type and tip times. Every scheduled game has a card. One 9:00 AM Eastern release covers the entire slate; the website does not schedule or issue picks.
+Schedule facts come from `core.games` joined to `core.teams`, using the Eastern tip date (game_date if tip is unavailable). Games retain stored IDs, teams, season type and tip times. Every scheduled game has a card. One release covers the entire slate at the earliest scheduled tip minus six hours, displayed in Eastern time (3:00 PM tip → 9:00 AM; 7:30 PM tip → 1:30 PM). With no known tips, the release time is unconfirmed. The website does not schedule or issue picks.
 
 Only sealed `ops.predictions` in the current NBA season through the requested date are read. Engines or versions beginning `baseline:` are excluded. `ops.grades` supplies the latest unsuperseded grade per prediction; pending picks remain in the archive. No outcomes, engines, model calculations, tier thresholds or grading logic are executed. Existing engine/database/scheduler operations are untouched.
 

@@ -18,6 +18,17 @@ ROOT = Path(__file__).resolve().parents[1]
 ET = ZoneInfo('America/New_York')
 
 
+def release_time(games):
+    tips = [datetime.fromisoformat(g['tip']) if isinstance(g['tip'], str) else g['tip']
+            for g in games if g.get('tip')]
+    return (min(tips).astimezone(timezone.utc) - timedelta(hours=6)).astimezone(ET) if tips else None
+
+
+def release_label(games):
+    release = release_time(games)
+    return release.strftime('%I:%M %p').lstrip('0') if release else 'TIME TO BE CONFIRMED'
+
+
 def reader_url():
     name = 'APEX2_SUPABASE_READER_DB_URL'
     url = os.environ.get(name)
@@ -85,7 +96,8 @@ def refresh(day):
     stamp = datetime.now(timezone.utc).isoformat()
     today = dict(sport='NBA', schema_version='APEX_NBA_PUBLIC_V1',
                  status='ISSUED' if current else 'UNISSUED', slate_date=day.isoformat(),
-                 release_at=datetime.combine(day, time(9), ET).isoformat(),
+                 release_at=(release_time([{'tip': g['scheduled_tip']} for g in games]).isoformat()
+                             if any(g['scheduled_tip'] for g in games) else None),
                  schedule_updated_at=stamp, scheduled_games=len(games),
                  games=[dict(game_id=str(g['game_id']), away=g['away'], home=g['home'],
                              tip=g['scheduled_tip'].isoformat() if g['scheduled_tip'] else None,
@@ -148,6 +160,7 @@ def build():
         cards.setdefault(key, [p.get('matchup'), []])[1].append('<section class="market-panel"><div class="market-label">' + esc(p['market']) + '</div><div class="market-panel-head"><span class="pick-headline">' + esc(p.get('selection')) + ' · ' + esc(p.get('role')) + '</span><span class="tier-badge">' + esc(p.get('tier')) + '</span></div><p>Prediction: ' + esc(p.get('prediction')) + ' · Probability: ' + probability + probability_label + '</p><p>FanDuel line: ' + esc(p.get('line')) + line_label + ' · Price: ' + esc(p.get('price')) + '</p><div class="rationale-copy"><p>' + esc(p.get('rationale')) + '</p></div></section>')
     day = date.fromisoformat(today['slate_date'])
     games = today.get('games', [])
+    release = release_label(games)
     label = day.strftime('%A, %B ') + str(day.day) + day.strftime(', %Y')
     picks = '<section class="nhl-board" aria-label="NBA today card"><div class="section-head picks-board-head"><div class="title" id="slate-title">TODAY\'S CARD</div><div class="meta mono" id="slate-meta">' + label.upper() + ' · ' + str(len(games)) + ' GAMES · ' + str(len(positions)) + ' POSITIONS · ATS · TOTALS</div></div><div class="picks-board" id="games" aria-live="polite">'
     # Fixtures may supply sealed positions without schedule metadata; real refreshes
@@ -164,7 +177,7 @@ def build():
         if key in cards:
             picks += ''.join(cards[key][1])
         else:
-            picks += '<section class="market-panel" data-position-state="UNISSUED"><div class="market-label">STATUS</div><div class="market-panel-head"><span class="pick-headline">UNISSUED — AWAITING 9:00 AM RELEASE</span><span class="tier-badge tier-badge--moderate">SCHEDULED</span></div><div class="rationale-copy"><p>Listed from the official schedule. No sealed FanDuel-issued APEX positions yet.</p></div></section>'
+            picks += '<section class="market-panel" data-position-state="UNISSUED"><div class="market-label">STATUS</div><div class="market-panel-head"><span class="pick-headline">UNISSUED — AWAITING ' + release + ' RELEASE</span><span class="tier-badge tier-badge--moderate">SCHEDULED</span></div><div class="rationale-copy"><p>Listed from the official schedule. No sealed FanDuel-issued APEX positions yet.</p></div></section>'
         picks += '</div></article>'
     updated = datetime.fromisoformat(today['schedule_updated_at']).astimezone(ET).strftime('%I:%M %p').lstrip('0')
     picks += '</div><p class="nhl-updated mono" id="nba-refresh-status">SCHEDULE UPDATED ' + updated + ' ET</p></section>'
@@ -173,7 +186,7 @@ def build():
         raise ValueError('duplicate archived position_id')
     if any(p['market'] not in ('ATS', 'TOTALS') for p in rows):
         raise ValueError('invalid archived market')
-    about = '<div class="section-head"><div class="title">APEX NBA</div></div><p>Two pregame engines: full-game ATS and full-game totals.</p><p>Both use a bet-all policy: one spread side and one Over or Under for every eligible game with captured FanDuel markets. No moneyline positions.</p><p>All games share one 9:00 AM ET release. The issued card keeps the original picks, lines, prices and confidence tiers.</p><p>The all-sports banner shows the Total Apex record. NBA results use only sealed NBA picks and their grades, with tiers kept as issued.</p>'
+    about = '<div class="section-head"><div class="title">APEX NBA</div></div><p>Two pregame engines: full-game ATS and full-game totals.</p><p>Both use a bet-all policy: one spread side and one Over or Under for every eligible game with captured FanDuel markets. No moneyline positions.</p><p>All games share one ' + release + ' ET release, six hours before the day’s first tip. The issued card keeps the original picks, lines, prices and confidence tiers.</p><p>The all-sports banner shows the Total Apex record. NBA results use only sealed NBA picks and their grades, with tiers kept as issued.</p>'
     import re
     for section, body in (('picks',picks),('results',None),('about',about)):
         target = ROOT / 'nba' / ('' if section == 'picks' else section) / 'index.html'

@@ -32,6 +32,7 @@ class NBAWebsite(unittest.TestCase):
         builder.build()
         self.assertIn('TUESDAY, OCTOBER 20, 2026 · 3 GAMES · 0 POSITIONS · ATS · TOTALS', self.page())
         self.assertIn('AWAITING 9:00 AM RELEASE', self.page())
+        self.assertIn('9:00 AM ET release', self.page('about'))
         self.assertEqual(self.page().count('<article class="game-module"'), 3)
         for label in ('G01', 'G02', 'G03', 'Boston Celtics @ Detroit Pistons', '3:00 PM ET', '7:00 PM ET', '9:30 PM ET', 'SCHEDULE UPDATED'):
             self.assertIn(label, self.page())
@@ -46,14 +47,16 @@ class NBAWebsite(unittest.TestCase):
     def test_future_release_and_counts(self):
         path = self.root / 'data/nba_today.json'
         today = json.loads(path.read_text())
-        today.update(slate_date='2027-01-15', release_at='2027-01-15T09:00:00-05:00',
+        today.update(slate_date='2027-01-15', release_at='2027-01-15T13:30:00-05:00',
                      scheduled_games=1, games=[dict(game_id='FUTURE', away='Away', home='Home',
                      tip='2027-01-16T00:30:00+00:00', season_type='regular')])
         path.write_text(json.dumps(today))
         builder.build()
-        for text in ('FRIDAY, JANUARY 15, 2027', '1 GAMES', '0 POSITIONS', '7:30 PM ET', "TODAY'S CARD", 'AWAITING 9:00 AM RELEASE'):
+        for text in ('FRIDAY, JANUARY 15, 2027', '1 GAMES', '0 POSITIONS', '7:30 PM ET', "TODAY'S CARD", 'AWAITING 1:30 PM RELEASE'):
             self.assertIn(text, self.page())
         self.assertNotIn('3 GAMES', self.page())
+        self.assertIn('1:30 PM ET release', self.page('about'))
+        self.assertEqual(builder.release_time(today['games']).isoformat(), today['release_at'])
 
     def test_reader_sealed_facts_and_baseline_boundary(self):
         from unittest.mock import MagicMock, patch
