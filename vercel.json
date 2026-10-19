@@ -1,18 +1,6 @@
 {
   "buildCommand": "python3 bin/build_vercel_output.py",
   "outputDirectory": "public",
-  "redirects": [
-    {
-      "source": "/mlb",
-      "destination": "/",
-      "permanent": false
-    },
-    {
-      "source": "/mlb/",
-      "destination": "/",
-      "permanent": false
-    }
-  ],
   "headers": [
     {
       "source": "/data/mlb_today.json",
@@ -166,6 +154,50 @@
           "value": "no-store, no-cache, must-revalidate, max-age=0"
         }
       ]
+    },
+    {
+      "source": "/mlb",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0"
+        }
+      ]
+    },
+    {
+      "source": "/mlb/:path*",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0"
+        }
+      ]
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/mlb",
+      "destination": "/"
+    },
+    {
+      "source": "/mlb/",
+      "destination": "/"
+    },
+    {
+      "source": "/mlb/results",
+      "destination": "/results"
+    },
+    {
+      "source": "/mlb/results/",
+      "destination": "/results"
+    },
+    {
+      "source": "/mlb/about",
+      "destination": "/about"
+    },
+    {
+      "source": "/mlb/about/",
+      "destination": "/about"
     }
   ]
 }
