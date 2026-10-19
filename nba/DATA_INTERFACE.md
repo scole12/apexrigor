@@ -1,0 +1,9 @@
+# NBA public interface
+
+The website builder reads only the three data/nba_*.json files. No Supabase schema or credentials were accessed. The empty production payload contains only the owner-supplied slate date, common cutoff and planned counts; team identities and individual tip times are unavailable.
+
+Upstream acceptance must publish original stored values, never website-generated picks. today: sport NBA, schema_version APEX_NBA_PUBLIC_V1, status UNISSUED or ISSUED, slate_date, release_at (one common Eastern offset timestamp), scheduled_games, planned_positions, games and positions. Each position: stable position_id and game_id, market ATS or TOTALS, matchup, selection, role Favorite/Underdog for ATS, prediction, probability, FanDuel line and price, tier (Weak/Moderate/Strong/Elite), rationale. Probability is a stored fraction in [0, 1], displayed as a percentage without recalculation. Unknown fields are null. No tier thresholds are implemented here.
+
+Archive slates: stable slate_date, week_start (Monday date), common release_at, positions with original issuance fields plus result W/L/P/V or null while pending. Upstream must archive issued slates before advancing today at the morning rollover, retaining unfinished positions and applying later settlement updates by stable position_id. The renderer never filters pending positions or accesses protected outcomes. Summary uses null records and percentages when unavailable. No live adapter, automatic rollover or settlement implementation is claimed.
+
+Before production acceptance: verify interface against the engine owner's actual schema, confirm the four-score evaluation names against the accepted protocol, enforce common cutoff and atomic rollover upstream, independently review rendered fixtures, authorize six-sport audit expectations, then run full Python checks and preview.

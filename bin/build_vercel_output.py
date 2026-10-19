@@ -24,8 +24,9 @@ FILES = (
     "og-image.png",
     "site.webmanifest",
 )
-DIRECTORIES = ("assets", "data", "picks", "results", "about", "ncaaf", "mma", "nfl", "nhl")
+DIRECTORIES = ("assets", "data", "picks", "results", "about", "ncaaf", "mma", "nfl", "nhl", "nba")
 GENERATORS = (
+    "build_nba_public_payload.py",
     "build_mma_public_payload.py",
     # The MMA ledger is parity-gated against the freshly fused Total Apex
     # summary, so the fuse must precede the Results renderer.

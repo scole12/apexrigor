@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Idempotently preserve the five-sport selector in generated public HTML.
+"""Idempotently preserve the six-sport selector in generated public HTML.
 
 Sport lanes retain ownership of their page bodies. This post-build boundary
 only restores shared navigation after a sport-specific generator refreshes a
@@ -65,11 +65,11 @@ def unavailable(label: str) -> str:
     )
 
 
-def navigation(sport: str, section: str, nfl_available: bool, nhl_available: bool = False) -> str:
+def navigation(sport: str, section: str, nfl_available: bool, nhl_available: bool = False, nba_available: bool = False) -> str:
     sport_targets = {
-        "picks": ("/", "/ncaaf", "/mma", "/nfl", "/nhl"),
-        "results": ("/results", "/ncaaf/results", "/mma/results", "/nfl/results", "/nhl/results"),
-        "about": ("/about", "/ncaaf/about", "/mma/about", "/nfl/about", "/nhl/about"),
+        "picks": ("/", "/ncaaf", "/mma", "/nfl", "/nhl", "/nba"),
+        "results": ("/results", "/ncaaf/results", "/mma/results", "/nfl/results", "/nhl/results", "/nba/results"),
+        "about": ("/about", "/ncaaf/about", "/mma/about", "/nfl/about", "/nhl/about", "/nba/about"),
     }[section]
     section_targets = {
         "mlb": ("/", "/results", "/about"),
@@ -77,6 +77,7 @@ def navigation(sport: str, section: str, nfl_available: bool, nhl_available: boo
         "mma": ("/mma", "/mma/results", "/mma/about"),
         "nfl": ("/nfl", "/nfl/results", "/nfl/about"),
         "nhl": ("/nhl", "/nhl/results", "/nhl/about"),
+        "nba": ("/nba", "/nba/results", "/nba/about"),
     }[sport]
     sport_lines = [
         anchor(sport_targets[0], "MLB", sport == "mlb"),
@@ -88,6 +89,7 @@ def navigation(sport: str, section: str, nfl_available: bool, nhl_available: boo
         anchor(sport_targets[4], "NHL", sport == "nhl")
         if nhl_available
         else unavailable("NHL"),
+        anchor(sport_targets[5], "NBA", sport == "nba") if nba_available else unavailable("NBA"),
     ]
     section_lines = [
         anchor(section_targets[0], "PICKS", section == "picks"),
@@ -105,6 +107,7 @@ def navigation(sport: str, section: str, nfl_available: bool, nhl_available: boo
             "mma": "MMA",
             "nfl": "NFL",
             "nhl": "NHL",
+            "nba": "NBA",
         }[sport]
         + ' sections">\n'
         + "\n".join(section_lines)
@@ -132,6 +135,13 @@ def main() -> int:
     nhl_available = all(nhl_state.values())
     if nhl_available:
         routes.update(NHL_ROUTES)
+    nba_routes = {"nba/index.html": ("nba", "picks"), "nba/results/index.html": ("nba", "results"), "nba/about/index.html": ("nba", "about")}
+    nba_state = [(root / path).is_file() for path in nba_routes]
+    if any(nba_state) and not all(nba_state):
+        raise RuntimeError("partial NBA route set is forbidden")
+    nba_available = all(nba_state)
+    if nba_available:
+        routes.update(nba_routes)
     changed = 0
     for relative, (sport, section) in routes.items():
         path = root / relative
@@ -140,7 +150,7 @@ def main() -> int:
                 continue
             raise FileNotFoundError(path)
         text = path.read_text(encoding="utf-8")
-        replacement = navigation(sport, section, nfl_available, nhl_available)
+        replacement = navigation(sport, section, nfl_available, nhl_available, nba_available)
         current_stack = STACK_RE.search(text)
         if current_stack:
             updated, count = STACK_RE.subn(replacement, text, count=1)
@@ -162,7 +172,7 @@ def main() -> int:
             changed += 1
     print(
         f"SHARED_SPORT_SELECTOR=PASS changed={changed} routes={len(routes)} "
-        f"sports=5 nhl_route={'PRESENT' if nhl_available else 'NOT_ESTABLISHED'} nfl_route={'PRESENT' if nfl_available else 'NOT_ESTABLISHED'}"
+        f"sports=6 nhl_route={'PRESENT' if nhl_available else 'NOT_ESTABLISHED'} nfl_route={'PRESENT' if nfl_available else 'NOT_ESTABLISHED'}"
     )
     return 0
 
