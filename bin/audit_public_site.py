@@ -174,8 +174,15 @@ def main() -> int:
         public_soccer_label_count += len(
             re.findall(r"(?:href=\"[^\"]*soccer|\bsoccer\b)", text, re.IGNORECASE)
         )
+        nba_boundary_text = text
+        if switcher_count == 1:
+            permitted_switcher = re.sub(
+                r'<a\b[^>]*href="/nba(?:/results|/about)?"[^>]*>\s*NBA\s*</a>',
+                '', switcher, count=1,
+            )
+            nba_boundary_text = text.replace(switcher, permitted_switcher, 1)
         public_other_sport_label_counts["nba"] += len(
-            re.findall(r"\bNBA\b", re.sub(r'<a\b[^>]*href="/nba(?:/results|/about)?"[^>]*>\s*NBA\s*</a>', '', text), re.IGNORECASE)
+            re.findall(r"\bNBA\b", nba_boundary_text, re.IGNORECASE)
         ) if not route.startswith('/nba') else 0
         public_other_sport_label_counts["mls"] += len(
             re.findall(r"\bMLS\b", text, re.IGNORECASE)

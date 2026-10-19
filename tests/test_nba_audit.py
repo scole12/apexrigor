@@ -28,6 +28,7 @@ class NBAAudit(unittest.TestCase):
                 ('nba/about/index.html','residual MAE','REMOVED','/nba/about missing'),
                 ('nba/results/index.html','as issued','REMOVED','/nba/results missing'),
                 ('nhl/index.html','</main>','NBA</main>','unlaunched sport leaked'),
+                ('nhl/index.html','</main>','<a href="/nba">NBA</a></main>','unlaunched sport leaked'),
                 ('nba/index.html','href="/nba/results"','href="/wrong"','missing NBA navigation'),
             ):
                 path=root/route; original=path.read_bytes()
