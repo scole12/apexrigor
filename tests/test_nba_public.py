@@ -38,7 +38,8 @@ class NBAWebsite(unittest.TestCase):
         for forbidden in ('Common release', 'FIRST tip', 'planned games', 'T-6', 'T09:00'):
             self.assertNotIn(forbidden, self.page())
         self.assertIn('0 POSITIONS', self.page())
-        self.assertIn('Not yet available', self.page('results'))
+        self.assertIn('id="results-root"', self.page('results'))
+        self.assertIn('/nba/results/render.js', self.page('results'))
         self.assertNotIn('0.0%', self.page('results'))
         self.assertNotIn('2.0', self.page('about'))
 
@@ -109,8 +110,8 @@ class NBAWebsite(unittest.TestCase):
         builder.build()
         for value in ('101.123', '54.321%', '-112', 'Weak', '&lt;original &amp; rationale&gt;', 'Underdog'):
             self.assertIn(value, self.page())
-        for value in ('1-1-1P · 50.0%', '4 positions tracked · 1 pending', 'Daily 2026-10-20', 'Week 2026-10-19'):
-            self.assertIn(value, self.page('results'))
+        # Record/grade/pending behavior is exercised by nba_results_scope.test.cjs.
+        self.assertIn('id="results-root"', self.page('results'))
         self.assertIn('Not yet available', self.page())
         self.assertEqual(self.page().count('<article class="game-module"'), 1)
         self.assertEqual(self.page().count('<section class="market-panel"'), 2)

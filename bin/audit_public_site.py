@@ -250,12 +250,15 @@ def main() -> int:
             for marker in ('Probability:', 'FanDuel line:', 'Price:', 'tier-badge', 'rationale-copy'):
                 if marker not in nba_picks:
                     errors.append(f'/nba missing as-issued field {marker}')
-        for marker in ('ATS', 'TOTALS', 'as issued'):
-            if marker not in nba_results:
+        nba_renderer = (root / 'nba/results/render.js').read_text(encoding='utf-8')
+        for marker in ('ATS', 'TOTALS', 'AS-ISSUED TIER PERFORMANCE', 'DAILY ARCHIVE', 'SLATE DETAIL'):
+            if marker not in nba_renderer:
                 errors.append(f'/nba/results missing {marker}')
         nba_archive = json.loads((root / 'data/nba_results_archive.json').read_text())
-        if not nba_archive['slates'] and ('Not yet available' not in nba_results or '0.0%' in nba_results):
-            errors.append('NBA empty results must be unavailable')
+        if 'id="results-root"' not in nba_results or '/nba/results/render.js' not in nba_results:
+            errors.append('/nba/results missing NHL results shell')
+        if not nba_archive['slates'] and ('UNISSUED — No NBA picks have been issued.' not in nba_renderer or '0.0%' in nba_renderer):
+            errors.append('NBA empty results must match NHL unissued state')
     except (OSError, ValueError, KeyError) as exc:
         errors.append(f'invalid NBA public payload: {exc}')
     for marker in ('Two pregame engines', 'bet-all', 'No moneyline positions', 'sealed NBA picks and their grades', '9:00 AM ET'):

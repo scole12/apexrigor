@@ -173,36 +173,15 @@ def build():
         raise ValueError('duplicate archived position_id')
     if any(p['market'] not in ('ATS', 'TOTALS') for p in rows):
         raise ValueError('invalid archived market')
-    def record(items):
-        w, l, p = (sum(x.get('result') == result for x in items) for result in ('W', 'L', 'P'))
-        if not w + l + p:
-            return 'Not yet available'
-        rate = f'{100*w/(w+l):.1f}%' if w+l else 'Not yet available'
-        return f'{w}-{l}-{p}P · {rate}'
-    results = '<div class="section-head"><div class="title">NBA RESULTS</div></div><p>Win% = W / (W + L). Pending games remain tracked. Tiers are retained as issued.</p>'
-    groups = [('Season', rows)]
-    for key in ('slate_date', 'week_start'):
-        for value in sorted({s[key] for s in archive['slates']}):
-            groups.append((('Daily ' if key == 'slate_date' else 'Week ') + value, [p for s in archive['slates'] if s[key] == value for p in s['positions']]))
-    for label, items in groups:
-        results += '<section><h2>' + esc(label) + '</h2><p>' + str(len(items)) + ' positions tracked · ' + str(sum(p.get('result') not in ('W','L','P','V') for p in items)) + ' pending</p>'
-        for market in ('ATS', 'TOTALS'):
-            market_rows = [p for p in items if p['market'] == market]
-            results += '<h3>' + market + '</h3><p>' + record(market_rows) + '</p>'
-            for tier in ('Weak','Moderate','Strong','Elite'):
-                results += '<p>' + tier + ' · ' + record([p for p in market_rows if p.get('tier') == tier]) + '</p>'
-        results += '</section>'
-    if not archive['slates']:
-        results += '<p>Daily and weekly records: Not yet available. No settled NBA observations.</p>'
     about = '<div class="section-head"><div class="title">APEX NBA</div></div><p>Two pregame engines: full-game ATS and full-game totals.</p><p>Both use a bet-all policy: one spread side and one Over or Under for every eligible game with captured FanDuel markets. No moneyline positions.</p><p>All games share one 9:00 AM ET release. The issued card keeps the original picks, lines, prices and confidence tiers.</p><p>The all-sports banner shows the Total Apex record. NBA results use only sealed NBA picks and their grades, with tiers kept as issued.</p>'
     import re
-    for section, body in (('picks',picks),('results',results),('about',about)):
+    for section, body in (('picks',picks),('results',None),('about',about)):
         target = ROOT / 'nba' / ('' if section == 'picks' else section) / 'index.html'
         template = (ROOT / 'nhl' / ('' if section == 'picks' else section) / 'index.html').read_text(encoding='utf-8')
         template = template.replace('NHL','NBA').replace('/nhl','/nba')
         template = STACK_RE.sub(navigation('nba', section, True, True, True), template, count=1)
-        template = re.sub(r'<main\b[^>]*>.*?</main>', '<main class="picks-page">' + body + '</main>', template, flags=re.S)
-        template = re.sub(r'<script src="/nba/results/render.js[^<]*</script>', '', template)
+        if section != 'results':
+            template = re.sub(r'<main\b[^>]*>.*?</main>', '<main class="picks-page">' + body + '</main>', template, flags=re.S)
         template = re.sub(r'<meta name="description"[^>]*>', '<meta name="description" content="NBA pregame ATS and totals forecasts and as-issued results.">', template)
         template = template.replace('data-picks-state="unissued"', 'data-picks-state="' + today['status'].lower() + '"').replace('data-public-issuance="false"', 'data-public-issuance="' + str(today['status'] == 'ISSUED').lower() + '"')
         target.parent.mkdir(parents=True, exist_ok=True)
