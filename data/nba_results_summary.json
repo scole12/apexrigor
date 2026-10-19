@@ -1,1 +1,19 @@
-{"sport":"NBA","schema_version":"APEX_NBA_PUBLIC_V1","status":"UNAVAILABLE","settled_observations":0,"ats":null,"totals":null,"daily":[],"weekly":[],"season":null}
+{
+  "sport": "NBA",
+  "status": "UNAVAILABLE",
+  "source": "sealed predictions and grades only",
+  "markets": {
+    "ATS": {
+      "w": 0,
+      "l": 0,
+      "p": 0,
+      "win_pct": null
+    },
+    "TOTALS": {
+      "w": 0,
+      "l": 0,
+      "p": 0,
+      "win_pct": null
+    }
+  }
+}

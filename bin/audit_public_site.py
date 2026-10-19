@@ -225,13 +225,21 @@ def main() -> int:
         for marker in ('aria-label="NBA sections"', 'href="/nba"', 'href="/nba/results"', 'href="/nba/about"'):
             if marker not in text:
                 errors.append(f'{route} missing NBA navigation: {marker}')
-    for marker in ("TODAY'S CARD", 'ATS', 'TOTALS', 'Common release'):
+    for marker in ("TODAY'S CARD", 'ATS', 'TOTALS', 'SCHEDULE UPDATED'):
         if marker not in nba_picks:
             errors.append(f'/nba missing {marker}')
     try:
         nba_today = json.loads((root / 'data/nba_today.json').read_text())
+        if nba_picks.count('<article class="game-module"') != len(nba_today['games']):
+            errors.append('NBA scheduled game card count mismatch')
+        for marker in ('Common release', 'FIRST tip', 'planned games', 'planned positions', 'AWAITING T-6'):
+            if marker in nba_picks:
+                errors.append(f'/nba obsolete release text: {marker}')
+        for position in nba_today['positions']:
+            if any(str(position.get(k, '')).startswith('baseline:') for k in ('engine', 'engine_version')):
+                errors.append('NBA baseline prediction cannot be public')
         if nba_today['status'] != 'ISSUED':
-            if nba_today['positions'] or 'UNISSUED — AWAITING T-6' not in nba_picks:
+            if nba_today['positions'] or 'UNISSUED — AWAITING 9:00 AM RELEASE' not in nba_picks:
                 errors.append('NBA unissued state mismatch')
         elif not nba_today['positions']:
             errors.append('NBA issued payload has no positions')
@@ -250,11 +258,15 @@ def main() -> int:
             errors.append('NBA empty results must be unavailable')
     except (OSError, ValueError, KeyError) as exc:
         errors.append(f'invalid NBA public payload: {exc}')
-    for marker in ('residual MAE', 'log-loss', 'calibration error', 'Brier', 'bet-all', 'No moneyline positions', 'Source availability does not establish'):
+    for marker in ('Two pregame engines', 'bet-all', 'No moneyline positions', 'sealed NBA picks and their grades', '9:00 AM ET'):
         if marker not in nba_about:
             errors.append(f'/nba/about missing {marker}')
     if '55%' in nba_about:
         errors.append('/nba/about contains unsupported 55% claim')
+    nba_about_main = re.search(r'<main\b[^>]*>(.*?)</main>', nba_about, re.S)
+    for marker in ('availability reports', 'manifest', 'timestamp-aligned comparators', 'residual MAE', 'log-loss', 'calibration', 'Brier', 'validation status'):
+        if nba_about_main and marker in nba_about_main.group(1):
+            errors.append(f'/nba/about obsolete technical copy: {marker}')
 
     about = route_text.get("/about", "")
     for model_id in (

@@ -25,7 +25,7 @@ class NBAAudit(unittest.TestCase):
                 self.assertIn(strip,(root/route).read_text(encoding='utf-8'))
             for route,old,new,expected in (
                 ('nba/index.html',"TODAY'S CARD",'REMOVED','/nba missing'),
-                ('nba/about/index.html','residual MAE','REMOVED','/nba/about missing'),
+                ('nba/about/index.html','sealed NBA picks and their grades','REMOVED','/nba/about missing'),
                 ('nba/results/index.html','as issued','REMOVED','/nba/results missing'),
                 ('nhl/index.html','</main>','NBA</main>','unlaunched sport leaked'),
                 ('nhl/index.html','</main>','<a href="/nba">NBA</a></main>','unlaunched sport leaked'),
