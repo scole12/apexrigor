@@ -207,21 +207,19 @@ def build():
         probability = p.get('probability')
         if probability is not None and (isinstance(probability, bool) or not 0 <= probability <= 1):
             raise ValueError('probability must be a stored fraction in [0, 1]')
-        if probability is None:
-            probability = 'Not yet available'
-        else:
-            probability = format(100 * float(probability), '.1f') + '%'
         key = p.get('game_id') or p['position_id']
-        probability_label = ' (' + esc(p['probability_side']) + ')' if p.get('probability_side') else ''
         win = p.get('win_probability')
-        win_label = '' if win is None else ' · Win %: ' + format(100 * float(win), '.1f')
+        if win is None:
+            win = probability
+        win_text = 'Not yet available' if win is None else format(100 * float(win), '.1f')
+        side = ' (' + esc(p['probability_side']) + ')' if p.get('probability_side') else ''
         line_label = ' (' + p['probability_side'] + ')' if p['market'] == 'ATS' and p.get('probability_side') in ('home', 'away') else ''
         tier = p.get('tier')
         if tier in ('Weak', 'Moderate', 'Strong', 'Elite'):
             badge = '<span class="rating-label">APEX WIN PROBABILITY RATING</span><span class="tier-badge tier-badge--' + tier.lower() + '">' + esc(tier) + '</span>'
         else:
             badge = '<span class="tier-badge">' + esc(tier) + '</span>'
-        cards.setdefault(key, [p.get('matchup'), []])[1].append('<section class="market-panel"><div class="market-label">' + esc(p['market']) + '</div><div class="market-panel-head"><span class="pick-headline">' + esc(p.get('selection')) + ('' if p.get('role') is None else ' · ' + esc(p.get('role'))) + '</span>' + badge + '</div><p>' + ('' if p.get('prediction') is None else 'Prediction: ' + esc(p.get('prediction')) + ' · ') + 'Probability: ' + probability + probability_label + win_label + '</p><p>FanDuel line: ' + esc(p.get('line')) + line_label + ' · Price: ' + esc(p.get('price')) + '</p><div class="rationale-copy"><p>' + esc(p.get('rationale')) + '</p></div></section>')
+        cards.setdefault(key, [p.get('matchup'), []])[1].append('<section class="market-panel"><div class="market-label">' + esc(p['market']) + '</div><div class="market-panel-head"><span class="pick-headline">' + esc(p.get('selection')) + ('' if p.get('role') is None else ' · ' + esc(p.get('role'))) + '</span>' + badge + '</div><p>' + ('' if p.get('prediction') is None else 'Prediction: ' + esc(p.get('prediction')) + ' · ') + 'Win %: ' + win_text + side + '</p><p>FanDuel line: ' + esc(p.get('line')) + line_label + ' · Price: ' + esc(p.get('price')) + '</p><div class="rationale-copy"><p>' + esc(p.get('rationale')) + '</p></div></section>')
     day = date.fromisoformat(today['slate_date'])
     games = today.get('games', [])
     release = release_label(games)

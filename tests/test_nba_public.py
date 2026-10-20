@@ -112,12 +112,14 @@ class NBAWebsite(unittest.TestCase):
     def test_probability_endpoints_and_precision(self):
         path = self.root / 'data/nba_today.json'
         today = json.loads(path.read_text())
-        for probability, expected in ((0, '0.0%'), (1, '100.0%'), (.5, '50.0%'), (.54321987, '54.3%')):
+        for probability, expected in ((0, '0.0'), (1, '100.0'), (.5, '50.0'), (.54321987, '54.3')):
             today.update(status='ISSUED', games=[], positions=[dict(position_id='SYNTHETIC', game_id='SYNTHETIC', market='ATS', role='Favorite', tier='Strong', probability=probability)])
             path.write_text(json.dumps(today))
             builder.build()
-            self.assertIn('Probability: ' + expected, self.page())
-            self.assertNotIn('54.321987%', self.page())
+            self.assertIn('Win %: ' + expected, self.page())
+            self.assertNotIn('Probability:', self.page())
+            self.assertEqual(self.page().count('Win %: ' + expected), 1)
+            self.assertNotIn('54.321987', self.page())
             self.assertIn('Favorite', self.page())
             self.assertIn('Strong', self.page())
 
@@ -129,7 +131,7 @@ class NBAWebsite(unittest.TestCase):
         archive = {'sport':'NBA', 'slates':[{'slate_date':'2026-10-20', 'week_start':'2026-10-19', 'positions':[position, dict(position,position_id='W',result='W'),dict(position,position_id='L',result='L'),dict(position,position_id='P',result='P')]}]}
         (self.root / 'data/nba_results_archive.json').write_text(json.dumps(archive))
         builder.build()
-        for value in ('101.123', '54.3%', '-112', 'Weak', '&lt;original &amp; rationale&gt;', 'Underdog',
+        for value in ('101.123', 'Win %: 54.3', '-112', 'Weak', '&lt;original &amp; rationale&gt;', 'Underdog',
                       'tier-badge tier-badge--weak', 'tier-badge tier-badge--elite', 'APEX WIN PROBABILITY RATING'):
             self.assertIn(value, self.page())
         # Record/grade/pending behavior is exercised by nba_results_scope.test.cjs.
@@ -195,9 +197,12 @@ class NBAReleaseLabel(unittest.TestCase):
         self.assertIn('2 POSITIONS', page)
         for text in ('Win %: 50.4', 'Win %: 53.6', '>Weak<', '>Strong<',
                      'tier-badge tier-badge--weak', 'tier-badge tier-badge--strong',
-                     'APEX WIN PROBABILITY RATING', 'Probability: 50.4%', 'Probability: 53.6%'):
+                     'APEX WIN PROBABILITY RATING'):
             self.assertIn(text, page)
         self.assertNotIn('REGULAR SEASON', page)
+        self.assertNotIn('Probability:', page)
+        self.assertEqual(page.count('Win %: 50.4'), 1)
+        self.assertEqual(page.count('Win %: 53.6'), 1)
         self.assertEqual(builder.tier_of(TIER_BANDS, TIER_BANDS['cutoffs'][0]), 'Moderate')
         self.assertEqual(builder.tier_of(TIER_BANDS, TIER_BANDS['cutoffs'][2]), 'Elite')
 

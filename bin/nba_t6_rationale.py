@@ -7,6 +7,7 @@ Nothing here refits a model. A feature that is not on the sealed row and cannot 
 stored T-6 tables is omitted, not filled in.
 """
 import math
+import re
 
 SHRINK = 0.75
 ATS_INTERCEPT = -0.0018246240290608507
@@ -229,8 +230,15 @@ def _join(sentences):
     text = ' '.join(s.rstrip('.') + '.' for s in sentences)
     if sentence_count(text) != len(sentences):
         raise ValueError('a sentence contains a period followed by a space')
-    if 'rest' in text.lower() or 'travel' in text.lower():
+    low = text.lower()
+    if 'rest' in low or 'travel' in low:
         raise ValueError('rationale mentions rest or travel')
+    for banned in ('q_b0', 'p_c3', 'coef', 'sigma', 'intercept', 'logit', 'sigmoid',
+                   'not stored', 'unstored', 'rapm', 'lineup', 'champion'):
+        if banned in low:
+            raise ValueError(f'rationale contains {banned}')
+    if re.search(r'\bphi\b', low):
+        raise ValueError('rationale contains phi')
     return text
 
 
@@ -316,14 +324,6 @@ def _rank(items, side_is_a):
     return ranked
 
 
-def _feature_phrase(ranked, labels, limit=4):
-    parts = []
-    for _, toward, name, raw, cz in ranked[:limit]:
-        direction = 'favors the pick' if toward > 0 else 'goes against the pick' if toward < 0 else 'is zero'
-        parts.append(f'{labels[name]} raw {_f(raw, 3)} (coef·z {_f(cz, 3)}, {direction})')
-    return '; '.join(parts)
-
-
 def _player_pieces(players, adj_by_id, side_is_a):
     _, _, coef = ATS['ls_dnt_net']
     sd = ATS['ls_dnt_net'][1]
@@ -340,106 +340,224 @@ def _player_pieces(players, adj_by_id, side_is_a):
     return pieces
 
 
-def _player_phrase(pieces, limit=3):
-    parts = []
-    for _, toward, p, minutes, cz in pieces[:limit]:
-        direction = 'favors the pick' if toward > 0 else 'goes against the pick'
-        parts.append(
-            f"{p['name']} ({p['team']}, {_f(minutes, 1)} projected minutes, EPM {_f(p['epm'], 3)}, "
-            f"offense {_f(p['oepm'], 3)}, defense {_f(p['depm'], 3)}, coef·z {_f(cz, 3)}, {direction})"
-        )
-    return '; '.join(parts)
+def _and(items):
+    items = list(items)
+    if not items:
+        return ''
+    if len(items) == 1:
+        return items[0]
+    if len(items) == 2:
+        return f'{items[0]} and {items[1]}'
+    return ', '.join(items[:-1]) + ' and ' + items[-1]
+
+
+def _line_text(public):
+    if public['market'] == 'ATS':
+        return _signed_line(public['line'])
+    return _f(public['line'], 1)
+
+
+def _quality(player):
+    """The stored rating that actually carries this player's number."""
+    offense, defense, net = player.get('oepm'), player.get('depm'), player.get('epm')
+    if net is None:
+        return None, None
+    if defense is not None and offense is not None and defense > 0 and offense <= 0:
+        return 'defensive EPM', defense
+    if offense is not None and defense is not None and offense > 0 and defense <= 0:
+        return 'offensive EPM', offense
+    return 'EPM', net
+
+
+def _player_bit(player, minutes):
+    label, value = _quality(player)
+    if label is None:
+        return None
+    return f"{player['name']}'s {_f(value, 1)} {label} over {_f(minutes, 1)} minutes"
+
+
+def _cap(text):
+    return text[:1].upper() + text[1:] if text else text
+
+
+def _the(name):
+    return name if str(name).lower().startswith('the ') else f'the {name}'
+
+
+def _direction_sentence(clauses, selection, favors):
+    clauses = [c for c in clauses if c]
+    if not clauses:
+        return None
+    target = _the(selection)
+    verb = 'favors' if favors else 'works against'
+    if len(clauses) == 1:
+        return f'{_cap(clauses[0])} {verb} {target}'
+    return f'{_cap(clauses[0])} {verb} {target}, as does {clauses[1]}'
+
+
+def _team_clause(name, raw, home, away):
+    raw = float(raw)
+    gap = abs(raw)
+    higher = home if raw >= 0 else away
+    lower = away if raw >= 0 else home
+    if name == 'line':
+        return f'a home line of {_signed_line(raw)}'
+    if name == 'min_shift_abs':
+        if _f(gap, 1) == '0.0':
+            return None
+        return (f'a minute change from the last five games that is {_f(gap, 1)} larger for the {higher} '
+                f'than for the {lower}')
+    if name == 'ast36_mw':
+        if _f(gap, 2) == '0.00':
+            return None
+        return (f'an assist rate {_f(gap, 2)} per 36 higher for the {higher} than for the {lower} '
+                f'over the last 20 games')
+    if name == 'reb36_mw':
+        if _f(gap, 2) == '0.00':
+            return None
+        return (f'a rebound rate {_f(gap, 2)} per 36 higher for the {higher} than for the {lower} '
+                f'over the last 20 games')
+    if name == 'blk36_mw':
+        if _f(gap, 2) == '0.00':
+            return None
+        return (f'a block rate {_f(gap, 2)} per 36 higher for the {higher} than for the {lower} '
+                f'over the last 20 games')
+    if name == 'fg3a_rate_mw':
+        if _f(gap, 3) == '0.000':
+            return None
+        return (f'a three-point shot share {_f(gap, 3)} higher for the {higher} than for the {lower} '
+                f'over the last 20 games')
+    if name == 'rotation_size':
+        if _f(gap, 1) == '0.0':
+            return None
+        return (f'{_f(gap, 1)} more players projected for 10 or more minutes for the {higher} '
+                f'than for the {lower}')
+    if name == 'top5_min_share':
+        if _f(gap, 3) == '0.000':
+            return None
+        return (f'a top-five minute share {_f(gap, 3)} higher for the {higher} than for the {lower}')
+    if name == 'players_projected':
+        if _f(gap, 1) == '0.0':
+            return None
+        shown = str(int(round(gap))) if abs(gap - round(gap)) < 0.05 else _f(gap, 1)
+        return f'a roster with {shown} more players on the minute projection for the {higher} than for the {lower}'
+    if name == 'dnt_missing_min_share':
+        if _f(gap, 3) == '0.000':
+            return None
+        return (f'a {_f(gap, 3)} larger share of minutes on players without an EPM for the {higher} '
+                f'than for the {lower}')
+    if name == 'new_player_min_share':
+        if _f(gap, 3) == '0.000':
+            return None
+        return (f'a {_f(gap, 3)} larger share of minutes for players with fewer than five games this season '
+                f'for the {higher} than for the {lower}')
+    return None
 
 
 def _out_sentence(players):
-    names = []
-    moved = []
-    for team_players in (
-        [p for p in players if p.get('is_home')],
-        [p for p in players if not p.get('is_home')],
-    ):
-        proj, _, outs, did_move = rotation(team_players)
+    groups = []
+    moved = False
+    teams = []
+    for player in players:
+        if player['team'] not in teams:
+            teams.append(player['team'])
+    for team in teams:
+        team_players = [p for p in players if p['team'] == team]
+        proj, _, outs, _ = rotation(team_players)
         by_id = {p['player_id']: p for p in team_players}
-        for pid in sorted(outs, key=lambda i: by_id[i]['name']):
-            names.append(f"{by_id[pid]['name']} ({by_id[pid]['team']})")
-            if proj.get(pid, 0.0) > 1e-9:
-                moved.append(by_id[pid]['name'])
-        if did_move:
-            pass
-    if not names:
-        return 'No player on the T-6 minute projection was Out on the injury report published before T-6'
-    listed = ', '.join(names)
-    if moved:
-        return (f'Before T-6 the injury report listed {listed} as Out, and the positive projections among them '
-                f'were set to 0 and redistributed inside the 240-minute, 48-minute cap')
-    return (f'Before T-6 the injury report listed {listed} as Out, and each of those projections was already 0, '
-            f'so no minutes were redistributed')
+        names = [by_id[pid]['name'] for pid in sorted(outs, key=lambda i: by_id[i]['name'])]
+        if names:
+            groups.append(f"{_and(names)} as Out for the {team}")
+        if any(proj.get(pid, 0.0) > 1e-9 for pid in outs):
+            moved = True
+    if not groups:
+        return 'The injury report before T-6 listed no Out player on either minute projection'
+    tail = ('their projected minutes were given to teammates' if moved
+            else 'each of those projections was already at zero minutes')
+    return f"Before T-6 the injury report listed {_and(groups)}, and {tail}"
 
 
-def ats_math(p, price_a, price_b):
-    q = no_vig(price_a, price_b)
-    p = float(p)
-    p_c3 = q + (p - q) / SHRINK
-    dot = ATS_SIGMA * normsinv(min(max(p_c3, 1e-12), 1 - 1e-12)) - ATS_INTERCEPT
-    return q, p_c3, dot
+def _pad(sentences, public):
+    """Fill to 6 sentences from sealed fields only. Never invent a player or a stat."""
+    selection = public['selection']
+    extras = [
+        f"FanDuel prices {selection} at {int(public['price'])}",
+        f"The line on {selection} is {_line_text(public)}",
+        f"{public.get('matchup') or selection} is the matchup on this card",
+    ]
+    for extra in extras:
+        if len(sentences) >= 6:
+            break
+        if extra not in sentences:
+            sentences.append(extra)
+    return sentences
 
 
-def fallback_rationale(row, market):
-    """Used only when the T-6 rows are not attached. Prices and p are on the sealed row; players are not invented."""
-    engine, version = row['engine'], row['engine_version']
-    q = no_vig(row['price_a'], row['price_b'])
-    p = float(row['p'])
-    if market == 'ATS':
-        _, p_c3, dot = ats_math(p, row['price_a'], row['price_b'])
-        return (
-            f"The {engine} engine (champion {version}) ran at T-6 on the FanDuel spread. "
-            f"The no-vig FanDuel home price is {_f(q, 4)} from {int(row['price_a'])} and {int(row['price_b'])}, "
-            f"the unshrunk home-cover probability is {_f(p_c3, 4)}, and the published probability is that price "
-            f"plus {SHRINK:.2f} times the gap, equal to {_f(p, 4)}. "
-            f"With intercept {_f(ATS_INTERCEPT, 6)} and sigma {_f(ATS_SIGMA, 6)}, the combined coef·z is {_f(dot, 3)}. "
-            f"Per-player minutes and ratings recorded before T-6 are not attached to this row, so no player is named."
-        )
-    return (
-        f"The {engine} engine (champion {version}) ran at T-6 on the FanDuel total. "
-        f"The no-vig FanDuel over price is {_f(q, 4)} from {int(row['price_a'])} and {int(row['price_b'])}, "
-        f"and the published over probability is {_f(p, 4)}. "
-        f"The champion averages a direct logistic and a distribution probability with sigma {_f(TOTAL_SIGMA, 6)}; "
-        f"those two parts are not stored on this row. "
-        f"The five CTG coefficients are 0. Per-feature values recorded before T-6 are not attached to this row, so they are not filled in."
-    )
+def _tier_sentence(public):
+    tier = public.get('tier')
+    if tier:
+        return f'The tier is {tier}'
+    return f"The published market is {public['market']}"
+
+
+def fallback_rationale(row, public):
+    """Sealed pick only. Player and team stats are omitted when the T-6 rows are absent, not invented."""
+    selection = public['selection']
+    action = 'to cover' if public['market'] == 'ATS' else 'on the total'
+    side = public.get('probability_side') or public['market']
+    sentences = [
+        f"{selection} {_line_text(public)} is a {_f(100 * public['win_probability'], 1)}% chance {action}",
+        f"FanDuel prices {selection} at {int(public['price'])}",
+        f"{row['away']} plays at {row['home']}",
+        f"The published side is {side}",
+        f"The line on {selection} is {_line_text(public)}",
+        _tier_sentence(public),
+    ]
+    return _join(sentences)
 
 
 def spread_rationale(row, public):
     players = row['t6']['players']
     features, hadj, aadj = ats_features(row, players)
-    q, p_c3, dot = ats_math(row['p'], row['price_a'], row['price_b'])
     side_is_a = row['side'] == 'a'
-    items = [(name, features[name], coef_z(ATS, name, features[name])) for name in ATS]
+    home_name = next(p['team'] for p in players if p['team_id'] == row['home_team_id'])
+    away_name = next(p['team'] for p in players if p['team_id'] == row['away_team_id'])
+    items = [(name, features[name], coef_z(ATS, name, features[name])) for name in ATS if name not in (
+        'ls_dnt_off', 'ls_dnt_def', 'ls_dnt_net')]
     ranked = _rank(items, side_is_a)
-    partial = sum(cz for _, _, _, _, cz in ranked)
+    favor = [item for item in ranked if item[1] > 0][:2]
+    against = [item for item in ranked if item[1] < 0][:1]
     adj = {}
     adj.update(hadj)
     adj.update(aadj)
     pieces = _player_pieces(players, adj, side_is_a)
-    win = public['win_probability']
+    with_pick = [piece for piece in pieces if piece[1] > 0][:2]
+    against_player = next((piece for piece in pieces if piece[1] < 0), None)
     selection = public['selection']
     sentences = [
-        (f"The {row['engine']} engine (champion {row['engine_version']}) selected {selection} "
-         f"{_signed_line(public['line'])} at {int(public['price'])} on the FanDuel spread from inputs recorded before T-6"),
-        (f"The no-vig home price q_b0 is {_f(q, 4)} from {int(row['price_a'])}/{int(row['price_b'])}, "
-         f"the unshrunk home-cover probability p_c3 is {_f(p_c3, 4)}, and the published probability is "
-         f"q_b0 + {SHRINK:.2f}*(p_c3 - q_b0) = {_f(row['p'], 4)}, which is {_f(100 * win, 1)}% for {selection}"),
-        (f"That p_c3 is Phi((intercept + coef·z) / sigma) with intercept {_f(ATS_INTERCEPT, 6)} and "
-         f"sigma {_f(ATS_SIGMA, 6)}, so the combined coef·z is {_f(dot, 3)}"),
-        (f"Ranked by absolute coef·z, the inputs rebuilt from the stored T-6 minutes, injury report, "
-         f"game-optimized EPM and last-20 box scores are {_feature_phrase(ranked, ATS_LABEL)}"),
-        (f"The largest player pieces of minutes-weighted EPM, ranked by absolute coef·z, are {_player_phrase(pieces)}"),
-        _out_sentence(players),
-        (f"Walk-forward RAPM, lineup-stint shares, pace and usage were inputs before T-6 but are not stored "
-         f"on the sealed prediction, so they are not given values; the coef·z gap between {_f(dot, 3)} and "
-         f"the rebuilt sum {_f(partial, 3)} is {_f(dot - partial, 3)}"),
+        f"{selection} {_line_text(public)} is a {_f(100 * public['win_probability'], 1)}% chance to cover",
     ]
-    return _join(sentences)
+    if with_pick:
+        bits = [b for b in (_player_bit(p, minutes) for _, _, p, minutes, _ in with_pick) if b]
+        if len(bits) > 1:
+            sentences.append(f"{_and(bits)} favor {_the(selection)}")
+        elif bits:
+            sentences.append(f"{bits[0]} favors {_the(selection)}")
+    if against_player:
+        _, _, player, minutes, _ = against_player
+        label, value = _quality(player)
+        sentences.append(
+            f"{player['name']} is the biggest factor against the pick, with a {_f(value, 1)} {label} "
+            f"over {_f(minutes, 1)} minutes for the {player['team']}"
+        )
+    sentences.append(_direction_sentence(
+        [_team_clause(name, raw, home_name, away_name) for _, _, name, raw, _ in favor], selection, True))
+    sentences.append(_direction_sentence(
+        [_team_clause(name, raw, home_name, away_name) for _, _, name, raw, _ in against], selection, False))
+    sentences.append(_out_sentence(players))
+    sentences.append(_tier_sentence(public))
+    sentences = _pad([s for s in sentences if s], public)
+    return _join(sentences[:8])
 
 
 def _total_values(row):
@@ -481,64 +599,73 @@ def _total_table(coef, mean, sd):
     return {name: (mean[i], sd[i], coef[i]) for i, name in enumerate(TOTAL_FEATURES)}
 
 
+def _total_clause(name, raw, home, away):
+    raw = float(raw)
+    if name == 'paid_predicted_total':
+        return f'a Dunk & Threes projection of {_f(raw, 1)} points'
+    if name == 'paid_predicted_margin':
+        team = home['name'] if raw >= 0 else away['name']
+        return f'a Dunk & Threes margin of {_f(abs(raw), 1)} points for the {team}'
+    if name == 'paid_home_win_probability':
+        return f"a Dunk & Threes win chance of {_f(100 * raw, 1)}% for the {home['name']}"
+    if name == 'dnt_points':
+        return f'offensive EPM minus defensive EPM adding to {_f(raw, 1)} across both teams'
+    if name in ('paid_epm_diff', 'paid_game_optimized_epm_diff'):
+        label = 'game-optimized team EPM' if name == 'paid_game_optimized_epm_diff' else 'team EPM'
+        home_value = home['epm_go'] if 'game_optimized' in name else home['epm']
+        away_value = away['epm_go'] if 'game_optimized' in name else away['epm']
+        return (f"{label} of {_f(home_value, 1)} for the {home['name']} and {_f(away_value, 1)} "
+                f"for the {away['name']}")
+    return None
+
+
 def total_rationale(row, public):
     values = _total_values(row)
     direct = _total_table(_TOTAL_DIRECT_COEF, _TOTAL_DIRECT_MEAN, _TOTAL_DIRECT_SD)
     dist = _total_table(_TOTAL_DIST_COEF, _TOTAL_DIST_MEAN, _TOTAL_DIST_SD)
-    # CTG coefficients are 0, so the contribution is 0 without a fabricated raw value.
-    for name in TOTAL_FEATURES:
-        if name.startswith('ctg_'):
-            values[name] = direct[name][0]
-    q = no_vig(row['price_a'], row['price_b'])
     side_is_a = row['side'] == 'a'
-    rebuilt = [name for name in TOTAL_FEATURES if not name.startswith('ctg_') and name not in (
-        'strength_edge', 'neutral', 's_efg', 's_tov', 's_orb', 's_ftr', 's_par3', 'rtg_sum', 'pace_sum',
-        'box_total_edge') and values.get(name) is not None]
-    direct_items = [(name, values[name], coef_z(direct, name, values[name])) for name in rebuilt]
-    dist_items = [(name, values[name], coef_z(dist, name, values[name])) for name in rebuilt]
-    direct_ranked = _rank(direct_items, side_is_a)
-    dist_ranked = _rank(dist_items, side_is_a)
-    players = row['t6']['players']
-    _, hadj, _, _ = rotation([p for p in players if p.get('is_home')])
-    _, aadj, _, _ = rotation([p for p in players if not p.get('is_home')])
-    adj = {}
-    adj.update(hadj)
-    adj.update(aadj)
-    # Player minutes are not a totals coefficient. Rank them by projected minutes so the names are the stored rotation.
-    leaders = sorted((p for p in players if (adj.get(p['player_id']) or 0) > 0 and p.get('epm') is not None),
-                     key=lambda p: adj[p['player_id']], reverse=True)[:4]
-    leader_text = '; '.join(
-        f"{p['name']} ({p['team']}, {_f(adj[p['player_id']], 1)} projected minutes, EPM {_f(p['epm'], 3)})"
-        for p in leaders
-    )
     home = row['t6']['teams'][row['home_team_id']]
     away = row['t6']['teams'][row['away_team_id']]
+    skip = {'dnt_missing', 'paid_team_rating_missing', 'paid_prediction_missing'}
+    items = []
+    for name in TOTAL_FEATURES:
+        if name.startswith('ctg_') or name in skip or name not in values or values[name] is None:
+            continue
+        if name not in ('dnt_points', 'paid_epm_diff', 'paid_game_optimized_epm_diff',
+                        'paid_predicted_margin', 'paid_predicted_total', 'paid_home_win_probability'):
+            continue
+        direct_z = coef_z(direct, name, values[name]) or 0.0
+        dist_z = coef_z(dist, name, values[name]) or 0.0
+        items.append((name, values[name], direct_z + dist_z))
+    ranked = _rank(items, side_is_a)
+    # Keep the stored signals that actually move the total. A near-zero contribution is not narrated.
+    ranked = [item for item in ranked if item[0] >= 0.01] or ranked[:1]
+    favor = [item for item in ranked if item[1] > 0][:2]
+    against = [item for item in ranked if item[1] < 0][:2]
+    selection = public['selection']
     pred = row['t6'].get('prediction')
-    win = public['win_probability']
-    if pred:
-        score = (f"Dunk & Threes predicted {home['name']} {_f(pred['home'], 1)} and {away['name']} {_f(pred['away'], 1)} "
-                 f"with home win probability {_f(pred['win'], 4)}")
-    else:
-        score = 'No Dunk & Threes score prediction was stored before T-6'
+    score = None
+    if pred and pred.get('home') is not None and pred.get('away') is not None:
+        score = (f"Dunk & Threes had {_the(home['name'])} at {_f(pred['home'], 1)} points and "
+                 f"{_the(away['name'])} at {_f(pred['away'], 1)} points")
+    mentioned = {name for _, _, name, _, _ in favor + against}
+    epm_line = None
+    if 'paid_epm_diff' not in mentioned and home.get('epm') is not None and away.get('epm') is not None:
+        epm_line = _cap(f"{_the(home['name'])} team EPM is {_f(home['epm'], 1)} and "
+                        f"{_the(away['name'])} team EPM is {_f(away['epm'], 1)}")
     sentences = [
-        (f"The {row['engine']} engine (champion {row['engine_version']}) selected {public['selection']} "
-         f"{_f(public['line'], 1)} at {int(public['price'])} on the FanDuel total from inputs recorded before T-6"),
-        (f"The no-vig over price q_b0 is {_f(q, 4)} from {int(row['price_a'])}/{int(row['price_b'])}, "
-         f"and the published over probability is {_f(row['p'], 4)}, which is {_f(100 * win, 1)}% for {public['selection']}"),
-        (f"The champion sets that probability to the average of a direct logistic, sigmoid(logit(q_b0) + "
-         f"{_f(TOTAL_DIRECT_INTERCEPT, 6)} + z·beta), and a distribution probability whose residual mean has "
-         f"sigma {_f(TOTAL_SIGMA, 6)}; those two probabilities are not stored separately on the sealed row, "
-         f"and the five CTG coefficients are 0 so each CTG input adds 0"),
-        (f"Ranked by absolute direct coef·z, the inputs rebuilt from the lagged team ratings and the T-6 "
-         f"Dunk & Threes score are {_feature_phrase(direct_ranked, TOTAL_LABEL)}"),
-        (f"On the distribution half the same rebuilt inputs rank as {_feature_phrase(dist_ranked, TOTAL_LABEL)}"),
-        (f"{home['name']} team EPM is {_f(home['epm'], 3)} (game-optimized {_f(home['epm_go'], 3)}, rating date {home['rating_date']}) "
-         f"and {away['name']} is {_f(away['epm'], 3)} (game-optimized {_f(away['epm_go'], 3)}, rating date {away['rating_date']}); "
-         f"{score}"),
-        (f"The stored minute projection is not a coefficient of this champion; its leaders by projected minutes are {leader_text}"),
-        _out_sentence(players) + ', and the shrunk box four factors, pace and strength edge are not stored on the sealed prediction so they are not ranked',
+        f"{selection} {_line_text(public)} is a {_f(100 * public['win_probability'], 1)}% chance on the total",
+        _direction_sentence(
+            [_total_clause(name, raw, home, away) for _, _, name, raw, _ in favor], selection, True),
+        _direction_sentence(
+            [_total_clause(name, raw, home, away) for _, _, name, raw, _ in against], selection, False),
+        score,
+        epm_line,
+        _out_sentence(row['t6']['players']),
+        _tier_sentence(public),
     ]
-    return _join(sentences)
+    sentences = _pad([s for s in sentences if s], public)
+    return _join(sentences[:8])
 
 
 def compose_rationale(row, public):
@@ -547,7 +674,7 @@ def compose_rationale(row, public):
         return row['rationale']
     t6 = row.get('t6')
     if not t6 or not t6.get('players'):
-        return fallback_rationale(row, market)
+        return fallback_rationale(row, public)
     if market == 'ATS':
         return spread_rationale(row, public)
     return total_rationale(row, public)

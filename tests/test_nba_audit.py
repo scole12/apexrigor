@@ -91,14 +91,16 @@ class NBARationale(unittest.TestCase):
         kept=builder.public_position(self.row('spread','a',rationale='Stored text.'))
         self.assertEqual(kept['rationale'],'Stored text.')
         built=builder.public_position(self.row('spread','a'))
-        self.assertIn('opus:shrink_c3',built['rationale'])
-        self.assertIn('ats_shrink_c3.v2',built['rationale'])
-        self.assertIn('before T-6',built['rationale'])
+        self.assertIn('53.8% chance to cover', built['rationale'])
+        self.assertIn('The published market is ATS', built['rationale'])
+        self.assertNotIn('opus:shrink_c3', built['rationale'])
+        self.assertNotIn('coef', built['rationale'].lower())
         self.assertNotIn('rest', built['rationale'].lower())
         self.assertNotIn('travel', built['rationale'].lower())
         total=builder.public_position(self.row('total','a',engine='c6:d4_ratings_lag1',engine_version='totals_d4_ratings_lag1.v2'))
-        self.assertIn('totals_d4_ratings_lag1.v2',total['rationale'])
-        self.assertNotIn('None',total['rationale'])
+        self.assertIn('53.8% chance on the total', total['rationale'])
+        self.assertNotIn('totals_d4_ratings_lag1', total['rationale'])
+        self.assertNotIn('None', total['rationale'])
         self.assertNotIn('rest', total['rationale'].lower())
         self.assertNotIn('travel', total['rationale'].lower())
 
@@ -113,5 +115,31 @@ class NBARationale(unittest.TestCase):
         under=builder.public_position(self.row('total','b',p=0.45,line=220.5))
         self.assertAlmostEqual(under['probability'],0.55)
         self.assertEqual((under['probability_side'],under['line']),('Under',220.5))
+
+    def test_a_t6_rationale_is_plain_english_and_names_the_players(self):
+        import nba_t6_rationale as t6
+        players = [
+            dict(player_id=1, team_id=9, team='Detroit Pistons', name='Cade Cunningham', is_home=True,
+                 p_mp=34, oepm=2.8, depm=0.9, epm=3.7, status=None, min_recent5=30, games_season=0,
+                 ast36=6.0, reb36=4.0, blk36=0.4, fg3a_rate=0.3),
+            dict(player_id=2, team_id=2, team='Boston Celtics', name='Jayson Tatum', is_home=False,
+                 p_mp=33, oepm=3.4, depm=1.0, epm=4.5, status='Out', min_recent5=32, games_season=0,
+                 ast36=4.0, reb36=7.0, blk36=0.6, fg3a_rate=0.4),
+        ]
+        row = self.row('spread', 'a', line=1.5, p=0.5006, price_a=-114, price_b=-106,
+                       home_team_id=9, away_team_id=2,
+                       t6=dict(players=players, teams={}, prediction=None))
+        public = builder.public_position(dict(row, t6=None))
+        public['tier'] = 'Weak'
+        text = t6.spread_rationale(row, public)
+        self.assertTrue(6 <= t6.sentence_count(text) <= 8)
+        self.assertIn('Cade Cunningham', text)
+        self.assertIn('Jayson Tatum', text)
+        self.assertIn('50.1% chance to cover', text)
+        self.assertIn('The tier is Weak', text)
+        self.assertIn('Before T-6', text)
+        low = text.lower()
+        for banned in ('coef', 'q_b0', 'sigma', 'intercept', 'phi', 'rest', 'travel', 'opus:', 'champion'):
+            self.assertNotIn(banned, low)
 
 if __name__=='__main__': unittest.main()
