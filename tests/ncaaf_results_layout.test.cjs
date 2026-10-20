@@ -9,7 +9,12 @@ const {createHash} = require("node:crypto");
 const base = path.join(__dirname, "..");
 const reference = JSON.parse(fs.readFileSync(path.join(__dirname, "fixtures/ncaaf_results_layout.reference.json"), "utf8"));
 const source = fs.readFileSync(path.join(base, "ncaaf/results/render.js"), "utf8");
-const normalizeIndex = html => html.replace(/(<aside class="apex-site-record"[\s\S]*?<\/aside>)/, aside => aside.replace(/<strong class="mono">[^<]*<\/strong>/g, '<strong class="mono">#</strong>'));
+// The lifetime-record numbers and the all-sports selector are shared chrome written by
+// apply_shared_sport_selector for every sport (issue #23: adding NBA changed every page's
+// selector). Both are masked; everything NCAA-specific stays hash-locked.
+const normalizeIndex = html => html
+  .replace(/(<aside class="apex-site-record"[\s\S]*?<\/aside>)/, aside => aside.replace(/<strong class="mono">[^<]*<\/strong>/g, '<strong class="mono">#</strong>'))
+  .replace(/<nav class="sport-nav"[\s\S]*?<\/nav>/, '<nav class="sport-nav">#</nav>');
 const checkLayout = directory => {
   const indexHtml = fs.readFileSync(path.join(directory, "index.html"), "utf8");
   assert.equal(createHash("sha256").update(fs.readFileSync(path.join(directory, "render.js"))).digest("hex"), reference.render_js_sha256, "render.js must match the approved layout");
@@ -41,6 +46,18 @@ try {
     fs.copyFileSync(path.join(resultsDirectory, file), path.join(temporary, file));
   }
   console.log("PASS: Oct 17 render.js and index.html each fail layout checks (assert.throws).");
+  // The page Scott approved on Oct 18 (48451c3) still passes: only shared chrome was masked.
+  const approvedCommit = "48451c3d5ebbc2a8a54533d5984c27bd89e98e03";
+  try {
+    execFileSync("git", ["cat-file", "-e", `${approvedCommit}^{commit}`], {cwd:base, stdio:"pipe"});
+  } catch {
+    execFileSync("git", ["fetch", "--depth=1", "origin", approvedCommit], {cwd:base, stdio:"pipe"});
+  }
+  for (const file of ["render.js", "index.html"]) {
+    fs.writeFileSync(path.join(temporary, file), execFileSync("git", ["show", `${approvedCommit}:ncaaf/results/${file}`], {cwd:base}));
+  }
+  checkLayout(temporary);
+  console.log("PASS: the Oct 18 approved page (48451c3) matches the layout lock.");
 } finally {
   fs.rmSync(temporary, {recursive:true, force:true});
 }
