@@ -77,6 +77,9 @@ ROUTE_PATHS = {
     "nhl/index.html",
     "nhl/results/index.html",
     "nhl/about/index.html",
+    "nba/index.html",
+    "nba/results/index.html",
+    "nba/about/index.html",
 }
 
 
