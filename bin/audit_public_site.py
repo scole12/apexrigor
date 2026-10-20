@@ -259,7 +259,7 @@ def main() -> int:
             for market in ('ATS', 'TOTALS'):
                 if f'<div class="market-label">{market}</div>' not in nba_picks:
                     errors.append(f'/nba missing issued {market} panel')
-            for marker in ('Probability:', 'FanDuel line:', 'Price:', 'tier-badge', 'rationale-copy'):
+            for marker in ('Win %:', 'FanDuel line:', 'Price:', 'tier-badge', 'rationale-copy'):
                 if marker not in nba_picks:
                     errors.append(f'/nba missing as-issued field {marker}')
         nba_renderer = (root / 'nba/results/render.js').read_text(encoding='utf-8')
