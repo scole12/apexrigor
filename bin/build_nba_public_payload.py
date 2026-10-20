@@ -246,11 +246,14 @@ def build():
         else:
             picks += '<section class="market-panel" data-position-state="UNISSUED"><div class="market-label">STATUS</div><div class="market-panel-head"><span class="pick-headline">UNISSUED — AWAITING ' + release + ' RELEASE</span><span class="tier-badge tier-badge--moderate">SCHEDULED</span></div><div class="rationale-copy"><p>Listed from the official schedule. No sealed FanDuel-issued APEX positions yet.</p></div></section>'
         picks += '</div></article>'
-    if released:
-        status = 'UPDATED ' + et_stamp(released) + ' ET · SLATE RELEASED' + ('' if positions else ' · NO ENGINE PICK PUBLISHED')
-    else:
+    # An issued card with picks has no refresh footer. The line and price already sit on each panel.
+    if released and not positions:
+        status = 'UPDATED ' + et_stamp(released) + ' ET · SLATE RELEASED · NO ENGINE PICK PUBLISHED'
+    elif not released:
         status = 'SCHEDULE UPDATED ' + et_stamp(today['schedule_updated_at']) + ' ET'
-    picks += '</div><p class="nhl-updated mono" id="nba-refresh-status">' + status + '</p></section>'
+    else:
+        status = None
+    picks += '</div>' + ('' if status is None else '<p class="nhl-updated mono" id="nba-refresh-status">' + status + '</p>') + '</section>'
     rows = [p for slate in archive['slates'] for p in slate['positions']]
     if len({p['position_id'] for p in rows}) != len(rows):
         raise ValueError('duplicate archived position_id')
