@@ -226,6 +226,38 @@ def test_a_request_that_is_not_current_supersedes_nothing(publisher, tmp_path, m
         publisher.matching_ncaaf_workflow_runs(request_t3(publisher, NEW))
 
 
+def test_superseded_request_whose_email_was_delivered_keeps_blocking(publisher, tmp_path, monkeypatch):
+    queue(publisher, tmp_path, current=NEW)
+    runs(publisher, monkeypatch, [(OLD, "completed")])
+    old = publisher.Request("NCAAF", OLD, {}, None, "2026-10-09", "T3")
+    write_json(publisher.receipt_path(old), {"status": "PUBLISHED_EMAIL_VERIFIED", "email_external_action_count": 1})
+    with pytest.raises(RuntimeError, match="NCAA_EMAIL_RECONCILIATION_REQUIRED"):
+        publisher.matching_ncaaf_workflow_runs(request_t3(publisher, NEW))
+
+
+def test_email_workflow_is_read_not_waited_on_inside_the_shared_lock(publisher, monkeypatch):
+    monkeypatch.setattr(publisher, "matching_ncaaf_workflow_runs",
+                        lambda request: [{"databaseId": 5, "status": "in_progress", "conclusion": None}])
+    monkeypatch.setattr(publisher.time, "sleep", lambda seconds: pytest.fail("slept inside the publisher lock"))
+    with pytest.raises(RuntimeError) as caught:
+        publisher.wait_for_ncaaf_workflow(request_t3(publisher, NEW), 5)
+    assert "NCAA_EMAIL_WORKFLOW_PENDING" in str(caught.value) and publisher._is_wait_error(str(caught.value))
+
+
+def test_dispatched_run_not_listed_yet_waits_and_is_never_resent(publisher, monkeypatch):
+    from datetime import datetime, timezone
+    request = request_t3(publisher, NEW)
+    write_json(publisher.receipt_path(request), {"status": "PUBLISHED_EMAIL_DISPATCH_INTENT",
+                                                 "email_dispatch_at_utc": datetime.now(timezone.utc).isoformat()})
+    commands = []
+    monkeypatch.setattr(publisher, "matching_ncaaf_workflow_runs", lambda request: [])
+    monkeypatch.setattr(publisher, "run", lambda command, cwd=None, timeout=180: commands.append(command) or "")
+    with pytest.raises(RuntimeError) as caught:
+        publisher.dispatch_ncaaf_email(request, {"status": "PUBLISHED"})
+    assert publisher._is_wait_error(str(caught.value))
+    assert not any(command[:3] == ["gh", "workflow", "run"] for command in commands)
+
+
 def results_email_module(**attributes):
     module = types.ModuleType("ncaaf_results_email")
     module.__dict__.update(attributes)

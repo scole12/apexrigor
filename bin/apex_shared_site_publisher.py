@@ -51,6 +51,10 @@ NY = ZoneInfo("America/New_York")
 # retried every minute without a cap; one alert after 30 waiting tries.
 MAX_FAILURES_PER_DAY = 10
 WAIT_ERROR_MARKERS = ('PENDING', 'NOT_DEPLOYED', 'DEPLOYMENT_NOT_REQUEST_DESCENDANT')  # Vercel has not deployed the pushed commit yet
+# The NCAAF email workflow is read, not waited on, inside the shared lock (#23 1e).
+# NCAA_EMAIL_WORKFLOW_PENDING is a waiting error (matches 'PENDING'), retried next minute.
+NCAAF_WORKFLOW_POLL_SECONDS = 0
+NCAAF_DISPATCH_VISIBILITY_GRACE_SECONDS = 10 * 60
 WAIT_ALERT_AFTER = 30
 NOTIFY = '/opt/apex_ops/bin/apex_notify.py'
 FINAL_RECEIPT_STATES = {
@@ -998,7 +1002,8 @@ def ncaaf_superseded_request_ids(request: Request) -> set[str]:
 
     The NCAAF queue keeps one directory per request under <date>/<product>/ and a
     current.json naming the live one. Every other request directory there is superseded,
-    but only while this request is the current one."""
+    but only while this request is the current one, and never one whose email this
+    publisher already verified as delivered (that obligation was met; no second email)."""
     if request.sport != "NCAAF" or not request.slate_date or not request.product:
         return set()
     product_root = NCAAF_QUEUE / request.slate_date / request.product
@@ -1006,11 +1011,27 @@ def ncaaf_superseded_request_ids(request: Request) -> set[str]:
     try:
         if load_json(pointer_path).get("request_id") != request.request_id:
             return set()
-        return {path.name for path in product_root.iterdir()
-                if path.is_dir() and re.fullmatch(r"[a-f0-9]{64}", path.name)
-                and path.name != request.request_id}
+        candidates = {path.name for path in product_root.iterdir()
+                      if path.is_dir() and re.fullmatch(r"[a-f0-9]{64}", path.name)
+                      and path.name != request.request_id}
     except (OSError, ValueError, RuntimeError):
         return set()
+    return {request_id for request_id in candidates
+            if not ncaaf_email_delivered(Request("NCAAF", request_id, {}, None, request.slate_date, request.product))}
+
+
+def ncaaf_email_delivered(request: Request) -> bool:
+    """True when this request's receipt records a verified or provider-accepted email."""
+    path = receipt_path(request)
+    if not path.is_file():
+        return False
+    try:
+        receipt = load_json(path)
+    except (OSError, ValueError, RuntimeError):
+        return True   # unreadable evidence is not proof that nothing was sent
+    return (str(receipt.get("status") or "").endswith("_EMAIL_VERIFIED")
+            or bool(receipt.get("email_provider_evidence"))
+            or int(receipt.get("email_external_action_count") or 0) > 0)
 
 
 def matching_ncaaf_workflow_runs(request: Request) -> list[dict[str, Any]]:
@@ -1084,10 +1105,16 @@ def wait_for_ncaaf_workflow(
     *,
     excluded_run_ids: set[int] | None = None,
 ) -> dict[str, Any]:
-    deadline = time.monotonic() + 360
+    """Read the email workflow's state; return it when it has completed successfully.
+
+    Issue #23 (1e): this used to poll for up to 6 minutes while holding the one publisher
+    lock, so every other sport's queue waited behind an NCAAF email. It now reads for at most
+    NCAAF_WORKFLOW_POLL_SECONDS and otherwise yields with a waiting error; the next
+    once-a-minute run picks the same run up again (its identity is in the durable intent)."""
+    deadline = time.monotonic() + NCAAF_WORKFLOW_POLL_SECONDS
     selected: dict[str, Any] | None = None
     excluded = excluded_run_ids or set()
-    while time.monotonic() < deadline:
+    while True:
         matches = matching_ncaaf_workflow_runs(request)
         candidates = [
             row for row in matches
@@ -1108,10 +1135,12 @@ def wait_for_ncaaf_workflow(
                         f"NCAA email workflow {run_id} completed {selected.get('conclusion')}"
                     )
                 return selected
+        if time.monotonic() >= deadline:
+            break
         time.sleep(2)
     raise RuntimeError(
-        f"NCAA email workflow did not complete before timeout: "
-        f"request={request.request_id} run_id={run_id} last={selected}"
+        f"NCAA_EMAIL_WORKFLOW_PENDING: request={request.request_id} run_id={run_id} "
+        f"last={selected}"
     )
 
 
@@ -1456,6 +1485,10 @@ def _dispatch_ncaaf_email_workflow(request: Request, receipt: dict[str, Any]) ->
     if request.manifest.get("prior_email_delivery") and saved_run_id is None:
         raise RuntimeError("NCAA_PRIOR_EMAIL_NOT_FOUND: no new send is permitted")
     if saved_run_id is None and prior.get("email_dispatch_at_utc"):
+        dispatched = datetime.fromisoformat(str(prior["email_dispatch_at_utc"]).replace("Z", "+00:00"))
+        if (datetime.now(timezone.utc) - dispatched).total_seconds() < NCAAF_DISPATCH_VISIBILITY_GRACE_SECONDS:
+            # A run dispatched by the previous turn may not be listed yet: wait, never resend.
+            raise RuntimeError("NCAA_EMAIL_WORKFLOW_PENDING: dispatched run not visible yet")
         raise RuntimeError("NCAA_EMAIL_RECONCILIATION_REQUIRED: earlier dispatch outcome is unknown")
     prior_attempt_ids = sorted(by_id)
     intent = {
@@ -1499,7 +1532,8 @@ def _dispatch_ncaaf_email_workflow(request: Request, receipt: dict[str, Any]) ->
     except Exception as error:
         failed = {
             **intent,
-            "status": publication_status + "_EMAIL_RECONCILIATION_REQUIRED",
+            "status": publication_status + ("_EMAIL_WORKFLOW_PENDING" if _is_wait_error(str(error))
+                                            else "_EMAIL_RECONCILIATION_REQUIRED"),
             "exact_error": f"{type(error).__name__}: {str(error)[:1600]}",
         }
         atomic_json(state_path, failed)
