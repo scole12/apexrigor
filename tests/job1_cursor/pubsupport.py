@@ -10,7 +10,11 @@ import importlib.util
 import json
 import subprocess
 import sys
+import types
 from pathlib import Path
+
+if sys.platform == "win32" and "fcntl" not in sys.modules:
+    sys.modules["fcntl"] = types.ModuleType("fcntl")
 
 ROOT = Path(__file__).resolve().parents[2]
 BIN = ROOT / "bin"
