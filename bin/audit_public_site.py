@@ -226,7 +226,7 @@ def main() -> int:
         for marker in ('aria-label="NBA sections"', 'href="/nba"', 'href="/nba/results"', 'href="/nba/about"'):
             if marker not in text:
                 errors.append(f'{route} missing NBA navigation: {marker}')
-    for marker in ("TODAY'S CARD", 'ATS', 'TOTALS', 'UPDATED '):
+    for marker in ("TODAY'S CARD", 'ATS', 'TOTALS'):
         if marker not in nba_picks:
             errors.append(f'/nba missing {marker}')
     try:
@@ -247,7 +247,9 @@ def main() -> int:
                 errors.append('NBA baseline prediction cannot be public')
         if nba_today['status'] != 'ISSUED':
             # before the release each game awaits it; after a baseline-only release the page says no engine
-            # pick is published
+            # pick is published. An issued card with picks has no refresh footer.
+            if 'UPDATED ' not in nba_picks:
+                errors.append('/nba missing UPDATED ')
             waiting = ('UNISSUED — AWAITING ' + nba_release + ' RELEASE') if not nba_today.get('released_at') else 'RELEASED — NO ENGINE PICK PUBLISHED'
             if nba_today['positions'] or (nba_today['games'] and nba_picks.count(waiting) != len(nba_today['games'])):
                 errors.append('NBA unissued state mismatch')
@@ -256,6 +258,8 @@ def main() -> int:
         elif not nba_today['positions']:
             errors.append('NBA issued payload has no positions')
         else:
+            if 'UPDATED ' in nba_picks or 'SLATE RELEASED' in nba_picks:
+                errors.append('NBA issued card must not print the slate-released footer')
             for market in ('ATS', 'TOTALS'):
                 if f'<div class="market-label">{market}</div>' not in nba_picks:
                     errors.append(f'/nba missing issued {market} panel')
