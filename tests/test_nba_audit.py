@@ -40,6 +40,21 @@ class NBAAudit(unittest.TestCase):
             self.assertNotEqual(result.returncode, 0)
             self.assertIn('computed release time', result.stdout)
             about_path.write_text(about, encoding='utf-8')
+            # a released, baseline-only slate: 0 positions, every game says no engine pick is published
+            today['released_at'] = '2026-10-20T17:30:00+00:00'
+            today['sealed_games'] = [g['game_id'] for g in today['games']]
+            today_path.write_text(json.dumps(today))
+            with patch.object(builder, 'ROOT', root):
+                builder.build()
+            result = audit()
+            self.assertEqual(result.returncode, 0, result.stdout+result.stderr)
+            picks_path = root/'nba/index.html'
+            picks = picks_path.read_text(encoding='utf-8')
+            picks_path.write_text(picks.replace(' · NO ENGINE PICK PUBLISHED</p>', '</p>'), encoding='utf-8')
+            result = audit()
+            self.assertNotEqual(result.returncode, 0)
+            self.assertIn('NBA released state mismatch', result.stdout)
+            picks_path.write_text(picks, encoding='utf-8')
             strip=record_strip(json.loads((root/'data/apex_results_summary.json').read_text()))
             for route in ('nba/index.html','nba/results/index.html','nba/about/index.html','nhl/index.html'):
                 self.assertIn(strip,(root/route).read_text(encoding='utf-8'))
