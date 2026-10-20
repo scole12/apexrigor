@@ -75,7 +75,7 @@ class NBAWebsite(unittest.TestCase):
         conn.__enter__.return_value = conn
         conn.execute.side_effect = [MagicMock(), MagicMock(fetchall=lambda: []),
                                    MagicMock(fetchall=lambda: [row]),
-                                   MagicMock(fetchone=lambda: dict(sealed=0, released_at=None))]
+                                   MagicMock(fetchall=lambda: [])]
         bands = self.root / 'tier_bands.json'
         bands.write_text(json.dumps(TIER_BANDS))
         with patch('psycopg.connect', return_value=conn) as connect, patch.object(builder, 'reader_url', return_value='READER_FIXTURE'):
@@ -146,7 +146,8 @@ class NBAReleaseLabel(unittest.TestCase):
     def released(self, positions=()):
         path = self.root / 'data/nba_today.json'
         today = json.loads(path.read_text())
-        today.update(released_at='2026-10-20T13:00:11.325008+00:00', schedule_updated_at='2026-10-20T15:47:00+00:00',
+        today.update(released_at='2026-10-20T13:00:00+00:00', schedule_updated_at='2026-10-20T15:47:00+00:00',
+                     sealed_games=['146451', '146452'],
                      status='ISSUED' if positions else 'UNISSUED', positions=list(positions))
         path.write_text(json.dumps(today))
         builder.build()
@@ -159,7 +160,8 @@ class NBAReleaseLabel(unittest.TestCase):
         self.assertNotIn('AWAITING', page)
         self.assertNotIn('11:47', page)  # the clock of the build is not shown
         self.assertEqual(page.count('RELEASED — NO ENGINE PICK PUBLISHED'), 3)
-        self.assertIn('Baseline picks are not published on this page', page)
+        self.assertEqual(page.count('release sealed this game with baseline picks only. Baseline picks are not published on this page'), 2)
+        self.assertEqual(page.count('The 9:00 AM release sealed no pick for this game'), 1)
 
     def test_before_the_release_the_schedule_time_is_shown_in_et_with_its_date(self):
         builder.build()
@@ -180,3 +182,23 @@ class NBAReleaseLabel(unittest.TestCase):
             self.assertIn(text, page)
         self.assertEqual(builder.tier_of(TIER_BANDS, TIER_BANDS['cutoffs'][0]), 'Moderate')
         self.assertEqual(builder.tier_of(TIER_BANDS, TIER_BANDS['cutoffs'][2]), 'Elite')
+
+    def test_a_pick_already_on_the_site_keeps_its_first_published_tier(self):
+        from unittest.mock import MagicMock, patch
+        from datetime import date, datetime, timezone
+        row = dict(prediction_id='KEEP', game_id=1, market='spread', side='a', p=.60, line=-3.5, price_a=-110,
+                   price_b=-110, away='Away', home='Home', engine='opus:shrink_c3', engine_version='v1',
+                   issued_at=datetime(2026, 10, 19, 13, tzinfo=timezone.utc), game_date=date(2026, 10, 19), outcome=None)
+        archive = dict(sport='NBA', slates=[dict(slate_date='2026-10-19', week_start='2026-10-19',
+                       positions=[dict(position_id='KEEP', tier='Moderate', tier_version=1)])])
+        (self.root / 'data/nba_results_archive.json').write_text(json.dumps(archive))
+        bands = self.root / 'tier_bands.json'
+        bands.write_text(json.dumps(TIER_BANDS))
+        conn = MagicMock()
+        conn.__enter__.return_value = conn
+        conn.execute.side_effect = [MagicMock(), MagicMock(fetchall=lambda: []), MagicMock(fetchall=lambda: [row]),
+                                    MagicMock(fetchall=lambda: [])]
+        with patch('psycopg.connect', return_value=conn), patch.object(builder, 'reader_url', return_value='R'):
+            builder.refresh(date(2026, 10, 20), bands)
+        kept = json.loads((self.root / 'data/nba_results_archive.json').read_text())['slates'][0]['positions'][0]
+        self.assertEqual((kept['tier'], kept['tier_version']), ('Moderate', 1))  # the file would say Elite, v2

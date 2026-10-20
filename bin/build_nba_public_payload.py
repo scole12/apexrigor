@@ -110,13 +110,21 @@ def refresh(day, tier_bands=None):
             order by p.game_date,p.game_id,p.market""",
             (day.year - (day.month < 8), day)).fetchall()
         # The slate counts as released once any row of the date is sealed (baseline included); the label
-        # shows the time of the last row sealed, not the clock of this build.
-        released = conn.execute("""select count(*) sealed, max(issued_at) released_at from ops.predictions
-            where game_date=%s and issued_at is not null and issued_at<=CURRENT_TIMESTAMP""", (day,)).fetchone()
+        # shows the release (the sealed rows' prediction time), not the clock of this build.
+        sealed = conn.execute("""select game_id, min(prediction_time) released_at from ops.predictions
+            where game_date=%s and issued_at is not null and issued_at<=CURRENT_TIMESTAMP
+            group by game_id""", (day,)).fetchall()
     if rows and tier_bands is None:
         raise ValueError('--tier-bands is required to publish engine picks')
     bands = read_tier_bands(tier_bands) if tier_bands else None
     positions = [public_position(r, bands) for r in rows]
+    # A pick already on the site keeps the tier it was first published with.
+    path = ROOT / 'data' / 'nba_results_archive.json'
+    shown = {p['position_id']: p for s in (json.loads(path.read_text(encoding='utf-8'))['slates']
+             if path.is_file() else []) for p in s['positions']}
+    for p in positions:
+        if p['position_id'] in shown:
+            p.update(tier=shown[p['position_id']].get('tier'), tier_version=shown[p['position_id']].get('tier_version'))
     current = [p for r, p in zip(rows, positions) if r['game_date'] == day]
     stamp = datetime.now(timezone.utc).isoformat()
     today = dict(sport='NBA', schema_version='APEX_NBA_PUBLIC_V1',
@@ -124,8 +132,8 @@ def refresh(day, tier_bands=None):
                  release_at=(release_time([{'tip': g['scheduled_tip']} for g in games]).isoformat()
                              if any(g['scheduled_tip'] for g in games) else None),
                  schedule_updated_at=stamp, scheduled_games=len(games),
-                 released_at=(released['released_at'].isoformat()
-                              if released and released['sealed'] else None),
+                 released_at=(min(r['released_at'] for r in sealed).isoformat() if sealed else None),
+                 sealed_games=sorted(str(r['game_id']) for r in sealed),
                  games=[dict(game_id=str(g['game_id']), away=g['away'], home=g['home'],
                              tip=g['scheduled_tip'].isoformat() if g['scheduled_tip'] else None,
                              season_type=g['season_type']) for g in games], positions=current)
@@ -213,7 +221,9 @@ def build():
         if key in cards:
             picks += ''.join(cards[key][1])
         elif released:
-            picks += '<section class="market-panel" data-position-state="RELEASED"><div class="market-label">STATUS</div><div class="market-panel-head"><span class="pick-headline">RELEASED — NO ENGINE PICK PUBLISHED</span><span class="tier-badge tier-badge--moderate">RELEASED</span></div><div class="rationale-copy"><p>The ' + release + ' release sealed this game with baseline picks only. Baseline picks are not published on this page, so no position is shown.</p></div></section>'
+            why = ('The ' + et_stamp(released).split(', ')[1] + ' release sealed this game with baseline picks only. Baseline picks are not published on this page, so no position is shown.'
+                   if key in today.get('sealed_games', []) else 'The ' + et_stamp(released).split(', ')[1] + ' release sealed no pick for this game, so no position is shown.')
+            picks += '<section class="market-panel" data-position-state="RELEASED"><div class="market-label">STATUS</div><div class="market-panel-head"><span class="pick-headline">RELEASED — NO ENGINE PICK PUBLISHED</span><span class="tier-badge tier-badge--moderate">RELEASED</span></div><div class="rationale-copy"><p>' + why + '</p></div></section>'
         else:
             picks += '<section class="market-panel" data-position-state="UNISSUED"><div class="market-label">STATUS</div><div class="market-panel-head"><span class="pick-headline">UNISSUED — AWAITING ' + release + ' RELEASE</span><span class="tier-badge tier-badge--moderate">SCHEDULED</span></div><div class="rationale-copy"><p>Listed from the official schedule. No sealed FanDuel-issued APEX positions yet.</p></div></section>'
         picks += '</div></article>'
