@@ -98,4 +98,16 @@ class NBARationale(unittest.TestCase):
         self.assertIn('totals_d4_ratings_lag1.v2',total['rationale'])
         self.assertNotIn('None',total['rationale'])
 
+    def test_an_away_spread_pick_shows_its_own_win_chance_and_its_own_line(self):
+        away=builder.public_position(self.row('spread','b',p=0.474,line=-1.5,price_a=-110,price_b=-110))
+        self.assertAlmostEqual(away['probability'],0.526)
+        self.assertEqual(away['probability_side'],'away')
+        self.assertEqual(away['line'],1.5)
+        home=builder.public_position(self.row('spread','a',p=0.5375,line=-4.5))
+        self.assertAlmostEqual(home['probability'],0.5375)
+        self.assertEqual((home['probability_side'],home['line']),('home',-4.5))
+        under=builder.public_position(self.row('total','b',p=0.45,line=220.5))
+        self.assertAlmostEqual(under['probability'],0.55)
+        self.assertEqual((under['probability_side'],under['line']),('Under',220.5))
+
 if __name__=='__main__': unittest.main()
