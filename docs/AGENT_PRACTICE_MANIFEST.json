@@ -1,16 +1,17 @@
 {
-  "version": "2026-10-16.2",
-  "effective_date": "2026-10-16",
-  "canonical_repository": "scole12/apex2-nba",
+  "version": "2026-10-20.1",
+  "effective_date": "2026-10-20",
+  "canonical_repository": "scole12/apexrigor",
   "managed_files": {
-    "docs/AGENT_OPERATING_STANDARD.md": "f7bb9d4940bfb1463a61d645cd34159f14ebdfd99a39afb5e7326467a9e6e147",
-    "AGENTS.md": "69411f89210ccdfaa64295afbd1a133d0e37acba0e4cc288bdf65a739b084afa",
+    "docs/AGENT_OPERATING_STANDARD.md": "8d843a890a2cb9b97139b295a0b196b6c4b28596aa6b5281e3178bd8511176ef",
+    "AGENTS.md": "5c415591be3711eee3ac7aeb41e54e8b05caf3854dc4f6c6be887a68f7ad4100",
     "CLAUDE.md": "336cc4fbf19beaada7ccf9986414fa91851a8d7a07dfb3ccbe800a69eed0ab49",
-    "CURSOR.md": "122cd718806641d990968aca46d6ea30bec5245c80dc370fe68234682993641e",
-    ".github/copilot-instructions.md": "ec9f10258fa6b070f113fa94a6fe6aa8574de435d0d9db6c03a2dddc86563d9a",
-    ".cursor/rules/apex-practice.mdc": "2d2ee1da347a594f68fc53cd607bf51446a756b4d129ea6e09ffae8ef42701fa",
+    "CURSOR.md": "1eaa050ff3bf247b96ac048c70b2dd76ac3171f49fa079a31878f86e10a17a60",
+    ".github/copilot-instructions.md": "7e98615cba514b87ee701110f540e1b1a739dd9a0851eb4e3cfe38cf00ce88b2",
+    ".cursor/rules/apex-practice.mdc": "a24e4c3cbfbcd2be76245d13401ec97763a7371984b3f769ccb64ca04eb863f9",
     "tools/check_agent_practice.py": "7b5c0ed3627cab03166f515905df27483b78acbf01a1585727e024406a892dce",
-    ".github/workflows/apex-agent-practice.yml": "736d721803f8151a3938ec808581fd05050363d452efa5d2663161cecabacfb8"
+    ".github/workflows/apex-agent-practice.yml": "736d721803f8151a3938ec808581fd05050363d452efa5d2663161cecabacfb8",
+    ".cursor/rules/agent-standard.mdc": "fb9446c4b8a1bf893cf7d5d11133f8f75ba93002556ae856712b6f0175008c3c"
   },
   "removed_files": []
 }

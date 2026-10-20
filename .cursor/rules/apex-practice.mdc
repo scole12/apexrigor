@@ -1,5 +1,8 @@
 ---
-description: Current APEX quantitative forecasting agent practice
-alwaysApply: true
+description: Superseded October 16, 2026 Cursor pointer. Do not apply.
+alwaysApply: false
 ---
-Read AGENTS.md and docs/AGENT_OPERATING_STANDARD.md. They supersede all earlier agent workflows. Follow docs/PROJECT_REQUIREMENTS.md for domain constraints.
+
+This rule is superseded forever by the October 20, 2026 agent standard. Do not apply it.
+
+The only prevailing practice is `AGENTS.md` and `.cursor/rules/agent-standard.mdc`.

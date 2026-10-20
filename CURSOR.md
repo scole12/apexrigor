@@ -1,1 +1,1 @@
-Read AGENTS.md and docs/AGENT_OPERATING_STANDARD.md. Those are the current APEX agent instructions.
+The only prevailing agent practice is `AGENTS.md` (October 20, 2026, approved by Scott). `docs/AGENT_OPERATING_STANDARD.md` is superseded and is not an instruction.
