@@ -1231,7 +1231,7 @@ def ncaaf_t2_site_live_before_email(request: Request, result: dict[str, Any], *,
             owner_notice('publisher-site-timeout:' + request.request_id,
                          'APEX ALERT: NCAAF site deployment wait expired',
                          'Request ' + request.request_id + ' will deliver with deployment evidence pending.')
-            return {**result, 'site_live_check': {'status': 'EMAIL_SENT_AT_FIRST_KICKOFF_SITE_NOT_LIVE', **check}}
+            return {**result, 'site_live_check': {'status': ('EMAIL_RELEASED_AFTER_BOUNDED_SITE_WAIT' if first_kick is not None and current_ms < first_kick else 'EMAIL_SENT_AT_FIRST_KICKOFF_SITE_NOT_LIVE'), **check}}
         if time.time() >= stop:
             break
         time.sleep(10)
@@ -1620,7 +1620,10 @@ def execute(*, dry_run: bool, sport: str | None = None) -> dict[str, Any]:
                             + ' (waiting tries: ' + str(wait_now) + ')\nFailure files: ' + str(failure_root)
                             + '\n\nTo let the publisher try again right away after fixing the cause:\n  rm -rf ' + str(failure_root) + '\n')
                     if not _is_wait_error(failure['error']):
-                        if hard_now == 1:
+                        if not _is_request_failure(failure['error']):
+                            owner_notice('publisher-environment:' + request.request_id,
+                                         'APEX ALERT: shared publisher environment fault - ' + label, body)
+                        elif hard_now == 1:
                             owner_notice('publisher-fail:' + request.request_id, 'APEX ALERT: site publish failed - ' + label, body)
                         elif hard_now == MAX_FAILURES_PER_DAY:
                             owner_notice('publisher-stop:' + request.request_id,

@@ -13,6 +13,13 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from unittest.mock import Mock
 
+
+class FixedDatetime(datetime):
+    @classmethod
+    def now(cls, tz=None):
+        return cls.fromtimestamp(1792530000, tz)
+
+
 ROOT = Path(__file__).resolve().parents[2]
 SOURCE = ROOT / "bin/apex_shared_site_publisher.py"
 
@@ -249,6 +256,39 @@ class PublisherRegression(unittest.TestCase):
             receipt.write_text(json.dumps(evidence))
             with self.assertRaisesRegex(RuntimeError, "RECONCILIATION_REQUIRED"):
                 p.matching_ncaaf_workflow_runs(request)
+
+    def test_deployment_delay_has_bound_and_alert(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            clock = 1792530000000
+            receipt = root / "receipt.json"
+            receipt.write_text(
+                json.dumps({"site_wait_started_utc_ms": clock - 31 * 60000})
+            )
+            request = types.SimpleNamespace(
+                sport="NCAAF", product="T2", request_id="a" * 64
+            )
+            alert = Mock()
+            p = functions(
+                "ncaaf_t2_site_live_before_email",
+                receipt_path=lambda request: receipt,
+                load_json=lambda path: json.loads(path.read_text()),
+                ncaaf_first_kickoff_ms=lambda request: clock + 2 * 3600000,
+                ncaaf_deployment_serves=lambda commit: (False, {}),
+                owner_notice=alert,
+                time=types.SimpleNamespace(time=lambda: 1000),
+                NCAAF_LIVE_POLL_SECONDS=0,
+                datetime=FixedDatetime,
+                timezone=timezone,
+            )
+            result = p.ncaaf_t2_site_live_before_email(
+                request, {"published_commit": "b" * 40}, now_ms=clock
+            )
+            self.assertEqual(
+                result["site_live_check"]["status"],
+                "EMAIL_RELEASED_AFTER_BOUNDED_SITE_WAIT",
+            )
+            alert.assert_called_once()
 
 
 if __name__ == "__main__":
