@@ -1,5 +1,5 @@
 # apexrigor project requirements
-Agent workflow is governed solely by AGENT_OPERATING_STANDARD.md.
+Agent workflow is governed solely by the October 20, 2026 agent standard in `AGENTS.md`. That file is the only prevailing practice. These requirements do not reinstate any earlier workflow.
 - Work only in this project's declared scope; no cross-sport or APEX 1.0/2.0 code, data or credential contamination.
 - Preserve source contracts, official results, issued positions, settlement rules and existing tests. Never fabricate data or substitute zeros for missing facts.
 - Use the existing build/test/deployment commands after verifying they exist at the target commit. Preserve scheduled operations and delivery contracts.
