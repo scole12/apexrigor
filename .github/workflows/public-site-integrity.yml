@@ -1,10 +1,15 @@
 name: Public site integrity
 
+# Job 3 (scole12/apexrigor): CI runs only on the final pull request into main or by hand.
+# No push-to-branch trigger. Build and test happen on the Geekom.
 on:
-  push:
-    branches: [main]
   pull_request:
     branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 permissions:
   contents: read
