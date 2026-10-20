@@ -58,29 +58,10 @@ FINAL_RECEIPT_STATES = {
     "PUBLISHED_EMAIL_VERIFIED",
     "PUBLISHED_NO_CONTENT_CHANGE_EMAIL_VERIFIED",
 }
-ROUTE_PATHS = {
-    "index.html",
-    "picks.html",
-    "picks/index.html",
-    "results.html",
-    "results/index.html",
-    "about/index.html",
-    "ncaaf/index.html",
-    "ncaaf/results/index.html",
-    "ncaaf/about/index.html",
-    "mma/index.html",
-    "mma/results/index.html",
-    "mma/about/index.html",
-    "nfl/index.html",
-    "nfl/results/index.html",
-    "nfl/about/index.html",
-    "nhl/index.html",
-    "nhl/results/index.html",
-    "nhl/about/index.html",
-    "nba/index.html",
-    "nba/results/index.html",
-    "nba/about/index.html",
-}
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from sport_routes import ROUTE_OWNERS
+
+ROUTE_PATHS = set(ROUTE_OWNERS)
 
 
 @dataclass(frozen=True)
@@ -743,30 +724,14 @@ def build_request(request: Request, worktree: Path) -> dict[str, Any]:
         surfaces = ('data/nfl_today.json', 'data/nfl_system_state.json', 'data/nfl_results_archive.json', 'data/nfl_results_summary.json', 'nfl/index.html')
         return {'changed_paths': sorted(changed), 'audit_tail': 'NFL authority-bound builder completed',
                 'nfl_surface_hashes': {name: sha256_file(worktree / name) for name in surfaces}}
-    if request.sport == "NCAAF" and request.product == "DISPLAY":
-        # Display-only rollover carries the same picks files as RESULTS and is validated the same way.
-        with tempfile.TemporaryDirectory(prefix="ncaaf-build-check-", dir=worktree.parent) as temporary:
-            validation = Path(temporary) / "site"
-            shutil.copytree(worktree, validation, ignore=shutil.ignore_patterns(".git", "public", "__pycache__"))
-            audit = python_tool(validation, "build_vercel_output.py")
+    if request.sport == "NCAAF":
         changed = dirty_paths(worktree)
-        if any(name not in {"data/ncaaf_today.json", "ncaaf/index.html"} for name in changed):
-            raise RuntimeError("NCAA display publication attempted an unrelated path")
-        return {"changed_paths": sorted(changed), "audit_tail": audit[-1600:]}
-    if request.sport == "NCAAF" and request.product == "RESULTS":
-        # Results recovery owns NCAA output paths. Shared navigation/analytics
-        # rewrites are unrelated and can modify currently issued picks pages.
-        # The canonical Vercel build also regenerates other sport pages.
-        # Validate the full deployable output in a disposable copy so those
-        # generated changes never enter this NCAA source publication commit.
-        with tempfile.TemporaryDirectory(prefix="ncaaf-build-check-", dir=worktree.parent) as temporary:
-            validation = Path(temporary) / "site"
-            shutil.copytree(worktree, validation, ignore=shutil.ignore_patterns(".git", "public", "__pycache__"))
-            audit = python_tool(validation, "build_vercel_output.py")
-        changed = dirty_paths(worktree)
-        if any(not (name.startswith("data/ncaaf/") or name.startswith("data/ncaaf_") or name == "ncaaf/index.html") for name in changed):
-            raise RuntimeError("NCAA results publication attempted an unrelated path")
-        return {"changed_paths": sorted(changed), "audit_tail": audit[-1600:]}
+        forbidden = sorted(name for name in changed if not (
+            name.startswith("data/ncaaf/") or name.startswith("data/ncaaf_")
+            or name in ROUTE_PATHS and ROUTE_OWNERS[name] == "NCAAF"))
+        if forbidden:
+            raise RuntimeError(f"NCAA publication attempted an unrelated path: {forbidden}")
+        return {"changed_paths": sorted(changed), "audit_tail": "NCAAF immutable payload and delivery manifest validated"}
     python_tool(worktree, "apply_shared_sport_selector.py", "--root", str(worktree))
     python_tool(worktree, "apply_cloudflare_web_analytics.py", "--root", str(worktree))
     python_tool(worktree, "apply_vercel_web_analytics.py", "--root", str(worktree))
@@ -791,10 +756,10 @@ def publish(request: Request, *, dry_run: bool) -> dict[str, Any]:
     if request.sport=='NFL' and not dry_run:
         return publish_nfl_durable(request)
     intent=STATE_ROOT/'publication_intents'/request.sport.lower()/(request.request_id+'.json')
-    if request.sport == 'MMA' and not dry_run and intent.exists():
+    if request.sport in {'MMA', 'NCAAF'} and not dry_run and intent.exists():
         prior = load_json(intent)
         if prior.get('request_id') != request.request_id:
-            raise RuntimeError('MMA_PUBLICATION_INTENT_DRIFT')
+            raise RuntimeError(request.sport + '_PUBLICATION_INTENT_DRIFT')
         return prior
     if request.sport=='NFL' and not dry_run and intent.exists():
         prior=load_json(intent)
@@ -803,15 +768,12 @@ def publish(request: Request, *, dry_run: bool) -> dict[str, Any]:
     origin = git("remote", "get-url", "origin")
     if CANONICAL_REMOTE not in origin:
         raise RuntimeError(f"noncanonical site origin: {origin}")
-    if git("branch", "--show-current") != "main":
-        raise RuntimeError("shared site checkout is not on main")
-    root_dirty = bool(dirty_paths(ROOT))
+    if git("branch", "--show-current") not in {"main", ""}:
+        raise RuntimeError("shared site checkout is neither main nor a pinned detached release")
     # Build from fetched origin/main in an isolated worktree. Preserve local work.
     git("fetch", "--quiet", "origin", "main")
-    local_head = git("rev-parse", "HEAD")
-    origin_head = git("rev-parse", "origin/main")
-    if local_head != origin_head and not root_dirty:
-        git("merge", "--ff-only", "origin/main")
+    # The installed release is immutable; build site content from origin/main
+    # in a disposable worktree without advancing the installed code checkout.
     STATE_ROOT.mkdir(parents=True, exist_ok=True, mode=0o750)
     worktree_parent = STATE_ROOT / "worktrees"
     worktree_parent.mkdir(parents=True, exist_ok=True, mode=0o750)
@@ -853,11 +815,10 @@ def publish(request: Request, *, dry_run: bool) -> dict[str, Any]:
                 git("worktree", "remove", "--force", str(worktree), timeout=60)
                 git("worktree", "prune", timeout=60)
     git("fetch", "--quiet", "origin", "main")
-    if not dirty_paths(ROOT) and git("rev-parse", "HEAD") != git("rev-parse", "origin/main"):
-        git("merge", "--ff-only", "origin/main")
+
     result={"status":publication_state,"sport":request.sport,"request_id":request.request_id,
             "published_commit":commit,**build}
-    if request.sport in {'NFL','MMA'}:atomic_json(intent,result)
+    if request.sport in {'NFL','MMA','NCAAF'}:atomic_json(intent,result)
     return result
 
 
@@ -1005,6 +966,17 @@ def matching_ncaaf_workflow_runs(request: Request) -> list[dict[str, Any]]:
         superseded = {line.strip() for line in superseded_path.read_text(encoding="utf-8").splitlines() if line.strip()}
     rows = {rid: row for rid, row in rows.items()
             if not any(str(row.get("display_title") or "").endswith(" " + sid) for sid in superseded)}
+    supersedes = request.manifest.get('supersedes_request_id')
+    if supersedes and supersedes != request.request_id:
+        prior_path = STATE_ROOT / 'receipts/ncaaf' / (safe_relative(str(supersedes)) + '.json')
+        evidence = load_json(prior_path) if prior_path.is_file() else {}
+        if (evidence.get('email_dispatch') == 'REJECTED_BEFORE_ACCEPTANCE'
+                and evidence.get('email_external_action_count') == 0
+                and evidence.get('sport') == 'NCAAF'
+                and evidence.get('slate_date') == request.slate_date
+                and evidence.get('product') == request.product):
+            rows = {rid: row for rid, row in rows.items()
+                    if row.get('display_title') != prefix + str(supersedes)}
     if any(str(row.get("display_title") or "").startswith(prefix)
            and row.get("display_title") != title for row in rows.values()):
         raise RuntimeError("NCAA_EMAIL_RECONCILIATION_REQUIRED: another request exists for this stage/date")
@@ -1174,7 +1146,7 @@ def preserve_ncaaf_email_evidence(
     }
 
 
-NCAAF_LIVE_POLL_SECONDS = 60
+NCAAF_LIVE_POLL_SECONDS = 0  # one observation per queue turn; never sleep under the shared lock
 
 
 def ncaaf_first_kickoff_ms(request: Request) -> int | None:
@@ -1254,7 +1226,11 @@ def ncaaf_t2_site_live_before_email(request: Request, result: dict[str, Any], *,
         if live:
             return {**result, 'site_live_check': {'status': 'SITE_LIVE_BEFORE_EMAIL', **check}}
         current_ms = int(time.time() * 1000) if now_ms is None else int(now_ms)
-        if first_kick is None or current_ms >= first_kick:
+        wait_started = int(prior.get('site_wait_started_utc_ms') or current_ms)
+        if first_kick is None or current_ms >= min(first_kick, wait_started + 30 * 60000):
+            owner_notice('publisher-site-timeout:' + request.request_id,
+                         'APEX ALERT: NCAAF site deployment wait expired',
+                         'Request ' + request.request_id + ' will deliver with deployment evidence pending.')
             return {**result, 'site_live_check': {'status': 'EMAIL_SENT_AT_FIRST_KICKOFF_SITE_NOT_LIVE', **check}}
         if time.time() >= stop:
             break
@@ -1263,6 +1239,7 @@ def ncaaf_t2_site_live_before_email(request: Request, result: dict[str, Any], *,
         _catch_up_vercel(commit)
     except Exception:  # noqa: BLE001
         pass
+    atomic_json(state_path, {**prior, **result, 'site_wait_started_utc_ms': prior.get('site_wait_started_utc_ms') or current_ms})
     raise RuntimeError('DEPLOYMENT_NOT_REQUEST_DESCENDANT: NCAAF T-2 email waits for apexrigor.com to serve ' + commit)
 
 
@@ -1273,6 +1250,10 @@ def dispatch_ncaaf_email(request: Request, receipt: dict[str, Any]) -> dict[str,
     import ncaaf_results_email as results_email
     # Serialize the old workflow transport with the independent products email.
     # An accepted local email is adopted after publish, never sent a second time.
+    if (getattr(results_email, 'PUBLISHER_INTERFACE_VERSION', None) != 1
+            or not callable(getattr(results_email, 'delivery_lock', None))
+            or not callable(getattr(results_email, 'confirmed_email', None))):
+        raise RuntimeError('NCAAF_PUBLISHER_INTERFACE_VERSION_MISMATCH: expected results-email API v1')
     with results_email.delivery_lock(request.slate_date):
         email_root = NCAAF_QUEUE.parent / 'results_email' / request.slate_date
         if (email_root / 'receipt.json').is_file() or (email_root / 'transaction.json').is_file():
@@ -1478,6 +1459,14 @@ def _is_wait_error(text: str) -> bool:
     return any(marker in text for marker in WAIT_ERROR_MARKERS)
 
 
+def _is_request_failure(text: str) -> bool:
+    return any(marker in text for marker in (
+        "unsafe queued relative path", "queued payload", "queued source",
+        "NCAA publication attempted an unrelated path", "NCAA display publication attempted",
+        "NCAA results publication attempted", "NCAAF email handoff identity is incomplete",
+    ))
+
+
 def failure_counts(request: Request) -> tuple[int, int]:
     """(hard failures, waiting failures) recorded for this request in the last 24 hours."""
     root = STATE_ROOT / 'failures' / request.sport.lower() / request.request_id
@@ -1493,7 +1482,7 @@ def failure_counts(request: Request) -> tuple[int, int]:
                 continue
             if _is_wait_error(text):
                 wait += 1
-            else:
+            elif _is_request_failure(text):
                 hard += 1
     return hard, wait
 
@@ -1585,7 +1574,7 @@ def execute(*, dry_run: bool, sport: str | None = None) -> dict[str, Any]:
         # 2026-10-02: an NFL request already pushed to GitHub is only waiting for Vercel. The NFL lane runs
         # this publisher once per stage, so its check stayed WAITING until the next NFL stage (days later).
         # The once-a-minute run now finishes that check; it never builds or pushes NFL content.
-        pending=discover_nfl() if sport=='NFL' else discover_mma() if sport=='MMA' else [request for request in discover_isolated() if request.sport != 'NFL' or _nfl_request_pushed(request)]
+        pending=discover_ncaaf(datetime.now(NY).date().isoformat(), (datetime.now(NY).date()-timedelta(days=1)).isoformat()) if sport=='NCAAF' else discover_nfl() if sport=='NFL' else discover_mma() if sport=='MMA' else [request for request in discover_isolated() if request.sport != 'NFL' or _nfl_request_pushed(request)]
         for request in pending:
             hard_failures = failure_counts(request)[0] if not dry_run else 0
             if hard_failures >= MAX_FAILURES_PER_DAY:
@@ -1872,12 +1861,28 @@ def git_deployment(commit, surface_hashes=None, request_id=None):
     return deployment_proof(vercel_deployment(),commit,surface_hashes,request_id)
 
 
+def validate_installed_release() -> None:
+    """Production code must run from a clean, exact tagged checkout.
+
+    Runtime queues, receipts and failures belong to STATE_ROOT, outside this
+    checkout. Publication worktrees still start from the latest origin/main.
+    """
+    if dirty_paths(ROOT):
+        raise RuntimeError('PUBLISHER_RELEASE_DIRTY: install a clean tagged checkout')
+    if contained(STATE_ROOT, ROOT):
+        raise RuntimeError('PUBLISHER_STATE_INSIDE_CODE_CHECKOUT')
+    if not git('tag', '--points-at', 'HEAD'):
+        raise RuntimeError('PUBLISHER_RELEASE_NOT_TAGGED')
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--dry-run", action="store_true")
-    parser.add_argument("--sport", choices=("NFL","MMA"))
+    parser.add_argument("--sport", choices=("NCAAF","NFL","MMA"))
     arguments = parser.parse_args()
     try:
+        if not arguments.dry_run:
+            validate_installed_release()
         outcome = execute(dry_run=arguments.dry_run, sport=arguments.sport)
         print(json.dumps(outcome, indent=2, sort_keys=True))
         # Non-zero only for real failures; "waiting for deployment" and skipped stuck requests exit 0.

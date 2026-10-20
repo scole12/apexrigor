@@ -1,0 +1,23 @@
+name: Job 1 publisher regressions
+on:
+  push:
+    branches: [job1-codex, job1-claude, job1-tests-by-codex]
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  publisher:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m unittest discover -s tests/job1_cross_by_codex -v
+      - run: python tests/test_ncaaf_publisher_isolation.py
+      - run: python tests/test_ncaaf_results_backlog.py
+      - run: python tests/test_ncaaf_shared_record_scheduling.py
+      - run: python tests/test_mma_shared_publisher_contract.py
+      - run: node tests/ncaaf_results_layout.test.cjs
+      - run: python bin/build_vercel_output.py

@@ -47,26 +47,9 @@ def install(path: Path) -> None:
 
 
 def active_outputs(root: Path) -> tuple[Path, ...]:
-    return (
-        root / "index.html",
-        root / "picks.html",
-        root / "picks" / "index.html",
-        root / "results.html",
-        root / "results" / "index.html",
-        root / "about" / "index.html",
-        root / "ncaaf" / "index.html",
-        root / "ncaaf" / "results" / "index.html",
-        root / "ncaaf" / "about" / "index.html",
-        root / "mma" / "index.html",
-        root / "mma" / "results" / "index.html",
-        root / "mma" / "about" / "index.html",
-        root / "nfl" / "index.html",
-        root / "nfl" / "results" / "index.html",
-        root / "nfl" / "about" / "index.html",
-        root / "nhl" / "index.html",
-        root / "nhl" / "results" / "index.html",
-        root / "nhl" / "about" / "index.html",
-    )
+    from sport_routes import ROUTE_OWNERS
+    return tuple(root / relative for relative in ROUTE_OWNERS)
+
 
 
 def main() -> int:

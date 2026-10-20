@@ -99,6 +99,12 @@ def main() -> int:
         ignore = ignore_data_backups if relative == "data" else None
         shutil.copytree(source, OUTPUT / relative, ignore=ignore)
 
+    from sport_routes import PUBLIC_ROUTE_OWNERS
+    built_routes = {path.relative_to(OUTPUT).as_posix() for path in OUTPUT.rglob('*.html')}
+    unowned = sorted(built_routes - set(PUBLIC_ROUTE_OWNERS))
+    if unowned:
+        raise RuntimeError(f'Vercel output contains unowned HTML routes: {unowned}')
+
     # Permanent: keep /results MLB season labels audit-stable and keep the
     # root results.html twin identical to results/index.html. Drift of the
     # season banner label ("Overall" vs required "MLB Overall") is what

@@ -18,31 +18,11 @@ from pathlib import Path
 from _apex_site_record import apply_record_strip
 
 
-ROUTES = {
-    "index.html": ("mlb", "picks"),
-    "picks.html": ("mlb", "picks"),
-    "picks/index.html": ("mlb", "picks"),
-    "results.html": ("mlb", "results"),
-    "results/index.html": ("mlb", "results"),
-    "about/index.html": ("mlb", "about"),
-    "ncaaf/index.html": ("ncaaf", "picks"),
-    "ncaaf/results/index.html": ("ncaaf", "results"),
-    "ncaaf/about/index.html": ("ncaaf", "about"),
-    "mma/index.html": ("mma", "picks"),
-    "mma/results/index.html": ("mma", "results"),
-    "mma/about/index.html": ("mma", "about"),
-}
-NFL_ROUTES = {
-    "nfl/index.html": ("nfl", "picks"),
-    "nfl/results/index.html": ("nfl", "results"),
-    "nfl/about/index.html": ("nfl", "about"),
-}
+from sport_routes import navigation_routes
 
-NHL_ROUTES = {
-    "nhl/index.html": ("nhl", "picks"),
-    "nhl/results/index.html": ("nhl", "results"),
-    "nhl/about/index.html": ("nhl", "about"),
-}
+ROUTES = {**navigation_routes('MLB'), **navigation_routes('NCAAF'), **navigation_routes('MMA')}
+NFL_ROUTES = navigation_routes('NFL')
+NHL_ROUTES = navigation_routes('NHL')
 
 STACK_RE = re.compile(
     r'^[ \t]*<div class="apex-nav-stack">\s*<nav class="sport-nav".*?</nav>\s*'
@@ -135,7 +115,7 @@ def main() -> int:
     nhl_available = all(nhl_state.values())
     if nhl_available:
         routes.update(NHL_ROUTES)
-    nba_routes = {"nba/index.html": ("nba", "picks"), "nba/results/index.html": ("nba", "results"), "nba/about/index.html": ("nba", "about")}
+    nba_routes = navigation_routes("NBA")
     nba_state = [(root / path).is_file() for path in nba_routes]
     if any(nba_state) and not all(nba_state):
         raise RuntimeError("partial NBA route set is forbidden")
