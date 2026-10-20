@@ -2,7 +2,7 @@ name: Public site integrity
 
 on:
   push:
-    branches: [main]
+    branches: [main, job1-codex, job1-claude]
   pull_request:
     branches: [main]
 
