@@ -73,6 +73,9 @@ GLOBAL_FAULT = "GLOBAL_FAULT"
 # Failures that come from outside the request (GitHub, Vercel, network, another push).
 GLOBAL_FAULT_MARKERS = (
     GLOBAL_FAULT,
+    # Queued bytes are limited to the sport's own paths, so an unowned path always came from
+    # shared tooling. Listed so the Oct 20 failure records stop counting without manual archiving.
+    "shared publisher produced unowned paths",
     "[rejected]",
     "non-fast-forward",
     "fetch first",
@@ -1320,7 +1323,7 @@ def ncaaf_request_commit(request: Request, result: dict[str, Any]) -> str:
     if not paths:
         return commit
     try:
-        found = git('log', '-1', '--format=%H', commit, '--', *paths)
+        found = git('log', '-1', '--format=%H', commit, '--', *paths, cwd=ROOT)
     except RuntimeError:
         return commit
     return found if re.fullmatch(r'[0-9a-f]{40}', found) else commit
@@ -1729,12 +1732,13 @@ def deploy_check(root: Path = ROOT) -> dict[str, Any]:
         head = read_git('rev-parse', 'HEAD')
         origin = read_git('rev-parse', 'origin/main')
         behind = int(read_git('rev-list', '--count', 'HEAD..origin/main') or 0)
-        dirty = sorted(line[3:].split(' -> ')[-1] for line in read_git('status', '--porcelain').splitlines() if len(line) > 3)
+        dirty = sorted(line[3:].split(' -> ')[-1] for line in read_git('status', '--porcelain', '--untracked-files=all').splitlines() if len(line) > 3)
         own = Path(__file__).resolve().relative_to(root.resolve()).as_posix()
         reviewed = read_git('show', f'origin/main:{own}').replace('\r\n', '\n').rstrip('\n')
         current = Path(__file__).read_text(encoding='utf-8').replace('\r\n', '\n').rstrip('\n')
     except Exception as error:  # noqa: BLE001
         return {'status': 'UNKNOWN', 'error': type(error).__name__ + ':' + str(error)[:300]}
+    dirty = [path for path in dirty if '__pycache__/' not in path and not path.endswith('.pyc')]
     code_paths = [path for path in dirty if path.startswith(('bin/', 'vercel.json'))]
     stale = current != reviewed
     return {'status': 'STALE' if stale or code_paths else 'CURRENT', 'head': head, 'origin_main': origin,
