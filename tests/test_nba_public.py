@@ -14,6 +14,11 @@ builder = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(builder)
 
 
+TIER_BANDS = dict(version=2, fitted_on=['2022-23', '2023-24'], date='2026-10-20',
+                  cutoffs=[0.5065608111643407, 0.5354196603716558, 0.589047001464929],
+                  tiers=['WEAK', 'MODERATE', 'STRONG', 'ELITE'])
+
+
 class NBAWebsite(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
@@ -69,9 +74,12 @@ class NBAWebsite(unittest.TestCase):
         conn = MagicMock()
         conn.__enter__.return_value = conn
         conn.execute.side_effect = [MagicMock(), MagicMock(fetchall=lambda: []),
-                                   MagicMock(fetchall=lambda: [row])]
+                                   MagicMock(fetchall=lambda: [row]),
+                                   MagicMock(fetchone=lambda: dict(sealed=0, released_at=None))]
+        bands = self.root / 'tier_bands.json'
+        bands.write_text(json.dumps(TIER_BANDS))
         with patch('psycopg.connect', return_value=conn) as connect, patch.object(builder, 'reader_url', return_value='READER_FIXTURE'):
-            builder.refresh(date(2026,10,20))
+            builder.refresh(date(2026,10,20), bands)
         self.assertIn('default_transaction_read_only=on', connect.call_args.kwargs['options'])
         sql = str(conn.execute.call_args_list)
         for marker in ('read only', 'core.games', 'core.teams', 'ops.predictions', 'ops.grades',
@@ -80,7 +88,8 @@ class NBAWebsite(unittest.TestCase):
         archive = json.loads((self.root/'data/nba_results_archive.json').read_text())
         position = archive['slates'][0]['positions'][0]
         self.assertEqual((position['result'], position['price'], position['probability'], position['line']), ('P', -115, .43, -3.5))
-        self.assertIsNone(position['tier'])
+        # side b at p = .43: win probability .57, STRONG from the tier bands file
+        self.assertEqual((position['tier'], position['tier_version'], round(position['win_probability'], 9)), ('Strong', 2, .57))
         self.assertEqual(json.loads((self.root/'data/nba_today.json').read_text())['positions'], [])
         for field in ('engine', 'engine_version'):
             with self.assertRaisesRegex(ValueError, 'baseline'):
@@ -124,3 +133,50 @@ class NBAWebsite(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
+
+class NBAReleaseLabel(unittest.TestCase):
+    """The page after the release: the ET release stamp, baseline-only slates and engine picks with tiers."""
+
+    def setUp(self):
+        NBAWebsite.setUp(self)
+
+    page = NBAWebsite.page
+
+    def released(self, positions=()):
+        path = self.root / 'data/nba_today.json'
+        today = json.loads(path.read_text())
+        today.update(released_at='2026-10-20T13:00:11.325008+00:00', schedule_updated_at='2026-10-20T15:47:00+00:00',
+                     status='ISSUED' if positions else 'UNISSUED', positions=list(positions))
+        path.write_text(json.dumps(today))
+        builder.build()
+        return self.page()
+
+    def test_released_baseline_only_slate_shows_zero_positions_and_says_why(self):
+        page = self.released()
+        self.assertIn('UPDATED OCT 20, 9:00 AM ET · SLATE RELEASED · NO ENGINE PICK PUBLISHED', page)
+        self.assertIn('0 POSITIONS', page)
+        self.assertNotIn('AWAITING', page)
+        self.assertNotIn('11:47', page)  # the clock of the build is not shown
+        self.assertEqual(page.count('RELEASED — NO ENGINE PICK PUBLISHED'), 3)
+        self.assertIn('Baseline picks are not published on this page', page)
+
+    def test_before_the_release_the_schedule_time_is_shown_in_et_with_its_date(self):
+        builder.build()
+        self.assertIn('SCHEDULE UPDATED OCT 19, 1:01 PM ET', self.page())
+        self.assertIn('AWAITING 9:00 AM RELEASE', self.page())
+
+    def test_engine_picks_show_win_pct_and_the_tier_of_the_bands_file(self):
+        rows = [dict(prediction_id=f'E{i}', game_id=146451, market=m, side=side, p=p, line=1.5, price_a=-110,
+                     price_b=-110, away='Boston Celtics', home='Detroit Pistons', engine='opus:shrink_c3',
+                     engine_version='v1', issued_at=__import__('datetime').datetime(2026, 10, 20, 13), outcome=None)
+                for i, (m, side, p) in enumerate((('spread', 'a', .5040), ('total', 'b', 1 - .5363)))]
+        positions = [builder.public_position(r, TIER_BANDS) for r in rows]
+        self.assertEqual([p['tier'] for p in positions], ['Weak', 'Strong'])
+        page = self.released(positions)
+        self.assertIn('UPDATED OCT 20, 9:00 AM ET · SLATE RELEASED</p>', page)
+        self.assertIn('2 POSITIONS', page)
+        for text in ('Win %: 50.4', 'Win %: 53.6', '>Weak<', '>Strong<'):
+            self.assertIn(text, page)
+        self.assertEqual(builder.tier_of(TIER_BANDS, TIER_BANDS['cutoffs'][0]), 'Moderate')
+        self.assertEqual(builder.tier_of(TIER_BANDS, TIER_BANDS['cutoffs'][2]), 'Elite')
