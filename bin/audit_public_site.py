@@ -226,7 +226,7 @@ def main() -> int:
         for marker in ('aria-label="NBA sections"', 'href="/nba"', 'href="/nba/results"', 'href="/nba/about"'):
             if marker not in text:
                 errors.append(f'{route} missing NBA navigation: {marker}')
-    for marker in ("TODAY'S CARD", 'ATS', 'TOTALS', 'SCHEDULE UPDATED'):
+    for marker in ("TODAY'S CARD", 'ATS', 'TOTALS', 'UPDATED '):
         if marker not in nba_picks:
             errors.append(f'/nba missing {marker}')
     try:
@@ -246,8 +246,13 @@ def main() -> int:
             if any(str(position.get(k, '')).startswith('baseline:') for k in ('engine', 'engine_version')):
                 errors.append('NBA baseline prediction cannot be public')
         if nba_today['status'] != 'ISSUED':
-            if nba_today['positions'] or (nba_today['games'] and 'UNISSUED — AWAITING ' + nba_release + ' RELEASE' not in nba_picks):
+            # before the release each game awaits it; after a baseline-only release the page says no engine
+            # pick is published
+            waiting = ('UNISSUED — AWAITING ' + nba_release + ' RELEASE') if not nba_today.get('released_at') else 'RELEASED — NO ENGINE PICK PUBLISHED'
+            if nba_today['positions'] or (nba_today['games'] and nba_picks.count(waiting) != len(nba_today['games'])):
                 errors.append('NBA unissued state mismatch')
+            if nba_today.get('released_at') and 'SLATE RELEASED · NO ENGINE PICK PUBLISHED' not in nba_picks:
+                errors.append('NBA released state mismatch')
         elif not nba_today['positions']:
             errors.append('NBA issued payload has no positions')
         else:
