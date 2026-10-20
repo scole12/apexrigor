@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 """Read sealed NBA facts with --date YYYY-MM-DD; otherwise render the saved payload.
 
-No engine execution, forecast calculation or database writes.
+No engine execution, forecast calculation or database writes. The tier of a published pick comes from the
+shared tier bands file of apex2-nba (apex/production/tier_bands.json, --tier-bands), the file the T-6 card
+reads; baseline picks are never published.
 """
 import argparse
 import html
@@ -44,11 +46,25 @@ def reader_url():
     return url
 
 
-def public_position(row):
+def read_tier_bands(path):
+    """The shared tier bands file: version, the three cutoffs on win probability, the four tier names."""
+    bands = json.loads(Path(path).read_text(encoding='utf-8'))
+    if len(bands['cutoffs']) != 3 or len(bands['tiers']) != 4:
+        raise ValueError('tier bands file needs three cutoffs and four tiers')
+    return bands
+
+
+def tier_of(bands, w):
+    """The tier of a pick with win probability w; a w equal to a cutoff goes to the higher tier."""
+    return bands['tiers'][sum(1 for c in bands['cutoffs'] if w >= c)].title()
+
+
+def public_position(row, bands=None):
     """Map stored fields only; absent model details stay null."""
     if any(str(row.get(k, '')).startswith('baseline:') for k in ('engine', 'engine_version')):
         raise ValueError('baseline predictions cannot be published')
     market = {'spread': 'ATS', 'total': 'TOTALS'}[row['market']]
+    win = row['p'] if row['side'] == 'a' else 1 - row['p']
     return dict(position_id=str(row['prediction_id']), game_id=str(row['game_id']),
                 market=market, matchup=row['away'] + ' @ ' + row['home'],
                 selection=(row['home'] if row['side'] == 'a' else row['away'])
@@ -56,13 +72,15 @@ def public_position(row):
                 role=row.get('role'), prediction=row.get('prediction'),
                 probability=row['p'], probability_side='home' if market == 'ATS' else 'Over',
                 line=row['line'], price=row['price_a'] if row['side'] == 'a' else row['price_b'],
-                tier=row.get('tier'), rationale=row.get('rationale'),
+                win_probability=win,
+                tier=tier_of(bands, win) if bands else None,
+                tier_version=bands['version'] if bands else None, rationale=row.get('rationale'),
                 engine=row['engine'], engine_version=row['engine_version'],
                 issued_at=row['issued_at'].isoformat(),
                 result={None: None, 'win': 'W', 'loss': 'L', 'push': 'P', 'void': 'V'}[row['outcome']])
 
 
-def refresh(day):
+def refresh(day, tier_bands=None):
     import psycopg
     from psycopg.rows import dict_row
     # Explicit read-only transaction, one consistent snapshot and bounded queries.
@@ -91,7 +109,22 @@ def refresh(day):
               and p.engine_version not like 'baseline:%%'
             order by p.game_date,p.game_id,p.market""",
             (day.year - (day.month < 8), day)).fetchall()
-    positions = [public_position(r) for r in rows]
+        # The slate counts as released once any row of the date is sealed (baseline included); the label
+        # shows the release (the sealed rows' prediction time), not the clock of this build.
+        sealed = conn.execute("""select game_id, min(prediction_time) released_at from ops.predictions
+            where game_date=%s and issued_at is not null and issued_at<=CURRENT_TIMESTAMP
+            group by game_id""", (day,)).fetchall()
+    if rows and tier_bands is None:
+        raise ValueError('--tier-bands is required to publish engine picks')
+    bands = read_tier_bands(tier_bands) if tier_bands else None
+    positions = [public_position(r, bands) for r in rows]
+    # A pick already on the site keeps the tier it was first published with.
+    path = ROOT / 'data' / 'nba_results_archive.json'
+    shown = {p['position_id']: p for s in (json.loads(path.read_text(encoding='utf-8'))['slates']
+             if path.is_file() else []) for p in s['positions']}
+    for p in positions:
+        if p['position_id'] in shown:
+            p.update(tier=shown[p['position_id']].get('tier'), tier_version=shown[p['position_id']].get('tier_version'))
     current = [p for r, p in zip(rows, positions) if r['game_date'] == day]
     stamp = datetime.now(timezone.utc).isoformat()
     today = dict(sport='NBA', schema_version='APEX_NBA_PUBLIC_V1',
@@ -99,6 +132,8 @@ def refresh(day):
                  release_at=(release_time([{'tip': g['scheduled_tip']} for g in games]).isoformat()
                              if any(g['scheduled_tip'] for g in games) else None),
                  schedule_updated_at=stamp, scheduled_games=len(games),
+                 released_at=(min(r['released_at'] for r in sealed).isoformat() if sealed else None),
+                 sealed_games=sorted(str(r['game_id']) for r in sealed),
                  games=[dict(game_id=str(g['game_id']), away=g['away'], home=g['home'],
                              tip=g['scheduled_tip'].isoformat() if g['scheduled_tip'] else None,
                              season_type=g['season_type']) for g in games], positions=current)
@@ -120,6 +155,12 @@ def refresh(day):
         (ROOT / 'data' / ('nba_' + name + '.json')).write_text(
             json.dumps(payload, indent=2, ensure_ascii=False) + '\n', encoding='utf-8')
     print(f'NBA_READER date={day} games={len(games)} positions={len(current)} archive={len(positions)} readonly=on')
+
+
+def et_stamp(value):
+    """OCT 20, 9:00 AM: the date and time in ET."""
+    t = datetime.fromisoformat(value).astimezone(ET)
+    return t.strftime('%b ').upper() + str(t.day) + ', ' + t.strftime('%I:%M %p').lstrip('0')
 
 
 def load(name):
@@ -156,11 +197,14 @@ def build():
             probability = (probability.rstrip('0').rstrip('.') if '.' in probability else probability) + '%'
         key = p.get('game_id') or p['position_id']
         probability_label = ' (' + esc(p['probability_side']) + ')' if p.get('probability_side') else ''
+        win = p.get('win_probability')
+        win_label = '' if win is None else ' · Win %: ' + format(100 * win, '.1f')
         line_label = ' (home)' if p.get('probability_side') == 'home' else ''
-        cards.setdefault(key, [p.get('matchup'), []])[1].append('<section class="market-panel"><div class="market-label">' + esc(p['market']) + '</div><div class="market-panel-head"><span class="pick-headline">' + esc(p.get('selection')) + ' · ' + esc(p.get('role')) + '</span><span class="tier-badge">' + esc(p.get('tier')) + '</span></div><p>Prediction: ' + esc(p.get('prediction')) + ' · Probability: ' + probability + probability_label + '</p><p>FanDuel line: ' + esc(p.get('line')) + line_label + ' · Price: ' + esc(p.get('price')) + '</p><div class="rationale-copy"><p>' + esc(p.get('rationale')) + '</p></div></section>')
+        cards.setdefault(key, [p.get('matchup'), []])[1].append('<section class="market-panel"><div class="market-label">' + esc(p['market']) + '</div><div class="market-panel-head"><span class="pick-headline">' + esc(p.get('selection')) + ' · ' + esc(p.get('role')) + '</span><span class="tier-badge">' + esc(p.get('tier')) + '</span></div><p>Prediction: ' + esc(p.get('prediction')) + ' · Probability: ' + probability + probability_label + win_label + '</p><p>FanDuel line: ' + esc(p.get('line')) + line_label + ' · Price: ' + esc(p.get('price')) + '</p><div class="rationale-copy"><p>' + esc(p.get('rationale')) + '</p></div></section>')
     day = date.fromisoformat(today['slate_date'])
     games = today.get('games', [])
     release = release_label(games)
+    released = today.get('released_at')
     label = day.strftime('%A, %B ') + str(day.day) + day.strftime(', %Y')
     picks = '<section class="nhl-board" aria-label="NBA today card"><div class="section-head picks-board-head"><div class="title" id="slate-title">TODAY\'S CARD</div><div class="meta mono" id="slate-meta">' + label.upper() + ' · ' + str(len(games)) + ' GAMES · ' + str(len(positions)) + ' POSITIONS · ATS · TOTALS</div></div><div class="picks-board" id="games" aria-live="polite">'
     # Fixtures may supply sealed positions without schedule metadata; real refreshes
@@ -176,11 +220,18 @@ def build():
         picks += '<article class="game-module" data-game="' + number + '" data-nba-game-id="' + esc(key) + '"><header class="game-header"><div class="game-num mono">' + number + '</div><div class="game-meta"><h2 class="game-matchup">' + esc(matchup) + '</h2><p class="game-pitchers mono">' + esc(game.get('season_type', 'regular').replace('_', ' ').upper() + (' SEASON' if game.get('season_type', 'regular') == 'regular' else '')) + '</p></div><div class="game-time mono">' + esc(tip) + '</div></header><div class="market-grid">'
         if key in cards:
             picks += ''.join(cards[key][1])
+        elif released:
+            why = ('The ' + et_stamp(released).split(', ')[1] + ' release sealed this game with baseline picks only. Baseline picks are not published on this page, so no position is shown.'
+                   if key in today.get('sealed_games', []) else 'The ' + et_stamp(released).split(', ')[1] + ' release sealed no pick for this game, so no position is shown.')
+            picks += '<section class="market-panel" data-position-state="RELEASED"><div class="market-label">STATUS</div><div class="market-panel-head"><span class="pick-headline">RELEASED — NO ENGINE PICK PUBLISHED</span><span class="tier-badge tier-badge--moderate">RELEASED</span></div><div class="rationale-copy"><p>' + why + '</p></div></section>'
         else:
             picks += '<section class="market-panel" data-position-state="UNISSUED"><div class="market-label">STATUS</div><div class="market-panel-head"><span class="pick-headline">UNISSUED — AWAITING ' + release + ' RELEASE</span><span class="tier-badge tier-badge--moderate">SCHEDULED</span></div><div class="rationale-copy"><p>Listed from the official schedule. No sealed FanDuel-issued APEX positions yet.</p></div></section>'
         picks += '</div></article>'
-    updated = datetime.fromisoformat(today['schedule_updated_at']).astimezone(ET).strftime('%I:%M %p').lstrip('0')
-    picks += '</div><p class="nhl-updated mono" id="nba-refresh-status">SCHEDULE UPDATED ' + updated + ' ET</p></section>'
+    if released:
+        status = 'UPDATED ' + et_stamp(released) + ' ET · SLATE RELEASED' + ('' if positions else ' · NO ENGINE PICK PUBLISHED')
+    else:
+        status = 'SCHEDULE UPDATED ' + et_stamp(today['schedule_updated_at']) + ' ET'
+    picks += '</div><p class="nhl-updated mono" id="nba-refresh-status">' + status + '</p></section>'
     rows = [p for slate in archive['slates'] for p in slate['positions']]
     if len({p['position_id'] for p in rows}) != len(rows):
         raise ValueError('duplicate archived position_id')
@@ -204,7 +255,8 @@ def build():
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--date', type=date.fromisoformat, help='refresh from the read-only NBA database')
+    parser.add_argument('--tier-bands', type=Path, help='apex2-nba apex/production/tier_bands.json (with --date)')
     args = parser.parse_args()
     if args.date:
-        refresh(args.date)
+        refresh(args.date, args.tier_bands)
     build()
