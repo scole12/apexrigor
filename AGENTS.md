@@ -57,9 +57,3 @@ The links below are the sources marked verified in the October 20, 2026 APEX too
 - Stephens, "Fresh Eyes Beat a Second Family" (October 2026; fresh-session review, and findings must come with a failing test): https://stephens.page
 - Xiang et al., arXiv 2607.21656: https://arxiv.org/abs/2607.21656
 - Song, arXiv 2610.01471: https://arxiv.org/abs/2610.01471
-
-## Job 3 CI rule (Scott, Oct 20 2026)
-- Build and test on the Geekom. GitHub is for communication only.
-- Do not push work-in-progress branches. CI runs only on the final pull request into `main` (or by hand via workflow_dispatch).
-- Before opening a pull request, post your full local test output to the GitHub issue as proof.
-- Exactly one check is required on the final pull request. Scott approves before anything merges or goes live.
