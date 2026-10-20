@@ -193,7 +193,9 @@ class NBAReleaseLabel(unittest.TestCase):
         positions = [builder.public_position(r, TIER_BANDS) for r in rows]
         self.assertEqual([p['tier'] for p in positions], ['Weak', 'Strong'])
         page = self.released(positions)
-        self.assertIn('UPDATED OCT 20, 9:00 AM ET · SLATE RELEASED</p>', page)
+        self.assertNotIn('SLATE RELEASED', page)
+        self.assertNotIn('nba-refresh-status', page)
+        self.assertNotIn('FanDuel prices', page)
         self.assertIn('2 POSITIONS', page)
         for text in ('Win %: 50.4', 'Win %: 53.6', '>Weak<', '>Strong<',
                      'tier-badge tier-badge--weak', 'tier-badge tier-badge--strong',

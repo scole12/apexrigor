@@ -225,7 +225,7 @@ def sentence_count(text):
 
 
 def _join(sentences):
-    if not 6 <= len(sentences) <= 8:
+    if not 5 <= len(sentences) <= 8:
         raise ValueError(f'rationale has {len(sentences)} sentences')
     text = ' '.join(s.rstrip('.') + '.' for s in sentences)
     if sentence_count(text) != len(sentences):
@@ -478,10 +478,9 @@ def _out_sentence(players):
 
 
 def _pad(sentences, public):
-    """Fill to 6 sentences from sealed fields only. Never invent a player or a stat."""
+    """Fill toward 6 sentences from sealed fields only. The FanDuel price is already on the card."""
     selection = public['selection']
     extras = [
-        f"FanDuel prices {selection} at {int(public['price'])}",
         f"The line on {selection} is {_line_text(public)}",
         f"{public.get('matchup') or selection} is the matchup on this card",
     ]
@@ -507,7 +506,6 @@ def fallback_rationale(row, public):
     side = public.get('probability_side') or public['market']
     sentences = [
         f"{selection} {_line_text(public)} is a {_f(100 * public['win_probability'], 1)}% chance {action}",
-        f"FanDuel prices {selection} at {int(public['price'])}",
         f"{row['away']} plays at {row['home']}",
         f"The published side is {side}",
         f"The line on {selection} is {_line_text(public)}",
