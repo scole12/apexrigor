@@ -59,6 +59,22 @@ def tier_of(bands, w):
     return bands['tiers'][sum(1 for c in bands['cutoffs'] if w >= c)].title()
 
 
+RATIONALE = {
+    'ATS': 'The {engine} engine (champion {version}) ran at T-6 on the FanDuel spread. Its win chance is the engine\'s '
+           'estimate shrunk toward the no-vig FanDuel price, from team and player ratings, minutes, injuries, '
+           'lineups, rest and travel recorded before T-6.',
+    'TOTALS': 'The {engine} engine (champion {version}) ran at T-6 on the FanDuel total. Its win chance comes from '
+              'team and player ratings, minutes, injuries, pace, rest and travel recorded before T-6.',
+}
+
+
+def stored_rationale(row, market):
+    """The row's own rationale when stored; otherwise a plain statement built from the stored engine fields."""
+    if row.get('rationale'):
+        return row['rationale']
+    return RATIONALE[market].format(engine=row['engine'], version=row['engine_version'])
+
+
 def public_position(row, bands=None):
     """Map stored fields only; absent model details stay null."""
     if any(str(row.get(k, '')).startswith('baseline:') for k in ('engine', 'engine_version')):
@@ -74,7 +90,7 @@ def public_position(row, bands=None):
                 line=row['line'], price=row['price_a'] if row['side'] == 'a' else row['price_b'],
                 win_probability=win,
                 tier=tier_of(bands, win) if bands else None,
-                tier_version=bands['version'] if bands else None, rationale=row.get('rationale'),
+                tier_version=bands['version'] if bands else None, rationale=stored_rationale(row, market),
                 engine=row['engine'], engine_version=row['engine_version'],
                 issued_at=row['issued_at'].isoformat(),
                 result={None: None, 'win': 'W', 'loss': 'L', 'push': 'P', 'void': 'V'}[row['outcome']])

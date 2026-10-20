@@ -76,4 +76,26 @@ class NBAAudit(unittest.TestCase):
                 finally:
                     path.write_bytes(original)
 
+
+
+class NBARationale(unittest.TestCase):
+    def row(self,market,side,**kw):
+        import datetime
+        base=dict(prediction_id=1,game_id=146452,market=market,side=side,p=0.5375,line=-4.5,price_a=-115,price_b=-105,
+                  away='Philadelphia 76ers',home='New York Knicks',engine='opus:shrink_c3',engine_version='ats_shrink_c3.v2',
+                  issued_at=datetime.datetime(2026,10,20,13,5,tzinfo=datetime.timezone.utc),outcome=None)
+        base.update(kw)
+        return base
+
+    def test_a_stored_rationale_is_kept_and_a_missing_one_is_built_from_stored_fields(self):
+        kept=builder.public_position(self.row('spread','a',rationale='Stored text.'))
+        self.assertEqual(kept['rationale'],'Stored text.')
+        built=builder.public_position(self.row('spread','a'))
+        self.assertIn('opus:shrink_c3',built['rationale'])
+        self.assertIn('ats_shrink_c3.v2',built['rationale'])
+        self.assertIn('before T-6',built['rationale'])
+        total=builder.public_position(self.row('total','a',engine='c6:d4_ratings_lag1',engine_version='totals_d4_ratings_lag1.v2'))
+        self.assertIn('totals_d4_ratings_lag1.v2',total['rationale'])
+        self.assertNotIn('None',total['rationale'])
+
 if __name__=='__main__': unittest.main()
