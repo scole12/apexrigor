@@ -92,7 +92,8 @@ def refresh(day):
             order by p.game_date,p.game_id,p.market""",
             (day.year - (day.month < 8), day)).fetchall()
     positions = [public_position(r) for r in rows]
-    current = [p for r, p in zip(rows, positions) if r['game_date'] == day]
+    current = [p for r, p in zip(rows, positions)
+               if r['game_date'] == day and p['result'] is None]
     stamp = datetime.now(timezone.utc).isoformat()
     today = dict(sport='NBA', schema_version='APEX_NBA_PUBLIC_V1',
                  status='ISSUED' if current else 'UNISSUED', slate_date=day.isoformat(),
@@ -204,7 +205,11 @@ def build():
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--date', type=date.fromisoformat, help='refresh from the read-only NBA database')
+    parser.add_argument('--root', type=Path, default=ROOT, help='NBA payload output checkout')
+    parser.add_argument('--data-only', action='store_true', help='write only the three NBA JSON payloads')
     args = parser.parse_args()
+    ROOT = args.root.resolve()
     if args.date:
         refresh(args.date)
-    build()
+    if not args.data_only:
+        build()

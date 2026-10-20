@@ -65,7 +65,7 @@ class NBAWebsite(unittest.TestCase):
                    p=.43, line=-3.5, price_a=-110, price_b=-115,
                    away='Away', home='Home', engine='accepted:fixture', engine_version='v1',
                    issued_at=datetime(2026,10,19,tzinfo=timezone.utc),
-                   game_date=date(2026,10,19), outcome='push')
+                   game_date=date(2026,10,20), outcome='push')
         conn = MagicMock()
         conn.__enter__.return_value = conn
         conn.execute.side_effect = [MagicMock(), MagicMock(fetchall=lambda: []),
@@ -82,6 +82,15 @@ class NBAWebsite(unittest.TestCase):
         self.assertEqual((position['result'], position['price'], position['probability'], position['line']), ('P', -115, .43, -3.5))
         self.assertIsNone(position['tier'])
         self.assertEqual(json.loads((self.root/'data/nba_today.json').read_text())['positions'], [])
+        self.assertEqual(archive['slates'][0]['slate_date'], '2026-10-20')
+        self.assertEqual(json.loads((self.root/'data/nba_today.json').read_text())['status'], 'UNISSUED')
+        conn.execute.side_effect = [MagicMock(), MagicMock(fetchall=lambda: []),
+                                   MagicMock(fetchall=lambda: [dict(row, outcome=None)])]
+        with patch('psycopg.connect', return_value=conn), patch.object(builder, 'reader_url', return_value='READER_FIXTURE'):
+            builder.refresh(date(2026,10,20))
+        pending = json.loads((self.root/'data/nba_today.json').read_text())
+        self.assertEqual(pending['status'], 'ISSUED')
+        self.assertEqual(pending['positions'][0]['position_id'], 'SEALED')
         for field in ('engine', 'engine_version'):
             with self.assertRaisesRegex(ValueError, 'baseline'):
                 builder.public_position(dict(row, **{field:'baseline:fixture'}))
