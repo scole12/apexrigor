@@ -34,6 +34,11 @@ class NBAWebsite(unittest.TestCase):
         return (self.root / 'nba' / section / 'index.html').read_text(encoding='utf-8')
 
     def test_unissued(self):
+        path = self.root / 'data/nba_today.json'
+        today = json.loads(path.read_text())
+        today.update(status='UNISSUED', positions=[], released_at=None,
+                     schedule_updated_at='2026-10-19T17:01:00+00:00')
+        path.write_text(json.dumps(today))
         builder.build()
         self.assertIn('TUESDAY, OCTOBER 20, 2026 · 3 GAMES · 0 POSITIONS · ATS · TOTALS', self.page())
         self.assertIn('AWAITING 9:00 AM RELEASE', self.page())
@@ -41,7 +46,8 @@ class NBAWebsite(unittest.TestCase):
         self.assertEqual(self.page().count('<article class="game-module"'), 3)
         for label in ('G01', 'G02', 'G03', 'Boston Celtics @ Detroit Pistons', '3:00 PM ET', '7:00 PM ET', '9:30 PM ET', 'SCHEDULE UPDATED'):
             self.assertIn(label, self.page())
-        for forbidden in ('Common release', 'FIRST tip', 'planned games', 'T-6', 'T09:00'):
+        for forbidden in ('Common release', 'FIRST tip', 'planned games', 'T-6', 'T09:00', 'REGULAR SEASON',
+                          'APEX WIN PROBABILITY RATING'):
             self.assertNotIn(forbidden, self.page())
         self.assertIn('0 POSITIONS', self.page())
         self.assertIn('id="results-root"', self.page('results'))
@@ -53,7 +59,8 @@ class NBAWebsite(unittest.TestCase):
         path = self.root / 'data/nba_today.json'
         today = json.loads(path.read_text())
         today.update(slate_date='2027-01-15', release_at='2027-01-15T13:30:00-05:00',
-                     scheduled_games=1, games=[dict(game_id='FUTURE', away='Away', home='Home',
+                     scheduled_games=1, status='UNISSUED', positions=[], released_at=None,
+                     games=[dict(game_id='FUTURE', away='Away', home='Home',
                      tip='2027-01-16T00:30:00+00:00', season_type='regular')])
         path.write_text(json.dumps(today))
         builder.build()
@@ -73,9 +80,9 @@ class NBAWebsite(unittest.TestCase):
                    game_date=date(2026,10,19), outcome='push')
         conn = MagicMock()
         conn.__enter__.return_value = conn
-        conn.execute.side_effect = [MagicMock(), MagicMock(fetchall=lambda: []),
-                                   MagicMock(fetchall=lambda: [row]),
-                                   MagicMock(fetchall=lambda: [])]
+        empty = MagicMock(fetchall=lambda: [])
+        conn.execute.side_effect = [MagicMock(), empty, MagicMock(fetchall=lambda: [row]), empty,
+                                    empty, empty, empty, empty, empty]
         bands = self.root / 'tier_bands.json'
         bands.write_text(json.dumps(TIER_BANDS))
         with patch('psycopg.connect', return_value=conn) as connect, patch.object(builder, 'reader_url', return_value='READER_FIXTURE'):
@@ -87,7 +94,8 @@ class NBAWebsite(unittest.TestCase):
             self.assertIn(marker, sql)
         archive = json.loads((self.root/'data/nba_results_archive.json').read_text())
         position = archive['slates'][0]['positions'][0]
-        self.assertEqual((position['result'], position['price'], position['probability'], position['line']), ('P', -115, .43, -3.5))
+        # side b publishes the selected side: win chance 1-.43 and the flipped line
+        self.assertEqual((position['result'], position['price'], round(position['probability'], 9), position['line']), ('P', -115, .57, 3.5))
         # side b at p = .43: win probability .57, STRONG from the tier bands file
         self.assertEqual((position['tier'], position['tier_version'], round(position['win_probability'], 9)), ('Strong', 2, .57))
         self.assertEqual(json.loads((self.root/'data/nba_today.json').read_text())['positions'], [])
@@ -104,11 +112,12 @@ class NBAWebsite(unittest.TestCase):
     def test_probability_endpoints_and_precision(self):
         path = self.root / 'data/nba_today.json'
         today = json.loads(path.read_text())
-        for probability, expected in ((0, '0%'), (1, '100%'), (.5, '50%'), (.54321987, '54.321987%')):
+        for probability, expected in ((0, '0.0%'), (1, '100.0%'), (.5, '50.0%'), (.54321987, '54.3%')):
             today.update(status='ISSUED', games=[], positions=[dict(position_id='SYNTHETIC', game_id='SYNTHETIC', market='ATS', role='Favorite', tier='Strong', probability=probability)])
             path.write_text(json.dumps(today))
             builder.build()
             self.assertIn('Probability: ' + expected, self.page())
+            self.assertNotIn('54.321987%', self.page())
             self.assertIn('Favorite', self.page())
             self.assertIn('Strong', self.page())
 
@@ -120,7 +129,8 @@ class NBAWebsite(unittest.TestCase):
         archive = {'sport':'NBA', 'slates':[{'slate_date':'2026-10-20', 'week_start':'2026-10-19', 'positions':[position, dict(position,position_id='W',result='W'),dict(position,position_id='L',result='L'),dict(position,position_id='P',result='P')]}]}
         (self.root / 'data/nba_results_archive.json').write_text(json.dumps(archive))
         builder.build()
-        for value in ('101.123', '54.321%', '-112', 'Weak', '&lt;original &amp; rationale&gt;', 'Underdog'):
+        for value in ('101.123', '54.3%', '-112', 'Weak', '&lt;original &amp; rationale&gt;', 'Underdog',
+                      'tier-badge tier-badge--weak', 'tier-badge tier-badge--elite', 'APEX WIN PROBABILITY RATING'):
             self.assertIn(value, self.page())
         # Record/grade/pending behavior is exercised by nba_results_scope.test.cjs.
         self.assertIn('id="results-root"', self.page('results'))
@@ -164,6 +174,11 @@ class NBAReleaseLabel(unittest.TestCase):
         self.assertEqual(page.count('The 9:00 AM release sealed no pick for this game'), 1)
 
     def test_before_the_release_the_schedule_time_is_shown_in_et_with_its_date(self):
+        path = self.root / 'data/nba_today.json'
+        today = json.loads(path.read_text())
+        today.update(status='UNISSUED', positions=[], released_at=None,
+                     schedule_updated_at='2026-10-19T17:01:00+00:00')
+        path.write_text(json.dumps(today))
         builder.build()
         self.assertIn('SCHEDULE UPDATED OCT 19, 1:01 PM ET', self.page())
         self.assertIn('AWAITING 9:00 AM RELEASE', self.page())
@@ -178,8 +193,11 @@ class NBAReleaseLabel(unittest.TestCase):
         page = self.released(positions)
         self.assertIn('UPDATED OCT 20, 9:00 AM ET · SLATE RELEASED</p>', page)
         self.assertIn('2 POSITIONS', page)
-        for text in ('Win %: 50.4', 'Win %: 53.6', '>Weak<', '>Strong<'):
+        for text in ('Win %: 50.4', 'Win %: 53.6', '>Weak<', '>Strong<',
+                     'tier-badge tier-badge--weak', 'tier-badge tier-badge--strong',
+                     'APEX WIN PROBABILITY RATING', 'Probability: 50.4%', 'Probability: 53.6%'):
             self.assertIn(text, page)
+        self.assertNotIn('REGULAR SEASON', page)
         self.assertEqual(builder.tier_of(TIER_BANDS, TIER_BANDS['cutoffs'][0]), 'Moderate')
         self.assertEqual(builder.tier_of(TIER_BANDS, TIER_BANDS['cutoffs'][2]), 'Elite')
 
@@ -196,8 +214,9 @@ class NBAReleaseLabel(unittest.TestCase):
         bands.write_text(json.dumps(TIER_BANDS))
         conn = MagicMock()
         conn.__enter__.return_value = conn
-        conn.execute.side_effect = [MagicMock(), MagicMock(fetchall=lambda: []), MagicMock(fetchall=lambda: [row]),
-                                    MagicMock(fetchall=lambda: [])]
+        empty = MagicMock(fetchall=lambda: [])
+        conn.execute.side_effect = [MagicMock(), empty, MagicMock(fetchall=lambda: [row]), empty,
+                                    empty, empty, empty, empty, empty]
         with patch('psycopg.connect', return_value=conn), patch.object(builder, 'reader_url', return_value='R'):
             builder.refresh(date(2026, 10, 20), bands)
         kept = json.loads((self.root / 'data/nba_results_archive.json').read_text())['slates'][0]['positions'][0]

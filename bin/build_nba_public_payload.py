@@ -11,10 +11,10 @@ import json
 import os
 import sys
 from datetime import date, datetime, time, timedelta, timezone
-from decimal import Decimal
 from zoneinfo import ZoneInfo
 from pathlib import Path
 from apply_shared_sport_selector import navigation, STACK_RE
+import nba_t6_rationale as t6
 
 ROOT = Path(__file__).resolve().parents[1]
 ET = ZoneInfo('America/New_York')
@@ -59,20 +59,9 @@ def tier_of(bands, w):
     return bands['tiers'][sum(1 for c in bands['cutoffs'] if w >= c)].title()
 
 
-RATIONALE = {
-    'ATS': 'The {engine} engine (champion {version}) ran at T-6 on the FanDuel spread. Its win chance is the engine\'s '
-           'estimate shrunk toward the no-vig FanDuel price, from team and player ratings, minutes, injuries, '
-           'lineups, rest and travel recorded before T-6.',
-    'TOTALS': 'The {engine} engine (champion {version}) ran at T-6 on the FanDuel total. Its win chance comes from '
-              'team and player ratings, minutes, injuries, pace, rest and travel recorded before T-6.',
-}
-
-
-def stored_rationale(row, market):
-    """The row's own rationale when stored; otherwise a plain statement built from the stored engine fields."""
-    if row.get('rationale'):
-        return row['rationale']
-    return RATIONALE[market].format(engine=row['engine'], version=row['engine_version'])
+def card_rationale(row, public):
+    """Keep a rationale already stored on the row. Otherwise build one from the sealed prices and any T-6 rows."""
+    return t6.compose_rationale(row, public)
 
 
 def public_position(row, bands=None):
@@ -81,7 +70,7 @@ def public_position(row, bands=None):
         raise ValueError('baseline predictions cannot be published')
     market = {'spread': 'ATS', 'total': 'TOTALS'}[row['market']]
     win = row['p'] if row['side'] == 'a' else 1 - row['p']
-    return dict(position_id=str(row['prediction_id']), game_id=str(row['game_id']),
+    public = dict(position_id=str(row['prediction_id']), game_id=str(row['game_id']),
                 market=market, matchup=row['away'] + ' @ ' + row['home'],
                 selection=(row['home'] if row['side'] == 'a' else row['away'])
                 if market == 'ATS' else ('Over' if row['side'] == 'a' else 'Under'),
@@ -92,10 +81,12 @@ def public_position(row, bands=None):
                 line=row['line'] if row['side'] == 'a' or market != 'ATS' else -row['line'], price=row['price_a'] if row['side'] == 'a' else row['price_b'],
                 win_probability=win,
                 tier=tier_of(bands, win) if bands else None,
-                tier_version=bands['version'] if bands else None, rationale=stored_rationale(row, market),
+                tier_version=bands['version'] if bands else None,
                 engine=row['engine'], engine_version=row['engine_version'],
                 issued_at=row['issued_at'].isoformat(),
                 result={None: None, 'win': 'W', 'loss': 'L', 'push': 'P', 'void': 'V'}[row['outcome']])
+    public['rationale'] = card_rationale(row, public)
+    return public
 
 
 def refresh(day, tier_bands=None):
@@ -115,7 +106,8 @@ def refresh(day, tier_bands=None):
             join core.teams h on h.team_id=g.home_team_id
             where coalesce((g.scheduled_tip at time zone 'America/New_York')::date,g.game_date)=%s
             order by g.scheduled_tip,g.game_id""", (day,)).fetchall()
-        rows = conn.execute("""select p.*, a.full_name away, h.full_name home, gr.outcome
+        rows = conn.execute("""select p.*, a.full_name away, h.full_name home,
+            g.home_team_id, g.away_team_id, gr.outcome
             from ops.predictions p join core.games g on g.game_id=p.game_id
             join core.teams a on a.team_id=g.away_team_id
             join core.teams h on h.team_id=g.home_team_id
@@ -132,6 +124,13 @@ def refresh(day, tier_bands=None):
         sealed = conn.execute("""select game_id, min(prediction_time) released_at from ops.predictions
             where game_date=%s and issued_at is not null and issued_at<=CURRENT_TIMESTAMP
             group by game_id""", (day,)).fetchall()
+        contexts = t6.load_t6(conn, [r['game_id'] for r in rows])
+    for row in rows:
+        ctx = contexts.get(int(row['game_id']))
+        if ctx:
+            row['t6'] = ctx
+            row['home_team_id'] = ctx['home_team_id']
+            row['away_team_id'] = ctx['away_team_id']
     if rows and tier_bands is None:
         raise ValueError('--tier-bands is required to publish engine picks')
     bands = read_tier_bands(tier_bands) if tier_bands else None
@@ -211,14 +210,18 @@ def build():
         if probability is None:
             probability = 'Not yet available'
         else:
-            probability = format(Decimal(str(probability)) * 100, 'f')
-            probability = (probability.rstrip('0').rstrip('.') if '.' in probability else probability) + '%'
+            probability = format(100 * float(probability), '.1f') + '%'
         key = p.get('game_id') or p['position_id']
         probability_label = ' (' + esc(p['probability_side']) + ')' if p.get('probability_side') else ''
         win = p.get('win_probability')
-        win_label = '' if win is None else ' · Win %: ' + format(100 * win, '.1f')
+        win_label = '' if win is None else ' · Win %: ' + format(100 * float(win), '.1f')
         line_label = ' (' + p['probability_side'] + ')' if p['market'] == 'ATS' and p.get('probability_side') in ('home', 'away') else ''
-        cards.setdefault(key, [p.get('matchup'), []])[1].append('<section class="market-panel"><div class="market-label">' + esc(p['market']) + '</div><div class="market-panel-head"><span class="pick-headline">' + esc(p.get('selection')) + ('' if p.get('role') is None else ' · ' + esc(p.get('role'))) + '</span><span class="tier-badge">' + esc(p.get('tier')) + '</span></div><p>' + ('' if p.get('prediction') is None else 'Prediction: ' + esc(p.get('prediction')) + ' · ') + 'Probability: ' + probability + probability_label + win_label + '</p><p>FanDuel line: ' + esc(p.get('line')) + line_label + ' · Price: ' + esc(p.get('price')) + '</p><div class="rationale-copy"><p>' + esc(p.get('rationale')) + '</p></div></section>')
+        tier = p.get('tier')
+        if tier in ('Weak', 'Moderate', 'Strong', 'Elite'):
+            badge = '<span class="rating-label">APEX WIN PROBABILITY RATING</span><span class="tier-badge tier-badge--' + tier.lower() + '">' + esc(tier) + '</span>'
+        else:
+            badge = '<span class="tier-badge">' + esc(tier) + '</span>'
+        cards.setdefault(key, [p.get('matchup'), []])[1].append('<section class="market-panel"><div class="market-label">' + esc(p['market']) + '</div><div class="market-panel-head"><span class="pick-headline">' + esc(p.get('selection')) + ('' if p.get('role') is None else ' · ' + esc(p.get('role'))) + '</span>' + badge + '</div><p>' + ('' if p.get('prediction') is None else 'Prediction: ' + esc(p.get('prediction')) + ' · ') + 'Probability: ' + probability + probability_label + win_label + '</p><p>FanDuel line: ' + esc(p.get('line')) + line_label + ' · Price: ' + esc(p.get('price')) + '</p><div class="rationale-copy"><p>' + esc(p.get('rationale')) + '</p></div></section>')
     day = date.fromisoformat(today['slate_date'])
     games = today.get('games', [])
     release = release_label(games)
@@ -235,7 +238,7 @@ def build():
         number = f'G{index:02d}'
         matchup = game.get('matchup') or (game['away'] + ' @ ' + game['home'] if game.get('away') and game.get('home') else None)
         tip = datetime.fromisoformat(game['tip']).astimezone(ET).strftime('%I:%M %p').lstrip('0') + ' ET' if game.get('tip') else 'Tip: Not yet available'
-        picks += '<article class="game-module" data-game="' + number + '" data-nba-game-id="' + esc(key) + '"><header class="game-header"><div class="game-num mono">' + number + '</div><div class="game-meta"><h2 class="game-matchup">' + esc(matchup) + '</h2><p class="game-pitchers mono">' + esc(game.get('season_type', 'regular').replace('_', ' ').upper() + (' SEASON' if game.get('season_type', 'regular') == 'regular' else '')) + '</p></div><div class="game-time mono">' + esc(tip) + '</div></header><div class="market-grid">'
+        picks += '<article class="game-module" data-game="' + number + '" data-nba-game-id="' + esc(key) + '"><header class="game-header"><div class="game-num mono">' + number + '</div><div class="game-meta"><h2 class="game-matchup">' + esc(matchup) + '</h2></div><div class="game-time mono">' + esc(tip) + '</div></header><div class="market-grid">'
         if key in cards:
             picks += ''.join(cards[key][1])
         elif released:

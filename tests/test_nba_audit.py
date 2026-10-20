@@ -94,9 +94,13 @@ class NBARationale(unittest.TestCase):
         self.assertIn('opus:shrink_c3',built['rationale'])
         self.assertIn('ats_shrink_c3.v2',built['rationale'])
         self.assertIn('before T-6',built['rationale'])
+        self.assertNotIn('rest', built['rationale'].lower())
+        self.assertNotIn('travel', built['rationale'].lower())
         total=builder.public_position(self.row('total','a',engine='c6:d4_ratings_lag1',engine_version='totals_d4_ratings_lag1.v2'))
         self.assertIn('totals_d4_ratings_lag1.v2',total['rationale'])
         self.assertNotIn('None',total['rationale'])
+        self.assertNotIn('rest', total['rationale'].lower())
+        self.assertNotIn('travel', total['rationale'].lower())
 
     def test_an_away_spread_pick_shows_its_own_win_chance_and_its_own_line(self):
         away=builder.public_position(self.row('spread','b',p=0.474,line=-1.5,price_a=-110,price_b=-110))
