@@ -4,13 +4,13 @@
   "canonical_repository": "scole12/apexrigor",
   "managed_files": {
     "docs/AGENT_OPERATING_STANDARD.md": "8d843a890a2cb9b97139b295a0b196b6c4b28596aa6b5281e3178bd8511176ef",
-    "AGENTS.md": "5c415591be3711eee3ac7aeb41e54e8b05caf3854dc4f6c6be887a68f7ad4100",
+    "AGENTS.md": "9b977ba262a5b4a42a19099c8fd3804ce50d4a3e25828ce3a27eb603c388519f",
     "CLAUDE.md": "336cc4fbf19beaada7ccf9986414fa91851a8d7a07dfb3ccbe800a69eed0ab49",
     "CURSOR.md": "1eaa050ff3bf247b96ac048c70b2dd76ac3171f49fa079a31878f86e10a17a60",
     ".github/copilot-instructions.md": "7e98615cba514b87ee701110f540e1b1a739dd9a0851eb4e3cfe38cf00ce88b2",
     ".cursor/rules/apex-practice.mdc": "a24e4c3cbfbcd2be76245d13401ec97763a7371984b3f769ccb64ca04eb863f9",
     "tools/check_agent_practice.py": "7b5c0ed3627cab03166f515905df27483b78acbf01a1585727e024406a892dce",
-    ".github/workflows/apex-agent-practice.yml": "736d721803f8151a3938ec808581fd05050363d452efa5d2663161cecabacfb8",
+    ".github/workflows/apex-agent-practice.yml": "a3293d04699451b8a31af1a478a55c4401430601071e72a8b65b7314bbd7b9fd",
     ".cursor/rules/agent-standard.mdc": "fb9446c4b8a1bf893cf7d5d11133f8f75ba93002556ae856712b6f0175008c3c"
   },
   "removed_files": []
