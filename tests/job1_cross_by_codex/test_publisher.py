@@ -290,6 +290,22 @@ class PublisherRegression(unittest.TestCase):
             )
             alert.assert_called_once()
 
+    def test_email_workflow_poll_yields_without_sleeping(self):
+        request = types.SimpleNamespace(request_id="a" * 64)
+        sleep = Mock(
+            side_effect=AssertionError("queue turn must never sleep on a workflow")
+        )
+        p = functions(
+            "wait_for_ncaaf_workflow",
+            matching_ncaaf_workflow_runs=lambda request: [
+                {"databaseId": 1, "status": "in_progress"}
+            ],
+            time=types.SimpleNamespace(monotonic=lambda: 0, sleep=sleep),
+        )
+        with self.assertRaisesRegex(RuntimeError, "WORKFLOW_PENDING"):
+            p.wait_for_ncaaf_workflow(request, 1)
+        sleep.assert_not_called()
+
 
 if __name__ == "__main__":
     unittest.main()

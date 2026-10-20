@@ -996,35 +996,18 @@ def wait_for_ncaaf_workflow(
     *,
     excluded_run_ids: set[int] | None = None,
 ) -> dict[str, Any]:
-    deadline = time.monotonic() + 360
-    selected: dict[str, Any] | None = None
+    # The publisher holds the serialized Git boundary. Observe once and yield
+    # the queue turn rather than sleeping here while another sport is ready.
     excluded = excluded_run_ids or set()
-    while time.monotonic() < deadline:
-        matches = matching_ncaaf_workflow_runs(request)
-        candidates = [
-            row for row in matches
-            if int(row["databaseId"]) not in excluded
-            and (run_id is None or int(row["databaseId"]) == run_id)
-        ]
-        if len(candidates) > 1:
-            raise RuntimeError(
-                f"duplicate current NCAA email workflow attempts: "
-                f"{[row.get('databaseId') for row in candidates]}"
-            )
-        if candidates:
-            selected = candidates[0]
-            run_id = int(selected["databaseId"])
-            if selected.get("status") == "completed":
-                if selected.get("conclusion") != "success":
-                    raise RuntimeError(
-                        f"NCAA email workflow {run_id} completed {selected.get('conclusion')}"
-                    )
-                return selected
-        time.sleep(2)
-    raise RuntimeError(
-        f"NCAA email workflow did not complete before timeout: "
-        f"request={request.request_id} run_id={run_id} last={selected}"
-    )
+    matches = matching_ncaaf_workflow_runs(request)
+    candidates = [row for row in matches if int(row['databaseId']) not in excluded
+                  and (run_id is None or int(row['databaseId']) == run_id)]
+    if len(candidates) > 1:
+        raise RuntimeError('duplicate current NCAA email workflow attempts')
+    if candidates and candidates[0].get('status') == 'completed':
+        # Provider evidence is authoritative even when a later workflow step failed.
+        return candidates[0]
+    raise RuntimeError('NCAA_EMAIL_WORKFLOW_PENDING: request=' + request.request_id)
 
 
 def preserve_ncaaf_email_evidence(
@@ -1303,7 +1286,7 @@ def _dispatch_ncaaf_email_workflow(request: Request, receipt: dict[str, Any]) ->
     if request.manifest.get("prior_email_delivery") and saved_run_id is None:
         raise RuntimeError("NCAA_PRIOR_EMAIL_NOT_FOUND: no new send is permitted")
     if saved_run_id is None and prior.get("email_dispatch_at_utc"):
-        raise RuntimeError("NCAA_EMAIL_RECONCILIATION_REQUIRED: earlier dispatch outcome is unknown")
+        raise RuntimeError("NCAA_EMAIL_WORKFLOW_DISCOVERY_PENDING: earlier dispatch outcome is unknown; no resend")
     prior_attempt_ids = sorted(by_id)
     intent = {
         **prior,
@@ -1346,7 +1329,7 @@ def _dispatch_ncaaf_email_workflow(request: Request, receipt: dict[str, Any]) ->
     except Exception as error:
         failed = {
             **intent,
-            "status": publication_status + "_EMAIL_RECONCILIATION_REQUIRED",
+            "status": publication_status + ("_EMAIL_DISPATCH_INTENT" if _is_wait_error(str(error)) else "_EMAIL_RECONCILIATION_REQUIRED"),
             "exact_error": f"{type(error).__name__}: {str(error)[:1600]}",
         }
         atomic_json(state_path, failed)
