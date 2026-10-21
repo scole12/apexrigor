@@ -1,19 +1,19 @@
 {
   "sport": "NBA",
-  "status": "UNAVAILABLE",
+  "status": "AVAILABLE",
   "source": "sealed predictions and grades only",
   "markets": {
     "ATS": {
-      "w": 0,
-      "l": 0,
+      "w": 2,
+      "l": 1,
       "p": 0,
-      "win_pct": null
+      "win_pct": 66.66666666666667
     },
     "TOTALS": {
-      "w": 0,
-      "l": 0,
+      "w": 1,
+      "l": 2,
       "p": 0,
-      "win_pct": null
+      "win_pct": 33.333333333333336
     }
   }
 }

@@ -219,17 +219,21 @@ def _signed_line(value):
     return text if text.startswith('-') else '+' + text
 
 
+# A name initial or suffix (T.J. McConnell, Jaren Jackson Jr.) is not a sentence end.
+_NAME_DOT = re.compile(r'(?<![A-Za-z])(?:Jr|Sr|St|[A-Z])\. ')
+
+
 def sentence_count(text):
     """Sentences end with a period and a space, or with the final period. Decimal points have no space after them."""
-    return text.count('. ') + (1 if text.endswith('.') else 0)
+    return _NAME_DOT.sub('', text).count('. ') + (1 if text.endswith('.') else 0)
 
 
 def _join(sentences):
     if not 5 <= len(sentences) <= 8:
         raise ValueError(f'rationale has {len(sentences)} sentences')
-    text = ' '.join(s.rstrip('.') + '.' for s in sentences)
-    if sentence_count(text) != len(sentences):
+    if any('. ' in _NAME_DOT.sub('', s.rstrip('.')) for s in sentences):
         raise ValueError('a sentence contains a period followed by a space')
+    text = ' '.join(s.rstrip('.') + '.' for s in sentences)
     low = text.lower()
     if 'rest' in low or 'travel' in low:
         raise ValueError('rationale mentions rest or travel')
@@ -696,18 +700,18 @@ def load_t6(conn, game_ids):
               = coalesce((g.scheduled_tip at time zone 'America/New_York')::date, g.game_date))
           - interval '6 hours' as release_at
         from core.games g where g.game_id = any(%s)""", (ids,)).fetchall()
-    players = conn.execute("""with meta as (
+    players = conn.execute("""with meta as materialized (
         select g.game_id, g.home_team_id, g.away_team_id,
           (select min(s.scheduled_tip) from core.games s
             where coalesce((s.scheduled_tip at time zone 'America/New_York')::date, s.game_date)
                 = coalesce((g.scheduled_tip at time zone 'America/New_York')::date, g.game_date))
             - interval '6 hours' as release_at
-        from core.games g where g.game_id = any(%s)
-      ), mins as (
+        from core.games g where g.game_id = any(%(ids)s)
+      ), mins as materialized (
         select distinct on (m.game_id, m.team_id, m.player_id)
           m.game_id, m.team_id, m.player_id, m.p_mp, m.observed_at, m.fetch_id
         from dnt.minutes_predictions m join meta on meta.game_id = m.game_id
-        where m.observed_at < meta.release_at
+        where m.game_id = any(%(ids)s) and m.observed_at < meta.release_at
         order by m.game_id, m.team_id, m.player_id, m.observed_at desc, m.fetch_id desc
       ), latest as (
         select game_id, team_id, max(observed_at) as obs from mins group by 1, 2
@@ -719,22 +723,23 @@ def load_t6(conn, game_ids):
         select m.* from mins m
         join latest l on l.game_id = m.game_id and l.team_id = m.team_id and l.obs = m.observed_at
         join latest_fetch f on f.game_id = m.game_id and f.team_id = m.team_id and f.fetch_id = m.fetch_id
-      ), rates as (
+      ), rates as materialized (
         select distinct on (r.player_id, c.release_at)
           r.player_id, c.release_at, r.rating_date, r.oepm, r.depm, r.epm
         from dnt.player_ratings r
         join (select distinct release_at from meta) c on true
         where r.game_optimized and r.observed_at < c.release_at
+          and r.player_id in (select player_id from chosen)
         order by r.player_id, c.release_at, r.rating_date desc, r.observed_at desc, r.fetch_id desc
-      ), inj_time as (
+      ), inj_time as materialized (
         select i.game_id, i.team_id, max(i.published_at) as published_at
         from injury.reports i join meta on meta.game_id = i.game_id
-        where i.published_at < meta.release_at
+        where i.game_id = any(%(ids)s) and i.published_at < meta.release_at
         group by 1, 2
       ), inj as (
         select i.game_id, i.player_id, i.status
         from injury.reports i
-        join inj_time t on t.game_id = i.game_id and t.team_id = i.team_id and t.published_at = i.published_at
+        join inj_time t on i.game_id = any(%(ids)s) and t.game_id = i.game_id and t.team_id = i.team_id and t.published_at = i.published_at
       )
       select distinct on (c.game_id, c.player_id)
         c.game_id, c.team_id, tm.full_name as team, pl.first_name || ' ' || pl.last_name as name,
@@ -746,7 +751,7 @@ def load_t6(conn, game_ids):
       join core.players pl on pl.player_id = c.player_id
       left join rates r on r.player_id = c.player_id and r.release_at = meta.release_at
       left join inj i on i.game_id = c.game_id and i.player_id = c.player_id
-      order by c.game_id, c.player_id""", (ids,)).fetchall()
+      order by c.game_id, c.player_id""", {"ids": ids}).fetchall()
     ratings = conn.execute("""with meta as (
         select distinct g.home_team_id as team_id,
           (select min(s.scheduled_tip) from core.games s
