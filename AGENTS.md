@@ -4,14 +4,16 @@ This is the only prevailing agent operating practice. Scott Coleman approved it 
 
 ## The practice
 
-1. Scott gives the job to Consigliere (Grok Build coordinator). Consigliere opens a GitHub issue that defines "done". All work communication is on GitHub.
-2. Claude Code (Opus 5.5) and Codex (GPT-6 Astra) each build on their own branch.
+1. Scott gives the job to Astra (coordinator). Astra opens a GitHub issue that defines "done". All work communication is on GitHub.
+2. Claude Code (Opus 5.5) and Codex each build on their own branch.
 3. Each builder writes tests for the other's branch, never for its own.
 4. GitHub Actions runs all tests on both branches. A failing branch is out.
-5. Consigliere picks the passing branch. On a tie, pick the branch with more tests passing, then the branch with fewer lines changed.
+5. Astra picks the passing branch. On a tie, pick the branch with more tests passing, then the branch with fewer lines changed.
 6. Two independent reviews follow: a fresh Claude Code session, and Grok Build (Grok 4.7).
 7. Every finding comes with a failing test.
 8. Scott approves anything that goes live. A Vercel deploy of the site is allowed after his approval. Then merge.
+
+Scott named Astra coordinator on October 21, 2026, replacing Consigliere. Astra manages; Codex is a builder. Grok Build remains an independent reviewer.
 
 Cursor (Composer 2.5) is a third builder and helper. Cursor never reviews.
 
