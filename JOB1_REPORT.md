@@ -52,3 +52,24 @@ Cross-test branch: `job1-tests-by-cursor` commit `23646d7` (apexrigor). NCAAF cr
 - Drop `job1-tests.yml` per NO_PUSH
 
 NCAAF half: see `../apex_ncaaf/JOB1_REPORT.md`.
+
+## Round 2 (Grok Build review fixes, Oct 20 2026)
+
+Consigliere round 2 targeted the four product defects shared by all Job 1 branches. Local commits only (`NO_PUSH.md`); no pushes, no new CI workflows.
+
+| Req | Fix | Commit(s) | Grok review test | Result |
+|---|---|---|---|---|
+| **1** Per-sport publish; remove all-sports gate | `build_request` for NCAAF returns only `owned_by("NCAAF", …)` paths; no `validate_site_build` / `foreign_paths` on NCAAF | apexrigor `3c7cb59` | `grokreview/apexrigor/review_tests/test_req1_ncaaf_must_not_check_other_sports.py` | **PASS** |
+| **5** Off-slate catalog extra must not fail reverse parity | Drop extras whose kickoff is before the canonical slate floor (`canonical_slate_floor_ms`) instead of `SCHEDULE_CATALOG_REVERSE_PARITY_FAILED` | apex_ncaaf `fd44e39` | `grokreview/apex_ncaaf/review_tests/test_req5_canonical_slate_parity.py` | **PASS** |
+| **6** Default deploy gate runs T-3 then T-2 | `tools/ncaaf_deploy_gate.py` always invokes `operations/replay_saturday.py --job1-shared-fixtures` (read-only `job1/shared_fixtures`); `FILE_MANIFEST` / `RELEASE.json` updated for `ncaaf_t3_living_write.py` | apex_ncaaf `fd44e39` | `grokreview/apex_ncaaf/review_tests/test_req6_deploy_gate_replay.py` (+ Codex addendum `test_req6_candidate_gate_replay.py` via `tools/check_job1_candidate.py`) | **PASS** |
+| **11** One deploy per publish; alert only on production ERROR | `ncaaf_deployment_serves` requires exact commit match (no descendant); bounded wait calls `owner_notice` only when `readyState == ERROR` | apexrigor `3c7cb59` | `grokreview/apexrigor/review_tests/test_req11_deploy_queue.py` (3 tests) | **PASS** |
+
+**Grok review suite (APEX_REVIEW_ROOT → cursor worktrees):** apexrigor **7/7** passed; apex_ncaaf **3/3** passed. Log: `job1_cursor_r2_tests_20261020_213429.txt`.
+
+**Still passing from round 1:** Grok req 2–4, 7–10 and `test_no_new_ci_workflow` (no `job1-tests.yml`).
+
+**Own suites (Windows, same log):** apex_ncaaf `tests/job1_cursor` **38/41** (reportlab import + `_atomic_json` `O_DIRECTORY` on Windows for two hydration tests). apexrigor `tests/job1_cursor` **19/26** — remaining failures are Windows `fcntl`/Git timing, Node layout hash vs restored reference (`d2be6f35…` in reference vs `af56dd1c…` from built page; needs Scott-approved lock or Linux re-run), and one flaky `deploy_check` clone test.
+
+**WSL:** Publisher re-run requested in WSL; Geekom WSL lacks `python3-venv` / pytest (`job1_cursor_r2_tests_20261020_213429.txt` header). Install `python3.12-venv` and re-run there when available.
+
+**Not done:** Full droplet authority replay; cross-site `job1_cross_by_cursor` on Windows; Scott approval if the live NCAAF results layout reference must change from origin/main’s `d2be6f35…` hash.
