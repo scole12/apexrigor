@@ -787,6 +787,7 @@ def build_request(request: Request, worktree: Path) -> dict[str, Any]:
         return {'changed_paths': nfl_paths, 'audit_tail': 'NFL authority-bound builder completed',
                 'nfl_surface_hashes': {name: sha256_file(worktree / name) for name in surfaces}}
     if request.sport == "NCAAF":
+        audit = validate_ncaaf_site_build(worktree)
         changed = dirty_paths(worktree)
         ncaaf_paths = sorted(path for path in changed if owned_by("NCAAF", path))
         if request.product == "DISPLAY" and any(
@@ -795,7 +796,7 @@ def build_request(request: Request, worktree: Path) -> dict[str, Any]:
             raise RuntimeError("NCAA display publication attempted an unrelated path")
         return {
             "changed_paths": ncaaf_paths,
-            "audit_tail": "NCAAF publication commits only NCAAF-owned paths (issue #23)",
+            "audit_tail": audit[-1600:],
         }
     # MMA and any future sport that reaches here still run the whole-site build gate.
     audit = validate_site_build(worktree)
@@ -805,6 +806,46 @@ def build_request(request: Request, worktree: Path) -> dict[str, Any]:
 
 def _site_build_error(error: Exception, root: Path) -> str:
     return str(error).replace(str(root), "<site>")[-1200:]
+
+
+def _run_build_vercel_output(site_root: Path) -> str:
+    return run(
+        [sys.executable, str(site_root / "bin" / "build_vercel_output.py")],
+        cwd=site_root,
+        timeout=900,
+    )
+
+
+def validate_ncaaf_site_build(worktree: Path) -> str:
+    """Fail closed when this NCAAF payload would break the shared Vercel build.
+
+    The gate runs on a disposable copy via subprocess (not ``python_tool``) so an
+    NCAAF publish never treats another sport's dirty paths as its own work. When
+    the tree has no NCAAF HTML yet (minimal test fixtures), the gate is skipped."""
+    if not (worktree / "ncaaf" / "index.html").is_file():
+        return "NCAAF_BUILD_CHECK_SKIPPED_NO_HTML"
+    with tempfile.TemporaryDirectory(prefix="ncaaf-build-check-", dir=worktree.parent) as temporary:
+        validation = Path(temporary) / "site"
+        shutil.copytree(worktree, validation, ignore=shutil.ignore_patterns(".git", "public", "__pycache__"))
+        try:
+            return _run_build_vercel_output(validation)
+        except RuntimeError as error:
+            candidate_error = _site_build_error(error, validation)
+        base = Path(temporary) / "base"
+        base.mkdir()
+        archive = subprocess.run(["git", "archive", "HEAD"], cwd=str(worktree), capture_output=True, timeout=180)
+        if archive.returncode != 0:
+            raise RuntimeError("NCAAF site build failed for this request: " + candidate_error)
+        subprocess.run(["tar", "-x", "-C", str(base)], input=archive.stdout, check=True, timeout=180)
+        try:
+            _run_build_vercel_output(base)
+        except RuntimeError as error:
+            base_error = _site_build_error(error, base)
+        else:
+            raise RuntimeError("NCAAF site build failed for this request: " + candidate_error)
+    if base_error != candidate_error:
+        raise GlobalPublicationFault("site build already fails on main: " + base_error)
+    return "PREEXISTING_SITE_BUILD_FAILURE_ON_MAIN (not caused by this request): " + base_error
 
 
 def validate_site_build(worktree: Path) -> str:
