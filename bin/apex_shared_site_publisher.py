@@ -826,6 +826,9 @@ def validate_ncaaf_site_build(worktree: Path) -> str:
     import sys
     import tempfile
 
+    if not (worktree / "ncaaf" / "index.html").is_file():
+        return ""
+
     with tempfile.TemporaryDirectory(prefix="ncaaf-build-check-", dir=worktree.parent) as temporary:
         validation = Path(temporary) / "site"
         shutil.copytree(worktree, validation, ignore=shutil.ignore_patterns(".git", "public", "__pycache__"))
