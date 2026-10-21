@@ -196,7 +196,7 @@ Consigliere round 2 targeted the four product defects shared by all Job 1 branch
 | apex_ncaaf | `tests/job1_claude_r7/test_req5_missing_upcoming_game.py` (round 7, Claude) |
 | apexrigor | `bin/apex_shared_site_publisher.py` (round 6 gate + round 7 publisher fixes) |
 
-**Droplet test evidence:** `C:\Users\scliu\apex2_site\job1\job1_cursor_r7_tests.txt` — job1_claude_r7 (4), job1_claudereview (6), Codex `tests_by_codex_r4` incl. adversarial (53), Grok review (10), `tests/job1_cursor` (67), `build_vercel_output.py`, Node layout lock `d2be6f35…` (not repinned). **All passed** on droplet at the HEAD SHAs above.
+**Droplet test evidence:** `C:\Users\scliu\apex2_site\job1\job1_cursor_r7_tests.txt` — job1_claude_r7 (4), job1_claudereview (6), Codex `tests_by_codex_r4` incl. adversarial (53), Grok review (10), `tests/job1_cursor` (67), `build_vercel_output.py`, Node layout lock `d2be6f35…` (not repinned). **All passed** on droplet at the commit SHAs above.
 
 **Not finished:** No push; Geekom worktrees not updated; full provider-backed shared-fixture replay on droplet authorities still blocked (`NOT_RECONSTRUCTED`). Empty-tree NCAAF publish fixtures still skip the subprocess build gate (no `ncaaf/index.html`); production publish worktrees from `git worktree add` still run the full gate.
 ## Round 8 (Grok Build recheck: no-HTML skip, Oct 21 2026)
@@ -225,14 +225,14 @@ Consigliere round 2 targeted the four product defects shared by all Job 1 branch
 
 **Cause (req 1/11):** Round 8 left `__import__("sys")` / `__import__("tempfile")` / `__import__("shutil")` in `validate_ncaaf_site_build` and `_run_build_vercel_output` despite module-level imports at the top of `bin/apex_shared_site_publisher.py`. Codex cross-tests still relied on `/opt/apex_job1_r6_scratch/job1_aux` patches (mock `run`, mock NCAAF gate) instead of real site copies. An in-tree `build_vercel_output.py` run dirtied `data/apex_results_summary.json` and three `mma/` HTML files. `JOB1_REPORT.md` listed `d7ec2ff` as if it followed `daed166`.
 
-**Fix (req 1/11):** Gate helpers use the existing module-level `sys`, `shutil`, and `tempfile` only (no `__import__` in production code). Copied Codex `tests_by_codex_r8` into scratch (`/opt/apex_job1_r6_scratch/cursor/tests_by_codex_r8`); `ast_support.py` and `earlier/apexrigor/test_publisher.py` supply `sys` / `shutil` / `tempfile` to AST-isolated probes. Restored the four build-mutated paths to committed bytes; acceptance build runs in a disposable `rsync` copy. Corrected round 8 HEAD lineage in this report. Requirement 5 and the no-HTML-skip removal unchanged.
+**Fix (req 1/11):** Gate helpers use the existing module-level `sys`, `shutil`, and `tempfile` only (no `__import__` in production code). Copied Codex `tests_by_codex_r8` into scratch (`/opt/apex_job1_r6_scratch/cursor/tests_by_codex_r8`); `ast_support.py` and `earlier/apexrigor/test_publisher.py` supply `sys` / `shutil` / `tempfile` to AST-isolated probes. Restored the four build-mutated paths to committed bytes; acceptance build runs in a disposable `rsync` copy. Corrected round 8 commit lineage in this report. Requirement 5 and the no-HTML-skip removal unchanged.
 
 **Commits (droplet scratch `/opt/apex_job1_r6_scratch/cursor` only):**
 
 | Repo | SHA | Message |
 |---|---|---|
 | apex_ncaaf | `43014868626e3864faa4bef5376e6bbf90e06e53` | (unchanged since round 7) |
-| apexrigor | `a05051927b20bbe1033659a2805441364c33efd6` | `d11f0fc` → `a050519` (publisher gate, JOB1_REPORT round 9). |
+| apexrigor | `d11f0fcf5ae52f07dd2f5ee15219b7789ad8690f` | `daed166` → `d11f0fc` (module-level imports in NCAAF build gate; last code commit for round 9). |
 
 **Files changed vs round 5 live release (this round only):**
 
@@ -240,6 +240,6 @@ Consigliere round 2 targeted the four product defects shared by all Job 1 branch
 |---|---|
 | apexrigor | `bin/apex_shared_site_publisher.py` |
 
-**Droplet test evidence:** `C:\Users\scliu\apex2_site\job1\job1_cursor_r9_tests.txt` — job1_claude_r7 (4), job1_claudereview (5), Codex `tests_by_codex_r8` incl. adversarial (53/53, no `job1_aux` patches), Grok review (10), `tests/job1_cursor` (67), `build_vercel_output.py` in temp copy, Node layout lock `d2be6f35…` (not repinned). `grep` on publisher shows no `__import__`; both repos `git status --short` clean at HEAD SHAs above.
+**Droplet test evidence:** `C:\Users\scliu\apex2_site\job1\job1_cursor_r9_tests.txt` — job1_claude_r7 (4), job1_claudereview (5), Codex `tests_by_codex_r8` incl. adversarial (53/53, no `job1_aux` patches), Grok review (10), `tests/job1_cursor` (67), `build_vercel_output.py` in temp copy, Node layout lock `d2be6f35…` (not repinned). `grep` on publisher shows no `__import__`; both repos `git status --short` clean when recorded in `job1_cursor_r9_tests.txt` (apexrigor code at `d11f0fc`; later scratch commits that touch only this report are report-only and follow that code commit).
 
 **Not finished:** No push; Geekom worktrees not updated. Grok `test_req1_ncaaf_must_not_check_other_sports` still monkeypatches `validate_ncaaf_site_build` for its empty `tmp_path` site (in-test only, not `job1_aux`). Full shared-fixture replay on droplet authorities still blocked (`NOT_RECONSTRUCTED`).
