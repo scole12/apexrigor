@@ -244,7 +244,7 @@ def build():
                    if key in today.get('sealed_games', []) else 'The ' + et_stamp(released).split(', ')[1] + ' release sealed no pick for this game, so no position is shown.')
             picks += '<section class="market-panel" data-position-state="RELEASED"><div class="market-label">STATUS</div><div class="market-panel-head"><span class="pick-headline">RELEASED — NO ENGINE PICK PUBLISHED</span><span class="tier-badge tier-badge--moderate">RELEASED</span></div><div class="rationale-copy"><p>' + why + '</p></div></section>'
         else:
-            picks += '<section class="market-panel" data-position-state="UNISSUED"><div class="market-label">STATUS</div><div class="market-panel-head"><span class="pick-headline">UNISSUED — AWAITING ' + release + ' RELEASE</span><span class="tier-badge tier-badge--moderate">SCHEDULED</span></div><div class="rationale-copy"><p>Listed from the official schedule. No sealed FanDuel-issued APEX positions yet.</p></div></section>'
+            picks += '<section class="market-panel" data-position-state="UNISSUED"><div class="market-label">STATUS</div><div class="market-panel-head"><span class="pick-headline">UNISSUED — AWAITING T-6</span><span class="tier-badge tier-badge--moderate">SCHEDULED</span></div><div class="rationale-copy"><p>Listed from the official schedule. No sealed FanDuel-issued APEX positions yet.</p></div></section>'
         picks += '</div></article>'
     # An issued card with picks has no refresh footer. The line and price already sit on each panel.
     if released and not positions:
