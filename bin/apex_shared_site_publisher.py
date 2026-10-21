@@ -1882,9 +1882,7 @@ def execute(*, dry_run: bool, sport: str | None = None) -> dict[str, Any]:
                 pass
         deployed=deploy_check() if sport is None and not dry_run else None
         if not dry_run and deployed and deployed.get('status')=='STALE':
-            owner_notice('publisher-stale-deploy:'+datetime.now(NY).date().isoformat(),
-                         'APEX ALERT: shared publisher is not running the reviewed origin/main code',
-                         json.dumps(deployed,indent=2,sort_keys=True))
+            print('PUBLISHER_STALE_DEPLOY (log only, no email): '+json.dumps(deployed,sort_keys=True),file=sys.stderr,flush=True)
         try:
             prepared=prepare_due_ncaaf_records() if not dry_run and sport is None else []
         except Exception as error:
