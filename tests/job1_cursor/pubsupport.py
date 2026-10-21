@@ -14,13 +14,13 @@ import types
 from pathlib import Path
 
 if sys.platform == "win32":
-    if "fcntl" not in sys.modules:
-        sys.modules["fcntl"] = types.ModuleType("fcntl")
-    _fcntl = sys.modules["fcntl"]
-    if not hasattr(_fcntl, "flock"):
+    _fcntl = sys.modules.get("fcntl")
+    if _fcntl is None or not callable(getattr(_fcntl, "flock", None)):
+        _fcntl = types.ModuleType("fcntl")
         _fcntl.flock = lambda *args, **kwargs: None
         _fcntl.LOCK_EX = 2
         _fcntl.LOCK_UN = 8
+        sys.modules["fcntl"] = _fcntl
 
 ROOT = Path(__file__).resolve().parents[2]
 BIN = ROOT / "bin"

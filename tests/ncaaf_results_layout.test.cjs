@@ -9,12 +9,11 @@ const {createHash} = require("node:crypto");
 const base = path.join(__dirname, "..");
 const reference = JSON.parse(fs.readFileSync(path.join(__dirname, "fixtures/ncaaf_results_layout.reference.json"), "utf8"));
 const source = fs.readFileSync(path.join(base, "ncaaf/results/render.js"), "utf8");
-// The lifetime-record numbers and the all-sports selector are shared chrome written by
-// apply_shared_sport_selector for every sport (issue #23: adding NBA changed every page's
-// selector). Both are masked; everything NCAA-specific stays hash-locked.
+// Lifetime-record numbers are shared chrome updated by the publisher; mask them only.
+// The all-sports selector is applied at Vercel build time (apply_shared_sport_selector) and
+// is not part of the committed NCAAF results page Scott approved on 2026-10-18 (issue #23).
 const normalizeIndex = html => html
-  .replace(/(<aside class="apex-site-record"[\s\S]*?<\/aside>)/, aside => aside.replace(/<strong class="mono">[^<]*<\/strong>/g, '<strong class="mono">#</strong>'))
-  .replace(/<nav class="sport-nav"[\s\S]*?<\/nav>/, '<nav class="sport-nav">#</nav>');
+  .replace(/(<aside class="apex-site-record"[\s\S]*?<\/aside>)/, aside => aside.replace(/<strong class="mono">[^<]*<\/strong>/g, '<strong class="mono">#</strong>'));
 const checkLayout = directory => {
   const indexHtml = fs.readFileSync(path.join(directory, "index.html"), "utf8");
   assert.equal(createHash("sha256").update(fs.readFileSync(path.join(directory, "render.js"))).digest("hex"), reference.render_js_sha256, "render.js must match the approved layout");

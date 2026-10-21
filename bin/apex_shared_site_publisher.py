@@ -144,11 +144,12 @@ def atomic_json(path: Path, value: Any) -> None:
             handle.flush()
             os.fsync(handle.fileno())
         os.replace(temporary, path)
-        directory = os.open(path.parent, os.O_RDONLY | getattr(os, "O_DIRECTORY", 0))
-        try:
-            os.fsync(directory)
-        finally:
-            os.close(directory)
+        if hasattr(os, "O_DIRECTORY"):
+            directory = os.open(path.parent, os.O_RDONLY | os.O_DIRECTORY)
+            try:
+                os.fsync(directory)
+            finally:
+                os.close(directory)
     finally:
         if temporary.exists():
             temporary.unlink()
@@ -164,11 +165,12 @@ def atomic_bytes(path: Path, body: bytes, mode: int = 0o640) -> None:
             handle.flush()
             os.fsync(handle.fileno())
         os.replace(temporary, path)
-        directory = os.open(path.parent, os.O_RDONLY | getattr(os, "O_DIRECTORY", 0))
-        try:
-            os.fsync(directory)
-        finally:
-            os.close(directory)
+        if hasattr(os, "O_DIRECTORY"):
+            directory = os.open(path.parent, os.O_RDONLY | os.O_DIRECTORY)
+            try:
+                os.fsync(directory)
+            finally:
+                os.close(directory)
     finally:
         if temporary.exists():
             temporary.unlink()
@@ -1770,13 +1772,20 @@ def deploy_check(root: Path = ROOT) -> dict[str, Any]:
         behind = int(read_git('rev-list', '--count', 'HEAD..origin/main') or 0)
         dirty = sorted(line[3:].split(' -> ')[-1] for line in read_git('status', '--porcelain', '--untracked-files=all').splitlines() if len(line) > 3)
         own = Path(__file__).resolve().relative_to(root.resolve()).as_posix()
-        reviewed = read_git('show', f'origin/main:{own}').replace('\r\n', '\n').rstrip('\n')
-        current = Path(__file__).read_text(encoding='utf-8').replace('\r\n', '\n').rstrip('\n')
+        # Compare through Git so line endings and checkout encoding cannot false-STALE the publisher.
+        publisher_diff = subprocess.run(
+            ['git', 'diff', '--quiet', 'origin/main', '--', own],
+            cwd=str(root),
+            capture_output=True,
+            timeout=60,
+        )
+        if publisher_diff.returncode not in (0, 1):
+            raise RuntimeError(f"git diff failed: {publisher_diff.stderr.decode(errors='replace')[-300:]}")
+        stale = publisher_diff.returncode == 1
     except Exception as error:  # noqa: BLE001
         return {'status': 'UNKNOWN', 'error': type(error).__name__ + ':' + str(error)[:300]}
     dirty = [path for path in dirty if '__pycache__/' not in path and not path.endswith('.pyc')]
     code_paths = [path for path in dirty if path.startswith(('bin/', 'vercel.json'))]
-    stale = current != reviewed
     return {'status': 'STALE' if stale or code_paths else 'CURRENT', 'head': head, 'origin_main': origin,
             'commits_behind_origin_main': behind, 'publisher_matches_origin_main': not stale,
             'dirty_code_paths': code_paths, 'dirty_data_paths': [path for path in dirty if path not in code_paths]}
