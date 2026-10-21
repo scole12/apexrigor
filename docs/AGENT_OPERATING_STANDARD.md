@@ -1,9 +1,13 @@
-# Superseded — October 16, 2026 agent operating practice
+# APEX agent operating standard — effective October 21, 2026
 
-Status: superseded forever on October 20, 2026.
+Status: current.
 
-Approved replacement: Scott Coleman, October 20, 2026.
+Approved: Scott Coleman, October 21, 2026.
 
-The only prevailing practice is `AGENTS.md` at the repository root. Scott named Astra coordinator in place of Consigliere on October 21, 2026; Claude Code, Codex and Cursor build, and a fresh Claude Code session and Grok Build review. Cursor also always applies `.cursor/rules/agent-standard.mdc`.
+This document points to the only prevailing practice. Read `AGENTS.md` at the repository root. Cursor also always applies `.cursor/rules/agent-standard.mdc`.
 
-This file is not an operating instruction. The October 16, 2026 practice (version 2026-10-16.2) and every earlier agent practice are void. Do not apply them. The previous text remains in git history as a historical record.
+**Roles:** Claude (Scott's chat) coordinates. Builders are Claude Code (Opus 5.5) and Cursor (Composer 2.5)—one builder per job. Cursor tests Claude Code's branches; Grok Build tests Cursor's branches and reviews every passing branch. A fresh Claude Code session also reviews college football, email sending, and the shared publisher. Codex is out until October 27, 2026 6:30 AM ET unless Scott brings it back.
+
+The October 20, 2026 practice (Astra, Consigliere, Grok Bot, Codex as builder, three competing builders) and the October 16, 2026 operating practice are void. Do not apply them. Older text remains in git history only.
+
+Domain and repair rules in `docs/PROJECT_REQUIREMENTS.md` still apply. They do not reinstate any earlier agent workflow.

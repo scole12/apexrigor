@@ -1,8 +1,8 @@
 ---
-description: Superseded October 16, 2026 Cursor pointer. Do not apply.
+description: Superseded October 21, 2026 Cursor pointer. Do not apply.
 alwaysApply: false
 ---
 
-This rule is superseded forever by the October 20, 2026 agent standard. Do not apply it.
+This rule is superseded forever by the October 21, 2026 agent standard. Do not apply it.
 
 The only prevailing practice is `AGENTS.md` and `.cursor/rules/agent-standard.mdc`.
