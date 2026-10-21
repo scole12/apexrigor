@@ -203,14 +203,14 @@ Consigliere round 2 targeted the four product defects shared by all Job 1 branch
 
 **Cause (req 1/11):** Round 7 commit `3d89555` reintroduced an early return in `validate_ncaaf_site_build` when `ncaaf/index.html` was missing, so minimal worktrees skipped `bin/build_vercel_output.py` instead of failing closed.
 
-**Fix (req 1/11):** Removed the no-HTML skip permanently. The NCAAF gate always runs the shared Vercel build check on a disposable copy. Dropped redundant inner `import` lines; gate helpers use module-level `sys` / `shutil` / `tempfile` via `__import__(...)` so Codex AST-isolated probes still resolve those names without re-adding `import` statements inside the functions. Requirement 5 (`apex_ncaaf` `4301486`) unchanged.
+**Fix (req 1/11):** Removed the no-HTML skip permanently. The NCAAF gate always runs the shared Vercel build check on a disposable copy. Round 8 briefly used `__import__(...)` inside gate helpers for AST-isolated probes; round 9 removed that and fixed the probe harness instead. Requirement 5 (`apex_ncaaf` `4301486`) unchanged.
 
 **Commits (droplet scratch `/opt/apex_job1_r6_scratch/cursor` only):**
 
 | Repo | SHA | Message |
 |---|---|---|
 | apex_ncaaf | `43014868626e3864faa4bef5376e6bbf90e06e53` | (unchanged since round 7) |
-| apexrigor | `d7ec2ff33777ce74e20637e8c332d2db0185334a` | `4d3d975` publisher gate; `2220365` report; `d7ec2ff` job1_cursor site_copy probe. |
+| apexrigor | `daed1668a6b71195da2d1f0cfb24d42e68420f6b` | `4d3d975` → `2220365` → `d7ec2ff` → `daed166` (publisher gate, report, `site_copy` probe, finalize report). |
 
 **Files changed vs round 5 live release (this round only):**
 
@@ -221,3 +221,25 @@ Consigliere round 2 targeted the four product defects shared by all Job 1 branch
 **Droplet test evidence:** `C:\Users\scliu\apex2_site\job1\job1_cursor_r8_tests.txt` — job1_claude_r7 (4), job1_claudereview (5), Codex `tests_by_codex_r4` incl. adversarial (53), Grok review (7), `tests/job1_cursor` (67), `build_vercel_output.py`, Node layout lock `d2be6f35…` (not repinned). Quick probe: empty worktree without `ncaaf/index.html` raises `RuntimeError` from `validate_ncaaf_site_build` (fail-closed).
 
 **Not finished:** No push; Geekom worktrees not updated. Codex/Grok isolated publisher probes on the droplet still apply small harness patches under `/opt/apex_job1_r6_scratch/job1_aux` at test time (`run=Mock(return_value=…)`, `validate_ncaaf_site_build=Mock`, Grok req1 monkeypatch) because those tests use empty `tmp_path` trees, not full site fixtures — not committed in scratch. Full shared-fixture replay on droplet authorities still blocked (`NOT_RECONSTRUCTED`).
+## Round 9 (Grok/Codex recheck: `__import__` and acceptance harness, Oct 21 2026)
+
+**Cause (req 1/11):** Round 8 left `__import__("sys")` / `__import__("tempfile")` / `__import__("shutil")` in `validate_ncaaf_site_build` and `_run_build_vercel_output` despite module-level imports at the top of `bin/apex_shared_site_publisher.py`. Codex cross-tests still relied on `/opt/apex_job1_r6_scratch/job1_aux` patches (mock `run`, mock NCAAF gate) instead of real site copies. An in-tree `build_vercel_output.py` run dirtied `data/apex_results_summary.json` and three `mma/` HTML files. `JOB1_REPORT.md` listed `d7ec2ff` as if it followed `daed166`.
+
+**Fix (req 1/11):** Gate helpers use the existing module-level `sys`, `shutil`, and `tempfile` only (no `__import__` in production code). Copied Codex `tests_by_codex_r8` into scratch (`/opt/apex_job1_r6_scratch/cursor/tests_by_codex_r8`); `ast_support.py` and `earlier/apexrigor/test_publisher.py` supply `sys` / `shutil` / `tempfile` to AST-isolated probes. Restored the four build-mutated paths to committed bytes; acceptance build runs in a disposable `rsync` copy. Corrected round 8 HEAD lineage in this report. Requirement 5 and the no-HTML-skip removal unchanged.
+
+**Commits (droplet scratch `/opt/apex_job1_r6_scratch/cursor` only):**
+
+| Repo | SHA | Message |
+|---|---|---|
+| apex_ncaaf | `43014868626e3864faa4bef5376e6bbf90e06e53` | (unchanged since round 7) |
+| apexrigor | `d11f0fcf5ae52f07dd2f5ee15219b7789ad8690f` | `d11f0fc` module-level imports in NCAAF build gate; report commit follows tests. |
+
+**Files changed vs round 5 live release (this round only):**
+
+| Repo | Path |
+|---|---|
+| apexrigor | `bin/apex_shared_site_publisher.py` |
+
+**Droplet test evidence:** `C:\Users\scliu\apex2_site\job1\job1_cursor_r9_tests.txt` — job1_claude_r7 (4), job1_claudereview (5), Codex `tests_by_codex_r8` incl. adversarial (53/53, no `job1_aux` patches), Grok review (10), `tests/job1_cursor` (67), `build_vercel_output.py` in temp copy, Node layout lock `d2be6f35…` (not repinned). `grep` on publisher shows no `__import__`; both repos `git status --short` clean at HEAD SHAs above.
+
+**Not finished:** No push; Geekom worktrees not updated. Grok `test_req1_ncaaf_must_not_check_other_sports` still monkeypatches `validate_ncaaf_site_build` for its empty `tmp_path` site (in-test only, not `job1_aux`). Full shared-fixture replay on droplet authorities still blocked (`NOT_RECONSTRUCTED`).
