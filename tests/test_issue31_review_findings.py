@@ -230,3 +230,33 @@ def test_successful_push_intent_survives_post_push_fetch_failure(tmp_path, monke
     intent = tmp_path / "publication_intents/ncaaf" / (request.request_id + ".json")
     assert intent.is_file(), "Successful push must remain known before fallible followup reads"
     assert json.loads(intent.read_text())["published_commit"] == "a" * 40
+
+
+def test_frozen_manifest_is_ncaaf_owned_and_reaches_real_local_commit(request_history, monkeypatch):
+    """Use actual manifest writer, ownership registry and publication Git commands."""
+    from dataclasses import replace
+    site, own, later, git, request = request_history
+    fields = {key: 1 for key in ("canonical_game_count", "display_game_count", "issued_game_count",
+                                 "official_position_count", "market_pending_game_count", "internal_market_pending_game_count")}
+    fields.update(request.manifest)
+    fields.update(display_slate_date_et=request.slate_date, count_scope="EXPLICIT_CANONICAL_AND_DISPLAY",
+                  display_date=request.slate_date, canonical_public_payload_sha256="1" * 64,
+                  sealed_day_payload_sha256="2" * 64)
+    request = replace(request, manifest=fields)
+    monkeypatch.setattr(p, "validate_payload_set", lambda req: req.manifest["source_hashes"])
+
+    def render(req, worktree):
+        p.ncaaf_delivery_manifest(req, worktree)
+        changed = sorted(p.dirty_paths(worktree))
+        assert all(p.owned_by("NCAAF", path) for path in changed)
+        return {"changed_paths": changed}
+
+    monkeypatch.setattr(p, "build_request", render)
+    result = p.publish(request, dry_run=False)
+    frozen = p.ncaaf_frozen_manifest_path(request)
+    saved = json.loads(git("show", result["published_commit"] + ":" + frozen))
+    remote_saved = json.loads(git("show", "origin/main:" + frozen))
+    assert saved == remote_saved
+    assert saved["queue_request_id"] == request.request_id
+    assert saved["delivery_product"] == "T2"
+    assert frozen in result["changed_paths"]

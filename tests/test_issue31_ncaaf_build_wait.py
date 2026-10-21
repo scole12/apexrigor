@@ -73,8 +73,9 @@ def test_publisher_failure_notice_logs_without_email(monkeypatch, capsys):
     assert "Publish failed fixture" in recorded
 
 
+@pytest.mark.parametrize("proof_kind", ["wait", "intent", "intent-no-content-change", "intent-dispatched", "intent-wrong-request", "intent-unpublished"])
 @pytest.mark.parametrize("content_state", ["unchanged", "unpublished", "tampered"])
-def test_email_resume_cannot_commit_push_or_send_unpublished_content(tmp_path, monkeypatch, content_state):
+def test_email_resume_cannot_commit_push_or_send_unpublished_content(tmp_path, monkeypatch, content_state, proof_kind):
     """Exercise the actual publication/resume code against a local bare Git remote."""
     import hashlib
     import subprocess
@@ -155,13 +156,29 @@ def test_email_resume_cannot_commit_push_or_send_unpublished_content(tmp_path, m
     send = Mock(side_effect=lambda req, result: {**result, "status": "PUBLISHED_EMAIL_VERIFIED"})
     monkeypatch.setattr(p, "ncaaf_t2_site_live_before_email", check)
     monkeypatch.setattr(p, "dispatch_ncaaf_email", send)
-    p.atomic_json(p.ncaaf_site_wait_path(request), {
-        "request_id": request.request_id, "request_commit": commit, "first_wait_utc_ms": 1,
-    })
+    if proof_kind == "wait":
+        p.atomic_json(p.ncaaf_site_wait_path(request), {
+            "request_id": request.request_id, "request_commit": commit, "first_wait_utc_ms": 1,
+        })
+    else:
+        p.atomic_json(p.STATE_ROOT / "publication_intents/ncaaf" / (request.request_id + ".json"), {
+            "status": "PREPARING" if proof_kind == "intent-unpublished" else "PUBLISHED_NO_CONTENT_CHANGE" if proof_kind == "intent-no-content-change" else "PUBLISHED",
+            "sport": "NCAAF",
+            "request_id": "f" * 64 if proof_kind == "intent-wrong-request" else request.request_id,
+            "published_commit": commit,
+        })
+        if proof_kind == "intent-dispatched":
+            p.atomic_json(p.receipt_path(request), {
+                "status": "PUBLISHED_EMAIL_DISPATCH_INTENT",
+                "email_dispatch_at_utc": "2026-10-21T21:57:00Z",
+                "email_workflow_run_id": 123,
+            })
 
     p.execute(dry_run=False)
 
-    assert send.call_count == (1 if content_state == "unchanged" else 0)
+    should_resume = content_state == "unchanged" and proof_kind in {"wait", "intent", "intent-no-content-change", "intent-dispatched"}
+    assert check.call_count == int(should_resume)
+    assert send.call_count == int(should_resume)
     assert not any(args[0] in {"push", "commit", "add"} for args in git_commands)
     assert local_git("--git-dir=" + str(remote), "rev-parse", "main") == commit
     assert local_git("rev-parse", "HEAD", cwd=checkout) == commit
