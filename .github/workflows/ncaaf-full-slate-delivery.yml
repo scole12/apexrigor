@@ -39,6 +39,10 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: ${{ github.workflow }}-${{ inputs.product }}-${{ inputs.slate_date }}
+  cancel-in-progress: true
+
 jobs:
   deliver:
     runs-on: ubuntu-latest
