@@ -68,10 +68,25 @@ def test_retry_after_other_sport_push_accepts_deploy_that_contains_the_request(p
     assert out["site_live_check"]["published_commit"] == a
 
 
-def test_later_other_sport_deploy_does_not_serve_the_ncaaf_publish(publisher, history, tmp_path, monkeypatch):
+def test_later_other_sport_deploy_serves_unchanged_ncaaf(publisher, history, tmp_path, monkeypatch):
     repo, a, b = history
     monkeypatch.setattr(publisher, "ROOT", repo)
     monkeypatch.setattr(publisher, "vercel_deployment", lambda: deployment(b))
+    out = publisher.ncaaf_t2_site_live_before_email(
+        t2(publisher, tmp_path), {"status": "PUBLISHED", "published_commit": a},
+        now_ms=KICK - 7000000, poll_seconds=0)
+    assert out["site_live_check"]["status"] == "SITE_LIVE_BEFORE_EMAIL"
+
+
+@pytest.mark.parametrize("changed_path", [
+    "data/ncaaf_today.json", "ncaaf/index.html", "data/ncaaf/2026-10-20/different.json",
+])
+def test_later_changed_ncaaf_deploy_does_not_serve_request(publisher, history, tmp_path, monkeypatch, changed_path):
+    repo, a, b = history
+    write_json(repo / changed_path, {"different_request": True})
+    changed = commit_all(repo, "Different NCAAF publication")
+    monkeypatch.setattr(publisher, "ROOT", repo)
+    monkeypatch.setattr(publisher, "vercel_deployment", lambda: deployment(changed))
     with pytest.raises(RuntimeError, match="DEPLOYMENT_NOT_REQUEST_DESCENDANT"):
         publisher.ncaaf_t2_site_live_before_email(
             t2(publisher, tmp_path), {"status": "PUBLISHED", "published_commit": a},
