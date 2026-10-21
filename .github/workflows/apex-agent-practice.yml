@@ -1,9 +1,14 @@
 name: APEX agent practice
 on:
+  workflow_dispatch:
   pull_request:
-  push:
+    branches: [main]
 permissions:
   contents: read
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   practice:
     runs-on: ubuntu-latest

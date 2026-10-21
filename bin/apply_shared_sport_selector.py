@@ -152,6 +152,12 @@ def main() -> int:
         text = path.read_text(encoding="utf-8")
         replacement = navigation(sport, section, nfl_available, nhl_available, nba_available)
         current_stack = STACK_RE.search(text)
+        if relative == "ncaaf/results/index.html":
+            # This page has an owner-approved, hash-locked presentation.
+            # Refresh record values without rewriting its navigation.
+            if current_stack is None:
+                raise RuntimeError("approved NCAA results navigation is missing")
+            replacement = current_stack.group(0)
         if current_stack:
             updated, count = STACK_RE.subn(replacement, text, count=1)
         else:

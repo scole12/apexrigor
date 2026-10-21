@@ -1,13 +1,16 @@
 name: Public site integrity
 
 on:
-  push:
-    branches: [main]
+  workflow_dispatch:
   pull_request:
     branches: [main]
 
 permissions:
   contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   audit:

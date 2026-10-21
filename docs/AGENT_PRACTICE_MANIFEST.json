@@ -10,7 +10,7 @@
     ".github/copilot-instructions.md": "7e98615cba514b87ee701110f540e1b1a739dd9a0851eb4e3cfe38cf00ce88b2",
     ".cursor/rules/apex-practice.mdc": "a24e4c3cbfbcd2be76245d13401ec97763a7371984b3f769ccb64ca04eb863f9",
     "tools/check_agent_practice.py": "7b5c0ed3627cab03166f515905df27483b78acbf01a1585727e024406a892dce",
-    ".github/workflows/apex-agent-practice.yml": "736d721803f8151a3938ec808581fd05050363d452efa5d2663161cecabacfb8",
+    ".github/workflows/apex-agent-practice.yml": "fc0c501cdf0607c77c342bf69ae8148172385b99c6330765f2f725c804ed35f9",
     ".cursor/rules/agent-standard.mdc": "fb9446c4b8a1bf893cf7d5d11133f8f75ba93002556ae856712b6f0175008c3c"
   },
   "removed_files": []

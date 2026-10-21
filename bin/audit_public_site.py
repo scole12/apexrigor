@@ -143,15 +143,16 @@ def main() -> int:
         else:
             switcher = switcher_re.findall(text)[0]
             labels = tuple(match.group("label").strip() for match in SPORT_ITEM_RE.finditer(switcher))
-            if labels != SPORT_LABELS:
+            expected_labels = SPORT_LABELS[:-1] if route == "/ncaaf/results" else SPORT_LABELS
+            if labels != expected_labels:
                 errors.append(
-                    f"{route} sport selector labels/order {labels}, expected {SPORT_LABELS}"
+                    f"{route} sport selector labels/order {labels}, expected {expected_labels}"
                 )
             if 'href="/nhl' not in switcher:
                 errors.append(f"{route} does not link the NHL presentation route")
             section = 'results' if route.endswith('/results') or route == '/results' else 'about' if route.endswith('/about') else ''
             nba_target = '/nba' + ('/' + section if section else '')
-            if f'href="{nba_target}"' not in switcher:
+            if route != "/ncaaf/results" and f'href="{nba_target}"' not in switcher:
                 errors.append(f"{route} missing section-matched NBA anchor")
             if nfl_route_established:
                 if "sport-unavailable" in switcher or 'href="/nfl' not in switcher:
@@ -163,6 +164,20 @@ def main() -> int:
                 errors.append(
                     f"{route} must expose disabled NFL identity while NFL routes are unestablished"
                 )
+        if route == "/ncaaf/results":
+            # This owner's approved page predates the NBA selector. Enforce the
+            # complete approved HTML instead of silently changing its layout.
+            reference = json.loads((Path(__file__).resolve().parents[1] /
+                                    "tests/fixtures/ncaaf_results_layout.reference.json").read_text(encoding="utf-8"))
+            normalized = re.sub(r'(<aside class="apex-site-record"[\s\S]*?</aside>)',
+                                lambda m: re.sub(r'<strong class="mono">[^<]*</strong>',
+                                                 '<strong class="mono">#</strong>', m.group(0)),
+                                text, count=1)
+            if hashlib.sha256(normalized.encode("utf-8")).hexdigest() != reference["index_html_normalized_sha256"]:
+                errors.append("/ncaaf/results differs from the owner-approved layout")
+            renderer = (root / "ncaaf/results/render.js").read_bytes()
+            if hashlib.sha256(renderer).hexdigest() != reference["render_js_sha256"]:
+                errors.append("/ncaaf/results renderer differs from the owner-approved layout")
         if route.startswith("/ncaaf"):
             hero_labels = re.findall(r'<div class="hero-tag">\s*([^<]+?)\s*</div>', text)
             if hero_labels != ["APEX NCAA FOOTBALL"]:
