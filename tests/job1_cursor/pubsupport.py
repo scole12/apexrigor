@@ -8,6 +8,7 @@ from __future__ import annotations
 import hashlib
 import importlib.util
 import json
+import os
 import subprocess
 import sys
 import types
@@ -40,8 +41,27 @@ def load_publisher(path: Path = PUBLISHER):
     return module
 
 
+def git_env_for(cwd: Path) -> dict[str, str]:
+    env = os.environ.copy()
+    git_path = Path(cwd) / ".git"
+    work_tree = env.get("GIT_WORK_TREE")
+    cwd_resolved = str(Path(cwd).resolve())
+    if git_path.is_dir():
+        env.pop("GIT_DIR", None)
+        env.pop("GIT_WORK_TREE", None)
+    elif git_path.is_file():
+        if not work_tree or str(Path(work_tree).resolve()) != cwd_resolved:
+            env.pop("GIT_DIR", None)
+            env.pop("GIT_WORK_TREE", None)
+    else:
+        env.pop("GIT_DIR", None)
+        env.pop("GIT_WORK_TREE", None)
+    return env
+
+
 def git(*args, cwd) -> str:
-    result = subprocess.run(["git", *args], cwd=str(cwd), check=True, text=True, capture_output=True)
+    """Run git in ``cwd``. Do not inherit worktree GIT_DIR for ephemeral test repos."""
+    result = subprocess.run(["git", *args], cwd=str(cwd), check=True, text=True, capture_output=True, env=git_env_for(cwd))
     return result.stdout.strip()
 
 
@@ -63,7 +83,7 @@ def commit_all(repo: Path, message: str) -> str:
 def site_copy(target: Path) -> Path:
     """A Git repository holding this checkout's committed site files (HEAD)."""
     target.mkdir(parents=True, exist_ok=True)
-    archive = subprocess.run(["git", "archive", "HEAD"], cwd=str(ROOT), check=True, capture_output=True)
+    archive = subprocess.run(["git", "archive", "HEAD"], cwd=str(ROOT), check=True, capture_output=True, env=git_env_for(ROOT))
     subprocess.run(["tar", "-x", "-C", str(target)], input=archive.stdout, check=True)
     # The working-tree versions of the files under test (this branch's fix, uncommitted edits included).
     for relative in ("bin/apex_shared_site_publisher.py", "bin/site_route_owners.py"):

@@ -198,6 +198,26 @@ def safe_relative(raw: str) -> str:
     return value.as_posix()
 
 
+def _git_env(cwd: Path) -> dict[str, str]:
+    """Drop inherited worktree GIT_DIR when ``cwd`` is its own Git repository."""
+    env = os.environ.copy()
+    env["PYTHONDONTWRITEBYTECODE"] = "1"
+    git_path = Path(cwd) / ".git"
+    work_tree = env.get("GIT_WORK_TREE")
+    cwd_resolved = str(Path(cwd).resolve())
+    if git_path.is_dir():
+        env.pop("GIT_DIR", None)
+        env.pop("GIT_WORK_TREE", None)
+    elif git_path.is_file():
+        if not work_tree or str(Path(work_tree).resolve()) != cwd_resolved:
+            env.pop("GIT_DIR", None)
+            env.pop("GIT_WORK_TREE", None)
+    else:
+        env.pop("GIT_DIR", None)
+        env.pop("GIT_WORK_TREE", None)
+    return env
+
+
 def run(command: list[str], *, cwd: Path, timeout: int = 180) -> str:
     completed = subprocess.run(
         command,
@@ -206,7 +226,7 @@ def run(command: list[str], *, cwd: Path, timeout: int = 180) -> str:
         capture_output=True,
         text=True,
         timeout=timeout,
-        env={**os.environ, "PYTHONDONTWRITEBYTECODE": "1"},
+        env=_git_env(cwd),
     )
     if completed.returncode != 0:
         detail = (completed.stderr or completed.stdout).strip()[-2000:]
@@ -1325,12 +1345,13 @@ def commit_contains(descendant: str, ancestor: str, *, repo: Path | None = None)
     a missing object is fetched, never read as "not a descendant"."""
     repo = ROOT if repo is None else repo
     for sha in (descendant, ancestor):
-        known = subprocess.run(['git', 'cat-file', '-e', sha + '^{commit}'], cwd=repo, capture_output=True, timeout=30)
+        env = _git_env(repo)
+        known = subprocess.run(['git', 'cat-file', '-e', sha + '^{commit}'], cwd=repo, capture_output=True, timeout=30, env=env)
         if known.returncode != 0:
-            subprocess.run(['git', 'fetch', '--quiet', 'origin', 'main'], cwd=repo, capture_output=True, timeout=60)
-            subprocess.run(['git', 'fetch', '--quiet', 'origin', sha], cwd=repo, capture_output=True, timeout=60)
+            subprocess.run(['git', 'fetch', '--quiet', 'origin', 'main'], cwd=repo, capture_output=True, timeout=60, env=env)
+            subprocess.run(['git', 'fetch', '--quiet', 'origin', sha], cwd=repo, capture_output=True, timeout=60, env=env)
     ancestry = subprocess.run(['git', 'merge-base', '--is-ancestor', ancestor, descendant], cwd=repo,
-                              capture_output=True, timeout=30)
+                              capture_output=True, timeout=30, env=_git_env(repo))
     if ancestry.returncode not in (0, 1):
         raise RuntimeError('ANCESTRY_UNKNOWN:' + ancestry.stderr.decode(errors='replace')[-300:])
     return ancestry.returncode == 0
@@ -1762,7 +1783,7 @@ def deploy_check(root: Path = ROOT) -> dict[str, Any]:
     uncommitted data files, so fixes merged on main were not the code that ran. Builds use
     a fresh origin/main worktree; only this process's own code can be stale. Read-only."""
     def read_git(*arguments: str) -> str:
-        completed = subprocess.run(['git', *arguments], cwd=str(root), capture_output=True, text=True, timeout=60)
+        completed = subprocess.run(['git', *arguments], cwd=str(root), capture_output=True, text=True, timeout=60, env=_git_env(root))
         if completed.returncode != 0:
             raise RuntimeError(f"git {arguments[0]} failed: {completed.stderr.strip()[-300:]}")
         return completed.stdout.rstrip('\r\n')
@@ -1778,6 +1799,7 @@ def deploy_check(root: Path = ROOT) -> dict[str, Any]:
             cwd=str(root),
             capture_output=True,
             timeout=60,
+            env=_git_env(root),
         )
         if publisher_diff.returncode not in (0, 1):
             raise RuntimeError(f"git diff failed: {publisher_diff.stderr.decode(errors='replace')[-300:]}")

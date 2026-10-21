@@ -73,3 +73,31 @@ Consigliere round 2 targeted the four product defects shared by all Job 1 branch
 **WSL:** Publisher re-run requested in WSL; Geekom WSL lacks `python3-venv` / pytest (`job1_cursor_r2_tests_20261020_213429.txt` header). Install `python3.12-venv` and re-run there when available.
 
 **Not done:** Full droplet authority replay; cross-site `job1_cross_by_cursor` on Windows; Scott approval if the live NCAAF results layout reference must change from origin/main’s `d2be6f35…` hash.
+
+## Round 3 (Linux green, layout lock, Oct 20 2026)
+
+**Linux evidence:** `C:\Users\scliu\apex2_site\job1\job1_cursor_r3_tests_20261020_220204.txt` (WSL + `uv` Python 3.12; `GIT_DIR`/`GIT_WORK_TREE` set for Windows git worktrees). Re-runner: `job1/tools/run_job1_cursor_r3_linux.sh`.
+
+| Suite | Linux result |
+|---|---|
+| Grok review apexrigor (7) | **PASS** |
+| Grok review apex_ncaaf (3) | **PASS** |
+| apexrigor `tests/job1_cursor` (26) | **PASS** |
+| apex_ncaaf `tests/job1_cursor` (41) | **PASS** (`uv --with reportlab --with duckdb`) |
+| `python bin/build_vercel_output.py` + `node tests/ncaaf_results_layout.test.cjs` | **PASS** |
+| Publisher `tests/test_publisher*.py` | **N/A** (no such files in either repo) |
+
+### Per-failure (round 2 → round 3)
+
+| Failure | Cause | Fix | Commit | Test / Linux |
+|---|---|---|---|---|
+| Layout hash `af56dd1c` vs approved `d2be6f35` | Round 2 repinned reference to Scott’s aside-only hash while the Node check also masked `sport-nav`; committed NCAAF pages had NBA nav baked in (other sports’ chrome). | Restore Oct 18 NCAAF HTML (`48451c3`); lock normalizes lifetime record only (selector applied at Vercel build). Reference left at `d2be6f35` (no repin). | `202711d` (files; message is accidental test-repo noise) | `tests/ncaaf_results_layout.test.cjs`, `test_approved_ncaaf_results_layout_check_passes` — **PASS** Linux |
+| `atomic_json` / `O_DIRECTORY` on Windows | Directory `fsync` with `O_DIRECTORY=0` on Windows. | Skip directory `fsync` when `os.O_DIRECTORY` missing. | `202711d` + pending | delivery + hydration tests — **PASS** Linux |
+| `fcntl.flock` missing on Windows | Partial `fcntl` stub. | Always install a flock-capable `fcntl` stub in `pubsupport.py`. | pending | `test_other_sport_fault_*` — **PASS** Windows + Linux |
+| `deploy_check` false **STALE** | Text compare + inherited `GIT_DIR` / encoding on worktrees. | Compare publisher file with `git diff --quiet origin/main`; `_git_env()` clears inherited worktree env for ephemeral repos. | pending | `test_deploy_check_reports_a_publisher_behind_origin_main` — **PASS** Linux |
+| Deploy-wait / global-fault tests fail under WSL | `GIT_DIR` from worktree leaked into publisher `git()` in temp repos. | `_git_env()` in `apex_shared_site_publisher.py`; matching helper in `pubsupport.py`. | pending | `test_cause1b_1c_1d_1f_delivery.py` — **26/26 PASS** Linux |
+| apex_ncaaf grader import on Linux | Missing optional deps in bare `uv run`. | Linux runner adds `--with reportlab --with duckdb` (test env only). | (runner script only) | `test_grade_products_uses_the_same_loader` — **PASS** Linux |
+
+**Windows (sanity):** apexrigor `tests/job1_cursor` **26/26** after the same publisher/pubsupport fixes.
+
+**Not finished:** Droplet authority replay; `job1_cross_by_cursor` on site worktrees; amend `202711d` commit message/author to a proper Job 1 message (content is correct). No push.
