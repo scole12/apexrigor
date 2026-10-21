@@ -45,7 +45,10 @@ class NcaafT2SiteLiveBeforeEmail(unittest.TestCase):
                                  self.base / "payload" if payload else None, "2026-10-02", product)
 
     def check(self, request, serves, now_ms):
-        with mock.patch.object(publisher, "ncaaf_deployment_serves", serves):
+        def request_scoped_check(commit, checked_request):
+            self.assertIs(checked_request, request)
+            return serves(commit)
+        with mock.patch.object(publisher, "ncaaf_deployment_serves", request_scoped_check):
             return publisher.ncaaf_t2_site_live_before_email(request, {"published_commit": COMMIT, "status": "PUBLISHED"},
                                                             now_ms=now_ms, poll_seconds=0)
 

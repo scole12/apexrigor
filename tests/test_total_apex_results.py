@@ -1,6 +1,7 @@
 """Regression checks for the public graded-book fusion boundary."""
 from copy import deepcopy
 import importlib.util
+import hashlib
 import json
 from pathlib import Path
 import shutil
@@ -24,6 +25,24 @@ class TotalResultsTests(unittest.TestCase):
         self.base = {"sports": {"mlb": {"wins": 9, "losses": 5, "pushes": 1},
                                 "nfl": {"wins": 2, "losses": 3, "pushes": 0}},
                      "sports_included": ["mlb", "nfl"], "overall": {"wins": 9999}}
+        # The fusion reader now verifies canonical source books, not only aggregate counts.
+        self.base["sports"]["mlb"]["positions_graded"] = 15
+        self.base.update(
+            contract_version="apex_results_summary_from_grader_receipt_v1",
+            canonical_receipt_sha256=hashlib.sha256(b"synthetic MLB fixture receipt").hexdigest(),
+            generated_at_et="2026-09-06T07:00:00-04:00",
+        )
+        projection = deepcopy(self.base)
+        projection["sports"] = {"mlb": deepcopy(self.base["sports"]["mlb"])}
+        self.put("results_archive", {"_canonical_grader_receipt_projection": projection})
+        self.put("nfl_results_archive", {
+            "sport": "NFL", "canonical_result": {"fixture": True}, "pending": [],
+            "rows": [{"sport": "NFL", "issuance_id": "fixture-nfl", "position_id": f"nfl-{i}",
+                      "game_date": "2026-09-05", "market": "ATS", "result": result}
+                     for i, result in enumerate(["W", "W", "L", "L", "L"])],
+            "coverage": {"fixture-nfl": {"issued": 5}},
+        })
+        self.put("ncaaf_results_cumulative", {"positions": [], "lifetime_record": {"W": 0, "L": 0, "PUSH": 0}})
 
     def put(self, name, value):
         (self.data / (name + ".json")).write_text(json.dumps(value))
@@ -87,6 +106,7 @@ class TotalResultsTests(unittest.TestCase):
         self.assertEqual(fused["overall_pushes"], 2)
         book["lifetime_record"]["W"] = 2
         self.put("ncaaf_results_cumulative", book)
+        self.put("ncaaf_results_summary", book)  # active canonical book preferred by the reader
         with self.assertRaisesRegex(ValueError, "mismatch"):
             fuse_summary(self.base, data_dir=self.data)
 
@@ -121,7 +141,7 @@ class TotalResultsTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "duplicate"):
             fuse_summary(self.base, data_dir=self.data)
 
-    def test_canonical_archive_writer_retains_other_sports_on_rebuild(self):
+    def test_mlb_writer_is_isolated_and_shared_owner_retains_other_sports(self):
         path = Path("/opt/apex_mlb/current/bin/apex_canonical_results_summary.py")
         if not path.is_file():
             self.skipTest("canonical MLB writer is available only on the production host")
@@ -135,11 +155,21 @@ class TotalResultsTests(unittest.TestCase):
         archive.write_text(json.dumps({"_canonical_grader_receipt_projection": projection}))
         self.put("apex_results_summary", self.base)
         self.put("mma_results_summary", {"latest_event_results": [self.mma("one")]})
-        dest = self.data / "apex_results_summary.json"
+        dest = self.data / "mlb_results_summary.json"
+        shared = self.data / "apex_results_summary.json"
+        protected = {path: path.read_bytes() for path in
+                     (archive, shared, self.data / "mma_results_summary.json", self.data / "nfl_results_archive.json")}
         module.write_canonical_results_summary(source_path=archive, out_path=dest)
-        first = json.loads(dest.read_text())
+        ledger = json.loads(dest.read_text())
         module.write_canonical_results_summary(source_path=archive, out_path=dest)
-        self.assertEqual(first, json.loads(dest.read_text()))
+        self.assertEqual(ledger, json.loads(dest.read_text()))
+        self.assertEqual(ledger["sports"]["mlb"], self.base["sports"]["mlb"])
+        self.assertEqual(protected, {path: path.read_bytes() for path in protected})
+        # The shared-site builder owns the combined book; the MLB writer owns its ledger.
+        build(self.root)
+        first = json.loads(shared.read_text())
+        build(self.root)
+        self.assertEqual(first, json.loads(shared.read_text()))
         self.assertEqual(first["sports_included"], ["mlb", "nfl", "mma"])
         self.assertEqual(first["overall_wins"], 12)
 

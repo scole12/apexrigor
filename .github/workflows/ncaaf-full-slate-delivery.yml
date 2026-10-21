@@ -126,9 +126,12 @@ jobs:
                   assert os.environ['PRODUCT']=='T3'
               product=os.environ['PRODUCT']
               root=pathlib.Path('data/ncaaf')/slate_date
-              manifest=json.loads((root/'full_slate_delivery_manifest.json').read_text())
-              assert manifest['slate_date']==slate_date
               request_id=os.environ['REQUEST_ID']
+              # Issue #31: a queued request reads its own frozen manifest; the shared same-date file is the fallback.
+              frozen=root/'delivery'/f'{request_id}.json'
+              frozen_ok=len(request_id)==64 and all(c in '0123456789abcdef' for c in request_id) and frozen.is_file()
+              manifest=json.loads((frozen if frozen_ok else root/'full_slate_delivery_manifest.json').read_text())
+              assert manifest['slate_date']==slate_date
               if request_id!='manual':
                   assert request_id==manifest['queue_request_id']
               public_sha=manifest['canonical_public_payload_sha256']
