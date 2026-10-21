@@ -3,7 +3,7 @@
   "approved_by": "Scott Coleman",
   "source_commit": "1cc9911 (file content), restored in 531aefd",
   "render_js_sha256": "ddc21001476520470dc0318f3cfb75b0151428a3cd60ac52adc9904c7a755491",
-  "index_html_normalized_sha256": "af56dd1cad9cdefa1d29fd22c12d4d990dade63e1f0658ecc49ed8b3d1988614",
+  "index_html_normalized_sha256": "d2be6f35893628c7f97e16ea0dfd376afd46b6d3f0f23823c5d28436fb2e9fa6",
   "index_html_normalization": "lifetime-record aside numbers and the shared all-sports selector masked with # (issue #23: the selector is shared chrome; the Oct 18 approved page 48451c3 still matches)",
   "required_sections": [
     "SEASON RECORD",

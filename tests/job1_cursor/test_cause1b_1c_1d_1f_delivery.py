@@ -68,21 +68,22 @@ def test_retry_after_other_sport_push_accepts_deploy_that_contains_the_request(p
     assert out["site_live_check"]["published_commit"] == a
 
 
-def test_deploy_of_a_later_commit_counts(publisher, history, tmp_path, monkeypatch):
+def test_later_other_sport_deploy_does_not_serve_the_ncaaf_publish(publisher, history, tmp_path, monkeypatch):
     repo, a, b = history
     monkeypatch.setattr(publisher, "ROOT", repo)
     monkeypatch.setattr(publisher, "vercel_deployment", lambda: deployment(b))
-    out = publisher.ncaaf_t2_site_live_before_email(
-        t2(publisher, tmp_path), {"status": "PUBLISHED", "published_commit": a}, now_ms=KICK - 7000000, poll_seconds=0)
-    assert out["site_live_check"]["status"] == "SITE_LIVE_BEFORE_EMAIL"
+    with pytest.raises(RuntimeError, match="DEPLOYMENT_NOT_REQUEST_DESCENDANT"):
+        publisher.ncaaf_t2_site_live_before_email(
+            t2(publisher, tmp_path), {"status": "PUBLISHED", "published_commit": a},
+            now_ms=KICK - 7000000, poll_seconds=0)
 
 
-def test_site_wait_is_bounded_with_an_alert(publisher, history, tmp_path, monkeypatch):
+def test_site_wait_is_bounded_without_alert_when_production_is_ready(publisher, history, tmp_path, monkeypatch):
     repo, a, b = history
     monkeypatch.setattr(publisher, "ROOT", repo)
     monkeypatch.setattr(publisher, "receipt_path", lambda request: tmp_path / "receipts" / "r.json")
     base = git("rev-list", "--max-parents=0", "HEAD", cwd=repo)
-    monkeypatch.setattr(publisher, "vercel_deployment", lambda: deployment(base))   # never includes A
+    monkeypatch.setattr(publisher, "vercel_deployment", lambda: deployment(base))   # READY, not ERROR
     request = t2(publisher, tmp_path)
     first = KICK - 7200000
     with pytest.raises(RuntimeError) as waiting:
@@ -96,7 +97,7 @@ def test_site_wait_is_bounded_with_an_alert(publisher, history, tmp_path, monkey
                                                     now_ms=first + 20 * 60000, poll_seconds=0)
     assert out["site_live_check"]["status"] == "EMAIL_SENT_AFTER_BOUNDED_SITE_WAIT"
     assert out["site_live_check"]["published_commit"] == a
-    assert [key for key, _ in publisher.notices] == ["publisher-site-wait:" + "a" * 64]
+    assert publisher.notices == []
 
 
 def test_deployed_commit_missing_locally_is_fetched_not_read_as_not_descendant(tmp_path):

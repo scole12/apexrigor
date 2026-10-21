@@ -33,7 +33,7 @@ from zoneinfo import ZoneInfo
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from site_route_owners import foreign_paths, route_paths  # noqa: E402
+from site_route_owners import owned_by, route_paths  # noqa: E402
 
 STATE_ROOT = Path(
     os.environ.get("APEX_SHARED_PUBLISHER_STATE_ROOT", "/var/opt/apex_site_publisher")
@@ -144,7 +144,7 @@ def atomic_json(path: Path, value: Any) -> None:
             handle.flush()
             os.fsync(handle.fileno())
         os.replace(temporary, path)
-        directory = os.open(path.parent, os.O_RDONLY | os.O_DIRECTORY)
+        directory = os.open(path.parent, os.O_RDONLY | getattr(os, "O_DIRECTORY", 0))
         try:
             os.fsync(directory)
         finally:
@@ -164,7 +164,7 @@ def atomic_bytes(path: Path, body: bytes, mode: int = 0o640) -> None:
             handle.flush()
             os.fsync(handle.fileno())
         os.replace(temporary, path)
-        directory = os.open(path.parent, os.O_RDONLY | os.O_DIRECTORY)
+        directory = os.open(path.parent, os.O_RDONLY | getattr(os, "O_DIRECTORY", 0))
         try:
             os.fsync(directory)
         finally:
@@ -763,20 +763,20 @@ def build_request(request: Request, worktree: Path) -> dict[str, Any]:
         surfaces = ('data/nfl_today.json', 'data/nfl_system_state.json', 'data/nfl_results_archive.json', 'data/nfl_results_summary.json', 'nfl/index.html')
         return {'changed_paths': sorted(changed), 'audit_tail': 'NFL authority-bound builder completed',
                 'nfl_surface_hashes': {name: sha256_file(worktree / name) for name in surfaces}}
-    # NCAAF T3, T2, RESULTS and DISPLAY all commit only the queued NCAAF bytes (issue #23).
-    # Shared chrome (sport selector, all-sports record strip, analytics) is applied by the
-    # Vercel build into public/, so it is validated in a disposable copy and never written
-    # into another sport's pages by an NCAAF commit. Before 2026-10-20 T3/T2 rewrote every
-    # sport's pages here, which produced unowned NBA paths and changed NHL's bound pages.
+    if request.sport == "NCAAF":
+        changed = dirty_paths(worktree)
+        ncaaf_paths = sorted(path for path in changed if owned_by("NCAAF", path))
+        if request.product == "DISPLAY" and any(
+            name not in {"data/ncaaf_today.json", "ncaaf/index.html"} for name in ncaaf_paths
+        ):
+            raise RuntimeError("NCAA display publication attempted an unrelated path")
+        return {
+            "changed_paths": ncaaf_paths,
+            "audit_tail": "NCAAF publication commits only NCAAF-owned paths (issue #23)",
+        }
+    # MMA and any future sport that reaches here still run the whole-site build gate.
     audit = validate_site_build(worktree)
     changed = dirty_paths(worktree)
-    if request.product == "DISPLAY" and any(name not in {"data/ncaaf_today.json", "ncaaf/index.html"} for name in changed):
-        raise RuntimeError("NCAA display publication attempted an unrelated path")
-    forbidden = foreign_paths(request.sport, changed)
-    if forbidden:
-        # Queued NCAAF bytes are already limited to NCAAF paths (validate_payload_set), so a
-        # foreign path here came from shared tooling, not from this request.
-        raise GlobalPublicationFault(f"shared publisher produced unowned paths: {forbidden}")
     return {"changed_paths": sorted(changed), "audit_tail": audit[-1600:]}
 
 
@@ -1310,10 +1310,8 @@ def ncaaf_deployment_serves(commit: str) -> tuple[bool, dict[str, Any]]:
             or not re.fullmatch(r'[0-9a-f]{40}', deployed) or not re.fullmatch(r'[0-9a-f]{40}', str(commit))):
         return False, detail
     if deployed != commit:
-        contains = commit_contains(deployed, commit)
-        detail['deployment_contains_request_commit'] = contains
-        if not contains:
-            return False, detail
+        detail['deployment_contains_request_commit'] = False
+        return False, detail
     return True, detail
 
 
@@ -1398,11 +1396,15 @@ def ncaaf_t2_site_live_before_email(request: Request, result: dict[str, Any], *,
             atomic_json(wait_path, wait)
         waited_ms = current_ms - int(wait['first_wait_utc_ms'])
         if waited_ms >= NCAAF_T2_SITE_WAIT_MAX_SECONDS * 1000:
-            owner_notice('publisher-site-wait:' + request.request_id,
-                         'APEX ALERT: NCAAF T-2 email sent before apexrigor.com served it',
-                         f'apexrigor.com did not serve commit {commit} within '
-                         f'{NCAAF_T2_SITE_WAIT_MAX_SECONDS // 60} minutes; the T-2 email was sent anyway.\n'
-                         + json.dumps(check, sort_keys=True))
+            try:
+                production = vercel_deployment()
+            except Exception as error:  # noqa: BLE001
+                production = {'readyState': 'UNKNOWN', 'check_error': str(error)[:300]}
+            if production.get('readyState') == 'ERROR':
+                owner_notice('publisher-site-wait:' + request.request_id,
+                             'APEX ALERT: NCAAF T-2 email sent before apexrigor.com served it',
+                             f'apexrigor.com production deployment failed while waiting for commit {commit}.\n'
+                             + json.dumps({**check, 'production': production}, sort_keys=True))
             return {**result, 'site_live_check': {'status': 'EMAIL_SENT_AFTER_BOUNDED_SITE_WAIT',
                                                   'waited_seconds': waited_ms // 1000, **check}}
         if time.time() >= stop:

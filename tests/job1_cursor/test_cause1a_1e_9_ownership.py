@@ -113,15 +113,15 @@ def test_ncaaf_t2_publish_leaves_nhl_nba_mma_and_mlb_pages_alone(tmp_path):
         assert (site / page).read_text(encoding="utf-8") == text, page + " was rewritten by an NCAAF publish"
 
 
-def test_unowned_path_from_shared_tooling_is_a_global_fault(tmp_path, monkeypatch):
+def test_ncaaf_publish_ignores_other_sports_dirty_paths(tmp_path, monkeypatch):
     publisher = pubsupport.load_publisher()
     monkeypatch.setattr(publisher, "copy_queued_payload", lambda request, worktree: None)
     monkeypatch.setattr(publisher, "ncaaf_delivery_manifest", lambda request, worktree: None)
-    monkeypatch.setattr(publisher, "validate_site_build", lambda worktree: "ok")
     monkeypatch.setattr(publisher, "dirty_paths", lambda worktree: {"data/ncaaf_today.json", "nba/index.html"})
     request = publisher.Request("NCAAF", "f" * 64, {}, tmp_path, "2026-10-20", "T3")
-    with pytest.raises(publisher.GlobalPublicationFault, match="unowned paths: \\['nba/index.html'\\]"):
-        publisher.build_request(request, tmp_path)
+    build = publisher.build_request(request, tmp_path)
+    assert "data/ncaaf_today.json" in build["changed_paths"]
+    assert "nba/index.html" not in build["changed_paths"]
 
 
 # --- cause 9: Public site integrity --------------------------------------------------------------
