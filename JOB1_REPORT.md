@@ -141,3 +141,26 @@ Consigliere round 2 targeted the four product defects shared by all Job 1 branch
 | `test_deployment_delay_has_bound_and_alert` | Encodes timeout **alerts** on healthy production; req 11 alerts only on production **ERROR**. | Same Consigliere note in Codex report. |
 
 **Not finished:** Full droplet authority replay for reconstructable shared dates (local gate correctly **FAIL**s until Oct 18 is reconstructed or authorities are copied). No push.
+
+## Round 5 (req 6 certification, Oct 20 2026)
+
+**Cause:** Codex r4 adversarial tests showed `job1_shared_fixture_replay` certified **PASS** when the replay child exited 0 and `slate_exists` was true, even with `t3_error` / `t2_error`, failed stage status, or zero issued games (T-2 failure after T-3 wrote a slate).
+
+**Fix:** `replay_report_certifies_pass()` in `operations/replay_saturday.py` requires exit 0, slate present, both stages `PASS`, no stage errors, and `issued_game_count > 0`. `tools/check_job1_candidate.py` always puts `tools/` on `sys.path` so Grok’s importlib load works when the repo root is already on `sys.path`.
+
+**Commits:** apex_ncaaf `7c413ff` (certifier), `f71a50b` (candidate gate import); apexrigor unchanged at `81c7478`.
+
+**Linux evidence:** `C:\Users\scliu\apex2_site\job1\job1_cursor_r5_tests_20261020_230443.txt` (Codex `tests_by_codex_r4` via Docker on Windows host + WSL Grok / `tests/job1_cursor` / build / layout). Re-runners: `job1/tools/run_job1_cursor_r5_linux.sh` (WSL; Docker step needs Windows `docker` when WSL interop cannot exec `docker.exe`), `run_job1_cursor_r5_wsl_tail.sh` for the non-Docker suites.
+
+| Suite | Linux result |
+|---|---|
+| Codex `tests_by_codex_r4` new (29) | **29/29 PASS** |
+| Codex r4 earlier apexrigor (11) | **11/11 PASS** |
+| Codex r4 earlier apex_ncaaf (10) | **10/10 PASS** |
+| Codex r4 `test_req6_adversarial.py` (3) | **3/3 PASS** |
+| Grok review apexrigor + apex_ncaaf | **10/10 PASS** |
+| apexrigor `tests/job1_cursor` (26) | **PASS** |
+| apex_ncaaf `tests/job1_cursor` (41) | **PASS** |
+| `build_vercel_output.py` + `node tests/ncaaf_results_layout.test.cjs` | **PASS** (`d2be6f35…` lock, no repin) |
+
+**Not finished:** End-to-end T-3/T-2 replay on shared fixture dates remains blocked (`NOT_RECONSTRUCTED` for all eight dates; deploy/candidate gate still **FAIL** closed until PLAYER/TEAM_LINEUP/HISTORICAL inputs exist). No push.
