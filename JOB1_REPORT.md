@@ -210,7 +210,7 @@ Consigliere round 2 targeted the four product defects shared by all Job 1 branch
 | Repo | SHA | Message |
 |---|---|---|
 | apex_ncaaf | `43014868626e3864faa4bef5376e6bbf90e06e53` | (unchanged since round 7) |
-| apexrigor | `4d3d97571eef48943c54a8ca31b6b9d82363162b` | Job 1 round 8: always run NCAAF shared build gate. |
+| apexrigor | `d7ec2ff33777ce74e20637e8c332d2db0185334a` | `4d3d975` publisher gate; `2220365` report; `d7ec2ff` job1_cursor site_copy probe. |
 
 **Files changed vs round 5 live release (this round only):**
 
