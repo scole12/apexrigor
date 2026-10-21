@@ -48,9 +48,13 @@ def ensure_deployment(commit):
     if not isinstance(commit, str) or len(commit) != 40:
         return {'status': 'SKIPPED_BAD_COMMIT'}
     found = _call(f'https://api.vercel.com/v6/deployments?projectId={PROJECT}&teamId={TEAM}&sha={commit}&limit=5')
-    live = [d for d in found.get('deployments', []) if (d.get('state') or d.get('readyState')) not in ('ERROR', 'CANCELED')]
+    deployments = found.get('deployments', [])
+    live = [d for d in deployments if (d.get('state') or d.get('readyState')) not in ('ERROR', 'CANCELED')]
     if live:
         return {'status': 'DEPLOYMENT_EXISTS', 'deployment_id': live[0].get('uid'), 'state': live[0].get('state')}
+    failed = [d for d in deployments if (d.get('state') or d.get('readyState')) == 'ERROR']
+    if failed:
+        return {'status': 'DEPLOYMENT_FAILED', 'deployment_id': failed[0].get('uid'), 'state': 'ERROR'}
     STATE.mkdir(parents=True, exist_ok=True)
     marker = STATE / (commit + '.json')
     record = json.loads(marker.read_text()) if marker.exists() else {}

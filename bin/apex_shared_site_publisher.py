@@ -32,6 +32,9 @@ from zoneinfo import ZoneInfo
 
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from site_route_owners import owned_by, route_paths  # noqa: E402
+
 STATE_ROOT = Path(
     os.environ.get("APEX_SHARED_PUBLISHER_STATE_ROOT", "/var/opt/apex_site_publisher")
 )
@@ -48,6 +51,10 @@ NY = ZoneInfo("America/New_York")
 # retried every minute without a cap; one alert after 30 waiting tries.
 MAX_FAILURES_PER_DAY = 10
 WAIT_ERROR_MARKERS = ('PENDING', 'NOT_DEPLOYED', 'DEPLOYMENT_NOT_REQUEST_DESCENDANT')  # Vercel has not deployed the pushed commit yet
+# The NCAAF email workflow is read, not waited on, inside the shared lock (#23 1e).
+# NCAA_EMAIL_WORKFLOW_PENDING is a waiting error (matches 'PENDING'), retried next minute.
+NCAAF_WORKFLOW_POLL_SECONDS = 0
+NCAAF_DISPATCH_VISIBILITY_GRACE_SECONDS = 10 * 60
 WAIT_ALERT_AFTER = 30
 NOTIFY = '/opt/apex_ops/bin/apex_notify.py'
 FINAL_RECEIPT_STATES = {
@@ -58,29 +65,42 @@ FINAL_RECEIPT_STATES = {
     "PUBLISHED_EMAIL_VERIFIED",
     "PUBLISHED_NO_CONTENT_CHANGE_EMAIL_VERIFIED",
 }
-ROUTE_PATHS = {
-    "index.html",
-    "picks.html",
-    "picks/index.html",
-    "results.html",
-    "results/index.html",
-    "about/index.html",
-    "ncaaf/index.html",
-    "ncaaf/results/index.html",
-    "ncaaf/about/index.html",
-    "mma/index.html",
-    "mma/results/index.html",
-    "mma/about/index.html",
-    "nfl/index.html",
-    "nfl/results/index.html",
-    "nfl/about/index.html",
-    "nhl/index.html",
-    "nhl/results/index.html",
-    "nhl/about/index.html",
-    "nba/index.html",
-    "nba/results/index.html",
-    "nba/about/index.html",
-}
+# Every sport declares its routes once, in bin/site_route_owners.py (issue #23).
+ROUTE_PATHS = set(route_paths())
+# A T-2 email waits for apexrigor.com to serve its picks at most this long, then is sent
+# with an owner alert (issue #23: other sports' pushes kept superseding the deploy).
+NCAAF_T2_SITE_WAIT_MAX_SECONDS = 20 * 60
+# Results-email module interface this publisher was written against. apex_ncaaf declares
+# the same constant; a mismatch is a deploy version skew, not a request failure.
+NCAAF_RESULTS_EMAIL_INTERFACE = "apex.ncaaf.results_email.v2"
+GLOBAL_FAULT = "GLOBAL_FAULT"
+# Failures that come from outside the request (GitHub, Vercel, network, another push).
+GLOBAL_FAULT_MARKERS = (
+    GLOBAL_FAULT,
+    # Queued bytes are limited to the sport's own paths, so an unowned path always came from
+    # shared tooling. Listed so the Oct 20 failure records stop counting without manual archiving.
+    "shared publisher produced unowned paths",
+    "[rejected]",
+    "non-fast-forward",
+    "fetch first",
+    "Could not resolve host",
+    "Connection timed out",
+    "Connection reset",
+    "TimeoutExpired",
+    "HTTP Error 5",
+    "URLError",
+    "EXISTING_VERCEL_READ_CREDENTIAL_UNAVAILABLE",
+)
+
+
+class GlobalPublicationFault(RuntimeError):
+    """A failure not caused by the request itself (another sport, main, GitHub, Vercel).
+
+    It is recorded and alerted, but never counts toward the request's daily failure cap,
+    so one sport's fault cannot stop another sport's publication for 24 hours."""
+
+    def __init__(self, message: str) -> None:
+        super().__init__(f"{GLOBAL_FAULT}:{message}")
 
 
 @dataclass(frozen=True)
@@ -124,11 +144,12 @@ def atomic_json(path: Path, value: Any) -> None:
             handle.flush()
             os.fsync(handle.fileno())
         os.replace(temporary, path)
-        directory = os.open(path.parent, os.O_RDONLY | os.O_DIRECTORY)
-        try:
-            os.fsync(directory)
-        finally:
-            os.close(directory)
+        if hasattr(os, "O_DIRECTORY"):
+            directory = os.open(path.parent, os.O_RDONLY | os.O_DIRECTORY)
+            try:
+                os.fsync(directory)
+            finally:
+                os.close(directory)
     finally:
         if temporary.exists():
             temporary.unlink()
@@ -144,11 +165,12 @@ def atomic_bytes(path: Path, body: bytes, mode: int = 0o640) -> None:
             handle.flush()
             os.fsync(handle.fileno())
         os.replace(temporary, path)
-        directory = os.open(path.parent, os.O_RDONLY | os.O_DIRECTORY)
-        try:
-            os.fsync(directory)
-        finally:
-            os.close(directory)
+        if hasattr(os, "O_DIRECTORY"):
+            directory = os.open(path.parent, os.O_RDONLY | os.O_DIRECTORY)
+            try:
+                os.fsync(directory)
+            finally:
+                os.close(directory)
     finally:
         if temporary.exists():
             temporary.unlink()
@@ -176,6 +198,26 @@ def safe_relative(raw: str) -> str:
     return value.as_posix()
 
 
+def _git_env(cwd: Path) -> dict[str, str]:
+    """Drop inherited worktree GIT_DIR when ``cwd`` is its own Git repository."""
+    env = os.environ.copy()
+    env["PYTHONDONTWRITEBYTECODE"] = "1"
+    git_path = Path(cwd) / ".git"
+    work_tree = env.get("GIT_WORK_TREE")
+    cwd_resolved = str(Path(cwd).resolve())
+    if git_path.is_dir():
+        env.pop("GIT_DIR", None)
+        env.pop("GIT_WORK_TREE", None)
+    elif git_path.is_file():
+        if not work_tree or str(Path(work_tree).resolve()) != cwd_resolved:
+            env.pop("GIT_DIR", None)
+            env.pop("GIT_WORK_TREE", None)
+    else:
+        env.pop("GIT_DIR", None)
+        env.pop("GIT_WORK_TREE", None)
+    return env
+
+
 def run(command: list[str], *, cwd: Path, timeout: int = 180) -> str:
     completed = subprocess.run(
         command,
@@ -184,7 +226,7 @@ def run(command: list[str], *, cwd: Path, timeout: int = 180) -> str:
         capture_output=True,
         text=True,
         timeout=timeout,
-        env={**os.environ, "PYTHONDONTWRITEBYTECODE": "1"},
+        env=_git_env(cwd),
     )
     if completed.returncode != 0:
         detail = (completed.stderr or completed.stdout).strip()[-2000:]
@@ -738,49 +780,61 @@ def build_request(request: Request, worktree: Path) -> dict[str, Any]:
             if "graded picks" in before or ("View results" in before and "results:" in before):
                 raise RuntimeError(f"NFL picks prior-day teaser banned but present in {picks}")
         changed = dirty_paths(worktree)
-        if any(not (p.startswith('data/nfl_') or p.startswith('nfl/')) for p in changed):
-            raise RuntimeError('NFL publication attempted a non-NFL path')
+        nfl_paths = sorted(
+            path for path in changed if path.startswith('data/nfl_') or path.startswith('nfl/')
+        )
         surfaces = ('data/nfl_today.json', 'data/nfl_system_state.json', 'data/nfl_results_archive.json', 'data/nfl_results_summary.json', 'nfl/index.html')
-        return {'changed_paths': sorted(changed), 'audit_tail': 'NFL authority-bound builder completed',
+        return {'changed_paths': nfl_paths, 'audit_tail': 'NFL authority-bound builder completed',
                 'nfl_surface_hashes': {name: sha256_file(worktree / name) for name in surfaces}}
-    if request.sport == "NCAAF" and request.product == "DISPLAY":
-        # Display-only rollover carries the same picks files as RESULTS and is validated the same way.
-        with tempfile.TemporaryDirectory(prefix="ncaaf-build-check-", dir=worktree.parent) as temporary:
-            validation = Path(temporary) / "site"
-            shutil.copytree(worktree, validation, ignore=shutil.ignore_patterns(".git", "public", "__pycache__"))
-            audit = python_tool(validation, "build_vercel_output.py")
+    if request.sport == "NCAAF":
         changed = dirty_paths(worktree)
-        if any(name not in {"data/ncaaf_today.json", "ncaaf/index.html"} for name in changed):
+        ncaaf_paths = sorted(path for path in changed if owned_by("NCAAF", path))
+        if request.product == "DISPLAY" and any(
+            name not in {"data/ncaaf_today.json", "ncaaf/index.html"} for name in ncaaf_paths
+        ):
             raise RuntimeError("NCAA display publication attempted an unrelated path")
-        return {"changed_paths": sorted(changed), "audit_tail": audit[-1600:]}
-    if request.sport == "NCAAF" and request.product == "RESULTS":
-        # Results recovery owns NCAA output paths. Shared navigation/analytics
-        # rewrites are unrelated and can modify currently issued picks pages.
-        # The canonical Vercel build also regenerates other sport pages.
-        # Validate the full deployable output in a disposable copy so those
-        # generated changes never enter this NCAA source publication commit.
-        with tempfile.TemporaryDirectory(prefix="ncaaf-build-check-", dir=worktree.parent) as temporary:
-            validation = Path(temporary) / "site"
-            shutil.copytree(worktree, validation, ignore=shutil.ignore_patterns(".git", "public", "__pycache__"))
-            audit = python_tool(validation, "build_vercel_output.py")
-        changed = dirty_paths(worktree)
-        if any(not (name.startswith("data/ncaaf/") or name.startswith("data/ncaaf_") or name == "ncaaf/index.html") for name in changed):
-            raise RuntimeError("NCAA results publication attempted an unrelated path")
-        return {"changed_paths": sorted(changed), "audit_tail": audit[-1600:]}
-    python_tool(worktree, "apply_shared_sport_selector.py", "--root", str(worktree))
-    python_tool(worktree, "apply_cloudflare_web_analytics.py", "--root", str(worktree))
-    python_tool(worktree, "apply_vercel_web_analytics.py", "--root", str(worktree))
-    # Fail-closed: same gate Vercel runs. Disposable copy so generated public/
-    # and sport-page regenerations never enter this publication commit.
+        return {
+            "changed_paths": ncaaf_paths,
+            "audit_tail": "NCAAF publication commits only NCAAF-owned paths (issue #23)",
+        }
+    # MMA and any future sport that reaches here still run the whole-site build gate.
+    audit = validate_site_build(worktree)
+    changed = dirty_paths(worktree)
+    return {"changed_paths": sorted(changed), "audit_tail": audit[-1600:]}
+
+
+def _site_build_error(error: Exception, root: Path) -> str:
+    return str(error).replace(str(root), "<site>")[-1200:]
+
+
+def validate_site_build(worktree: Path) -> str:
+    """Run the Vercel build gate on a disposable copy of ``worktree``.
+
+    When the request's copy fails, the same build is run on the request's base commit.
+    A failure that main already has (same error) is not caused by this request and does
+    not block it; any other failure stays fail-closed."""
     with tempfile.TemporaryDirectory(prefix="site-build-check-", dir=worktree.parent) as temporary:
         validation = Path(temporary) / "site"
         shutil.copytree(worktree, validation, ignore=shutil.ignore_patterns(".git", "public", "__pycache__"))
-        audit = python_tool(validation, "build_vercel_output.py")
-    changed = dirty_paths(worktree)
-    forbidden = sorted(path for path in changed if not allowed_site_change(path))
-    if forbidden:
-        raise RuntimeError(f"shared publisher produced unowned paths: {forbidden}")
-    return {"changed_paths": sorted(changed), "audit_tail": audit[-1600:]}
+        try:
+            return python_tool(validation, "build_vercel_output.py")
+        except RuntimeError as error:
+            candidate_error = _site_build_error(error, validation)
+        base = Path(temporary) / "base"
+        base.mkdir()
+        archive = subprocess.run(["git", "archive", "HEAD"], cwd=str(worktree), capture_output=True, timeout=180)
+        if archive.returncode != 0:
+            raise RuntimeError("site build failed for this request: " + candidate_error)
+        subprocess.run(["tar", "-x", "-C", str(base)], input=archive.stdout, check=True, timeout=180)
+        try:
+            python_tool(base, "build_vercel_output.py")
+        except RuntimeError as error:
+            base_error = _site_build_error(error, base)
+        else:
+            raise RuntimeError("site build failed for this request: " + candidate_error)
+    if base_error != candidate_error:
+        raise GlobalPublicationFault("site build already fails on main: " + base_error)
+    return "PREEXISTING_SITE_BUILD_FAILURE_ON_MAIN (not caused by this request): " + base_error
 
 
 def publish(request: Request, *, dry_run: bool) -> dict[str, Any]:
@@ -800,6 +854,12 @@ def publish(request: Request, *, dry_run: bool) -> dict[str, Any]:
         prior=load_json(intent)
         if prior.get('request_id')!=request.request_id or (request.product=='GRADER' and prior.get('canonical_result')!=request.manifest['canonical_result']):raise RuntimeError('PUBLICATION_INTENT_DRIFT')
         return prior
+    if request.sport == 'NCAAF' and not dry_run and intent.is_file():
+        prior = load_json(intent)
+        if prior.get('request_id') != request.request_id:
+            raise RuntimeError('PUBLICATION_INTENT_DRIFT')
+        if prior.get('published_commit') and str(prior.get('status', '')).startswith('PUBLISHED'):
+            return prior
     origin = git("remote", "get-url", "origin")
     if CANONICAL_REMOTE not in origin:
         raise RuntimeError(f"noncanonical site origin: {origin}")
@@ -843,7 +903,14 @@ def publish(request: Request, *, dry_run: bool) -> dict[str, Any]:
                     cwd=worktree,
                 )
                 commit = git("rev-parse", "HEAD", cwd=worktree)
-                git("push", "origin", "HEAD:main", cwd=worktree)
+                try:
+                    git("push", "origin", "HEAD:main", cwd=worktree)
+                except RuntimeError as error:
+                    if any(marker in str(error) for marker in ("[rejected]", "non-fast-forward", "fetch first")):
+                        # Another sport pushed between fetch and push (2026-10-09). Not this
+                        # request's fault: the next run rebuilds on the new origin/main.
+                        raise GlobalPublicationFault("PUSH_RACE_ORIGIN_ADVANCED: " + str(error)[-400:]) from error
+                    raise
                 publication_state = "PUBLISHED"
             else:
                 commit = git("rev-parse", "origin/main", cwd=worktree)
@@ -959,6 +1026,43 @@ def ncaaf_workflow_title(request: Request) -> str:
     return f"NCAA {request.product} {request.slate_date} {request.request_id}"
 
 
+def ncaaf_superseded_request_ids(request: Request) -> set[str]:
+    """Earlier queued requests for this slate/product that the current request replaced.
+
+    The NCAAF queue keeps one directory per request under <date>/<product>/ and a
+    current.json naming the live one. Every other request directory there is superseded,
+    but only while this request is the current one, and never one whose email this
+    publisher already verified as delivered (that obligation was met; no second email)."""
+    if request.sport != "NCAAF" or not request.slate_date or not request.product:
+        return set()
+    product_root = NCAAF_QUEUE / request.slate_date / request.product
+    pointer_path = product_root / "current.json"
+    try:
+        if load_json(pointer_path).get("request_id") != request.request_id:
+            return set()
+        candidates = {path.name for path in product_root.iterdir()
+                      if path.is_dir() and re.fullmatch(r"[a-f0-9]{64}", path.name)
+                      and path.name != request.request_id}
+    except (OSError, ValueError, RuntimeError):
+        return set()
+    return {request_id for request_id in candidates
+            if not ncaaf_email_delivered(Request("NCAAF", request_id, {}, None, request.slate_date, request.product))}
+
+
+def ncaaf_email_delivered(request: Request) -> bool:
+    """True when this request's receipt records a verified or provider-accepted email."""
+    path = receipt_path(request)
+    if not path.is_file():
+        return False
+    try:
+        receipt = load_json(path)
+    except (OSError, ValueError, RuntimeError):
+        return True   # unreadable evidence is not proof that nothing was sent
+    return (str(receipt.get("status") or "").endswith("_EMAIL_VERIFIED")
+            or bool(receipt.get("email_provider_evidence"))
+            or int(receipt.get("email_external_action_count") or 0) > 0)
+
+
 def matching_ncaaf_workflow_runs(request: Request) -> list[dict[str, Any]]:
     # The old latest-100 query could forget an earlier attempt. Restrict a fully
     # paginated history to the immutable request's creation window instead.
@@ -1003,8 +1107,14 @@ def matching_ncaaf_workflow_runs(request: Request) -> list[dict[str, Any]]:
     superseded = set()
     if superseded_path.is_file():
         superseded = {line.strip() for line in superseded_path.read_text(encoding="utf-8").splitlines() if line.strip()}
+    # A re-issued request (new content for the same stage/date) supersedes the earlier
+    # queued request automatically; only its finished runs are set aside. A superseded
+    # run that is still in progress may yet send, so it keeps blocking (2026-10-08..10).
+    reissued = ncaaf_superseded_request_ids(request)
     rows = {rid: row for rid, row in rows.items()
-            if not any(str(row.get("display_title") or "").endswith(" " + sid) for sid in superseded)}
+            if not any(str(row.get("display_title") or "").endswith(" " + sid) for sid in superseded)
+            and not (row.get("status") == "completed"
+                     and any(str(row.get("display_title") or "").endswith(" " + sid) for sid in reissued))}
     if any(str(row.get("display_title") or "").startswith(prefix)
            and row.get("display_title") != title for row in rows.values()):
         raise RuntimeError("NCAA_EMAIL_RECONCILIATION_REQUIRED: another request exists for this stage/date")
@@ -1024,10 +1134,16 @@ def wait_for_ncaaf_workflow(
     *,
     excluded_run_ids: set[int] | None = None,
 ) -> dict[str, Any]:
-    deadline = time.monotonic() + 360
+    """Read the email workflow's state; return it when it has completed successfully.
+
+    Issue #23 (1e): this used to poll for up to 6 minutes while holding the one publisher
+    lock, so every other sport's queue waited behind an NCAAF email. It now reads for at most
+    NCAAF_WORKFLOW_POLL_SECONDS and otherwise yields with a waiting error; the next
+    once-a-minute run picks the same run up again (its identity is in the durable intent)."""
+    deadline = time.monotonic() + NCAAF_WORKFLOW_POLL_SECONDS
     selected: dict[str, Any] | None = None
     excluded = excluded_run_ids or set()
-    while time.monotonic() < deadline:
+    while True:
         matches = matching_ncaaf_workflow_runs(request)
         candidates = [
             row for row in matches
@@ -1048,10 +1164,12 @@ def wait_for_ncaaf_workflow(
                         f"NCAA email workflow {run_id} completed {selected.get('conclusion')}"
                     )
                 return selected
+        if time.monotonic() >= deadline:
+            break
         time.sleep(2)
     raise RuntimeError(
-        f"NCAA email workflow did not complete before timeout: "
-        f"request={request.request_id} run_id={run_id} last={selected}"
+        f"NCAA_EMAIL_WORKFLOW_PENDING: request={request.request_id} run_id={run_id} "
+        f"last={selected}"
     )
 
 
@@ -1221,12 +1339,55 @@ def ncaaf_deployment_serves(commit: str) -> tuple[bool, dict[str, Any]]:
             or not re.fullmatch(r'[0-9a-f]{40}', deployed) or not re.fullmatch(r'[0-9a-f]{40}', str(commit))):
         return False, detail
     if deployed != commit:
-        subprocess.run(['git', 'fetch', '--quiet', 'origin', 'main'], cwd=ROOT, capture_output=True, timeout=60)
-        ancestry = subprocess.run(['git', 'merge-base', '--is-ancestor', commit, deployed], cwd=ROOT,
-                                  capture_output=True, timeout=30)
-        if ancestry.returncode != 0:
-            return False, detail
+        detail['deployment_contains_request_commit'] = False
+        return False, detail
     return True, detail
+
+
+def commit_contains(descendant: str, ancestor: str, *, repo: Path | None = None) -> bool:
+    """True when ``descendant`` includes ``ancestor`` in its history.
+
+    A deployment built from any later main commit serves the request too. The deployed
+    commit may be newer than this checkout's origin/main, so fetch it before asking Git;
+    a missing object is fetched, never read as "not a descendant"."""
+    repo = ROOT if repo is None else repo
+    for sha in (descendant, ancestor):
+        env = _git_env(repo)
+        known = subprocess.run(['git', 'cat-file', '-e', sha + '^{commit}'], cwd=repo, capture_output=True, timeout=30, env=env)
+        if known.returncode != 0:
+            subprocess.run(['git', 'fetch', '--quiet', 'origin', 'main'], cwd=repo, capture_output=True, timeout=60, env=env)
+            subprocess.run(['git', 'fetch', '--quiet', 'origin', sha], cwd=repo, capture_output=True, timeout=60, env=env)
+    ancestry = subprocess.run(['git', 'merge-base', '--is-ancestor', ancestor, descendant], cwd=repo,
+                              capture_output=True, timeout=30, env=_git_env(repo))
+    if ancestry.returncode not in (0, 1):
+        raise RuntimeError('ANCESTRY_UNKNOWN:' + ancestry.stderr.decode(errors='replace')[-300:])
+    return ancestry.returncode == 0
+
+
+def ncaaf_request_commit(request: Request, result: dict[str, Any]) -> str:
+    """The main commit that carries this request's bytes.
+
+    A retry after a pushed request reports PUBLISHED_NO_CONTENT_CHANGE with the newest
+    origin/main, which other sports keep moving; waiting for that tip to deploy is what
+    held the T-2 email almost daily (Oct 6-20). Use the last commit that touched the
+    request's own files instead."""
+    commit = str(result.get('published_commit') or '')
+    if result.get('status') == 'PUBLISHED' or not re.fullmatch(r'[0-9a-f]{40}', commit):
+        return commit
+    paths = sorted({safe_relative(str(name)) for name in (request.manifest.get('source_hashes') or {})})
+    if request.slate_date:
+        paths.append(f'data/ncaaf/{request.slate_date}/full_slate_delivery_manifest.json')
+    if not paths:
+        return commit
+    try:
+        found = git('log', '-1', '--format=%H', commit, '--', *paths, cwd=ROOT)
+    except RuntimeError:
+        return commit
+    return found if re.fullmatch(r'[0-9a-f]{40}', found) else commit
+
+
+def ncaaf_site_wait_path(request: Request) -> Path:
+    return receipt_path(request).parent / 'site_wait' / f'{request.request_id}.json'
 
 
 def ncaaf_t2_site_live_before_email(request: Request, result: dict[str, Any], *,
@@ -1241,7 +1402,11 @@ def ncaaf_t2_site_live_before_email(request: Request, result: dict[str, Any], *,
     prior = load_json(state_path) if state_path.is_file() else {}
     if prior.get('email_dispatch_at_utc') or prior.get('email_workflow_run_id') is not None:
         return result
-    commit = str(result.get('published_commit') or '')
+    # The first wait pins the request's own commit and start time, so later retries (which
+    # see a newer origin/main) keep waiting for the same commit, and the wait is bounded.
+    wait_path = ncaaf_site_wait_path(request)
+    wait = load_json(wait_path) if wait_path.is_file() else {}
+    commit = str(wait.get('request_commit') or ncaaf_request_commit(request, result))
     first_kick = ncaaf_first_kickoff_ms(request)
     stop = time.time() + (NCAAF_LIVE_POLL_SECONDS if poll_seconds is None else poll_seconds)
     while True:
@@ -1256,6 +1421,22 @@ def ncaaf_t2_site_live_before_email(request: Request, result: dict[str, Any], *,
         current_ms = int(time.time() * 1000) if now_ms is None else int(now_ms)
         if first_kick is None or current_ms >= first_kick:
             return {**result, 'site_live_check': {'status': 'EMAIL_SENT_AT_FIRST_KICKOFF_SITE_NOT_LIVE', **check}}
+        if not wait:
+            wait = {'request_id': request.request_id, 'request_commit': commit, 'first_wait_utc_ms': current_ms}
+            atomic_json(wait_path, wait)
+        waited_ms = current_ms - int(wait['first_wait_utc_ms'])
+        if waited_ms >= NCAAF_T2_SITE_WAIT_MAX_SECONDS * 1000:
+            try:
+                production = vercel_deployment()
+            except Exception as error:  # noqa: BLE001
+                production = {'readyState': 'UNKNOWN', 'check_error': str(error)[:300]}
+            if production.get('readyState') == 'ERROR':
+                owner_notice('publisher-site-wait:' + request.request_id,
+                             'APEX ALERT: NCAAF T-2 email sent before apexrigor.com served it',
+                             f'apexrigor.com production deployment failed while waiting for commit {commit}.\n'
+                             + json.dumps({**check, 'production': production}, sort_keys=True))
+            return {**result, 'site_live_check': {'status': 'EMAIL_SENT_AFTER_BOUNDED_SITE_WAIT',
+                                                  'waited_seconds': waited_ms // 1000, **check}}
         if time.time() >= stop:
             break
         time.sleep(10)
@@ -1266,11 +1447,25 @@ def ncaaf_t2_site_live_before_email(request: Request, result: dict[str, Any], *,
     raise RuntimeError('DEPLOYMENT_NOT_REQUEST_DESCENDANT: NCAAF T-2 email waits for apexrigor.com to serve ' + commit)
 
 
+def require_results_email_interface(module: Any) -> None:
+    """Refuse a results-email module from a different interface version (2026-10-07 skew:
+    ``module 'ncaaf_results_email' has no attribute 'delivery_lock'``)."""
+    version = getattr(module, "INTERFACE_VERSION", None)
+    missing = [name for name in ("delivery_lock", "confirmed_email") if not callable(getattr(module, name, None))]
+    # A module from before the version constant is accepted only with every required function.
+    if missing or version not in (None, NCAAF_RESULTS_EMAIL_INTERFACE):
+        raise GlobalPublicationFault(
+            f"NCAAF_EMAIL_INTERFACE_MISMATCH: publisher needs {NCAAF_RESULTS_EMAIL_INTERFACE}, "
+            f"apex_ncaaf has {version!r}, missing={missing}; deploy apex_ncaaf and apex_site together"
+        )
+
+
 def dispatch_ncaaf_email(request: Request, receipt: dict[str, Any]) -> dict[str, Any]:
     if request.product != 'RESULTS':
         return _dispatch_ncaaf_email_workflow(request, receipt)
     sys.path.insert(0, '/opt/apex_ncaaf/operations')
     import ncaaf_results_email as results_email
+    require_results_email_interface(results_email)
     # Serialize the old workflow transport with the independent products email.
     # An accepted local email is adopted after publish, never sent a second time.
     with results_email.delivery_lock(request.slate_date):
@@ -1322,6 +1517,10 @@ def _dispatch_ncaaf_email_workflow(request: Request, receipt: dict[str, Any]) ->
     if request.manifest.get("prior_email_delivery") and saved_run_id is None:
         raise RuntimeError("NCAA_PRIOR_EMAIL_NOT_FOUND: no new send is permitted")
     if saved_run_id is None and prior.get("email_dispatch_at_utc"):
+        dispatched = datetime.fromisoformat(str(prior["email_dispatch_at_utc"]).replace("Z", "+00:00"))
+        if (datetime.now(timezone.utc) - dispatched).total_seconds() < NCAAF_DISPATCH_VISIBILITY_GRACE_SECONDS:
+            # A run dispatched by the previous turn may not be listed yet: wait, never resend.
+            raise RuntimeError("NCAA_EMAIL_WORKFLOW_PENDING: dispatched run not visible yet")
         raise RuntimeError("NCAA_EMAIL_RECONCILIATION_REQUIRED: earlier dispatch outcome is unknown")
     prior_attempt_ids = sorted(by_id)
     intent = {
@@ -1365,7 +1564,8 @@ def _dispatch_ncaaf_email_workflow(request: Request, receipt: dict[str, Any]) ->
     except Exception as error:
         failed = {
             **intent,
-            "status": publication_status + "_EMAIL_RECONCILIATION_REQUIRED",
+            "status": publication_status + ("_EMAIL_WORKFLOW_PENDING" if _is_wait_error(str(error))
+                                            else "_EMAIL_RECONCILIATION_REQUIRED"),
             "exact_error": f"{type(error).__name__}: {str(error)[:1600]}",
         }
         atomic_json(state_path, failed)
@@ -1478,24 +1678,43 @@ def _is_wait_error(text: str) -> bool:
     return any(marker in text for marker in WAIT_ERROR_MARKERS)
 
 
+def _is_global_fault(text: str) -> bool:
+    return any(marker in text for marker in GLOBAL_FAULT_MARKERS)
+
+
 def failure_counts(request: Request) -> tuple[int, int]:
-    """(hard failures, waiting failures) recorded for this request in the last 24 hours."""
+    """(hard failures, waiting failures) recorded for this request in the last 24 hours.
+
+    Only failures caused by the request itself are hard failures. Global faults (another
+    sport, main's build, GitHub, Vercel, network) never count toward MAX_FAILURES_PER_DAY:
+    on 2026-10-20 an NBA route bug stopped NCAAF for 24 hours through this cap."""
+    return _failure_tally(request)[:2]
+
+
+def global_failure_count(request: Request) -> int:
+    return _failure_tally(request)[2]
+
+
+def _failure_tally(request: Request) -> tuple[int, int, int]:
     root = STATE_ROOT / 'failures' / request.sport.lower() / request.request_id
-    hard = wait = 0
+    hard = wait = global_ = 0
     cutoff = time.time() - 86400
     if root.is_dir():
         for path in root.glob('*.json'):
             try:
                 if path.stat().st_mtime < cutoff:
                     continue
-                text = str(load_json(path).get('error', ''))
+                record = load_json(path)
+                text = str(record.get('error', ''))
             except Exception:
                 continue
             if _is_wait_error(text):
                 wait += 1
+            elif record.get('fault_scope') == 'GLOBAL' or _is_global_fault(text):
+                global_ += 1
             else:
                 hard += 1
-    return hard, wait
+    return hard, wait, global_
 
 
 def owner_notice(key: str, subject: str, body: str) -> None:
@@ -1564,6 +1783,51 @@ def hourly_cleanup(pending_ids: set[str]) -> dict[str, int]:
     return {'worktrees_removed': removed, 'failure_files_removed': pruned}
 
 
+def deploy_check(root: Path = ROOT) -> dict[str, Any]:
+    """Is the running publisher the reviewed code on origin/main, from a clean checkout?
+
+    2026-10-20: /opt/apex_site ran a publisher 25 commits behind origin/main with
+    uncommitted data files, so fixes merged on main were not the code that ran. Builds use
+    a fresh origin/main worktree; only this process's own code can be stale. Read-only."""
+    def read_git(*arguments: str) -> str:
+        completed = subprocess.run(['git', *arguments], cwd=str(root), capture_output=True, text=True, timeout=60, env=_git_env(root))
+        if completed.returncode != 0:
+            raise RuntimeError(f"git {arguments[0]} failed: {completed.stderr.strip()[-300:]}")
+        return completed.stdout.rstrip('\r\n')
+    try:
+        head = read_git('rev-parse', 'HEAD')
+        origin = read_git('rev-parse', 'origin/main')
+        behind = int(read_git('rev-list', '--count', 'HEAD..origin/main') or 0)
+        dirty = sorted(line[3:].split(' -> ')[-1] for line in read_git('status', '--porcelain', '--untracked-files=all').splitlines() if len(line) > 3)
+        own = Path(__file__).resolve().relative_to(root.resolve()).as_posix()
+        # Compare through Git so line endings and checkout encoding cannot false-STALE the publisher.
+        publisher_diff = subprocess.run(
+            ['git', 'diff', '--quiet', 'origin/main', '--', own],
+            cwd=str(root),
+            capture_output=True,
+            timeout=60,
+            env=_git_env(root),
+        )
+        if publisher_diff.returncode not in (0, 1):
+            raise RuntimeError(f"git diff failed: {publisher_diff.stderr.decode(errors='replace')[-300:]}")
+        stale = publisher_diff.returncode == 1
+    except Exception as error:  # noqa: BLE001
+        return {'status': 'UNKNOWN', 'error': type(error).__name__ + ':' + str(error)[:300]}
+    dirty = [path for path in dirty if '__pycache__/' not in path and not path.endswith('.pyc')]
+    code_paths = [path for path in dirty if path.startswith(('bin/', 'vercel.json'))]
+    return {'status': 'STALE' if stale or code_paths else 'CURRENT', 'head': head, 'origin_main': origin,
+            'commits_behind_origin_main': behind, 'publisher_matches_origin_main': not stale,
+            'dirty_code_paths': code_paths, 'dirty_data_paths': [path for path in dirty if path not in code_paths]}
+
+
+def _production_build_in_flight() -> bool:
+    try:
+        deployment = vercel_deployment()
+    except Exception:
+        return False
+    return deployment.get('readyState') == 'BUILDING' and deployment.get('target') == 'production'
+
+
 def execute(*, dry_run: bool, sport: str | None = None) -> dict[str, Any]:
     LOCK_PATH.parent.mkdir(parents=True, exist_ok=True)
     with LOCK_PATH.open('a+') as lock:
@@ -1578,6 +1842,11 @@ def execute(*, dry_run: bool, sport: str | None = None) -> dict[str, Any]:
                 if head:_catch_up_vercel(head[0])
             except Exception:
                 pass
+        deployed=deploy_check() if sport is None and not dry_run else None
+        if not dry_run and deployed and deployed.get('status')=='STALE':
+            owner_notice('publisher-stale-deploy:'+datetime.now(NY).date().isoformat(),
+                         'APEX ALERT: shared publisher is not running the reviewed origin/main code',
+                         json.dumps(deployed,indent=2,sort_keys=True))
         try:
             prepared=prepare_due_ncaaf_records() if not dry_run and sport is None else []
         except Exception as error:
@@ -1586,7 +1855,24 @@ def execute(*, dry_run: bool, sport: str | None = None) -> dict[str, Any]:
         # this publisher once per stage, so its check stayed WAITING until the next NFL stage (days later).
         # The once-a-minute run now finishes that check; it never builds or pushes NFL content.
         pending=discover_nfl() if sport=='NFL' else discover_mma() if sport=='MMA' else [request for request in discover_isolated() if request.sport != 'NFL' or _nfl_request_pushed(request)]
+        pushed_this_run = False
         for request in pending:
+            if not dry_run and pushed_this_run:
+                results.append({
+                    'status': 'WAITING_FOR_DEPLOYMENT',
+                    'sport': request.sport,
+                    'request_id': request.request_id,
+                    'error': 'WAITING_FOR_PRIOR_PUBLISH_IN_SAME_RUN',
+                })
+                continue
+            if not dry_run and _production_build_in_flight():
+                results.append({
+                    'status': 'WAITING_FOR_DEPLOYMENT',
+                    'sport': request.sport,
+                    'request_id': request.request_id,
+                    'error': 'WAITING_FOR_PRODUCTION_BUILD',
+                })
+                continue
             hard_failures = failure_counts(request)[0] if not dry_run else 0
             if hard_failures >= MAX_FAILURES_PER_DAY:
                 results.append({'status':'SKIPPED_AFTER_REPEATED_FAILURES','sport':request.sport,
@@ -1595,6 +1881,8 @@ def execute(*, dry_run: bool, sport: str | None = None) -> dict[str, Any]:
             try:
                 result=publish(request,dry_run=dry_run)
                 if not dry_run:
+                    if str(result.get('status', '')).startswith('PUBLISHED') and result.get('changed_paths'):
+                        pushed_this_run = True
                     result['published_at_utc']=datetime.now(timezone.utc).isoformat()
                     if request.sport=='NFL':
                         result=verify_nfl_publication(request,result)
@@ -1618,7 +1906,12 @@ def execute(*, dry_run: bool, sport: str | None = None) -> dict[str, Any]:
             except Exception as error:
                 error_text=type(error).__name__+':'+str(error)
                 # 2026-10-01: a request waiting for Vercel to build its commit is not a failure.
-                failure={'status':'WAITING_FOR_DEPLOYMENT' if _is_wait_error(error_text) else 'REQUEST_FAILED',
+                # Issue #23: a global fault is not this request's failure either.
+                waiting=_is_wait_error(error_text)
+                global_fault=not waiting and (isinstance(error, GlobalPublicationFault) or _is_global_fault(error_text))
+                status='WAITING_FOR_DEPLOYMENT' if _is_wait_error(error_text) else 'REQUEST_FAILED'
+                failure={'status':'BLOCKED_BY_GLOBAL_FAULT' if global_fault else status,
+                         'fault_scope':'WAIT' if waiting else 'GLOBAL' if global_fault else 'REQUEST',
                          'sport':request.sport,'request_id':request.request_id,
                          'error':error_text,'at':datetime.now(timezone.utc).isoformat()}
                 if not dry_run:
@@ -1630,7 +1923,13 @@ def execute(*, dry_run: bool, sport: str | None = None) -> dict[str, Any]:
                     body = ('Error:\n' + failure['error'][:3000] + '\n\nFailures in last 24 h: ' + str(hard_now)
                             + ' (waiting tries: ' + str(wait_now) + ')\nFailure files: ' + str(failure_root)
                             + '\n\nTo let the publisher try again right away after fixing the cause:\n  rm -rf ' + str(failure_root) + '\n')
-                    if not _is_wait_error(failure['error']):
+                    if global_fault:
+                        global_now = global_failure_count(request)
+                        if global_now in (1, WAIT_ALERT_AFTER):
+                            owner_notice('publisher-global:' + request.request_id,
+                                         'APEX ALERT: site publish blocked by a fault outside this request - ' + label,
+                                         body + '\nThis does not count toward the request\'s daily failure limit.\n')
+                    elif not waiting:
                         if hard_now == 1:
                             owner_notice('publisher-fail:' + request.request_id, 'APEX ALERT: site publish failed - ' + label, body)
                         elif hard_now == MAX_FAILURES_PER_DAY:
@@ -1644,16 +1943,19 @@ def execute(*, dry_run: bool, sport: str | None = None) -> dict[str, Any]:
         waiting=[r for r in results if r['status']=='WAITING_FOR_DEPLOYMENT']
         hard=[r for r in failed if not _is_wait_error(str(r.get('error','')))]
         skipped=[r for r in results if r['status']=='SKIPPED_AFTER_REPEATED_FAILURES']
+        blocked=[r for r in results if r['status']=='BLOCKED_BY_GLOBAL_FAULT']
         cleanup=None
         if not dry_run and datetime.now(NY).minute == 7:
             try:
                 cleanup=hourly_cleanup({r.request_id for r in pending})
             except Exception as error:
                 cleanup={'error':type(error).__name__+':'+str(error)}
-        return {'status':'PARTIAL_FAILURE' if failed else 'SKIPPED_STUCK_REQUESTS' if skipped else
+        return {'status':'PARTIAL_FAILURE' if failed else 'BLOCKED_BY_GLOBAL_FAULT' if blocked else
+                'SKIPPED_STUCK_REQUESTS' if skipped else
                 'WAITING_FOR_DEPLOYMENT' if waiting else 'PASS' if results else 'NO_PENDING_REQUEST','hard_failure_count':len(hard),
-                'waiting_count':len(waiting),
-                'requests':results,'shared_results_preparation':prepared,'cleanup':cleanup}
+                'waiting_count':len(waiting),'global_fault_count':len(blocked),
+                'requests':results,'shared_results_preparation':prepared,'cleanup':cleanup,
+                'deploy_check':deployed}
 
 
 def _nfl_request_pushed(request):

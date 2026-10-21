@@ -4,7 +4,7 @@
   "source_commit": "1cc9911 (file content), restored in 531aefd",
   "render_js_sha256": "ddc21001476520470dc0318f3cfb75b0151428a3cd60ac52adc9904c7a755491",
   "index_html_normalized_sha256": "d2be6f35893628c7f97e16ea0dfd376afd46b6d3f0f23823c5d28436fb2e9fa6",
-  "index_html_normalization": "lifetime-record aside numbers masked with #",
+  "index_html_normalization": "lifetime-record aside numbers masked with #; sport selector is build-time chrome only (issue #23; Oct 18 approved page 48451c3)",
   "required_sections": [
     "SEASON RECORD",
     "AS-ISSUED TIER PERFORMANCE",
