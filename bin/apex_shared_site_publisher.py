@@ -820,10 +820,7 @@ def validate_ncaaf_site_build(worktree: Path) -> str:
     """Fail closed when this NCAAF payload would break the shared Vercel build.
 
     The gate runs on a disposable copy via subprocess (not ``python_tool``) so an
-    NCAAF publish never treats another sport's dirty paths as its own work. When
-    the tree has no NCAAF HTML yet (minimal test fixtures), the gate is skipped."""
-    if not (worktree / "ncaaf" / "index.html").is_file():
-        return "NCAAF_BUILD_CHECK_SKIPPED_NO_HTML"
+    NCAAF publish never treats another sport's dirty paths as its own work."""
     with tempfile.TemporaryDirectory(prefix="ncaaf-build-check-", dir=worktree.parent) as temporary:
         validation = Path(temporary) / "site"
         shutil.copytree(worktree, validation, ignore=shutil.ignore_patterns(".git", "public", "__pycache__"))
