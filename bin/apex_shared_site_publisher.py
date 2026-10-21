@@ -90,7 +90,15 @@ GLOBAL_FAULT_MARKERS = (
     "HTTP Error 5",
     "URLError",
     "EXISTING_VERCEL_READ_CREDENTIAL_UNAVAILABLE",
+    # Issue #31: gh/GitHub outages (gh prints "HTTP 502: Bad Gateway"). 401/403/404/422 stay request faults.
+    "HTTP 502",
+    "HTTP 503",
+    "HTTP 504",
+    "error connecting to api.github.com",
 )
+# Same-date delivery stages: a later stage's shared manifest is never replaced by an earlier one.
+NCAAF_STAGE_ORDER = {"T3": 1, "T2": 2, "RESULTS": 3}
+NCAAF_PROTECTED_PATHSPECS = ("ncaaf/", "data/ncaaf/", "data/ncaaf_*")
 
 
 class GlobalPublicationFault(RuntimeError):
@@ -330,42 +338,47 @@ def discover_ncaaf(today_et: str, yesterday_et: str) -> list[Request]:
         # A display rollover may name a slate days ahead; a past one is stale and never published.
         if product == "DISPLAY" and slate_date < today_et:
             continue
-        pointer = load_json(pointer_path)
-        if pointer.get("status") != "PASS" or pointer.get("publication_state") != "QUEUED_FOR_SHARED_PUBLISHER":
-            raise RuntimeError(f"NCAAF queue pointer is not a successful handoff: {pointer_path}")
-        request_path = Path(str(pointer.get("request_path") or ""))
-        if not contained(request_path, NCAAF_QUEUE) or not request_path.is_file():
-            raise RuntimeError(f"NCAAF queue request escaped its authority: {request_path}")
-        if sha256_file(request_path) != pointer.get("request_sha256"):
-            raise RuntimeError(f"NCAAF queue request hash mismatch: {request_path}")
-        manifest = load_json(request_path)
-        request_id = str(pointer.get("request_id") or "")
-        if (
-            manifest.get("sport") != "NCAAF"
-            or manifest.get("request_id") != request_id
-            or manifest.get("slate_date_et") != slate_date
-            or manifest.get("product") != product
-        ):
-            raise RuntimeError(f"NCAAF queue identity mismatch: {request_path}")
-        display_slate_date = str(manifest.get("display_slate_date_et") or "")
-        if (
-            manifest.get("count_scope") != "EXPLICIT_CANONICAL_AND_DISPLAY"
-            or not display_slate_date
-        ):
-            raise RuntimeError(f"NCAAF queue omits explicit display/count scope: {request_path}")
-        if product == "RESULTS":
+        try:
+            pointer = load_json(pointer_path)
+            if pointer.get("status") != "PASS" or pointer.get("publication_state") != "QUEUED_FOR_SHARED_PUBLISHER":
+                raise RuntimeError(f"NCAAF queue pointer is not a successful handoff: {pointer_path}")
+            request_path = Path(str(pointer.get("request_path") or ""))
+            if not contained(request_path, NCAAF_QUEUE) or not request_path.is_file():
+                raise RuntimeError(f"NCAAF queue request escaped its authority: {request_path}")
+            if sha256_file(request_path) != pointer.get("request_sha256"):
+                raise RuntimeError(f"NCAAF queue request hash mismatch: {request_path}")
+            manifest = load_json(request_path)
+            request_id = str(pointer.get("request_id") or "")
             if (
-                manifest.get("graded_slate_date_et") != slate_date
-                or display_slate_date <= slate_date
-                or not isinstance(manifest.get("season_year"), int)
+                manifest.get("sport") != "NCAAF"
+                or manifest.get("request_id") != request_id
+                or manifest.get("slate_date_et") != slate_date
+                or manifest.get("product") != product
             ):
-                raise RuntimeError(f"NCAAF results queue crosses graded/display identity: {request_path}")
-        elif display_slate_date != slate_date:
-            raise RuntimeError(f"NCAAF live-stage display identity mismatch: {request_path}")
-        request = Request("NCAAF", request_id, manifest, request_path.parent / "payload", slate_date, product)
-        validate_payload_set(request)
-        if not is_complete(request):
-            requests.append(request)
+                raise RuntimeError(f"NCAAF queue identity mismatch: {request_path}")
+            display_slate_date = str(manifest.get("display_slate_date_et") or "")
+            if (
+                manifest.get("count_scope") != "EXPLICIT_CANONICAL_AND_DISPLAY"
+                or not display_slate_date
+            ):
+                raise RuntimeError(f"NCAAF queue omits explicit display/count scope: {request_path}")
+            if product == "RESULTS":
+                if (
+                    manifest.get("graded_slate_date_et") != slate_date
+                    or display_slate_date <= slate_date
+                    or not isinstance(manifest.get("season_year"), int)
+                ):
+                    raise RuntimeError(f"NCAAF results queue crosses graded/display identity: {request_path}")
+            elif display_slate_date != slate_date:
+                raise RuntimeError(f"NCAAF live-stage display identity mismatch: {request_path}")
+            request = Request("NCAAF", request_id, manifest, request_path.parent / "payload", slate_date, product)
+            validate_payload_set(request)
+            if not is_complete(request):
+                requests.append(request)
+        except Exception as error:  # noqa: BLE001
+            # Issue #31: one bad queue entry fails as its own request; the others still publish.
+            requests.append(Request("NCAAF", hashlib.sha256(str(pointer_path).encode()).hexdigest(),
+                                    {"discovery_error": f"{type(error).__name__}: {error}"}, None, slate_date, product))
     return requests
 
 
@@ -570,9 +583,27 @@ def ncaaf_delivery_manifest(request: Request, worktree: Path) -> None:
                 proof.get("captured_at_utc_ms") or -1
             ),
         }
+    body = json.dumps(manifest, indent=2, sort_keys=True).encode("utf-8") + b"\n"
+    # Issue #31: each request keeps its own frozen manifest for its own email. The shared
+    # same-date file never moves back to an earlier stage (a T-3 retry replaced the T-2 one).
+    frozen = worktree / ncaaf_frozen_manifest_path(request)
+    if frozen.is_file() and frozen.read_bytes() != body:
+        # A request's frozen manifest is immutable once written; never replace it silently.
+        raise RuntimeError("NCAAF_FROZEN_MANIFEST_CONFLICT: " + ncaaf_frozen_manifest_path(request))
+    frozen.parent.mkdir(parents=True, exist_ok=True)
+    frozen.write_bytes(body)
     destination = worktree / date_root / "full_slate_delivery_manifest.json"
-    destination.parent.mkdir(parents=True, exist_ok=True)
-    destination.write_bytes(json.dumps(manifest, indent=2, sort_keys=True).encode("utf-8") + b"\n")
+    if destination.is_file():
+        current = str(load_json(destination).get("delivery_product") or "")
+        if NCAAF_STAGE_ORDER.get(current, 0) > NCAAF_STAGE_ORDER.get(request.product, 0):
+            return
+    destination.write_bytes(body)
+
+
+def ncaaf_frozen_manifest_path(request: Request) -> str:
+    if not re.fullmatch(r"[0-9a-f]{64}", request.request_id) or request.slate_date is None:
+        raise RuntimeError("NCAAF delivery manifest needs a 64-hex request id and slate date")
+    return f"data/ncaaf/{request.slate_date}/delivery/{request.request_id}.json"
 
 
 def results_cumulative_snapshot(request: Request) -> str:
@@ -897,7 +928,8 @@ def publish(request: Request, *, dry_run: bool) -> dict[str, Any]:
         if prior.get('request_id') != request.request_id:
             raise RuntimeError('PUBLICATION_INTENT_DRIFT')
         if prior.get('published_commit') and str(prior.get('status', '')).startswith('PUBLISHED'):
-            return prior
+            # Issue #31: this request's push is durable; a retry never rebuilds over newer main content.
+            return {**prior, 'replayed_publication_intent': True}
     origin = git("remote", "get-url", "origin")
     if CANONICAL_REMOTE not in origin:
         raise RuntimeError(f"noncanonical site origin: {origin}")
@@ -950,6 +982,10 @@ def publish(request: Request, *, dry_run: bool) -> dict[str, Any]:
                         raise GlobalPublicationFault("PUSH_RACE_ORIGIN_ADVANCED: " + str(error)[-400:]) from error
                     raise
                 publication_state = "PUBLISHED"
+                if request.sport == 'NCAAF':
+                    # Issue #31: record the push before any fallible follow-up fetch/merge/cleanup.
+                    atomic_json(intent, {"status": publication_state, "sport": request.sport,
+                                         "request_id": request.request_id, "published_commit": commit, **build})
             else:
                 commit = git("rev-parse", "origin/main", cwd=worktree)
                 publication_state = "PUBLISHED_NO_CONTENT_CHANGE"
@@ -962,7 +998,22 @@ def publish(request: Request, *, dry_run: bool) -> dict[str, Any]:
         git("merge", "--ff-only", "origin/main")
     result={"status":publication_state,"sport":request.sport,"request_id":request.request_id,
             "published_commit":commit,**build}
-    if request.sport in {'NFL','MMA'}:atomic_json(intent,result)
+    if request.sport == 'NCAAF' and request.product in {'T2', 'T3'} and publication_state == 'PUBLISHED_NO_CONTENT_CHANGE':
+        # Issue #31: the tip may be another sport's commit. Name this request's commit only when Git
+        # shows the last commit that wrote its own files; otherwise keep the tip, marked unproven.
+        paths = sorted({safe_relative(str(name)) for name in request.manifest.get('source_hashes') or {}})
+        paths.append(ncaaf_frozen_manifest_path(request))
+        try:
+            own = git('log', '-1', '--format=%H', commit, '--', *paths, cwd=ROOT)
+        except RuntimeError:
+            own = ''
+        result['main_commit_at_publish'] = commit
+        if re.fullmatch(r'[0-9a-f]{40}', own):
+            result['published_commit'] = own
+        else:
+            result['published_commit_basis'] = 'MAIN_TIP_REQUEST_COMMIT_UNPROVEN'
+    if request.sport in {'NFL','MMA'} or (request.sport == 'NCAAF' and publication_state == 'PUBLISHED'):
+        atomic_json(intent,result)
     return result
 
 
@@ -1367,8 +1418,9 @@ def ncaaf_first_kickoff_ms(request: Request) -> int | None:
     return None if requested_ms is None else requested_ms + 2 * 3600 * 1000
 
 
-def ncaaf_deployment_serves(commit: str) -> tuple[bool, dict[str, Any]]:
-    """True when the apexrigor.com production deployment is READY and contains `commit`."""
+def ncaaf_deployment_serves(commit: str, request: Request | None = None) -> tuple[bool, dict[str, Any]]:
+    """True when the apexrigor.com production deployment is READY and serves `commit`'s NCAAF files:
+    the deployed commit is `commit`, or a later main commit with this request's NCAAF content unchanged."""
     d = vercel_deployment()
     deployed = str((d.get('meta') or {}).get('githubCommitSha') or '')
     detail = {'deployment_url': d.get('url'), 'deployed_commit': deployed, 'ready_state': d.get('readyState')}
@@ -1377,9 +1429,26 @@ def ncaaf_deployment_serves(commit: str) -> tuple[bool, dict[str, Any]]:
             or not re.fullmatch(r'[0-9a-f]{40}', deployed) or not re.fullmatch(r'[0-9a-f]{40}', str(commit))):
         return False, detail
     if deployed != commit:
-        detail['deployment_contains_request_commit'] = False
-        return False, detail
+        # Issue #31: ancestry alone is not enough; a later NCAAF push could carry other picks.
+        pathspecs = ncaaf_request_pathspecs(request) if request is not None else NCAAF_PROTECTED_PATHSPECS
+        same = commit_contains(deployed, commit) and subprocess.run(
+            ['git', 'diff', '--quiet', commit, deployed, '--', *pathspecs], cwd=ROOT,
+            capture_output=True, timeout=60, env=_git_env(ROOT)).returncode == 0
+        detail['deployment_contains_request_commit'] = same
+        if not same:
+            return False, detail
+        detail['ncaaf_paths_unchanged_since_request_commit'] = True
     return True, detail
+
+
+def ncaaf_request_pathspecs(request: Request) -> tuple[str, ...]:
+    """This request's own bytes, the live picks data/page, and its slate-date folder.
+    Other dates' NCAAF files (for example prior-day results) do not hold its email."""
+    paths = {safe_relative(str(name)) for name in request.manifest.get('source_hashes') or {}}
+    paths.update({'data/ncaaf_today.json', 'ncaaf/index.html'})
+    if request.slate_date:
+        paths.add(f'data/ncaaf/{request.slate_date}/')
+    return tuple(sorted(paths))
 
 
 def commit_contains(descendant: str, ancestor: str, *, repo: Path | None = None) -> bool:
@@ -1449,7 +1518,7 @@ def ncaaf_t2_site_live_before_email(request: Request, result: dict[str, Any], *,
     stop = time.time() + (NCAAF_LIVE_POLL_SECONDS if poll_seconds is None else poll_seconds)
     while True:
         try:
-            live, detail = ncaaf_deployment_serves(commit)
+            live, detail = ncaaf_deployment_serves(commit, request)
         except Exception as error:  # noqa: BLE001
             live, detail = False, {'check_error': type(error).__name__ + ':' + str(error)[:300]}
         check = {'published_commit': commit, 'first_kickoff_utc_ms': first_kick,
@@ -1483,6 +1552,50 @@ def ncaaf_t2_site_live_before_email(request: Request, result: dict[str, Any], *,
     except Exception:  # noqa: BLE001
         pass
     raise RuntimeError('DEPLOYMENT_NOT_REQUEST_DESCENDANT: NCAAF T-2 email waits for apexrigor.com to serve ' + commit)
+
+
+def ncaaf_resume_published_t2(request: Request) -> dict[str, Any] | None:
+    """Issue #31: a T-2 request whose own bytes are already on main reaches its bounded email
+    check while another build runs or another request pushed in this run. It never builds,
+    commits or pushes. Every check runs against the current origin/main; anything absent,
+    different or unknown returns None and the request keeps waiting."""
+    if request.sport != 'NCAAF' or request.product != 'T2' or request.slate_date is None:
+        return None
+    try:
+        wait_path = ncaaf_site_wait_path(request)
+        if not wait_path.is_file():
+            return None
+        wait = load_json(wait_path)
+        commit = str(wait.get('request_commit') or '')
+        if wait.get('request_id') != request.request_id or not re.fullmatch(r'[0-9a-f]{40}', commit):
+            return None
+        expected = validate_payload_set(request)  # frozen queued bytes and their SHA-256 set
+        git('fetch', '--quiet', 'origin', 'main')
+        tip = git('rev-parse', 'origin/main')
+        if not re.fullmatch(r'[0-9a-f]{40}', tip) or not commit_contains(tip, commit):
+            return None
+
+        def main_bytes(relative: str) -> bytes:
+            shown = subprocess.run(['git', 'cat-file', 'blob', f'{tip}:{relative}'], cwd=ROOT,
+                                   capture_output=True, timeout=60, env=_git_env(ROOT))
+            if shown.returncode != 0:
+                raise RuntimeError('NCAAF_RESUME_PATH_ABSENT:' + relative)
+            return shown.stdout
+
+        if any(hashlib.sha256(main_bytes(relative)).hexdigest() != digest for relative, digest in expected.items()):
+            return None
+        try:  # Issue #31: prefer this request's frozen manifest; requests published earlier only have the shared one
+            delivery = json.loads(main_bytes(ncaaf_frozen_manifest_path(request)))
+        except RuntimeError:
+            delivery = json.loads(main_bytes(f'data/ncaaf/{request.slate_date}/full_slate_delivery_manifest.json'))
+        if (delivery.get('queue_request_id') != request.request_id or delivery.get('delivery_product') != 'T2'
+                or delivery.get('slate_date') != request.slate_date):
+            return None
+    except Exception:  # noqa: BLE001
+        return None
+    return {'status': 'PUBLISHED_NO_CONTENT_CHANGE', 'sport': request.sport, 'request_id': request.request_id,
+            'published_commit': commit, 'changed_paths': [], 'verified_main_commit': tip,
+            'publication': 'RESUMED_WITHOUT_BUILD_OR_PUSH'}
 
 
 def require_results_email_interface(module: Any) -> None:
@@ -1756,9 +1869,11 @@ def _failure_tally(request: Request) -> tuple[int, int, int]:
 
 
 def owner_notice(key: str, subject: str, body: str) -> None:
+    # Issue #31: publisher notices go to the unit log only; this path sends no email.
     try:
-        subprocess.run(['/usr/bin/python3', NOTIFY, 'notice', key, subject, '-'], input=body, text=True,
-                       capture_output=True, timeout=60, check=False)
+        print('PUBLISHER_NOTICE (log only, no email): '
+              + json.dumps({'key': key, 'subject': subject, 'detail': body}, sort_keys=True),
+              file=sys.stderr, flush=True)
     except Exception:
         pass
 
@@ -1893,20 +2008,20 @@ def execute(*, dry_run: bool, sport: str | None = None) -> dict[str, Any]:
         pending=discover_nfl() if sport=='NFL' else discover_mma() if sport=='MMA' else [request for request in discover_isolated() if request.sport != 'NFL' or _nfl_request_pushed(request)]
         pushed_this_run = False
         for request in pending:
+            blocked = None
             if not dry_run and pushed_this_run:
+                blocked = 'WAITING_FOR_PRIOR_PUBLISH_IN_SAME_RUN'
+            elif not dry_run and _production_build_in_flight():
+                blocked = 'WAITING_FOR_PRODUCTION_BUILD'
+            # Issue #31: publication stays serialized (no build/commit/push while blocked), but an
+            # NCAAF T-2 request whose verified bytes are already on main still reaches its email check.
+            resumed = ncaaf_resume_published_t2(request) if blocked else None
+            if blocked and resumed is None:
                 results.append({
                     'status': 'WAITING_FOR_DEPLOYMENT',
                     'sport': request.sport,
                     'request_id': request.request_id,
-                    'error': 'WAITING_FOR_PRIOR_PUBLISH_IN_SAME_RUN',
-                })
-                continue
-            if not dry_run and _production_build_in_flight():
-                results.append({
-                    'status': 'WAITING_FOR_DEPLOYMENT',
-                    'sport': request.sport,
-                    'request_id': request.request_id,
-                    'error': 'WAITING_FOR_PRODUCTION_BUILD',
+                    'error': blocked,
                 })
                 continue
             hard_failures = failure_counts(request)[0] if not dry_run else 0
@@ -1915,9 +2030,10 @@ def execute(*, dry_run: bool, sport: str | None = None) -> dict[str, Any]:
                                 'request_id':request.request_id,'failures_last_24h':hard_failures})
                 continue
             try:
-                result=publish(request,dry_run=dry_run)
+                result=resumed if resumed is not None else publish(request,dry_run=dry_run)
                 if not dry_run:
-                    if str(result.get('status', '')).startswith('PUBLISHED') and result.get('changed_paths'):
+                    if (str(result.get('status', '')).startswith('PUBLISHED') and result.get('changed_paths')
+                            and not result.get('replayed_publication_intent')):
                         pushed_this_run = True
                     result['published_at_utc']=datetime.now(timezone.utc).isoformat()
                     if request.sport=='NFL':
@@ -2219,8 +2335,8 @@ def main() -> int:
         outcome = execute(dry_run=arguments.dry_run, sport=arguments.sport)
         print(json.dumps(outcome, indent=2, sort_keys=True))
         # Non-zero only for real failures; "waiting for deployment" and skipped stuck requests exit 0.
-        # 3 = a request failed and the owner was already emailed by owner_notice(); the unit's
-        # SuccessExitStatus=3 keeps OnFailure from sending a second email. Crashes still return 1.
+        # 3 = a request failed and its notice was logged by owner_notice() (issue #31: no email); the
+        # unit's SuccessExitStatus=3 keeps OnFailure from emailing it. Crashes still return 1.
         return 3 if outcome.get('hard_failure_count') else 0
     except Exception as error:
         print(
