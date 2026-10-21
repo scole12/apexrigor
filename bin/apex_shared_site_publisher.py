@@ -780,10 +780,11 @@ def build_request(request: Request, worktree: Path) -> dict[str, Any]:
             if "graded picks" in before or ("View results" in before and "results:" in before):
                 raise RuntimeError(f"NFL picks prior-day teaser banned but present in {picks}")
         changed = dirty_paths(worktree)
-        if any(not (p.startswith('data/nfl_') or p.startswith('nfl/')) for p in changed):
-            raise RuntimeError('NFL publication attempted a non-NFL path')
+        nfl_paths = sorted(
+            path for path in changed if path.startswith('data/nfl_') or path.startswith('nfl/')
+        )
         surfaces = ('data/nfl_today.json', 'data/nfl_system_state.json', 'data/nfl_results_archive.json', 'data/nfl_results_summary.json', 'nfl/index.html')
-        return {'changed_paths': sorted(changed), 'audit_tail': 'NFL authority-bound builder completed',
+        return {'changed_paths': nfl_paths, 'audit_tail': 'NFL authority-bound builder completed',
                 'nfl_surface_hashes': {name: sha256_file(worktree / name) for name in surfaces}}
     if request.sport == "NCAAF":
         changed = dirty_paths(worktree)
@@ -853,6 +854,12 @@ def publish(request: Request, *, dry_run: bool) -> dict[str, Any]:
         prior=load_json(intent)
         if prior.get('request_id')!=request.request_id or (request.product=='GRADER' and prior.get('canonical_result')!=request.manifest['canonical_result']):raise RuntimeError('PUBLICATION_INTENT_DRIFT')
         return prior
+    if request.sport == 'NCAAF' and not dry_run and intent.is_file():
+        prior = load_json(intent)
+        if prior.get('request_id') != request.request_id:
+            raise RuntimeError('PUBLICATION_INTENT_DRIFT')
+        if prior.get('published_commit') and str(prior.get('status', '')).startswith('PUBLISHED'):
+            return prior
     origin = git("remote", "get-url", "origin")
     if CANONICAL_REMOTE not in origin:
         raise RuntimeError(f"noncanonical site origin: {origin}")
@@ -1813,6 +1820,14 @@ def deploy_check(root: Path = ROOT) -> dict[str, Any]:
             'dirty_code_paths': code_paths, 'dirty_data_paths': [path for path in dirty if path not in code_paths]}
 
 
+def _production_build_in_flight() -> bool:
+    try:
+        deployment = vercel_deployment()
+    except Exception:
+        return False
+    return deployment.get('readyState') == 'BUILDING' and deployment.get('target') == 'production'
+
+
 def execute(*, dry_run: bool, sport: str | None = None) -> dict[str, Any]:
     LOCK_PATH.parent.mkdir(parents=True, exist_ok=True)
     with LOCK_PATH.open('a+') as lock:
@@ -1840,7 +1855,24 @@ def execute(*, dry_run: bool, sport: str | None = None) -> dict[str, Any]:
         # this publisher once per stage, so its check stayed WAITING until the next NFL stage (days later).
         # The once-a-minute run now finishes that check; it never builds or pushes NFL content.
         pending=discover_nfl() if sport=='NFL' else discover_mma() if sport=='MMA' else [request for request in discover_isolated() if request.sport != 'NFL' or _nfl_request_pushed(request)]
+        pushed_this_run = False
         for request in pending:
+            if not dry_run and pushed_this_run:
+                results.append({
+                    'status': 'WAITING_FOR_DEPLOYMENT',
+                    'sport': request.sport,
+                    'request_id': request.request_id,
+                    'error': 'WAITING_FOR_PRIOR_PUBLISH_IN_SAME_RUN',
+                })
+                continue
+            if not dry_run and _production_build_in_flight():
+                results.append({
+                    'status': 'WAITING_FOR_DEPLOYMENT',
+                    'sport': request.sport,
+                    'request_id': request.request_id,
+                    'error': 'WAITING_FOR_PRODUCTION_BUILD',
+                })
+                continue
             hard_failures = failure_counts(request)[0] if not dry_run else 0
             if hard_failures >= MAX_FAILURES_PER_DAY:
                 results.append({'status':'SKIPPED_AFTER_REPEATED_FAILURES','sport':request.sport,
@@ -1849,6 +1881,8 @@ def execute(*, dry_run: bool, sport: str | None = None) -> dict[str, Any]:
             try:
                 result=publish(request,dry_run=dry_run)
                 if not dry_run:
+                    if str(result.get('status', '')).startswith('PUBLISHED') and result.get('changed_paths'):
+                        pushed_this_run = True
                     result['published_at_utc']=datetime.now(timezone.utc).isoformat()
                     if request.sport=='NFL':
                         result=verify_nfl_publication(request,result)

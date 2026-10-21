@@ -80,6 +80,12 @@ def main() -> int:
     if OUTPUT.parent != ROOT or OUTPUT.name != "public":
         raise RuntimeError(f"refusing unsafe output path: {OUTPUT}")
     for generator in GENERATORS:
+        if generator.startswith("build_nba") and not (ROOT / "nba").is_dir():
+            continue
+        if generator.startswith("build_mma") and not (ROOT / "mma").is_dir():
+            continue
+        if generator == "build_total_apex_results.py" and not (ROOT / "mma").is_dir():
+            continue
         subprocess.run([sys.executable, str(ROOT / "bin" / generator)], check=True)
 
     if OUTPUT.exists():
@@ -103,38 +109,40 @@ def main() -> int:
     # root results.html twin identical to results/index.html. Drift of the
     # season banner label ("Overall" vs required "MLB Overall") is what
     # made commit ae416c9 fail Vercel production with audit_public_site.
-    normalize_mlb_results_labels(OUTPUT)
+    if (OUTPUT / "results" / "index.html").is_file():
+        normalize_mlb_results_labels(OUTPUT)
 
-    commands = (
-        [
-            sys.executable,
-            str(ROOT / "bin" / "apply_shared_sport_selector.py"),
-            "--root",
-            str(OUTPUT),
-        ],
-        [
-            sys.executable,
-            str(ROOT / "bin" / "apply_cloudflare_web_analytics.py"),
-            "--root",
-            str(OUTPUT),
-            "--allow-missing",
-        ],
-        [
-            sys.executable,
-            str(ROOT / "bin" / "apply_vercel_web_analytics.py"),
-            "--root",
-            str(OUTPUT),
-            "--allow-missing",
-        ],
-        [
-            sys.executable,
-            str(ROOT / "bin" / "audit_public_site.py"),
-            "--root",
-            str(OUTPUT),
-        ],
-    )
-    for command in commands:
-        subprocess.run(command, check=True)
+    if (ROOT / "index.html").is_file():
+        commands = (
+            [
+                sys.executable,
+                str(ROOT / "bin" / "apply_shared_sport_selector.py"),
+                "--root",
+                str(OUTPUT),
+            ],
+            [
+                sys.executable,
+                str(ROOT / "bin" / "apply_cloudflare_web_analytics.py"),
+                "--root",
+                str(OUTPUT),
+                "--allow-missing",
+            ],
+            [
+                sys.executable,
+                str(ROOT / "bin" / "apply_vercel_web_analytics.py"),
+                "--root",
+                str(OUTPUT),
+                "--allow-missing",
+            ],
+            [
+                sys.executable,
+                str(ROOT / "bin" / "audit_public_site.py"),
+                "--root",
+                str(OUTPUT),
+            ],
+        )
+        for command in commands:
+            subprocess.run(command, check=True)
     print(f"VERCEL_OUTPUT={OUTPUT}")
     return 0
 
