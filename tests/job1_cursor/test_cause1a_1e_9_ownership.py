@@ -115,11 +115,12 @@ def test_ncaaf_t2_publish_leaves_nhl_nba_mma_and_mlb_pages_alone(tmp_path):
 
 def test_ncaaf_publish_ignores_other_sports_dirty_paths(tmp_path, monkeypatch):
     publisher = pubsupport.load_publisher()
+    site = pubsupport.site_copy(tmp_path / "site")
     monkeypatch.setattr(publisher, "copy_queued_payload", lambda request, worktree: None)
     monkeypatch.setattr(publisher, "ncaaf_delivery_manifest", lambda request, worktree: None)
     monkeypatch.setattr(publisher, "dirty_paths", lambda worktree: {"data/ncaaf_today.json", "nba/index.html"})
-    request = publisher.Request("NCAAF", "f" * 64, {}, tmp_path, "2026-10-20", "T3")
-    build = publisher.build_request(request, tmp_path)
+    request = publisher.Request("NCAAF", "f" * 64, {}, tmp_path / "payload", "2026-10-20", "T3")
+    build = publisher.build_request(request, site)
     assert "data/ncaaf_today.json" in build["changed_paths"]
     assert "nba/index.html" not in build["changed_paths"]
 
