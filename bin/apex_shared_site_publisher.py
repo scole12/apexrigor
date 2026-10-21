@@ -810,7 +810,7 @@ def _site_build_error(error: Exception, root: Path) -> str:
 
 def _run_build_vercel_output(site_root: Path) -> str:
     return run(
-        [__import__("sys").executable, str(site_root / "bin" / "build_vercel_output.py")],
+        [sys.executable, str(site_root / "bin" / "build_vercel_output.py")],
         cwd=site_root,
         timeout=900,
     )
@@ -821,11 +821,9 @@ def validate_ncaaf_site_build(worktree: Path) -> str:
 
     The gate runs on a disposable copy via subprocess (not ``python_tool``) so an
     NCAAF publish never treats another sport's dirty paths as its own work."""
-    _tempfile = __import__("tempfile")
-    _shutil = __import__("shutil")
-    with _tempfile.TemporaryDirectory(prefix="ncaaf-build-check-", dir=worktree.parent) as temporary:
+    with tempfile.TemporaryDirectory(prefix="ncaaf-build-check-", dir=worktree.parent) as temporary:
         validation = Path(temporary) / "site"
-        _shutil.copytree(worktree, validation, ignore=_shutil.ignore_patterns(".git", "public", "__pycache__"))
+        shutil.copytree(worktree, validation, ignore=shutil.ignore_patterns(".git", "public", "__pycache__"))
         try:
             return _run_build_vercel_output(validation)
         except RuntimeError as error:
