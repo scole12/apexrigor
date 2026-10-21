@@ -101,3 +101,43 @@ Consigliere round 2 targeted the four product defects shared by all Job 1 branch
 **Windows (sanity):** apexrigor `tests/job1_cursor` **26/26** after the same publisher/pubsupport fixes.
 
 **Not finished:** Droplet authority replay; `job1_cross_by_cursor` on site worktrees; amend `202711d` commit message/author to a proper Job 1 message (content is correct). No push.
+
+## Round 4 (Codex cross-tests, Oct 20 2026)
+
+**Linux evidence:** `C:\Users\scliu\apex2_site\job1\job1_cursor_r4_tests_20261020_222504.txt` (Docker Codex suites + WSL Grok / `tests/job1_cursor` / build / layout). Re-runner: `job1/tools/run_job1_cursor_r4_linux.sh` (Codex via Docker on Windows host when WSL has no Docker).
+
+**Commits:** apexrigor `b2474bb`; apex_ncaaf `5af73d7` (on top of round 3 apexrigor `511b11e`, apex_ncaaf `fd44e39`).
+
+| Suite | Linux result |
+|---|---|
+| Codex `tests_by_codex_r2` new (29) | **28 PASS, 1 FAIL** (`test_req9_committed_linux_page_matches_approved_normalized_hash` — see below) |
+| Codex earlier apexrigor (11) | **9 PASS, 2 FAIL** (superseded req 11 expectations; see below) |
+| Codex earlier apex_ncaaf (10) | **10/10 PASS** |
+| Grok review apexrigor + apex_ncaaf | **10/10 PASS** |
+| apexrigor `tests/job1_cursor` (26) | **PASS** |
+| apex_ncaaf `tests/job1_cursor` (41) | **PASS** (deploy gate + chain replay expectations updated for fail-closed shared replay) |
+| `build_vercel_output.py` + `node tests/ncaaf_results_layout.test.cjs` | **PASS** (`d2be6f35…` lock, no repin) |
+
+### Per Codex failure (round 2 → round 4)
+
+| Req / test | Cause | Fix | Commit | Linux after fix |
+|---|---|---|---|---|
+| **1** `[NFL]` foreign dirty paths block publish | `build_request` raised on non-NFL paths in the worktree instead of returning only NFL-owned paths. | Filter `changed_paths` to `nfl/` and `data/nfl_*`; do not gate on other sports’ dirty files. | `b2474bb` | **PASS** `test_req1_…[NFL]` |
+| **2** grader window closed with `IN_PROGRESS` | `grader_window` used kickoff+duration even when a game was still `IN_PROGRESS`. | `slate_has_pending_finals()` extends the window while any game is actively non-final (`IN_PROGRESS`, etc.). | `5af73d7` | **PASS** `test_req2_unfinished_game_keeps_grader_retry_window_open`; earlier NCAAF grader pending-final **PASS** |
+| **2** controller `KeyError` on nested card | `issuance_cards` assumed `game_id` on the card object. | Raise `RuntimeError` with `game_id` when the nested card omits it (operational loader still recovers via schema). | `5af73d7` | **PASS** `test_req2_actual_controller_…` |
+| **6** manifest-only replay; Oct 18 PASS with gaps | `job1_shared_fixture_replay` only listed manifest paths. | Verify on-disk fixture bytes; call `run_pass` per shared date; `NOT_RECONSTRUCTED` / missing payloads fail overall; stub `run_pass` for documented gaps without droplet authorities. | `5af73d7` | **PASS** `test_req6_default_gate_…`, `test_req6_missing_fixture_bytes_…`, `test_req6_committed_linux_release_bindings_…` |
+| **9** layout hash | Codex normalizes lifetime record **and** masks `<nav class="sport-nav">` to `#`; project lock (`tests/ncaaf_results_layout.test.cjs`) masks **only** the aside. Committed `48451c3` `ncaaf/results/index.html` yields aside-only `d2be6f35…` (**PASS** Node) but Codex double-mask `af56dd1c…`. | No HTML repin (Scott lock stays `d2be6f35…`). | — | **FAIL** Codex req9 only; **PASS** Grok req9 + `tests/job1_cursor` layout + Node lock |
+| **11** second deploy after ERROR; serialization | `ensure_deployment` POSTed again when only ERROR deployments existed; `execute` published multiple NCAAF requests in one run while production was BUILDING. | Treat existing ERROR as terminal; defer further requests in the same `execute()` after a contentful publish. | `b2474bb` | **PASS** `test_req11_existing_error_deployment_…`, earlier hosting serialization **PASS** |
+| Earlier **hosting** saved-card copy | Generators and post-copy subprocess steps ran on minimal trees. | Skip sport generators when sport dirs absent; skip selector/analytics/audit when `index.html` absent at site root; skip MLB normalize when `public/results` missing. | `b2474bb` | **PASS** `test_saved_content_cannot_invoke_sport_procedures` |
+| Earlier **analytics** NBA routes | `active_outputs` omitted NBA. | Add `nba/*` routes to Cloudflare and Vercel analytics installers. | `b2474bb` | **PASS** `test_analytics_route_inventory_includes_nba` |
+| Earlier **published intent retry** | NCAAF `publish` did not short-circuit on durable `PUBLISHED` intent. | Return existing intent when `published_commit` is set and status is `PUBLISHED*`. | `b2474bb` | **PASS** `test_published_request_keeps_its_commit_on_retry` |
+
+### Remaining Codex failures (not fixed — superseded or inconsistent rule)
+
+| Test | Why it still fails | Evidence |
+|---|---|---|
+| `test_req9_committed_linux_page_matches_approved_normalized_hash` | Codex applies an extra sport-nav mask not used by the approved lock test; same committed page passes `tests/ncaaf_results_layout.test.cjs` and Grok `test_layout_lock_keeps_the_approved_hash` with `d2be6f35…`. | Aside-only hash `d2be6f35…` on `48451c3` HTML; Codex double-mask `af56dd1c…` in `job1_cursor_r4_tests_20261020_222504.txt`. |
+| `test_ready_descendant_deployment_is_accepted` | Encodes pre–req-11 descendant acceptance; current req 11 requires **exact** production commit match. | `CROSS_CODEX_ON_CURSOR_R2.md` limitations (not charged as new defects). |
+| `test_deployment_delay_has_bound_and_alert` | Encodes timeout **alerts** on healthy production; req 11 alerts only on production **ERROR**. | Same Consigliere note in Codex report. |
+
+**Not finished:** Full droplet authority replay for reconstructable shared dates (local gate correctly **FAIL**s until Oct 18 is reconstructed or authorities are copied). No push.
