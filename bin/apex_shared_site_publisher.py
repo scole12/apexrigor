@@ -1563,12 +1563,22 @@ def ncaaf_resume_published_t2(request: Request) -> dict[str, Any] | None:
         return None
     try:
         wait_path = ncaaf_site_wait_path(request)
-        if not wait_path.is_file():
-            return None
-        wait = load_json(wait_path)
-        commit = str(wait.get('request_commit') or '')
-        if wait.get('request_id') != request.request_id or not re.fullmatch(r'[0-9a-f]{40}', commit):
-            return None
+        if wait_path.is_file():
+            wait = load_json(wait_path)
+            commit = str(wait.get('request_commit') or '')
+            if wait.get('request_id') != request.request_id or not re.fullmatch(r'[0-9a-f]{40}', commit):
+                return None
+        else:
+            # Issue #31: with no wait pin, this same request's durable successful publication is the commit proof.
+            intent_path = STATE_ROOT / 'publication_intents' / 'ncaaf' / (request.request_id + '.json')
+            if not intent_path.is_file():
+                return None
+            intent = load_json(intent_path)
+            commit = str(intent.get('published_commit') or '')
+            if (intent.get('request_id') != request.request_id or intent.get('sport') != 'NCAAF'
+                    or intent.get('status') not in {'PUBLISHED', 'PUBLISHED_NO_CONTENT_CHANGE'}
+                    or not re.fullmatch(r'[0-9a-f]{40}', commit)):
+                return None
         expected = validate_payload_set(request)  # frozen queued bytes and their SHA-256 set
         git('fetch', '--quiet', 'origin', 'main')
         tip = git('rev-parse', 'origin/main')
