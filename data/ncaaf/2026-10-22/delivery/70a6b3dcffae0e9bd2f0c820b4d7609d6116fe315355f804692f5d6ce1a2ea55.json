@@ -1,0 +1,31 @@
+{
+  "attachment_count": 2,
+  "attachment_names": [
+    "NCAAF_T2_FULL_SLATE_20261022.pdf",
+    "NCAAF_T2_PICKS_CARD_20261022.png"
+  ],
+  "canonical_game_count": 3,
+  "canonical_public_payload_sha256": "c72f48d204784e44078c38f3d88770ab4428779be78fdf085a1a368aec6a2e59",
+  "count_scope": "EXPLICIT_CANONICAL_AND_DISPLAY",
+  "delivery_product": "T2",
+  "display_date": "October 22, 2026",
+  "display_game_count": 3,
+  "display_slate_date_et": "2026-10-22",
+  "files": {
+    "NCAAF_T2_FULL_SLATE_20261022.pdf": "0bae4efbebcdc9f0501e56dae50126e5702e89e59ecdd3c900132ae047b641a9",
+    "NCAAF_T2_PICKS_CARD_20261022.png": "3a56b369e446da4b091fa6809ea3d32ef48050a122160bd9a4eba0dd5f58c6fe",
+    "T3_APEX_NCAAF_DATA_REPORT_20261022.pdf": "a7b70a2aef51bbc312cb3b75674e8d7bf7077c78ad6b51c098853ed4413dcf59"
+  },
+  "graded_date": null,
+  "graded_slate_date_et": null,
+  "internal_market_pending_game_count": 0,
+  "issued_game_count": 3,
+  "market_pending_game_count": 0,
+  "official_position_count": 6,
+  "queue_request_id": "70a6b3dcffae0e9bd2f0c820b4d7609d6116fe315355f804692f5d6ce1a2ea55",
+  "results_files": {},
+  "schema_version": "apex.ncaaf.full_slate_delivery.v5.shared_publisher",
+  "sealed_day_payload_sha256": "99e02b1555b22b163ff5100cc89c69c9928b7e63bbb2a6e223fefa6dfc085cc8",
+  "season_year": null,
+  "slate_date": "2026-10-22"
+}
