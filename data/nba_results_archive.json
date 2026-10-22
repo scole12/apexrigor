@@ -600,6 +600,96 @@
           "rationale": "Under 227.5 is a 51.6% chance on the total. Team EPM of 4.0 for the LA Clippers and -9.7 for the Sacramento Kings favors the Under, as does game-optimized team EPM of 6.0 for the LA Clippers and -9.4 for the Sacramento Kings. A Dunk & Threes projection of 226.7 points works against the Under. Dunk & Threes had the LA Clippers at 115.9 points and the Sacramento Kings at 110.8 points. Before T-6 the injury report listed Bradley Beal, Brandon Ingram, Jordan Miller and Max Strus as Out for the LA Clippers and Ben Simmons, Dylan Cardwell and Maxime Raynaud as Out for the Sacramento Kings, and each of those projections was already at zero minutes. The tier is Moderate."
         }
       ]
+    },
+    {
+      "slate_date": "2026-10-22",
+      "week_start": "2026-10-19",
+      "positions": [
+        {
+          "position_id": "70891e15-915a-4500-9967-1177156bd57f",
+          "game_id": "146465",
+          "market": "ATS",
+          "matchup": "Cleveland Cavaliers @ Philadelphia 76ers",
+          "selection": "Cleveland Cavaliers",
+          "role": null,
+          "prediction": null,
+          "probability": 0.564253496861089,
+          "probability_side": "away",
+          "line": 3.5,
+          "price": -118,
+          "win_probability": 0.564253496861089,
+          "tier": "Elite",
+          "tier_version": 3,
+          "engine": "opus:shrink_c3",
+          "engine_version": "822952fecdf9ac170191f94c3e114f672a700f7acd03a24049647c82fa957c22",
+          "issued_at": "2026-10-22T17:49:13.281882+00:00",
+          "result": null,
+          "rationale": "Cleveland Cavaliers +3.5 is a 56.4% chance to cover. Jarrett Allen's 5.9 EPM over 28.9 minutes and Donovan Mitchell's 4.6 EPM over 33.1 minutes favor the Cleveland Cavaliers. Jaylen Brown is the biggest factor against the pick, with a 2.9 EPM over 48.0 minutes for the Philadelphia 76ers. A top-five minute share 0.359 higher for the Philadelphia 76ers than for the Cleveland Cavaliers favors the Cleveland Cavaliers, as does 8.0 more players projected for 10 or more minutes for the Cleveland Cavaliers than for the Philadelphia 76ers. A roster with 16 more players on the minute projection for the Cleveland Cavaliers than for the Philadelphia 76ers works against the Cleveland Cavaliers. Before T-6 the injury report listed Khalifa Diop and Nae'Qwan Tomlin as Out for the Cleveland Cavaliers, and each of those projections was already at zero minutes. The tier is Elite."
+        },
+        {
+          "position_id": "ebc4b614-5a66-4719-9bb8-2b4f630fc68b",
+          "game_id": "146465",
+          "market": "TOTALS",
+          "matchup": "Cleveland Cavaliers @ Philadelphia 76ers",
+          "selection": "Over",
+          "role": null,
+          "prediction": null,
+          "probability": 0.528250740741476,
+          "probability_side": "Over",
+          "line": 236.5,
+          "price": -114,
+          "win_probability": 0.528250740741476,
+          "tier": "Strong",
+          "tier_version": 3,
+          "engine": "c6:d4_ratings_lag1",
+          "engine_version": "32c021c3b85e8d5ec26a540618e588667b9377c098f00254e3364e3750025e87",
+          "issued_at": "2026-10-22T17:49:13.404522+00:00",
+          "result": null,
+          "rationale": "Over 236.5 is a 52.8% chance on the total. A Dunk & Threes projection of 233.3 points favors the Over, as does offensive EPM minus defensive EPM adding to 8.9 across both teams. Dunk & Threes had the Philadelphia 76ers at 118.0 points and the Cleveland Cavaliers at 115.3 points. The Philadelphia 76ers team EPM is 2.6 and the Cleveland Cavaliers team EPM is 6.5. Before T-6 the injury report listed Khalifa Diop and Nae'Qwan Tomlin as Out for the Cleveland Cavaliers, and each of those projections was already at zero minutes. The tier is Strong."
+        },
+        {
+          "position_id": "6b4f19c6-0365-4233-9a94-60575fd5e4da",
+          "game_id": "146466",
+          "market": "ATS",
+          "matchup": "Denver Nuggets @ Oklahoma City Thunder",
+          "selection": "Oklahoma City Thunder",
+          "role": null,
+          "prediction": null,
+          "probability": 0.540631514768461,
+          "probability_side": "home",
+          "line": -8.5,
+          "price": -110,
+          "win_probability": 0.540631514768461,
+          "tier": "Elite",
+          "tier_version": 3,
+          "engine": "opus:shrink_c3",
+          "engine_version": "822952fecdf9ac170191f94c3e114f672a700f7acd03a24049647c82fa957c22",
+          "issued_at": "2026-10-22T17:49:13.489355+00:00",
+          "result": null,
+          "rationale": "Oklahoma City Thunder -8.5 is a 54.1% chance to cover. Shai Gilgeous-Alexander's 9.4 EPM over 34.4 minutes and Chet Holmgren's 6.0 EPM over 29.6 minutes favor the Oklahoma City Thunder. Aaron Gordon is the biggest factor against the pick, with a 2.3 EPM over 48.0 minutes for the Denver Nuggets. A top-five minute share 0.436 higher for the Denver Nuggets than for the Oklahoma City Thunder favors the Oklahoma City Thunder, as does 9.0 more players projected for 10 or more minutes for the Oklahoma City Thunder than for the Denver Nuggets. A home line of -8.5 works against the Oklahoma City Thunder. Before T-6 the injury report listed Nikola Topic, Otega Oweh and Thomas Sorber as Out for the Oklahoma City Thunder, and each of those projections was already at zero minutes. The tier is Elite."
+        },
+        {
+          "position_id": "9c9bc98f-f77f-4898-9841-4a4b36646483",
+          "game_id": "146466",
+          "market": "TOTALS",
+          "matchup": "Denver Nuggets @ Oklahoma City Thunder",
+          "selection": "Over",
+          "role": null,
+          "prediction": null,
+          "probability": 0.507401710474796,
+          "probability_side": "Over",
+          "line": 236.5,
+          "price": -110,
+          "win_probability": 0.507401710474796,
+          "tier": "Weak",
+          "tier_version": 3,
+          "engine": "c6:d4_ratings_lag1",
+          "engine_version": "32c021c3b85e8d5ec26a540618e588667b9377c098f00254e3364e3750025e87",
+          "issued_at": "2026-10-22T17:49:13.545359+00:00",
+          "result": null,
+          "rationale": "Over 236.5 is a 50.7% chance on the total. A Dunk & Threes projection of 232.5 points favors the Over, as does offensive EPM minus defensive EPM adding to 4.1 across both teams. Team EPM of 12.7 for the Oklahoma City Thunder and 4.9 for the Denver Nuggets works against the Over, as does game-optimized team EPM of 10.4 for the Oklahoma City Thunder and 3.9 for the Denver Nuggets. Dunk & Threes had the Oklahoma City Thunder at 121.1 points and the Denver Nuggets at 111.4 points. Before T-6 the injury report listed Nikola Topic, Otega Oweh and Thomas Sorber as Out for the Oklahoma City Thunder, and each of those projections was already at zero minutes. The tier is Weak."
+        }
+      ]
     }
   ]
 }
