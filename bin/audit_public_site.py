@@ -254,7 +254,7 @@ def main() -> int:
             errors.append('/nba/about missing computed release time')
         if nba_picks.count('<article class="game-module"') != len(nba_today['games']):
             errors.append('NBA scheduled game card count mismatch')
-        for marker in ('Common release', 'FIRST tip', 'planned games', 'planned positions', 'AWAITING T-6'):
+        for marker in ('Common release', 'FIRST tip', 'planned games', 'planned positions'):
             if marker in nba_picks:
                 errors.append(f'/nba obsolete release text: {marker}')
         for position in nba_today['positions']:
@@ -265,7 +265,7 @@ def main() -> int:
             # pick is published. An issued card with picks has no refresh footer.
             if 'UPDATED ' not in nba_picks:
                 errors.append('/nba missing UPDATED ')
-            waiting = ('UNISSUED — AWAITING ' + nba_release + ' RELEASE') if not nba_today.get('released_at') else 'RELEASED — NO ENGINE PICK PUBLISHED'
+            waiting = 'UNISSUED — AWAITING T-6' if not nba_today.get('released_at') else 'RELEASED — NO ENGINE PICK PUBLISHED'
             if nba_today['positions'] or (nba_today['games'] and nba_picks.count(waiting) != len(nba_today['games'])):
                 errors.append('NBA unissued state mismatch')
             if nba_today.get('released_at') and 'SLATE RELEASED · NO ENGINE PICK PUBLISHED' not in nba_picks:
