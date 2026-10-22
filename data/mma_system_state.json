@@ -34,9 +34,9 @@
   },
   "canonical_fighter_identity": {
     "authority_population_permitted": false,
-    "canonical_bout_count": 11,
+    "canonical_bout_count": 14,
     "canonical_event_id": null,
-    "reference_bout_count": 11,
+    "reference_bout_count": 14,
     "reference_event_id": "d4ebff7a-ec56-5a54-8b43-86132a8a0985",
     "status": "VERIFIED_OPERATIONAL_CARD_PIT_IDENTITIES"
   },
@@ -150,6 +150,36 @@
       "scheduled_start_utc": "2026-10-24T14:00:00Z",
       "segment": "PRELIMS",
       "weight_class": "MIDDLEWEIGHT"
+    },
+    {
+      "fighter_a": "Bolaji Oki",
+      "fighter_b": "Daniel Santos",
+      "is_co_main_event": false,
+      "is_main_event": false,
+      "official_display_order": 12,
+      "scheduled_start_utc": "2026-10-24T14:00:00Z",
+      "segment": "PRELIMS",
+      "weight_class": "FEATHERWEIGHT"
+    },
+    {
+      "fighter_a": "Kody Steele",
+      "fighter_b": "Noah Gugnon",
+      "is_co_main_event": false,
+      "is_main_event": false,
+      "official_display_order": 13,
+      "scheduled_start_utc": "2026-10-24T14:00:00Z",
+      "segment": "PRELIMS",
+      "weight_class": "LIGHTWEIGHT"
+    },
+    {
+      "fighter_a": "Iasmin Lucindo",
+      "fighter_b": "Nicolle Caliari",
+      "is_co_main_event": false,
+      "is_main_event": false,
+      "official_display_order": 14,
+      "scheduled_start_utc": null,
+      "segment": "PRELIMS",
+      "weight_class": "WOMENS_STRAWWEIGHT"
     }
   ],
   "card_reconciliation_status": "OPEN_PROVIDER_IDENTITY_CONFLICT",
@@ -179,8 +209,8 @@
     "verified_queue_horizon": "2026-12-12"
   },
   "event_id": "d4ebff7a-ec56-5a54-8b43-86132a8a0985",
-  "fight_count": 11,
-  "generated_at_utc": "2026-10-18T11:15:45.277128Z",
+  "fight_count": 14,
+  "generated_at_utc": "2026-10-22T16:45:51.723217Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "GRADED_COMMERCIAL_AND_OR_SCIENTIFIC"
@@ -1008,7 +1038,7 @@
       "source": "PRODUCTION_COMMERCIAL_GRADES"
     }
   ],
-  "payload_sha256": "1f19df9cc30fdd3db4e5c4e8a51ddb8a7f63a982167af1367dec4c3ee73213f8",
+  "payload_sha256": "a6fb4d2ee5dc58c973af805db1adf08f0907d3b45af44d72e9274f82163e0dd3",
   "picks_published": false,
   "positions": [],
   "positions_sha256": null,
@@ -4351,7 +4381,7 @@
     "production_issuance_authorized": true,
     "release_binding": "AUTHORIZED_RELEASE_AWAITING_EVENT_ISSUANCE"
   },
-  "semantic_state_sha256": "32afb3d674afc9d8f90b95180ff4a7a3e5f8a6f9e2b0d8474fd9b18bd48e0a8f",
+  "semantic_state_sha256": "c068986ea194b0d8b283be9f810c68477e82077bb117e1d39d63116432f97020",
   "source_conflicts": [
     {
       "capture_basis": "LATEST_LIVE_EVENTS_CAPTURE",
@@ -4367,7 +4397,7 @@
         "Cam Rowston"
       ],
       "provider_selection_slots": {},
-      "source_capture_id": "15e1ba38-9cf5-4678-8bb4-32117fad8c6a",
+      "source_capture_id": "ee71543f-1e4b-4916-9ab0-d91ae7621859",
       "status": "ONE_SIDE_MATCH_PROVIDER_CARD_CONFLICT"
     },
     {
@@ -4376,6 +4406,20 @@
       "official_pair": [
         "Colby Thicknesse",
         "Asaf Chopurov"
+      ],
+      "provider_commence_time_utc": null,
+      "provider_event_id": null,
+      "provider_pair": null,
+      "provider_selection_slots": {},
+      "source_capture_id": null,
+      "status": "NO_PROVIDER_MATCH"
+    },
+    {
+      "capture_basis": null,
+      "match_basis": null,
+      "official_pair": [
+        "Iasmin Lucindo",
+        "Nicolle Caliari"
       ],
       "provider_commence_time_utc": null,
       "provider_event_id": null,

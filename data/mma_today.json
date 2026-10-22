@@ -116,6 +116,36 @@
       "scheduled_start_utc": "2026-10-24T14:00:00Z",
       "segment": "PRELIMS",
       "weight_class": "MIDDLEWEIGHT"
+    },
+    {
+      "fighter_a": "Bolaji Oki",
+      "fighter_b": "Daniel Santos",
+      "is_co_main_event": false,
+      "is_main_event": false,
+      "official_display_order": 12,
+      "scheduled_start_utc": "2026-10-24T14:00:00Z",
+      "segment": "PRELIMS",
+      "weight_class": "FEATHERWEIGHT"
+    },
+    {
+      "fighter_a": "Kody Steele",
+      "fighter_b": "Noah Gugnon",
+      "is_co_main_event": false,
+      "is_main_event": false,
+      "official_display_order": 13,
+      "scheduled_start_utc": "2026-10-24T14:00:00Z",
+      "segment": "PRELIMS",
+      "weight_class": "LIGHTWEIGHT"
+    },
+    {
+      "fighter_a": "Iasmin Lucindo",
+      "fighter_b": "Nicolle Caliari",
+      "is_co_main_event": false,
+      "is_main_event": false,
+      "official_display_order": 14,
+      "scheduled_start_utc": null,
+      "segment": "PRELIMS",
+      "weight_class": "WOMENS_STRAWWEIGHT"
     }
   ],
   "event": {
@@ -134,16 +164,16 @@
     "venue": "Etihad Arena"
   },
   "event_id": "d4ebff7a-ec56-5a54-8b43-86132a8a0985",
-  "fight_count": 11,
+  "fight_count": 14,
   "forecast": {
     "code": "AWAITING_T2",
     "detail": "No forecasts have been issued yet. Any published card will show the selection, captured sportsbook price, APEX probability, rating and full model-supported rationale.",
     "headline": "Awaiting the T-2 forecast run"
   },
-  "generated_at_utc": "2026-10-18T11:15:45.277128Z",
+  "generated_at_utc": "2026-10-22T16:45:51.723217Z",
   "issuance_id": null,
   "issuance_status": null,
-  "payload_sha256": "246ec48b38d77fb5c798a1c8b02d61c37553e9fa125c84232475985038757a8b",
+  "payload_sha256": "e4920c64eb5d36388a40db67650685f2e9f668a1e0ae4d7f72b89c6e886752fd",
   "picks_published": false,
   "positions": [],
   "positions_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
