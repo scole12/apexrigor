@@ -47,16 +47,20 @@ def reader_url():
 
 
 def read_tier_bands(path):
-    """The shared tier bands file: version, the three cutoffs on win probability, the four tier names."""
+    """The tier bands file: version, the four tier names and each market's three win-probability cutoffs."""
     bands = json.loads(Path(path).read_text(encoding='utf-8'))
-    if len(bands['cutoffs']) != 3 or len(bands['tiers']) != 4:
-        raise ValueError('tier bands file needs three cutoffs and four tiers')
+    if len(bands['tiers']) != 4 or set(bands['markets']) != {'spread', 'total'}:
+        raise ValueError('tier bands file needs four tiers and spread and total cutoffs')
+    for market in ('spread', 'total'):
+        cuts = bands['markets'][market]['cutoffs']
+        if len(cuts) != 3 or cuts != sorted(cuts) or not all(0.5 < c < 1 for c in cuts):
+            raise ValueError('tier bands file needs three rising cutoffs per market')
     return bands
 
 
-def tier_of(bands, w):
-    """The tier of a pick with win probability w; a w equal to a cutoff goes to the higher tier."""
-    return bands['tiers'][sum(1 for c in bands['cutoffs'] if w >= c)].title()
+def tier_of(bands, w, market):
+    """The tier of win probability w in its market; a w equal to a cutoff goes to the higher tier."""
+    return bands['tiers'][sum(1 for c in bands['markets'][market]['cutoffs'] if w >= c)].title()
 
 
 def card_rationale(row, public):
@@ -80,7 +84,7 @@ def public_position(row, bands=None):
                 else ('Over' if row['side'] == 'a' else 'Under'),
                 line=row['line'] if row['side'] == 'a' or market != 'ATS' else -row['line'], price=row['price_a'] if row['side'] == 'a' else row['price_b'],
                 win_probability=win,
-                tier=tier_of(bands, win) if bands else None,
+                tier=tier_of(bands, win, row['market']) if bands else None,
                 tier_version=bands['version'] if bands else None,
                 engine=row['engine'], engine_version=row['engine_version'],
                 issued_at=row['issued_at'].isoformat(),

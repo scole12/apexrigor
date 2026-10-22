@@ -14,9 +14,9 @@ builder = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(builder)
 
 
-TIER_BANDS = dict(version=2, fitted_on=['2022-23', '2023-24'], date='2026-10-20',
-                  cutoffs=[0.5065608111643407, 0.5354196603716558, 0.589047001464929],
-                  tiers=['WEAK', 'MODERATE', 'STRONG', 'ELITE'])
+TIER_BANDS = dict(version=3, date='2026-10-21', tiers=['WEAK', 'MODERATE', 'STRONG', 'ELITE'],
+                  markets=dict(spread=dict(cutoffs=[0.50695, 0.51482, 0.52677]),
+                               total=dict(cutoffs=[0.51018, 0.52079, 0.53415])))
 
 
 class NBAWebsite(unittest.TestCase):
@@ -96,8 +96,8 @@ class NBAWebsite(unittest.TestCase):
         position = archive['slates'][0]['positions'][0]
         # side b publishes the selected side: win chance 1-.43 and the flipped line
         self.assertEqual((position['result'], position['price'], round(position['probability'], 9), position['line']), ('P', -115, .57, 3.5))
-        # side b at p = .43: win probability .57, STRONG from the tier bands file
-        self.assertEqual((position['tier'], position['tier_version'], round(position['win_probability'], 9)), ('Strong', 2, .57))
+        # side b at p = .43: win probability .57, ELITE from the spread bands of the tier bands file
+        self.assertEqual((position['tier'], position['tier_version'], round(position['win_probability'], 9)), ('Elite', 3, .57))
         self.assertEqual(json.loads((self.root/'data/nba_today.json').read_text())['positions'], [])
         for field in ('engine', 'engine_version'):
             with self.assertRaisesRegex(ValueError, 'baseline'):
@@ -191,22 +191,25 @@ class NBAReleaseLabel(unittest.TestCase):
                      engine_version='v1', issued_at=__import__('datetime').datetime(2026, 10, 20, 13), outcome=None)
                 for i, (m, side, p) in enumerate((('spread', 'a', .5040), ('total', 'b', 1 - .5363)))]
         positions = [builder.public_position(r, TIER_BANDS) for r in rows]
-        self.assertEqual([p['tier'] for p in positions], ['Weak', 'Strong'])
+        self.assertEqual([p['tier'] for p in positions], ['Weak', 'Elite'])
         page = self.released(positions)
         self.assertNotIn('SLATE RELEASED', page)
         self.assertNotIn('nba-refresh-status', page)
         self.assertNotIn('FanDuel prices', page)
         self.assertIn('2 POSITIONS', page)
-        for text in ('Win %: 50.4', 'Win %: 53.6', '>Weak<', '>Strong<',
-                     'tier-badge tier-badge--weak', 'tier-badge tier-badge--strong',
+        for text in ('Win %: 50.4', 'Win %: 53.6', '>Weak<', '>Elite<',
+                     'tier-badge tier-badge--weak', 'tier-badge tier-badge--elite',
                      'APEX WIN PROBABILITY RATING'):
             self.assertIn(text, page)
         self.assertNotIn('REGULAR SEASON', page)
         self.assertNotIn('Probability:', page)
         self.assertEqual(page.count('Win %: 50.4'), 1)
         self.assertEqual(page.count('Win %: 53.6'), 1)
-        self.assertEqual(builder.tier_of(TIER_BANDS, TIER_BANDS['cutoffs'][0]), 'Moderate')
-        self.assertEqual(builder.tier_of(TIER_BANDS, TIER_BANDS['cutoffs'][2]), 'Elite')
+        for market in ('spread', 'total'):
+            cuts = TIER_BANDS['markets'][market]['cutoffs']
+            self.assertEqual(builder.tier_of(TIER_BANDS, cuts[0], market), 'Moderate')
+            self.assertEqual(builder.tier_of(TIER_BANDS, cuts[0] - 1e-9, market), 'Weak')
+            self.assertEqual(builder.tier_of(TIER_BANDS, cuts[2], market), 'Elite')
 
     def test_a_pick_already_on_the_site_keeps_its_first_published_tier(self):
         from unittest.mock import MagicMock, patch
@@ -227,4 +230,4 @@ class NBAReleaseLabel(unittest.TestCase):
         with patch('psycopg.connect', return_value=conn), patch.object(builder, 'reader_url', return_value='R'):
             builder.refresh(date(2026, 10, 20), bands)
         kept = json.loads((self.root / 'data/nba_results_archive.json').read_text())['slates'][0]['positions'][0]
-        self.assertEqual((kept['tier'], kept['tier_version']), ('Moderate', 1))  # the file would say Elite, v2
+        self.assertEqual((kept['tier'], kept['tier_version']), ('Moderate', 1))  # the file would say Elite, v3
