@@ -724,13 +724,15 @@ def load_t6(conn, game_ids):
         join latest l on l.game_id = m.game_id and l.team_id = m.team_id and l.obs = m.observed_at
         join latest_fetch f on f.game_id = m.game_id and f.team_id = m.team_id and f.fetch_id = m.fetch_id
       ), rates as materialized (
-        select distinct on (r.player_id, c.release_at)
-          r.player_id, c.release_at, r.rating_date, r.oepm, r.depm, r.epm
-        from dnt.player_ratings r
-        join (select distinct release_at from meta) c on true
-        where r.game_optimized and r.observed_at < c.release_at
-          and r.player_id in (select player_id from chosen)
-        order by r.player_id, c.release_at, r.rating_date desc, r.observed_at desc, r.fetch_id desc
+        -- one newest rating per player and release, read per player (was a sort of every season's rows:
+        -- 246,807 rows, 6.6 s; the 2026-10-21 publish timed out here)
+        select p.player_id, c.release_at, r.rating_date, r.oepm, r.depm, r.epm
+        from (select distinct player_id from chosen) p
+        cross join (select distinct release_at from meta) c
+        cross join lateral (
+          select r.rating_date, r.oepm, r.depm, r.epm from dnt.player_ratings r
+          where r.player_id = p.player_id and r.game_optimized and r.observed_at < c.release_at
+          order by r.rating_date desc, r.observed_at desc, r.fetch_id desc limit 1) r
       ), inj_time as materialized (
         select i.game_id, i.team_id, max(i.published_at) as published_at
         from injury.reports i join meta on meta.game_id = i.game_id
