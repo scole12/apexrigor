@@ -67,7 +67,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 3,
-      "scheduled_start_utc": "2026-10-24T14:00:00Z",
+      "scheduled_start_utc": "2026-10-24T19:20:00Z",
       "segment": "MAIN",
       "weight_class": "FLYWEIGHT"
     },
@@ -77,7 +77,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 4,
-      "scheduled_start_utc": "2026-10-24T14:00:00Z",
+      "scheduled_start_utc": "2026-10-24T18:50:00Z",
       "segment": "MAIN",
       "weight_class": "HEAVYWEIGHT"
     },
@@ -87,7 +87,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 5,
-      "scheduled_start_utc": "2026-10-24T14:00:00Z",
+      "scheduled_start_utc": "2026-10-24T18:20:00Z",
       "segment": "MAIN",
       "weight_class": "FEATHERWEIGHT"
     },
@@ -97,7 +97,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 6,
-      "scheduled_start_utc": "2026-10-24T14:00:00Z",
+      "scheduled_start_utc": "2026-10-24T17:40:00Z",
       "segment": "PRELIMS",
       "weight_class": "LIGHT_HEAVYWEIGHT"
     },
@@ -107,7 +107,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 7,
-      "scheduled_start_utc": "2026-10-24T14:00:00Z",
+      "scheduled_start_utc": "2026-10-24T17:15:00Z",
       "segment": "PRELIMS",
       "weight_class": "LIGHT_HEAVYWEIGHT"
     },
@@ -117,7 +117,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 8,
-      "scheduled_start_utc": "2026-10-24T14:00:00Z",
+      "scheduled_start_utc": "2026-10-24T16:45:00Z",
       "segment": "PRELIMS",
       "weight_class": "MIDDLEWEIGHT"
     },
@@ -127,7 +127,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 9,
-      "scheduled_start_utc": "2026-10-24T14:00:00Z",
+      "scheduled_start_utc": "2026-10-24T16:15:00Z",
       "segment": "PRELIMS",
       "weight_class": "LIGHTWEIGHT"
     },
@@ -147,7 +147,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 11,
-      "scheduled_start_utc": "2026-10-24T14:00:00Z",
+      "scheduled_start_utc": "2026-10-24T15:20:00Z",
       "segment": "PRELIMS",
       "weight_class": "MIDDLEWEIGHT"
     },
@@ -157,7 +157,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 12,
-      "scheduled_start_utc": "2026-10-24T14:00:00Z",
+      "scheduled_start_utc": "2026-10-24T14:55:00Z",
       "segment": "PRELIMS",
       "weight_class": "FEATHERWEIGHT"
     },
@@ -167,7 +167,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 13,
-      "scheduled_start_utc": "2026-10-24T14:00:00Z",
+      "scheduled_start_utc": "2026-10-24T14:30:00Z",
       "segment": "PRELIMS",
       "weight_class": "LIGHTWEIGHT"
     },
@@ -210,7 +210,7 @@
   },
   "event_id": "d4ebff7a-ec56-5a54-8b43-86132a8a0985",
   "fight_count": 14,
-  "generated_at_utc": "2026-10-23T19:45:42.102966Z",
+  "generated_at_utc": "2026-10-23T21:11:35.564136Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "GRADED_COMMERCIAL_AND_OR_SCIENTIFIC"
@@ -1038,7 +1038,7 @@
       "source": "PRODUCTION_COMMERCIAL_GRADES"
     }
   ],
-  "payload_sha256": "1d7eb11fe23b76d09ad9a62a9fbb0feed1a6f3fd285995d16340e8463bafbed8",
+  "payload_sha256": "98ea4e7b381ef3745abfcbf91e5ea324909335652de9939e093289031dbf9cbd",
   "picks_published": false,
   "positions": [],
   "positions_sha256": null,
@@ -4381,7 +4381,7 @@
     "production_issuance_authorized": true,
     "release_binding": "AUTHORIZED_RELEASE_AWAITING_EVENT_ISSUANCE"
   },
-  "semantic_state_sha256": "49867474972985d70e0960564e6f3880f12ad614a9b3443edd8a18ea889614de",
+  "semantic_state_sha256": "a8a464353dc3ee291f3fe0992d42fc0e93d7b0d611ad61fe5ab284c52a16e20f",
   "source_conflicts": [
     {
       "capture_basis": "LATEST_LIVE_EVENTS_CAPTURE",
@@ -4390,14 +4390,14 @@
         "Abus Magomedov",
         "Cam Rowston"
       ],
-      "provider_commence_time_utc": "2026-10-24T14:00:00Z",
+      "provider_commence_time_utc": "2026-10-24T16:45:00Z",
       "provider_event_id": "4ca80986802a53598e9b7a0aaebad69e",
       "provider_pair": [
         "Abusupyian Magomedov",
         "Cam Rowston"
       ],
       "provider_selection_slots": {},
-      "source_capture_id": "e893c5f5-4b06-45eb-a107-28407edb061c",
+      "source_capture_id": "ae182e21-63ed-445d-80a9-d788f5382b12",
       "status": "ONE_SIDE_MATCH_PROVIDER_CARD_CONFLICT"
     }
   ],
