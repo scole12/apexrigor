@@ -1,13 +1,13 @@
 {
   "_meta": {
     "issuance_mode": "UNISSUED_POST_GRADER_FLIP",
-    "prior_card_date_et": "2026-10-19",
+    "prior_card_date_et": "2026-10-21",
     "receipt_sha256_algo": "sha256_of_canonical_json_bytes",
     "source": "canonical_games_or_official_schedule"
   },
   "card_status": "UNISSUED_AWAITING_T2",
-  "date": "2026-10-20",
-  "display_message": "Next slate after 2026-10-19 grader. Games listed from official schedule; positions publish at T-2.",
+  "date": "2026-10-23",
+  "display_message": "Next slate after 2026-10-21 grader. Games listed from official schedule; positions publish at T-2.",
   "excluded_games": [],
   "game_count": 1,
   "games": [
@@ -16,28 +16,28 @@
       "PUBLISHED_WAGER": "NO",
       "SPORTSBOOK_AUTHORITY": "FanDuel",
       "away_pitcher": "",
-      "away_team": "Cleveland Guardians",
+      "away_team": "Tampa Bay Rays",
       "data_status_explanation": "Post-grader next slate. Schedule listed; no sealed T-2 positions.",
       "engine_refusals": {},
-      "first_pitch_et": "8:08 PM ET",
-      "game_id": "849814",
-      "game_pk": 849814,
+      "first_pitch_et": "8:00 PM ET",
+      "game_id": "849805",
+      "game_pk": 849805,
       "home_pitcher": "",
-      "home_team": "Tampa Bay Rays",
+      "home_team": "Milwaukee Brewers",
       "information_states": [
         "POST_GRADER_NEXT_SLATE"
       ],
-      "matchup": "Cleveland Guardians @ Tampa Bay Rays",
+      "matchup": "Tampa Bay Rays @ Milwaukee Brewers",
       "model_ids": {},
       "model_outputs": {},
       "picks": [],
       "pitchers_note": "Starters unpublished",
       "position_count": 0,
       "publication_status": "UNISSUED_SCHEDULE_LISTED",
-      "scheduled_first_pitch": "2026-10-21T00:08:00Z"
+      "scheduled_first_pitch": "2026-10-24T00:00:00Z"
     }
   ],
-  "generated_at": "2026-10-20T11:05:43.741179Z",
+  "generated_at": "2026-10-23T00:50:41.620178Z",
   "markets": [
     "F5 ATS",
     "F5 TOT"
@@ -50,7 +50,7 @@
   "model_version_ats": null,
   "model_version_totals": null,
   "position_count": 0,
-  "public_card_date_et": "2026-10-20",
+  "public_card_date_et": "2026-10-23",
   "public_state": "UNISSUED_NEXT_SLATE",
   "publication_accounting": {
     "engine_game_accounting": {
@@ -63,13 +63,13 @@
       "UNISSUED": 1
     },
     "no_authentic_fanduel_market_game_pks": [
-      849814
+      849805
     ],
     "official_game_count": 1,
     "published_after_first_pitch_game_pks": [],
     "timely_pregame_pick_count": 0
   },
-  "run_id": "post_grader_picks_flip_20261020",
-  "t2_fire_et_label": "6:08 PM ET",
+  "run_id": "post_grader_picks_flip_20261023",
+  "t2_fire_et_label": "6:00 PM ET",
   "unissued_schedule": true
 }
