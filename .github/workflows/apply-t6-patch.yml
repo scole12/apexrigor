@@ -1,11 +1,12 @@
 name: Apply T-6 read patch
 
-on:
+"on":
   push:
     branches:
       - cursor/t6-rates-and-timeout-b962
     paths:
       - t6.patch
+      - .github/workflows/apply-t6-patch.yml
 
 permissions:
   contents: write
@@ -29,10 +30,5 @@ jobs:
           git rm -f t6.patch .github/workflows/apply-t6-patch.yml
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git commit -m "$(cat <<'EOF'
-Read each player's newest rating and last 20 box rows directly
-
-The Oct 21 publish was canceled at the 20 second cap while the players query sorted every season's ratings. The per-player rating lookup is back, the box history uses the same shape, and the read-only statement timeout is 60 seconds.
-EOF
-)"
+          git commit -m 'Read each player newest rating and last 20 box rows directly'
           git push origin HEAD:cursor/t6-rates-and-timeout-b962
