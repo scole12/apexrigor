@@ -231,3 +231,17 @@ class NBAReleaseLabel(unittest.TestCase):
             builder.refresh(date(2026, 10, 20), bands)
         kept = json.loads((self.root / 'data/nba_results_archive.json').read_text())['slates'][0]['positions'][0]
         self.assertEqual((kept['tier'], kept['tier_version']), ('Moderate', 1))  # the file would say Elite, v3
+
+
+class T6Read(unittest.TestCase):
+    def test_the_publish_read_is_per_player_and_allows_sixty_seconds(self):
+        # Oct 21 1:29 PM ET: sorting every season's ratings hit the 20s cap. PR 35's per-player
+        # lookup was reverted after a failed site build. The read stays per player, and the box
+        # history uses the same shape.
+        rationale = (ROOT / 'bin/nba_t6_rationale.py').read_text(encoding='utf-8')
+        page = (ROOT / 'bin/build_nba_public_payload.py').read_text(encoding='utf-8')
+        self.assertEqual(rationale.count('cross join lateral'), 2)
+        self.assertNotIn('join (select distinct release_at from meta) c on true', rationale)
+        self.assertIn('limit 20', rationale)
+        self.assertIn('statement_timeout=60000', page)
+        self.assertNotIn('statement_timeout=20000', page)

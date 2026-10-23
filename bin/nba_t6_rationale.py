@@ -724,13 +724,15 @@ def load_t6(conn, game_ids):
         join latest l on l.game_id = m.game_id and l.team_id = m.team_id and l.obs = m.observed_at
         join latest_fetch f on f.game_id = m.game_id and f.team_id = m.team_id and f.fetch_id = m.fetch_id
       ), rates as materialized (
-        select distinct on (r.player_id, c.release_at)
-          r.player_id, c.release_at, r.rating_date, r.oepm, r.depm, r.epm
-        from dnt.player_ratings r
-        join (select distinct release_at from meta) c on true
-        where r.game_optimized and r.observed_at < c.release_at
-          and r.player_id in (select player_id from chosen)
-        order by r.player_id, c.release_at, r.rating_date desc, r.observed_at desc, r.fetch_id desc
+        -- Newest rating per player and release, read per player. Sorting every season's rows
+        -- (246,807 of them, 6.6 s) is what canceled the 2026-10-21 publish.
+        select p.player_id, c.release_at, r.rating_date, r.oepm, r.depm, r.epm
+        from (select distinct player_id from chosen) p
+        cross join (select distinct release_at from meta) c
+        cross join lateral (
+          select r.rating_date, r.oepm, r.depm, r.epm from dnt.player_ratings r
+          where r.player_id = p.player_id and r.game_optimized and r.observed_at < c.release_at
+          order by r.rating_date desc, r.observed_at desc, r.fetch_id desc limit 1) r
       ), inj_time as materialized (
         select i.game_id, i.team_id, max(i.published_at) as published_at
         from injury.reports i join meta on meta.game_id = i.game_id
@@ -793,30 +795,38 @@ def load_t6(conn, game_ids):
         ) c
         join meta on meta.game_id = c.game_id
         where c.p_mp > 0
-      ), ranked as (
-        select b.player_id, r.release_at, b.minutes::float as minutes, b.ast::float as ast,
-          (coalesce(b.oreb, 0) + coalesce(b.dreb, 0))::float as reb, b.blk::float as blk,
-          b.fg3a::float as fg3a, b.fga::float as fga,
-          (g.season_id = r.season_id) as this_season,
-          row_number() over (partition by b.player_id, r.release_at
-            order by g.scheduled_tip desc nulls last, g.game_id desc) as rn
-        from stats.player_game_box b
-        join core.games g on g.game_id = b.game_id
-        join roster r on r.player_id = b.player_id
-        where b.observed_at < r.release_at and g.scheduled_tip < r.release_at
-          and not coalesce(b.did_not_play, false) and coalesce(b.minutes, 0) > 0
       )
-      select player_id, release_at,
-        avg(minutes) filter (where rn <= 5) as min5,
-        sum(minutes) filter (where rn <= 20) as min20,
-        sum(ast) filter (where rn <= 20) as ast20,
-        sum(reb) filter (where rn <= 20) as reb20,
-        sum(blk) filter (where rn <= 20) as blk20,
-        sum(fg3a) filter (where rn <= 20) as fg3a20,
-        sum(fga) filter (where rn <= 20) as fga20,
-        count(*) filter (where this_season) as games_season
-      from ranked
-      group by player_id, release_at""", (ids,)).fetchall()
+      -- Last 20 box rows per player, read per player, same shape as the ratings lookup above.
+      -- This season's games are the newest, so a games_season under 5 is the full season count,
+      -- and five or more stays at least five (the new-player check).
+      select r.player_id, r.release_at,
+        avg(x.minutes) filter (where x.rn <= 5) as min5,
+        sum(x.minutes) filter (where x.rn <= 20) as min20,
+        sum(x.ast) filter (where x.rn <= 20) as ast20,
+        sum(x.reb) filter (where x.rn <= 20) as reb20,
+        sum(x.blk) filter (where x.rn <= 20) as blk20,
+        sum(x.fg3a) filter (where x.rn <= 20) as fg3a20,
+        sum(x.fga) filter (where x.rn <= 20) as fga20,
+        count(*) filter (where x.this_season) as games_season
+      from roster r
+      cross join lateral (
+        select s.minutes, s.ast, s.reb, s.blk, s.fg3a, s.fga, s.this_season,
+          row_number() over (order by s.scheduled_tip desc nulls last, s.game_id desc) as rn
+        from (
+          select b.minutes::float as minutes, b.ast::float as ast,
+            (coalesce(b.oreb, 0) + coalesce(b.dreb, 0))::float as reb, b.blk::float as blk,
+            b.fg3a::float as fg3a, b.fga::float as fga,
+            (g.season_id = r.season_id) as this_season, g.scheduled_tip, g.game_id
+          from stats.player_game_box b
+          join core.games g on g.game_id = b.game_id
+          where b.player_id = r.player_id
+            and b.observed_at < r.release_at and g.scheduled_tip < r.release_at
+            and not coalesce(b.did_not_play, false) and coalesce(b.minutes, 0) > 0
+          order by g.scheduled_tip desc nulls last, g.game_id desc
+          limit 20
+        ) s
+      ) x
+      group by r.player_id, r.release_at""", (ids,)).fetchall()
     preds = conn.execute("""select distinct on (p.game_id)
         p.game_id, p.p_home_score, p.p_away_score, p.home_win_prob
       from dnt.game_predictions p

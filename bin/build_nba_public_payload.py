@@ -97,9 +97,10 @@ def refresh(day, tier_bands=None):
     import psycopg
     from psycopg.rows import dict_row
     # Explicit read-only transaction, one consistent snapshot and bounded queries.
+    # 20s canceled the Oct 21 1:29 PM ET publish. The T-6 reads are per player now; 60s is the cap.
     try:
         conn = psycopg.connect(reader_url(), connect_timeout=20, row_factory=dict_row,
-                               options='-c default_transaction_read_only=on -c statement_timeout=20000')
+                               options='-c default_transaction_read_only=on -c statement_timeout=60000')
     except psycopg.Error:
         raise RuntimeError('NBA reader connection failed; credentials withheld') from None
     with conn:
