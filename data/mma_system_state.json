@@ -137,7 +137,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 10,
-      "scheduled_start_utc": null,
+      "scheduled_start_utc": "2026-10-24T15:40:00Z",
       "segment": "PRELIMS",
       "weight_class": "BANTAMWEIGHT"
     },
@@ -177,7 +177,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 14,
-      "scheduled_start_utc": null,
+      "scheduled_start_utc": "2026-10-24T14:15:00Z",
       "segment": "PRELIMS",
       "weight_class": "WOMENS_STRAWWEIGHT"
     }
@@ -210,7 +210,7 @@
   },
   "event_id": "d4ebff7a-ec56-5a54-8b43-86132a8a0985",
   "fight_count": 14,
-  "generated_at_utc": "2026-10-22T16:45:51.723217Z",
+  "generated_at_utc": "2026-10-23T19:45:42.102966Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "GRADED_COMMERCIAL_AND_OR_SCIENTIFIC"
@@ -1038,7 +1038,7 @@
       "source": "PRODUCTION_COMMERCIAL_GRADES"
     }
   ],
-  "payload_sha256": "a6fb4d2ee5dc58c973af805db1adf08f0907d3b45af44d72e9274f82163e0dd3",
+  "payload_sha256": "1d7eb11fe23b76d09ad9a62a9fbb0feed1a6f3fd285995d16340e8463bafbed8",
   "picks_published": false,
   "positions": [],
   "positions_sha256": null,
@@ -4381,7 +4381,7 @@
     "production_issuance_authorized": true,
     "release_binding": "AUTHORIZED_RELEASE_AWAITING_EVENT_ISSUANCE"
   },
-  "semantic_state_sha256": "c068986ea194b0d8b283be9f810c68477e82077bb117e1d39d63116432f97020",
+  "semantic_state_sha256": "49867474972985d70e0960564e6f3880f12ad614a9b3443edd8a18ea889614de",
   "source_conflicts": [
     {
       "capture_basis": "LATEST_LIVE_EVENTS_CAPTURE",
@@ -4397,36 +4397,8 @@
         "Cam Rowston"
       ],
       "provider_selection_slots": {},
-      "source_capture_id": "ee71543f-1e4b-4916-9ab0-d91ae7621859",
+      "source_capture_id": "e893c5f5-4b06-45eb-a107-28407edb061c",
       "status": "ONE_SIDE_MATCH_PROVIDER_CARD_CONFLICT"
-    },
-    {
-      "capture_basis": null,
-      "match_basis": null,
-      "official_pair": [
-        "Colby Thicknesse",
-        "Asaf Chopurov"
-      ],
-      "provider_commence_time_utc": null,
-      "provider_event_id": null,
-      "provider_pair": null,
-      "provider_selection_slots": {},
-      "source_capture_id": null,
-      "status": "NO_PROVIDER_MATCH"
-    },
-    {
-      "capture_basis": null,
-      "match_basis": null,
-      "official_pair": [
-        "Iasmin Lucindo",
-        "Nicolle Caliari"
-      ],
-      "provider_commence_time_utc": null,
-      "provider_event_id": null,
-      "provider_pair": null,
-      "provider_selection_slots": {},
-      "source_capture_id": null,
-      "status": "NO_PROVIDER_MATCH"
     }
   ],
   "system_readiness_state": "AUTHORIZED_RELEASE_AWAITING_ISSUANCE",
