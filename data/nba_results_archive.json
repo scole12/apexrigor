@@ -713,7 +713,7 @@
           "engine": "spread_Q_t37_centrality.v1",
           "engine_version": "f88f40794b6b0655e7eb499b4c6098505c39310749a330efb023b6a1e23a3e4b",
           "issued_at": "2026-10-23T19:53:46.671869+00:00",
-          "result": null,
+          "result": "L",
           "rationale": "New York Knicks +2.5 is a 50.7% chance to cover. Karl-Anthony Towns's 5.9 EPM over 25.3 minutes and Jalen Brunson's 3.9 EPM over 33.2 minutes favor the New York Knicks. Jayson Tatum is the biggest factor against the pick, with a 5.4 EPM over 34.4 minutes for the Boston Celtics. An assist rate 0.27 per 36 higher for the New York Knicks than for the Boston Celtics over the last 20 games favors the New York Knicks, as does a home line of -2.5. A minute change from the last five games that is 20.8 larger for the New York Knicks than for the Boston Celtics works against the New York Knicks. Before T-6 the injury report listed Devin Carter as Out for the Boston Celtics, and each of those projections was already at zero minutes. The tier is Strong."
         },
         {
@@ -734,7 +734,7 @@
           "engine": "totals_sig_all.v1",
           "engine_version": "ffcbdfa552fb60f5058363edcb32a179321f60b06c3b2ffe4f57cdb21e9ab8be",
           "issued_at": "2026-10-23T19:53:50.337322+00:00",
-          "result": null,
+          "result": "L",
           "rationale": "Over 222.5 is a 51.9% chance on the total. A Dunk & Threes projection of 229.6 points favors the Over, as does offensive EPM minus defensive EPM adding to 1.8 across both teams. Team EPM of 8.7 for the Boston Celtics and 6.3 for the New York Knicks works against the Over. Dunk & Threes had the Boston Celtics at 117.0 points and the New York Knicks at 112.6 points. Before T-6 the injury report listed Devin Carter as Out for the Boston Celtics, and each of those projections was already at zero minutes. The tier is Moderate."
         },
         {
@@ -755,7 +755,7 @@
           "engine": "spread_Q_t37_centrality.v1",
           "engine_version": "f88f40794b6b0655e7eb499b4c6098505c39310749a330efb023b6a1e23a3e4b",
           "issued_at": "2026-10-23T19:53:46.967065+00:00",
-          "result": null,
+          "result": "L",
           "rationale": "San Antonio Spurs -5.5 is a 50.7% chance to cover. Victor Wembanyama's 8.7 EPM over 32.6 minutes and De'Aaron Fox's 4.1 EPM over 30.9 minutes favor the San Antonio Spurs. Kevin Durant is the biggest factor against the pick, with a 4.0 EPM over 36.3 minutes for the Houston Rockets. A minute change from the last five games that is 60.6 larger for the Houston Rockets than for the San Antonio Spurs favors the San Antonio Spurs, as does a top-five minute share 0.062 higher for the Houston Rockets than for the San Antonio Spurs. A home line of -5.5 works against the San Antonio Spurs. Before T-6 the injury report listed Jayden Quaintance and Tobias Harris as Out for the San Antonio Spurs, and each of those projections was already at zero minutes. The tier is Strong."
         },
         {
@@ -776,7 +776,7 @@
           "engine": "totals_sig_all.v1",
           "engine_version": "ffcbdfa552fb60f5058363edcb32a179321f60b06c3b2ffe4f57cdb21e9ab8be",
           "issued_at": "2026-10-23T19:53:50.741057+00:00",
-          "result": null,
+          "result": "L",
           "rationale": "Over 225.5 is a 53.6% chance on the total. A Dunk & Threes projection of 225.7 points favors the Over. Team EPM of 8.9 for the San Antonio Spurs and 5.0 for the Houston Rockets works against the Over, as does game-optimized team EPM of 8.0 for the San Antonio Spurs and 5.3 for the Houston Rockets. Dunk & Threes had the San Antonio Spurs at 115.4 points and the Houston Rockets at 110.3 points. Before T-6 the injury report listed Jayden Quaintance and Tobias Harris as Out for the San Antonio Spurs, and each of those projections was already at zero minutes. The tier is Strong."
         },
         {
@@ -797,7 +797,7 @@
           "engine": "spread_Q_t37_centrality.v1",
           "engine_version": "f88f40794b6b0655e7eb499b4c6098505c39310749a330efb023b6a1e23a3e4b",
           "issued_at": "2026-10-23T19:53:46.711668+00:00",
-          "result": null,
+          "result": "L",
           "rationale": "Charlotte Hornets +2.5 is a 50.3% chance to cover. Moussa Diabate's 2.5 EPM over 30.6 minutes and Brandon Miller's 2.2 EPM over 33.2 minutes favor the Charlotte Hornets. Dyson Daniels is the biggest factor against the pick, with a 4.0 EPM over 33.1 minutes for the Atlanta Hawks. A minute change from the last five games that is 78.6 larger for the Atlanta Hawks than for the Charlotte Hornets favors the Charlotte Hornets, as does a home line of +2.5. An assist rate 0.56 per 36 higher for the Atlanta Hawks than for the Charlotte Hornets over the last 20 games works against the Charlotte Hornets. Before T-6 the injury report listed Coby White, Grant Williams, Kon Knueppel and Kylan Boswell as Out for the Charlotte Hornets and Henri Veesaar and Mouhamed Gueye as Out for the Atlanta Hawks, and each of those projections was already at zero minutes. The tier is Moderate."
         },
         {
@@ -818,7 +818,7 @@
           "engine": "totals_sig_all.v1",
           "engine_version": "ffcbdfa552fb60f5058363edcb32a179321f60b06c3b2ffe4f57cdb21e9ab8be",
           "issued_at": "2026-10-23T19:53:50.386810+00:00",
-          "result": null,
+          "result": "L",
           "rationale": "Over 226.5 is a 51.8% chance on the total. A Dunk & Threes projection of 235.2 points favors the Over, as does team EPM of -3.7 for the Charlotte Hornets and -1.0 for the Atlanta Hawks. Offensive EPM minus defensive EPM adding to -5.7 across both teams works against the Over. Dunk & Threes had the Charlotte Hornets at 117.6 points and the Atlanta Hawks at 117.6 points. Before T-6 the injury report listed Coby White, Grant Williams, Kon Knueppel and Kylan Boswell as Out for the Charlotte Hornets and Henri Veesaar and Mouhamed Gueye as Out for the Atlanta Hawks, and each of those projections was already at zero minutes. The tier is Moderate."
         },
         {
@@ -839,7 +839,7 @@
           "engine": "spread_Q_t37_centrality.v1",
           "engine_version": "f88f40794b6b0655e7eb499b4c6098505c39310749a330efb023b6a1e23a3e4b",
           "issued_at": "2026-10-23T19:53:46.770338+00:00",
-          "result": null,
+          "result": "W",
           "rationale": "Dallas Mavericks +7.5 is a 50.2% chance to cover. Jarace Walker's -4.0 EPM over 20.0 minutes and Kyrie Irving's 3.1 offensive EPM over 26.5 minutes favor the Dallas Mavericks. Tyrese Haliburton is the biggest factor against the pick, with a 6.6 EPM over 31.7 minutes for the Indiana Pacers. A home line of -7.5 favors the Dallas Mavericks, as does a minute change from the last five games that is 46.4 larger for the Indiana Pacers than for the Dallas Mavericks. An assist rate 1.16 per 36 higher for the Indiana Pacers than for the Dallas Mavericks over the last 20 games works against the Dallas Mavericks. Before T-6 the injury report listed Caleb Martin, Dereck Lively II, Santi Aldama and Tarik Biberovic as Out for the Dallas Mavericks and Johnny Furphy and T.J. McConnell as Out for the Indiana Pacers, and each of those projections was already at zero minutes. The tier is Moderate."
         },
         {
@@ -860,7 +860,7 @@
           "engine": "totals_sig_all.v1",
           "engine_version": "ffcbdfa552fb60f5058363edcb32a179321f60b06c3b2ffe4f57cdb21e9ab8be",
           "issued_at": "2026-10-23T19:53:50.445631+00:00",
-          "result": null,
+          "result": "W",
           "rationale": "Under 239.5 is a 51.3% chance on the total. Team EPM of 0.9 for the Indiana Pacers and -5.8 for the Dallas Mavericks favors the Under, as does game-optimized team EPM of -0.2 for the Indiana Pacers and -8.2 for the Dallas Mavericks. A Dunk & Threes projection of 234.6 points works against the Under. Dunk & Threes had the Indiana Pacers at 121.2 points and the Dallas Mavericks at 113.4 points. Before T-6 the injury report listed Caleb Martin, Dereck Lively II, Santi Aldama and Tarik Biberovic as Out for the Dallas Mavericks and Johnny Furphy and T.J. McConnell as Out for the Indiana Pacers, and each of those projections was already at zero minutes. The tier is Weak."
         },
         {
@@ -881,7 +881,7 @@
           "engine": "spread_Q_t37_centrality.v1",
           "engine_version": "f88f40794b6b0655e7eb499b4c6098505c39310749a330efb023b6a1e23a3e4b",
           "issued_at": "2026-10-23T19:53:46.809689+00:00",
-          "result": null,
+          "result": "L",
           "rationale": "Orlando Magic +1.5 is a 51.1% chance to cover. Franz Wagner's 4.8 EPM over 28.5 minutes and Desmond Bane's 2.1 EPM over 32.0 minutes favor the Orlando Magic. LaMelo Ball is the biggest factor against the pick, with a 5.0 offensive EPM over 29.4 minutes for the Minnesota Timberwolves. A home line of +1.5 favors the Orlando Magic, as does a minute change from the last five games that is 20.4 larger for the Minnesota Timberwolves than for the Orlando Magic. A rebound rate 0.31 per 36 higher for the Minnesota Timberwolves than for the Orlando Magic over the last 20 games works against the Orlando Magic. Before T-6 the injury report listed Anthony Black, Izaiyah Nelson, Jonathan Isaac and Noah Penda as Out for the Orlando Magic and Donte DiVincenzo as Out for the Minnesota Timberwolves, and each of those projections was already at zero minutes. The tier is Elite."
         },
         {
@@ -902,7 +902,7 @@
           "engine": "totals_sig_all.v1",
           "engine_version": "ffcbdfa552fb60f5058363edcb32a179321f60b06c3b2ffe4f57cdb21e9ab8be",
           "issued_at": "2026-10-23T19:53:50.504963+00:00",
-          "result": null,
+          "result": "W",
           "rationale": "Under 235.5 is a 52.7% chance on the total. Game-optimized team EPM of 1.7 for the Orlando Magic and -2.4 for the Minnesota Timberwolves favors the Under, as does offensive EPM minus defensive EPM adding to -3.0 across both teams. A Dunk & Threes projection of 244.3 points works against the Under. Dunk & Threes had the Orlando Magic at 123.2 points and the Minnesota Timberwolves at 121.1 points. The Orlando Magic team EPM is 1.0 and the Minnesota Timberwolves team EPM is 0.2. Before T-6 the injury report listed Anthony Black, Izaiyah Nelson, Jonathan Isaac and Noah Penda as Out for the Orlando Magic and Donte DiVincenzo as Out for the Minnesota Timberwolves, and each of those projections was already at zero minutes. The tier is Strong."
         },
         {
@@ -923,7 +923,7 @@
           "engine": "spread_Q_t37_centrality.v1",
           "engine_version": "f88f40794b6b0655e7eb499b4c6098505c39310749a330efb023b6a1e23a3e4b",
           "issued_at": "2026-10-23T19:53:46.868540+00:00",
-          "result": null,
+          "result": "W",
           "rationale": "Toronto Raptors -8.5 is a 51.3% chance to cover. Kawhi Leonard's 7.4 EPM over 26.4 minutes and Scottie Barnes's 3.2 EPM over 30.1 minutes favor the Toronto Raptors. Anthony Davis is the biggest factor against the pick, with a 2.9 EPM over 32.2 minutes for the Washington Wizards. A minute change from the last five games that is 49.1 larger for the Washington Wizards than for the Toronto Raptors favors the Toronto Raptors, as does a roster with 2 more players on the minute projection for the Washington Wizards than for the Toronto Raptors. A home line of +8.5 works against the Toronto Raptors. Before T-6 the injury report listed Malachi Smith and Nate Bittle as Out for the Toronto Raptors and AJ Dybantsa, Jamir Watkins and Tristan Vukcevic as Out for the Washington Wizards, and each of those projections was already at zero minutes. The tier is Elite."
         },
         {
@@ -944,7 +944,7 @@
           "engine": "totals_sig_all.v1",
           "engine_version": "ffcbdfa552fb60f5058363edcb32a179321f60b06c3b2ffe4f57cdb21e9ab8be",
           "issued_at": "2026-10-23T19:53:50.593189+00:00",
-          "result": null,
+          "result": "W",
           "rationale": "Under 235.5 is a 51.1% chance on the total. A Dunk & Threes projection of 244.2 points works against the Under, as does team EPM of -7.0 for the Washington Wizards and 5.4 for the Toronto Raptors. Dunk & Threes had the Washington Wizards at 118.1 points and the Toronto Raptors at 126.1 points. Before T-6 the injury report listed Malachi Smith and Nate Bittle as Out for the Toronto Raptors and AJ Dybantsa, Jamir Watkins and Tristan Vukcevic as Out for the Washington Wizards, and each of those projections was already at zero minutes. The tier is Weak. The line on Under is 235.5."
         },
         {
@@ -965,7 +965,7 @@
           "engine": "spread_Q_t37_centrality.v1",
           "engine_version": "f88f40794b6b0655e7eb499b4c6098505c39310749a330efb023b6a1e23a3e4b",
           "issued_at": "2026-10-23T19:53:46.927717+00:00",
-          "result": null,
+          "result": "W",
           "rationale": "Detroit Pistons -1.5 is a 50.5% chance to cover. Cade Cunningham's 4.2 EPM over 34.3 minutes and Ausar Thompson's 4.6 defensive EPM over 30.9 minutes favor the Detroit Pistons. Giannis Antetokounmpo is the biggest factor against the pick, with a 7.7 EPM over 29.3 minutes for the Miami Heat. 2.0 more players projected for 10 or more minutes for the Detroit Pistons than for the Miami Heat favors the Detroit Pistons, as does a block rate 0.34 per 36 higher for the Detroit Pistons than for the Miami Heat over the last 20 games. A home line of +1.5 works against the Detroit Pistons. Before T-6 the injury report listed Elijah Harkless, Isaac Jones and Ugonna Onyenso as Out for the Detroit Pistons, and each of those projections was already at zero minutes. The tier is Strong."
         },
         {
@@ -986,7 +986,7 @@
           "engine": "totals_sig_all.v1",
           "engine_version": "ffcbdfa552fb60f5058363edcb32a179321f60b06c3b2ffe4f57cdb21e9ab8be",
           "issued_at": "2026-10-23T19:53:50.681781+00:00",
-          "result": null,
+          "result": "L",
           "rationale": "Under 235.5 is a 54.9% chance on the total. Offensive EPM minus defensive EPM adding to -1.0 across both teams favors the Under. A Dunk & Threes projection of 234.6 points works against the Under, as does a Dunk & Threes win chance of 44.5% for the Miami Heat. Dunk & Threes had the Miami Heat at 116.5 points and the Detroit Pistons at 118.1 points. The Miami Heat team EPM is 2.8 and the Detroit Pistons team EPM is 3.0. Before T-6 the injury report listed Elijah Harkless, Isaac Jones and Ugonna Onyenso as Out for the Detroit Pistons, and each of those projections was already at zero minutes. The tier is Strong."
         },
         {
@@ -1007,7 +1007,7 @@
           "engine": "spread_Q_t37_centrality.v1",
           "engine_version": "f88f40794b6b0655e7eb499b4c6098505c39310749a330efb023b6a1e23a3e4b",
           "issued_at": "2026-10-23T19:53:46.612985+00:00",
-          "result": null,
+          "result": "W",
           "rationale": "Chicago Bulls -1.5 is a 50.0% chance to cover. Ousmane Dieng's -4.4 EPM over 18.3 minutes and Kyle Kuzma's -2.5 EPM over 23.2 minutes favor the Chicago Bulls. Caleb Wilson is the biggest factor against the pick, with a -3.7 EPM over 34.5 minutes for the Chicago Bulls. A minute change from the last five games that is 76.0 larger for the Milwaukee Bucks than for the Chicago Bulls favors the Chicago Bulls, as does a rebound rate 0.98 per 36 higher for the Chicago Bulls than for the Milwaukee Bucks over the last 20 games. A home line of +1.5 works against the Chicago Bulls. The injury report before T-6 listed no Out player on either minute projection. The tier is Weak."
         },
         {
@@ -1028,7 +1028,7 @@
           "engine": "totals_sig_all.v1",
           "engine_version": "ffcbdfa552fb60f5058363edcb32a179321f60b06c3b2ffe4f57cdb21e9ab8be",
           "issued_at": "2026-10-23T19:53:50.278328+00:00",
-          "result": null,
+          "result": "L",
           "rationale": "Under 238.5 is a 55.5% chance on the total. Game-optimized team EPM of -7.4 for the Milwaukee Bucks and -9.6 for the Chicago Bulls favors the Under, as does offensive EPM minus defensive EPM adding to -1.9 across both teams. A Dunk & Threes projection of 244.5 points works against the Under, as does team EPM of -8.6 for the Milwaukee Bucks and -6.6 for the Chicago Bulls. Dunk & Threes had the Milwaukee Bucks at 123.3 points and the Chicago Bulls at 121.2 points. The injury report before T-6 listed no Out player on either minute projection. The tier is Elite."
         },
         {
@@ -1049,7 +1049,7 @@
           "engine": "spread_Q_t37_centrality.v1",
           "engine_version": "f88f40794b6b0655e7eb499b4c6098505c39310749a330efb023b6a1e23a3e4b",
           "issued_at": "2026-10-23T19:53:47.026420+00:00",
-          "result": null,
+          "result": "W",
           "rationale": "New Orleans Pelicans +1.5 is a 50.7% chance to cover. Isaiah Collier's -4.0 EPM over 21.3 minutes and Airious Bailey's -3.2 EPM over 24.4 minutes favor the New Orleans Pelicans. Lauri Markkanen is the biggest factor against the pick, with a 3.5 EPM over 32.1 minutes for the Utah Jazz. A rebound rate 0.76 per 36 higher for the New Orleans Pelicans than for the Utah Jazz over the last 20 games favors the New Orleans Pelicans, as does an assist rate 0.16 per 36 higher for the New Orleans Pelicans than for the Utah Jazz over the last 20 games. A minute change from the last five games that is 18.8 larger for the New Orleans Pelicans than for the Utah Jazz works against the New Orleans Pelicans. Before T-6 the injury report listed Harrison Ingram, Jusuf Nurkic and Trey Alexander as Out for the Utah Jazz and Jaron Pierre Jr., Julian Reese and Malik Dia as Out for the New Orleans Pelicans, and each of those projections was already at zero minutes. The tier is Strong."
         },
         {
@@ -1070,7 +1070,7 @@
           "engine": "totals_sig_all.v1",
           "engine_version": "ffcbdfa552fb60f5058363edcb32a179321f60b06c3b2ffe4f57cdb21e9ab8be",
           "issued_at": "2026-10-23T19:53:50.800052+00:00",
-          "result": null,
+          "result": "W",
           "rationale": "Under 239.5 is a 52.8% chance on the total. A Dunk & Threes projection of 243.7 points works against the Under, as does offensive EPM minus defensive EPM adding to 3.4 across both teams. Dunk & Threes had the Utah Jazz at 121.8 points and the New Orleans Pelicans at 121.9 points. The Utah Jazz team EPM is -6.1 and the New Orleans Pelicans team EPM is -5.5. Before T-6 the injury report listed Harrison Ingram, Jusuf Nurkic and Trey Alexander as Out for the Utah Jazz and Jaron Pierre Jr., Julian Reese and Malik Dia as Out for the New Orleans Pelicans, and each of those projections was already at zero minutes. The tier is Strong."
         },
         {
@@ -1091,7 +1091,7 @@
           "engine": "spread_Q_t37_centrality.v1",
           "engine_version": "f88f40794b6b0655e7eb499b4c6098505c39310749a330efb023b6a1e23a3e4b",
           "issued_at": "2026-10-23T19:53:47.085260+00:00",
-          "result": null,
+          "result": "L",
           "rationale": "Golden State Warriors -4.5 is a 50.3% chance to cover. Stephen Curry's 6.5 EPM over 22.0 minutes and Cameron Boozer's 0.0 defensive EPM over 33.6 minutes favor the Golden State Warriors. Ty Jerome is the biggest factor against the pick, with a 5.1 EPM over 25.9 minutes for the Memphis Grizzlies. A minute change from the last five games that is 14.8 larger for the Memphis Grizzlies than for the Golden State Warriors favors the Golden State Warriors, as does an assist rate 0.22 per 36 higher for the Golden State Warriors than for the Memphis Grizzlies over the last 20 games. A rebound rate 1.76 per 36 higher for the Memphis Grizzlies than for the Golden State Warriors over the last 20 games works against the Golden State Warriors. Before T-6 the injury report listed Jimmy Butler, Kristaps Porzingis and Moses Moody as Out for the Golden State Warriors, and each of those projections was already at zero minutes. The tier is Moderate."
         },
         {
@@ -1112,7 +1112,7 @@
           "engine": "totals_sig_all.v1",
           "engine_version": "ffcbdfa552fb60f5058363edcb32a179321f60b06c3b2ffe4f57cdb21e9ab8be",
           "issued_at": "2026-10-23T19:53:50.849446+00:00",
-          "result": null,
+          "result": "W",
           "rationale": "Under 235.5 is a 50.2% chance on the total. A Dunk & Threes projection of 232.7 points works against the Under, as does game-optimized team EPM of -2.9 for the Golden State Warriors and 0.5 for the Memphis Grizzlies. Dunk & Threes had the Golden State Warriors at 116.3 points and the Memphis Grizzlies at 116.4 points. The Golden State Warriors team EPM is -2.2 and the Memphis Grizzlies team EPM is -0.9. Before T-6 the injury report listed Jimmy Butler, Kristaps Porzingis and Moses Moody as Out for the Golden State Warriors, and each of those projections was already at zero minutes. The tier is Weak."
         },
         {
@@ -1133,7 +1133,7 @@
           "engine": "spread_Q_t37_centrality.v1",
           "engine_version": "f88f40794b6b0655e7eb499b4c6098505c39310749a330efb023b6a1e23a3e4b",
           "issued_at": "2026-10-23T19:53:47.134429+00:00",
-          "result": null,
+          "result": "L",
           "rationale": "Los Angeles Lakers -9.5 is a 50.4% chance to cover. Luka Doncic's 8.2 EPM over 31.5 minutes and Austin Reaves's 4.6 EPM over 32.7 minutes favor the Los Angeles Lakers. Darius Garland is the biggest factor against the pick, with a 2.1 offensive EPM over 31.9 minutes for the LA Clippers. A rebound rate 1.16 per 36 higher for the Los Angeles Lakers than for the LA Clippers over the last 20 games favors the Los Angeles Lakers, as does a top-five minute share 0.013 higher for the LA Clippers than for the Los Angeles Lakers. A home line of -9.5 works against the Los Angeles Lakers. Before T-6 the injury report listed Bradley Beal, Brandon Ingram, Jordan Miller and Max Strus as Out for the LA Clippers and Adou Thiero and Cameron Carr as Out for the Los Angeles Lakers, and each of those projections was already at zero minutes. The tier is Strong."
         },
         {
@@ -1154,7 +1154,7 @@
           "engine": "totals_sig_all.v1",
           "engine_version": "ffcbdfa552fb60f5058363edcb32a179321f60b06c3b2ffe4f57cdb21e9ab8be",
           "issued_at": "2026-10-23T19:53:50.908397+00:00",
-          "result": null,
+          "result": "L",
           "rationale": "Under 226.5 is a 53.1% chance on the total. Team EPM of 1.2 for the Los Angeles Lakers and -6.7 for the LA Clippers favors the Under, as does game-optimized team EPM of 3.7 for the Los Angeles Lakers and -2.8 for the LA Clippers. A Dunk & Threes projection of 232.5 points works against the Under. Dunk & Threes had the Los Angeles Lakers at 120.5 points and the LA Clippers at 112.0 points. Before T-6 the injury report listed Bradley Beal, Brandon Ingram, Jordan Miller and Max Strus as Out for the LA Clippers and Adou Thiero and Cameron Carr as Out for the Los Angeles Lakers, and each of those projections was already at zero minutes. The tier is Strong."
         },
         {
@@ -1175,7 +1175,7 @@
           "engine": "spread_Q_t37_centrality.v1",
           "engine_version": "f88f40794b6b0655e7eb499b4c6098505c39310749a330efb023b6a1e23a3e4b",
           "issued_at": "2026-10-23T19:53:47.173879+00:00",
-          "result": null,
+          "result": "L",
           "rationale": "Portland Trail Blazers -8.5 is a 51.0% chance to cover. Darius Acuff Jr.'s -4.7 EPM over 35.1 minutes and Damian Lillard's 5.3 EPM over 25.5 minutes favor the Portland Trail Blazers. Sidy Cissoko is the biggest factor against the pick, with a 1.3 defensive EPM over 22.7 minutes for the Portland Trail Blazers. An assist rate 1.79 per 36 higher for the Portland Trail Blazers than for the Sacramento Kings over the last 20 games favors the Portland Trail Blazers, as does a top-five minute share 0.071 higher for the Sacramento Kings than for the Portland Trail Blazers. A home line of +8.5 works against the Portland Trail Blazers. Before T-6 the injury report listed Branden Carlson, Chris Youngblood and Shaedon Sharpe as Out for the Portland Trail Blazers and Ben Simmons, Dylan Cardwell and Maxime Raynaud as Out for the Sacramento Kings, and each of those projections was already at zero minutes. The tier is Elite."
         },
         {
@@ -1196,7 +1196,7 @@
           "engine": "totals_sig_all.v1",
           "engine_version": "ffcbdfa552fb60f5058363edcb32a179321f60b06c3b2ffe4f57cdb21e9ab8be",
           "issued_at": "2026-10-23T19:53:50.957413+00:00",
-          "result": null,
+          "result": "L",
           "rationale": "Under 232.5 is a 54.2% chance on the total. Offensive EPM minus defensive EPM adding to -3.3 across both teams favors the Under. Team EPM of -9.0 for the Sacramento Kings and 4.2 for the Portland Trail Blazers works against the Under, as does game-optimized team EPM of -9.7 for the Sacramento Kings and 5.8 for the Portland Trail Blazers. Dunk & Threes had the Sacramento Kings at 107.9 points and the Portland Trail Blazers at 118.3 points. Before T-6 the injury report listed Branden Carlson, Chris Youngblood and Shaedon Sharpe as Out for the Portland Trail Blazers and Ben Simmons, Dylan Cardwell and Maxime Raynaud as Out for the Sacramento Kings, and each of those projections was already at zero minutes. The tier is Strong."
         }
       ]
