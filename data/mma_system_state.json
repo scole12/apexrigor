@@ -199,18 +199,18 @@
     "venue": "Etihad Arena"
   },
   "event_controller": {
-    "autonomous_discovery_status": "VERIFIED_OFFICIAL_REFERENCE_QUEUE_PRELOADED_THROUGH_2026-12-12",
+    "autonomous_discovery_status": "VERIFIED_OFFICIAL_REFERENCE_QUEUE_PRELOADED_THROUGH_2027-01-30",
     "human_weekly_trigger_required": false,
     "interval": "30 minutes",
     "persistent": true,
     "service": "apex-mma-event-controller.service",
     "timer": "apex-mma-event-controller.timer",
-    "verified_future_reference_count": 5,
-    "verified_queue_horizon": "2026-12-12"
+    "verified_future_reference_count": 6,
+    "verified_queue_horizon": "2027-01-30"
   },
   "event_id": "d4ebff7a-ec56-5a54-8b43-86132a8a0985",
   "fight_count": 14,
-  "generated_at_utc": "2026-10-24T18:15:43.649696Z",
+  "generated_at_utc": "2026-10-24T22:16:11.924832Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "GRADED_COMMERCIAL_AND_OR_SCIENTIFIC"
@@ -4830,7 +4830,7 @@
     "source_market_snapshot_sha256": "b03264cf71ff8615624a1e9fc58bdac11abfca3aa597658a4a63475895f14a36",
     "source_positions_sha256": "1f89f81145c755c8f559b68008f90ac95a8ed722713b26ef46b33be2e02d1931"
   },
-  "payload_sha256": "b0a48dcfd3a3dc8f2d6e607018f3b5101170ad0f2ff07c76de8137d2f9e44ae4",
+  "payload_sha256": "c135254c99018f05a155f50980c1a67be5a199ca71883b15e05eca99204fbfb0",
   "picks_published": true,
   "positions": [
     {
@@ -8784,7 +8784,7 @@
     "production_issuance_authorized": true,
     "release_binding": "EXACT_AUTHORIZED_RELEASE"
   },
-  "semantic_state_sha256": "c08bcb523e190b525f561adf2c0c3984a4bcdfe6bb5c37f8760918e927c85f96",
+  "semantic_state_sha256": "b7c86fc265bf35d7b980db3f8c631a846895197cc9c30baa85f23c9ac23ee8be",
   "source_conflicts": [
     {
       "capture_basis": "LATEST_LIVE_EVENTS_CAPTURE",
