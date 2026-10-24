@@ -15,22 +15,22 @@
   "overall_pushes": 26,
   "overall_win_rate": 52.3,
   "overall_win_rate_display": "52.3%",
-  "positions_graded": 4158,
+  "positions_graded": 4159,
   "overall": {
     "wins": 2153,
     "losses": 1960,
     "pushes": 26,
-    "voids": 13,
+    "voids": 14,
     "pending": 6,
     "other": 0,
     "win_rate": 52.3,
     "win_rate_display": "52.3%",
-    "positions_tracked": 4158,
+    "positions_tracked": 4159,
     "positions_settled": 4139,
-    "positions_graded": 4158,
+    "positions_graded": 4159,
     "decided_n": 4113,
     "settled_n": 4139,
-    "tracked_n": 4158,
+    "tracked_n": 4159,
     "slates_graded": 136,
     "f5_spread": "940-871-4P",
     "f5_total": "928-863-22P",
@@ -157,17 +157,17 @@
       "wins": 41,
       "losses": 22,
       "pushes": 0,
-      "voids": 0,
+      "voids": 1,
       "pending": 0,
       "other": 0,
       "win_rate": 65.1,
       "win_rate_display": "65.1%",
-      "positions_tracked": 63,
-      "positions_graded": 63,
+      "positions_tracked": 64,
+      "positions_graded": 64,
       "positions_settled": 63,
       "decided_n": 63,
       "settled_n": 63,
-      "tracked_n": 63,
+      "tracked_n": 64,
       "slates_graded": 6,
       "graded_slate_count": 6,
       "latest_graded_date": "2026-10-17",
@@ -177,17 +177,17 @@
       "source_files": [
         {
           "path": "data/mma_results_archive.json",
-          "sha256": "bf56e8f655c1c7f92727ea002cec72a481f09e0ffce41cf6059ab6770df0e641",
+          "sha256": "1d5324ffd41c09242c9326ff32d5c51a426643c0335aa280079572392fb7127a",
           "field": "events[].latest_results"
         },
         {
           "path": "data/mma_results_summary.json",
-          "sha256": "cbfa68807ba69a269919fa2326c9292484e032b8af02e8f855f579fca9563143",
+          "sha256": "0093cd89890ebc6f8bd5cec54c4f055c4d81fd9bbbb2473d2aa8d7d5c822226a",
           "field": "latest_event_results"
         }
       ],
-      "source_row_count": 63,
-      "duplicate_rows_ignored": 63,
+      "source_row_count": 64,
+      "duplicate_rows_ignored": 64,
       "deduplication_key": "issuance_id + bout_id + WINNER"
     },
     "ncaaf": {
@@ -252,12 +252,12 @@
       "mma": [
         {
           "path": "data/mma_results_archive.json",
-          "sha256": "bf56e8f655c1c7f92727ea002cec72a481f09e0ffce41cf6059ab6770df0e641",
+          "sha256": "1d5324ffd41c09242c9326ff32d5c51a426643c0335aa280079572392fb7127a",
           "field": "events[].latest_results"
         },
         {
           "path": "data/mma_results_summary.json",
-          "sha256": "cbfa68807ba69a269919fa2326c9292484e032b8af02e8f855f579fca9563143",
+          "sha256": "0093cd89890ebc6f8bd5cec54c4f055c4d81fd9bbbb2473d2aa8d7d5c822226a",
           "field": "latest_event_results"
         }
       ],

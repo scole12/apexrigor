@@ -1,12 +1,12 @@
 {
-  "commercial_settlement_count": 63,
+  "commercial_settlement_count": 64,
   "current_event_forecast": {
     "code": "FORECASTS_ISSUED",
     "detail": "12 issued positions. Picks, sportsbook prices, probabilities, ratings and rationale below are read from the same sealed T-2 issuance.",
     "headline": "Forecasts issued"
   },
-  "generated_at_utc": "2026-10-24T14:16:33.513442Z",
-  "graded_scientific_object_count": 49,
+  "generated_at_utc": "2026-10-24T18:15:43.649696Z",
+  "graded_scientific_object_count": 50,
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "GRADED_COMMERCIAL_AND_OR_SCIENTIFIC"
@@ -831,9 +831,22 @@
       "result": "W",
       "selection": "Cristian P\u00e9rez",
       "source": "PRODUCTION_COMMERCIAL_GRADES"
+    },
+    {
+      "bout_id": "8ef8a7c8-e51f-5693-ad99-dfff56fcd83a",
+      "commercial_grade_id": "2004daa7-946d-55fe-a579-1ee24fcdaaeb",
+      "graded_at_utc": "2026-10-24T17:51:35.315511Z",
+      "issuance_id": "950105fb-6838-4f44-805b-e2e50dd50ea0",
+      "line": null,
+      "market": "WINNER",
+      "price": -125,
+      "profit_loss": "0.000000",
+      "result": "VOID",
+      "selection": "Melissa Gatto",
+      "source": "PRODUCTION_COMMERCIAL_GRADES"
     }
   ],
-  "payload_sha256": "e8fbfb9fb45aa2cf059c97ae11bee6868890e8c7f1dc8ad4fc32865a04f2bdda",
+  "payload_sha256": "51c3667dc82687045feba833e93f360217a93b0c640c2c6099c21c8324c003fb",
   "release_state": "SEALED_RELEASE_AVAILABLE",
   "schema_version": "APEX_MMA_RESULTS_SUMMARY_V1",
   "status": "RESULTS_AVAILABLE"

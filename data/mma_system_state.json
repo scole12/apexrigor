@@ -7,19 +7,19 @@
       "events": 1053,
       "fight_statistics_source_aggregate": 0,
       "fighters": 4054,
-      "results": 3935,
-      "round_statistics_elemental": 13313,
+      "results": 3953,
+      "round_statistics_elemental": 13579,
       "round_stats": 0,
       "scorecards": 37,
       "weigh_ins": 5442
     },
     "production": {
-      "commercial_grades": 63,
+      "commercial_grades": 64,
       "eligible_releases": 1,
       "frozen_releases": 1,
-      "grades": 112,
+      "grades": 114,
       "issuances": 7,
-      "scientific_grades": 49
+      "scientific_grades": 50
     },
     "testing": {
       "experiments": 22,
@@ -210,7 +210,7 @@
   },
   "event_id": "d4ebff7a-ec56-5a54-8b43-86132a8a0985",
   "fight_count": 14,
-  "generated_at_utc": "2026-10-24T14:16:33.513442Z",
+  "generated_at_utc": "2026-10-24T18:15:43.649696Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "GRADED_COMMERCIAL_AND_OR_SCIENTIFIC"
@@ -1035,6 +1035,19 @@
       "profit_loss": "0.294118",
       "result": "W",
       "selection": "Cristian P\u00e9rez",
+      "source": "PRODUCTION_COMMERCIAL_GRADES"
+    },
+    {
+      "bout_id": "8ef8a7c8-e51f-5693-ad99-dfff56fcd83a",
+      "commercial_grade_id": "2004daa7-946d-55fe-a579-1ee24fcdaaeb",
+      "graded_at_utc": "2026-10-24T17:51:35.315511Z",
+      "issuance_id": "950105fb-6838-4f44-805b-e2e50dd50ea0",
+      "line": null,
+      "market": "WINNER",
+      "price": -125,
+      "profit_loss": "0.000000",
+      "result": "VOID",
+      "selection": "Melissa Gatto",
       "source": "PRODUCTION_COMMERCIAL_GRADES"
     }
   ],
@@ -4817,7 +4830,7 @@
     "source_market_snapshot_sha256": "b03264cf71ff8615624a1e9fc58bdac11abfca3aa597658a4a63475895f14a36",
     "source_positions_sha256": "1f89f81145c755c8f559b68008f90ac95a8ed722713b26ef46b33be2e02d1931"
   },
-  "payload_sha256": "baa4e1da447f8c24fe29818a9b16fd57f8e280df34423fe0cc4271a55276d5bf",
+  "payload_sha256": "b0a48dcfd3a3dc8f2d6e607018f3b5101170ad0f2ff07c76de8137d2f9e44ae4",
   "picks_published": true,
   "positions": [
     {
@@ -7470,6 +7483,19 @@
           "result": "W",
           "selection": "Brendan Allen",
           "source": "PRODUCTION_COMMERCIAL_GRADES"
+        },
+        {
+          "bout_id": "8ef8a7c8-e51f-5693-ad99-dfff56fcd83a",
+          "commercial_grade_id": "2004daa7-946d-55fe-a579-1ee24fcdaaeb",
+          "graded_at_utc": "2026-10-24T17:51:35.315511Z",
+          "issuance_id": "950105fb-6838-4f44-805b-e2e50dd50ea0",
+          "line": null,
+          "market": "WINNER",
+          "price": -125,
+          "profit_loss": "0.000000",
+          "result": "VOID",
+          "selection": "Melissa Gatto",
+          "source": "PRODUCTION_COMMERCIAL_GRADES"
         }
       ],
       "official_issuance": true,
@@ -7788,6 +7814,19 @@
           "profit_loss": "0.847458",
           "result": "W",
           "selection": "Brendan Allen",
+          "source": "PRODUCTION_COMMERCIAL_GRADES"
+        },
+        {
+          "bout_id": "8ef8a7c8-e51f-5693-ad99-dfff56fcd83a",
+          "commercial_grade_id": "2004daa7-946d-55fe-a579-1ee24fcdaaeb",
+          "graded_at_utc": "2026-10-24T17:51:35.315511Z",
+          "issuance_id": "950105fb-6838-4f44-805b-e2e50dd50ea0",
+          "line": null,
+          "market": "WINNER",
+          "price": -125,
+          "profit_loss": "0.000000",
+          "result": "VOID",
+          "selection": "Melissa Gatto",
           "source": "PRODUCTION_COMMERCIAL_GRADES"
         }
       ],
@@ -8745,7 +8784,7 @@
     "production_issuance_authorized": true,
     "release_binding": "EXACT_AUTHORIZED_RELEASE"
   },
-  "semantic_state_sha256": "6bbfde4dcf4e0be3c1fd406647181231d5cd796fc51d7da3b7d0f8ca1e1d0e6d",
+  "semantic_state_sha256": "c08bcb523e190b525f561adf2c0c3984a4bcdfe6bb5c37f8760918e927c85f96",
   "source_conflicts": [
     {
       "capture_basis": "LATEST_LIVE_EVENTS_CAPTURE",

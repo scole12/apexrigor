@@ -147,13 +147,13 @@
     "events": 1053,
     "fight_statistics_source_aggregate": 0,
     "fighters": 4054,
-    "results": 3935,
-    "round_statistics_elemental": 13313,
+    "results": 3953,
+    "round_statistics_elemental": 13579,
     "round_stats": 0,
     "scorecards": 37,
     "weigh_ins": 5442
   },
-  "generated_at_utc": "2026-10-24T14:16:33.513442Z",
+  "generated_at_utc": "2026-10-24T18:15:43.649696Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "GRADED_COMMERCIAL_AND_OR_SCIENTIFIC"
@@ -977,6 +977,19 @@
       "result": "W",
       "selection": "Cristian P\u00e9rez",
       "source": "PRODUCTION_COMMERCIAL_GRADES"
+    },
+    {
+      "bout_id": "8ef8a7c8-e51f-5693-ad99-dfff56fcd83a",
+      "commercial_grade_id": "2004daa7-946d-55fe-a579-1ee24fcdaaeb",
+      "graded_at_utc": "2026-10-24T17:51:35.315511Z",
+      "issuance_id": "950105fb-6838-4f44-805b-e2e50dd50ea0",
+      "line": null,
+      "market": "WINNER",
+      "price": -125,
+      "profit_loss": "0.000000",
+      "result": "VOID",
+      "selection": "Melissa Gatto",
+      "source": "PRODUCTION_COMMERCIAL_GRADES"
     }
   ],
   "market_outcomes_authority": {
@@ -998,7 +1011,7 @@
     "schedule_status": "ANNOUNCED",
     "venue": "Etihad Arena"
   },
-  "payload_sha256": "a26326228dff0a6acbe0c01820070a3e25d01835e3bd1213845cbe6bc2ea8c2f",
+  "payload_sha256": "085d03bf73156b5d5602f786e18b4d3e3df1a879a825401f8734d7dd9f93e1e2",
   "production_isolation": "PASS",
   "schema_version": "APEX_MMA_OPS_SNAPSHOT_V1",
   "science_blocker": "NONE_PRODUCTION_ISSUANCE_ELIGIBLE",
