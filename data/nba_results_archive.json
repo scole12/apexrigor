@@ -1218,8 +1218,8 @@
           "line": 3.5,
           "price": -110,
           "win_probability": 0.515830919624216,
-          "tier": null,
-          "tier_version": null,
+          "tier": "Strong",
+          "tier_version": 5,
           "engine": "opus:shrink_c3",
           "engine_version": "822952fecdf9ac170191f94c3e114f672a700f7acd03a24049647c82fa957c22",
           "issued_at": "2026-10-24T16:33:25.690767+00:00",
@@ -1239,13 +1239,13 @@
           "line": 229.5,
           "price": -110,
           "win_probability": 0.526699641682457,
-          "tier": null,
-          "tier_version": null,
+          "tier": "Moderate",
+          "tier_version": 5,
           "engine": "c6:d4_ratings_lag1",
           "engine_version": "32c021c3b85e8d5ec26a540618e588667b9377c098f00254e3364e3750025e87",
           "issued_at": "2026-10-24T16:38:29.082580+00:00",
           "result": null,
-          "rationale": "Over 229.5 is a 52.7% chance on the total. A Dunk & Threes projection of 235.6 points favors the Over, as does team EPM of -3.7 for the Charlotte Hornets and 2.8 for the Miami Heat. Offensive EPM minus defensive EPM adding to -2.0 across both teams works against the Over. Dunk & Threes had the Charlotte Hornets at 117.2 points and the Miami Heat at 118.4 points. The injury report before T-6 listed no Out player on either minute projection. The tier is Strong."
+          "rationale": "Over 229.5 is a 52.7% chance on the total. A Dunk & Threes projection of 235.6 points favors the Over, as does team EPM of -3.7 for the Charlotte Hornets and 2.8 for the Miami Heat. Offensive EPM minus defensive EPM adding to -2.0 across both teams works against the Over. Dunk & Threes had the Charlotte Hornets at 117.2 points and the Miami Heat at 118.4 points. The injury report before T-6 listed no Out player on either minute projection. The tier is Moderate."
         },
         {
           "position_id": "14421262-41fe-4696-aed5-21ab95f66c8a",
