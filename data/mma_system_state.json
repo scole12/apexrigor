@@ -205,12 +205,12 @@
     "persistent": true,
     "service": "apex-mma-event-controller.service",
     "timer": "apex-mma-event-controller.timer",
-    "verified_future_reference_count": 6,
+    "verified_future_reference_count": 5,
     "verified_queue_horizon": "2026-12-12"
   },
   "event_id": "d4ebff7a-ec56-5a54-8b43-86132a8a0985",
   "fight_count": 14,
-  "generated_at_utc": "2026-10-24T12:05:41.288196Z",
+  "generated_at_utc": "2026-10-24T14:16:33.513442Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "GRADED_COMMERCIAL_AND_OR_SCIENTIFIC"
@@ -4817,7 +4817,7 @@
     "source_market_snapshot_sha256": "b03264cf71ff8615624a1e9fc58bdac11abfca3aa597658a4a63475895f14a36",
     "source_positions_sha256": "1f89f81145c755c8f559b68008f90ac95a8ed722713b26ef46b33be2e02d1931"
   },
-  "payload_sha256": "83c7cb9e5114a6c783a494edda34688ea10ca09e04f53c5c71eeb0314661316e",
+  "payload_sha256": "baa4e1da447f8c24fe29818a9b16fd57f8e280df34423fe0cc4271a55276d5bf",
   "picks_published": true,
   "positions": [
     {
@@ -8745,7 +8745,7 @@
     "production_issuance_authorized": true,
     "release_binding": "EXACT_AUTHORIZED_RELEASE"
   },
-  "semantic_state_sha256": "ec7c03b4fd0250550ba985c66f81cfea7fff51893c6d7519ce5626071b60cf8d",
+  "semantic_state_sha256": "6bbfde4dcf4e0be3c1fd406647181231d5cd796fc51d7da3b7d0f8ca1e1d0e6d",
   "source_conflicts": [
     {
       "capture_basis": "LATEST_LIVE_EVENTS_CAPTURE",

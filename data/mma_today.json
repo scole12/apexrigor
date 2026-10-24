@@ -170,7 +170,7 @@
     "detail": "12 issued positions. Picks, sportsbook prices, probabilities, ratings and rationale below are read from the same sealed T-2 issuance.",
     "headline": "Forecasts issued"
   },
-  "generated_at_utc": "2026-10-24T12:05:41.288196Z",
+  "generated_at_utc": "2026-10-24T14:16:33.513442Z",
   "issuance_id": "f6443602-fc0c-48cd-8b4b-701927014478",
   "issuance_status": "SEALED",
   "market_display": {
@@ -3952,7 +3952,7 @@
     "source_market_snapshot_sha256": "b03264cf71ff8615624a1e9fc58bdac11abfca3aa597658a4a63475895f14a36",
     "source_positions_sha256": "1f89f81145c755c8f559b68008f90ac95a8ed722713b26ef46b33be2e02d1931"
   },
-  "payload_sha256": "f4394485f7c1ccb94f98c14ba1db94a2b50f4e92cb0c93e78494e6534ecf2ea6",
+  "payload_sha256": "f71ddff69f993b5a7dea6e7dfad4cd827b548a2118e1f30aec3a7d87da7560b0",
   "picks_published": true,
   "positions": [
     {
