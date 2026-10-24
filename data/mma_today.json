@@ -170,10 +170,10 @@
     "detail": "No forecasts have been issued yet. Any published card will show the selection, captured sportsbook price, APEX probability, rating and full model-supported rationale.",
     "headline": "Awaiting the T-2 forecast run"
   },
-  "generated_at_utc": "2026-10-23T21:11:35.564136Z",
+  "generated_at_utc": "2026-10-24T11:17:08.339133Z",
   "issuance_id": null,
   "issuance_status": null,
-  "payload_sha256": "d47eb3bf42906b36a70db3757fdc50fe1757784af425084201d11a58b2a4cd88",
+  "payload_sha256": "3861d90a7023f2bcb3492df0de49da8b2c775682d828341b2a842ab94282e236",
   "picks_published": false,
   "positions": [],
   "positions_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
@@ -208,8 +208,8 @@
   },
   "t3": {
     "anchor": "EARLIEST_PUBLISHED_SCHEDULED_BOUT_MINUS_3_HOURS",
-    "bout_count": null,
+    "bout_count": 14,
     "scheduled_utc": "2026-10-24T11:00:00Z",
-    "status": "SCHEDULED"
+    "status": "CANONICAL_SNAPSHOT_COMPLETE"
   }
 }

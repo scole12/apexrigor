@@ -3,10 +3,10 @@
   "active_model_sha256": null,
   "authorities": {
     "fighter": {
-      "bouts": 3721,
-      "events": 1052,
+      "bouts": 3735,
+      "events": 1053,
       "fight_statistics_source_aggregate": 0,
-      "fighters": 4043,
+      "fighters": 4054,
       "results": 3935,
       "round_statistics_elemental": 13313,
       "round_stats": 0,
@@ -210,7 +210,7 @@
   },
   "event_id": "d4ebff7a-ec56-5a54-8b43-86132a8a0985",
   "fight_count": 14,
-  "generated_at_utc": "2026-10-23T21:11:35.564136Z",
+  "generated_at_utc": "2026-10-24T11:17:08.339133Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "GRADED_COMMERCIAL_AND_OR_SCIENTIFIC"
@@ -1038,7 +1038,7 @@
       "source": "PRODUCTION_COMMERCIAL_GRADES"
     }
   ],
-  "payload_sha256": "98ea4e7b381ef3745abfcbf91e5ea324909335652de9939e093289031dbf9cbd",
+  "payload_sha256": "d785978f212c3e6664438c529fa9c5e6e9d484c84bed1ed353ea41eb25e642ef",
   "picks_published": false,
   "positions": [],
   "positions_sha256": null,
@@ -4381,8 +4381,25 @@
     "production_issuance_authorized": true,
     "release_binding": "AUTHORIZED_RELEASE_AWAITING_EVENT_ISSUANCE"
   },
-  "semantic_state_sha256": "a8a464353dc3ee291f3fe0992d42fc0e93d7b0d611ad61fe5ab284c52a16e20f",
+  "semantic_state_sha256": "402a37b0cf7bcd94f7bb97a3286f029f2763212eb6c931438b4eab73c7922d87",
   "source_conflicts": [
+    {
+      "capture_basis": "LATEST_LIVE_EVENTS_CAPTURE",
+      "match_basis": null,
+      "official_pair": [
+        "Lone'er Kavanagh",
+        "Ramazan Temirov"
+      ],
+      "provider_commence_time_utc": "2026-10-24T19:20:00Z",
+      "provider_event_id": "3d66abf1b70ac44a10b9a31964c4f4af",
+      "provider_pair": [
+        "Lone'er Kavanagh",
+        "Ramazonbek Temirov"
+      ],
+      "provider_selection_slots": {},
+      "source_capture_id": "f6dc0dbb-1c8a-4dd4-99f7-df8faa050538",
+      "status": "ONE_SIDE_MATCH_PROVIDER_CARD_CONFLICT"
+    },
     {
       "capture_basis": "LATEST_LIVE_EVENTS_CAPTURE",
       "match_basis": null,
@@ -4397,7 +4414,7 @@
         "Cam Rowston"
       ],
       "provider_selection_slots": {},
-      "source_capture_id": "ae182e21-63ed-445d-80a9-d788f5382b12",
+      "source_capture_id": "f6dc0dbb-1c8a-4dd4-99f7-df8faa050538",
       "status": "ONE_SIDE_MATCH_PROVIDER_CARD_CONFLICT"
     }
   ],
@@ -4411,8 +4428,8 @@
   },
   "t3": {
     "anchor": "EARLIEST_PUBLISHED_SCHEDULED_BOUT_MINUS_3_HOURS",
-    "bout_count": null,
+    "bout_count": 14,
     "scheduled_utc": "2026-10-24T11:00:00Z",
-    "status": "SCHEDULED"
+    "status": "CANONICAL_SNAPSHOT_COMPLETE"
   }
 }
