@@ -1861,7 +1861,7 @@
           "price": -108,
           "win_probability": 0.508509869861309,
           "tier": "Elite",
-          "tier_version": 5,
+          "tier_version": 7,
           "engine": "spread_Q_t37_centrality.v1",
           "engine_version": "3a83903ddc457a6bf3e6995fb3e42cfc54d0cb50e37d8cf1f44d03a0058dde21",
           "issued_at": "2026-10-26T17:00:01.543800+00:00",
@@ -1882,7 +1882,7 @@
           "price": -112,
           "win_probability": 0.520552649130841,
           "tier": "Moderate",
-          "tier_version": 6,
+          "tier_version": 7,
           "engine": "totals_sig_standings.v1",
           "engine_version": "cccbb6c408f5e88b34c5ef05bbe16bbfbc82a3b1f662dae56df697c2b109ba37",
           "issued_at": "2026-10-26T17:00:01.678625+00:00",
@@ -1903,7 +1903,7 @@
           "price": -110,
           "win_probability": 0.502563295904411,
           "tier": "Moderate",
-          "tier_version": 6,
+          "tier_version": 7,
           "engine": "spread_Q_t37_centrality.v1",
           "engine_version": "3a83903ddc457a6bf3e6995fb3e42cfc54d0cb50e37d8cf1f44d03a0058dde21",
           "issued_at": "2026-10-26T17:00:01.760489+00:00",
@@ -1924,7 +1924,7 @@
           "price": -108,
           "win_probability": 0.516092428655893,
           "tier": "Moderate",
-          "tier_version": 6,
+          "tier_version": 7,
           "engine": "totals_sig_standings.v1",
           "engine_version": "cccbb6c408f5e88b34c5ef05bbe16bbfbc82a3b1f662dae56df697c2b109ba37",
           "issued_at": "2026-10-26T17:00:01.819992+00:00",
@@ -1945,7 +1945,7 @@
           "price": -115,
           "win_probability": 0.501900850373624,
           "tier": "Moderate",
-          "tier_version": 6,
+          "tier_version": 7,
           "engine": "spread_Q_t37_centrality.v1",
           "engine_version": "3a83903ddc457a6bf3e6995fb3e42cfc54d0cb50e37d8cf1f44d03a0058dde21",
           "issued_at": "2026-10-26T17:00:01.879959+00:00",
@@ -1965,13 +1965,13 @@
           "line": 232.5,
           "price": -108,
           "win_probability": 0.504142293521703,
-          "tier": "Moderate",
-          "tier_version": 6,
+          "tier": "Weak",
+          "tier_version": 7,
           "engine": "totals_sig_standings.v1",
           "engine_version": "cccbb6c408f5e88b34c5ef05bbe16bbfbc82a3b1f662dae56df697c2b109ba37",
           "issued_at": "2026-10-26T17:00:01.934630+00:00",
           "result": null,
-          "rationale": "Under 232.5 is a 50.4% chance on the total. Team EPM of 9.4 for the Boston Celtics and -7.6 for the Chicago Bulls favors the Under, as does game-optimized team EPM of 8.6 for the Boston Celtics and -6.1 for the Chicago Bulls. A Dunk & Threes projection of 234.5 points works against the Under. Dunk & Threes had the Boston Celtics at 125.8 points and the Chicago Bulls at 108.7 points. Before T-6 the injury report listed Devin Carter as Out for the Boston Celtics, and each of those projections was already at zero minutes. The tier is Moderate."
+          "rationale": "Under 232.5 is a 50.4% chance on the total. Team EPM of 9.4 for the Boston Celtics and -7.6 for the Chicago Bulls favors the Under, as does game-optimized team EPM of 8.6 for the Boston Celtics and -6.1 for the Chicago Bulls. A Dunk & Threes projection of 234.5 points works against the Under. Dunk & Threes had the Boston Celtics at 125.8 points and the Chicago Bulls at 108.7 points. Before T-6 the injury report listed Devin Carter as Out for the Boston Celtics, and each of those projections was already at zero minutes. The tier is Weak."
         },
         {
           "position_id": "84c3c3c0-9089-4fb0-ac07-5cf9627e5c9a",
@@ -1986,13 +1986,13 @@
           "line": -7.5,
           "price": -122,
           "win_probability": 0.505740821894163,
-          "tier": "Moderate",
-          "tier_version": 6,
+          "tier": "Strong",
+          "tier_version": 7,
           "engine": "spread_Q_t37_centrality.v1",
           "engine_version": "3a83903ddc457a6bf3e6995fb3e42cfc54d0cb50e37d8cf1f44d03a0058dde21",
           "issued_at": "2026-10-26T17:00:02.033908+00:00",
           "result": null,
-          "rationale": "Miami Heat -7.5 is a 50.6% chance to cover. Giannis Antetokounmpo's 7.6 EPM over 27.5 minutes and Bam Adebayo's 3.7 EPM over 31.0 minutes favor the Miami Heat. Kyrie Irving is the biggest factor against the pick, with a 3.6 offensive EPM over 26.7 minutes for the Dallas Mavericks. A 0.139 larger share of minutes for players with fewer than five games this season for the Dallas Mavericks than for the Miami Heat favors the Miami Heat, as does an assist rate 0.68 per 36 higher for the Miami Heat than for the Dallas Mavericks over the last 20 games. A home line of -7.5 works against the Miami Heat. Before T-6 the injury report listed Dereck Lively II, Naji Marshall, Santi Aldama and Tarik Biberovic as Out for the Dallas Mavericks, and each of those projections was already at zero minutes. The tier is Moderate."
+          "rationale": "Miami Heat -7.5 is a 50.6% chance to cover. Giannis Antetokounmpo's 7.6 EPM over 27.5 minutes and Bam Adebayo's 3.7 EPM over 31.0 minutes favor the Miami Heat. Kyrie Irving is the biggest factor against the pick, with a 3.6 offensive EPM over 26.7 minutes for the Dallas Mavericks. A 0.139 larger share of minutes for players with fewer than five games this season for the Dallas Mavericks than for the Miami Heat favors the Miami Heat, as does an assist rate 0.68 per 36 higher for the Miami Heat than for the Dallas Mavericks over the last 20 games. A home line of -7.5 works against the Miami Heat. Before T-6 the injury report listed Dereck Lively II, Naji Marshall, Santi Aldama and Tarik Biberovic as Out for the Dallas Mavericks, and each of those projections was already at zero minutes. The tier is Strong."
         },
         {
           "position_id": "67c46c78-1f7e-48f1-a788-587d2edfee2c",
@@ -2007,13 +2007,13 @@
           "line": 240.5,
           "price": -110,
           "win_probability": 0.524194830040704,
-          "tier": "Moderate",
-          "tier_version": 6,
+          "tier": "Strong",
+          "tier_version": 7,
           "engine": "totals_sig_standings.v1",
           "engine_version": "cccbb6c408f5e88b34c5ef05bbe16bbfbc82a3b1f662dae56df697c2b109ba37",
           "issued_at": "2026-10-26T17:00:02.101954+00:00",
           "result": null,
-          "rationale": "Under 240.5 is a 52.4% chance on the total. Team EPM of 2.3 for the Miami Heat and -10.4 for the Dallas Mavericks favors the Under, as does game-optimized team EPM of 3.8 for the Miami Heat and -12.5 for the Dallas Mavericks. A Dunk & Threes projection of 229.8 points works against the Under. Dunk & Threes had the Miami Heat at 118.7 points and the Dallas Mavericks at 111.1 points. Before T-6 the injury report listed Dereck Lively II, Naji Marshall, Santi Aldama and Tarik Biberovic as Out for the Dallas Mavericks, and each of those projections was already at zero minutes. The tier is Moderate."
+          "rationale": "Under 240.5 is a 52.4% chance on the total. Team EPM of 2.3 for the Miami Heat and -10.4 for the Dallas Mavericks favors the Under, as does game-optimized team EPM of 3.8 for the Miami Heat and -12.5 for the Dallas Mavericks. A Dunk & Threes projection of 229.8 points works against the Under. Dunk & Threes had the Miami Heat at 118.7 points and the Dallas Mavericks at 111.1 points. Before T-6 the injury report listed Dereck Lively II, Naji Marshall, Santi Aldama and Tarik Biberovic as Out for the Dallas Mavericks, and each of those projections was already at zero minutes. The tier is Strong."
         },
         {
           "position_id": "20d39a77-dddf-449d-b6b0-10029af1f38c",
@@ -2028,13 +2028,13 @@
           "line": 4.5,
           "price": -112,
           "win_probability": 0.504774789348462,
-          "tier": "Moderate",
-          "tier_version": 6,
+          "tier": "Strong",
+          "tier_version": 7,
           "engine": "spread_Q_t37_centrality.v1",
           "engine_version": "3a83903ddc457a6bf3e6995fb3e42cfc54d0cb50e37d8cf1f44d03a0058dde21",
           "issued_at": "2026-10-26T17:00:02.181625+00:00",
           "result": null,
-          "rationale": "Milwaukee Bucks +4.5 is a 50.5% chance to cover. Jarace Walker's -4.3 EPM over 19.2 minutes and Tyler Herro's 2.2 offensive EPM over 31.2 minutes favor the Milwaukee Bucks. Tyrese Haliburton is the biggest factor against the pick, with a 7.1 EPM over 32.8 minutes for the Indiana Pacers. A home line of +4.5 favors the Milwaukee Bucks, as does a block rate 0.23 per 36 higher for the Milwaukee Bucks than for the Indiana Pacers over the last 20 games. A minute change from the last five games that is 116.4 larger for the Milwaukee Bucks than for the Indiana Pacers works against the Milwaukee Bucks. The injury report before T-6 listed no Out player on either minute projection. The tier is Moderate."
+          "rationale": "Milwaukee Bucks +4.5 is a 50.5% chance to cover. Jarace Walker's -4.3 EPM over 19.2 minutes and Tyler Herro's 2.2 offensive EPM over 31.2 minutes favor the Milwaukee Bucks. Tyrese Haliburton is the biggest factor against the pick, with a 7.1 EPM over 32.8 minutes for the Indiana Pacers. A home line of +4.5 favors the Milwaukee Bucks, as does a block rate 0.23 per 36 higher for the Milwaukee Bucks than for the Indiana Pacers over the last 20 games. A minute change from the last five games that is 116.4 larger for the Milwaukee Bucks than for the Indiana Pacers works against the Milwaukee Bucks. The injury report before T-6 listed no Out player on either minute projection. The tier is Strong."
         },
         {
           "position_id": "5bc71344-e6a6-40c8-9c08-7a7f12863694",
@@ -2049,13 +2049,13 @@
           "line": 238.5,
           "price": -110,
           "win_probability": 0.530369623802236,
-          "tier": "Moderate",
-          "tier_version": 6,
+          "tier": "Strong",
+          "tier_version": 7,
           "engine": "totals_sig_standings.v1",
           "engine_version": "cccbb6c408f5e88b34c5ef05bbe16bbfbc82a3b1f662dae56df697c2b109ba37",
           "issued_at": "2026-10-26T17:00:02.261693+00:00",
           "result": null,
-          "rationale": "Under 238.5 is a 53.0% chance on the total. A Dunk & Threes projection of 249.1 points works against the Under, as does team EPM of -7.5 for the Milwaukee Bucks and 3.2 for the Indiana Pacers. Dunk & Threes had the Milwaukee Bucks at 122.1 points and the Indiana Pacers at 127.0 points. The injury report before T-6 listed no Out player on either minute projection. The tier is Moderate. The line on Under is 238.5."
+          "rationale": "Under 238.5 is a 53.0% chance on the total. A Dunk & Threes projection of 249.1 points works against the Under, as does team EPM of -7.5 for the Milwaukee Bucks and 3.2 for the Indiana Pacers. Dunk & Threes had the Milwaukee Bucks at 122.1 points and the Indiana Pacers at 127.0 points. The injury report before T-6 listed no Out player on either minute projection. The tier is Strong. The line on Under is 238.5."
         },
         {
           "position_id": "93c1f740-ba85-40d9-9f9c-ae659816ad44",
@@ -2070,13 +2070,13 @@
           "line": 9.5,
           "price": -108,
           "win_probability": 0.501255971160248,
-          "tier": "Moderate",
-          "tier_version": 6,
+          "tier": "Weak",
+          "tier_version": 7,
           "engine": "spread_Q_t37_centrality.v1",
           "engine_version": "3a83903ddc457a6bf3e6995fb3e42cfc54d0cb50e37d8cf1f44d03a0058dde21",
           "issued_at": "2026-10-26T17:00:02.314801+00:00",
           "result": null,
-          "rationale": "Phoenix Suns +9.5 is a 50.1% chance to cover. Devin Booker's 3.4 offensive EPM over 33.8 minutes and Jared McCain's -2.6 EPM over 18.9 minutes favor the Phoenix Suns. Shai Gilgeous-Alexander is the biggest factor against the pick, with a 9.0 EPM over 34.5 minutes for the Oklahoma City Thunder. A home line of -9.5 favors the Phoenix Suns, as does a minute change from the last five games that is 14.2 larger for the Oklahoma City Thunder than for the Phoenix Suns. An assist rate 0.79 per 36 higher for the Oklahoma City Thunder than for the Phoenix Suns over the last 20 games works against the Phoenix Suns. Before T-6 the injury report listed Drew Timme and Mark Williams as Out for the Phoenix Suns, and each of those projections was already at zero minutes. The tier is Moderate."
+          "rationale": "Phoenix Suns +9.5 is a 50.1% chance to cover. Devin Booker's 3.4 offensive EPM over 33.8 minutes and Jared McCain's -2.6 EPM over 18.9 minutes favor the Phoenix Suns. Shai Gilgeous-Alexander is the biggest factor against the pick, with a 9.0 EPM over 34.5 minutes for the Oklahoma City Thunder. A home line of -9.5 favors the Phoenix Suns, as does a minute change from the last five games that is 14.2 larger for the Oklahoma City Thunder than for the Phoenix Suns. An assist rate 0.79 per 36 higher for the Oklahoma City Thunder than for the Phoenix Suns over the last 20 games works against the Phoenix Suns. Before T-6 the injury report listed Drew Timme and Mark Williams as Out for the Phoenix Suns, and each of those projections was already at zero minutes. The tier is Weak."
         },
         {
           "position_id": "701fd385-52df-4298-bd75-5799686c0c45",
@@ -2091,13 +2091,13 @@
           "line": 221.5,
           "price": -105,
           "win_probability": 0.505241966777901,
-          "tier": "Moderate",
-          "tier_version": 6,
+          "tier": "Weak",
+          "tier_version": 7,
           "engine": "totals_sig_standings.v1",
           "engine_version": "cccbb6c408f5e88b34c5ef05bbe16bbfbc82a3b1f662dae56df697c2b109ba37",
           "issued_at": "2026-10-26T17:00:02.365951+00:00",
           "result": null,
-          "rationale": "Over 221.5 is a 50.5% chance on the total. Team EPM of 13.1 for the Oklahoma City Thunder and -2.3 for the Phoenix Suns works against the Over, as does a Dunk & Threes projection of 216.9 points. Dunk & Threes had the Oklahoma City Thunder at 114.9 points and the Phoenix Suns at 102.0 points. Before T-6 the injury report listed Drew Timme and Mark Williams as Out for the Phoenix Suns, and each of those projections was already at zero minutes. The tier is Moderate. The line on Over is 221.5."
+          "rationale": "Over 221.5 is a 50.5% chance on the total. Team EPM of 13.1 for the Oklahoma City Thunder and -2.3 for the Phoenix Suns works against the Over, as does a Dunk & Threes projection of 216.9 points. Dunk & Threes had the Oklahoma City Thunder at 114.9 points and the Phoenix Suns at 102.0 points. Before T-6 the injury report listed Drew Timme and Mark Williams as Out for the Phoenix Suns, and each of those projections was already at zero minutes. The tier is Weak. The line on Over is 221.5."
         },
         {
           "position_id": "6b7c37d4-8df4-4874-8204-84e19dc5ccdc",
@@ -2112,13 +2112,13 @@
           "line": -5.5,
           "price": -104,
           "win_probability": 0.505948883705893,
-          "tier": "Moderate",
-          "tier_version": 6,
+          "tier": "Strong",
+          "tier_version": 7,
           "engine": "spread_Q_t37_centrality.v1",
           "engine_version": "3a83903ddc457a6bf3e6995fb3e42cfc54d0cb50e37d8cf1f44d03a0058dde21",
           "issued_at": "2026-10-26T17:00:02.435088+00:00",
           "result": null,
-          "rationale": "Houston Rockets -5.5 is a 50.6% chance to cover. Kevin Durant's 4.5 EPM over 37.5 minutes and Fred VanVleet's 4.2 EPM over 31.5 minutes favor the Houston Rockets. Dyson Daniels is the biggest factor against the pick, with a 4.0 EPM over 28.5 minutes for the Atlanta Hawks. A 0.189 larger share of minutes for players with fewer than five games this season for the Atlanta Hawks than for the Houston Rockets favors the Houston Rockets, as does a minute change from the last five games that is 17.9 larger for the Atlanta Hawks than for the Houston Rockets. A home line of -5.5 works against the Houston Rockets. Before T-6 the injury report listed Julian Phillips, Marcus Smart, Quadir Copeland and Steven Adams as Out for the Houston Rockets and Henri Veesaar and Mouhamed Gueye as Out for the Atlanta Hawks, and their projected minutes were given to teammates. The tier is Moderate."
+          "rationale": "Houston Rockets -5.5 is a 50.6% chance to cover. Kevin Durant's 4.5 EPM over 37.5 minutes and Fred VanVleet's 4.2 EPM over 31.5 minutes favor the Houston Rockets. Dyson Daniels is the biggest factor against the pick, with a 4.0 EPM over 28.5 minutes for the Atlanta Hawks. A 0.189 larger share of minutes for players with fewer than five games this season for the Atlanta Hawks than for the Houston Rockets favors the Houston Rockets, as does a minute change from the last five games that is 17.9 larger for the Atlanta Hawks than for the Houston Rockets. A home line of -5.5 works against the Houston Rockets. Before T-6 the injury report listed Julian Phillips, Marcus Smart, Quadir Copeland and Steven Adams as Out for the Houston Rockets and Henri Veesaar and Mouhamed Gueye as Out for the Atlanta Hawks, and their projected minutes were given to teammates. The tier is Strong."
         },
         {
           "position_id": "87f4d3ca-2d92-4b2c-bf35-69d851d8076f",
@@ -2134,7 +2134,7 @@
           "price": -104,
           "win_probability": 0.5158068016776229,
           "tier": "Moderate",
-          "tier_version": 6,
+          "tier_version": 7,
           "engine": "totals_sig_standings.v1",
           "engine_version": "cccbb6c408f5e88b34c5ef05bbe16bbfbc82a3b1f662dae56df697c2b109ba37",
           "issued_at": "2026-10-26T17:00:02.489789+00:00",
@@ -2154,13 +2154,13 @@
           "line": -1.5,
           "price": -106,
           "win_probability": 0.501318169535436,
-          "tier": "Moderate",
-          "tier_version": 6,
+          "tier": "Weak",
+          "tier_version": 7,
           "engine": "spread_Q_t37_centrality.v1",
           "engine_version": "3a83903ddc457a6bf3e6995fb3e42cfc54d0cb50e37d8cf1f44d03a0058dde21",
           "issued_at": "2026-10-26T17:00:02.543866+00:00",
           "result": null,
-          "rationale": "Utah Jazz -1.5 is a 50.1% chance to cover. Lauri Markkanen's 3.5 EPM over 33.9 minutes and Cameron Boozer's 0.4 defensive EPM over 34.1 minutes favor the Utah Jazz. Ty Jerome is the biggest factor against the pick, with a 5.8 EPM over 27.4 minutes for the Memphis Grizzlies. A 0.353 larger share of minutes for players with fewer than five games this season for the Memphis Grizzlies than for the Utah Jazz favors the Utah Jazz, as does a minute change from the last five games that is 25.9 larger for the Memphis Grizzlies than for the Utah Jazz. A rebound rate 1.44 per 36 higher for the Memphis Grizzlies than for the Utah Jazz over the last 20 games works against the Utah Jazz. The injury report before T-6 listed no Out player on either minute projection. The tier is Moderate."
+          "rationale": "Utah Jazz -1.5 is a 50.1% chance to cover. Lauri Markkanen's 3.5 EPM over 33.9 minutes and Cameron Boozer's 0.4 defensive EPM over 34.1 minutes favor the Utah Jazz. Ty Jerome is the biggest factor against the pick, with a 5.8 EPM over 27.4 minutes for the Memphis Grizzlies. A 0.353 larger share of minutes for players with fewer than five games this season for the Memphis Grizzlies than for the Utah Jazz favors the Utah Jazz, as does a minute change from the last five games that is 25.9 larger for the Memphis Grizzlies than for the Utah Jazz. A rebound rate 1.44 per 36 higher for the Memphis Grizzlies than for the Utah Jazz over the last 20 games works against the Utah Jazz. The injury report before T-6 listed no Out player on either minute projection. The tier is Weak."
         },
         {
           "position_id": "b67c6392-a64e-49e0-9f6b-a1e536b08589",
@@ -2175,13 +2175,13 @@
           "line": 238.5,
           "price": -108,
           "win_probability": 0.522507888461459,
-          "tier": "Moderate",
-          "tier_version": 6,
+          "tier": "Strong",
+          "tier_version": 7,
           "engine": "totals_sig_standings.v1",
           "engine_version": "cccbb6c408f5e88b34c5ef05bbe16bbfbc82a3b1f662dae56df697c2b109ba37",
           "issued_at": "2026-10-26T17:00:02.601509+00:00",
           "result": null,
-          "rationale": "Over 238.5 is a 52.3% chance on the total. A Dunk & Threes projection of 234.6 points favors the Over, as does team EPM of -7.0 for the Utah Jazz and -2.1 for the Memphis Grizzlies. Dunk & Threes had the Utah Jazz at 115.8 points and the Memphis Grizzlies at 118.8 points. The injury report before T-6 listed no Out player on either minute projection. The tier is Moderate. The line on Over is 238.5."
+          "rationale": "Over 238.5 is a 52.3% chance on the total. A Dunk & Threes projection of 234.6 points favors the Over, as does team EPM of -7.0 for the Utah Jazz and -2.1 for the Memphis Grizzlies. Dunk & Threes had the Utah Jazz at 115.8 points and the Memphis Grizzlies at 118.8 points. The injury report before T-6 listed no Out player on either minute projection. The tier is Strong. The line on Over is 238.5."
         },
         {
           "position_id": "ae9b152c-86ec-40cf-9271-72e09f54d9a4",
@@ -2197,7 +2197,7 @@
           "price": -106,
           "win_probability": 0.501873197330205,
           "tier": "Moderate",
-          "tier_version": 6,
+          "tier_version": 7,
           "engine": "spread_Q_t37_centrality.v1",
           "engine_version": "3a83903ddc457a6bf3e6995fb3e42cfc54d0cb50e37d8cf1f44d03a0058dde21",
           "issued_at": "2026-10-26T17:00:02.652988+00:00",
@@ -2218,7 +2218,7 @@
           "price": -105,
           "win_probability": 0.513578739615167,
           "tier": "Moderate",
-          "tier_version": 6,
+          "tier_version": 7,
           "engine": "totals_sig_standings.v1",
           "engine_version": "cccbb6c408f5e88b34c5ef05bbe16bbfbc82a3b1f662dae56df697c2b109ba37",
           "issued_at": "2026-10-26T17:00:02.720935+00:00",
