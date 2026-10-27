@@ -82,24 +82,24 @@
       "weight_class": "FLYWEIGHT"
     },
     {
-      "fighter_a": "Zach Reese",
-      "fighter_b": "Mickey Gall",
+      "fighter_a": "Jean-Paul Lebosnoyani",
+      "fighter_b": "Farman Hasanov",
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 5,
       "scheduled_start_utc": "2026-11-01T00:00:00Z",
       "segment": "MAIN",
-      "weight_class": "MIDDLEWEIGHT"
+      "weight_class": "WELTERWEIGHT"
     },
     {
-      "fighter_a": "Jean-Paul Lebosnoyani",
-      "fighter_b": "Farman Hasanov",
+      "fighter_a": "Zach Reese",
+      "fighter_b": "Mickey Gall",
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 6,
       "scheduled_start_utc": "2026-11-01T00:00:00Z",
-      "segment": "MAIN",
-      "weight_class": "WELTERWEIGHT"
+      "segment": "PRELIMS",
+      "weight_class": "MIDDLEWEIGHT"
     },
     {
       "fighter_a": "Francis Marshall",
@@ -108,7 +108,7 @@
       "is_main_event": false,
       "official_display_order": 7,
       "scheduled_start_utc": "2026-11-01T00:00:00Z",
-      "segment": "MAIN",
+      "segment": "PRELIMS",
       "weight_class": "FEATHERWEIGHT"
     },
     {
@@ -200,7 +200,7 @@
   },
   "event_id": "cd102f3d-e75c-5d10-9a88-71b6387c465d",
   "fight_count": 13,
-  "generated_at_utc": "2026-10-26T16:04:43.038465Z",
+  "generated_at_utc": "2026-10-27T00:15:42.045766Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "GRADED_COMMERCIAL_AND_OR_SCIENTIFIC"
@@ -1197,7 +1197,7 @@
       "source": "PRODUCTION_COMMERCIAL_GRADES"
     }
   ],
-  "payload_sha256": "c7727a1454790cff2ecf29e625524006c042a899d41d351ffc25884352e519c2",
+  "payload_sha256": "a79c1a5b9c6e1a64fc72ff1085dfce23926d0e6fb98b2916974b9f309a72c35a",
   "picks_published": false,
   "positions": [],
   "positions_sha256": null,
@@ -5188,7 +5188,7 @@
     "production_issuance_authorized": true,
     "release_binding": "AUTHORIZED_RELEASE_AWAITING_EVENT_ISSUANCE"
   },
-  "semantic_state_sha256": "c24454e28573eda0b1f90bd8f94eb2ac6837c14fce55cf8d92ef60996e4d645f",
+  "semantic_state_sha256": "c6ba929cc32f82e53209ce625a913052f18ac84e6da18365a0cf9f2887c26842",
   "source_conflicts": [
     {
       "capture_basis": "LATEST_LIVE_EVENTS_CAPTURE",
@@ -5204,7 +5204,7 @@
         "Mickey Gall"
       ],
       "provider_selection_slots": {},
-      "source_capture_id": "0986f9b2-24ff-4158-b5aa-7581b3b436d6",
+      "source_capture_id": "be4f46a3-7580-43cf-b5a0-a90e1eea2e1b",
       "status": "ONE_SIDE_MATCH_PROVIDER_CARD_CONFLICT"
     },
     {
