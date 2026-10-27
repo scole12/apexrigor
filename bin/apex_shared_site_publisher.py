@@ -43,6 +43,8 @@ NCAAF_QUEUE = Path("/var/opt/apex_ncaaf/production/publication_queue")
 NCAAF_T3_ROOT = Path("/var/opt/apex_ncaaf/production/t3")
 MMA_QUEUE = Path("/var/opt/apex_mma/production/publication_queue")
 NFL_QUEUE = Path("/var/opt/apex_nfl/production/publication_queue")
+# Seconds allowed for one NFL public-payload build (verified sealed history is read inside it).
+NFL_BUILD_TIMEOUT = 900
 NFL_ISSUANCE = Path("/var/opt/apex_nfl/issuance")
 CANONICAL_REMOTE = "github.com/scole12/apexrigor.git"
 NY = ZoneInfo("America/New_York")
@@ -99,6 +101,14 @@ GLOBAL_FAULT_MARKERS = (
 # Same-date delivery stages: a later stage's shared manifest is never replaced by an earlier one.
 NCAAF_STAGE_ORDER = {"T3": 1, "T2": 2, "RESULTS": 3}
 NCAAF_PROTECTED_PATHSPECS = ("ncaaf/", "data/ncaaf/", "data/ncaaf_*")
+
+
+class NflBuildTimeout(RuntimeError):
+    """The NFL payload build exceeded NFL_BUILD_TIMEOUT.
+
+    A slow or stuck NFL build is this NFL request's own failure, not a global fault: it must
+    not read as GitHub/network trouble (subprocess.TimeoutExpired matches the global markers).
+    The message deliberately contains no GLOBAL_FAULT_MARKERS text."""
 
 
 class GlobalPublicationFault(RuntimeError):
@@ -242,6 +252,17 @@ def run(command: list[str], *, cwd: Path, timeout: int = 180) -> str:
     # Porcelain status uses a meaningful leading column.  Preserve it while
     # removing only the terminal newline that is noise for scalar Git output.
     return completed.stdout.rstrip("\r\n")
+
+
+def run_nfl_build(command: list[str], *, cwd: Path) -> str:
+    """Run the NFL payload builder with NFL_BUILD_TIMEOUT; a timeout is a per-request failure."""
+    try:
+        return run(command, cwd=cwd, timeout=NFL_BUILD_TIMEOUT)
+    except subprocess.TimeoutExpired:
+        raise NflBuildTimeout(
+            f"NFL_BUILD_TIMEOUT: {Path(command[1]).name}{' --board-only' if '--board-only' in command else ''}"
+            f" exceeded {NFL_BUILD_TIMEOUT}s; this request failed and is retried on the next run"
+        ) from None
 
 
 def git(*arguments: str, cwd: Path = ROOT, timeout: int = 180) -> str:
@@ -794,8 +815,8 @@ def build_request(request: Request, worktree: Path) -> dict[str, Any]:
         python_tool(worktree, "build_mma_about_page.py")
     elif request.sport == "NFL":
         # Execute the reviewed admission gate from this publication worktree.
-        run([sys.executable, str(worktree / "bin/build_nfl_public_payload.py"),
-             "--output-root", str(worktree)], cwd=worktree)
+        run_nfl_build([sys.executable, str(worktree / "bin/build_nfl_public_payload.py"),
+                       "--output-root", str(worktree)], cwd=worktree)
     else:
         raise RuntimeError(f"unsupported sport publication request: {request.sport}")
     if request.sport == 'NFL':
@@ -2152,8 +2173,8 @@ def build_nfl_grader(request, worktree):
             raise RuntimeError('GRADER_PRODUCT_HASH:'+field)
     # Advance the NFL schedule in the same publication as the accepted grader.
     # Board-only output preserves the detailed results surface and sealed rows.
-    run([sys.executable, str(worktree / 'bin/build_nfl_public_payload.py'),
-         '--output-root', str(worktree), '--board-only'], cwd=worktree)
+    run_nfl_build([sys.executable, str(worktree / 'bin/build_nfl_public_payload.py'),
+                   '--output-root', str(worktree), '--board-only'], cwd=worktree)
     rows=payload['rows'];cumulative=summarize(rows);cumulative['canonical_result']=pointer
     previous=worktree/'data/nfl_results_archive.json'
     if previous.exists():
