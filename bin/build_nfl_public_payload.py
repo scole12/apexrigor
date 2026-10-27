@@ -686,6 +686,54 @@ def sealed_history() -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
     return issuances, grades
 
 
+def build_results_payloads(
+    scientific_release_state: str, generated_at: str, fallback_issued_count: int
+) -> tuple[dict[str, Any], dict[str, Any]]:
+    """Build the results summary and archive from ONE read of the sealed result.
+
+    The pointer is loaded once and the same verified payload feeds every field,
+    so the summary, proper scores and archive can never mix two seals.
+    """
+    from apex_nfl.sealed_results import read, load, ROOT as RESULT_ROOT
+    from apex_nfl.grader_products import summarize
+    pointer = load(RESULT_ROOT / "current.json")
+    sealed = read(pointer)
+    settlements = sealed["rows"]
+    scored = [row for row in settlements if row.get("log_loss") is not None]
+    proper = None if not scored else {
+        "mean_log_loss": sum(float(row["log_loss"]) for row in scored) / len(scored),
+        "mean_brier": sum(float(row["brier"]) for row in scored) / len(scored),
+        "scored_position_count": len(scored),
+    }
+    cumulative = summarize(sealed["rows"])
+    cumulative["canonical_result"] = pointer
+    r = cumulative["season_record"]
+    issued = sum(c["issued"] for c in sealed["coverage"].values())
+    results = {
+        "schema_version": "APEX_NFL_RESULTS_SUMMARY_V1",
+        "sport": "NFL",
+        "generated_at_utc": generated_at,
+        "scientific_release_state": scientific_release_state,
+        "issued_position_count": issued,
+        "graded_position_count": len(sealed["rows"]),
+        "ungraded_position_count": issued - len(sealed["rows"]),
+        "record": {"wins": r["W"], "losses": r["L"], "pushes": r["PUSH"], "voids": r["VOID"]},
+        "proper_scores": proper,
+        "message": (
+            "No NFL positions have been issued; no performance is claimed."
+            if fallback_issued_count == 0 else "Exact sealed NFL issuance and grade state."
+        ),
+        "canonical_result": pointer,
+        "coverage": sealed["coverage"],
+    }
+    archive = {
+        "schema_version": "APEX_NFL_RESULTS_ARCHIVE_V2", "sport": "NFL",
+        "canonical_result": pointer, "rows": sealed["rows"], "coverage": sealed["coverage"],
+        "pending": sealed["pending"], "cumulative": cumulative,
+    }
+    return results, archive
+
+
 def main(output_root: Path | None = None, *, board_only: bool = False) -> int:
     global ROOT, DATA
     if output_root is not None:
@@ -797,18 +845,6 @@ def main(output_root: Path | None = None, *, board_only: bool = False) -> int:
         game["positions"] = sorted(
             by_game.get(str(game["game_id"]), []), key=lambda row: str(row["position_id"])
         )
-    from apex_nfl.sealed_results import read as canonical_read
-    settlements = canonical_read()["rows"]
-    counts = {
-        state: sum(1 for row in settlements if row.get("result") == state)
-        for state in ("WIN", "LOSS", "PUSH", "VOID")
-    }
-    scored = [row for row in settlements if row.get("log_loss") is not None]
-    proper = None if not scored else {
-        "mean_log_loss": sum(float(row["log_loss"]) for row in scored) / len(scored),
-        "mean_brier": sum(float(row["brier"]) for row in scored) / len(scored),
-        "scored_position_count": len(scored),
-    }
     issued_position_count = sum(len(row["positions"]) for row in issuances)
     shared = {
         "next_up": {k: physical[k] for k in ("NEXT_T3", "NEXT_T2", "NEXT_GRADER")},
@@ -872,50 +908,20 @@ def main(output_root: Path | None = None, *, board_only: bool = False) -> int:
             "persistent_timer_count": 4,
         },
     }
-    results = {
-        "schema_version": "APEX_NFL_RESULTS_SUMMARY_V1",
-        "sport": "NFL",
-        "generated_at_utc": generated_at,
-        "scientific_release_state": shared["scientific_release_state"],
-        "issued_position_count": issued_position_count,
-        "graded_position_count": len(settlements),
-        "ungraded_position_count": max(0, issued_position_count - len(settlements)),
-        "record": {
-            "wins": counts["WIN"], "losses": counts["LOSS"],
-            "pushes": counts["PUSH"], "voids": counts["VOID"],
-        },
-        "proper_scores": proper,
-        "message": (
-            "No NFL positions have been issued; no performance is claimed."
-            if issued_position_count == 0 else "Exact sealed NFL issuance and grade state."
-        ),
-    }
-    archive = {
-        "schema_version": "APEX_NFL_RESULTS_ARCHIVE_V1",
-        "sport": "NFL",
-        "generated_at_utc": generated_at,
-        "issuances": public_issuances,
-        "grades": grades,
-    }
-    from apex_nfl.sealed_results import read, load, ROOT as RESULT_ROOT
-    from apex_nfl.grader_products import summarize
-    pointer=load(RESULT_ROOT/'current.json');sealed=read(pointer)
-    cumulative=summarize(sealed['rows']);cumulative['canonical_result']=pointer
-    r=cumulative['season_record'];issued=sum(c['issued'] for c in sealed['coverage'].values())
-    results.update(canonical_result=pointer,coverage=sealed['coverage'],graded_position_count=len(sealed['rows']),
-                   issued_position_count=issued,ungraded_position_count=issued-len(sealed['rows']),
-                   record={'wins':r['W'],'losses':r['L'],'pushes':r['PUSH'],'voids':r['VOID']})
-    archive={'schema_version':'APEX_NFL_RESULTS_ARCHIVE_V2','sport':'NFL','canonical_result':pointer,
-             'rows':sealed['rows'],'coverage':sealed['coverage'],'pending':sealed['pending'],'cumulative':cumulative}
     today = scrub_today_positions(today)
     outputs = {
         "nfl_today.json": today,
         "nfl_system_state.json": system_state,
-        "nfl_results_summary.json": results,
-        "nfl_results_archive.json": archive,
     }
-    if board_only:
-        outputs = {name: outputs[name] for name in ("nfl_today.json", "nfl_system_state.json")}
+    if not board_only:
+        # The sealed result payload is verified and read exactly once per build.
+        # --board-only never builds the results surfaces, so it never reads it
+        # (the grader has already read and verified it before invoking this).
+        results, archive = build_results_payloads(
+            shared["scientific_release_state"], generated_at, issued_position_count
+        )
+        outputs["nfl_results_summary.json"] = results
+        outputs["nfl_results_archive.json"] = archive
     for name, payload in outputs.items():
         atomic_write(DATA / name, payload)
         print(f"NFL_PUBLIC_PAYLOAD={name} SHA256={sha256(DATA / name)}")
