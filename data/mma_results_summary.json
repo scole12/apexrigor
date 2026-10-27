@@ -5,7 +5,7 @@
     "detail": "No forecasts have been issued yet. Any published card will show the selection, captured sportsbook price, APEX probability, rating and full model-supported rationale.",
     "headline": "Awaiting the T-2 forecast run"
   },
-  "generated_at_utc": "2026-10-27T00:15:42.045766Z",
+  "generated_at_utc": "2026-10-27T02:15:49.024896Z",
   "graded_scientific_object_count": 62,
   "grader": {
     "schedule": "07:00 America/New_York",
@@ -1002,7 +1002,7 @@
       "source": "PRODUCTION_COMMERCIAL_GRADES"
     }
   ],
-  "payload_sha256": "99422e9810b9558e18d0c7b69c22e4b37aaf96837d90a69f7e0bf0f132b1b625",
+  "payload_sha256": "9b6d1d97d23799ceeb01dc380e5d146196ee9b83315dd724ace127809fb96fd6",
   "release_state": "AUTHORIZED_RELEASE_AWAITING_EVENT_ISSUANCE",
   "schema_version": "APEX_MMA_RESULTS_SUMMARY_V1",
   "status": "RESULTS_AVAILABLE"
