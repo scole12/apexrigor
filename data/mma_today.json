@@ -23,7 +23,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 2,
-      "scheduled_start_utc": "2026-11-01T00:00:00Z",
+      "scheduled_start_utc": null,
       "segment": "MAIN",
       "weight_class": "WELTERWEIGHT"
     },
@@ -33,7 +33,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 3,
-      "scheduled_start_utc": "2026-11-01T00:00:00Z",
+      "scheduled_start_utc": "2026-11-01T01:15:00Z",
       "segment": "MAIN",
       "weight_class": "FLYWEIGHT"
     },
@@ -43,7 +43,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 4,
-      "scheduled_start_utc": "2026-11-01T00:00:00Z",
+      "scheduled_start_utc": "2026-11-01T00:45:00Z",
       "segment": "MAIN",
       "weight_class": "WOMENS_BANTAMWEIGHT"
     },
@@ -53,7 +53,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 5,
-      "scheduled_start_utc": "2026-11-01T00:00:00Z",
+      "scheduled_start_utc": "2026-11-01T00:15:00Z",
       "segment": "MAIN",
       "weight_class": "WELTERWEIGHT"
     },
@@ -63,7 +63,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 6,
-      "scheduled_start_utc": "2026-11-01T00:00:00Z",
+      "scheduled_start_utc": "2026-10-31T23:40:00Z",
       "segment": "PRELIMS",
       "weight_class": "FEATHERWEIGHT"
     },
@@ -73,7 +73,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 7,
-      "scheduled_start_utc": "2026-11-01T00:00:00Z",
+      "scheduled_start_utc": "2026-10-31T23:15:00Z",
       "segment": "PRELIMS",
       "weight_class": "WELTERWEIGHT"
     },
@@ -83,7 +83,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 8,
-      "scheduled_start_utc": "2026-11-01T00:00:00Z",
+      "scheduled_start_utc": "2026-10-31T22:50:00Z",
       "segment": "PRELIMS",
       "weight_class": "FEATHERWEIGHT"
     },
@@ -93,7 +93,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 9,
-      "scheduled_start_utc": "2026-11-01T00:00:00Z",
+      "scheduled_start_utc": "2026-10-31T22:25:00Z",
       "segment": "PRELIMS",
       "weight_class": "MIDDLEWEIGHT"
     },
@@ -103,7 +103,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 10,
-      "scheduled_start_utc": "2026-11-01T00:00:00Z",
+      "scheduled_start_utc": "2026-10-31T22:00:00Z",
       "segment": "PRELIMS",
       "weight_class": "MIDDLEWEIGHT"
     },
@@ -113,7 +113,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 11,
-      "scheduled_start_utc": "2026-11-01T00:00:00Z",
+      "scheduled_start_utc": "2026-10-31T21:35:00Z",
       "segment": "PRELIMS",
       "weight_class": "WOMENS_STRAWWEIGHT"
     },
@@ -150,10 +150,10 @@
     "detail": "No forecasts have been issued yet. Any published card will show the selection, captured sportsbook price, APEX probability, rating and full model-supported rationale.",
     "headline": "Awaiting the T-2 forecast run"
   },
-  "generated_at_utc": "2026-10-27T23:15:41.267956Z",
+  "generated_at_utc": "2026-10-27T23:45:43.588986Z",
   "issuance_id": null,
   "issuance_status": null,
-  "payload_sha256": "6a942c9e45fd6d5207db058939106f0cf760d9659c0ed1089d5745c36371f4ba",
+  "payload_sha256": "f48c8b02173fed14580d119a5bcc24b08a9e625ea01964d0cc16c0ee8aea1201",
   "picks_published": false,
   "positions": [],
   "positions_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",

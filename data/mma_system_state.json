@@ -57,7 +57,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 2,
-      "scheduled_start_utc": "2026-11-01T00:00:00Z",
+      "scheduled_start_utc": null,
       "segment": "MAIN",
       "weight_class": "WELTERWEIGHT"
     },
@@ -67,7 +67,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 3,
-      "scheduled_start_utc": "2026-11-01T00:00:00Z",
+      "scheduled_start_utc": "2026-11-01T01:15:00Z",
       "segment": "MAIN",
       "weight_class": "FLYWEIGHT"
     },
@@ -77,7 +77,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 4,
-      "scheduled_start_utc": "2026-11-01T00:00:00Z",
+      "scheduled_start_utc": "2026-11-01T00:45:00Z",
       "segment": "MAIN",
       "weight_class": "WOMENS_BANTAMWEIGHT"
     },
@@ -87,7 +87,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 5,
-      "scheduled_start_utc": "2026-11-01T00:00:00Z",
+      "scheduled_start_utc": "2026-11-01T00:15:00Z",
       "segment": "MAIN",
       "weight_class": "WELTERWEIGHT"
     },
@@ -97,7 +97,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 6,
-      "scheduled_start_utc": "2026-11-01T00:00:00Z",
+      "scheduled_start_utc": "2026-10-31T23:40:00Z",
       "segment": "PRELIMS",
       "weight_class": "FEATHERWEIGHT"
     },
@@ -107,7 +107,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 7,
-      "scheduled_start_utc": "2026-11-01T00:00:00Z",
+      "scheduled_start_utc": "2026-10-31T23:15:00Z",
       "segment": "PRELIMS",
       "weight_class": "WELTERWEIGHT"
     },
@@ -117,7 +117,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 8,
-      "scheduled_start_utc": "2026-11-01T00:00:00Z",
+      "scheduled_start_utc": "2026-10-31T22:50:00Z",
       "segment": "PRELIMS",
       "weight_class": "FEATHERWEIGHT"
     },
@@ -127,7 +127,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 9,
-      "scheduled_start_utc": "2026-11-01T00:00:00Z",
+      "scheduled_start_utc": "2026-10-31T22:25:00Z",
       "segment": "PRELIMS",
       "weight_class": "MIDDLEWEIGHT"
     },
@@ -137,7 +137,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 10,
-      "scheduled_start_utc": "2026-11-01T00:00:00Z",
+      "scheduled_start_utc": "2026-10-31T22:00:00Z",
       "segment": "PRELIMS",
       "weight_class": "MIDDLEWEIGHT"
     },
@@ -147,7 +147,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 11,
-      "scheduled_start_utc": "2026-11-01T00:00:00Z",
+      "scheduled_start_utc": "2026-10-31T21:35:00Z",
       "segment": "PRELIMS",
       "weight_class": "WOMENS_STRAWWEIGHT"
     },
@@ -190,7 +190,7 @@
   },
   "event_id": "cd102f3d-e75c-5d10-9a88-71b6387c465d",
   "fight_count": 12,
-  "generated_at_utc": "2026-10-27T23:15:41.267956Z",
+  "generated_at_utc": "2026-10-27T23:45:43.588986Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "GRADED_COMMERCIAL_AND_OR_SCIENTIFIC"
@@ -1187,7 +1187,7 @@
       "source": "PRODUCTION_COMMERCIAL_GRADES"
     }
   ],
-  "payload_sha256": "864bf8c71277ff242e562a1c758d7db43289e5e32763cbfa54574ceb0fb19bd0",
+  "payload_sha256": "cc1d254a44687f4f62d17e3c7cb19771a5ad61006c34e29499ff8d6a888f0248",
   "picks_published": false,
   "positions": [],
   "positions_sha256": null,
@@ -5178,7 +5178,7 @@
     "production_issuance_authorized": true,
     "release_binding": "AUTHORIZED_RELEASE_AWAITING_EVENT_ISSUANCE"
   },
-  "semantic_state_sha256": "fe54cbb26fc2deeefda1574d6d8a6d482b900cc74abc58c0361db7b755a9887e",
+  "semantic_state_sha256": "19b9b26df823e7070cea3c9f965334b36fddcb7d29361b9ff6c66496104a83b5",
   "source_conflicts": [
     {
       "capture_basis": "LATEST_LIVE_EVENTS_CAPTURE",
@@ -5187,15 +5187,29 @@
         "Zach Reese",
         "Mickey Gall"
       ],
-      "provider_commence_time_utc": "2026-11-01T00:00:00Z",
+      "provider_commence_time_utc": "2026-10-31T22:25:00Z",
       "provider_event_id": "bcace46c2ac73a12c347366092a7329e",
       "provider_pair": [
         "Zachary Reese",
         "Mickey Gall"
       ],
       "provider_selection_slots": {},
-      "source_capture_id": "b41cb810-25cd-4da0-afd5-c507fa1fec74",
+      "source_capture_id": "4b634e02-0b75-412a-b0d4-9e7d88cf2221",
       "status": "ONE_SIDE_MATCH_PROVIDER_CARD_CONFLICT"
+    },
+    {
+      "capture_basis": null,
+      "match_basis": null,
+      "official_pair": [
+        "Randy Brown",
+        "Jacobe Smith"
+      ],
+      "provider_commence_time_utc": null,
+      "provider_event_id": null,
+      "provider_pair": null,
+      "provider_selection_slots": {},
+      "source_capture_id": null,
+      "status": "NO_PROVIDER_MATCH"
     }
   ],
   "system_readiness_state": "AUTHORIZED_RELEASE_AWAITING_ISSUANCE",
