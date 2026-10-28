@@ -2249,7 +2249,7 @@
           "engine": "spread_Q_t37_centrality.v1",
           "engine_version": "3a83903ddc457a6bf3e6995fb3e42cfc54d0cb50e37d8cf1f44d03a0058dde21",
           "issued_at": "2026-10-27T17:30:01.069132+00:00",
-          "result": null,
+          "result": "W",
           "rationale": "Brooklyn Nets +12.5 is a 50.4% chance to cover. Michael Porter Jr.'s 2.4 offensive EPM over 28.5 minutes and Day'Ron Sharpe's 1.5 defensive EPM over 18.8 minutes favor the Brooklyn Nets. Jayson Tatum is the biggest factor against the pick, with a 6.6 EPM over 33.0 minutes for the Boston Celtics. A home line of -12.5 favors the Brooklyn Nets, as does a 0.078 larger share of minutes for players with fewer than five games this season for the Boston Celtics than for the Brooklyn Nets. A minute change from the last five games that is 13.0 larger for the Brooklyn Nets than for the Boston Celtics works against the Brooklyn Nets. Before T-6 the injury report listed Devin Carter as Out for the Boston Celtics and Ben Saraf, Drake Powell, Grant Nelson, Joshua Jefferson and Tyler Bilodeau as Out for the Brooklyn Nets, and each of those projections was already at zero minutes. The tier is Moderate."
         },
         {
@@ -2270,7 +2270,7 @@
           "engine": "totals_sig_standings.v1",
           "engine_version": "cccbb6c408f5e88b34c5ef05bbe16bbfbc82a3b1f662dae56df697c2b109ba37",
           "issued_at": "2026-10-27T17:30:01.228103+00:00",
-          "result": null,
+          "result": "L",
           "rationale": "Under 222.5 is a 52.0% chance on the total. Team EPM of 9.4 for the Boston Celtics and -7.0 for the Brooklyn Nets favors the Under, as does game-optimized team EPM of 8.6 for the Boston Celtics and -7.5 for the Brooklyn Nets. A Dunk & Threes projection of 229.9 points works against the Under. Dunk & Threes had the Boston Celtics at 122.6 points and the Brooklyn Nets at 107.3 points. Before T-6 the injury report listed Devin Carter as Out for the Boston Celtics and Ben Saraf, Drake Powell, Grant Nelson, Joshua Jefferson and Tyler Bilodeau as Out for the Brooklyn Nets, and each of those projections was already at zero minutes. The tier is Moderate."
         },
         {
@@ -2291,7 +2291,7 @@
           "engine": "spread_Q_t37_centrality.v1",
           "engine_version": "3a83903ddc457a6bf3e6995fb3e42cfc54d0cb50e37d8cf1f44d03a0058dde21",
           "issued_at": "2026-10-27T17:30:01.338598+00:00",
-          "result": null,
+          "result": "W",
           "rationale": "New York Knicks -4.5 is a 50.2% chance to cover. Karl-Anthony Towns's 6.1 EPM over 31.6 minutes and Jalen Brunson's 3.9 EPM over 33.5 minutes favor the New York Knicks. Cade Cunningham is the biggest factor against the pick, with a 4.3 EPM over 32.4 minutes for the Detroit Pistons. A minute change from the last five games that is 51.0 larger for the Detroit Pistons than for the New York Knicks favors the New York Knicks, as does a roster with 1 more players on the minute projection for the Detroit Pistons than for the New York Knicks. A home line of -4.5 works against the New York Knicks. Before T-6 the injury report listed Jose Alvarado as Out for the New York Knicks and Jalen Duren and Ugonna Onyenso as Out for the Detroit Pistons, and each of those projections was already at zero minutes. The tier is Moderate."
         },
         {
@@ -2312,7 +2312,7 @@
           "engine": "totals_sig_standings.v1",
           "engine_version": "cccbb6c408f5e88b34c5ef05bbe16bbfbc82a3b1f662dae56df697c2b109ba37",
           "issued_at": "2026-10-27T17:30:01.400955+00:00",
-          "result": null,
+          "result": "W",
           "rationale": "Under 218.5 is a 51.1% chance on the total. A Dunk & Threes projection of 218.1 points favors the Under, as does team EPM of 6.8 for the New York Knicks and 0.9 for the Detroit Pistons. Dunk & Threes had the New York Knicks at 111.0 points and the Detroit Pistons at 107.1 points. Before T-6 the injury report listed Jose Alvarado as Out for the New York Knicks and Jalen Duren and Ugonna Onyenso as Out for the Detroit Pistons, and each of those projections was already at zero minutes. The tier is Weak. The line on Under is 218.5."
         },
         {
@@ -2333,7 +2333,7 @@
           "engine": "spread_Q_t37_centrality.v1",
           "engine_version": "3a83903ddc457a6bf3e6995fb3e42cfc54d0cb50e37d8cf1f44d03a0058dde21",
           "issued_at": "2026-10-27T17:30:01.471575+00:00",
-          "result": null,
+          "result": "W",
           "rationale": "San Antonio Spurs -18.5 is a 51.6% chance to cover. Victor Wembanyama's 9.1 EPM over 30.8 minutes and Darius Acuff Jr.'s -6.0 EPM over 35.6 minutes favor the San Antonio Spurs. Keldon Johnson is the biggest factor against the pick, with a -1.1 EPM over 22.5 minutes for the San Antonio Spurs. A minute change from the last five games that is 37.0 larger for the Sacramento Kings than for the San Antonio Spurs favors the San Antonio Spurs, as does an assist rate 0.40 per 36 higher for the San Antonio Spurs than for the Sacramento Kings over the last 20 games. A home line of -18.5 works against the San Antonio Spurs. Before T-6 the injury report listed Jayden Quaintance and Tobias Harris as Out for the San Antonio Spurs and Ben Simmons, Dylan Cardwell, Keegan Murray, Maxime Raynaud and Sean Pedulla as Out for the Sacramento Kings, and each of those projections was already at zero minutes. The tier is Elite."
         },
         {
@@ -2354,7 +2354,7 @@
           "engine": "totals_sig_standings.v1",
           "engine_version": "cccbb6c408f5e88b34c5ef05bbe16bbfbc82a3b1f662dae56df697c2b109ba37",
           "issued_at": "2026-10-27T17:30:01.530945+00:00",
-          "result": null,
+          "result": "L",
           "rationale": "Under 232.5 is a 52.4% chance on the total. Team EPM of 10.9 for the San Antonio Spurs and -11.5 for the Sacramento Kings favors the Under, as does game-optimized team EPM of 11.2 for the San Antonio Spurs and -10.4 for the Sacramento Kings. A Dunk & Threes projection of 231.0 points works against the Under. Dunk & Threes had the San Antonio Spurs at 125.8 points and the Sacramento Kings at 105.2 points. Before T-6 the injury report listed Jayden Quaintance and Tobias Harris as Out for the San Antonio Spurs and Ben Simmons, Dylan Cardwell, Keegan Murray, Maxime Raynaud and Sean Pedulla as Out for the Sacramento Kings, and each of those projections was already at zero minutes. The tier is Strong."
         },
         {
@@ -2375,7 +2375,7 @@
           "engine": "spread_Q_t37_centrality.v1",
           "engine_version": "3a83903ddc457a6bf3e6995fb3e42cfc54d0cb50e37d8cf1f44d03a0058dde21",
           "issued_at": "2026-10-27T17:30:01.657973+00:00",
-          "result": null,
+          "result": "W",
           "rationale": "Portland Trail Blazers +2.5 is a 50.6% chance to cover. Damian Lillard's 3.7 offensive EPM over 28.7 minutes and Deni Avdija's 2.7 EPM over 32.1 minutes favor the Portland Trail Blazers. Luka Doncic is the biggest factor against the pick, with a 7.8 EPM over 34.7 minutes for the Los Angeles Lakers. An assist rate 1.07 per 36 higher for the Portland Trail Blazers than for the Los Angeles Lakers over the last 20 games favors the Portland Trail Blazers, as does a top-five minute share 0.046 higher for the Los Angeles Lakers than for the Portland Trail Blazers. A block rate 0.21 per 36 higher for the Los Angeles Lakers than for the Portland Trail Blazers over the last 20 games works against the Portland Trail Blazers. Before T-6 the injury report listed Adou Thiero and Cameron Carr as Out for the Los Angeles Lakers and Chris Youngblood, Jayson Kent, John Tonje and Shaedon Sharpe as Out for the Portland Trail Blazers, and each of those projections was already at zero minutes. The tier is Strong."
         },
         {
@@ -2396,7 +2396,7 @@
           "engine": "totals_sig_standings.v1",
           "engine_version": "cccbb6c408f5e88b34c5ef05bbe16bbfbc82a3b1f662dae56df697c2b109ba37",
           "issued_at": "2026-10-27T17:30:01.712835+00:00",
-          "result": null,
+          "result": "L",
           "rationale": "Under 234.5 is a 54.0% chance on the total. A Dunk & Threes projection of 231.8 points works against the Under, as does game-optimized team EPM of 3.8 for the Los Angeles Lakers and 5.6 for the Portland Trail Blazers. Dunk & Threes had the Los Angeles Lakers at 117.3 points and the Portland Trail Blazers at 114.5 points. The Los Angeles Lakers team EPM is 3.6 and the Portland Trail Blazers team EPM is 3.8. Before T-6 the injury report listed Adou Thiero and Cameron Carr as Out for the Los Angeles Lakers and Chris Youngblood, Jayson Kent, John Tonje and Shaedon Sharpe as Out for the Portland Trail Blazers, and each of those projections was already at zero minutes. The tier is Elite."
         }
       ]
