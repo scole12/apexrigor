@@ -123,7 +123,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 12,
-      "scheduled_start_utc": "2026-10-31T21:00:00Z",
+      "scheduled_start_utc": "2026-10-31T21:10:00Z",
       "segment": "PRELIMS",
       "weight_class": "WOMENS_FLYWEIGHT"
     }
@@ -150,10 +150,10 @@
     "detail": "No forecasts have been issued yet. Any published card will show the selection, captured sportsbook price, APEX probability, rating and full model-supported rationale.",
     "headline": "Awaiting the T-2 forecast run"
   },
-  "generated_at_utc": "2026-10-27T23:45:43.588986Z",
+  "generated_at_utc": "2026-10-28T12:15:41.674766Z",
   "issuance_id": null,
   "issuance_status": null,
-  "payload_sha256": "f48c8b02173fed14580d119a5bcc24b08a9e625ea01964d0cc16c0ee8aea1201",
+  "payload_sha256": "bd92be5df4eec3a65058d1161316abdb70615909abdd7c287d44134637bc80e7",
   "picks_published": false,
   "positions": [],
   "positions_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
