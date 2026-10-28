@@ -190,7 +190,7 @@
   },
   "event_id": "cd102f3d-e75c-5d10-9a88-71b6387c465d",
   "fight_count": 12,
-  "generated_at_utc": "2026-10-28T12:15:41.674766Z",
+  "generated_at_utc": "2026-10-28T15:45:44.388751Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "GRADED_COMMERCIAL_AND_OR_SCIENTIFIC"
@@ -1187,7 +1187,7 @@
       "source": "PRODUCTION_COMMERCIAL_GRADES"
     }
   ],
-  "payload_sha256": "66cda29a2da68b9c92d9773a89055c00a1f4b6d2fc677f2779eee652cf542d26",
+  "payload_sha256": "bf41171b311e4b14eedea56172817d3d8fffa5d40dfb7aaaa863c9e92581c725",
   "picks_published": false,
   "positions": [],
   "positions_sha256": null,
@@ -5178,7 +5178,7 @@
     "production_issuance_authorized": true,
     "release_binding": "AUTHORIZED_RELEASE_AWAITING_EVENT_ISSUANCE"
   },
-  "semantic_state_sha256": "41e7dd5597654ac6a7fd0453bb56b87d44f5c020fedf39c6166400bcb51d24c4",
+  "semantic_state_sha256": "5e1044ba6221b72cdb1d2926c3aabaa2564d4539ebff7702da9c4a6dc860d047",
   "source_conflicts": [
     {
       "capture_basis": "LATEST_LIVE_EVENTS_CAPTURE",
@@ -5194,7 +5194,7 @@
         "Mickey Gall"
       ],
       "provider_selection_slots": {},
-      "source_capture_id": "6c70f222-fbe4-42fa-92f2-5b7366e974e6",
+      "source_capture_id": "75083be5-e74d-4357-8fbe-a031e5be23f7",
       "status": "ONE_SIDE_MATCH_PROVIDER_CARD_CONFLICT"
     },
     {
