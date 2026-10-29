@@ -17,7 +17,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 2,
-      "scheduled_start_utc": null,
+      "scheduled_start_utc": "2026-11-01T01:45:00Z",
       "segment": "MAIN",
       "weight_class": "WELTERWEIGHT"
     },
@@ -27,7 +27,7 @@
       "is_co_main_event": false,
       "is_main_event": false,
       "official_display_order": 3,
-      "scheduled_start_utc": "2026-11-01T01:15:00Z",
+      "scheduled_start_utc": "2026-10-31T21:00:00Z",
       "segment": "MAIN",
       "weight_class": "FLYWEIGHT"
     },
@@ -133,7 +133,7 @@
     "scorecards": 37,
     "weigh_ins": 5442
   },
-  "generated_at_utc": "2026-10-28T15:45:44.388751Z",
+  "generated_at_utc": "2026-10-29T18:45:42.050613Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "GRADED_COMMERCIAL_AND_OR_SCIENTIFIC"
@@ -1147,7 +1147,7 @@
     "schedule_status": "ANNOUNCED",
     "venue": "Meta Apex"
   },
-  "payload_sha256": "33a579489b17f15b8de690969d9d6cbb9f7bd28a0d00f473b4c9fd0a3d1b49d7",
+  "payload_sha256": "e0c6ba033f617d5ef2a95d9836ccdabb3ac8361ae8d32b4192d3084877c4dc40",
   "production_isolation": "PASS",
   "schema_version": "APEX_MMA_OPS_SNAPSHOT_V1",
   "science_blocker": "AUTHORIZED_RELEASE_AWAITING_EVENT_ISSUANCE",
