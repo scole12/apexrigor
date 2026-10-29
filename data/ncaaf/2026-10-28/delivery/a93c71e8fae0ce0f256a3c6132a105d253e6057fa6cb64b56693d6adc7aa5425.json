@@ -1,0 +1,38 @@
+{
+  "attachment_count": 3,
+  "attachment_names": [
+    "results/APEX_TOTAL_RECORD_20261028.png",
+    "results/NCAAF_PRIOR_DAY_SLATE_20261028.png",
+    "results/NCAAF_DETAILED_RESULTS_20261028.pdf"
+  ],
+  "canonical_game_count": 3,
+  "canonical_public_payload_sha256": "ef0ef9eb6eea7aa098ff55329ec5350dc1476a32ff67b1d1a587349ab95c39b9",
+  "count_scope": "EXPLICIT_CANONICAL_AND_DISPLAY",
+  "delivery_product": "RESULTS",
+  "display_date": "October 29, 2026",
+  "display_game_count": 3,
+  "display_slate_date_et": "2026-10-29",
+  "files": {
+    "NCAAF_T2_FULL_SLATE_20261028.pdf": "6c2379a2262d0d065272564b1f817e29c55080db46ad4c686acb3ffb3d273b9c",
+    "NCAAF_T2_PICKS_CARD_20261028.png": "86bd747a50fc2d1870883de9329cfe91eddf466db9258bb02a843867b71291c2",
+    "T3_APEX_NCAAF_DATA_REPORT_20261028.pdf": "a15d85485eef496111ce106864324aee2db31f67c8f7ddb8677ad5c229396387"
+  },
+  "graded_date": "October 28, 2026",
+  "graded_slate_date_et": "2026-10-28",
+  "internal_market_pending_game_count": 3,
+  "issued_game_count": 0,
+  "market_pending_game_count": 3,
+  "official_position_count": 0,
+  "queue_request_id": "a93c71e8fae0ce0f256a3c6132a105d253e6057fa6cb64b56693d6adc7aa5425",
+  "results_cumulative_path": "data/ncaaf/2026-10-28/results/NCAAF_CUMULATIVE_RESULTS.json",
+  "results_files": {
+    "data/ncaaf/2026-10-28/results/APEX_TOTAL_RECORD_20261028.png": "eb3d43343c393e6350837000c169b59c3d122277387a985e573f6947ca571a12",
+    "data/ncaaf/2026-10-28/results/NCAAF_CUMULATIVE_RESULTS.json": "d6755a9c7b30e0767b133111155ffb392aeca0d0723b041e503c324fb65e1d57",
+    "data/ncaaf/2026-10-28/results/NCAAF_DETAILED_RESULTS_20261028.pdf": "ebffeed33d0a75f6926f903ee854f52349391415f1ebace88b51f1f8ff413afb",
+    "data/ncaaf/2026-10-28/results/NCAAF_PRIOR_DAY_SLATE_20261028.png": "33a398eb4f8f07db0dca888a0e564e660dd305849faf475488c67dd446f3517f"
+  },
+  "schema_version": "apex.ncaaf.full_slate_delivery.v5.shared_publisher",
+  "sealed_day_payload_sha256": "0eec6ee5c3b0aa18a031d028ddfeb76c37d39e94a88792a107864e2a81db761d",
+  "season_year": 2026,
+  "slate_date": "2026-10-28"
+}
