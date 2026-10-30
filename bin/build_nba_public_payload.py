@@ -90,6 +90,8 @@ def public_position(row, bands=None):
                 issued_at=row['issued_at'].isoformat(),
                 result={None: None, 'win': 'W', 'loss': 'L', 'push': 'P', 'void': 'V'}[row['outcome']])
     public['rationale'] = card_rationale(row, public)
+    if (row.get('feature_versions') or {}).get('replacement'):
+        public['rationale'] = 'Actual-time pretip champion replacement issued at ' + row['issued_at'].isoformat() + '. ' + public['rationale'].replace('T-6', 'pregame')
     return public
 
 
@@ -166,6 +168,11 @@ def refresh(day, tier_bands=None):
                  games=[dict(game_id=str(g['game_id']), away=g['away'], home=g['home'],
                              tip=g['scheduled_tip'].isoformat() if g['scheduled_tip'] else None,
                              season_type=g['season_type']) for g in games], positions=current)
+    if day == date(2026, 10, 30) and current:
+        today['scheduled_t6_release_at'] = today['release_at']
+        today['release_at'] = today['released_at']
+        today['issuance_type'] = 'actual_time_pretip_replacement'
+        today['input_cutoff'] = '2026-10-30T22:51:00+00:00'
     slates = {}
     for row, position in zip(rows, positions):
         d = row['game_date']
@@ -265,6 +272,8 @@ def build():
         status = 'SCHEDULE UPDATED ' + et_stamp(today['schedule_updated_at']) + ' ET'
     else:
         status = None
+    if today.get('slate_date') == '2026-10-30' and positions:
+        status = 'ACTUAL-TIME PRETIP REPLACEMENT - SEALED ' + et_stamp(released) + ' ET - INPUT CUTOFF 6:51 PM ET - EARLIER CARD WITHDRAWN'
     picks += '</div>' + ('' if status is None else '<p class="nhl-updated mono" id="nba-refresh-status">' + status + '</p>') + '</section>'
     rows = [p for slate in archive['slates'] for p in slate['positions']]
     if len({p['position_id'] for p in rows}) != len(rows):
