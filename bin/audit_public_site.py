@@ -248,7 +248,7 @@ def main() -> int:
         nba_today = json.loads((root / 'data/nba_today.json').read_text())
         nba_release = release_label(nba_today['games'])
         expected_release = release_time(nba_today['games'])
-        if nba_today.get('release_at') != (expected_release.isoformat() if expected_release else None):
+        if nba_today.get('scheduled_t6_release_at', nba_today.get('release_at')) != (expected_release.isoformat() if expected_release else None):
             errors.append('NBA release_at must be first tip minus six hours')
         if nba_release + ' ET release' not in nba_about:
             errors.append('/nba/about missing computed release time')
