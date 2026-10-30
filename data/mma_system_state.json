@@ -190,7 +190,7 @@
   },
   "event_id": "cd102f3d-e75c-5d10-9a88-71b6387c465d",
   "fight_count": 12,
-  "generated_at_utc": "2026-10-29T18:45:42.050613Z",
+  "generated_at_utc": "2026-10-30T21:15:44.065351Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "GRADED_COMMERCIAL_AND_OR_SCIENTIFIC"
@@ -1187,7 +1187,7 @@
       "source": "PRODUCTION_COMMERCIAL_GRADES"
     }
   ],
-  "payload_sha256": "8d25e2cb2055fa333a3b1cda4643ebcb86aabf9b1ab0c8fbdb8bbbebc7343a0a",
+  "payload_sha256": "38dc7bf04eea904a3c3c9aad4cb5bddd841622c75ca1ea712068771a12867c89",
   "picks_published": false,
   "positions": [],
   "positions_sha256": null,
@@ -5178,7 +5178,7 @@
     "production_issuance_authorized": true,
     "release_binding": "AUTHORIZED_RELEASE_AWAITING_EVENT_ISSUANCE"
   },
-  "semantic_state_sha256": "251a8dae7b6a21bbb562bf41442e095cebe1be0c328af824b2ad2cb528281793",
+  "semantic_state_sha256": "8b5f8abddf8bf3271825ff1d8a408131d218eae25f42316ac6fad05979bbad99",
   "source_conflicts": [
     {
       "capture_basis": "LATEST_LIVE_EVENTS_CAPTURE",
@@ -5194,7 +5194,7 @@
         "Zachary Reese"
       ],
       "provider_selection_slots": {},
-      "source_capture_id": "5e58cc5c-17b8-4dbd-b3d5-46cf2db0c447",
+      "source_capture_id": "507cd8e7-067f-4cd4-9ee2-e27eafdcbca5",
       "status": "ONE_SIDE_MATCH_PROVIDER_CARD_CONFLICT"
     }
   ],
