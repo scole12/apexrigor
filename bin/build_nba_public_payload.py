@@ -213,16 +213,6 @@ def esc(value):
 def build():
     today = load('nba_today.json')
     archive = load('nba_results_archive.json')
-    # Display only; retain issued labels and rationale for audit.
-    for doc, name in ((today, 'nba_today.json'), (archive, 'nba_results_archive.json')):
-        for p in [*doc.get('positions', []), *(p for s in doc.get('slates', []) for p in s['positions'])]:
-            p.setdefault('issued_tier', p.get('tier'))
-            p.setdefault('issued_rationale', p.get('rationale'))
-            p.update(tier='UNVERIFIED', tier_status='UNVERIFIED')
-            p['rationale'] = ('Tier UNVERIFIED: historical evidence has not established four ordered '
-                              'win-rate bands. Probability is the original engine estimate; '
-                              'picks, lines and odds are unchanged.')
-        (ROOT / 'data' / name).write_text(json.dumps(doc, indent=2, ensure_ascii=False) + '\n', encoding='utf-8')
     positions = today['positions']
     for p in positions + [p for s in archive['slates'] for p in s['positions']]:
         if any(str(p.get(k, '')).startswith('baseline:') for k in ('engine', 'engine_version')):
@@ -231,7 +221,7 @@ def build():
         raise ValueError('unissued positions must be empty')
     cards = {}
     for p in positions:
-        if p['market'] not in ('ATS', 'TOTALS') or p.get('tier') not in (None, 'Weak', 'Moderate', 'Strong', 'Elite', 'UNVERIFIED'):
+        if p['market'] not in ('ATS', 'TOTALS') or p.get('tier') not in (None, 'Weak', 'Moderate', 'Strong', 'Elite'):
             raise ValueError('invalid stored market/tier')
         probability = p.get('probability')
         if probability is not None and (isinstance(probability, bool) or not 0 <= probability <= 1):
@@ -290,7 +280,7 @@ def build():
         raise ValueError('duplicate archived position_id')
     if any(p['market'] not in ('ATS', 'TOTALS') for p in rows):
         raise ValueError('invalid archived market')
-    about = '<div class="section-head"><div class="title">APEX NBA</div></div><p>Two pregame engines: full-game ATS and full-game totals.</p><p>Both use a bet-all policy: one spread side and one Over or Under for every eligible game with captured FanDuel markets. No moneyline positions.</p><p>All games share one ' + release + ' ET release, six hours before the day’s first tip. The issued card keeps the original picks, lines, prices and engine probabilities. Four ordered win-rate tiers are UNVERIFIED.</p><p>The all-sports banner shows the Total Apex record. NBA results use only sealed NBA picks and their grades, with original issued labels preserved for audit and tiers displayed as UNVERIFIED.</p>'
+    about = '<div class="section-head"><div class="title">APEX NBA</div></div><p>Two pregame engines: full-game ATS and full-game totals.</p><p>Both use a bet-all policy: one spread side and one Over or Under for every eligible game with captured FanDuel markets. No moneyline positions.</p><p>All games share one ' + release + ' ET release, six hours before the day’s first tip. The issued card keeps the original picks, lines, prices and confidence tiers.</p><p>The all-sports banner shows the Total Apex record. NBA results use only sealed NBA picks and their grades, with tiers kept as issued.</p>'
     import re
     for section, body in (('picks',picks),('results',None),('about',about)):
         target = ROOT / 'nba' / ('' if section == 'picks' else section) / 'index.html'

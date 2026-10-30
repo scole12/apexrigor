@@ -4,7 +4,7 @@
   const esc = value => String(value ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
   const markets = {ATS: "ATS", TOTALS: "TOTALS"};
   const results = {W:"WIN", L:"LOSS", P:"PUSH", V:"VOID", WIN:"WIN", LOSS:"LOSS", PUSH:"PUSH", VOID:"VOID", PENDING:"PENDING"};
-  const tiers = ["UNVERIFIED"];
+  const tiers = ["WEAK", "MODERATE", "STRONG", "ELITE"];
   const fmtRecord = (w, l, p = 0) => `${w.toLocaleString("en-US")}-${l.toLocaleString("en-US")}${p ? `-${p}P` : ""}`;
   const rate = (w, l) => w + l ? `${(100 * w / (w + l)).toFixed(1)}%` : "—";
   const record = rows => {
@@ -29,7 +29,7 @@
         issued.set(position.position_id, {
           id: position.position_id, date: slate.slate_date, game: position.game_id || "—",
           matchup: position.matchup || position.game_id || "—", market: position.market,
-          pick: position.selection || "UNAVAILABLE", tier: "UNVERIFIED", result
+          pick: position.selection || "UNAVAILABLE", tier: String(position.tier || "UNAVAILABLE").toUpperCase(), result
         });
       }
     }
@@ -58,12 +58,12 @@
       const rec = record(rows.filter(row => row.tier === tier && (!market || row.market === market)));
       return [tier[0] + tier.slice(1).toLowerCase(), rec.label, rec.rate];
     });
-    output += `<div class="section-head"><div class="title">AS-ISSUED TIER PERFORMANCE - UNVERIFIED</div><div class="meta mono">NBA FULL-GAME · ${rows.length ? "AS ISSUED" : "UNISSUED"}</div></div>`;
+    output += `<div class="section-head"><div class="title">AS-ISSUED TIER PERFORMANCE</div><div class="meta mono">NBA FULL-GAME · ${rows.length ? "AS ISSUED" : "UNISSUED"}</div></div>`;
     output += `<div class="tier-grid">
-      <div class="tier-col"><div class="tier-sub">TOTALS BY TIER VERIFICATION STATUS</div>${table(["Tier", "Record", "Win Rate"], byTier("TOTALS"))}</div>
-      <div class="tier-col"><div class="tier-sub">ATS BY TIER VERIFICATION STATUS</div>${table(["Tier", "Record", "Win Rate"], byTier("ATS"))}</div>
+      <div class="tier-col"><div class="tier-sub">TOTALS BY CONFIDENCE TIER</div>${table(["Tier", "Record", "Win Rate"], byTier("TOTALS"))}</div>
+      <div class="tier-col"><div class="tier-sub">ATS BY CONFIDENCE TIER</div>${table(["Tier", "Record", "Win Rate"], byTier("ATS"))}</div>
     </div>`;
-    output += `<div class="tier-sub">COMBINED NBA BY TIER VERIFICATION STATUS</div><div class="tier-single">${table(["Tier", "Record", "Win Rate"], byTier(null))}</div>`;
+    output += `<div class="tier-sub">COMBINED NBA BY CONFIDENCE TIER</div><div class="tier-single">${table(["Tier", "Record", "Win Rate"], byTier(null))}</div>`;
     const days = new Map();
     for (const row of rows) {
       if (!days.has(row.date)) days.set(row.date, []);
