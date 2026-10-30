@@ -122,12 +122,19 @@ def refresh(day, tier_bands=None):
               and p.issued_at is not null and p.issued_at<=CURRENT_TIMESTAMP
               and p.engine not like 'baseline:%%'
               and p.engine_version not like 'baseline:%%'
+              -- Owner-withdrawn Oct 30 wrong-engine card: retain audit rows, never republish.
+              and not (p.game_date = DATE '2026-10-30' and
+                  ((p.market = 'spread' and p.engine = 'spread_Q_t37_centrality.v1') or
+                   (p.market = 'total' and p.engine = 'totals_sig_standings.v1')))
             order by p.game_date,p.game_id,p.market""",
             (day.year - (day.month < 8), day)).fetchall()
         # The slate counts as released once any row of the date is sealed (baseline included); the label
         # shows the release (the sealed rows' prediction time), not the clock of this build.
         sealed = conn.execute("""select game_id, min(prediction_time) released_at from ops.predictions
             where game_date=%s and issued_at is not null and issued_at<=CURRENT_TIMESTAMP
+              and not (game_date = DATE '2026-10-30' and
+                  ((market = 'spread' and engine = 'spread_Q_t37_centrality.v1') or
+                   (market = 'total' and engine = 'totals_sig_standings.v1')))
             group by game_id""", (day,)).fetchall()
         contexts = t6.load_t6(conn, [r['game_id'] for r in rows])
     for row in rows:
