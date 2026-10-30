@@ -427,6 +427,7 @@ def discover_mma() -> list[Request]:
 def discover_nfl() -> list[Request]:
     from nfl_publication_acceptance import accepted_stage, accepted_issuance
     requests: list[Request] = []
+    accepted_issuances: list[Request] = []
     if not NFL_QUEUE.is_dir():
         return requests
     for path in sorted(NFL_QUEUE.glob("*.json")):
@@ -468,11 +469,14 @@ def discover_nfl() -> list[Request]:
                 continue
             request_id = str(issuance.get("issuance_id") or path.stem)
             request = Request("NFL", request_id, {**queue, "issuance": issuance}, None)
+            accepted_issuances.append(request)
             if not is_complete(request):
                 requests.append(request)
         except Exception as error:
             requests.append(Request('NFL', path.stem, {'discovery_error':str(error)}, None))
-    return requests
+    from nfl_timing_repair import select_requests
+    return select_requests(requests, accepted_issuances, sys.modules[__name__],
+                           datetime.now(NY).date().isoformat())
 
 
 def discover() -> list[Request]:
@@ -814,12 +818,15 @@ def build_request(request: Request, worktree: Path) -> dict[str, Any]:
         python_tool(worktree, "build_mma_results_page.py")
         python_tool(worktree, "build_mma_about_page.py")
     elif request.sport == "NFL":
-        # Execute the reviewed admission gate from this publication worktree.
-        run_nfl_build([sys.executable, str(worktree / "bin/build_nfl_public_payload.py"),
-                       "--output-root", str(worktree)], cwd=worktree)
+        # Reuse results only with prior publication evidence and unchanged authority.
+        from nfl_timing_repair import build_issuance
+        results_guard = build_issuance(request, worktree, sys.modules[__name__])
     else:
         raise RuntimeError(f"unsupported sport publication request: {request.sport}")
     if request.sport == 'NFL':
+        # Recheck authority before validating the final build, including fallback.
+        if results_guard is not None:
+            results_guard()
         # FAIL_CLOSED_NO_PICKS_TEASER — ban prior-day results strip on /nfl picks.
         for rel in ("nfl/index.html", "public/nfl/index.html"):
             picks = worktree / rel
