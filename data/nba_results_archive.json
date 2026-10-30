@@ -2933,7 +2933,7 @@
           "engine": "spread_Q_t37_centrality.v1",
           "engine_version": "3a83903ddc457a6bf3e6995fb3e42cfc54d0cb50e37d8cf1f44d03a0058dde21",
           "issued_at": "2026-10-29T18:00:01.239588+00:00",
-          "result": null,
+          "result": "W",
           "rationale": "Atlanta Hawks -1.5 is a 50.2% chance to cover. Dyson Daniels's 3.7 EPM over 28.1 minutes and Nickeil Alexander-Walker's 2.8 EPM over 30.7 minutes favor the Atlanta Hawks. Jarrett Allen is the biggest factor against the pick, with a 5.1 EPM over 27.7 minutes for the Cleveland Cavaliers. A 0.953 larger share of minutes for players with fewer than five games this season for the Cleveland Cavaliers than for the Atlanta Hawks favors the Atlanta Hawks, as does an assist rate 1.19 per 36 higher for the Atlanta Hawks than for the Cleveland Cavaliers over the last 20 games. A minute change from the last five games that is 50.4 larger for the Atlanta Hawks than for the Cleveland Cavaliers works against the Atlanta Hawks. The injury report before T-6 listed no Out player on either minute projection. The tier is Moderate."
         },
         {
@@ -2954,7 +2954,7 @@
           "engine": "totals_sig_standings.v1",
           "engine_version": "cccbb6c408f5e88b34c5ef05bbe16bbfbc82a3b1f662dae56df697c2b109ba37",
           "issued_at": "2026-10-29T18:00:01.361135+00:00",
-          "result": null,
+          "result": "L",
           "rationale": "Over 238.5 is a 51.3% chance on the total. A Dunk & Threes projection of 236.5 points favors the Over, as does game-optimized team EPM of -0.6 for the Atlanta Hawks and 3.0 for the Cleveland Cavaliers. Dunk & Threes had the Atlanta Hawks at 118.9 points and the Cleveland Cavaliers at 117.6 points. The Atlanta Hawks team EPM is 0.7 and the Cleveland Cavaliers team EPM is 2.9. The injury report before T-6 listed no Out player on either minute projection. The tier is Moderate."
         },
         {
@@ -2975,7 +2975,7 @@
           "engine": "spread_Q_t37_centrality.v1",
           "engine_version": "3a83903ddc457a6bf3e6995fb3e42cfc54d0cb50e37d8cf1f44d03a0058dde21",
           "issued_at": "2026-10-29T18:00:01.515083+00:00",
-          "result": null,
+          "result": "W",
           "rationale": "New Orleans Pelicans -5.5 is a 50.7% chance to cover. Darius Acuff Jr.'s -3.7 EPM over 35.7 minutes and Emanuel Sharp's -4.1 EPM over 18.2 minutes favor the New Orleans Pelicans. Domantas Sabonis is the biggest factor against the pick, with a 1.8 EPM over 35.0 minutes for the Sacramento Kings. A 0.353 larger share of minutes for players with fewer than five games this season for the Sacramento Kings than for the New Orleans Pelicans favors the New Orleans Pelicans, as does a top-five minute share 0.061 higher for the Sacramento Kings than for the New Orleans Pelicans. A home line of -5.5 works against the New Orleans Pelicans. Before T-6 the injury report listed Yves Missi as Out for the New Orleans Pelicans and Ben Simmons, Dylan Cardwell, Keegan Murray, Maxime Raynaud and Sean Pedulla as Out for the Sacramento Kings, and each of those projections was already at zero minutes. The tier is Strong."
         },
         {
@@ -2996,7 +2996,7 @@
           "engine": "totals_sig_standings.v1",
           "engine_version": "cccbb6c408f5e88b34c5ef05bbe16bbfbc82a3b1f662dae56df697c2b109ba37",
           "issued_at": "2026-10-29T18:00:01.580239+00:00",
-          "result": null,
+          "result": "L",
           "rationale": "Under 236.5 is a 52.8% chance on the total. Team EPM of -6.1 for the New Orleans Pelicans and -11.4 for the Sacramento Kings favors the Under, as does game-optimized team EPM of -8.6 for the New Orleans Pelicans and -16.0 for the Sacramento Kings. A Dunk & Threes projection of 237.8 points works against the Under, as does offensive EPM minus defensive EPM adding to 1.6 across both teams. Dunk & Threes had the New Orleans Pelicans at 121.1 points and the Sacramento Kings at 116.7 points. Before T-6 the injury report listed Yves Missi as Out for the New Orleans Pelicans and Ben Simmons, Dylan Cardwell, Keegan Murray, Maxime Raynaud and Sean Pedulla as Out for the Sacramento Kings, and each of those projections was already at zero minutes. The tier is Strong."
         },
         {
@@ -3017,7 +3017,7 @@
           "engine": "spread_Q_t37_centrality.v1",
           "engine_version": "3a83903ddc457a6bf3e6995fb3e42cfc54d0cb50e37d8cf1f44d03a0058dde21",
           "issued_at": "2026-10-29T18:00:01.642612+00:00",
-          "result": null,
+          "result": "L",
           "rationale": "Portland Trail Blazers -7.5 is a 51.0% chance to cover. Damian Lillard's 4.9 EPM over 30.5 minutes and Ja Morant's 4.1 EPM over 28.3 minutes favor the Portland Trail Blazers. Ty Jerome is the biggest factor against the pick, with a 5.5 EPM over 26.6 minutes for the Memphis Grizzlies. An assist rate 0.99 per 36 higher for the Portland Trail Blazers than for the Memphis Grizzlies over the last 20 games favors the Portland Trail Blazers, as does a minute change from the last five games that is 29.2 larger for the Memphis Grizzlies than for the Portland Trail Blazers. A 0.796 larger share of minutes for players with fewer than five games this season for the Portland Trail Blazers than for the Memphis Grizzlies works against the Portland Trail Blazers. Before T-6 the injury report listed Shaedon Sharpe as Out for the Portland Trail Blazers, and each of those projections was already at zero minutes. The tier is Elite."
         },
         {
@@ -3038,7 +3038,7 @@
           "engine": "totals_sig_standings.v1",
           "engine_version": "cccbb6c408f5e88b34c5ef05bbe16bbfbc82a3b1f662dae56df697c2b109ba37",
           "issued_at": "2026-10-29T18:00:01.702774+00:00",
-          "result": null,
+          "result": "W",
           "rationale": "Under 232.5 is a 52.0% chance on the total. Team EPM of 5.3 for the Portland Trail Blazers and 1.5 for the Memphis Grizzlies favors the Under, as does a Dunk & Threes win chance of 72.0% for the Portland Trail Blazers. A Dunk & Threes projection of 228.1 points works against the Under, as does offensive EPM minus defensive EPM adding to 2.7 across both teams. Dunk & Threes had the Portland Trail Blazers at 117.6 points and the Memphis Grizzlies at 110.5 points. Before T-6 the injury report listed Shaedon Sharpe as Out for the Portland Trail Blazers, and each of those projections was already at zero minutes. The tier is Moderate."
         }
       ]

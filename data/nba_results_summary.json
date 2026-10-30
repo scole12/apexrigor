@@ -4,16 +4,16 @@
   "source": "sealed predictions and grades only",
   "markets": {
     "ATS": {
-      "w": 33,
-      "l": 35,
+      "w": 35,
+      "l": 36,
       "p": 0,
-      "win_pct": 48.529411764705884
+      "win_pct": 49.29577464788732
     },
     "TOTALS": {
-      "w": 29,
-      "l": 39,
+      "w": 30,
+      "l": 41,
       "p": 0,
-      "win_pct": 42.64705882352941
+      "win_pct": 42.25352112676056
     }
   }
 }
