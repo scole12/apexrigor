@@ -250,8 +250,8 @@ def main() -> int:
         expected_release = release_time(nba_today['games'])
         if nba_today.get('scheduled_t6_release_at', nba_today.get('release_at')) != (expected_release.isoformat() if expected_release else None):
             errors.append('NBA release_at must be first tip minus six hours')
-        if nba_release + ' ET release' not in nba_about:
-            errors.append('/nba/about missing computed release time')
+        if 'T-minus-six horizon' not in nba_about:
+            errors.append('/nba/about missing T-minus-six horizon')
         if nba_picks.count('<article class="game-module"') != len(nba_today['games']):
             errors.append('NBA scheduled game card count mismatch')
         for marker in ('Common release', 'FIRST tip', 'planned games', 'planned positions'):
@@ -292,7 +292,7 @@ def main() -> int:
             errors.append('NBA empty results must match NHL unissued state')
     except (OSError, ValueError, KeyError) as exc:
         errors.append(f'invalid NBA public payload: {exc}')
-    for marker in ('Two pregame engines', 'bet-all', 'No moneyline positions', 'sealed NBA picks and their grades', 'six hours before the day’s first tip'):
+    for marker in ('two-engine', 'bet-all', 'moneyline', 'original selection', 'T-minus-six horizon', 'ATS Shrink C3', 'D4 Ratings Lag-1'):
         if marker not in nba_about:
             errors.append(f'/nba/about missing {marker}')
     if '55%' in nba_about:
