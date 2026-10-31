@@ -162,7 +162,7 @@
       "weight_class": "WOMENS_FLYWEIGHT"
     }
   ],
-  "card_reconciliation_status": "OPEN_PROVIDER_IDENTITY_CONFLICT",
+  "card_reconciliation_status": "PASS",
   "event": {
     "city": "Las Vegas",
     "country": "United States",
@@ -190,7 +190,7 @@
   },
   "event_id": "cd102f3d-e75c-5d10-9a88-71b6387c465d",
   "fight_count": 12,
-  "generated_at_utc": "2026-10-30T21:15:44.065351Z",
+  "generated_at_utc": "2026-10-31T13:15:43.175757Z",
   "grader": {
     "schedule": "07:00 America/New_York",
     "status": "GRADED_COMMERCIAL_AND_OR_SCIENTIFIC"
@@ -1187,7 +1187,7 @@
       "source": "PRODUCTION_COMMERCIAL_GRADES"
     }
   ],
-  "payload_sha256": "38dc7bf04eea904a3c3c9aad4cb5bddd841622c75ca1ea712068771a12867c89",
+  "payload_sha256": "4644f95ed34ddeb11a72987589ae736aec9ccbb87baa515c291a6b906cc18d6f",
   "picks_published": false,
   "positions": [],
   "positions_sha256": null,
@@ -5178,26 +5178,8 @@
     "production_issuance_authorized": true,
     "release_binding": "AUTHORIZED_RELEASE_AWAITING_EVENT_ISSUANCE"
   },
-  "semantic_state_sha256": "8b5f8abddf8bf3271825ff1d8a408131d218eae25f42316ac6fad05979bbad99",
-  "source_conflicts": [
-    {
-      "capture_basis": "LATEST_LIVE_EVENTS_CAPTURE",
-      "match_basis": null,
-      "official_pair": [
-        "Zach Reese",
-        "Mickey Gall"
-      ],
-      "provider_commence_time_utc": "2026-10-31T22:25:00Z",
-      "provider_event_id": "bcace46c2ac73a12c347366092a7329e",
-      "provider_pair": [
-        "Mickey Gall",
-        "Zachary Reese"
-      ],
-      "provider_selection_slots": {},
-      "source_capture_id": "507cd8e7-067f-4cd4-9ee2-e27eafdcbca5",
-      "status": "ONE_SIDE_MATCH_PROVIDER_CARD_CONFLICT"
-    }
-  ],
+  "semantic_state_sha256": "06c3a8a5af9bdc3f1998d7ef1c3b2ca2e121ea0009cc7dccc874a17ee1c47265",
+  "source_conflicts": [],
   "system_readiness_state": "AUTHORIZED_RELEASE_AWAITING_ISSUANCE",
   "t2": {
     "actual_utc": null,
